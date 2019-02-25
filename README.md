@@ -9,7 +9,7 @@
 
 ## Work with Git/GitHub
 
-*NOTE:* Depending on operating system, you might have to install Git manually before using it with RStudio. You will find detailed instructions [here](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN).
+*NOTE:* Depending on your operating system, you might have to install Git manually before using it with RStudio. You will find detailed instructions [here](https://support.rstudio.com/hc/en-us/articles/200532077-Version-Control-with-Git-and-SVN).
 
 ## Clone this course's repository
 
