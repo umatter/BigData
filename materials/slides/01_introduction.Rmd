@@ -7,7 +7,7 @@ output:
     css: ../../style/ioslides.css
   slidy_presentation: default
 logo: ../img/logo.png
-subtitle: Lecture 1:<br>Introduction
+subtitle: "Lecture 1: Introduction"
 bibliography: ../references/bigdata.bib
 ---
 
@@ -43,6 +43,7 @@ keywords <- gsheet2tbl(URL)
 names(keywords) <- "keyword"
 
 # clean data
+keywords <- tibble(keyword = na.omit(as.vector(do.call("rbind", keywords))))
 keywords$keyword <- tolower(keywords$keyword)
 keywords$keyword <- trimws(keywords$keyword)
 keywords$keyword <- gsub("[^[:alnum:][:blank:]+?&/\\-]", "", keywords$keyword)
@@ -56,7 +57,7 @@ keywords_count <-  keywords_count[order(keywords_count$n,
 keywords_count$keyword <- factor(keywords_count$keyword, 
                                  levels = keywords_count$keyword)
 max_show <- ifelse(nrow(keywords_count)>9, 10, nrow(keywords_count))
-keywords_count <- keywords_count[1:max_show, ]
+#keywords_count <- keywords_count[1:max_show, ]
 
 # plot data
 ggplot(keywords_count, aes(x= keyword, y = n)) +
@@ -583,11 +584,13 @@ time_elapsed <-
 head(pce_real, 2)
 # but much faster!
 time_elapsed
+
+time_per_row <- time_elapsed[3]/n_obs
 ```
 
 ## Example
 
-About 10x faster!
+In fact, `system.time()` is not precise enough to capture the time elapsed...
 
 ```{r}
 # in seconds
