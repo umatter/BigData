@@ -1,0 +1,867 @@
+---
+title: 'Big Data Statistics for R and Python'
+subtitle: 'Lecture 2:<br>Programming with Data'
+author: "Prof. Dr. Ulrich Matter"
+date: "25/02/2019"
+output:   
+  ioslides_presentation:
+    css: ../../style/ioslides.css
+logo: ../img/logo.png
+bibliography: ../references/bigdata.bib
+---
+
+```{r set-options, echo=FALSE, cache=FALSE, purl=FALSE}
+options(width = 100)
+library(knitr)
+```
+
+
+# Updates
+
+## Build groups for group examination
+
+- Teams of 2-3.
+- Forum on StudyNet.
+- All team members must have a GitHub account.
+
+## Group examination
+
+- Analysis of (big) dataset in R.
+- Report on analysis in R Markdown.
+- Conceptual questions.
+- Collaborate, hand-in, feedback via GitHub.
+
+# Recap of Week 1
+
+
+## Class Survey: Big Data?
+
+```{r setup, echo=FALSE, purl=FALSE, message=FALSE, warning=FALSE}
+# Load required packages. Install if needed.
+library(gsheet)
+library(tidyverse)
+
+# Download survey data
+# Download data
+URL <- 'https://docs.google.com/spreadsheets/d/1_eF-DN2ie13doVQRjJNtjplzfKCLk6z6g8fk96cs1dA/edit#gid=0'
+keywords <- gsheet2tbl(URL)
+names(keywords) <- "keyword"
+
+# clean data
+keywords <- tibble(keyword = na.omit(as.vector(do.call("rbind", keywords))))
+keywords$keyword <- tolower(keywords$keyword)
+keywords$keyword <- trimws(keywords$keyword)
+keywords$keyword <- gsub("[^[:alnum:][:blank:]+?&/\\-]", "", keywords$keyword)
+
+# analyze data
+keywords_count <- keywords %>% group_by(keyword) %>% tally()
+
+# prepare data
+keywords_count <-  keywords_count[order(keywords_count$n, 
+                                        decreasing = FALSE),]
+keywords_count$keyword <- factor(keywords_count$keyword, 
+                                 levels = keywords_count$keyword)
+max_show <- ifelse(nrow(keywords_count)>9, 10, nrow(keywords_count))
+#keywords_count <- keywords_count[1:max_show, ]
+
+# plot data
+ggplot(keywords_count, aes(x= keyword, y = n)) +
+     ggtitle("Big Data", subtitle = "What comes to mind?") +
+     geom_bar(fill= "darkgreen", stat = "identity") +
+     coord_flip() + 
+     theme_minimal(base_size = 20) +
+     xlab("Keyword (standardized)") +
+     ylab("Frequency mentioned")
+     
+
+```
+
+
+
+
+## Schedule: Part I {.smaller}
+
+ 1. Introduction: Big Data, Data Economy (Concepts). M: Walkowiak (2016): Chapter 1
+ 2. *Programming with Data, R Refresher Course (Concepts/Applied). M: Walkowiak (2016): Chapter 2*
+ 3. Computation and Memory (Concepts)
+ 4. Cleaning and Transformation of Big Data (Applied). M: Walkowiak (2016): Chapter 3: p. 74‐118.
+ 5. Aggregation and Visualization (Applied: data tables, ggplot). M: Walkowiak (2016): Chapter 3: p.  118‐127. C: Wickham et al. (2015), Schwabish (2014).
+ 6. Distributed Systems, MapReduce/Hadoop with R (Concepts/Applied). M: Walkowiak (2016): Chapter 4
+ 7. Data Storage, Databases Interaction with R. M: Walkowiak (2016): Chapter 5
+
+
+## Notes, Slides, Code, et al.
+
+- [umatter.github.io/courses](https://umatter.github.io/courses.html)
+- [github.com/umatter/BigData](https://github.com/umatter/BigData)
+- [StudyNet](https://fronter.com/unisg/main.phtml)
+
+## Suggested Learning Procedure
+
+- Clone/fork the course's GitHub-repository.
+- During class, use the Rmd-file of the slide-set as basis for your notes.
+- After class, enrich/merge/extend your notes with the lecture notes.
+
+## Goals for Today
+
+1. Get familiar with the tools.
+2. Get overview over key aspects of programming with big data in R.
+3. First hands-on experience with big data statistics.
+
+
+# The Tools: R, RStudio, GitHub, etc.
+
+-----
+
+```{r rstudio, echo=FALSE, out.width = "70%", fig.align='center', purl=FALSE}
+include_graphics("../img/01_rstudio.png")
+```
+
+
+# Data Projects with GitHub
+
+-----
+
+```{r github, echo=FALSE, out.width = "70%", fig.align='center', purl=FALSE, fig.cap="Image by [jonobacon](https://www.flickr.com/photos/jonobacon/22160892602) ([CC BY 2.0](https://creativecommons.org/licenses/by/2.0/)) "}
+include_graphics("../img/02_githublogo.gif")
+```
+
+
+## Version control with Git
+
+- Keep track of your code.
+- Develop in different branches.
+- Safely go back to previous versions.
+
+## Code repository on GitHub
+
+- Work from different machines.
+- Manage and document the project.
+- Publish and collaborate. 
+
+
+# Data Structures and Data Types
+
+## R-tools to investigate structures and types
+
+package | function | purpose
+-------- | ---------- | ---------------------------------------------
+`utils`  | `str()`    | Compactly display the structure of an arbitrary R object.
+`base`   | `class()`   | Prints the class(es) of an R object.
+`base`   | `typeof()`  | Determines the (R-internal) type or storage mode of an object.
+
+
+
+## Structures to work with (in R)
+
+We distinguish two basic characteristics:
+
+  1. Data **types**: integers; real numbers ('numeric values', floating point numbers); text ('string', 'character values').
+
+    
+    
+## Structures to work with (in R)
+
+We distinguish two basic characteristics:
+
+  1. Data **types**: integers; real numbers ('numeric values', floating point numbers); text ('string', 'character values').
+  2. Basic **data structures** in RAM:
+      - *Vectors*
+      - *Factors*
+      - *Arrays/Matrices*
+      - *Lists*
+      - *Data frames* (very `R`-specific)
+
+
+## Data types: numeric
+
+```{r}
+a <- 1.5
+b <- 3
+```
+
+R interprets this data as type `double` (class 'numeric'):
+
+```{r}
+typeof(a)
+class(a)
+```
+
+
+## Data types: numeric
+
+
+Given that these bytes of data are interpreted as numeric, we can use operators (here: math operators) that can work with such functions:
+
+```{r}
+a + b
+```
+
+
+
+## Data types: character
+
+
+```{r}
+a <- "1.5"
+b <- "3"
+```
+
+```{r}
+typeof(a)
+class(a)
+```
+
+
+## Data types: character
+
+Now the same line of code as above will result in an error:
+
+```{r error=TRUE}
+a + b
+```
+
+
+
+## Data structures: Vectors
+
+```{r numvec, echo=FALSE, out.width = "10%", fig.align='center', fig.cap= "Illustration of a numeric vector (symbolic). Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/)).", purl=FALSE}
+include_graphics("../img/02_numvec.png")
+```
+
+## Data structures: Vectors
+
+Example:
+
+```{r}
+persons <- c("Andy", "Brian", "Claire")
+persons
+```
+
+```{r}
+ages <- c(24, 50, 30)
+ages
+```
+
+
+## Data structures: Factors
+
+```{r factor, echo=FALSE, out.width = "10%", fig.align='center', fig.cap= "Illustration of a factor (symbolic). Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/)).", purl=FALSE}
+include_graphics("../img/02_factor.png")
+```
+
+## Data structures: Factors
+
+Example:
+
+```{r}
+gender <- factor(c("Male", "Male", "Female"))
+gender
+```
+
+
+
+## Data structures: Matrices/Arrays
+
+```{r matrix, echo=FALSE, out.width = "20%", fig.align='center', fig.cap= "Illustration of a numeric matrix (symbolic). Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/)).", purl=FALSE}
+include_graphics("../img/02_matrix.png")
+```
+
+
+## Data structures: Matrices/Arrays
+
+Example:
+
+```{r}
+my_matrix <- matrix(c(1,2,3,4,5,6), nrow = 3)
+my_matrix
+
+```
+
+```{r}
+my_array <- array(c(1,2,3,4,5,6), dim = 3)
+my_array
+
+```
+
+
+## Data frames, tibbles, and data tables
+ 
+
+```{r df, echo=FALSE, out.width = "20%", fig.align='center', fig.cap= "Illustration of a data frame (symbolic). Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/)).", purl=FALSE}
+include_graphics("../img/02_df.png")
+```
+
+
+## Data frames, tibbles, and data tables
+
+Example: 
+
+```{r}
+df <- data.frame(person = persons, age = ages, gender = gender)
+df
+
+```
+
+
+## Data structures: Lists
+
+```{r list, echo=FALSE, out.width = "20%", fig.align='center', fig.cap= "Illustration of a list (symbolic). Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/)).", purl=FALSE}
+include_graphics("../img/02_list.png")
+```
+
+
+## Data structures: Lists
+
+Example:
+
+```{r}
+my_list <- list(my_array, my_matrix, df)
+my_list
+```
+
+
+
+
+
+# Programming with (Big) Data in R
+
+## Typical Programming Tasks
+
+- Procedures to import/export data.
+- Procedures to clean and filter data.
+- Implement functions for statistical analysis.
+
+## Programming with Big Data
+
+1. Which basic (already implemented) R functions are more or less suitable as building blocks for the program?
+2. How can we exploit/avoid some of R's lower-level characteristics in order to implement efficient functions?
+3. Is there a need to interface with a lower-level programming language in order to speed up the code? (advanced topic)
+
++ Independent of *how* we write a statistical procedure in R (or in any other language, for that matter), is there an *alternative statistical procedure/algorithm* that is faster but delivers approximately the same result.
+
+## Building blocks for programming with big data
+
+- Several basic functions and packages that provide similar function. Which one to use?
+- Example: Data import.
+     - `utils::read.csv()` 
+     - `data.table::fread()`
+
+## Building blocks for programming with big data
+
+```{r message=FALSE}
+# read a CSV-file the 'traditional way'
+flights <- read.csv("../data/flights.csv")
+class(flights)
+
+# alternative (needs the data.table package)
+library(data.table)
+flights <- fread("../data/flights.csv")
+class(flights)
+
+```
+
+## Building blocks for programming with big data
+
+```{r}
+system.time(flights <- read.csv("../data/flights.csv"))
+system.time(flights <- fread("../data/flights.csv"))
+```
+
+## Writing efficient code
+
+- Memory allocation (before looping)
+- Vectorization (different approaches)
+- Beyond R
+
+## Memory allocation before looping
+
+```{r}
+# naïve implementation
+sqrt_vector <- 
+     function(x) {
+          output <- c()
+          for (i in 1:length(x)) {
+               output <- c(output, x[i]^(1/2))
+          }
+          
+          return(output)
+     }
+
+```
+
+
+## Memory allocation before looping
+
+```{r}
+
+# implementation with pre-allocation of memory
+sqrt_vector_faster <- 
+     function(x) {
+          output <- rep(NA, length(x))
+          for (i in 1:length(x)) {
+               output[i] <-  x[i]^(1/2)
+          }
+          
+          return(output)
+     }
+
+```
+
+
+## Memory allocation before looping
+
+*Test it!*
+
+```{r}
+# the different sizes of the vectors we will put into the two functions
+input_sizes <- seq(from = 100, to = 10000, by = 100)
+# create the input vectors
+inputs <- sapply(input_sizes, rnorm)
+
+# compute ouputs for each of the functions
+output_slower <- 
+     sapply(inputs, 
+            function(x){ system.time(sqrt_vector(x))["elapsed"]
+                 }
+            )
+output_faster <- 
+     sapply(inputs, 
+            function(x){ system.time(sqrt_vector_faster(x))["elapsed"]
+                 }
+            )
+```
+
+## Memory allocation before looping
+
+*Test it!*
+
+```{r}
+# load packages
+library(ggplot2)
+
+# initiate data frame for plot
+plotdata <- data.frame(time_elapsed = c(output_slower, output_faster),
+                       input_size = c(input_sizes, input_sizes),
+                       Implementation= c(rep("sqrt_vector", length(output_slower)),
+                            rep("sqrt_vector_faster", length(output_faster))))
+
+```
+
+
+## Memory allocation before looping
+
+*Test it!*
+
+```{r}
+# plot
+ggplot(plotdata, aes(x=input_size, y= time_elapsed)) +
+     geom_point(aes(colour=Implementation)) +
+     theme_minimal(base_size = 18) +
+     ylab("Time elapsed (in seconds)") +
+     xlab("No. of elements processed")
+     
+```
+
+
+
+## Vectorization 
+
+- "In R, everything is a vector..."
+- Directly operate on vectors, not elements.
+- Avoid unnecessary repetition of 'preparatory steps'.
+
+## Vectorization: Example 
+
+```{r}
+# implementation with vectorization
+sqrt_vector_fastest <- 
+     function(x) {
+               output <-  x^(1/2)
+          return(output)
+     }
+
+# speed test
+output_fastest <- 
+     sapply(inputs, 
+            function(x){ system.time(sqrt_vector_fastest(x))["elapsed"]
+                 }
+            )
+```
+
+## Vectorization: Example 
+
+*Test it!*
+
+```{r}
+# load packages
+library(ggplot2)
+
+# initiate data frame for plot
+plotdata <- data.frame(time_elapsed = c(output_faster, output_fastest),
+                       input_size = c(input_sizes, input_sizes),
+                       Implementation= c(rep("sqrt_vector_faster", length(output_faster)),
+                            rep("sqrt_vector_fastest", length(output_fastest))))
+ 
+```
+
+
+## Vectorization: Example 
+
+*Test it!*
+
+```{r}
+# plot
+ggplot(plotdata, aes(x=input_size, y= time_elapsed)) +
+     geom_point(aes(colour=Implementation)) +
+     theme_minimal(base_size = 18) +
+     ylab("Time elapsed (in seconds)") +
+     xlab("No. of elements processed")
+     
+```
+
+
+
+## Vectorization: `apply`-type functions vs loops
+
+- Apply a function to each element of a vector/list.
+- For example, `lapply()`. 
+
+## Example
+
+- Read several data files into R.
+- Example data source: [Health News in Twitter Data Set](https://archive.ics.uci.edu/ml/datasets/Health+News+in+Twitter) by @karami_etal2017.
+- Loop vs `lapply()`, vs `Vectorization()`
+
+## Example: Preparations
+
+```{r message=FALSE}
+# load packages
+library(data.table)
+
+# get a list of all file-paths
+textfiles <- list.files("../data/twitter_texts", full.names = TRUE)
+
+```
+
+## Example: `for`-loop approach
+
+```{r message=FALSE, warning=FALSE}
+# prepare loop
+all_texts <- list()
+n_files <- length(textfiles)
+length(all_texts) <- n_files
+# read all files listed in textfiles
+for (i in 1:n_files) {
+     all_texts[[i]] <- fread(textfiles[i])
+}
+
+```
+
+## Example: `for`-loop approach
+
+*Check the results*
+
+```{r}
+# combine all in one data.table
+twitter_text <- rbindlist(all_texts)
+# check result
+str(twitter_text)
+
+```
+
+## Example: `lapply` approach
+
+```{r message=FALSE, warning=FALSE}
+# prepare loop
+all_texts <- lapply(textfiles, fread)
+# combine all in one data.table
+twitter_text <- rbindlist(all_texts)
+# check result
+str(twitter_text)
+
+```
+
+
+## Example: `Vectorization` approach
+
+```{r message=FALSE, warning=FALSE}
+# initiate the import function
+import_file <- 
+     function(x) {
+          parsed_x <- fread(x)
+          return(parsed_x)
+     }
+
+# 'vectorize' it
+import_files <- Vectorize(import_file, SIMPLIFY = FALSE)
+```
+
+
+## Example: `Vectorization` approach
+
+```{r message=FALSE, warning=FALSE}
+# Apply the vectorized function
+all_texts <- import_files(textfiles)
+twitter_text <- rbindlist(all_texts)
+# check the result
+str(twitter_text)
+```
+
+
+## R, beyond R
+
+- For advanced programmers, R offers various options to directly make use of compiled programs (for example, written in C, C++, or FORTRAN). 
+- Several of the core R functions are implemented in one of these lower-level programming languages.
+
+## R, beyond R
+
+*Have a look at a function's source code!* 
+
+```{r}
+import_file
+```
+
+## R, beyond R
+
+*Have a look at a function's source code!* 
+
+```{r}
+sum
+```
+
+
+
+# Big Data statistics
+
+## Faster statistical procedures
+
+- Consider alternative statistical procedures that happened to be more efficient to compute a given statistic based on large amounts of data.
+- For example, sub-sampling procedures.
+
+## Example: Fast Least Squares Regression
+
+- Classical approach to estimating linear models: OLS.
+- Alternative: The *Uluru* algorithm [@dhillon_2013].
+
+
+## OLS as a point of reference
+
+Recall the OLS estimator in matrix notation, given the linear model $\mathbf{y}=\mathbf{X}\beta + \epsilon$:
+
+$\hat{\beta}_{OLS} = (\mathbf{X}^\intercal\mathbf{X})^{-1}\mathbf{X}^{\intercal}\mathbf{y}$.
+
+## Computational bottleneck of OLS
+
+- $\hat{\beta}_{OLS}$ depends on $(\mathbf{X}^\intercal\mathbf{X})^{-1}$.
+- Large crossproduct if the number of observations is large ($X$ is of dimensions $n\times p$)
+- (Large) matrix inversions are computationally demanding.
+     - Computational complexity is larger than $O(n^{2})$.
+- OLS has a $O(np^{2})$ running time.
+
+## OLS in R
+
+```{r}
+beta_ols <- 
+     function(X, y) {
+          
+          # compute cross products and inverse
+          XXi <- solve(crossprod(X,X))
+          Xy <- crossprod(X, y) 
+          
+          return( XXi  %*% Xy )
+     }
+```
+
+## Monte Carlo study
+
+- Parameters and pseudo data
+
+```{r}
+# set parameter values
+n <- 10000000
+p <- 4 
+
+# Generate sample based on Monte Carlo
+# generate a design matrix (~ our 'dataset') with four variables and 10000 observations
+X <- matrix(rnorm(n*p, mean = 10), ncol = p)
+# add column for intercept
+X <- cbind(rep(1, n), X)
+
+```
+
+## Monte Carlo study
+
+- Model and model output
+
+```{r}
+# MC model
+y <- 2 + 1.5*X[,2] + 4*X[,3] - 3.5*X[,4] + 0.5*X[,5] + rnorm(n)
+
+```
+
+
+## Monte Carlo study
+
+- Performance of OLS
+
+```{r}
+# apply the ols estimator
+beta_ols(X, y)
+```
+
+
+## The Uluru algorithm as an alternative to OLS
+
+Following @dhillon_2013, we compute $\hat{\beta}_{Uluru}$:
+
+$$\hat{\beta}_{Uluru}=\hat{\beta}_{FS} + \hat{\beta}_{correct}$$, where
+$$\hat{\beta}_{FS} = (\mathbf{X}_{subs}^\intercal\mathbf{X}_{subs})^{-1}\mathbf{X}_{subs}^{\intercal}\mathbf{y}_{subs}$$, and
+$$\hat{\beta}_{correct}= \frac{n_{subs}}{n_{rem}} \cdot (\mathbf{X}_{subs}^\intercal\mathbf{X}_{subs})^{-1} \mathbf{X}_{rem}^{\intercal}\mathbf{R}_{rem}$$, and
+$$\mathbf{R}_{rem} = \mathbf{Y}_{rem} - \mathbf{X}_{rem}  \cdot \hat{\beta}_{FS}$$.
+
+## The Uluru algorithm as an alternative to OLS
+
+- Key idea: Compute $(\mathbf{X}^\intercal\mathbf{X})^{-1}$ only on a sub-sample ($X_{subs}$, etc.)
+- If the sample is large enough (which is the case in a Big Data context), the result is approximately the same.
+
+## Uluru algorithm in R (simplified)
+
+```{r}
+
+# simple version of the Uluru algorithm
+beta_uluru <-
+     function(X_subs, y_subs, X_rem, y_rem) {
+          
+          # compute beta_fs (this is simply OLS applied to the subsample)
+          XXi_subs <- solve(crossprod(X_subs, X_subs))
+          Xy_subs <- crossprod(X_subs, y_subs)
+          b_fs <- XXi_subs  %*% Xy_subs
+          
+          # compute \mathbf{R}_{rem}
+          R_rem <- y_rem - X_rem %*% b_fs
+          
+          # compute \hat{\beta}_{correct}
+          b_correct <- (nrow(X_subs)/(nrow(X_rem))) * XXi_subs %*% crossprod(X_rem, R_rem)
+
+          # beta uluru       
+          return(b_fs + b_correct)
+     }
+
+```
+
+
+## Uluru algorithm in R (simplified)
+
+Test it with the same input as above:
+
+```{r}
+# set size of subsample
+n_subs <- 1000
+# select subsample and remainder
+n_obs <- nrow(X)
+X_subs <- X[1L:n_subs,]
+y_subs <- y[1L:n_subs]
+X_rem <- X[(n_subs+1L):n_obs,]
+y_rem <- y[(n_subs+1L):n_obs]
+
+# apply the uluru estimator
+beta_uluru(X_subs, y_subs, X_rem, y_rem)
+```
+
+
+## Uluru algorithm: Monte Carlo study
+
+```{r}
+# define subsamples
+n_subs_sizes <- seq(from = 1000, to = 500000, by=10000)
+n_runs <- length(n_subs_sizes)
+# compute uluru result, stop time
+mc_results <- rep(NA, n_runs)
+mc_times <- rep(NA, n_runs)
+for (i in 1:n_runs) {
+     # set size of subsample
+     n_subs <- n_subs_sizes[i]
+     # select subsample and remainder
+     n_obs <- nrow(X)
+     X_subs <- X[1L:n_subs,]
+     y_subs <- y[1L:n_subs]
+     X_rem <- X[(n_subs+1L):n_obs,]
+     y_rem <- y[(n_subs+1L):n_obs]
+     
+     mc_results[i] <- beta_uluru(X_subs, y_subs, X_rem, y_rem)[2] # the first element is the intercept
+     mc_times[i] <- system.time(beta_uluru(X_subs, y_subs, X_rem, y_rem))[3]
+     
+}
+
+```
+
+
+## Uluru algorithm: Monte Carlo study
+
+```{r}
+
+# compute ols results and ols time
+ols_time <- system.time(beta_ols(X, y))
+ols_res <- beta_ols(X, y)[2]
+
+```
+
+
+
+## Uluru algorithm: Monte Carlo study
+
+- Visualize comparison with OLS.
+
+```{r}
+# load packages
+library(ggplot2)
+
+# prepare data to plot
+plotdata <- data.frame(beta1 = mc_results,
+                       time_elapsed = mc_times,
+                       subs_size = n_subs_sizes)
+```
+
+## Uluru algorithm: Monte Carlo study
+
+1. Computation time.
+
+```{r}
+ggplot(plotdata, aes(x = subs_size, y = time_elapsed)) +
+     geom_point(color="darkgreen") + 
+     geom_hline(yintercept = ols_time[3],
+                color = "red", 
+                size = 1) +
+     theme_minimal() +
+     ylab("Time elapsed") +
+     xlab("Subsample size")
+```
+
+## Uluru algorithm: Monte Carlo study
+
+2. Precision
+
+```{r}
+ggplot(plotdata, aes(x = subs_size, y = beta1)) +
+     geom_hline(yintercept = ols_res,
+                color = "red", 
+                size = 1) +
+     geom_point(color="darkgreen") + 
+
+     theme_minimal() +
+     ylab("Estimated coefficient") +
+     xlab("Subsample size")
+
+warnings()
+```
+
+
+## References {.smaller}
+
+<style>
+slides > slide { overflow: scroll; }
+slides > slide:not(.nobackground):after {
+  content: '';
+}
+</style>
