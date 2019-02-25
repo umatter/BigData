@@ -16,10 +16,7 @@
 git clone https://github.com/umatter/BigData.git
 ```
 
-You have now a local copy of the repository which is linked to the one on GitHub. You can see this by changing to the newly created directory, containing the local copy of the repository:
-```
-cd BigData
-```
+This creates a new directory `BigData` with all the course material in it.
 Whenever there are some updates to the course's repository on GitHub, you can update your local copy with:
 ```
 git pull
