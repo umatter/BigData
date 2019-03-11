@@ -86,5 +86,12 @@ git merge upstream/master
 git push
 ```
 
-Now your forked repo on GitHub also contains the commits (changes) in the original repository.
+Now your forked repo on GitHub also contains the commits (changes) in the original repository. If you make changes to the files in your forked repo. you can add, commit, and push them as in any repository. Example: open `README.md` in a text editor (e.g. RStudio), add `# HELLO WORLD` to the last line of `README.md`, and save the changes. Then:
+
+```
+git add README.md
+git commit -m "hello world"
+git push
+```
+
 
