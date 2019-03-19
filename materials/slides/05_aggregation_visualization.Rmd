@@ -584,13 +584,13 @@ Fractions of dollars due to loose change as tip?
 
 ```{r}
 # indicate natural numbers
-taxi[, is_natural := ifelse(tip_amount == round(tip_amount,0), "Full", "Fraction"),]
+taxi[, dollar_paid := ifelse(tip_amount == round(tip_amount,0), "Full", "Fraction"),]
 
 
 # extended x/y plot
 taxiplot +
      geom_point(alpha=0.2, aes(color=payment_type)) +
-     facet_wrap("is_natural")
+     facet_wrap("dollar_paid")
      
 ```
 
@@ -606,7 +606,7 @@ taxi[, rounded_up := ifelse(fare_amount + tip_amount == round(fare_amount + tip_
 taxiplot +
      geom_point(data= taxi[payment_type == "credit"],
                 alpha=0.2, aes(color=rounded_up)) +
-     facet_wrap("is_natural")
+     facet_wrap("dollar_paid")
 
 ```
 
@@ -616,7 +616,7 @@ taxiplot +
 'X% tip rule'?
 
 ```{r}
-modelplot <- ggplot(data= taxi[payment_type == "credit" & is_natural == "Fraction" & 0 < tip_amount],
+modelplot <- ggplot(data= taxi[payment_type == "credit" & dollar_paid == "Fraction" & 0 < tip_amount],
                     aes(x = fare_amount, y = tip_amount))
 modelplot +
      geom_point(alpha=0.2, colour="darkgreen") +
@@ -627,7 +627,7 @@ modelplot +
 ## Prepare the plot for reporting
 
 ```{r}
-modelplot <- ggplot(data= taxi[payment_type == "credit" & is_natural == "Fraction" & 0 < tip_amount],
+modelplot <- ggplot(data= taxi[payment_type == "credit" & dollar_paid == "Fraction" & 0 < tip_amount],
                     aes(x = fare_amount, y = tip_amount))
 modelplot +
      geom_point(alpha=0.2, colour="darkgreen") +

@@ -198,7 +198,7 @@ library(vcd)
 # generate a mosaic plot
 mosaic(crosstab, shade = TRUE)
 
-## ------------------------------------------------------------------------
+## ----warning=FALSE, message=FALSE----------------------------------------
 # load packages
 library(data.table)
 
@@ -261,8 +261,6 @@ taxiplot <- ggplot(taxi, aes(y=tip_amount, x= fare_amount))
 taxiplot
 
 ## ------------------------------------------------------------------------
-# load packages
-library(ggplot2)
 
 # simple x/y plot
 taxiplot +
@@ -270,8 +268,6 @@ taxiplot +
      
 
 ## ------------------------------------------------------------------------
-# load packages
-library(ggplot2)
 
 # simple x/y plot
 taxiplot +
@@ -321,13 +317,13 @@ fare + geom_bar(data = frequencies[2:40],
 
 ## ------------------------------------------------------------------------
 # indicate natural numbers
-taxi[, is_natural := ifelse(tip_amount == round(tip_amount,0), "Full", "Fraction"),]
+taxi[, dollar_paid := ifelse(tip_amount == round(tip_amount,0), "Full", "Fraction"),]
 
 
 # extended x/y plot
 taxiplot +
      geom_point(alpha=0.2, aes(color=payment_type)) +
-     facet_wrap("is_natural")
+     facet_wrap("dollar_paid")
      
 
 ## ------------------------------------------------------------------------
@@ -338,18 +334,18 @@ taxi[, rounded_up := ifelse(fare_amount + tip_amount == round(fare_amount + tip_
 taxiplot +
      geom_point(data= taxi[payment_type == "credit"],
                 alpha=0.2, aes(color=rounded_up)) +
-     facet_wrap("is_natural")
+     facet_wrap("dollar_paid")
 
 
 ## ------------------------------------------------------------------------
-modelplot <- ggplot(data= taxi[payment_type == "credit" & is_natural == "Fraction" & 0 < tip_amount],
+modelplot <- ggplot(data= taxi[payment_type == "credit" & dollar_paid == "Fraction" & 0 < tip_amount],
                     aes(x = fare_amount, y = tip_amount))
 modelplot +
      geom_point(alpha=0.2, colour="darkgreen") +
      geom_smooth(method = "lm", colour = "black")
 
 ## ------------------------------------------------------------------------
-modelplot <- ggplot(data= taxi[payment_type == "credit" & is_natural == "Fraction" & 0 < tip_amount],
+modelplot <- ggplot(data= taxi[payment_type == "credit" & dollar_paid == "Fraction" & 0 < tip_amount],
                     aes(x = fare_amount, y = tip_amount))
 modelplot +
      geom_point(alpha=0.2, colour="darkgreen") +
