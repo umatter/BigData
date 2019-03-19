@@ -308,13 +308,6 @@ fare + geom_bar(stat = "identity") +
      
      
 
-## ----out.width=10, out.height=5------------------------------------------
-fare + geom_bar(data = frequencies[2:40],
-                stat = "identity") + 
-     facet_wrap("payment_type") 
-     
-      
-
 ## ------------------------------------------------------------------------
 # indicate natural numbers
 taxi[, dollar_paid := ifelse(tip_amount == round(tip_amount,0), "Full", "Fraction"),]

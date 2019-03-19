@@ -467,15 +467,7 @@ fare + geom_bar(stat = "identity") +
      
 ```
 
-Clearly, trips paid in cash tend not to be tipped (at least in this subsample). Let's have a closer look at non-zero tip amounts.
-
-```{r out.width=10, out.height=5}
-fare + geom_bar(data = frequencies[2:40],
-                stat = "identity") + 
-     facet_wrap("payment_type") 
-     
-      
-```
+Clearly, trips paid in cash tend not to be tipped (at least in this subsample).
 
 Let's try to tease this information out of the initial points plot. Trips paid in cash are often not tipped, we thus should indicate the payment method. Moreover, tips paid in full dollar amounts might indicate a habit. 
 
