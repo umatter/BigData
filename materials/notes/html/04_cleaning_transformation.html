@@ -276,23 +276,21 @@ flights &lt;-<span class="st"> </span>
                      <span class="dt">next.rows=</span><span class="dv">100000</span>,
                      <span class="dt">colClasses=</span><span class="ot">NA</span>)
 )</code></pre></div>
-<pre><code>## read.table.ffdf 1..100000 (100000)  csv-read=0.687sec ffdf-write=0.141sec
-## read.table.ffdf 100001..200000 (100000)  csv-read=0.721sec ffdf-write=0.075sec
-## read.table.ffdf 200001..300000 (100000)  csv-read=0.757sec ffdf-write=0.073sec
-## read.table.ffdf 300001..336776 (36776)  csv-read=0.256sec ffdf-write=0.045sec
-##  csv-read=2.421sec  ffdf-write=0.334sec  TOTAL=2.755sec</code></pre>
+<pre><code>## read.table.ffdf 1..100000 (100000)  csv-read=0.683sec ffdf-write=0.132sec
+## read.table.ffdf 100001..200000 (100000)  csv-read=0.793sec ffdf-write=0.079sec
+## read.table.ffdf 200001..300000 (100000)  csv-read=0.933sec ffdf-write=0.116sec
+## read.table.ffdf 300001..336776 (36776)  csv-read=0.324sec ffdf-write=0.09sec
+##  csv-read=2.733sec  ffdf-write=0.417sec  TOTAL=3.15sec</code></pre>
 <pre><code>## -30.7 MB</code></pre>
 <p>Note that there are two substantial differences to what we have previously seen when using <code>fread()</code> to import a csv file. It takes much longer to import a csv into the ffdf structure. However, the RAM allocated to it is much smaller. This is exactly what we would expect, keeping in mind what <code>read.table.ffdf()</code> does in comparison to what <code>fread()</code> does.</p>
 <p>Now we can actually have a look at the data chunks created by <code>ff</code>, as well as how the structure of the dataset is represented in the <code>flights</code> object.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># show the files in the directory keeping the chunks</span>
 <span class="kw">list.files</span>(<span class="st">&quot;ffdf&quot;</span>)</code></pre></div>
-<pre><code>##  [1] &quot;ffdf1a58114e5280.ff&quot; &quot;ffdf1a581a77b99f.ff&quot; &quot;ffdf1a5825d62c0c.ff&quot;
-##  [4] &quot;ffdf1a582929083d.ff&quot; &quot;ffdf1a582a3b834c.ff&quot; &quot;ffdf1a582b36bba.ff&quot; 
-##  [7] &quot;ffdf1a582d0a5a60.ff&quot; &quot;ffdf1a5834101a77.ff&quot; &quot;ffdf1a583b9c484b.ff&quot;
-## [10] &quot;ffdf1a583f7b063b.ff&quot; &quot;ffdf1a5843e69802.ff&quot; &quot;ffdf1a5844dbf1e7.ff&quot;
-## [13] &quot;ffdf1a584d567bae.ff&quot; &quot;ffdf1a58516581b8.ff&quot; &quot;ffdf1a585805ce21.ff&quot;
-## [16] &quot;ffdf1a585f2780c7.ff&quot; &quot;ffdf1a5868d2042c.ff&quot; &quot;ffdf1a58d399555.ff&quot; 
-## [19] &quot;ffdf1a58fe5db3c.ff&quot;</code></pre>
+<pre><code>##  [1] &quot;ffdf3657113f43ad.ff&quot; &quot;ffdf36571300a00d.ff&quot; &quot;ffdf36571fcb1836.ff&quot; &quot;ffdf36572537800a.ff&quot;
+##  [5] &quot;ffdf36573957481c.ff&quot; &quot;ffdf36573ab34cd0.ff&quot; &quot;ffdf365749830758.ff&quot; &quot;ffdf36574ea29188.ff&quot;
+##  [9] &quot;ffdf365750741bb3.ff&quot; &quot;ffdf3657517809cb.ff&quot; &quot;ffdf36575eb7239c.ff&quot; &quot;ffdf36575ec74625.ff&quot;
+## [13] &quot;ffdf36575ee2f467.ff&quot; &quot;ffdf365761bc6dc.ff&quot;  &quot;ffdf36576cce57bf.ff&quot; &quot;ffdf36576dcbcc23.ff&quot;
+## [17] &quot;ffdf365776c6ae08.ff&quot; &quot;ffdf365799c98a6.ff&quot;  &quot;ffdf3657e0bbf3a.ff&quot;</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># investigate the structure of the object created in the R environment</span>
 <span class="kw">str</span>(flights)</code></pre></div>
 <pre><code>## List of 3
@@ -312,7 +310,7 @@ flights &lt;-<span class="st"> </span>
 ##  ..  .. ..- attr(*, &quot;vmode&quot;)= chr &quot;integer&quot;
 ##  ..  .. ..- attr(*, &quot;maxlength&quot;)= int 336776
 ##  ..  .. ..- attr(*, &quot;pattern&quot;)= chr &quot;ffdf&quot;
-##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf1a584d567bae.ff&quot;
+##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf36573ab34cd0.ff&quot;
 ##  ..  .. ..- attr(*, &quot;pagesize&quot;)= int 65536
 ##  ..  .. ..- attr(*, &quot;finalizer&quot;)= chr &quot;close&quot;
 ##  ..  .. ..- attr(*, &quot;finonexit&quot;)= logi TRUE
@@ -328,7 +326,7 @@ flights &lt;-<span class="st"> </span>
 ##  ..  .. ..- attr(*, &quot;vmode&quot;)= chr &quot;integer&quot;
 ##  ..  .. ..- attr(*, &quot;maxlength&quot;)= int 336776
 ##  ..  .. ..- attr(*, &quot;pattern&quot;)= chr &quot;ffdf&quot;
-##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf1a5868d2042c.ff&quot;
+##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf3657517809cb.ff&quot;
 ##  ..  .. ..- attr(*, &quot;pagesize&quot;)= int 65536
 ##  ..  .. ..- attr(*, &quot;finalizer&quot;)= chr &quot;close&quot;
 ##  ..  .. ..- attr(*, &quot;finonexit&quot;)= logi TRUE
@@ -344,7 +342,7 @@ flights &lt;-<span class="st"> </span>
 ##  ..  .. ..- attr(*, &quot;vmode&quot;)= chr &quot;integer&quot;
 ##  ..  .. ..- attr(*, &quot;maxlength&quot;)= int 336776
 ##  ..  .. ..- attr(*, &quot;pattern&quot;)= chr &quot;ffdf&quot;
-##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf1a5834101a77.ff&quot;
+##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf36571fcb1836.ff&quot;
 ##  ..  .. ..- attr(*, &quot;pagesize&quot;)= int 65536
 ##  ..  .. ..- attr(*, &quot;finalizer&quot;)= chr &quot;close&quot;
 ##  ..  .. ..- attr(*, &quot;finonexit&quot;)= logi TRUE
@@ -360,7 +358,7 @@ flights &lt;-<span class="st"> </span>
 ##  ..  .. ..- attr(*, &quot;vmode&quot;)= chr &quot;integer&quot;
 ##  ..  .. ..- attr(*, &quot;maxlength&quot;)= int 336776
 ##  ..  .. ..- attr(*, &quot;pattern&quot;)= chr &quot;ffdf&quot;
-##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf1a58d399555.ff&quot;
+##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf36574ea29188.ff&quot;
 ##  ..  .. ..- attr(*, &quot;pagesize&quot;)= int 65536
 ##  ..  .. ..- attr(*, &quot;finalizer&quot;)= chr &quot;close&quot;
 ##  ..  .. ..- attr(*, &quot;finonexit&quot;)= logi TRUE
@@ -376,7 +374,7 @@ flights &lt;-<span class="st"> </span>
 ##  ..  .. ..- attr(*, &quot;vmode&quot;)= chr &quot;integer&quot;
 ##  ..  .. ..- attr(*, &quot;maxlength&quot;)= int 336776
 ##  ..  .. ..- attr(*, &quot;pattern&quot;)= chr &quot;ffdf&quot;
-##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf1a583f7b063b.ff&quot;
+##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf36571300a00d.ff&quot;
 ##  ..  .. ..- attr(*, &quot;pagesize&quot;)= int 65536
 ##  ..  .. ..- attr(*, &quot;finalizer&quot;)= chr &quot;close&quot;
 ##  ..  .. ..- attr(*, &quot;finonexit&quot;)= logi TRUE
@@ -392,7 +390,7 @@ flights &lt;-<span class="st"> </span>
 ##  ..  .. ..- attr(*, &quot;vmode&quot;)= chr &quot;integer&quot;
 ##  ..  .. ..- attr(*, &quot;maxlength&quot;)= int 336776
 ##  ..  .. ..- attr(*, &quot;pattern&quot;)= chr &quot;ffdf&quot;
-##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf1a5825d62c0c.ff&quot;
+##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf3657e0bbf3a.ff&quot;
 ##  ..  .. ..- attr(*, &quot;pagesize&quot;)= int 65536
 ##  ..  .. ..- attr(*, &quot;finalizer&quot;)= chr &quot;close&quot;
 ##  ..  .. ..- attr(*, &quot;finonexit&quot;)= logi TRUE
@@ -408,7 +406,7 @@ flights &lt;-<span class="st"> </span>
 ##  ..  .. ..- attr(*, &quot;vmode&quot;)= chr &quot;integer&quot;
 ##  ..  .. ..- attr(*, &quot;maxlength&quot;)= int 336776
 ##  ..  .. ..- attr(*, &quot;pattern&quot;)= chr &quot;ffdf&quot;
-##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf1a58fe5db3c.ff&quot;
+##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf36572537800a.ff&quot;
 ##  ..  .. ..- attr(*, &quot;pagesize&quot;)= int 65536
 ##  ..  .. ..- attr(*, &quot;finalizer&quot;)= chr &quot;close&quot;
 ##  ..  .. ..- attr(*, &quot;finonexit&quot;)= logi TRUE
@@ -424,7 +422,7 @@ flights &lt;-<span class="st"> </span>
 ##  ..  .. ..- attr(*, &quot;vmode&quot;)= chr &quot;integer&quot;
 ##  ..  .. ..- attr(*, &quot;maxlength&quot;)= int 336776
 ##  ..  .. ..- attr(*, &quot;pattern&quot;)= chr &quot;ffdf&quot;
-##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf1a583b9c484b.ff&quot;
+##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf36575eb7239c.ff&quot;
 ##  ..  .. ..- attr(*, &quot;pagesize&quot;)= int 65536
 ##  ..  .. ..- attr(*, &quot;finalizer&quot;)= chr &quot;close&quot;
 ##  ..  .. ..- attr(*, &quot;finonexit&quot;)= logi TRUE
@@ -440,7 +438,7 @@ flights &lt;-<span class="st"> </span>
 ##  ..  .. ..- attr(*, &quot;vmode&quot;)= chr &quot;integer&quot;
 ##  ..  .. ..- attr(*, &quot;maxlength&quot;)= int 336776
 ##  ..  .. ..- attr(*, &quot;pattern&quot;)= chr &quot;ffdf&quot;
-##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf1a58114e5280.ff&quot;
+##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf365749830758.ff&quot;
 ##  ..  .. ..- attr(*, &quot;pagesize&quot;)= int 65536
 ##  ..  .. ..- attr(*, &quot;finalizer&quot;)= chr &quot;close&quot;
 ##  ..  .. ..- attr(*, &quot;finonexit&quot;)= logi TRUE
@@ -456,7 +454,7 @@ flights &lt;-<span class="st"> </span>
 ##  ..  .. ..- attr(*, &quot;vmode&quot;)= chr &quot;integer&quot;
 ##  ..  .. ..- attr(*, &quot;maxlength&quot;)= int 336776
 ##  ..  .. ..- attr(*, &quot;pattern&quot;)= chr &quot;ffdf&quot;
-##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf1a582d0a5a60.ff&quot;
+##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf36573957481c.ff&quot;
 ##  ..  .. ..- attr(*, &quot;pagesize&quot;)= int 65536
 ##  ..  .. ..- attr(*, &quot;finalizer&quot;)= chr &quot;close&quot;
 ##  ..  .. ..- attr(*, &quot;finonexit&quot;)= logi TRUE
@@ -474,7 +472,7 @@ flights &lt;-<span class="st"> </span>
 ##  ..  .. ..- attr(*, &quot;vmode&quot;)= chr &quot;integer&quot;
 ##  ..  .. ..- attr(*, &quot;maxlength&quot;)= int 336776
 ##  ..  .. ..- attr(*, &quot;pattern&quot;)= chr &quot;ffdf&quot;
-##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf1a582b36bba.ff&quot;
+##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf3657113f43ad.ff&quot;
 ##  ..  .. ..- attr(*, &quot;pagesize&quot;)= int 65536
 ##  ..  .. ..- attr(*, &quot;finalizer&quot;)= chr &quot;close&quot;
 ##  ..  .. ..- attr(*, &quot;finonexit&quot;)= logi TRUE
@@ -490,7 +488,7 @@ flights &lt;-<span class="st"> </span>
 ##  ..  .. ..- attr(*, &quot;vmode&quot;)= chr &quot;integer&quot;
 ##  ..  .. ..- attr(*, &quot;maxlength&quot;)= int 336776
 ##  ..  .. ..- attr(*, &quot;pattern&quot;)= chr &quot;ffdf&quot;
-##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf1a58516581b8.ff&quot;
+##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf365750741bb3.ff&quot;
 ##  ..  .. ..- attr(*, &quot;pagesize&quot;)= int 65536
 ##  ..  .. ..- attr(*, &quot;finalizer&quot;)= chr &quot;close&quot;
 ##  ..  .. ..- attr(*, &quot;finonexit&quot;)= logi TRUE
@@ -508,7 +506,7 @@ flights &lt;-<span class="st"> </span>
 ##  ..  .. ..- attr(*, &quot;vmode&quot;)= chr &quot;integer&quot;
 ##  ..  .. ..- attr(*, &quot;maxlength&quot;)= int 336776
 ##  ..  .. ..- attr(*, &quot;pattern&quot;)= chr &quot;ffdf&quot;
-##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf1a585f2780c7.ff&quot;
+##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf365776c6ae08.ff&quot;
 ##  ..  .. ..- attr(*, &quot;pagesize&quot;)= int 65536
 ##  ..  .. ..- attr(*, &quot;finalizer&quot;)= chr &quot;close&quot;
 ##  ..  .. ..- attr(*, &quot;finonexit&quot;)= logi TRUE
@@ -526,7 +524,7 @@ flights &lt;-<span class="st"> </span>
 ##  ..  .. ..- attr(*, &quot;vmode&quot;)= chr &quot;integer&quot;
 ##  ..  .. ..- attr(*, &quot;maxlength&quot;)= int 336776
 ##  ..  .. ..- attr(*, &quot;pattern&quot;)= chr &quot;ffdf&quot;
-##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf1a581a77b99f.ff&quot;
+##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf36576dcbcc23.ff&quot;
 ##  ..  .. ..- attr(*, &quot;pagesize&quot;)= int 65536
 ##  ..  .. ..- attr(*, &quot;finalizer&quot;)= chr &quot;close&quot;
 ##  ..  .. ..- attr(*, &quot;finonexit&quot;)= logi TRUE
@@ -544,7 +542,7 @@ flights &lt;-<span class="st"> </span>
 ##  ..  .. ..- attr(*, &quot;vmode&quot;)= chr &quot;integer&quot;
 ##  ..  .. ..- attr(*, &quot;maxlength&quot;)= int 336776
 ##  ..  .. ..- attr(*, &quot;pattern&quot;)= chr &quot;ffdf&quot;
-##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf1a582a3b834c.ff&quot;
+##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf36575ec74625.ff&quot;
 ##  ..  .. ..- attr(*, &quot;pagesize&quot;)= int 65536
 ##  ..  .. ..- attr(*, &quot;finalizer&quot;)= chr &quot;close&quot;
 ##  ..  .. ..- attr(*, &quot;finonexit&quot;)= logi TRUE
@@ -560,7 +558,7 @@ flights &lt;-<span class="st"> </span>
 ##  ..  .. ..- attr(*, &quot;vmode&quot;)= chr &quot;integer&quot;
 ##  ..  .. ..- attr(*, &quot;maxlength&quot;)= int 336776
 ##  ..  .. ..- attr(*, &quot;pattern&quot;)= chr &quot;ffdf&quot;
-##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf1a582929083d.ff&quot;
+##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf36576cce57bf.ff&quot;
 ##  ..  .. ..- attr(*, &quot;pagesize&quot;)= int 65536
 ##  ..  .. ..- attr(*, &quot;finalizer&quot;)= chr &quot;close&quot;
 ##  ..  .. ..- attr(*, &quot;finonexit&quot;)= logi TRUE
@@ -576,7 +574,7 @@ flights &lt;-<span class="st"> </span>
 ##  ..  .. ..- attr(*, &quot;vmode&quot;)= chr &quot;integer&quot;
 ##  ..  .. ..- attr(*, &quot;maxlength&quot;)= int 336776
 ##  ..  .. ..- attr(*, &quot;pattern&quot;)= chr &quot;ffdf&quot;
-##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf1a5844dbf1e7.ff&quot;
+##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf36575ee2f467.ff&quot;
 ##  ..  .. ..- attr(*, &quot;pagesize&quot;)= int 65536
 ##  ..  .. ..- attr(*, &quot;finalizer&quot;)= chr &quot;close&quot;
 ##  ..  .. ..- attr(*, &quot;finonexit&quot;)= logi TRUE
@@ -592,7 +590,7 @@ flights &lt;-<span class="st"> </span>
 ##  ..  .. ..- attr(*, &quot;vmode&quot;)= chr &quot;integer&quot;
 ##  ..  .. ..- attr(*, &quot;maxlength&quot;)= int 336776
 ##  ..  .. ..- attr(*, &quot;pattern&quot;)= chr &quot;ffdf&quot;
-##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf1a5843e69802.ff&quot;
+##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf365761bc6dc.ff&quot;
 ##  ..  .. ..- attr(*, &quot;pagesize&quot;)= int 65536
 ##  ..  .. ..- attr(*, &quot;finalizer&quot;)= chr &quot;close&quot;
 ##  ..  .. ..- attr(*, &quot;finonexit&quot;)= logi TRUE
@@ -608,7 +606,7 @@ flights &lt;-<span class="st"> </span>
 ##  ..  .. ..- attr(*, &quot;vmode&quot;)= chr &quot;integer&quot;
 ##  ..  .. ..- attr(*, &quot;maxlength&quot;)= int 336776
 ##  ..  .. ..- attr(*, &quot;pattern&quot;)= chr &quot;ffdf&quot;
-##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf1a585805ce21.ff&quot;
+##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/Users/umatter/Dropbox/Teaching/HSG/BigData/materials/notes/ffdf/ffdf365799c98a6.ff&quot;
 ##  ..  .. ..- attr(*, &quot;pagesize&quot;)= int 65536
 ##  ..  .. ..- attr(*, &quot;finalizer&quot;)= chr &quot;close&quot;
 ##  ..  .. ..- attr(*, &quot;finonexit&quot;)= logi TRUE
@@ -742,19 +740,19 @@ AIRLINES_DATA &lt;-<span class="st"> &quot;../code_book/B05396_Ch03_Code/airline
                                           <span class="dt">header=</span><span class="ot">TRUE</span>,
                                           <span class="dt">next.rows=</span><span class="dv">100000</span>,
                                           <span class="dt">colClasses=</span><span class="ot">NA</span>))</code></pre></div>
-<pre><code>## read.table.ffdf 1..100000 (100000)  csv-read=0.851sec ffdf-write=0.194sec
-## read.table.ffdf 100001..200000 (100000)  csv-read=0.956sec ffdf-write=0.131sec
-## read.table.ffdf 200001..300000 (100000)  csv-read=1.1sec ffdf-write=0.123sec
-## read.table.ffdf 300001..400000 (100000)  csv-read=0.911sec ffdf-write=0.135sec
-## read.table.ffdf 400001..500000 (100000)  csv-read=0.875sec ffdf-write=0.13sec
-## read.table.ffdf 500001..600000 (100000)  csv-read=0.883sec ffdf-write=0.127sec
-## read.table.ffdf 600001..700000 (100000)  csv-read=0.915sec ffdf-write=0.128sec
-## read.table.ffdf 700001..800000 (100000)  csv-read=1.028sec ffdf-write=0.125sec
-## read.table.ffdf 800001..900000 (100000)  csv-read=0.969sec ffdf-write=0.11sec
-## read.table.ffdf 900001..951111 (51111)  csv-read=0.423sec ffdf-write=0.075sec
-##  csv-read=8.911sec  ffdf-write=1.278sec  TOTAL=10.189sec</code></pre>
+<pre><code>## read.table.ffdf 1..100000 (100000)  csv-read=1.107sec ffdf-write=0.304sec
+## read.table.ffdf 100001..200000 (100000)  csv-read=1.116sec ffdf-write=0.22sec
+## read.table.ffdf 200001..300000 (100000)  csv-read=1.277sec ffdf-write=0.28sec
+## read.table.ffdf 300001..400000 (100000)  csv-read=1.274sec ffdf-write=0.213sec
+## read.table.ffdf 400001..500000 (100000)  csv-read=1.262sec ffdf-write=0.123sec
+## read.table.ffdf 500001..600000 (100000)  csv-read=0.91sec ffdf-write=0.093sec
+## read.table.ffdf 600001..700000 (100000)  csv-read=0.858sec ffdf-write=0.091sec
+## read.table.ffdf 700001..800000 (100000)  csv-read=0.855sec ffdf-write=0.093sec
+## read.table.ffdf 800001..900000 (100000)  csv-read=0.841sec ffdf-write=0.094sec
+## read.table.ffdf 900001..951111 (51111)  csv-read=0.442sec ffdf-write=0.068sec
+##  csv-read=9.942sec  ffdf-write=1.579sec  TOTAL=11.521sec</code></pre>
 <pre><code>##    user  system elapsed 
-##   9.321   0.742  10.195</code></pre>
+##   9.960   1.087  11.526</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">airlines.ff &lt;-<span class="st"> </span><span class="kw">read.csv.ffdf</span>(<span class="dt">file=</span> AIRLINES_DATA,
                              <span class="dt">VERBOSE=</span><span class="ot">TRUE</span>,
                              <span class="dt">header=</span><span class="ot">TRUE</span>,
@@ -773,15 +771,15 @@ AIRLINES_DATA &lt;-<span class="st"> &quot;../code_book/B05396_Ch03_Code/airline
                                         <span class="dt">sep=</span><span class="st">&quot;,&quot;</span>,
                                         <span class="dt">header=</span><span class="ot">TRUE</span>))</code></pre></div>
 <pre><code>##    user  system elapsed 
-##   7.929   0.383   8.324</code></pre>
+##  10.396   0.859  12.170</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">gc</span>()</code></pre></div>
 <pre><code>##             used   (Mb) gc trigger   (Mb) limit (Mb)  max used   (Mb)
-## Ncells   1288829   68.9    3390415  181.1         NA   3390415  181.1
-## Vcells 142404829 1086.5  266841886 2035.9      16384 264845600 2020.7</code></pre>
+## Ncells   1288882   68.9    3390515  181.1         NA   3390515  181.1
+## Vcells 142405140 1086.5  266841886 2035.9      16384 264845600 2020.7</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">system.time</span>(airlines.table &lt;-<span class="st"> </span><span class="kw">read.csv</span>(AIRLINES_DATA,
                                        <span class="dt">header =</span> <span class="ot">TRUE</span>))</code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.006   0.000   0.007</code></pre>
+##   0.007   0.000   0.008</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># check memory used</span>
 <span class="kw">mem_used</span>()</code></pre></div>
 <pre><code>## 1.21 GB</code></pre>
@@ -829,16 +827,14 @@ AIRLINES_DATA &lt;-<span class="st"> &quot;../code_book/B05396_Ch03_Code/airline
 ## NULL
 ## 
 ## [[2]]
-##  [1] &quot;YEAR&quot;              &quot;MONTH&quot;             &quot;DAY_OF_MONTH&quot;     
-##  [4] &quot;DAY_OF_WEEK&quot;       &quot;FL_DATE&quot;           &quot;UNIQUE_CARRIER&quot;   
-##  [7] &quot;AIRLINE_ID&quot;        &quot;TAIL_NUM&quot;          &quot;FL_NUM&quot;           
-## [10] &quot;ORIGIN_AIRPORT_ID&quot; &quot;ORIGIN&quot;            &quot;ORIGIN_CITY_NAME&quot; 
-## [13] &quot;ORIGIN_STATE_NM&quot;   &quot;ORIGIN_WAC&quot;        &quot;DEST_AIRPORT_ID&quot;  
-## [16] &quot;DEST&quot;              &quot;DEST_CITY_NAME&quot;    &quot;DEST_STATE_NM&quot;    
-## [19] &quot;DEST_WAC&quot;          &quot;DEP_TIME&quot;          &quot;DEP_DELAY&quot;        
-## [22] &quot;ARR_TIME&quot;          &quot;ARR_DELAY&quot;         &quot;CANCELLED&quot;        
-## [25] &quot;CANCELLATION_CODE&quot; &quot;DIVERTED&quot;          &quot;AIR_TIME&quot;         
-## [28] &quot;DISTANCE&quot;          &quot;AIRLINE_NM&quot;</code></pre>
+##  [1] &quot;YEAR&quot;              &quot;MONTH&quot;             &quot;DAY_OF_MONTH&quot;      &quot;DAY_OF_WEEK&quot;      
+##  [5] &quot;FL_DATE&quot;           &quot;UNIQUE_CARRIER&quot;    &quot;AIRLINE_ID&quot;        &quot;TAIL_NUM&quot;         
+##  [9] &quot;FL_NUM&quot;            &quot;ORIGIN_AIRPORT_ID&quot; &quot;ORIGIN&quot;            &quot;ORIGIN_CITY_NAME&quot; 
+## [13] &quot;ORIGIN_STATE_NM&quot;   &quot;ORIGIN_WAC&quot;        &quot;DEST_AIRPORT_ID&quot;   &quot;DEST&quot;             
+## [17] &quot;DEST_CITY_NAME&quot;    &quot;DEST_STATE_NM&quot;     &quot;DEST_WAC&quot;          &quot;DEP_TIME&quot;         
+## [21] &quot;DEP_DELAY&quot;         &quot;ARR_TIME&quot;          &quot;ARR_DELAY&quot;         &quot;CANCELLED&quot;        
+## [25] &quot;CANCELLATION_CODE&quot; &quot;DIVERTED&quot;          &quot;AIR_TIME&quot;          &quot;DISTANCE&quot;         
+## [29] &quot;AIRLINE_NM&quot;</code></pre>
 </div>
 <div id="inspect-difference-to-in-memory-operation" class="section level2">
 <h2><span class="header-section-number">3.7</span> Inspect difference to in-memory operation</h2>
@@ -858,8 +854,33 @@ AIRLINES_DATA &lt;-<span class="st"> &quot;../code_book/B05396_Ch03_Code/airline
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#The new object is already 105.7 Mb in size</span>
 <span class="co">#A rapid spike in RAM use when processing</span></code></pre></div>
 </div>
+<div id="type-conversion-ff-factor" class="section level2">
+<h2><span class="header-section-number">3.8</span> Type conversion: ff factor</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Inspect the current variable</span>
+<span class="kw">table.ff</span>(flights.data.ff<span class="op">$</span>DAY_OF_WEEK)</code></pre></div>
+<pre><code>## 
+##      1      2      3      4      5      6      7 
+## 131267 143057 145057 148544 148159 112239 122788</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(flights.data.ff<span class="op">$</span>DAY_OF_WEEK)</code></pre></div>
+<pre><code>## [1] 1 1 1 1 1 1</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Convert numeric ff DAY_OF_WEEK vector to a ff factor:</span>
+flights.data.ff<span class="op">$</span>WEEKDAY &lt;-<span class="st"> </span><span class="kw">cut.ff</span>(flights.data.ff<span class="op">$</span>DAY_OF_WEEK, 
+                                   <span class="dt">breaks =</span> <span class="dv">7</span>, 
+                                   <span class="dt">labels =</span> <span class="kw">c</span>(<span class="st">&quot;Monday&quot;</span>, <span class="st">&quot;Tuesday&quot;</span>, 
+                                              <span class="st">&quot;Wednesday&quot;</span>, <span class="st">&quot;Thursday&quot;</span>, 
+                                              <span class="st">&quot;Friday&quot;</span>, <span class="st">&quot;Saturday&quot;</span>,
+                                              <span class="st">&quot;Sunday&quot;</span>))
+<span class="co"># inspect the result</span>
+<span class="kw">head</span>(flights.data.ff<span class="op">$</span>WEEKDAY)</code></pre></div>
+<pre><code>## [1] Monday Monday Monday Monday Monday Monday
+## Levels: Monday Tuesday Wednesday Thursday Friday Saturday Sunday</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">table.ff</span>(flights.data.ff<span class="op">$</span>WEEKDAY)</code></pre></div>
+<pre><code>## 
+##    Monday   Tuesday Wednesday  Thursday    Friday  Saturday    Sunday 
+##    131267    143057    145057    148544    148159    112239    122788</code></pre>
+</div>
 <div id="subsetting" class="section level2">
-<h2><span class="header-section-number">3.8</span> Subsetting</h2>
+<h2><span class="header-section-number">3.9</span> Subsetting</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">mem_used</span>()</code></pre></div>
 <pre><code>## 1.33 GB</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Subset the ffdf object flights.data.ff:</span>
@@ -877,20 +898,20 @@ subs1.ff &lt;-<span class="st"> </span><span class="kw">subset.ffdf</span>(fligh
 <pre><code>## 1.33 GB</code></pre>
 </div>
 <div id="save-to-ffdf-files" class="section level2">
-<h2><span class="header-section-number">3.9</span> Save to ffdf-files</h2>
+<h2><span class="header-section-number">3.10</span> Save to ffdf-files</h2>
 <p>(For further processing with <code>ff</code>)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Save a newly created ffdf object to a data file:</span>
 
 <span class="kw">save.ffdf</span>(subs1.ff) <span class="co">#7 files (one for each column) created in the ffdb directory</span></code></pre></div>
 </div>
 <div id="load-ffdf-files" class="section level2">
-<h2><span class="header-section-number">3.10</span> Load ffdf-files</h2>
+<h2><span class="header-section-number">3.11</span> Load ffdf-files</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Loading previously saved ffdf files:</span>
 <span class="kw">rm</span>(subs1.ff)
 <span class="kw">gc</span>()</code></pre></div>
 <pre><code>##             used   (Mb) gc trigger   (Mb) limit (Mb)  max used   (Mb)
-## Ncells   1305561   69.8    3390415  181.1         NA   3390415  181.1
-## Vcells 157024881 1198.1  266841886 2035.9      16384 264845600 2020.7</code></pre>
+## Ncells   1310872   70.1    3390515  181.1         NA   3390515  181.1
+## Vcells 157036613 1198.1  266841886 2035.9      16384 264845600 2020.7</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">load.ffdf</span>(<span class="st">&quot;ffdb&quot;</span>)
 <span class="kw">str</span>(subs1.ff)</code></pre></div>
 <pre><code>## List of 3
@@ -1033,17 +1054,13 @@ subs1.ff &lt;-<span class="st"> </span><span class="kw">subset.ffdf</span>(fligh
 ## NULL
 ## 
 ## [[2]]
-## [1] &quot;FL_DATE&quot;           &quot;AIRLINE_ID&quot;        &quot;ORIGIN_CITY_NAME&quot; 
-## [4] &quot;ORIGIN_STATE_NM&quot;   &quot;DEST_CITY_NAME&quot;    &quot;DEST_STATE_NM&quot;    
-## [7] &quot;CANCELLATION_CODE&quot;</code></pre>
+## [1] &quot;FL_DATE&quot;           &quot;AIRLINE_ID&quot;        &quot;ORIGIN_CITY_NAME&quot;  &quot;ORIGIN_STATE_NM&quot;  
+## [5] &quot;DEST_CITY_NAME&quot;    &quot;DEST_STATE_NM&quot;     &quot;CANCELLATION_CODE&quot;</code></pre>
 </div>
 <div id="export-to-csv" class="section level2">
-<h2><span class="header-section-number">3.11</span> Export to CSV</h2>
+<h2><span class="header-section-number">3.12</span> Export to CSV</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#  Export subs1.ff into CSV and TXT files:</span>
 <span class="kw">write.csv.ffdf</span>(subs1.ff, <span class="st">&quot;subset1.csv&quot;</span>)</code></pre></div>
-</div>
-<div id="references" class="section level2 unnumbered smaller">
-<h2>References</h2>
 <div id="refs" class="references">
 <div id="ref-walkowiak_2016">
 <p>Walkowiak, Simkon. 2016. <em>Big Data Analytics with R</em>. Birmingham, UK: PACKT Publishing.</p>

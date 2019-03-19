@@ -21,6 +21,17 @@ css: ../../style/notes_hsg.css
 bibliography: ../references/bigdata.bib
 ---
 
+
+```{r set-options, echo=FALSE, cache=FALSE, purl=FALSE}
+options(width = 100)
+library(knitr)
+library(bookdown)
+knitr::opts_chunk$set(fig.pos = 'htb!')
+
+```
+
+
+
 # Cleaning and Transformation of large data sets
 
 Practically preceeding the filtering of the data and the selection/aggregation of raw data in order to perform statistical analyses, the steps related to cleaning and transformation of the data typically have to be run on large parts of the totally available data. Typically the bottleneck is a lack of RAM. In the following, we explore two strategies that broadly build on the idea of *virtual memory* (using parts of the hard disk as RAM).

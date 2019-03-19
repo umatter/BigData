@@ -506,7 +506,7 @@ boot_coefs &lt;-<span class="st"> </span>
                  <span class="dt">FUN =</span> sd)
 se_boot</code></pre></div>
 <pre><code>## (Intercept)       white 
-## 0.026412864 0.004521028</code></pre>
+## 0.002467957 0.004365404</code></pre>
 </div>
 <div id="case-study-memory-allocation" class="section level2">
 <h2><span class="header-section-number">3.3</span> Case study: Memory allocation</h2>
@@ -556,8 +556,8 @@ flights &lt;-<span class="st"> </span>flights[,<span class="op">-</span><span cl
 <p>The last result is kind of interesting. The object <code>flights</code> must have been larger right after importing it than at the end of the script. We have thrown out several variables, after all. Why does R still use that much memory? R does by default not ‘clean up’ memory unless it is really necessary (meaning no more memory is available). In this case, R has still way more memory available from the operating system, thus there is no need to ‘collect the garbage’ yet. However, we can force R to collect the garbage on the spot with <code>gc()</code>. This can be helpful to better keep track of the memory needed by an analytics script.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">gc</span>()</code></pre></div>
 <pre><code>##             used  (Mb) gc trigger   (Mb) limit (Mb)  max used   (Mb)
-## Ncells   1161227  62.1    3390390  181.1         NA   3390390  181.1
-## Vcells 129971448 991.7  266841885 2035.9      16384 264845600 2020.7</code></pre>
+## Ncells   1161227  62.1    3390515  181.1         NA   3390515  181.1
+## Vcells 129971453 991.7  266841886 2035.9      16384 264845600 2020.7</code></pre>
 <p>Now, let’s see how we can improve the performance of this script with regard to memory allocation. Most memory is allocated when importing the file. Obviously, any improvement of the script must still result in importing all the data. However, there are different ways to read data into RAM. <code>read.csv()</code> reads all lines of a csv file consecutively. In contrast, <code>data.table::fread()</code> first ‘maps’ the data file into memory and only then actually reads it in line by line. This involves an additional initial step, but the larger the file, the less relevant is this first step with regard to the total time needed to read all the data into memory. By switching on the <code>verbose</code> option, we can actually see what <code>fread</code> is doing.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># load packages</span>
 <span class="kw">library</span>(data.table)
@@ -608,7 +608,7 @@ flights &lt;-<span class="st"> </span><span class="kw">fread</span>(DATA_PATH, <
 ##   Allocating 19 column slots (19 - 0 dropped) with 370043 rows
 ## [11] Read the data
 ##   jumps=[0..32), chunk_size=967515, total_size=30960501
-## Read 336776 rows x 19 columns from 29.53MB (30960660 bytes) file in 00:00.159 wall clock time
+## Read 336776 rows x 19 columns from 29.53MB (30960660 bytes) file in 00:00.174 wall clock time
 ## [12] Finalizing the datatable
 ##   Type counts:
 ##         14 : int32     '5'
@@ -617,13 +617,13 @@ flights &lt;-<span class="st"> </span><span class="kw">fread</span>(DATA_PATH, <
 ##    0.001s (  1%) Memory map 0.029GB file
 ##    0.004s (  2%) sep=',' ncol=19 and header detection
 ##    0.000s (  0%) Column type detection using 10048 sample rows
-##    0.003s (  2%) Allocation of 370043 rows x 19 cols (0.033GB) of which 336776 ( 91%) rows used
-##    0.151s ( 95%) Reading 32 chunks (0 swept) of 0.923MB (each chunk 10524 rows) using 4 threads
-##    +    0.039s ( 25%) Parse to row-major thread buffers (grown 0 times)
-##    +    0.099s ( 62%) Transpose
-##    +    0.013s (  8%) Waiting
+##    0.004s (  2%) Allocation of 370043 rows x 19 cols (0.033GB) of which 336776 ( 91%) rows used
+##    0.165s ( 95%) Reading 32 chunks (0 swept) of 0.923MB (each chunk 10524 rows) using 4 threads
+##    +    0.040s ( 23%) Parse to row-major thread buffers (grown 0 times)
+##    +    0.107s ( 61%) Transpose
+##    +    0.019s ( 11%) Waiting
 ##    0.000s (  0%) Rereading 0 columns due to out-of-sample type exceptions
-##    0.159s        Total</code></pre>
+##    0.174s        Total</code></pre>
 <p>Let’s put it all together and look at the memory changes and usage. For a fair comparison, we first have to delete <code>flights</code> and collect the garbage with <code>gc()</code>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># SET UP -----------------</span>
 
@@ -637,8 +637,8 @@ DATA_PATH &lt;-<span class="st"> &quot;../data/flights.csv&quot;</span>
 flights &lt;-<span class="st"> </span><span class="ot">NULL</span>
 <span class="kw">gc</span>()</code></pre></div>
 <pre><code>##             used  (Mb) gc trigger   (Mb) limit (Mb)  max used   (Mb)
-## Ncells   1150242  61.5    3390390  181.1         NA   3390390  181.1
-## Vcells 127636473 973.8  266841885 2035.9      16384 264845600 2020.7</code></pre>
+## Ncells   1150242  61.5    3390515  181.1         NA   3390515  181.1
+## Vcells 127636478 973.8  266841886 2035.9      16384 264845600 2020.7</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># check the change in memory due to each step</span>
 
 <span class="co"># DATA IMPORT ----------------</span>

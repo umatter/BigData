@@ -3,7 +3,7 @@ my_number <- 139
 # check the class
 typeof(my_number)
 
-# arithmetics
+# arithmetic
 my_number*2
 
 ## ----error=TRUE----------------------------------------------------------

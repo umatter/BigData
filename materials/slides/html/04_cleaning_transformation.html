@@ -258,8 +258,8 @@ options(fftempdir = &quot;ffdf&quot;)</pre>
 <p>Import data, inspect change in RAM.</p>
 
 <pre >##             used   (Mb) gc trigger   (Mb) limit (Mb)  max used   (Mb)
-## Ncells   1364924   72.9    2649264  141.5         NA   2649264  141.5
-## Vcells 131220908 1001.2  267232266 2038.9      16384 258877311 1975.1</pre>
+## Ncells   1364869   72.9    2649080  141.5         NA   2649080  141.5
+## Vcells 131220748 1001.2  267232266 2038.9      16384 258877200 1975.1</pre>
 
 <pre class = 'prettyprint lang-r'>mem_change(
 flights &lt;- 
@@ -271,11 +271,11 @@ flights &lt;-
                      colClasses=NA)
 )</pre>
 
-<pre >## read.table.ffdf 1..100000 (100000)  csv-read=0.6sec ffdf-write=0.137sec
-## read.table.ffdf 100001..200000 (100000)  csv-read=0.602sec ffdf-write=0.077sec
-## read.table.ffdf 200001..300000 (100000)  csv-read=0.881sec ffdf-write=0.072sec
-## read.table.ffdf 300001..336776 (36776)  csv-read=0.246sec ffdf-write=0.045sec
-##  csv-read=2.329sec  ffdf-write=0.331sec  TOTAL=2.66sec</pre>
+<pre >## read.table.ffdf 1..100000 (100000)  csv-read=0.613sec ffdf-write=0.102sec
+## read.table.ffdf 100001..200000 (100000)  csv-read=0.62sec ffdf-write=0.059sec
+## read.table.ffdf 200001..300000 (100000)  csv-read=0.716sec ffdf-write=0.062sec
+## read.table.ffdf 300001..336776 (36776)  csv-read=0.261sec ffdf-write=0.034sec
+##  csv-read=2.21sec  ffdf-write=0.257sec  TOTAL=2.467sec</pre>
 
 <pre >## -30.7 MB</pre>
 
@@ -286,11 +286,11 @@ flights &lt;-
 <pre class = 'prettyprint lang-r'># show the files in the directory keeping the chunks
 list.files(&quot;ffdf&quot;)</pre>
 
-<pre >##  [1] &quot;ffdf2270155b02b1.ff&quot; &quot;ffdf22701c9e1b02.ff&quot; &quot;ffdf22702037e1a3.ff&quot; &quot;ffdf22702d216d8a.ff&quot;
-##  [5] &quot;ffdf227034bea4db.ff&quot; &quot;ffdf227043e36bd5.ff&quot; &quot;ffdf227046951946.ff&quot; &quot;ffdf227047498a76.ff&quot;
-##  [9] &quot;ffdf22704fff2efb.ff&quot; &quot;ffdf227066ae66dd.ff&quot; &quot;ffdf2270678234d6.ff&quot; &quot;ffdf22706b19bfd8.ff&quot;
-## [13] &quot;ffdf22706c82d27a.ff&quot; &quot;ffdf22706d9e962b.ff&quot; &quot;ffdf22707a6589c4.ff&quot; &quot;ffdf22707bc8fc5.ff&quot; 
-## [17] &quot;ffdf2270a0dbd6b.ff&quot;  &quot;ffdf2270c0ec0f5.ff&quot;  &quot;ffdf2270c87f3e.ff&quot;</pre>
+<pre >##  [1] &quot;ffdf37711241acb8.ff&quot; &quot;ffdf377112729dba.ff&quot; &quot;ffdf377115b26d65.ff&quot; &quot;ffdf3771172a9fd0.ff&quot;
+##  [5] &quot;ffdf37711f0a7c0e.ff&quot; &quot;ffdf377122d127cc.ff&quot; &quot;ffdf377124f4cb9f.ff&quot; &quot;ffdf377130c33882.ff&quot;
+##  [9] &quot;ffdf3771330719bc.ff&quot; &quot;ffdf3771436446ad.ff&quot; &quot;ffdf37714938a187.ff&quot; &quot;ffdf3771518bd3ef.ff&quot;
+## [13] &quot;ffdf37715abaa49.ff&quot;  &quot;ffdf377160b2f7d0.ff&quot; &quot;ffdf37716766dde7.ff&quot; &quot;ffdf377169568b0d.ff&quot;
+## [17] &quot;ffdf37716c5c2a6b.ff&quot; &quot;ffdf37716f621c91.ff&quot; &quot;ffdf3771752c0d03.ff&quot;</pre>
 
 <pre class = 'prettyprint lang-r'># investigate the structure of the object created in the R environment
 summary(flights)</pre>
@@ -372,7 +372,7 @@ flights &lt;- read.big.matrix(&quot;../data/flights.csv&quot;,
 
 <pre >## An object of class &quot;big.matrix&quot;
 ## Slot &quot;address&quot;:
-## &lt;pointer: 0x7faff2708840&gt;</pre>
+## &lt;pointer: 0x7fac8e685660&gt;</pre>
 
 </article></slide><slide class=""><hgroup><h2>Memory mapping with <code>bigmemory</code></h2></hgroup><article  id="memory-mapping-with-bigmemory-4">
 
@@ -396,7 +396,7 @@ system.time(
 )</pre>
 
 <pre >##    user  system elapsed 
-##   2.149   0.046   2.205</pre>
+##   2.121   0.054   2.186</pre>
 
 <pre class = 'prettyprint lang-r'># import data and check memory used
 mem_change(
@@ -412,7 +412,7 @@ mem_change(
 
 <pre >## An object of class &quot;big.matrix&quot;
 ## Slot &quot;address&quot;:
-## &lt;pointer: 0x7faff24a8830&gt;</pre>
+## &lt;pointer: 0x7fac8e225d60&gt;</pre>
 
 </article></slide><slide class=""><hgroup><h2>Memory mapping with <code>bigmemory</code></h2></hgroup><article  id="memory-mapping-with-bigmemory-6">
 
@@ -432,7 +432,7 @@ system.time(
 )</pre>
 
 <pre >##    user  system elapsed 
-##   2.134   0.046   2.191</pre>
+##   2.127   0.054   2.190</pre>
 
 <pre class = 'prettyprint lang-r'># import data and check memory used
 mem_change(
@@ -451,7 +451,7 @@ mem_change(
 
 <pre >## An object of class &quot;big.matrix&quot;
 ## Slot &quot;address&quot;:
-## &lt;pointer: 0x7faff24cfa20&gt;</pre>
+## &lt;pointer: 0x7fac8e6654f0&gt;</pre>
 
 </article></slide><slide class=""><hgroup><h2>Memory mapping with <code>bigmemory</code></h2></hgroup><article  id="memory-mapping-with-bigmemory-7">
 
@@ -466,13 +466,13 @@ rm(flights2)
 system.time(flights2 &lt;- attach.big.matrix(&quot;flights2.desc&quot;))</pre>
 
 <pre >##    user  system elapsed 
-##   0.001   0.000   0.001</pre>
+##   0.002   0.000   0.008</pre>
 
 <pre class = 'prettyprint lang-r'>flights2</pre>
 
 <pre >## An object of class &quot;big.matrix&quot;
 ## Slot &quot;address&quot;:
-## &lt;pointer: 0x7faff270a050&gt;</pre>
+## &lt;pointer: 0x7fac8e198a10&gt;</pre>
 
 </article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Cleaning and Transformation</h2></hgroup><article  id="cleaning-and-transformation">
 
@@ -547,20 +547,20 @@ system.time(flights.ff &lt;- read.table.ffdf(file=FLIGHTS_DATA,
                                           next.rows=100000,
                                           colClasses=NA))</pre>
 
-<pre >## read.table.ffdf 1..100000 (100000)  csv-read=0.814sec ffdf-write=0.211sec
-## read.table.ffdf 100001..200000 (100000)  csv-read=0.827sec ffdf-write=0.139sec
-## read.table.ffdf 200001..300000 (100000)  csv-read=1.055sec ffdf-write=0.13sec
-## read.table.ffdf 300001..400000 (100000)  csv-read=0.867sec ffdf-write=0.14sec
-## read.table.ffdf 400001..500000 (100000)  csv-read=1.048sec ffdf-write=0.126sec
-## read.table.ffdf 500001..600000 (100000)  csv-read=0.998sec ffdf-write=0.113sec
-## read.table.ffdf 600001..700000 (100000)  csv-read=0.98sec ffdf-write=0.18sec
-## read.table.ffdf 700001..800000 (100000)  csv-read=0.928sec ffdf-write=0.091sec
-## read.table.ffdf 800001..900000 (100000)  csv-read=0.918sec ffdf-write=0.097sec
-## read.table.ffdf 900001..951111 (51111)  csv-read=0.525sec ffdf-write=0.077sec
-##  csv-read=8.96sec  ffdf-write=1.304sec  TOTAL=10.264sec</pre>
+<pre >## read.table.ffdf 1..100000 (100000)  csv-read=0.827sec ffdf-write=0.128sec
+## read.table.ffdf 100001..200000 (100000)  csv-read=0.867sec ffdf-write=0.096sec
+## read.table.ffdf 200001..300000 (100000)  csv-read=0.974sec ffdf-write=0.107sec
+## read.table.ffdf 300001..400000 (100000)  csv-read=0.902sec ffdf-write=0.096sec
+## read.table.ffdf 400001..500000 (100000)  csv-read=0.85sec ffdf-write=0.098sec
+## read.table.ffdf 500001..600000 (100000)  csv-read=0.847sec ffdf-write=0.095sec
+## read.table.ffdf 600001..700000 (100000)  csv-read=0.843sec ffdf-write=0.17sec
+## read.table.ffdf 700001..800000 (100000)  csv-read=0.848sec ffdf-write=0.096sec
+## read.table.ffdf 800001..900000 (100000)  csv-read=0.829sec ffdf-write=0.098sec
+## read.table.ffdf 900001..951111 (51111)  csv-read=0.433sec ffdf-write=0.074sec
+##  csv-read=8.22sec  ffdf-write=1.058sec  TOTAL=9.278sec</pre>
 
 <pre >##    user  system elapsed 
-##   9.352   0.783  10.269</pre>
+##   8.471   0.703   9.280</pre>
 
 <pre class = 'prettyprint lang-r'>airlines.ff &lt;- read.csv.ffdf(file= AIRLINES_DATA,
                              VERBOSE=TRUE,
@@ -568,8 +568,8 @@ system.time(flights.ff &lt;- read.table.ffdf(file=FLIGHTS_DATA,
                              next.rows=100000,
                              colClasses=NA)</pre>
 
-<pre >## read.table.ffdf 1..1607 (1607)  csv-read=0.012sec ffdf-write=0.009sec
-##  csv-read=0.012sec  ffdf-write=0.009sec  TOTAL=0.021sec</pre>
+<pre >## read.table.ffdf 1..1607 (1607)  csv-read=0.007sec ffdf-write=0.005sec
+##  csv-read=0.007sec  ffdf-write=0.005sec  TOTAL=0.012sec</pre>
 
 <pre class = 'prettyprint lang-r'># check memory used
 mem_used()</pre>
@@ -584,19 +584,19 @@ system.time(flights.table &lt;- read.table(FLIGHTS_DATA,
                                         header=TRUE))</pre>
 
 <pre >##    user  system elapsed 
-##   8.162   0.397   8.582</pre>
+##   8.026   0.447   8.571</pre>
 
 <pre class = 'prettyprint lang-r'>gc()</pre>
 
 <pre >##             used   (Mb) gc trigger   (Mb) limit (Mb)  max used   (Mb)
-## Ncells   1471903   78.7    2649264  141.5         NA   2649264  141.5
-## Vcells 140689659 1073.4  267232266 2038.9      16384 258877311 1975.1</pre>
+## Ncells   1471848   78.7    2649080  141.5         NA   2649080  141.5
+## Vcells 140689499 1073.4  267232266 2038.9      16384 258877200 1975.1</pre>
 
 <pre class = 'prettyprint lang-r'>system.time(airlines.table &lt;- read.csv(AIRLINES_DATA,
                                        header = TRUE))</pre>
 
 <pre >##    user  system elapsed 
-##   0.006   0.001   0.006</pre>
+##   0.006   0.000   0.006</pre>
 
 <pre class = 'prettyprint lang-r'># check memory used
 mem_used()</pre>
@@ -768,8 +768,8 @@ rm(subs1.ff)
 gc()</pre>
 
 <pre >##             used   (Mb) gc trigger   (Mb) limit (Mb)  max used   (Mb)
-## Ncells   1493882   79.8    3339399  178.4         NA   3339399  178.4
-## Vcells 155321036 1185.1  267232266 2038.9      16384 258877311 1975.1</pre>
+## Ncells   1493827   79.8    3339344  178.4         NA   3339344  178.4
+## Vcells 155320876 1185.1  267232266 2038.9      16384 258877200 1975.1</pre>
 
 <pre class = 'prettyprint lang-r'>load.ffdf(&quot;ffdb&quot;)
 str(subs1.ff)</pre>
@@ -926,14 +926,7 @@ str(subs1.ff)</pre>
 <pre class = 'prettyprint lang-r'>#  Export subs1.ff into CSV and TXT files:
 write.csv.ffdf(subs1.ff, &quot;subset1.csv&quot;)</pre>
 
-</article></slide><slide class=""><hgroup><h2>References</h2></hgroup><article  id="references" class="smaller">
-
-<style>
-slides > slide { overflow: scroll; }
-slides > slide:not(.nobackground):after {
-  content: '';
-}
-</style>
+</article></slide><slide class=""><hgroup><h2>References</h2></hgroup><article  id="references" class="unnumbered">
 
 <div id="refs" class="references">
 <div id="ref-walkowiak_2016">
