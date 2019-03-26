@@ -129,9 +129,9 @@ unlink(tmp_file)
 
 ## Import map data
 
-```{r message=FALSE}
+```{r message=FALSE, warning=FALSE}
 # read GIS data
-nyc_map <- readOGR(file_path[1])
+nyc_map <- readOGR(file_path[1], verbose = FALSE)
 
 # have a look at the polygons that constitute the map
 summary(nyc_map)

@@ -62,9 +62,9 @@ file_path <- unzip(tmp_file, exdir= "../data")
 unlink(tmp_file)
 
 
-## ----message=FALSE-------------------------------------------------------
+## ----message=FALSE, warning=FALSE----------------------------------------
 # read GIS data
-nyc_map <- readOGR(file_path[1])
+nyc_map <- readOGR(file_path[1], verbose = FALSE)
 
 # have a look at the GIS data
 summary(nyc_map)
