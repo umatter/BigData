@@ -62,14 +62,14 @@ In this short tutorial we scale the computation of clustered standard errors sho
 
 First, our EC2 instance is a Linux machine. Most of you are probably rather used to running R on a Mac or Windows PC. When running R on a Linux machine, there is an additional step to install R packages (at least for most of the packages): R packages need to be compiled before they can be installed. The command to install packages is exactly the same (`install.packages()`) and normally you only notice a slight difference in the output shown in the R console during installation (and the installation process takes a little longer than what you are used to). However, in some cases the compilation of a package fails (and thus the installation fails) because of some configuration on your Linux machine or because a lower-level program is not installed.  Currently, this is what happens when you attempt to install the `data.table` package on your EC2 instance (set up for this example). By default, you won't be able to install `data.table` right away because the EC2 instance uses a new compiler that `data.table` doesn't like. In order to resolve this issue we first have to switch to the terminal window in our current RStudio Server session and run the following two lines of code (source: https://stackoverflow.com/a/48724665):
 
-```{bash}
+```{bash eval=FALSE}
 mkdir ~/.R
 echo "CC=gcc64" >> ~/.R/Makevars
 ```
 
 This will point the R package installer to an older compiler which resolves the issue. Obviously, this is just one small example which does not generalize and might not be an issue at all in the near future (with a new `data.table` package version). However, it is a nice example of an additional step needed to make your locally (Mac/Windows) tested R-script work on a Linux machine in the cloud.
 
-Now, let's go through the bootstrap example. First, let's run the non-parallel implementation of the script. When executing the code below line-by-line, you will notice that essentially all parts of the script work exactly as on your local machine. This is one of the great advantages of running R/RStudio Server in the cloud. You can implement your entire data analysis locally (based on a small sample), test it locally, and then move it to the cloud in order to scale it up.
+Now, let's go through the bootstrap example. First, let's run the non-parallel implementation of the script. When executing the code below line-by-line, you will notice that essentially all parts of the script work exactly as on your local machine. This is one of the great advantages of running R/RStudio Server in the cloud. You can implement your entire data analysis locally (based on a small sample), test it locally, and then move it to the cloud and run it on a larger scale in exactly the same way (even with the same GUI).
 
 ```{r eval=FALSE}
 # CASE STUDY: PARALLEL ---------------------------
@@ -252,7 +252,7 @@ LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 ```
 
-Now we can start using the newly created database from within RStudio Server running on our EC2 instance (following @walkowiak, pages 263ff). Note that with the current version of Ubuntu Linux running on EC2, you need to install a newer version of the MariaDB client. The following solution suggested [here](https://stackoverflow.com/a/51111074) should work.
+Now we can start using the newly created database from within RStudio Server running on our EC2 instance (following @walkowiak_2016, pages 263ff). Note that with the current version of Ubuntu Linux running on EC2, you need to install a newer version of the MariaDB client. The following solution suggested [here](https://stackoverflow.com/a/51111074) should work.
 
 ```{bash eval= FALSE}
 sudo apt-get install software-properties-common
@@ -341,7 +341,7 @@ When done working with the database, we close the connection to the MariaDB data
 
 ## Map/Reduce Concept: Illustration in R
 
-In order to better understand the basic concept behind the MapReduce-Framework on a distributed system, let's look at how we can combine the basic functions `map()` and `reduce()` in R to implement the basic MapReduce example shown in @walkowiak, Chapter 4, pages 132-134 (this is just to illustrate the underlying idea, not to suggest that MapReduce actually is just an application of the classical `map` and `reduce (fold)` functions in functional programming).^[For a more detailed discussion of what `map` and `reduce` have *actually* to do with MapReduce see [this post](https://medium.com/@jkff/mapreduce-is-not-functional-programming-39109a4ba7b2).] The overall aim of the program is to count the number of times each word is repeated in a given text. The input to the program is thus a text, the output is a list of key-value pairs with the unique words occurring in the text as keys and their respective number of occurrences as values.
+In order to better understand the basic concept behind the MapReduce-Framework on a distributed system, let's look at how we can combine the basic functions `map()` and `reduce()` in R to implement the basic MapReduce example shown in @walkowiak_2016, Chapter 4, pages 132-134 (this is just to illustrate the underlying idea, not to suggest that MapReduce actually is just an application of the classical `map` and `reduce (fold)` functions in functional programming).^[For a more detailed discussion of what `map` and `reduce` have *actually* to do with MapReduce see [this post](https://medium.com/@jkff/mapreduce-is-not-functional-programming-39109a4ba7b2).] The overall aim of the program is to count the number of times each word is repeated in a given text. The input to the program is thus a text, the output is a list of key-value pairs with the unique words occurring in the text as keys and their respective number of occurrences as values.
 
 In the code example, we will use the following text as input.
 
@@ -437,10 +437,60 @@ reduced
 
 ## Notes on Deploying Hortonworks Sandbox on Azure
 
-The instructions in @walkowiak_2016 Chapter 4, pages 138ff are partly outdated. You will notice that the screenshots do not anymore correspont with the current Azure layout. For most settings this does not matter but you might have to add an additional inbound rule in the 'Networking' settings (either when setting up the virtual machine or after starting it) that allows ssh (port 22).^[See also the additional hints in the Hortonworks tutorial ['Deploying Hortonworks Sandbox on Microsoft Azure'](https://hortonworks.com/tutorial/sandbox-deployment-and-install-guide/section/4/#creating-the-sandbox). For a short description of how to set up Hortonworks Sandbox on AWS, see [here](https://community.hortonworks.com/articles/103754/hdp-sandbox-on-aws-1.html).]
+The instructions in @walkowiak_2016 Chapter 4, pages 138ff are partly outdated. You will notice that the screenshots do not anymore correspond with the current Azure layout. The Hortonworks tutorial ['Deploying Hortonworks Sandbox on Microsoft Azure'](https://hortonworks.com/tutorial/sandbox-deployment-and-install-guide/section/4/#creating-the-sandbox) is more up to date.^[For a short description of how to set up Hortonworks Sandbox on AWS, see [here](https://community.hortonworks.com/articles/103754/hdp-sandbox-on-aws-1.html).] The layout of Microsoft Azure's dashboard has slightly changed. The settings are essentially the same but might occur an a different order than what you see in the Hortonworks tutorial. There are also small changes in the default settings. You might have to add an additional inbound rule in the 'Networking' settings (either when setting up the virtual machine or after starting it) that allows ssh (port 22) and HTTP (port 80) inbound traffic.
+
+Once you've gone through all the steps in the ['Deploying Hortonworks Sandbox on Microsoft Azure'](https://hortonworks.com/tutorial/sandbox-deployment-and-install-guide/section/4/#creating-the-sandbox) tutorial, open a terminal window and connect to the virtual machine as suggested in the tutorial:
+
+```{bash eval=FALSE}
+ssh azureSandbox
+```
+
+Open another terminal window and run the following command to connect with the hadoop sandbox. You will be asked for the password. The default password is `hadoop`. After entering the password you will be prompted to change the password (`Changing password for root. (current) UNIX password:`). In order to change it you have to re-enter the current password (`hadoop`) and then enter your new password for root.
+
+```{bash eval=FALSE}
+ssh root@localhost -p 2222 
+```
+
+
+## Notes on working with Hortonworks Sandbox/Hadoop on Azure
+*(@walkowiak_2016: A word count example in Hadoop using Java)*
+
+Now everything should be set up and running and you can continue with the tutorial in @walkowiak_2016, pages 152 (unlike in the example in the book, the prompt will read `[root@sandbox-hdp ~]`) with the line `hadoop version`. If you do not want to go through the tutorial as `root`, you can add a user as follows (replacing `<username>` with a user name of your choice).
+
+```{bash eval=FALSE}
+useradd <username>
+passwd <username>
+```
+
+Note that you will have to grant the user additional rights for some of the commands in the book's tutorial. Follow [these instructions](https://superuser.com/a/120342) to do so.
+
+In the following I use the user name `umatter` (with `sudo` permission). In order to connect to the sandbox with the new user, open a new terminal window and type the following command.
+
+```{bash eval=FALSE}
+ssh umatter@localhost -p 2222
+```
+
+
+To transfer the data set as instructed on page 160 in @walkowiak_2016, use the following command in a new Terminal
+
+```{bash eval=FALSE}
+scp -P 2222 -r ~/Desktop/twain_data.txt umatter@localhost:~/data
+```
+
+
+Similarly, for uploading the Java classes as instructed on page 162:
+
+```{bash eval=FALSE}
+ scp -P 2222 -r ~/Desktop/wordcount umatter@localhost:~/wordcount
+```
+
+And finally to download the final output of the word count exercise:
+
+```{bash eval=FALSE}
+scp -P 2222 -r umatter@localhost:~/wordcount/wordcount.txt ~/Desktop/wordcount_final.txt
+```
 
 
 
 
-
-
+# References

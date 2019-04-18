@@ -213,3 +213,17 @@ mapped
 reduced <- Reduce(sum, mapped)
 reduced
 
+## ssh azureSandbox
+
+## ssh root@localhost -p 2222
+
+## useradd <username>
+
+## ssh umatter@localhost -p 2222
+
+## scp -P 2222 -r ~/Desktop/twain_data.txt umatter@localhost:~/data
+
+##  scp -P 2222 -r ~/Desktop/wordcount umatter@localhost:~/wordcount
+
+## scp -P 2222 -r umatter@localhost:~/wordcount/wordcount.txt ~/Desktop/wordcount_final.txt
+
