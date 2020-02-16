@@ -1,13 +1,13 @@
 ---
-title: "Big Data Statistics for R and Python"
+title: "Big Data Analytics"
+subtitle: "Lecture 1: Introduction"
 author: "Prof. Dr. Ulrich Matter"
-date: "18/02/2019"
+date: "20/02/2020"
 output:
   ioslides_presentation:
     css: ../../style/ioslides.css
-  slidy_presentation: default
+    template: ../../style/nologo_template.html
 logo: ../img/logo.png
-subtitle: "Lecture 1: Introduction"
 bibliography: ../references/bigdata.bib
 ---
 
@@ -25,51 +25,51 @@ include_graphics("../img/01_what_is.jpg")
 ```
 
 
- - Go to this page: http://bit.ly/bigdatastat  !
- - Fill in some keywords related to Big Data!
+ <!-- - Go to this page: http://bit.ly/bigdatastat  ! -->
+ <!-- - Fill in some keywords related to Big Data! -->
 
 
-## Class Survey
+<!-- ## Class Survey -->
 
-```{r setup, echo=FALSE, purl=FALSE, message=FALSE, warning=FALSE}
-# Load required packages. Install if needed.
-library(gsheet)
-library(tidyverse)
+<!-- ```{r setup, echo=FALSE, purl=FALSE, message=FALSE, warning=FALSE} -->
+<!-- # Load required packages. Install if needed. -->
+<!-- library(gsheet) -->
+<!-- library(tidyverse) -->
 
-# Download survey data
-# Download data
-URL <- 'https://docs.google.com/spreadsheets/d/1_eF-DN2ie13doVQRjJNtjplzfKCLk6z6g8fk96cs1dA/edit#gid=0'
-keywords <- gsheet2tbl(URL)
-names(keywords) <- "keyword"
+<!-- # Download survey data -->
+<!-- # Download data -->
+<!-- URL <- 'https://docs.google.com/spreadsheets/d/1_eF-DN2ie13doVQRjJNtjplzfKCLk6z6g8fk96cs1dA/edit#gid=0' -->
+<!-- keywords <- gsheet2tbl(URL) -->
+<!-- names(keywords) <- "keyword" -->
 
-# clean data
-keywords <- tibble(keyword = na.omit(as.vector(do.call("rbind", keywords))))
-keywords$keyword <- tolower(keywords$keyword)
-keywords$keyword <- trimws(keywords$keyword)
-keywords$keyword <- gsub("[^[:alnum:][:blank:]+?&/\\-]", "", keywords$keyword)
+<!-- # clean data -->
+<!-- keywords <- tibble(keyword = na.omit(as.vector(do.call("rbind", keywords)))) -->
+<!-- keywords$keyword <- tolower(keywords$keyword) -->
+<!-- keywords$keyword <- trimws(keywords$keyword) -->
+<!-- keywords$keyword <- gsub("[^[:alnum:][:blank:]+?&/\\-]", "", keywords$keyword) -->
 
-# analyze data
-keywords_count <- keywords %>% group_by(keyword) %>% tally()
+<!-- # analyze data -->
+<!-- keywords_count <- keywords %>% group_by(keyword) %>% tally() -->
 
-# prepare data
-keywords_count <-  keywords_count[order(keywords_count$n, 
-                                        decreasing = FALSE),]
-keywords_count$keyword <- factor(keywords_count$keyword, 
-                                 levels = keywords_count$keyword)
-max_show <- ifelse(nrow(keywords_count)>9, 10, nrow(keywords_count))
-#keywords_count <- keywords_count[1:max_show, ]
+<!-- # prepare data -->
+<!-- keywords_count <-  keywords_count[order(keywords_count$n,  -->
+<!--                                         decreasing = FALSE),] -->
+<!-- keywords_count$keyword <- factor(keywords_count$keyword,  -->
+<!--                                  levels = keywords_count$keyword) -->
+<!-- max_show <- ifelse(nrow(keywords_count)>9, 10, nrow(keywords_count)) -->
+<!-- #keywords_count <- keywords_count[1:max_show, ] -->
 
-# plot data
-ggplot(keywords_count, aes(x= keyword, y = n)) +
-     ggtitle("Big Data", subtitle = "What comes to mind?") +
-     geom_bar(fill= "darkgreen", stat = "identity") +
-     coord_flip() + 
-     theme_minimal(base_size = 20) +
-     xlab("Keyword (standardized)") +
-     ylab("Frequency mentioned")
-     
+<!-- # plot data -->
+<!-- ggplot(keywords_count, aes(x= keyword, y = n)) + -->
+<!--      ggtitle("Big Data", subtitle = "What comes to mind?") + -->
+<!--      geom_bar(fill= "darkgreen", stat = "identity") + -->
+<!--      coord_flip() +  -->
+<!--      theme_minimal(base_size = 20) + -->
+<!--      xlab("Keyword (standardized)") + -->
+<!--      ylab("Frequency mentioned") -->
 
-```
+
+<!-- ``` -->
 
 
 -----
@@ -146,28 +146,31 @@ include_graphics("http://mattturck.com/wp-content/uploads/2018/07/Matt_Turck_Fir
 
 
 ## Domains Affected
-- How to design/set-up the machinery to handle large amounts of data?
+- How to design/set-up the machinery to handle large amounts of data? (Hardware focuse, data engineering)
 - How to use the existing machinery most efficiently for large amounts of data?
-- How to approach the analysis of large amounts of data with statistics?
+- How to approach the analysis of large amounts of data with econometrics?
 
 
 ## Focus in This Course 
-- How to design/set-up the machinery to handle large amounts of data?
+- How to design/set-up the machinery to handle large amounts of data? (Hardware focuse, data engineering)
 - *How to use the existing machinery most efficiently for large amounts of data?*
-- *How to approach the analysis of large amounts of data with statistics?*
+- *How to approach the analysis of large amounts of data with econometrics?*
+
 
 ## Focus in This Course 
-- How to design/set-up the machinery to handle large amounts of data?
+- How to design/set-up the machinery to handle large amounts of data? (Hardware focuse, data engineering)
 - *How to use the existing machinery most efficiently for large amounts of data?*
-- *How to approach the analysis of large amounts of data with statistics?*
-     1. Compute 'usual' statistics based on large dataset (many observations).
+- *How to approach the analysis of large amounts of data with econometrics?*
+    1. Compute 'usual' statistics based on large dataset (many observations).
+
 
 ## Focus in This Course 
-- How to design/set-up the machinery to handle large amounts of data?
+- How to design/set-up the machinery to handle large amounts of data? (Hardware focuse, data engineering)
 - *How to use the existing machinery most efficiently for large amounts of data?*
-- *How to approach the analysis of large amounts of data with statistics?*
-     1. Compute 'usual' statistics based on large dataset (many observations).
-     2. Multivariate Statistics to gain insights from Big Data (many variables).
+- *How to approach the analysis of large amounts of data with econometrics?*
+    1. Compute 'usual' statistics based on large dataset (many observations).
+    2. Practical handling of large data sets for applied econometrics (gathering, storage, preparation, etc.)
+
 
 
 # Big Data in Scientific Research
@@ -265,130 +268,219 @@ include_graphics("../img/01_twitter_stockmarket.png")
 - *Variety* and *variability* often more challenging than in natural sciences.
      - Various sources
      - Data generation/sensors are independent from research endeavor.
-- Questions/Problems often similar to applied research in the industry.
+- Questions/problems often similar to applied research in the industry.
      - Key difference: usually no streaming applications (*velocity* not that much of an an issue).
 
 
 # This Course
 
-## Two Parts 
+## Three Parts 
 
-1. Big Data: Basic Concepts and Applications in R (Ulrich Matter)
-2. Multivariate Statistics in Python (Matthias Fengler)
+1. Big Data: Basic Concepts 
+2. Local Big Data Analytics 
+3. Advanced Topics
 
 ## Objectives
 
- ‐ Understand the *concept of Big Data* in the context of economic research.
+- Understand the *concept of Big Data* in the context of economic research.
+- Understand the *technical challenges* of Big Data Analytics and how to practically deal with them.
+- Know how to *apply* the relevant R packages and programming practices to effectively and efficiently handle large data sets.
+
+
+
+## Schedule {.smaller}
+
+ 1. *Introduction: Big Data, Data Economy. Walkowiak (2016): Chapter 1.*
+ 2. Computation and Memory in Applied Econometrics.
+ 3. Advanced R Programming. Wickham (2019): Chapters 2, 3, 17,23, 24.
+ 4. Import, Cleaning and Transformation of Big Data. Walkowiak (2016): Chapter 3: p. 74‑118.
+ 5. Aggregation and Visualization. Walkowiak (2016): Chapter 3: p. 118‑127; Wickham et al.(2015); Schwabish (2014).
+ 6. Data Storage, Databases Interaction with R. Walkowiak (2016): Chapter 5.
+ 7. Cloud Computing: Introduction/Overview.
+ 8. Distributed Systems, Hadoop with R. Walkowiak (2016): Chapter 4.
+ 9. Applied Econometrics with Spark; Machine Learning and GPUs.
+ 10. Project Presentations (7 May, 2020; 08:15-10:00; Room 23-103).
+ 11. Project Presentations; Q&A.
  
- ‐ Understand the *technical challenges* of Big Data Analytics and how to practically deal with them.
+
+## Schedule {.smaller}
+
+ 1. Introduction: Big Data, Data Economy. Walkowiak (2016): Chapter 1.
+ 2. *Computation and Memory in Applied Econometrics.*
+ 3. Advanced R Programming. Wickham (2019): Chapters 2, 3, 17,23, 24.
+ 4. Import, Cleaning and Transformation of Big Data. Walkowiak (2016): Chapter 3: p. 74‑118.
+ 5. Aggregation and Visualization. Walkowiak (2016): Chapter 3: p. 118‑127; Wickham et al.(2015); Schwabish (2014).
+ 6. Data Storage, Databases Interaction with R. Walkowiak (2016): Chapter 5.
+ 7. Cloud Computing: Introduction/Overview.
+ 8. Distributed Systems, Hadoop with R. Walkowiak (2016): Chapter 4.
+ 9. Applied Econometrics with Spark; Machine Learning and GPUs.
+ 10. Project Presentations (7 May, 2020; 08:15-10:00; Room 23-103).
+ 11. Project Presentations; Q&A.
  
- ‐ Students will know the basic *statistical techniques* of clustering, dimensionality reduction, and factor models.
 
+## Schedule {.smaller}
 
-## Schedule: Part I {.smaller}
+ 1. Introduction: Big Data, Data Economy. Walkowiak (2016): Chapter 1.
+ 2. Computation and Memory in Applied Econometrics.
+ 3. *Advanced R Programming. Wickham (2019): Chapters 2, 3, 17,23, 24.*
+ 4. Import, Cleaning and Transformation of Big Data. Walkowiak (2016): Chapter 3: p. 74‑118.
+ 5. Aggregation and Visualization. Walkowiak (2016): Chapter 3: p. 118‑127; Wickham et al.(2015); Schwabish (2014).
+ 6. Data Storage, Databases Interaction with R. Walkowiak (2016): Chapter 5.
+ 7. Cloud Computing: Introduction/Overview.
+ 8. Distributed Systems, Hadoop with R. Walkowiak (2016): Chapter 4.
+ 9. Applied Econometrics with Spark; Machine Learning and GPUs.
+ 10. Project Presentations (7 May, 2020; 08:15-10:00; Room 23-103).
+ 11. Project Presentations; Q&A.
+ 
 
- 1. *Introduction: Big Data, Data Economy (Concepts). M: Walkowiak (2016): Chapter 1*
- 2. Programming with Data, R Refresher Course (Concepts/Applied). M: Walkowiak (2016): Chapter 2
- 3. Computation and Memory (Concepts)
- 4. Cleaning and Transformation of Big Data (Applied). M: Walkowiak (2016): Chapter 3: p. 74‐118.
- 5. Aggregation and Visualization (Applied: data tables, ggplot). M: Walkowiak (2016): Chapter 3: p. 118‐127. C: Wickham et al. (2015), Schwabish (2014).
- 6. Distributed Systems, MapReduce/Hadoop with R (Concepts/Applied). M: Walkowiak (2016): Chapter 4
- 7. Data Storage, Databases Interaction with R. M: Walkowiak (2016): Chapter 5
+## Schedule {.smaller}
 
-## Schedule: Part I {.smaller}
+ 1. Introduction: Big Data, Data Economy. Walkowiak (2016): Chapter 1.
+ 2. Computation and Memory in Applied Econometrics.
+ 3. Advanced R Programming. Wickham (2019): Chapters 2, 3, 17,23, 24.
+ 4. *Import, Cleaning and Transformation of Big Data. Walkowiak (2016): Chapter 3: p. 74‑118.*
+ 5. Aggregation and Visualization. Walkowiak (2016): Chapter 3: p. 118‑127; Wickham et al.(2015); Schwabish (2014).
+ 6. Data Storage, Databases Interaction with R. Walkowiak (2016): Chapter 5.
+ 7. Cloud Computing: Introduction/Overview.
+ 8. Distributed Systems, Hadoop with R. Walkowiak (2016): Chapter 4.
+ 9. Applied Econometrics with Spark; Machine Learning and GPUs.
+ 10. Project Presentations (7 May, 2020; 08:15-10:00; Room 23-103).
+ 11. Project Presentations; Q&A.
+ 
 
- 1. Introduction: Big Data, Data Economy (Concepts). M: Walkowiak (2016): Chapter 1
- 2. *Programming with Data, R Refresher Course (Concepts/Applied). M: Walkowiak (2016): Chapter 2*
- 3. Computation and Memory (Concepts)
- 4. Cleaning and Transformation of Big Data (Applied). M: Walkowiak (2016): Chapter 3: p. 74‐118.
- 5. Aggregation and Visualization (Applied: data tables, ggplot). M: Walkowiak (2016): Chapter 3: p.  118‐127. C: Wickham et al. (2015), Schwabish (2014).
- 6. Distributed Systems, MapReduce/Hadoop with R (Concepts/Applied). M: Walkowiak (2016): Chapter 4
- 7. Data Storage, Databases Interaction with R. M: Walkowiak (2016): Chapter 5
+## Schedule {.smaller}
 
-## Schedule: Part I {.smaller}
+ 1. Introduction: Big Data, Data Economy. Walkowiak (2016): Chapter 1.
+ 2. Computation and Memory in Applied Econometrics.
+ 3. Advanced R Programming. Wickham (2019): Chapters 2, 3, 17,23, 24.
+ 4. Import, Cleaning and Transformation of Big Data. Walkowiak (2016): Chapter 3: p. 74‑118.
+ 5. *Aggregation and Visualization. Walkowiak (2016): Chapter 3: p. 118‑127; Wickham et al.(2015); Schwabish (2014).*
+ 6. Data Storage, Databases Interaction with R. Walkowiak (2016): Chapter 5.
+ 7. Cloud Computing: Introduction/Overview.
+ 8. Distributed Systems, Hadoop with R. Walkowiak (2016): Chapter 4.
+ 9. Applied Econometrics with Spark; Machine Learning and GPUs.
+ 10. Project Presentations (7 May, 2020; 08:15-10:00; Room 23-103).
+ 11. Project Presentations; Q&A.
+ 
 
- 1. Introduction: Big Data, Data Economy (Concepts). M: Walkowiak (2016): Chapter 1
- 2. Programming with Data, R Refresher Course (Concepts/Applied). M: Walkowiak (2016): Chapter 2
- 3. *Computation and Memory (Concepts)*
- 4. Cleaning and Transformation of Big Data (Applied). M: Walkowiak (2016): Chapter 3: p. 74‐118.
- 5. Aggregation and Visualization (Applied: data tables, ggplot). M: Walkowiak (2016): Chapter 3: p.  118‐127. C: Wickham et al. (2015), Schwabish (2014).
- 6. Distributed Systems, MapReduce/Hadoop with R (Concepts/Applied). M: Walkowiak (2016): Chapter 4
- 7. Data Storage, Databases Interaction with R. M: Walkowiak (2016): Chapter 5
+## Schedule {.smaller}
 
-## Schedule: Part I {.smaller}
+ 1. Introduction: Big Data, Data Economy. Walkowiak (2016): Chapter 1.
+ 2. Computation and Memory in Applied Econometrics.
+ 3. Advanced R Programming. Wickham (2019): Chapters 2, 3, 17,23, 24.
+ 4. Import, Cleaning and Transformation of Big Data. Walkowiak (2016): Chapter 3: p. 74‑118.
+ 5. Aggregation and Visualization. Walkowiak (2016): Chapter 3: p. 118‑127; Wickham et al.(2015); Schwabish (2014).
+ 6. *Data Storage, Databases Interaction with R. Walkowiak (2016): Chapter 5.*
+ 7. Cloud Computing: Introduction/Overview.
+ 8. Distributed Systems, Hadoop with R. Walkowiak (2016): Chapter 4.
+ 9. Applied Econometrics with Spark; Machine Learning and GPUs.
+ 10. Project Presentations (7 May, 2020; 08:15-10:00; Room 23-103).
+ 11. Project Presentations; Q&A.
+ 
 
- 1. Introduction: Big Data, Data Economy (Concepts). M: Walkowiak (2016): Chapter 1
- 2. Programming with Data, R Refresher Course (Concepts/Applied). M: Walkowiak (2016): Chapter 2
- 3. Computation and Memory (Concepts)
- 4. *Cleaning and Transformation of Big Data (Applied). M: Walkowiak (2016): Chapter 3: p. 74‐118.*
- 5. Aggregation and Visualization (Applied: data tables, ggplot). M: Walkowiak (2016): Chapter 3: p. 118‐127. C: Wickham et al. (2015), Schwabish (2014).
- 6. Distributed Systems, MapReduce/Hadoop with R (Concepts/Applied). M: Walkowiak (2016): Chapter 4
- 7. Data Storage, Databases Interaction with R. M: Walkowiak (2016): Chapter 5
+## Schedule {.smaller}
 
-## Schedule: Part I {.smaller}
+ 1. Introduction: Big Data, Data Economy. Walkowiak (2016): Chapter 1.
+ 2. Computation and Memory in Applied Econometrics.
+ 3. Advanced R Programming. Wickham (2019): Chapters 2, 3, 17,23, 24.
+ 4. Import, Cleaning and Transformation of Big Data. Walkowiak (2016): Chapter 3: p. 74‑118.
+ 5. Aggregation and Visualization. Walkowiak (2016): Chapter 3: p. 118‑127; Wickham et al.(2015); Schwabish (2014).
+ 6. Data Storage, Databases Interaction with R. Walkowiak (2016): Chapter 5.
+ 7. *Cloud Computing: Introduction/Overview.*
+ 8. Distributed Systems, Hadoop with R. Walkowiak (2016): Chapter 4.
+ 9. Applied Econometrics with Spark; Machine Learning and GPUs.
+ 10. Project Presentations (7 May, 2020; 08:15-10:00; Room 23-103).
+ 11. Project Presentations; Q&A.
+ 
 
- 1. Introduction: Big Data, Data Economy (Concepts). M: Walkowiak (2016): Chapter 1
- 2. Programming with Data, R Refresher Course (Concepts/Applied). M: Walkowiak (2016): Chapter 2
- 3. Computation and Memory (Concepts)
- 4. Cleaning and Transformation of Big Data (Applied). M: Walkowiak (2016): Chapter 3: p. 74‐118.
- 5. *Aggregation and Visualization (Applied: data tables, ggplot). M: Walkowiak (2016): Chapter 3: p.  118‐127. C: Wickham et al. (2015), Schwabish (2014).*
- 6. Distributed Systems, MapReduce/Hadoop with R (Concepts/Applied). M: Walkowiak (2016): Chapter 4
- 7. Data Storage, Databases Interaction with R. M: Walkowiak (2016): Chapter 5
+## Schedule {.smaller}
 
-## Schedule: Part I {.smaller}
+ 1. Introduction: Big Data, Data Economy. Walkowiak (2016): Chapter 1.
+ 2. Computation and Memory in Applied Econometrics.
+ 3. Advanced R Programming. Wickham (2019): Chapters 2, 3, 17,23, 24.
+ 4. Import, Cleaning and Transformation of Big Data. Walkowiak (2016): Chapter 3: p. 74‑118.
+ 5. Aggregation and Visualization. Walkowiak (2016): Chapter 3: p. 118‑127; Wickham et al.(2015); Schwabish (2014).
+ 6. Data Storage, Databases Interaction with R. Walkowiak (2016): Chapter 5.
+ 7. Cloud Computing: Introduction/Overview.
+ 8. *Distributed Systems, Hadoop with R. Walkowiak (2016): Chapter 4.*
+ 9. Applied Econometrics with Spark; Machine Learning and GPUs.
+ 10. Project Presentations (7 May, 2020; 08:15-10:00; Room 23-103).
+ 11. Project Presentations; Q&A.
+ 
 
- 1. Introduction: Big Data, Data Economy (Concepts). M: Walkowiak (2016): Chapter 1
- 2. Programming with Data, R Refresher Course (Concepts/Applied). M: Walkowiak (2016): Chapter 2
- 3. Computation and Memory (Concepts)
- 4. Cleaning and Transformation of Big Data (Applied). M: Walkowiak (2016): Chapter 3: p. 74‐118.
- 5. Aggregation and Visualization (Applied: data tables, ggplot). M: Walkowiak (2016): Chapter 3: p. 118‐127. C: Wickham et al. (2015), Schwabish (2014).
- 6. *Distributed Systems, MapReduce/Hadoop with R (Concepts/Applied). M: Walkowiak (2016): Chapter 4*
- 7. Data Storage, Databases Interaction with R. M: Walkowiak (2016): Chapter 5
+## Schedule {.smaller}
 
-## Schedule: Part I {.smaller}
+ 1. Introduction: Big Data, Data Economy. Walkowiak (2016): Chapter 1.
+ 2. Computation and Memory in Applied Econometrics.
+ 3. Advanced R Programming. Wickham (2019): Chapters 2, 3, 17,23, 24.
+ 4. Import, Cleaning and Transformation of Big Data. Walkowiak (2016): Chapter 3: p. 74‑118.
+ 5. Aggregation and Visualization. Walkowiak (2016): Chapter 3: p. 118‑127; Wickham et al.(2015); Schwabish (2014).
+ 6. Data Storage, Databases Interaction with R. Walkowiak (2016): Chapter 5.
+ 7. Cloud Computing: Introduction/Overview.
+ 8. Distributed Systems, Hadoop with R. Walkowiak (2016): Chapter 4.
+ 9. *Applied Econometrics with Spark; Machine Learning and GPUs.*
+ 10. Project Presentations (7 May, 2020; 08:15-10:00; Room 23-103).
+ 11. Project Presentations; Q&A.
+ 
 
- 1. Introduction: Big Data, Data Economy (Concepts). M: Walkowiak (2016): Chapter 1
- 2. Programming with Data, R Refresher Course (Concepts/Applied). M: Walkowiak (2016): Chapter 2
- 3. Computation and Memory (Concepts)
- 4. Cleaning and Transformation of Big Data (Applied). M: Walkowiak (2016): Chapter 3: p. 74‐118.
- 5. Aggregation and Visualization (Applied: data tables, ggplot). M: Walkowiak (2016): Chapter 3: p. 118‐127. C: Wickham et al. (2015), Schwabish (2014).
- 6. Distributed Systems, MapReduce/Hadoop with R (Concepts/Applied). M: Walkowiak (2016): Chapter 4
- 7. *Data Storage, Databases Interaction with R. M: Walkowiak (2016): Chapter 5*
+## Schedule {.smaller}
 
-## Schedule: Part II {.smaller}
+ 1. Introduction: Big Data, Data Economy. Walkowiak (2016): Chapter 1.
+ 2. Computation and Memory in Applied Econometrics.
+ 3. Advanced R Programming. Wickham (2019): Chapters 2, 3, 17,23, 24.
+ 4. Import, Cleaning and Transformation of Big Data. Walkowiak (2016): Chapter 3: p. 74‑118.
+ 5. Aggregation and Visualization. Walkowiak (2016): Chapter 3: p. 118‑127; Wickham et al.(2015); Schwabish (2014).
+ 6. Data Storage, Databases Interaction with R. Walkowiak (2016): Chapter 5.
+ 7. Cloud Computing: Introduction/Overview.
+ 8. Distributed Systems, Hadoop with R. Walkowiak (2016): Chapter 4.
+ 9. Applied Econometrics with Spark; Machine Learning and GPUs.
+ 10. *Project Presentations (7 May, 2020; 08:15-10:00; Room 23-103).*
+ 11. Project Presentations; Q&A.
+ 
+## Schedule {.smaller}
 
- 1. Multivariate random variables and distributions M: Härdle, Simar (2015): Chapter 4‐5 
- 2. Clustering M: Härdle, Simar (2015): Chapter 13
- 3. Principal Component Analysis M: Härdle, Simar (2015): Chapter 11
- 4. Factor Models M: Härdle, Simar (2015): Chapter 12
- 5. Summary/Q&A
+ 1. Introduction: Big Data, Data Economy. Walkowiak (2016): Chapter 1.
+ 2. Computation and Memory in Applied Econometrics.
+ 3. Advanced R Programming. Wickham (2019): Chapters 2, 3, 17,23, 24.
+ 4. Import, Cleaning and Transformation of Big Data. Walkowiak (2016): Chapter 3: p. 74‑118.
+ 5. Aggregation and Visualization. Walkowiak (2016): Chapter 3: p. 118‑127; Wickham et al.(2015); Schwabish (2014).
+ 6. Data Storage, Databases Interaction with R. Walkowiak (2016): Chapter 5.
+ 7. Cloud Computing: Introduction/Overview.
+ 8. Distributed Systems, Hadoop with R. Walkowiak (2016): Chapter 4.
+ 9. Applied Econometrics with Spark; Machine Learning and GPUs.
+ 10. Project Presentations (7 May, 2020; 08:15-10:00; Room 23-103).
+ 11. *Project Presentations; Q&A.*
+ 
 
 
 
 ## Examination: Part I
 
- - Decentral 
- ‐ Group examination 'paper' (all given the same grades) (50%).
- - Group size: 2 to max 3. people.
- - Take‐home exercises (group task): Application of basic concepts in R when working with big data. Conceptual questions related to the application.
+- Decentral 
+‐ Group examination 'paper' (all given the same grades) (60%).
+- Group size: 3 (or 2) students.
+- Take‐home exercises: Application of basic concepts in R when working with big data. Conceptual questions related to the application.
 
-<center> *Hand in: 2 weeks after the semester break!* </center>
-<center> *(More details next week)* </center>
+<center> *Hand in on June 8 2020, 16:00* </center>
+<center> *More details next week* </center>
  
  
 ## Examination: Part II
+- Decentral
+- Group examination: presentation + code (all given the same grades) (40%)
+- Big data analytics group projects: Own approach/strategy, implemented in R, presentation of results in class.
 
- - Decentral 
- ‐ Oral examination (individual) (50%, 15 mins.)
- - Oral exam: Multivariate statistics (methods/concepts).
-
+<center> *7 May 2020, 08:15-10:00* </center>
+<center> *(14 May 2020, 08:15-10:00)* </center>
+<center> *More details next week* </center>
  
-# This Part of the Course
+ 
+# Approach
 
 ---
 
 ```{r rlogo, echo=FALSE, out.width = "70%", fig.align='center', purl=FALSE}
-include_graphics("../img/01_rlogo.png")
+include_graphics("../img/01_rlogo2.png")
 ```
 
 ---
@@ -398,16 +490,22 @@ include_graphics("../img/01_rstudio.png")
 ```
 
 
-## Approach to Big Data Statistics
+<!-- ## Approach to Big Data Analytics -->
 
-1. *Analyze the underlying problem*.
-2. Understand the underlying *concept*.
-3. *Apply* the understanding in a hands-on exercise.
+<!-- 1. Build on knowledge in *Applied Econometrics*. -->
+<!-- 2. *Analyze the underlying problem*. -->
+<!-- 3. Understand the underlying *concept*. -->
+<!-- 4. *Apply* the concepts in hands-on exercises. -->
+
+## Prerequisites?
+  - Build on concepts taught in Data Analytics I (and more basic econometrics courses).
+  - Brief review of concepts, but no additional introduction.
 
 ## R used in two ways
 
 - A tool to analize problems posed by large datasets.
      - For example, memory usage (in R).
+     - (Idea behind 'advanced R programming part)
 - A practical tool for Big Data Analytics.
 
 ## Example
@@ -570,7 +668,7 @@ This looks much better, but we can do even better...
 
 ## Example
 
-Can we improve this?
+Can we further improve this?
 
 ```{r}
 # Do it 'the R wqy'
@@ -602,6 +700,34 @@ In fact, `system.time()` is not precise enough to capture the time elapsed...
 
 ```
 
+## Example
+
+Use `microbenchmark::microbenchmark()` to measure the elapsed time in microseconds (millionth of a second)
+
+```{r}
+library(microbenchmark)
+# measure elapsed time in microseconds (avg.)
+time_elapsed <- 
+  summary(microbenchmark(pce_real <- economics$pce/deflator))$mean
+
+# per row (in sec)
+time_per_row <- (time_elapsed/n_obs)/10^6
+
+```
+
+## Example
+
+Improvement with vectorization (again, assuming 100 million rows)
+
+```{r}
+# in seconds
+(time_per_row*100^4) 
+# in minutes
+(time_per_row*100^4)/60 
+# in hours
+(time_per_row*100^4)/60^2 
+
+```
 
 
 ## What do we learn from this?
@@ -611,15 +737,20 @@ In fact, `system.time()` is not precise enough to capture the time elapsed...
 2. In what way the computation is implemented can matter a lot for the time elapsed.
      - (For example, loops vs. vectorization/apply)
 
-<center>*More on this in Lecture 3*</center>
 
 
-# Resources for Part I
+# Course Resources
 
 ## Literature
 
-### Book
-[Walkowiak, Simon (2016): Big Data Analytics with R.Birmingham, UK: Packt Publishing.](https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781786466457)
+### Books
+[Walkowiak, Simon (2016): Big Data Analytics with R. Birmingham, UK: Packt Publishing.](https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781786466457)
+
+[Wickham, Hadley (2019): Advanced R. Second Edition, Boca Raton, FL: CRC Press](https://adv-r.hadley.nz/)
+
+
+
+## Literature
 
 ### Journal Articles
 
@@ -629,11 +760,12 @@ In fact, `system.time()` is not precise enough to capture the time elapsed...
 
 <center>*Lecture notes and slides will point to further reading...*</center>
 
+
 ## Notes, Slides, Code, et al.
 
 - [umatter.github.io/courses](https://umatter.github.io/courses.html)
 - [github.com/umatter/BigData](https://github.com/umatter/BigData)
-- [StudyNet](https://fronter.com/unisg/main.phtml)
+<!-- - [StudyNet/Canvas]() -->
 
 ## Suggested Learning Procedure
 
@@ -647,6 +779,10 @@ In fact, `system.time()` is not precise enough to capture the time elapsed...
 - Set up your own [GitHub](https://github.com/)-account
 - [Get familiar with Git/GitHub](https://guides.github.com/activities/hello-world/)
 
+## Q&A
+
+- General questions about the course?
+- Exchange students: additional information regarding prerequisites
 
 ## References {.smaller}
 
