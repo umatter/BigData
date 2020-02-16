@@ -1,4 +1,4 @@
-# Big Data Statistics for R and Python
+# Big Data Analytics
 
 ## Course materials for Part I
 
