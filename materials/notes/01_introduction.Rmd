@@ -1,10 +1,10 @@
 ---
-title: 'Big Data Statistics for R and Python'
+title: "Big Data Analytics"
 subtitle: 'Lecture 1: Introduction'
 author: |
      | Prof. Dr. Ulrich Matter
      | (University of St. Gallen)
-date: "18/02/2019"
+date: "20/02/2020"
 output:
   html_document:
     highlight: tango
@@ -38,7 +38,7 @@ knitr::opts_chunk$set(fig.pos = 'htb!')
 
 ## Preparation
 
-We first read the `economics` data set into R and extend it by duplicating its rows in order to get a slightly larger data set (this step can easily be changed to create a very large data set).
+We first read the `economics` data set into R and extend it by duplicating its rows in order to get a slightly larger data set (this step can easily be adapted to create a very large data set).
 
 ```{r}
 # read dataset into R
@@ -56,9 +56,9 @@ dim(economics)
 
 ## Naïve Approach (ignorant of R)
 
-The goal of this code example is to compute the real personal consumption expenditures, assuming that `pce` in the `economics` data set provides the nominal personal consumption expenditures. Thus, we have to use R to divide each value of `pce` by a deflator `1.05`.
+The goal of this code example is to compute the real personal consumption expenditures, assuming that `pce` in the `economics` data set provides the nominal personal consumption expenditures. Thus, we divide each value in the vector `pce` by a deflator `1.05`.
 
-The first approach we take is based on a simple `for`-loop, where in each iteration one element in `pce` is divided by the `deflator` and the resulting value is stored as a new element in the vector `pce_real`. 
+The first approach we take is based on a simple `for`-loop. In each iteration one element in `pce` is divided by the `deflator` and the resulting value is stored as a new element in the vector `pce_real`. 
 
 ```{r}
 # Naïve approach (ignorant of R)
@@ -167,7 +167,7 @@ Again, we can extrapolate (approximately) the computation time, assuming the dat
 
 This looks much better, but we can do even better.
 
-### Improvement 2: Exploit vectorization.
+### Improvement 2: Exploit vectorization
 
 In this approach, we exploit the fact that in R 'everything is a vector' and that many of the basic R functions (such as math operators) are *vectorized*. In simple terms, this means that a vectorized operation is implemented in such a way that it can take advantage of the similarity of each of the vector's elements. That is, R only has to figure out once how to apply a given function to a vector element in order to apply it to all elements of the vector. In a simple loop, R has to through the same 'preparatory' steps again and again in each iteration, this is time-intensive.
 
@@ -204,7 +204,36 @@ time_per_row <- time_elapsed[3]/n_obs
 
 
 
+
+In order to measure the improvement, we use `microbenchmark::microbenchmark()` to measure the elapsed time in microseconds (millionth of a second).
+
+```{r}
+library(microbenchmark)
+# measure elapsed time in microseconds (avg.)
+time_elapsed <- 
+  summary(microbenchmark(pce_real <- economics$pce/deflator))$mean
+
+# per row (in sec)
+time_per_row <- (time_elapsed/n_obs)/10^6
+
+```
+
+
+Now we get a more precise picture regarding the improvement due to  vectorization (again, assuming 100 million rows):
+
+```{r}
+# in seconds
+(time_per_row*100^4) 
+# in minutes
+(time_per_row*100^4)/60 
+# in hours
+(time_per_row*100^4)/60^2 
+
+```
+
+
 ## What do we learn from this?
+
 
 1. How R allocates and deallocates memory can have a substantial effect on computation time.
      - (Particularly, if we deal with a large data set!)
