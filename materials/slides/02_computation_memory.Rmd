@@ -77,7 +77,7 @@ library(knitr)
 
 ## R used in two ways
 
-- A tool to analize problems posed by large datasets.
+- A tool to analyze problems posed by large datasets.
      - For example, memory usage (in R).
 - A practical tool for Big Data Analytics.
 
@@ -397,7 +397,7 @@ $\hat{\beta}_{OLS} = (\mathbf{X}^\intercal\mathbf{X})^{-1}\mathbf{X}^{\intercal}
 ## Computational bottleneck of OLS
 
 - $\hat{\beta}_{OLS}$ depends on $(\mathbf{X}^\intercal\mathbf{X})^{-1}$.
-- Large crossproduct if the number of observations is large ($X$ is of dimensions $n\times p$)
+- Large cross-product if the number of observations is large ($X$ is of dimensions $n\times p$)
 - (Large) matrix inversions are computationally demanding.
      <!-- - Computational complexity is larger than $O(n^{2})$. -->
 - OLS has a $O(np^{2})$ running time.
@@ -606,8 +606,8 @@ ggplot(plotdata, aes(x = subs_size, y = beta1)) +
 ## 1) Parallel processing: CPU/core
 
 - A CPU on any modern computer has several *cores*. 
-- The OS usually assignes automatically which tasks/processes should run on which core.
-- We can explicitly instruct the computer to dedicate $N$ cores to a specific compuational task: *parallel processing*.
+- The OS usually assigns automatically which tasks/processes should run on which core.
+- We can explicitly instruct the computer to dedicate $N$ cores to a specific computational task: *parallel processing*.
 
 &nbsp;
 
