@@ -2,10 +2,11 @@
 title: "Big Data Analytics"
 subtitle: 'Lecture 2: Computation and Memory'
 author: "Prof. Dr. Ulrich Matter"
-date: "04/03/2019"
-output:   
+date: "27/02/2020"
+output:
   ioslides_presentation:
     css: ../../style/ioslides.css
+    template: ../../style/nologo_template.html
 logo: ../img/logo.png
 bibliography: ../references/bigdata.bib
 ---
@@ -18,30 +19,388 @@ library(knitr)
 
 # Updates
 
-## Learning resources
+## Literature
 
-- Additional links on StudyNet
-- Additional hints in GitHub-repo README
+### Books
+[Walkowiak, Simon (2016): Big Data Analytics with R. Birmingham, UK: Packt Publishing.](https://www.packtpub.com/big-data-and-business-intelligence/big-data-analytics-r)
 
-## Make use of your own machine
+- Available [here](https://eds.a.ebscohost.com/eds/detail/detail?vid=1&sid=c2adb69f-fdce-4f5e-89fd-c1bc6dbeef95%40sessionmgr4007&bdata=Jmxhbmc9ZGUmc2l0ZT1lZHMtbGl2ZQ%3d%3d#AN=stgal.000949061&db=cat00327a)
 
-- From now on: more hands-on exercises
-- Have Git/GitHub set up
-- (Clone the course repo)
+[Wickham, Hadley (2019): Advanced R. Second Edition, Boca Raton, FL: CRC Press](https://adv-r.hadley.nz/)
 
-## Survey regarding Part II
 
-- *Who has experience with Python?*
 
-# Recap Week 2
+## Literature
 
-## Four strategies of programing with Big Data
+### Journal Articles
 
-1. Use the right building blocks (R-packages)
-2. Exploit/avoid R's idiosyncrasies
-3. (Connect to lower-level language, such as C)
-4. Use an alternative statistical procedure/estimator
+[Wickham, Hadley and Dianne Cook and Heike Hofmann (2015): Visualizing statistical models: Removing the blindfold.Statistical Analysis and Data Mining: The ASA Data Science Journal. 8(4):203‐225.](https://onlinelibrary.wiley.com/doi/full/10.1002/sam.11271?scrollTo=references)
 
+[Schwabish, Jonathan A. (2014): An Economistʹs Guide to Visualizing Data.Journal of Economic Perspectives. 28(1):209‐234.](https://pubs.aeaweb.org/doi/pdfplus/10.1257/jep.28.1.209)
+
+<center>*Lecture notes and slides will point to further reading...*</center>
+
+
+## Notes, Slides, Code, et al.
+
+- [umatter.github.io/courses](https://umatter.github.io/courses.html)
+- [github.com/umatter/BigData](https://github.com/umatter/BigData)
+<!-- - [StudyNet/Canvas]() -->
+
+## Suggested Learning Procedure
+
+- Clone/fork the course's GitHub-repository
+- During class, use the Rmd-file of the slide-set as basis for your notes
+- After class, enrich/merge/extend your notes with the lecture notes.
+
+## TODO (if not done yet)
+
+- [Install R](https://stat.ethz.ch/CRAN/), [RStudio](https://www.rstudio.com/products/rstudio/download/#download)
+- Set up your own [GitHub](https://github.com/)-account
+- [Get familiar with Git/GitHub](https://guides.github.com/activities/hello-world/)
+
+
+## Group Examinations
+
+- Make sure to build teams of 3 (exception: 2)
+- Registration of teams starts next week, ends in two weeks.
+
+
+# Recap Week 1
+
+## Focus in This Course 
+
+- *How to use the existing machinery most efficiently for large amounts of data?*
+- *How to approach the analysis of large amounts of data with econometrics?*
+    1. Compute 'usual' statistics based on large dataset (many observations).
+    2. Practical handling of large data sets for applied econometrics (gathering, storage, preparation, etc.)
+
+## R used in two ways
+
+- A tool to analize problems posed by large datasets.
+     - For example, memory usage (in R).
+- A practical tool for Big Data Analytics.
+
+
+## Introductory Example
+
+```{r echo=FALSE}
+# read dataset into R
+economics <- read.csv("../data/economics.csv")
+# have a look at the data
+#head(economics, 2)
+# create a 'large' dataset out of this
+for (i in 1:3) {
+     economics <- rbind(economics, economics)
+}
+#dim(economics)
+
+```
+
+Naïve approach (ignorant of R)
+
+```{r}
+# Naïve approach (ignorant of R)
+deflator <- 1.05 # define deflator
+# iterate through each observation
+pce_real <- list()
+n_obs <- length(economics$pce)
+time_elapsed <-
+     system.time(
+         for (i in 1:n_obs) {
+              pce_real <- c(pce_real, economics$pce[i]/deflator)
+})
+
+time_elapsed
+
+```
+
+
+
+
+## Introductory Example
+
+Consider memory allocation
+
+```{r}
+# Improve memory allocation (still somewhat ignorant of R)
+deflator <- 1.05 # define deflator
+n_obs <- length(economics$pce)
+pce_real <- list()
+# allocate memory beforehand
+# tell R how long the list will be
+length(pce_real) <- n_obs
+# iterate through each observation
+time_elapsed <-
+     system.time(
+         for (i in 1:n_obs) {
+              pce_real[[i]] <- economics$pce[i]/deflator
+})
+
+time_elapsed
+
+```
+
+
+
+## Introductory Example
+
+Fastest implementation (vectorization)
+
+```{r}
+library(microbenchmark)
+# measure elapsed time in microseconds (avg.)
+time_elapsed <- 
+  summary(microbenchmark(pce_real <- economics$pce/deflator))$mean
+
+# per row (in sec)
+time_per_row <- (time_elapsed/n_obs)/10^6
+
+```
+
+## Introductory Example
+
+Fastest implementation (vectorization)
+
+```{r}
+# in seconds
+(time_per_row*100^4) 
+# in minutes
+(time_per_row*100^4)/60 
+# in hours
+(time_per_row*100^4)/60^2 
+
+```
+
+
+# Computation and Memory
+
+## Goals of Today
+
+- Know the core components of a computer
+- Understand the very basics of information processing on a computer
+- Have a basic idea of how to think about and approach computational challenges
+  - From a statistics/applied econometrics perspective
+  - From a computational/programmatic perspective
+- Repetition of econometrics concepts: OLS, Monte Carlo, clustered SEs
+
+## Components of a standard computing environment
+
+&nbsp;
+
+```{r components, echo=FALSE, out.width = "95%", fig.align='center', purl=FALSE}
+include_graphics("../img/03_script-hardware.jpg")
+```
+
+## Central Processing Unit
+
+&nbsp;
+
+
+```{r cpu2, echo=FALSE, out.width = "50%", fig.align='center', purl=FALSE}
+include_graphics("../img/03_cpu.jpg")
+```
+
+
+
+
+## Random Access Memory
+
+&nbsp;
+
+```{r ram2, echo=FALSE, out.width = "65%", fig.align='center', purl=FALSE}
+include_graphics("../img/03_ram.jpg")
+```
+
+
+
+
+
+## Mass storage: hard drive
+
+&nbsp;
+
+```{r harddrive2, echo=FALSE, out.width = "55%", fig.align='center', purl=FALSE}
+include_graphics("../img/03_harddrive.jpg")
+```
+
+## Now, what is Big Data (Analytics)?
+
+- *Big Data Analytics*: The amount of data to be analyzed is not compatible with the standard usage of one or several of the computing environment's hardware components (the components fail or work very inefficiently). 
+
+## Now, what is Big Data (Analytics)?
+
+- *Big Data Analytics*: The amount of data to be analyzed is not compatible with the standard usage of one or several of the computing environment's hardware components (the components fail or work very inefficiently). 
+- Need to understand how to *make best use of the available resources*, given a specific data analysis task.
+
+
+## Now, what is Big Data (Analytics)?
+
+- *Big Data Analytics*: The amount of data to be analyzed is not compatible with the standard usage of one or several of the computing environment's hardware components (the components fail or work very inefficiently). 
+- Need to understand how to *make best use of the available resources*, given a specific data analysis task.
+     - CPU: Parallel processing (use all cores available)
+     - RAM: Efficient memory allocation and usage
+     - RAM + Mass Storage: Virtual memory, efficient swapping
+
+## Now, what is Big Data (Analytics)?
+
+- *Big Data Analytics*: The amount of data to be analyzed is not compatible with the standard usage of one or several of the computing environment's hardware components (the components fail or work very inefficiently). 
+- Need to understand how to *make best use of the available resources*, given a specific data analysis task.
+     - CPU: Parallel processing (use all cores available)
+     - RAM: Efficient memory allocation and usage
+     - RAM + Mass Storage: Virtual memory, efficient swapping
+- Make use of alternative/faster *statistical procedures*
+
+  <!-- - Example/Analogy: [Clever Carl](https://nrich.maths.org/2478) -->
+   
+
+
+
+
+# Units of information/data storage
+
+---
+
+
+
+```{r blackbox, echo=FALSE, out.width = "90%", fig.align='center', purl=FALSE}
+include_graphics("../img/03_cpu_blackbox.png")
+```
+
+
+## The binary system
+
+Microprocessors can only represent two signs (states): 
+
+ - 'Off' = `0`
+ - 'On' = `1`
+
+```{r onoff, echo=FALSE, out.width = "10%", fig.align='center', purl=FALSE}
+include_graphics("../img/03_on_off.png")
+```
+
+
+## The binary system
+
+- Only two signs: `0`, `1`.
+- Base 2.
+- Columns: $2^0=1$, $2^1=2$, $2^2=4$, and so forth.
+
+
+
+## The binary system
+
+What is the decimal number *139* in the binary counting frame?
+
+
+## The binary system
+
+What is the decimal number *139* in the binary counting frame?
+ 
+ - Solution:
+ 
+$$(1 \times 2^7) + (1 \times 2^3) + (1 \times 2^1) + (1 \times 2^0) = 139.$$
+
+
+
+## The binary system
+
+What is the decimal number *139* in the binary counting frame?
+ 
+ - Solution:
+ 
+$$(1 \times 2^7) + (1 \times 2^3) + (1 \times 2^1) + (1 \times 2^0) = 139.$$
+
+  - More precisely:
+  
+$$(1 \times 2^7) + (0 \times 2^6) +  (0 \times 2^5) +  (0 \times 2^4) + (1 \times 2^3)\\ + (0 \times 2^2) + (1 \times 2^1) +  (1 \times 2^0)  = 139.$$
+
+  - That is, the number `139` in the decimal system corresponds to `10001011` in the binary system.
+
+
+## Units of information storage
+
+  - Smallest unit (a `0` or a `1`): *bit* (from *bi*nary dig*it*; abbrev. 'b').
+  - *Byte* (1 byte = 8 bits; abbrev. 'B')
+    - For example, `10001011` (`139`)
+  - (4 bytes (or 32 bits) are called a *word*.)
+  
+## Units of information storage
+
+```{r bitbyteword, echo=FALSE, out.width = "80%", fig.align='center', fig.cap= "Bit, Byte, Word. Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/))", purl=FALSE}
+include_graphics("../img/03_store-bitbyteword.png")
+```
+
+## Units of information storage
+
+Bigger units for storage capacity usually build on bytes:
+
+ - $1 \text{ kilobyte (KB)} = 1000^{1}   \approx 2^{10}   \text{ bytes}$
+ - $1 \text{ megabyte (MB)} = 1000^{2}   \approx 2^{20}   \text{ bytes}$
+ - $1 \text{ gigabyte (GB)} = 1000^{3}   \approx 2^{30}   \text{ bytes}$
+ - $1 \text{ terabyte (TB)} = 1000^{4}   \approx 2^{40}   \text{ bytes}$
+ - $1 \text{ petabyte (PB)} = 1000^{5}   \approx 2^{50}   \text{ bytes}$
+ - $1 \text{ exabyte (EB)} = 1000^{6}    \approx 2^{60}   \text{ bytes}$
+ - $1 \text{ zettabyte (ZB)} = 1000^{7}  \approx 2^{70}   \text{ bytes}$
+
+$$1 ZB = 1000000000000000000000\text{ bytes} = 1 \text{ billion terabytes}.$$
+
+## Information storage and data types
+
+- Binary code can be interpreted in different ways
+- As text, number, etc.
+- Depending on the data type of a string of symbols such as `139`, more or less bytes are needed to represent it.
+
+## Example Size of R Objects
+
+```{r}
+object.size("139")
+object.size(139)
+```
+
+# Computation in Applied Econometrics
+
+## Computational burden
+
+- How to identify bottle-necks?
+- Two aspects
+  - How is a statistic computed?
+  - How does the program/software/language implement this computation?
+
+
+## Two ways of approaching the burden
+
+ 1. Consider alternative statistical procedures that happen to be more efficient (here: computationally efficient in contrast to statistically efficient). To compute a given statistic based on large amounts of data.
+ 2. Given the statistical procedure, how to implement it *efficiently* in your computing environment?
+
+## What if this is not enough?
+
+- Already using all components most efficiently?
+- *Scale up ('vertical scaling')*
+- *Scale out ('horizontal scaling')*
+
+
+
+# Faster Statistical Procedures
+
+## Example: Fast Least Squares Regression
+
+- Classical approach to estimating linear models: OLS.
+- Alternative: The *Uluru* algorithm [@dhillon_2013].
+
+## OLS as a point of reference
+
+Recall the OLS estimator in matrix notation, given the linear model $\mathbf{y}=\mathbf{X}\beta + \epsilon$:
+
+$\hat{\beta}_{OLS} = (\mathbf{X}^\intercal\mathbf{X})^{-1}\mathbf{X}^{\intercal}\mathbf{y}$.
+
+## Computational bottleneck of OLS
+
+- $\hat{\beta}_{OLS}$ depends on $(\mathbf{X}^\intercal\mathbf{X})^{-1}$.
+- Large crossproduct if the number of observations is large ($X$ is of dimensions $n\times p$)
+- (Large) matrix inversions are computationally demanding.
+     <!-- - Computational complexity is larger than $O(n^{2})$. -->
+- OLS has a $O(np^{2})$ running time.
 
 ## OLS in R
 
@@ -231,8 +590,10 @@ ggplot(plotdata, aes(x = subs_size, y = beta1)) +
      geom_hline(yintercept = ols_res,
                 color = "red", 
                 size = 1) +
+     geom_hline(yintercept = 1.5,
+                color = "green",
+                size = 1) +
      geom_point(color="darkgreen") + 
-
      theme_minimal() +
      ylab("Estimated coefficient") +
      xlab("Subsample size")
@@ -240,205 +601,42 @@ ggplot(plotdata, aes(x = subs_size, y = beta1)) +
 ```
 
 
-# Computation and Memory
+# Efficient Use of Resources
 
-## Components of a standard computing environment
+## 1) Parallel processing: CPU/core
 
-&nbsp;
-
-```{r components, echo=FALSE, out.width = "80%", fig.align='center', fig.cap= "Basic components of a standard computing environment. Figure by @murrell_2009 (Figure 9.1, licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/)).", purl=FALSE}
-include_graphics("../img/03_script-hardware.png")
-```
-
-## Central Processing Unit
+- A CPU on any modern computer has several *cores*. 
+- The OS usually assignes automatically which tasks/processes should run on which core.
+- We can explicitly instruct the computer to dedicate $N$ cores to a specific compuational task: *parallel processing*.
 
 &nbsp;
 
-```{r cpu, echo=FALSE, out.width = "10%", fig.align='center', purl=FALSE}
-include_graphics("../img/03_script-cpu.png")
-```
-
-```{r cpu2, echo=FALSE, out.width = "30%", fig.align='center', purl=FALSE}
+```{r cpu3, echo=FALSE, out.width = "25%", fig.align='center', purl=FALSE}
 include_graphics("../img/03_cpu.jpg")
 ```
 
+## 2) Memory allocation: RAM
 
+- Standard computation procedures happen *in-memory*: data needs to be loaded into RAM.
+- Default lower-level procedures to *allocate memory* might not be optimal for large data sets.
+- We can explicitly use *faster* memory allocation procedures for a specific big data task.
 
-
-## Random Access Memory
-
-&nbsp;
-
-```{r ram, echo=FALSE, out.width = "10%", fig.align='center', purl=FALSE}
-include_graphics("../img/03_script-ram.png")
-```
-
-```{r ram2, echo=FALSE, out.width = "45%", fig.align='center', purl=FALSE}
+```{r ram3, echo=FALSE, out.width = "30%", fig.align='center', purl=FALSE}
 include_graphics("../img/03_ram.jpg")
 ```
 
+## 3) Beyond RAM: virtual memory
 
+ - What if we run out of RAM?
+ - The OS deals with this by using part of the hard disk as *virtual memory*.
+ - By explicitly instructing the computer how to use *virtual memory for specific big data tasks*, we can speed things up.
 
-
-
-## Mass storage: hard drive
-
-&nbsp;
-
-```{r harddrive, echo=FALSE, out.width = "10%", fig.align='center', purl=FALSE}
-include_graphics("../img/03_script-massstorage.png")
-```
-
-```{r harddrive2, echo=FALSE, out.width = "45%", fig.align='center', purl=FALSE}
-include_graphics("../img/03_harddrive.jpg")
-```
-
-## Now, what is Big Data (Analytics)?
-
-- *Big Data Analytics*: The amount of data to be analyzed is not compatible with the standard usage of one or several of the computing environment's hardware components (the components fail or work very inefficiently). 
-
-## Now, what is Big Data (Analytics)?
-
-- *Big Data Analytics*: The amount of data to be analyzed is not compatible with the standard usage of one or several of the computing environment's hardware components (the components fail or work very inefficiently). 
-- Need to understand how to *make best use of the available resources*, given a specific data analysis task.
-
-
-## Now, what is Big Data (Analytics)?
-
-- *Big Data Analytics*: The amount of data to be analyzed is not compatible with the standard usage of one or several of the computing environment's hardware components (the components fail or work very inefficiently). 
-- Need to understand how to *make best use of the available resources*, given a specific data analysis task.
-     - CPU: Parallel processing (use all cores available)
-     - RAM: Efficient memory allocation and usage
-     - RAM + Mass Storage: Virtual memory, efficient swapping
-     
-
-## Already using all components most efficiently?
-
-- *Scale up ('vertical scaling')*
-- *Scale out ('horizontal scaling')*
-
-
-
-# Units of information/data storage
-
----
-
-
-
-```{r blackbox, echo=FALSE, out.width = "90%", fig.align='center', purl=FALSE}
-include_graphics("../img/03_cpu_blackbox.png")
-```
-
-
-## The binary system
-
-Microprocessors can only represent two signs (states): 
-
- - 'Off' = `0`
- - 'On' = `1`
-
-```{r onoff, echo=FALSE, out.width = "10%", fig.align='center', purl=FALSE}
-include_graphics("../img/03_on_off.png")
-```
-
-
-## The binary system
-
-- Only two signs: `0`, `1`.
-- Base 2.
-- Columns: $2^0=1$, $2^1=2$, $2^2=4$, and so forth.
-
-
-
-## The binary system
-
-What is the decimal number *139* in the binary counting frame?
-
-
-## The binary system
-
-What is the decimal number *139* in the binary counting frame?
- 
- - Solution:
- 
-$$(1 \times 2^7) + (1 \times 2^3) + (1 \times 2^1) + (1 \times 2^0) = 139.$$
-
-
-
-## The binary system
-
-What is the decimal number *139* in the binary counting frame?
- 
- - Solution:
- 
-$$(1 \times 2^7) + (1 \times 2^3) + (1 \times 2^1) + (1 \times 2^0) = 139.$$
-
-  - More precisely:
-  
-$$(1 \times 2^7) + (0 \times 2^6) +  (0 \times 2^5) +  (0 \times 2^4) + (1 \times 2^3)\\ + (0 \times 2^2) + (1 \times 2^1) +  (1 \times 2^0)  = 139.$$
-
-  - That is, the number `139` in the decimal system corresponds to `10001011` in the binary system.
-
-
-## Units of information storage
-
-  - Smallest unit (a `0` or a `1`): *bit* (from *bi*nary dig*it*; abbrev. 'b').
-  - *Byte* (1 byte = 8 bits; abbrev. 'B')
-    - For example, `10001011` (`139`)
-  - (4 bytes (or 32 bits) are called a *word*.)
-  
-## Units of information storage
-
-```{r bitbyteword, echo=FALSE, out.width = "80%", fig.align='center', fig.cap= "Bit, Byte, Word. Figure by @murrell_2009 (licensed under [CC BY-NC-SA 3.0 NZ](https://creativecommons.org/licenses/by-nc-sa/3.0/nz/))", purl=FALSE}
-include_graphics("../img/03_store-bitbyteword.png")
-```
-
-## Units of information storage
-
-Bigger units for storage capacity usually build on bytes:
-
- - $1 \text{ kilobyte (KB)} = 1000^{1}   \approx 2^{10}   \text{ bytes}$
- - $1 \text{ megabyte (MB)} = 1000^{2}   \approx 2^{20}   \text{ bytes}$
- - $1 \text{ gigabyte (GB)} = 1000^{3}   \approx 2^{30}   \text{ bytes}$
- - $1 \text{ terabyte (TB)} = 1000^{4}   \approx 2^{40}   \text{ bytes}$
- - $1 \text{ petabyte (PB)} = 1000^{5}   \approx 2^{50}   \text{ bytes}$
- - $1 \text{ exabyte (EB)} = 1000^{6}    \approx 2^{60}   \text{ bytes}$
- - $1 \text{ zettabyte (ZB)} = 1000^{7}  \approx 2^{70}   \text{ bytes}$
-
-$$1 ZB = 1000000000000000000000\text{ bytes} = 1 \text{ billion terabytes} = 1 \text{ trillion gigabytes}.$$
-
-## Information storage and data types
-
-- Binary code can be interpreted in different ways
-- As text, number, etc.
-- Depending on the data type of a string of symbols such as `139`, more or less bytes are needed to represent it.
-
-## Example Size of R objects
-
-```{r}
-object.size("139")
-object.size(139)
-```
-
-
-# Resource Allocation in R
-
-## R-tools to investigate performance/resource allocation
-
-package | function | purpose
--------- | ---------- | ---------------------------------------------
-`utils`  | `object.size()` | Provides an estimate of the memory that is being used to store an R object.
-`pryr`   | `object_size()` | Works similarly to `object.size()`, but counts more accurately and includes the size of environments.
-`pryr` | `compare_size()` | Makes it easy to compare the output of object_size and object.size.
-`pryr` | `mem_used()`     | Returns the total amount of memory (in megabytes) currently used by R.
-`pryr` | `mem_change()`   | Shows the change in memory (in megabytes) before and after running code.
-`base`   | `system.time()` | Returns CPU (and other) times that an R expression used.
-`microbenchmark` | `microbenchmark()` | Highly accurate timing of R expression evaluation.
-`profvis`| `profvis()`   | Profiles an R expression and visualizes the profiling data (usage of memory, time elapsed, etc.)
+<!-- ```{r vm, echo=FALSE, out.width = "60%", fig.align='center', fig.cap= "Virtual memory. Figure by Ehamberg ([CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/))", purl=FALSE} -->
+<!-- include_graphics("../img/03_virtualmemory.png") -->
+<!-- ``` -->
 
 
 ## Case study: Parallel processing
-
 
 We start with importing the data into R.
 ```{r}
@@ -528,6 +726,8 @@ Parallel implementation...
 # install.packages("doSNOW", "parallel")
 # load packages for parallel processing
 library(doSNOW)
+# set the 'seed' for random numbers (makes the example reproducible)
+set.seed(2)
 
 # get the number of cores available
 ncores <- parallel::detectCores()
@@ -684,13 +884,6 @@ mem_change(flights <- fread(DATA_PATH))
 
 ```
 
-## Beyond memory
-
-<!-- What if all RAM of our computer is not enough to store all the data we want to analyze? -->
-
-<!-- ```{r vm, echo=FALSE, out.width = "60%", fig.align='center', fig.cap= "Virtual memory. Figure by Ehamberg ([CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/))", purl=FALSE} -->
-<!-- include_graphics("../img/03_virtualmemory.png") -->
-<!-- ``` -->
 
 
 ## References {.smaller}

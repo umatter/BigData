@@ -2,10 +2,11 @@
 title: "Big Data Analytics"
 subtitle: 'Lecture 3:<br>Programming with Data'
 author: "Prof. Dr. Ulrich Matter"
-date: "25/02/2019"
-output:   
+date: "05/03/2020"
+output:
   ioslides_presentation:
     css: ../../style/ioslides.css
+    template: ../../style/nologo_template.html
 logo: ../img/logo.png
 bibliography: ../references/bigdata.bib
 ---
@@ -31,63 +32,7 @@ library(knitr)
 - Conceptual questions.
 - Collaborate, hand-in, feedback via GitHub.
 
-# Recap of Week 1
 
-
-## Class Survey: Big Data?
-
-```{r setup, echo=FALSE, purl=FALSE, message=FALSE, warning=FALSE}
-# Load required packages. Install if needed.
-library(gsheet)
-library(tidyverse)
-
-# Download survey data
-# Download data
-URL <- 'https://docs.google.com/spreadsheets/d/1_eF-DN2ie13doVQRjJNtjplzfKCLk6z6g8fk96cs1dA/edit#gid=0'
-keywords <- gsheet2tbl(URL)
-names(keywords) <- "keyword"
-
-# clean data
-keywords <- tibble(keyword = na.omit(as.vector(do.call("rbind", keywords))))
-keywords$keyword <- tolower(keywords$keyword)
-keywords$keyword <- trimws(keywords$keyword)
-keywords$keyword <- gsub("[^[:alnum:][:blank:]+?&/\\-]", "", keywords$keyword)
-
-# analyze data
-keywords_count <- keywords %>% group_by(keyword) %>% tally()
-
-# prepare data
-keywords_count <-  keywords_count[order(keywords_count$n, 
-                                        decreasing = FALSE),]
-keywords_count$keyword <- factor(keywords_count$keyword, 
-                                 levels = keywords_count$keyword)
-max_show <- ifelse(nrow(keywords_count)>9, 10, nrow(keywords_count))
-#keywords_count <- keywords_count[1:max_show, ]
-
-# plot data
-ggplot(keywords_count, aes(x= keyword, y = n)) +
-     ggtitle("Big Data", subtitle = "What comes to mind?") +
-     geom_bar(fill= "darkgreen", stat = "identity") +
-     coord_flip() + 
-     theme_minimal(base_size = 20) +
-     xlab("Keyword (standardized)") +
-     ylab("Frequency mentioned")
-     
-
-```
-
-
-
-
-## Schedule: Part I {.smaller}
-
- 1. Introduction: Big Data, Data Economy (Concepts). M: Walkowiak (2016): Chapter 1
- 2. *Programming with Data, R Refresher Course (Concepts/Applied). M: Walkowiak (2016): Chapter 2*
- 3. Computation and Memory (Concepts)
- 4. Cleaning and Transformation of Big Data (Applied). M: Walkowiak (2016): Chapter 3: p. 74‐118.
- 5. Aggregation and Visualization (Applied: data tables, ggplot). M: Walkowiak (2016): Chapter 3: p.  118‐127. C: Wickham et al. (2015), Schwabish (2014).
- 6. Distributed Systems, MapReduce/Hadoop with R (Concepts/Applied). M: Walkowiak (2016): Chapter 4
- 7. Data Storage, Databases Interaction with R. M: Walkowiak (2016): Chapter 5
 
 
 ## Notes, Slides, Code, et al.
@@ -107,6 +52,276 @@ ggplot(keywords_count, aes(x= keyword, y = n)) +
 1. Get familiar with the tools.
 2. Get overview over key aspects of programming with big data in R.
 3. First hands-on experience with big data statistics.
+
+
+
+# Recap of Week 2
+
+
+
+
+## Components of a computing environment
+ 
+
+```{r cpu2, echo=FALSE, out.width = "25%", fig.align='center', purl=FALSE}
+include_graphics("../img/03_cpu.jpg")
+```
+
+```{r ram2, echo=FALSE, out.width = "25%", fig.align='center', purl=FALSE}
+include_graphics("../img/03_ram.jpg")
+```
+
+```{r harddrive2, echo=FALSE, out.width = "25%", fig.align='center', purl=FALSE}
+include_graphics("../img/03_harddrive.jpg")
+```
+
+
+## Components of a computing environment
+
+<center> *Why should we care?* </center>
+
+
+## Big Data (Analytics)
+
+- Need to understand how to *make best use of the available resources*, given a specific data analysis task.
+     - CPU: Parallel processing (use all cores available)
+     - RAM: Efficient memory allocation and usage
+     - RAM + Mass Storage: Virtual memory, efficient swapping
+
+## Insight from analyzing methods conceptually
+
+- Methods for big data analytics come with an *'overhead'*
+     - Additional 'preparatory' steps.
+     - Only faster than traditional methods if data set has a certain size!
+
+## Insight from analyzing methods conceptually
+
+- Methods for big data analytics come with an *'overhead'*
+     - Additional 'preparatory' steps.
+     - Only faster than traditional methods if data set has a certain size!
+- Examples: 
+     - Uluru algorithm: Subsample, more steps, more lines of code than OLS.
+     - Parallel processing: Distribute data/task, combine afterwards.
+     - `fread`: Memory maps data before actually reading it into RAM.
+     
+     
+
+
+## Beyond memory
+
+ - RAM is not sufficient to handle the amount of data to be analyzed...
+ - *What to do?*
+ 
+## Beyond memory
+
+ - RAM is not sufficient to handle the amount of data to be analyzed...
+ - *What to do?*
+ - Scale up by using parts of the available Mass Storage (hard-disk) as *virtual memory*
+ 
+
+
+## Out-of-memory strategies
+
+- Chunked data files on disk
+- Memory-mapped files and shared memory
+
+## Out-of-memory strategies
+
+- Chunked data files on disk: `ff`-package
+- Memory-mapped files and shared memory: `bigmemory`-package
+
+
+
+
+## Chunking data with the `ff`-package
+
+Preparations 
+```{r message=FALSE}
+
+# SET UP --------------
+
+# install.packages(c("ff", "ffbase"))
+# load packages
+library(ff)
+library(ffbase)
+library(pryr)
+
+# create directory for ff chunks, and assign directory to ff 
+system("mkdir ffdf")
+options(fftempdir = "ffdf")
+
+```
+
+
+## Chunking data with the `ff`-package
+
+Import data, inspect change in RAM.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+gc()
+```
+
+
+```{r}
+mem_change(
+flights <- 
+     read.table.ffdf(file="../data/flights.csv",
+                     sep=",",
+                     VERBOSE=TRUE,
+                     header=TRUE,
+                     next.rows=100000,
+                     colClasses=NA)
+)
+```
+
+
+## Chunking data with the `ff`-package
+
+Inspect file chunks on disk and data structure in R environment.
+
+```{r}
+# show the files in the directory keeping the chunks
+list.files("ffdf")
+
+# investigate the structure of the object created in the R environment
+summary(flights)
+```
+
+
+
+## Memory mapping with `bigmemory`
+
+Preparations
+
+```{r message=FALSE}
+
+# SET UP ----------------
+
+# load packages
+library(bigmemory)
+library(biganalytics)
+```
+
+
+
+## Memory mapping with `bigmemory`
+
+Import data, inspect change in RAM.
+
+```{r}
+# import the data
+flights <- read.big.matrix("../data/flights.csv",
+                     type="integer",
+                     header=TRUE,
+                     backingfile="flights.bin",
+                     descriptorfile="flights.desc")
+```
+
+
+## Memory mapping with `bigmemory`
+
+Inspect the imported data.
+
+```{r}
+summary(flights)
+```
+
+
+## Memory mapping with `bigmemory`
+
+Inspect the object loaded into the R environment.
+
+```{r}
+flights
+```
+
+
+## Memory mapping with `bigmemory`
+
+- `backingfile`: The cache for the imported file (holds the raw data on disk).
+- `descriptorfile`: Metadata describing the imported data set (also on disk).
+
+
+## Memory mapping with `bigmemory`
+
+Understanding the role of `backingfile` and `descriptorfile`.
+
+First, import a large data set without a backing-file:
+
+```{r}
+# import data and check time needed  
+system.time(
+     flights1 <- read.big.matrix("../data/flights.csv",
+                                 header = TRUE,
+                                 sep = ",",
+                                 type = "integer")
+)
+
+# import data and check memory used
+mem_change(
+     flights1 <- read.big.matrix("../data/flights.csv",
+                                 header = TRUE,
+                                 sep = ",",
+                                 type = "integer")
+)
+
+flights1 
+```
+
+
+
+
+## Memory mapping with `bigmemory`
+
+Understanding the role of `backingfile` and `descriptorfile`.
+
+Second, import the same data set with a backing-file:
+
+```{r}
+# import data and check time needed  
+system.time(
+     flights2 <- read.big.matrix("../data/flights.csv",
+                                 header = TRUE,
+                                 sep = ",",
+                                 type = "integer",
+                                 backingfile = "flights2.bin",
+                                 descriptorfile = "flights2.desc"
+                                 )
+)
+
+# import data and check memory used
+mem_change(
+     flights2 <- read.big.matrix("../data/flights.csv",
+                                 header = TRUE,
+                                 sep = ",",
+                                 type = "integer",
+                                 backingfile = "flights2.bin",
+                                 descriptorfile = "flights2.desc"
+                                 )
+)
+
+flights2
+```
+
+
+## Memory mapping with `bigmemory`
+
+Understanding the role of `backingfile` and `descriptorfile`.
+
+Third, re-import the same data set with a backing-file.
+
+```{r}
+# remove the loaded file
+rm(flights2)
+
+# 'load' it via the backing-file
+system.time(flights2 <- attach.big.matrix("flights2.desc"))
+
+flights2
+
+```
+
+
 
 
 # The Tools: R, RStudio, GitHub, etc.
@@ -339,6 +554,22 @@ my_list
 3. Is there a need to interface with a lower-level programming language in order to speed up the code? (advanced topic)
 
 + Independent of *how* we write a statistical procedure in R (or in any other language, for that matter), is there an *alternative statistical procedure/algorithm* that is faster but delivers approximately the same result.
+
+
+## R-tools to investigate performance/resource allocation
+
+package | function | purpose
+-------- | ---------- | ---------------------------------------------
+`utils`  | `object.size()` | Provides an estimate of the memory that is being used to store an R object.
+`pryr`   | `object_size()` | Works similarly to `object.size()`, but counts more accurately and includes the size of environments.
+`pryr` | `compare_size()` | Makes it easy to compare the output of object_size and object.size.
+`pryr` | `mem_used()`     | Returns the total amount of memory (in megabytes) currently used by R.
+`pryr` | `mem_change()`   | Shows the change in memory (in megabytes) before and after running code.
+`base`   | `system.time()` | Returns CPU (and other) times that an R expression used.
+`microbenchmark` | `microbenchmark()` | Highly accurate timing of R expression evaluation.
+`profvis`| `profvis()`   | Profiles an R expression and visualizes the profiling data (usage of memory, time elapsed, etc.)
+
+
 
 ## Building blocks for programming with big data
 
@@ -632,229 +863,6 @@ sum
 
 
 
-# Big Data statistics
-
-## Faster statistical procedures
-
-- Consider alternative statistical procedures that happened to be more efficient to compute a given statistic based on large amounts of data.
-- For example, sub-sampling procedures.
-
-## Example: Fast Least Squares Regression
-
-- Classical approach to estimating linear models: OLS.
-- Alternative: The *Uluru* algorithm [@dhillon_2013].
-
-
-## OLS as a point of reference
-
-Recall the OLS estimator in matrix notation, given the linear model $\mathbf{y}=\mathbf{X}\beta + \epsilon$:
-
-$\hat{\beta}_{OLS} = (\mathbf{X}^\intercal\mathbf{X})^{-1}\mathbf{X}^{\intercal}\mathbf{y}$.
-
-## Computational bottleneck of OLS
-
-- $\hat{\beta}_{OLS}$ depends on $(\mathbf{X}^\intercal\mathbf{X})^{-1}$.
-- Large crossproduct if the number of observations is large ($X$ is of dimensions $n\times p$)
-- (Large) matrix inversions are computationally demanding.
-     - Computational complexity is larger than $O(n^{2})$.
-- OLS has a $O(np^{2})$ running time.
-
-## OLS in R
-
-```{r}
-beta_ols <- 
-     function(X, y) {
-          
-          # compute cross products and inverse
-          XXi <- solve(crossprod(X,X))
-          Xy <- crossprod(X, y) 
-          
-          return( XXi  %*% Xy )
-     }
-```
-
-## Monte Carlo study
-
-- Parameters and pseudo data
-
-```{r}
-# set parameter values
-n <- 10000000
-p <- 4 
-
-# Generate sample based on Monte Carlo
-# generate a design matrix (~ our 'dataset') with four variables and 10000 observations
-X <- matrix(rnorm(n*p, mean = 10), ncol = p)
-# add column for intercept
-X <- cbind(rep(1, n), X)
-
-```
-
-## Monte Carlo study
-
-- Model and model output
-
-```{r}
-# MC model
-y <- 2 + 1.5*X[,2] + 4*X[,3] - 3.5*X[,4] + 0.5*X[,5] + rnorm(n)
-
-```
-
-
-## Monte Carlo study
-
-- Performance of OLS
-
-```{r}
-# apply the ols estimator
-beta_ols(X, y)
-```
-
-
-## The Uluru algorithm as an alternative to OLS
-
-Following @dhillon_2013, we compute $\hat{\beta}_{Uluru}$:
-
-$$\hat{\beta}_{Uluru}=\hat{\beta}_{FS} + \hat{\beta}_{correct}$$, where
-$$\hat{\beta}_{FS} = (\mathbf{X}_{subs}^\intercal\mathbf{X}_{subs})^{-1}\mathbf{X}_{subs}^{\intercal}\mathbf{y}_{subs}$$, and
-$$\hat{\beta}_{correct}= \frac{n_{subs}}{n_{rem}} \cdot (\mathbf{X}_{subs}^\intercal\mathbf{X}_{subs})^{-1} \mathbf{X}_{rem}^{\intercal}\mathbf{R}_{rem}$$, and
-$$\mathbf{R}_{rem} = \mathbf{Y}_{rem} - \mathbf{X}_{rem}  \cdot \hat{\beta}_{FS}$$.
-
-## The Uluru algorithm as an alternative to OLS
-
-- Key idea: Compute $(\mathbf{X}^\intercal\mathbf{X})^{-1}$ only on a sub-sample ($X_{subs}$, etc.)
-- If the sample is large enough (which is the case in a Big Data context), the result is approximately the same.
-
-## Uluru algorithm in R (simplified)
-
-```{r}
-
-# simple version of the Uluru algorithm
-beta_uluru <-
-     function(X_subs, y_subs, X_rem, y_rem) {
-          
-          # compute beta_fs (this is simply OLS applied to the subsample)
-          XXi_subs <- solve(crossprod(X_subs, X_subs))
-          Xy_subs <- crossprod(X_subs, y_subs)
-          b_fs <- XXi_subs  %*% Xy_subs
-          
-          # compute \mathbf{R}_{rem}
-          R_rem <- y_rem - X_rem %*% b_fs
-          
-          # compute \hat{\beta}_{correct}
-          b_correct <- (nrow(X_subs)/(nrow(X_rem))) * XXi_subs %*% crossprod(X_rem, R_rem)
-
-          # beta uluru       
-          return(b_fs + b_correct)
-     }
-
-```
-
-
-## Uluru algorithm in R (simplified)
-
-Test it with the same input as above:
-
-```{r}
-# set size of subsample
-n_subs <- 1000
-# select subsample and remainder
-n_obs <- nrow(X)
-X_subs <- X[1L:n_subs,]
-y_subs <- y[1L:n_subs]
-X_rem <- X[(n_subs+1L):n_obs,]
-y_rem <- y[(n_subs+1L):n_obs]
-
-# apply the uluru estimator
-beta_uluru(X_subs, y_subs, X_rem, y_rem)
-```
-
-
-## Uluru algorithm: Monte Carlo study
-
-```{r}
-# define subsamples
-n_subs_sizes <- seq(from = 1000, to = 500000, by=10000)
-n_runs <- length(n_subs_sizes)
-# compute uluru result, stop time
-mc_results <- rep(NA, n_runs)
-mc_times <- rep(NA, n_runs)
-for (i in 1:n_runs) {
-     # set size of subsample
-     n_subs <- n_subs_sizes[i]
-     # select subsample and remainder
-     n_obs <- nrow(X)
-     X_subs <- X[1L:n_subs,]
-     y_subs <- y[1L:n_subs]
-     X_rem <- X[(n_subs+1L):n_obs,]
-     y_rem <- y[(n_subs+1L):n_obs]
-     
-     mc_results[i] <- beta_uluru(X_subs, y_subs, X_rem, y_rem)[2] # the first element is the intercept
-     mc_times[i] <- system.time(beta_uluru(X_subs, y_subs, X_rem, y_rem))[3]
-     
-}
-
-```
-
-
-## Uluru algorithm: Monte Carlo study
-
-```{r}
-
-# compute ols results and ols time
-ols_time <- system.time(beta_ols(X, y))
-ols_res <- beta_ols(X, y)[2]
-
-```
-
-
-
-## Uluru algorithm: Monte Carlo study
-
-- Visualize comparison with OLS.
-
-```{r}
-# load packages
-library(ggplot2)
-
-# prepare data to plot
-plotdata <- data.frame(beta1 = mc_results,
-                       time_elapsed = mc_times,
-                       subs_size = n_subs_sizes)
-```
-
-## Uluru algorithm: Monte Carlo study
-
-1. Computation time.
-
-```{r}
-ggplot(plotdata, aes(x = subs_size, y = time_elapsed)) +
-     geom_point(color="darkgreen") + 
-     geom_hline(yintercept = ols_time[3],
-                color = "red", 
-                size = 1) +
-     theme_minimal() +
-     ylab("Time elapsed") +
-     xlab("Subsample size")
-```
-
-## Uluru algorithm: Monte Carlo study
-
-2. Precision
-
-```{r}
-ggplot(plotdata, aes(x = subs_size, y = beta1)) +
-     geom_hline(yintercept = ols_res,
-                color = "red", 
-                size = 1) +
-     geom_point(color="darkgreen") + 
-
-     theme_minimal() +
-     ylab("Estimated coefficient") +
-     xlab("Subsample size")
-
-warnings()
-```
 
 
 ## References {.smaller}
