@@ -132,24 +132,208 @@ object.size(139)
 
 
 
+# Big Data econometrics
+
+<!-- Finally, even if all of the techniques outlined above are taken into account in order to optimize the implementation of a statistical analysis of large data sets in R (or any other language), there might be room for improvement.  -->
+
+When thinking about how to approach a data anyltics task based on large amounts of data, it is helpful to consider two key aspects concerning the computational burden involved. $(i)$ how is the statistic we have in mind computed. That is, what is the formal definition of the statistic (and how computationally demanding is it)? And $(ii)$, given a definition of the statistic, how does the program/software/language implement the computation thereof?
+
+Regarding the former, we might realize that there is an alternative statistical procedure that would provide essentially the same output butthat happens to be more efficient (here: computationally efficient in contrast to statistically efficient). The latter point is a question of how to efficiently implement the given statistical procedure in your computing environment (taking into consideration the computer's available resources: CPU, RAM, etc.).
+
+Below, we look at both of these two aspects by means of illustrative examples. 
+
+## Example: Fast least squares regression
+
+As an illustration of how an alternative statistical procedure can speed up our analysis, we look at one such procedure that has recently been developed to estimate linear models when the classical OLS estimator is too computationally intense for very large samples: The *Uluru* algorithm [@dhillon_2013].
+
+### OLS as a point of reference
+
+Recall the OLS estimator in matrix notation, given the linear model $\mathbf{y}=\mathbf{X}\beta + \epsilon$:
+
+$\hat{\beta}_{OLS} = (\mathbf{X}^\intercal\mathbf{X})^{-1}\mathbf{X}^{\intercal}\mathbf{y}$.
+
+In order to compute $\hat{\beta}_{OLS}$, we have to compute $(\mathbf{X}^\intercal\mathbf{X})^{-1}$, which implies a computationally expensive matrix inversion.^[The computational complexity of this is larger than $O(n^{2})$. That is, for an input of size $n$, the time needed to compute (or the number of operations needed) is $n^2$.] If our data set is large, $\mathbf{X}$ is large and the inversion can take up a lot of computation time. Moreover, the inversion and matrix multiplication to get $\hat{\beta}_{OLS}$ needs a lot of memory. In practice, it might well be that the estimation of a linear model via OLS with the standard approach in R (`lm()`) brings a computer to its knees, as there is not enough RAM available.
+
+To further illustrate the point, we implement the OLS estimator in R.
+
+```{r}
+beta_ols <- 
+     function(X, y) {
+          
+          # compute cross products and inverse
+          XXi <- solve(crossprod(X,X))
+          Xy <- crossprod(X, y) 
+          
+          return( XXi  %*% Xy )
+     }
+```
+
+Now, we will test our OLS estimator function with a few (pseudo) random numbers in a Monte Carlo study. First, we set the sample size parameters `n` (how many observations shall our pseudo sample have?) and `p` (how many variables shall describe these observations?) and initiate the data set `X`.
+
+```{r}
+# set parameter values
+n <- 10000000
+p <- 4 
+
+# Generate sample based on Monte Carlo
+# generate a design matrix (~ our 'dataset') with four variables and 10000 observations
+X <- matrix(rnorm(n*p, mean = 10), ncol = p)
+# add column for intercept
+X <- cbind(rep(1, n), X)
+
+```
+
+Now we define how the real linear model looks like that we have in mind and compute the output `y` of this model, given the input `X`.^[In reality we would not know this, of course. Acting as if we knew the real model is exactly point of Monte Carlo studies to analyze the properties of estimators by simulation.]
+
+```{r}
+# MC model
+y <- 2 + 1.5*X[,2] + 4*X[,3] - 3.5*X[,4] + 0.5*X[,5] + rnorm(n)
+
+```
+
+
+Finally, we test our `beta_ols` function.
+
+```{r}
+# apply the ols estimator
+beta_ols(X, y)
+```
+
+
+### The Uluru algorithm as an alternative to OLS
+
+Following @dhillon_2013, we implement a procedure to compute $\hat{\beta}_{Uluru}$:
+
+$$\hat{\beta}_{Uluru}=\hat{\beta}_{FS} + \hat{\beta}_{correct}$$, where
+$$\hat{\beta}_{FS} = (\mathbf{X}_{subs}^\intercal\mathbf{X}_{subs})^{-1}\mathbf{X}_{subs}^{\intercal}\mathbf{y}_{subs}$$, and
+$$\hat{\beta}_{correct}= \frac{n_{subs}}{n_{rem}} \cdot (\mathbf{X}_{subs}^\intercal\mathbf{X}_{subs})^{-1} \mathbf{X}_{rem}^{\intercal}\mathbf{R}_{rem}$$, and
+$$\mathbf{R}_{rem} = \mathbf{Y}_{rem} - \mathbf{X}_{rem}  \cdot \hat{\beta}_{FS}$$.
+
+The key idea behind this is that the computational bottleneck of the OLS estimator, the cross product and matrix inversion,$(\mathbf{X}^\intercal\mathbf{X})^{-1}$, is only computed on a sub-sample ($X_{subs}$, etc.), not the entire data set. However, the remainder of the data set is also taken into consideration (in order to correct a bias arising from the sub-sampling). Again, we implement the estimator in R to further illustrate this point.
+
+```{r}
+
+
+beta_uluru <-
+     function(X_subs, y_subs, X_rem, y_rem) {
+          
+          # compute beta_fs (this is simply OLS applied to the subsample)
+          XXi_subs <- solve(crossprod(X_subs, X_subs))
+          Xy_subs <- crossprod(X_subs, y_subs)
+          b_fs <- XXi_subs  %*% Xy_subs
+          
+          # compute \mathbf{R}_{rem}
+          R_rem <- y_rem - X_rem %*% b_fs
+          
+          # compute \hat{\beta}_{correct}
+          b_correct <- (nrow(X_subs)/(nrow(X_rem))) * XXi_subs %*% crossprod(X_rem, R_rem)
+
+          # beta uluru       
+          return(b_fs + b_correct)
+     }
+
+```
+
+
+Test it with the same input as above:
+
+```{r}
+# set size of subsample
+n_subs <- 1000
+# select subsample and remainder
+n_obs <- nrow(X)
+X_subs <- X[1L:n_subs,]
+y_subs <- y[1L:n_subs]
+X_rem <- X[(n_subs+1L):n_obs,]
+y_rem <- y[(n_subs+1L):n_obs]
+
+# apply the uluru estimator
+beta_uluru(X_subs, y_subs, X_rem, y_rem)
+```
+
+
+This looks quite good already. Let's have a closer look with a little Monte Carlo study. The aim of the simulation study is to visualize the difference between the classical OLS approach and the *Uluru* algorithm with regard to bias and time complexity if we increase the sub-sample size in *Uluru*. For simplicity, we only look at the first estimated coefficient $\beta_{1}$.
+
+```{r}
+# define subsamples
+n_subs_sizes <- seq(from = 1000, to = 500000, by=10000)
+n_runs <- length(n_subs_sizes)
+# compute uluru result, stop time
+mc_results <- rep(NA, n_runs)
+mc_times <- rep(NA, n_runs)
+for (i in 1:n_runs) {
+     # set size of subsample
+     n_subs <- n_subs_sizes[i]
+     # select subsample and remainder
+     n_obs <- nrow(X)
+     X_subs <- X[1L:n_subs,]
+     y_subs <- y[1L:n_subs]
+     X_rem <- X[(n_subs+1L):n_obs,]
+     y_rem <- y[(n_subs+1L):n_obs]
+     
+     mc_results[i] <- beta_uluru(X_subs, y_subs, X_rem, y_rem)[2] # the first element is the intercept
+     mc_times[i] <- system.time(beta_uluru(X_subs, y_subs, X_rem, y_rem))[3]
+     
+}
+
+# compute ols results and ols time
+ols_time <- system.time(beta_ols(X, y))
+ols_res <- beta_ols(X, y)[2]
+
+```
+
+Let's visualize the comparison with OLS.
+
+```{r}
+# load packages
+library(ggplot2)
+
+# prepare data to plot
+plotdata <- data.frame(beta1 = mc_results,
+                       time_elapsed = mc_times,
+                       subs_size = n_subs_sizes)
+```
+
+First, let's look at the time used estimate the linear model.
+
+```{r}
+ggplot(plotdata, aes(x = subs_size, y = time_elapsed)) +
+     geom_point(color="darkgreen") + 
+     geom_hline(yintercept = ols_time[3],
+                color = "red", 
+                size = 1) +
+     theme_minimal() +
+     ylab("Time elapsed") +
+     xlab("Subsample size")
+```
+
+The horizontal red line indicates the computation time for estimation via OLS, the green points indicate the computation time for the estimation via the Ulruru algorithm. Note that even for large sub-samples, the computation time is substantially lower than for OLS.
+
+Finally, let's have a look at how close the results are to OLS.
+```{r}
+ggplot(plotdata, aes(x = subs_size, y = beta1)) +
+     geom_hline(yintercept = ols_res,
+                color = "red", 
+                size = 1) +
+       geom_hline(yintercept = 1.5,
+                color = "green",
+                size = 1) +
+     geom_point(color="darkgreen") + 
+
+     theme_minimal() +
+     ylab("Estimated coefficient") +
+     xlab("Subsample size")
+```
+
+The horizontal red line indicates the size of the estimated coefficient, when using OLS. The horizontal green line indicates the size of the actual coefficient. The green points indicate the size of the same coefficient estimated by the Uluru algorithm for different sub-sample sizes. Note that even relatively small sub-samples already deliver estimates very close to the OLS estimates.
+
+
+
 
 # Resource allocation 
 
 When optimizing the performance of an analytics program processing large amounts of data, it is useful to differentiate between the efficient allocation of computational (CPU) power, and the allocation of RAM (and mass storage).^I[n many data analysis tasks the two are, of course, intertwined. However, keeping both aspects in mind when optimizing an analytics program helps to choose the right tools.] Below, we will look at both aspects in turn. 
 
-
-## R-tools to investigate performance/resource allocation
-
-package | function | purpose
--------- | ---------- | ---------------------------------------------
-`utils`  | `object.size()` | Provides an estimate of the memory that is being used to store an R object.
-`pryr`   | `object_size()` | Works similarly to `object.size()`, but counts more accurately and includes the size of environments.
-`pryr` | `compare_size()` | Makes it easy to compare the output of object_size and object.size.
-`pryr` | `mem_used()`     | Returns the total amount of memory (in megabytes) currently used by R.
-`pryr` | `mem_change()`   | Shows the change in memory (in megabytes) before and after running code.
-`base`   | `system.time()` | Returns CPU (and other) times that an R expression used.
-`microbenchmark` | `microbenchmark()` | Highly accurate timing of R expression evaluation.
-`profvis`| `profvis()`   | Profiles an R expression and visualizes the profiling data (usage of memory, time elapsed, etc.)
 
 
 ## Case study: Parallel processing
