@@ -31,6 +31,268 @@ knitr::opts_chunk$set(fig.pos = 'htb!')
 ```
 
 
+
+# Resource allocation 
+
+When optimizing the performance of an analytics program processing large amounts of data, it is useful to differentiate between the efficient allocation of computational (CPU) power, and the allocation of RAM (and mass storage).^I[n many data analysis tasks the two are, of course, intertwined. However, keeping both aspects in mind when optimizing an analytics program helps to choose the right tools.] Below, we will look at both aspects in turn. 
+
+
+
+## Case study: Parallel processing
+
+In this example, we estimate a simple regression model that aims to assess racial discrimination in the context of police stops.^[Note that this example aims to illustrate a point about computation in an applied econometrics context. It does not make any argument about identification or the broader research question whatsoever.] The example is based on the 'Minneapolis Police Department 2017 Stop Dataset', containing data on nearly all stops made by the Minneapolis Police Department for the year 2017.
+
+We start with importing the data into R.
+```{r}
+stopdata <- read.csv("https://vincentarelbundock.github.io/Rdatasets/csv/carData/MplsStops.csv")
+```
+
+We specify a simple linear probability model that aims to test whether a stopped person identified as 'white' is less likely to have her vehicle searched when stopped by the police. In order to take into account level-differences between different police precincts, we add precinct-indicators to the regression specification
+
+First, let's remove observations with missing entries (`NA`) and code our main explanatory variable and the dependent variable.
+
+```{r}
+# remove incomplete obs
+stopdata <- na.omit(stopdata)
+# code dependent var
+stopdata$vsearch <- 0
+stopdata$vsearch[stopdata$vehicleSearch=="YES"] <- 1
+# code explanatory var
+stopdata$white <- 0
+stopdata$white[stopdata$race=="White"] <- 1
+```
+
+
+We specify our baseline model as follows. 
+
+```{r}
+model <- vsearch ~ white + factor(policePrecinct)
+```
+
+And estimate the linear probability model via OLS (the `lm` function).
+
+```{r}
+fit <- lm(model, stopdata)
+summary(fit)
+```
+
+A potential problem with this approach (and there might be many more in this simple example) is that observations stemming from different police precincts might be correlated over time. If that is the case, we likely underestimate the coefficient's standard errors. There is a standard approach to compute estimates for so-called *cluster-robust* standard errors which would take the problem of correlation over time within clusters into consideration (and deliver a more conservative estimate of the SEs). However this approach only works well if the number of clusters in the data is roughly 50 or more. Here we only have 5. 
+
+The alternative approach is typically to compute bootstrapped standard errors. That is, we apply the bootstrap resampling procedure at the cluster level. Specifically, we draw $B$ samples (with replacement), estimate and record for each bootstrap-sample the coefficient vector, and then estimate $SE_{boot}$ based on the standard deviation of all respective estimated coefficient values.
+
+```{r message=FALSE}
+# load packages
+library(data.table)
+# set the 'seed' for random numbers (makes the example reproducible)
+set.seed(2)
+
+# set number of bootstrap iterations
+B <- 10
+# get selection of precincts
+precincts <- unique(stopdata$policePrecinct)
+# container for coefficients
+boot_coefs <- matrix(NA, nrow = B, ncol = 2)
+# draw bootstrap samples, estimate model for each sample
+for (i in 1:B) {
+     
+     # draw sample of precincts (cluster level)
+     precincts_i <- sample(precincts, size = 5, replace = TRUE)
+     # get observations
+     bs_i <- lapply(precincts_i, function(x) stopdata[stopdata$policePrecinct==x,])
+     bs_i <- rbindlist(bs_i)
+     
+     # estimate model and record coefficients
+     boot_coefs[i,] <- coef(lm(model, bs_i))[1:2] # ignore FE-coefficients
+}
+```
+
+
+Finally, let's compute $SE_{boot}$.
+
+```{r}
+se_boot <- apply(boot_coefs, 
+                 MARGIN = 2,
+                 FUN = sd)
+se_boot
+```
+
+
+Note that even with a very small $B$, computing $SE_{boot}$ takes up some time to compute. When setting $B$ to over 500, computation time will be substantial. Also note that running this code does hardly use up more memory then the very simple approach without bootstrapping (after all, in each bootstrap iteration the data set used to estimate the model is approximately the same size as the original data set). There is little we can do to improve the script's performance regarding memory. However we can tell R how to allocate CPU resources more efficiently to handle that many regression estimates.
+
+Particularly, we can make use of the fact that most modern computing environments (such as a laptop) have CPUs with several *cores*. We can exploit this fact by instructing the computer to run the computations *in parallel* (simultaneously computing in several cores.). The following code is a parallel implementation of our bootstrap procedure which does exactly that.
+
+```{r message=FALSE}
+# install.packages("doSNOW", "parallel")
+# load packages for parallel processing
+library(doSNOW)
+
+# get the number of cores available
+ncores <- parallel::detectCores()
+# set cores for parallel processing
+ctemp <- makeCluster(ncores) # 
+registerDoSNOW(ctemp)
+
+
+# set number of bootstrap iterations
+B <- 10
+# get selection of precincts
+precincts <- unique(stopdata$policePrecinct)
+# container for coefficients
+boot_coefs <- matrix(NA, nrow = B, ncol = 2)
+
+# bootstrapping in parallel
+boot_coefs <- 
+     foreach(i = 1:B, .combine = rbind, .packages="data.table") %dopar% {
+          
+          # draw sample of precincts (cluster level)
+          precincts_i <- sample(precincts, size = 5, replace = TRUE)
+          # get observations
+          bs_i <- lapply(precincts_i, function(x) stopdata[stopdata$policePrecinct==x,])
+          bs_i <- rbindlist(bs_i)
+          
+          # estimate model and record coefficients
+          coef(lm(model, bs_i))[1:2] # ignore FE-coefficients
+      
+     }
+
+
+# be a good citizen and stop the snow clusters
+stopCluster(cl = ctemp)
+
+
+```
+
+
+As a last step, we compute again $SE_{boot}$.
+
+```{r}
+se_boot <- apply(boot_coefs, 
+                 MARGIN = 2,
+                 FUN = sd)
+se_boot
+```
+
+
+
+## Case study: Memory allocation
+
+Consider the first steps of a data pipeline in R. The first part of our script to import and clean the data looks as follows.
+
+```{r eval = FALSE}
+###########################################################
+# Big Data Statistics: Flights data import and preparation
+#
+# U. Matter, January 2019
+###########################################################
+
+# SET UP -----------------
+
+# fix variables
+DATA_PATH <- "../data/flights.csv"
+
+# DATA IMPORT ----------------
+flights <- read.csv(DATA_PATH)
+
+# DATA PREPARATION --------
+flights <- flights[,-1:-3]
+
+
+
+```
+
+When running this script, we notice that some of the steps take a while. Moreover, while none of these steps obviously involves a lot of computation (such as a matrix inversion or numerical optimization), it quite likely involves memory allocation. We first read data into RAM (allocated to R by our operating system). It turns out that there are different ways to allocate RAM when reading data from a CSV file. Depending on the amount of data to be read in, one or the other approach might be faster. We first investigate the RAM allocation in R with `mem_change()` and `mem_used()`.
+
+```{r}
+
+# SET UP -----------------
+
+# fix variables
+DATA_PATH <- "../data/flights.csv"
+# load packages
+library(pryr) 
+
+
+# check how much memory is used by R (overall)
+mem_used()
+
+# check the change in memory due to each step
+
+# DATA IMPORT ----------------
+mem_change(flights <- read.csv(DATA_PATH))
+
+# DATA PREPARATION --------
+flights <- flights[,-1:-3]
+
+# check how much memory is used by R now
+mem_used()
+```
+
+The last result is kind of interesting. The object `flights` must have been larger right after importing it than at the end of the script. We have thrown out several variables, after all. Why does R still use that much memory? R does by default not 'clean up' memory unless it is really necessary (meaning no more memory is available). In this case, R has still way more memory available from the operating system, thus there is no need to 'collect the garbage' yet. However, we can force R to collect the garbage on the spot with `gc()`. This can be helpful to better keep track of the memory needed by an analytics script.
+
+```{r}
+gc()
+```
+
+
+Now, let's see how we can improve the performance of this script with regard to memory allocation. Most memory is allocated when importing the file. Obviously, any improvement of the script must still result in importing all the data. However, there are different ways to read data into RAM. `read.csv()` reads all lines of a csv file consecutively. In contrast, `data.table::fread()` first 'maps' the data file into memory and only then actually reads it in line by line. This involves an additional initial step, but the larger the file, the less relevant is this first step with regard to the total time needed to read all the data into memory. By switching on the `verbose` option, we can actually see what `fread` is doing.
+
+```{r}
+# load packages
+library(data.table)
+
+# DATA IMPORT ----------------
+flights <- fread(DATA_PATH, verbose = TRUE)
+
+```
+
+
+Let's put it all together and look at the memory changes and usage. For a fair comparison, we first have to delete `flights` and collect the garbage with `gc()`.
+
+```{r}
+
+# SET UP -----------------
+
+# fix variables
+DATA_PATH <- "../data/flights.csv"
+# load packages
+library(pryr) 
+library(data.table)
+
+# housekeeping
+flights <- NULL
+gc()
+
+# check the change in memory due to each step
+
+# DATA IMPORT ----------------
+mem_change(flights <- fread(DATA_PATH))
+
+
+
+```
+
+Note that `fread()` uses up more memory. By default, `fread` does not parse strings as `factors` (and `read.csv()` does). Storing strings in factors is more memory efficient.
+
+
+# Beyond memory
+
+In the previous example we have inspected how RAM is allocated to store objects in the R computing environment. But what if all RAM of our computer is not enough to store all the data we want to analyze?
+
+Modern operating systems have a way to dealing with such a situation. Once all RAM is used up by the currently running programs, the OS allocates parts of the memory back to the hard-disk which then works as *virtual memory*. The following figure illustrates this point.
+
+```{r vm, echo=FALSE, out.width = "30%", fig.align='center', fig.cap= "(ref:vm)", purl=FALSE}
+include_graphics("../img/03_virtualmemory.png")
+```
+
+(ref:vm) Virtual memory. Figure by Ehamberg ([CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/)).
+
+For example, when we implement an R-script that imports one file after the other into the R environment, ignoring the RAM capacity of our computer, the OS will start *paging* data to the virtual memory. This happens 'under the hood' without explicit instructions by the user. When this happens, we quite likely notice that the computer slows down a lot.
+
+While this default usage of virtual memory by the OS is helpful to run several applications at the same time, each taking up a moderate amount of memory, it is not a really useful tool for processing large amounts of data in one application (R). However, the underlying idea of using both RAM and Mass storage simultaneously in order to cope with a lack of memory, is very useful in the context of big data statistics.
+
+Several R packages have been developed that exploit the idea behind virtual memory explicitly for big data analytics. The basic idea behind these packages is to map a data set to the hard disk when loading it into R. The actual data values are stored in chunks on the hard-disk, while the structure/metadata of the data set is loaded into R. See @walkowiak_2016, Chapter 3 for more details and example code.
+
+
 # GitHub
 
 ## Initiate a new repository
@@ -83,6 +345,21 @@ git pull
 
 
 # Programming with Data: Data Structures and Data Types
+
+## R-tools to investigate performance/resource allocation
+
+package | function | purpose
+-------- | ---------- | ---------------------------------------------
+`utils`  | `object.size()` | Provides an estimate of the memory that is being used to store an R object.
+`pryr`   | `object_size()` | Works similarly to `object.size()`, but counts more accurately and includes the size of environments.
+`pryr` | `compare_size()` | Makes it easy to compare the output of object_size and object.size.
+`pryr` | `mem_used()`     | Returns the total amount of memory (in megabytes) currently used by R.
+`pryr` | `mem_change()`   | Shows the change in memory (in megabytes) before and after running code.
+`base`   | `system.time()` | Returns CPU (and other) times that an R expression used.
+`microbenchmark` | `microbenchmark()` | Highly accurate timing of R expression evaluation.
+`profvis`| `profvis()`   | Profiles an R expression and visualizes the profiling data (usage of memory, time elapsed, etc.)
+
+
 
 ## R-tools to investigate structures and types
 
@@ -526,190 +803,6 @@ Instead `.Primitive()` indicates that `sum()` is actually referring to an intern
 
 While the use of functions implemented in a lower-level language is a common technique to improve the speed of 'R' functions, it is particularly prominent in the context of functions/packages made to deal with large amounts of data (such as the `data.table` package).
 
-
-## Big Data econometrics
-
-Finally, even if all of the techniques outlined above are taken into account in order to optimize the implementation of a statistical analysis of large data sets in R (or any other language), there might be room for improvement. We might want to consider alternative statistical procedures that happen to be more efficient in computing a given statistic when the data set is very large. 
-
-As an illustration, we look at one such procedure that has recently been developed to estimate linear models when the classical OLS estimator is too computationally intense for very large samples: The *Uluru* algorithm [@dhillon_2013].
-
-### OLS as a point of reference
-
-Recall the OLS estimator in matrix notation, given the linear model $\mathbf{y}=\mathbf{X}\beta + \epsilon$:
-
-$\hat{\beta}_{OLS} = (\mathbf{X}^\intercal\mathbf{X})^{-1}\mathbf{X}^{\intercal}\mathbf{y}$.
-
-In order to compute $\hat{\beta}_{OLS}$, we have to compute $(\mathbf{X}^\intercal\mathbf{X})^{-1}$, which implies a computationally expensive matrix inversion.^[The computational complexity of this is larger than $O(n^{2})$. That is, for an input of size $n$, the time needed to compute (or the number of operations needed) is $n^2$.] If our data set is large, $\mathbf{X}$ is large and the inversion can take up a lot of computation time. Moreover, the inversion and matrix multiplication to get $\hat{\beta}_{OLS}$ needs a lot of memory. In practice, it might well be that the estimation of a linear model via OLS with the standard approach in R (`lm()`) brings a computer to its knees, as there is not enough RAM available.
-
-To further illustrate the point, we implement the OLS estimator in R.
-
-```{r}
-beta_ols <- 
-     function(X, y) {
-          
-          # compute cross products and inverse
-          XXi <- solve(crossprod(X,X))
-          Xy <- crossprod(X, y) 
-          
-          return( XXi  %*% Xy )
-     }
-```
-
-Now, we will test our OLS estimator function with a few (pseudo) random numbers in a Monte Carlo study. First, we set the sample size parameters `n` (how many observations shall our pseudo sample have?) and `p` (how many variables shall describe these observations?) and initiate the data set `X`.
-
-```{r}
-# set parameter values
-n <- 10000000
-p <- 4 
-
-# Generate sample based on Monte Carlo
-# generate a design matrix (~ our 'dataset') with four variables and 10000 observations
-X <- matrix(rnorm(n*p, mean = 10), ncol = p)
-# add column for intercept
-X <- cbind(rep(1, n), X)
-
-```
-
-Now we define how the real linear model looks like that we have in mind and compute the output `y` of this model, given the input `X`.^[In reality we would not know this, of course. Acting as if we knew the real model is exactly point of Monte Carlo studies to analyze the properties of estimators by simulation.]
-
-```{r}
-# MC model
-y <- 2 + 1.5*X[,2] + 4*X[,3] - 3.5*X[,4] + 0.5*X[,5] + rnorm(n)
-
-```
-
-
-Finally, we test our `beta_ols` function.
-
-```{r}
-# apply the ols estimator
-beta_ols(X, y)
-```
-
-
-### The Uluru algorithm as an alternative to OLS
-
-Following @dhillon_2013, we implement a procedure to compute $\hat{\beta}_{Uluru}$:
-
-$$\hat{\beta}_{Uluru}=\hat{\beta}_{FS} + \hat{\beta}_{correct}$$, where
-$$\hat{\beta}_{FS} = (\mathbf{X}_{subs}^\intercal\mathbf{X}_{subs})^{-1}\mathbf{X}_{subs}^{\intercal}\mathbf{y}_{subs}$$, and
-$$\hat{\beta}_{correct}= \frac{n_{subs}}{n_{rem}} \cdot (\mathbf{X}_{subs}^\intercal\mathbf{X}_{subs})^{-1} \mathbf{X}_{rem}^{\intercal}\mathbf{R}_{rem}$$, and
-$$\mathbf{R}_{rem} = \mathbf{Y}_{rem} - \mathbf{X}_{rem}  \cdot \hat{\beta}_{FS}$$.
-
-The key idea behind this is that the computational bottleneck of the OLS estimator, the cross product and matrix inversion,$(\mathbf{X}^\intercal\mathbf{X})^{-1}$, is only computed on a sub-sample ($X_{subs}$, etc.), not the entire data set. However, the remainder of the data set is also taken into consideration (in order to correct a bias arising from the sub-sampling). Again, we implement the estimator in R to further illustrate this point.
-
-```{r}
-
-
-beta_uluru <-
-     function(X_subs, y_subs, X_rem, y_rem) {
-          
-          # compute beta_fs (this is simply OLS applied to the subsample)
-          XXi_subs <- solve(crossprod(X_subs, X_subs))
-          Xy_subs <- crossprod(X_subs, y_subs)
-          b_fs <- XXi_subs  %*% Xy_subs
-          
-          # compute \mathbf{R}_{rem}
-          R_rem <- y_rem - X_rem %*% b_fs
-          
-          # compute \hat{\beta}_{correct}
-          b_correct <- (nrow(X_subs)/(nrow(X_rem))) * XXi_subs %*% crossprod(X_rem, R_rem)
-
-          # beta uluru       
-          return(b_fs + b_correct)
-     }
-
-```
-
-
-Test it with the same input as above:
-
-```{r}
-# set size of subsample
-n_subs <- 1000
-# select subsample and remainder
-n_obs <- nrow(X)
-X_subs <- X[1L:n_subs,]
-y_subs <- y[1L:n_subs]
-X_rem <- X[(n_subs+1L):n_obs,]
-y_rem <- y[(n_subs+1L):n_obs]
-
-# apply the uluru estimator
-beta_uluru(X_subs, y_subs, X_rem, y_rem)
-```
-
-
-This looks quite good already. Let's have a closer look with a little Monte Carlo study. The aim of the simulation study is to visualize the difference between the classical OLS approach and the *Uluru* algorithm with regard to bias and time complexity if we increase the sub-sample size in *Uluru*. For simplicity, we only look at the first estimated coefficient $\beta_{1}$.
-
-```{r}
-# define subsamples
-n_subs_sizes <- seq(from = 1000, to = 500000, by=10000)
-n_runs <- length(n_subs_sizes)
-# compute uluru result, stop time
-mc_results <- rep(NA, n_runs)
-mc_times <- rep(NA, n_runs)
-for (i in 1:n_runs) {
-     # set size of subsample
-     n_subs <- n_subs_sizes[i]
-     # select subsample and remainder
-     n_obs <- nrow(X)
-     X_subs <- X[1L:n_subs,]
-     y_subs <- y[1L:n_subs]
-     X_rem <- X[(n_subs+1L):n_obs,]
-     y_rem <- y[(n_subs+1L):n_obs]
-     
-     mc_results[i] <- beta_uluru(X_subs, y_subs, X_rem, y_rem)[2] # the first element is the intercept
-     mc_times[i] <- system.time(beta_uluru(X_subs, y_subs, X_rem, y_rem))[3]
-     
-}
-
-# compute ols results and ols time
-ols_time <- system.time(beta_ols(X, y))
-ols_res <- beta_ols(X, y)[2]
-
-```
-
-Let's visualize the comparison with OLS.
-
-```{r}
-# load packages
-library(ggplot2)
-
-# prepare data to plot
-plotdata <- data.frame(beta1 = mc_results,
-                       time_elapsed = mc_times,
-                       subs_size = n_subs_sizes)
-```
-
-First, let's look at the time used estimate the linear model.
-
-```{r}
-ggplot(plotdata, aes(x = subs_size, y = time_elapsed)) +
-     geom_point(color="darkgreen") + 
-     geom_hline(yintercept = ols_time[3],
-                color = "red", 
-                size = 1) +
-     theme_minimal() +
-     ylab("Time elapsed") +
-     xlab("Subsample size")
-```
-
-The horizontal red line indicates the computation time for estimation via OLS, the green points indicate the computation time for the estimation via the Ulruru algorithm. Note that even for large sub-samples, the computation time is substantially lower than for OLS.
-
-Finally, let's have a look at how close the results are to OLS.
-```{r}
-ggplot(plotdata, aes(x = subs_size, y = beta1)) +
-     geom_hline(yintercept = ols_res,
-                color = "red", 
-                size = 1) +
-     geom_point(color="darkgreen") + 
-
-     theme_minimal() +
-     ylab("Estimated coefficient") +
-     xlab("Subsample size")
-```
-
-The horizontal red line indicates the size of the estimated coefficient, when using OLS. The green points indicate the size of the same coefficient estimated by the Uluru algorithm for different sub-sample sizes. Note that even relatively small sub-samples already deliver estimates very close to the OLS estimates.
 
 
 # References
