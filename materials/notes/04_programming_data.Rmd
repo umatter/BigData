@@ -4,7 +4,7 @@ subtitle: 'Lecture 3:<br>Advanced R, Programming with Data'
 author: |
      | Prof. Dr. Ulrich Matter
      | (University of St. Gallen)
-date: "05/03/2020"
+date: "12/03/2020"
 output:
   html_document:
     highlight: tango
@@ -164,7 +164,10 @@ package | function | purpose
 `pryr` | `mem_change()`   | Shows the change in memory (in megabytes) before and after running code.
 `base`   | `system.time()` | Returns CPU (and other) times that an R expression used.
 `microbenchmark` | `microbenchmark()` | Highly accurate timing of R expression evaluation.
-`profvis`| `profvis()`   | Profiles an R expression and visualizes the profiling data (usage of memory, time elapsed, etc.)
+`bench` |  `mark()` | Benchmark a series of functions.
+`profvis`| `profvis()`   | Profiles an R expression and visualizes the profiling data (usage of memory, time elapsed, etc.).
+
+
 
 ## R-tools to investigate structures and types
 
@@ -197,7 +200,7 @@ object.size(a)
 
 If however, we define `a` and `b` as follows, R will interpret the values stored in `a` and `b` as text (`character`).
 
-```{r}
+```{r eval=FALSE}
 a <- "1.5"
 b <- "3"
 a + b
@@ -250,10 +253,16 @@ hometown_f
 object.size(hometown_f)
 ```
 
-At first sight, the fact that `hometown_f` takes up more memory than its character vector sibling seems odd. But, we have encountered this kind of 'paradox' before. Again, the more sophisticated approach involves an 'overhead' (here not in terms of computing time but in terms of structure encoded in an object). `hometown_f` has more 'structure' (i.e., a mapping of numbers to 'factor levels'/category labels). This additional structure is also information that needs to be stored somewhere. As in previous examples of this 'overhead costs', this disadvantage is diminishing the more data we deal with:
+At first sight, the fact that `hometown_f` takes up more memory than its character vector sibling seems odd. But, we have encountered this kind of 'paradox' before. Again, the more sophisticated approach involves an 'overhead' (here not in terms of computing time but in terms of structure encoded in an object). `hometown_f` has more 'structure' (i.e., a mapping of numbers to 'factor levels'/category labels). This additional structure is also information that needs to be stored somewhere. As in previous examples of this 'overhead costs', this disadvantage is diminishing with larger data sets:
 
 ```{r}
-# create a
+# create a large character vector
+hometown_large <- rep(hometown, times = 1000)
+# and the same content as factor
+hometown_large_f <- factor(hometown_large)
+# compare size
+object.size(hometown_large)
+object.size(hometown_large_f)
 ```
 
 
@@ -302,7 +311,9 @@ Here is how we define a `data.table` in R, based on the examples of vectors and 
 # load package
 library(data.table)
 # initiate a data.table
-dt <- data.table(person = persons, age = ages, gender = gender)
+dt <- data.table(person = c("Alice", "Ben"),
+                 age = c(50, 30),
+                 gender = c("f", "m"))
 dt
 
 ```
