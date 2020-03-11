@@ -4831,7 +4831,7 @@ stopCluster(cl = ctemp)</pre>
 se_boot</pre>
 
 <pre >## (Intercept)       white 
-## 0.004994388 0.005066268</pre>
+## 0.003640027 0.003404883</pre>
 
 </article></slide><slide class=""><hgroup><h2>Case study: Memory allocation</h2></hgroup><article  id="case-study-memory-allocation">
 
@@ -4891,8 +4891,8 @@ mem_used()</pre>
 <pre class = 'prettyprint lang-r'>gc()</pre>
 
 <pre >##             used  (Mb) gc trigger   (Mb) limit (Mb)  max used   (Mb)
-## Ncells   1001971  53.6    1970828  105.3         NA   1970828  105.3
-## Vcells 126509340 965.2  213475761 1628.7      16384 211148164 1611.0</pre>
+## Ncells   1002097  53.6    1971877  105.4         NA   1971877  105.4
+## Vcells 126509426 965.2  213476332 1628.7      16384 211148640 1611.0</pre>
 
 </article></slide><slide class=""><hgroup><h2>Case study: Memory allocation</h2></hgroup><article  id="case-study-memory-allocation-3">
 
@@ -4954,22 +4954,22 @@ flights &lt;- fread(DATA_PATH, verbose = TRUE)</pre>
 ##   Allocating 19 column slots (19 - 0 dropped) with 370043 rows
 ## [11] Read the data
 ##   jumps=[0..30), chunk_size=1032016, total_size=30960501
-## Read 336776 rows x 19 columns from 29.53MB (30960660 bytes) file in 00:00.176 wall clock time
+## Read 336776 rows x 19 columns from 29.53MB (30960660 bytes) file in 00:00.106 wall clock time
 ## [12] Finalizing the datatable
 ##   Type counts:
 ##         14 : int32     &#39;5&#39;
 ##          5 : string    &#39;A&#39;
 ## =============================
 ##    0.001s (  1%) Memory map 0.029GB file
-##    0.006s (  3%) sep=&#39;,&#39; ncol=19 and header detection
+##    0.004s (  3%) sep=&#39;,&#39; ncol=19 and header detection
 ##    0.000s (  0%) Column type detection using 10048 sample rows
-##    0.009s (  5%) Allocation of 370043 rows x 19 cols (0.033GB) of which 336776 ( 91%) rows used
-##    0.160s ( 91%) Reading 30 chunks (0 swept) of 0.984MB (each chunk 11225 rows) using 2 threads
-##    +    0.079s ( 45%) Parse to row-major thread buffers (grown 0 times)
-##    +    0.075s ( 42%) Transpose
-##    +    0.007s (  4%) Waiting
+##    0.005s (  4%) Allocation of 370043 rows x 19 cols (0.033GB) of which 336776 ( 91%) rows used
+##    0.097s ( 92%) Reading 30 chunks (0 swept) of 0.984MB (each chunk 11225 rows) using 2 threads
+##    +    0.047s ( 44%) Parse to row-major thread buffers (grown 0 times)
+##    +    0.048s ( 45%) Transpose
+##    +    0.003s (  3%) Waiting
 ##    0.000s (  0%) Rereading 0 columns due to out-of-sample type exceptions
-##    0.176s        Total</pre>
+##    0.106s        Total</pre>
 
 </article></slide><slide class=""><hgroup><h2>Case study: Memory allocation</h2></hgroup><article  id="case-study-memory-allocation-4">
 
@@ -4988,8 +4988,8 @@ flights &lt;- NULL
 gc()</pre>
 
 <pre >##             used  (Mb) gc trigger   (Mb) limit (Mb)  max used   (Mb)
-## Ncells    990988  53.0    1970828  105.3         NA   1970828  105.3
-## Vcells 124174408 947.4  213475761 1628.7      16384 211148164 1611.0</pre>
+## Ncells    991114  53.0    1971877  105.4         NA   1971877  105.4
+## Vcells 124174494 947.4  213476332 1628.7      16384 211148640 1611.0</pre>
 
 <pre class = 'prettyprint lang-r'># check the change in memory due to each step
 
@@ -5076,8 +5076,8 @@ options(fftempdir = &quot;ffdf&quot;)</pre>
 <p>Import data, inspect change in RAM.</p>
 
 <pre >##             used  (Mb) gc trigger   (Mb) limit (Mb)  max used   (Mb)
-## Ncells   1026689  54.9    1970828  105.3         NA   1970828  105.3
-## Vcells 128684166 981.8  213475761 1628.7      16384 211148164 1611.0</pre>
+## Ncells   1026815  54.9    1971877  105.4         NA   1971877  105.4
+## Vcells 128684252 981.8  213476332 1628.7      16384 211148640 1611.0</pre>
 
 <pre class = 'prettyprint lang-r'>mem_change(
 flights &lt;- 
@@ -5089,11 +5089,11 @@ flights &lt;-
                      colClasses=NA)
 )</pre>
 
-<pre >## read.table.ffdf 1..100000 (100000)  csv-read=0.631sec ffdf-write=0.143sec
-## read.table.ffdf 100001..200000 (100000)  csv-read=0.819sec ffdf-write=0.131sec
-## read.table.ffdf 200001..300000 (100000)  csv-read=0.978sec ffdf-write=0.085sec
-## read.table.ffdf 300001..336776 (36776)  csv-read=0.377sec ffdf-write=0.085sec
-##  csv-read=2.805sec  ffdf-write=0.444sec  TOTAL=3.249sec</pre>
+<pre >## read.table.ffdf 1..100000 (100000)  csv-read=0.877sec ffdf-write=0.12sec
+## read.table.ffdf 100001..200000 (100000)  csv-read=0.791sec ffdf-write=0.089sec
+## read.table.ffdf 200001..300000 (100000)  csv-read=0.863sec ffdf-write=0.079sec
+## read.table.ffdf 300001..336776 (36776)  csv-read=0.392sec ffdf-write=0.048sec
+##  csv-read=2.923sec  ffdf-write=0.336sec  TOTAL=3.259sec</pre>
 
 <pre >## -30.7 MB</pre>
 
@@ -5104,30 +5104,11 @@ flights &lt;-
 <pre class = 'prettyprint lang-r'># show the files in the directory keeping the chunks
 list.files(&quot;ffdf&quot;)</pre>
 
-<pre >##  [1] &quot;ffdf1002610cc86af.ff&quot; &quot;ffdf10026144b7a81.ff&quot; &quot;ffdf100261d6bcea8.ff&quot; &quot;ffdf1002620c127ce.ff&quot;
-##  [5] &quot;ffdf100262ec04f5f.ff&quot; &quot;ffdf100262f50f44a.ff&quot; &quot;ffdf100263c7c8a0d.ff&quot; &quot;ffdf100263ea40d55.ff&quot;
-##  [9] &quot;ffdf10026435e1beb.ff&quot; &quot;ffdf100264676794.ff&quot;  &quot;ffdf100264d3a0a14.ff&quot; &quot;ffdf10026539afdf3.ff&quot;
-## [13] &quot;ffdf1002656936d21.ff&quot; &quot;ffdf10026577b03da.ff&quot; &quot;ffdf1002664968766.ff&quot; &quot;ffdf100266757b58f.ff&quot;
-## [17] &quot;ffdf1002668e1bdee.ff&quot; &quot;ffdf10026691c562e.ff&quot; &quot;ffdf100266bd63e8a.ff&quot; &quot;ffdf64b1a9fb702.ff&quot;  
-## [21] &quot;ffdf64b1c3337df.ff&quot;   &quot;ffdf64b2e902a37.ff&quot;   &quot;ffdf64b300fd88c.ff&quot;   &quot;ffdf64b3f622785.ff&quot;  
-## [25] &quot;ffdf64b3f6825a1.ff&quot;   &quot;ffdf64b4510ad45.ff&quot;   &quot;ffdf64b49dfb06f.ff&quot;   &quot;ffdf64b4e7e8d8c.ff&quot;  
-## [29] &quot;ffdf64b4effb888.ff&quot;   &quot;ffdf64b567f0a96.ff&quot;   &quot;ffdf64b5efe430a.ff&quot;   &quot;ffdf64b66991fef.ff&quot;  
-## [33] &quot;ffdf64b6ba7f1f5.ff&quot;   &quot;ffdf64b6e3763f.ff&quot;    &quot;ffdf64b6fe388f.ff&quot;    &quot;ffdf64b76ac113c.ff&quot;  
-## [37] &quot;ffdf64b7ac398c2.ff&quot;   &quot;ffdf64b7cb86d4c.ff&quot;   &quot;ffdf7fa171e0921.ff&quot;   &quot;ffdf7fa1f236b3e.ff&quot;  
-## [41] &quot;ffdf7fa263497f7.ff&quot;   &quot;ffdf7fa2c4a5a38.ff&quot;   &quot;ffdf7fa31ecceac.ff&quot;   &quot;ffdf7fa34e96162.ff&quot;  
-## [45] &quot;ffdf7fa3ea69bfa.ff&quot;   &quot;ffdf7fa450fbb09.ff&quot;   &quot;ffdf7fa4569293f.ff&quot;   &quot;ffdf7fa45f88411.ff&quot;  
-## [49] &quot;ffdf7fa46e4ecb9.ff&quot;   &quot;ffdf7fa4e55c36a.ff&quot;   &quot;ffdf7fa5f718a0b.ff&quot;   &quot;ffdf7fa60908c53.ff&quot;  
-## [53] &quot;ffdf7fa639d7ca7.ff&quot;   &quot;ffdf7fa6caaaf4.ff&quot;    &quot;ffdf7fa7862eb08.ff&quot;   &quot;ffdf7fa7b130ab2.ff&quot;  
-## [57] &quot;ffdf7fabc06f4b.ff&quot;    &quot;ffdfa7311bad9127.ff&quot;  &quot;ffdfa7311d13bb17.ff&quot;  &quot;ffdfa7312018afea.ff&quot; 
-## [61] &quot;ffdfa7312d3dcd65.ff&quot;  &quot;ffdfa7313103786a.ff&quot;  &quot;ffdfa731337cc677.ff&quot;  &quot;ffdfa7313477b917.ff&quot; 
-## [65] &quot;ffdfa73134c53c1c.ff&quot;  &quot;ffdfa7313c9ad736.ff&quot;  &quot;ffdfa73144c9c909.ff&quot;  &quot;ffdfa731572d2fbf.ff&quot; 
-## [69] &quot;ffdfa7315799d14f.ff&quot;  &quot;ffdfa73159a7394f.ff&quot;  &quot;ffdfa7315ad69049.ff&quot;  &quot;ffdfa7315f766a0f.ff&quot; 
-## [73] &quot;ffdfa73163a4e7ec.ff&quot;  &quot;ffdfa73171a39f84.ff&quot;  &quot;ffdfa7317a5ff1ea.ff&quot;  &quot;ffdfa731ed6d55.ff&quot;   
-## [77] &quot;ffdfff9d1450cdb1.ff&quot;  &quot;ffdfff9d1c5cc37.ff&quot;   &quot;ffdfff9d21af66d0.ff&quot;  &quot;ffdfff9d286f2f7.ff&quot;  
-## [81] &quot;ffdfff9d305c646f.ff&quot;  &quot;ffdfff9d3743e488.ff&quot;  &quot;ffdfff9d39ceca4e.ff&quot;  &quot;ffdfff9d3d5acd1f.ff&quot; 
-## [85] &quot;ffdfff9d44f029e2.ff&quot;  &quot;ffdfff9d4a50b910.ff&quot;  &quot;ffdfff9d54863fec.ff&quot;  &quot;ffdfff9d5e79739b.ff&quot; 
-## [89] &quot;ffdfff9d60e22fc9.ff&quot;  &quot;ffdfff9d734dd7c9.ff&quot;  &quot;ffdfff9d776e1e16.ff&quot;  &quot;ffdfff9d7794f591.ff&quot; 
-## [93] &quot;ffdfff9d79a5ef8d.ff&quot;  &quot;ffdfff9d7b920842.ff&quot;  &quot;ffdfff9d7d12505f.ff&quot;</pre>
+<pre >##  [1] &quot;ffdf46151168a1c9.ff&quot; &quot;ffdf461517808f88.ff&quot; &quot;ffdf461518ff53d8.ff&quot; &quot;ffdf4615223aa3d1.ff&quot;
+##  [5] &quot;ffdf461522d996ba.ff&quot; &quot;ffdf4615304155cf.ff&quot; &quot;ffdf461537c16b60.ff&quot; &quot;ffdf461537d8ffe5.ff&quot;
+##  [9] &quot;ffdf46153f0e8fc5.ff&quot; &quot;ffdf46153f5356bb.ff&quot; &quot;ffdf46155500eeda.ff&quot; &quot;ffdf461568780f64.ff&quot;
+## [13] &quot;ffdf46156c559c0c.ff&quot; &quot;ffdf461578632f77.ff&quot; &quot;ffdf46157883008.ff&quot;  &quot;ffdf4615794f35c5.ff&quot;
+## [17] &quot;ffdf46157b369f35.ff&quot; &quot;ffdf46157b708838.ff&quot; &quot;ffdf46157e096114.ff&quot;</pre>
 
 <pre class = 'prettyprint lang-r'># investigate the structure of the object created in the R environment
 summary(flights)</pre>
@@ -5209,7 +5190,7 @@ flights &lt;- read.big.matrix(&quot;../data/flights.csv&quot;,
 
 <pre >## An object of class &quot;big.matrix&quot;
 ## Slot &quot;address&quot;:
-## &lt;pointer: 0x7f86cd972180&gt;</pre>
+## &lt;pointer: 0x7f992eb0ea20&gt;</pre>
 
 </article></slide><slide class=""><hgroup><h2>Memory mapping with <code>bigmemory</code></h2></hgroup><article  id="memory-mapping-with-bigmemory-4">
 
@@ -5233,7 +5214,7 @@ system.time(
 )</pre>
 
 <pre >##    user  system elapsed 
-##   2.490   0.136   4.564</pre>
+##   2.285   0.114   2.672</pre>
 
 <pre class = 'prettyprint lang-r'># import data and check memory used
 mem_change(
@@ -5249,7 +5230,7 @@ mem_change(
 
 <pre >## An object of class &quot;big.matrix&quot;
 ## Slot &quot;address&quot;:
-## &lt;pointer: 0x7f86c9c02030&gt;</pre>
+## &lt;pointer: 0x7f992e93e530&gt;</pre>
 
 </article></slide><slide class=""><hgroup><h2>Memory mapping with <code>bigmemory</code></h2></hgroup><article  id="memory-mapping-with-bigmemory-6">
 
@@ -5269,7 +5250,7 @@ system.time(
 )</pre>
 
 <pre >##    user  system elapsed 
-##   2.423   0.121   4.454</pre>
+##   2.219   0.076   2.374</pre>
 
 <pre class = 'prettyprint lang-r'># import data and check memory used
 mem_change(
@@ -5288,7 +5269,7 @@ mem_change(
 
 <pre >## An object of class &quot;big.matrix&quot;
 ## Slot &quot;address&quot;:
-## &lt;pointer: 0x7f86c9e40d90&gt;</pre>
+## &lt;pointer: 0x7f992ae1bbf0&gt;</pre>
 
 </article></slide><slide class=""><hgroup><h2>Memory mapping with <code>bigmemory</code></h2></hgroup><article  id="memory-mapping-with-bigmemory-7">
 
@@ -5303,52 +5284,13 @@ rm(flights2)
 system.time(flights2 &lt;- attach.big.matrix(&quot;flights2.desc&quot;))</pre>
 
 <pre >##    user  system elapsed 
-##   0.002   0.001   0.004</pre>
+##   0.002   0.000   0.002</pre>
 
 <pre class = 'prettyprint lang-r'>flights2</pre>
 
 <pre >## An object of class &quot;big.matrix&quot;
 ## Slot &quot;address&quot;:
-## &lt;pointer: 0x7f86c9f50d70&gt;</pre>
-
-</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Advanced R Programming</h2></hgroup><article  id="advanced-r-programming">
-
-</article></slide><slide class=""><hgroup><h2>&lsquo;Data projects&rsquo; with RStudio and GitHub</h2></hgroup><article  id="data-projects-with-rstudio-and-github">
-
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article >
-
-<div class="figure" style="text-align: center">
-<img src="data:image/gif;base64,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" alt="Image by [jonobacon](https://www.flickr.com/photos/jonobacon/22160892602) ([CC BY 2.0](https://creativecommons.org/licenses/by/2.0/)) " width="70%" />
-
-<p class="caption">
-
-Image by <a href='https://www.flickr.com/photos/jonobacon/22160892602' title=''>jonobacon</a> (<a href='https://creativecommons.org/licenses/by/2.0/' title=''>CC BY 2.0</a>)
-
-</p></div>
-
-</article></slide><slide class=""><hgroup><h2>Suggestion for set up</h2></hgroup><article  id="suggestion-for-set-up">
-
-<ul>
-<li>Organize data analytics project as RStudio-project</li>
-<li>Rstudio project folder = GitHub repository</li>
-<li>(essentially what you will do in your group examination tasks)</li>
-</ul>
-
-</article></slide><slide class=""><hgroup><h2>Version control with Git</h2></hgroup><article  id="version-control-with-git">
-
-<ul>
-<li>Keep track of your code.</li>
-<li>Develop in different branches.</li>
-<li>Safely go back to previous versions.</li>
-</ul>
-
-</article></slide><slide class=""><hgroup><h2>Code repository on GitHub</h2></hgroup><article  id="code-repository-on-github">
-
-<ul>
-<li>Work from different machines.</li>
-<li>Manage and document the project.</li>
-<li>Publish and collaborate.</li>
-</ul>
+## &lt;pointer: 0x7f992acbd4a0&gt;</pre>
 
 </article></slide><slide class=""><hgroup><h2>References</h2></hgroup><article  class="smaller" id="references">
 
