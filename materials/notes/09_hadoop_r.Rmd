@@ -1,0 +1,99 @@
+---
+title: "Big Data Analytics"
+subtitle: 'Lecture X: Hadoop in R'
+author: |
+     | Prof. Dr. Ulrich Matter
+     | (University of St. Gallen)
+date: "xx/xx/xxxx"
+output:
+  html_document:
+    highlight: tango
+    theme: cerulean
+    mathjax: "http://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"
+  pdf_document:
+    pandoc_args:
+    - --filter
+    - ../../code/math.py
+header-includes:
+- \usepackage[T1]{fontenc}
+- \usepackage{hyperref}
+css: ../../style/notes_hsg.css
+bibliography: ../references/bigdata.bib
+---
+
+
+NOTE: ALL STEPS IN LECTURE 7 (CLOUD COMPUTING) REGARDING SETTING UP AND RUNNING HADOOP ON AZURE IN 
+A HORTONWORKS SANDBOX NEED TO BE RUN BEFORE RUNNING THIS.
+
+
+## A word count example in Hadoop using the R language
+(@walkowiak_2016: 169ff)
+
+Log in as root to `sandbox-hdp` (`ssh root@localhost -p 2222`) in order to install R and RStudio Server on the virtual machine. First, check if R is already installed by simply typing `R` into the terminal and hit enter. If it is not yet installed, you can install it as follows.
+
+```{bash eval=FALSE}
+sudo yum install epel-release
+yum update -y
+yum install R -y
+```
+
+
+In order to install RStudio Server, proceed with the following steps (see [here](https://www.rstudio.com/products/rstudio/download-server/) for the latest version number):
+
+```{bash eval=FALSE}
+wget https://download2.rstudio.org/server/centos6/x86_64/rstudio-server-rhel-1.2.1335-x86_64.rpm
+sudo yum install rstudio-server-rhel-1.2.1335-x86_64.rpm
+```
+
+
+Assign a different port to RStudio Server.
+
+```{bash eval=FALSE}
+sudo yum install -y dpkg
+sudo dpkg-divert --local --rename --add /sbin/initctl
+sudo ln -s /bin/true /sbin/initctl
+echo "www-port = 60000" | sudo tee -a /etc/rstudio/rserver.conf
+```
+
+And restart the RStudio Server (this will close the ssh connection, so you will have to reconnect).
+
+```{bash eval=FALSE}
+exec /usr/lib/rstudio-server/bin/rserver
+```
+
+Then, add the following line to `~/.ssh/config` on your local machine.
+
+```{}
+   LocalForward 60000 127.0.0.1:60000
+```
+
+And in your Azure Dashboard, under Settings/Networking add an additional inbound port to allow inbound traffic to port `60000`. Now you can open a new browser window and type `localhost:60000` into the address bar. The default username and password for RStudio Server on the Sandbox are `maria_dev`. 
+
+The folling steps are needed to install all the packages as instructed in @walkowiak_2016, pages 175ff. First, in order to compile the `data.table` package, you need to install a new gcc compiler as follows (source:https://stackoverflow.com/a/54561916 ):
+
+```{bash}
+yum install devtoolset-6
+scl enable devtoolset-6 bash
+```
+
+Then install the packages as instructed on to pages 175ff in @walkowiak_2016.
+
+
+
+
+
+For steps 5 ff you need to be logged in to the `sandbox-hdp` (as in the Java example above). Thus, first run
+
+
+```{bash eval=FALSE}
+ssh azureSandbox
+```
+
+
+in a new terminal. Open another terminal window log in with your username/password created above.
+
+```{bash eval=FALSE}
+ssh umatter@localhost -p 2222
+```
+
+
