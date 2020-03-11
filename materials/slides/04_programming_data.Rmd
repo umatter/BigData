@@ -105,7 +105,7 @@ include_graphics("../img/02_githublogo.gif")
 - What happens when we 'copy'/modify an object in R?
 
 
-```{r echo=FALSE}
+```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(lobstr)
 ```
 
@@ -393,6 +393,8 @@ include_graphics("../img/character.png")
 include_graphics("../img/character-2.png")
 ```
 
+## Character vectors and memory
+
 
 ```{r}
 ref(x, character = TRUE)
@@ -459,6 +461,11 @@ my_array
 ```
 
 
+## Data structures: lists
+
+```{r list, echo=FALSE, out.width = "65%", fig.align='center', fig.cap= "Figure by @wickham_2019 (licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)).", purl=FALSE}
+include_graphics("../img/list.png")
+```
 
 
 ## Data structures: lists
@@ -472,16 +479,10 @@ l1 <- list(
 )
 
 typeof(l1)
-#> [1] "list"
 
 str(l1)
 ```
 
-## Data structures: lists
-
-```{r list, echo=FALSE, out.width = "65%", fig.align='center', fig.cap= "Figure by @wickham_2019 (licensed under [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/)).", purl=FALSE}
-include_graphics("../img/list.png")
-```
 
 
 ## Lists and memory
@@ -1045,13 +1046,14 @@ plot(lb)
 
 ## Procedural view and further reading
 
-- Consider Hadley's advice: @wickham_2019 Cha:pter 24
-- E.xperienced coder? Have a look at [R Inferno](https://www.burns-stat.com/pages/Tutor/R_inferno.pdf)
-- F.urther reading after this course: [The Art of R Programming](http://heather.cs.ucdavis.edu/~matloff/132/NSPpart.pdf)
+- Consider Hadley's advice: @wickham_2019: Chapter 24
+- Experienced coder? Have a look at [R Inferno](https://www.burns-stat.com/pages/Tutor/R_inferno.pdf)
+- Further reading after this course: [The Art of R Programming](http://heather.cs.ucdavis.edu/~matloff/132/NSPpart.pdf)
 
-##. R, beyond R
+## R, beyond R
 
 - For advanced programmers, R offers various options to directly make use of compiled programs (for example, written in C, C++, or FORTRAN). 
+
 - Several of the core R functions are implemented in one of these lower-level programming languages.
 
 ## R, beyond R
