@@ -514,25 +514,25 @@ summary {
 <a class="sourceLine" id="cb7-11" data-line-number="11"></a>
 <a class="sourceLine" id="cb7-12" data-line-number="12">time_elapsed</a></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.120   0.015   0.140</code></pre>
+##   0.167   0.024   0.236</code></pre>
 <p>Assuming a linear time algorithm (<span class="math inline">\(O(n)\)</span>), we need that much time for one additional row of data:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">time_per_row &lt;-<span class="st"> </span>time_elapsed[<span class="dv">3</span>]<span class="op">/</span>n_obs</a>
 <a class="sourceLine" id="cb9-2" data-line-number="2">time_per_row</a></code></pre></div>
-<pre><code>##     elapsed 
-## 3.04878e-05</code></pre>
+<pre><code>##      elapsed 
+## 5.139373e-05</code></pre>
 <p>If we deal with big data, say 100 million rows, that is</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="co"># in seconds</span></a>
 <a class="sourceLine" id="cb11-2" data-line-number="2">(time_per_row<span class="op">*</span><span class="dv">100</span><span class="op">^</span><span class="dv">4</span>) </a></code></pre></div>
-<pre><code>## elapsed 
-## 3048.78</code></pre>
+<pre><code>##  elapsed 
+## 5139.373</code></pre>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co"># in minutes</span></a>
 <a class="sourceLine" id="cb13-2" data-line-number="2">(time_per_row<span class="op">*</span><span class="dv">100</span><span class="op">^</span><span class="dv">4</span>)<span class="op">/</span><span class="dv">60</span> </a></code></pre></div>
 <pre><code>##  elapsed 
-## 50.81301</code></pre>
+## 85.65621</code></pre>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1"><span class="co"># in hours</span></a>
 <a class="sourceLine" id="cb15-2" data-line-number="2">(time_per_row<span class="op">*</span><span class="dv">100</span><span class="op">^</span><span class="dv">4</span>)<span class="op">/</span><span class="dv">60</span><span class="op">^</span><span class="dv">2</span> </a></code></pre></div>
-<pre><code>##   elapsed 
-## 0.8468835</code></pre>
+<pre><code>##  elapsed 
+## 1.427604</code></pre>
 <p>Can we improve this?</p>
 <div id="improvement-1-pre-allocation-of-memory" class="section level3">
 <h3><span class="header-section-number">1.2.1</span> Improvement 1: Pre-allocation of memory</h3>
@@ -553,20 +553,20 @@ summary {
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">time_per_row &lt;-<span class="st"> </span>time_elapsed[<span class="dv">3</span>]<span class="op">/</span>n_obs</a>
 <a class="sourceLine" id="cb18-2" data-line-number="2">time_per_row</a></code></pre></div>
 <pre><code>##     elapsed 
-## 1.74216e-06</code></pre>
+## 1.95993e-06</code></pre>
 <p>Again, we can extrapolate (approximately) the computation time, assuming the data set had millions of rows.</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1"><span class="co"># in seconds</span></a>
 <a class="sourceLine" id="cb20-2" data-line-number="2">(time_per_row<span class="op">*</span><span class="dv">100</span><span class="op">^</span><span class="dv">4</span>) </a></code></pre></div>
 <pre><code>## elapsed 
-## 174.216</code></pre>
+## 195.993</code></pre>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1"><span class="co"># in minutes</span></a>
 <a class="sourceLine" id="cb22-2" data-line-number="2">(time_per_row<span class="op">*</span><span class="dv">100</span><span class="op">^</span><span class="dv">4</span>)<span class="op">/</span><span class="dv">60</span> </a></code></pre></div>
-<pre><code>## elapsed 
-##  2.9036</code></pre>
+<pre><code>##  elapsed 
+## 3.266551</code></pre>
 <div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="co"># in hours</span></a>
 <a class="sourceLine" id="cb24-2" data-line-number="2">(time_per_row<span class="op">*</span><span class="dv">100</span><span class="op">^</span><span class="dv">4</span>)<span class="op">/</span><span class="dv">60</span><span class="op">^</span><span class="dv">2</span> </a></code></pre></div>
 <pre><code>##    elapsed 
-## 0.04839334</code></pre>
+## 0.05444251</code></pre>
 <p>This looks much better, but we can do even better.</p>
 </div>
 <div id="improvement-2-exploit-vectorization" class="section level3">
@@ -609,13 +609,13 @@ summary {
 <p>Now we get a more precise picture regarding the improvement due to vectorization (again, assuming 100 million rows):</p>
 <div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" data-line-number="1"><span class="co"># in seconds</span></a>
 <a class="sourceLine" id="cb35-2" data-line-number="2">(time_per_row<span class="op">*</span><span class="dv">100</span><span class="op">^</span><span class="dv">4</span>) </a></code></pre></div>
-<pre><code>## [1] 0.6046213</code></pre>
+<pre><code>## [1] 0.551113</code></pre>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="co"># in minutes</span></a>
 <a class="sourceLine" id="cb37-2" data-line-number="2">(time_per_row<span class="op">*</span><span class="dv">100</span><span class="op">^</span><span class="dv">4</span>)<span class="op">/</span><span class="dv">60</span> </a></code></pre></div>
-<pre><code>## [1] 0.01007702</code></pre>
+<pre><code>## [1] 0.009185217</code></pre>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" data-line-number="1"><span class="co"># in hours</span></a>
 <a class="sourceLine" id="cb39-2" data-line-number="2">(time_per_row<span class="op">*</span><span class="dv">100</span><span class="op">^</span><span class="dv">4</span>)<span class="op">/</span><span class="dv">60</span><span class="op">^</span><span class="dv">2</span> </a></code></pre></div>
-<pre><code>## [1] 0.0001679504</code></pre>
+<pre><code>## [1] 0.000153087</code></pre>
 </div>
 </div>
 <div id="what-do-we-learn-from-this" class="section level2">
