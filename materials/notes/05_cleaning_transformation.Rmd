@@ -1,10 +1,10 @@
 ---
 title: "Big Data Analytics"
-subtitle: 'Lecture 4: Cleaning and Transformation of Big Data'
+subtitle: 'Lecture 5: Cleaning and Transformation of Big Data'
 author: |
      | Prof. Dr. Ulrich Matter
      | (University of St. Gallen)
-date: "12/03/2020"
+date: "19/03/2020"
 output:
   html_document:
     highlight: tango
@@ -34,16 +34,16 @@ knitr::opts_chunk$set(fig.pos = 'htb!')
 
 # Cleaning and Transformation of large data sets
 
-Practically preceeding the filtering of the data and the selection/aggregation of raw data in order to perform statistical analyses, the steps related to cleaning and transformation of the data typically have to be run on large parts of the totally available data. Typically the bottleneck is a lack of RAM. In the following, we explore two strategies that broadly build on the idea of *virtual memory* (using parts of the hard disk as RAM).
+Preceding the filtering/selection/aggregation of raw data,  data cleaning and transformation typically have to be run on large parts of the overall dataset. In practice, the bottleneck is often a lack of RAM. In the following, we explore two strategies that broadly build on the idea of *virtual memory* (using parts of the hard disk as RAM).
 
 
 ## 'Out-of-memory' strategies
 
-Virtual memory is in simple words an approach to combining the RAM and Mass Storage components in order to cope with a lack of RAM. Modern operating systems come with a virtual memory manager that would automatically handle the swapping between RAM and the hard-disk, when runnign processes use up too much RAM. However, a virtual memory manager is not specifically developed to perform this task in the context of data analysis. Several strategies have thus been developed to build on the basic idea of virtual memory in the context of data analysis tasks.
+Virtual memory is in simple words an approach to combining the RAM and mass storage components in order to cope with a lack of RAM. Modern operating systems come with a virtual memory manager that would automatically handle the swapping between RAM and the hard-disk, when running processes use up too much RAM. However, a virtual memory manager is not specifically developed to perform this task in the context of data analysis. Several strategies have thus been developed to build on the basic idea of virtual memory in the context of data analysis tasks.
 
 - *Chunked data files on disk*: The data analytics software 'partitions' the large dataset, maps, and stores the chunks of raw data on disk. What is actually 'read' into RAM when importing the data file with this approach is the mapping to the partitions of the actual dataset (the data structure) and some metadata describing the dataset. In R, this approach is implemented in the `ff` package and several packages building on `ff`. In this approach, the usage of disk space and the linking between RAM and files on disk is very explicit (and well visible to the user).
 
-- *Memory mapped files and shared memory*: The data analytics software uses segments of virtual memory for the dataset to be analyzed and allows different programs/processes to access it in the same memory segment. Thus, virtual memory is explicitly allocated for one or several specific data analytics tasks. In R, this approach is prominently implemented in the `bigmemory` package and several packages building on `bigmemory`.
+- *Memory mapped files and shared memory*: The data analytics software uses segments of virtual memory for the dataset and allows different programs/processes to access it in the same memory segment. Thus, virtual memory is explicitly allocated for one or several specific data analytics tasks. In R, this approach is prominently implemented in the `bigmemory` package and several packages building on `bigmemory`.
 
 
 ### Chunking data with the `ff`-package
@@ -80,7 +80,7 @@ flights <-
 )
 ```
 
-Note that there are two substantial differences to what we have previously seen when using `fread()` to import a csv file. It takes much longer to import a csv into the ffdf structure. However, the RAM allocated to it is much smaller. This is exactly what we would expect, keeping in mind what `read.table.ffdf()` does in comparison to what `fread()` does.
+Note that there are two substantial differences to what we have previously seen when using `fread()`. It takes much longer to import a csv into the ffdf structure. However, the RAM allocated to it is much smaller. This is exactly what we would expect, keeping in mind what `read.table.ffdf()` does in comparison to what `fread()` does.
 
 Now we can actually have a look at the data chunks created by `ff`, as well as how the structure of the dataset is represented in the `flights` object.
 
@@ -99,7 +99,7 @@ str(flights)
 
 The `bigmemory`-package handles data in matrices, and therefore only accepts variables in the same data type. Before importing data via the `bigmemory`-package, we thus have to ensure that all variables in the raw data can be imported in a common type. This example follows the example of the package authors given [here](https://cran.r-project.org/web/packages/bigmemory/vignettes/Overview.pdf).^[We only use a fraction of the data used in the package vignette example, the full raw data used there can be downloaded [here](http://stat-computing.org/dataexpo/2009/the-data.html).]
 
-```{r}
+```{r message=FALSE, warning=FALSE}
 
 # SET UP ----------------
 
@@ -330,7 +330,7 @@ mem_used()
 ```{r}
 # Save a newly created ffdf object to a data file:
 
-save.ffdf(subs1.ff) #7 files (one for each column) created in the ffdb directory
+save.ffdf(subs1.ff, overwrite = TRUE) #7 files (one for each column) created in the ffdb directory
 
 ```
 
