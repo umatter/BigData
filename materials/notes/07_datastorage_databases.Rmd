@@ -1,10 +1,10 @@
 ---
 title: "Big Data Analytics"
-subtitle: 'Lecture 6: Data Storage, Databases Interaction with R'
+subtitle: 'Lecture 7: Visualization II | Data Storage, Databases Interaction with R'
 author: |
      | Prof. Dr. Ulrich Matter
      | (University of St. Gallen)
-date: "26/03/2020"
+date: "16/04/2020"
 output:
   html_document:
     highlight: tango
@@ -79,7 +79,7 @@ taxi$payment_type <- factor(taxi$payment_type, levels = unique(taxi$payment_type
 
 ## Time and Space
 
-The previous visualization exercises were focused on visually exploring patterns in the tipping behavior of people taking a NYC yellow cap ride. Based on the same data set, will explore the time-dimension and spatial dimension of the TLC Yellow Cap data. That is, we explore where trips tend to start and end, depending on the time of the day. 
+The previous visualization exercises were focused on visually exploring patterns in the tipping behavior of people taking a NYC yellow cap ride. Based on the same data set, will explore the time dimension and spatial dimension of the TLC Yellow Cap data. That is, we explore where trips tend to start and end, depending on the time of the day. 
 
 ### Preparations
 
@@ -133,7 +133,7 @@ nyc_map <- fortify(nyc_map)
 
 ### Pick-up and drop-off locations
 
-Since trips might actually start or end outside of NYC, we first restrict the sample of trips to be plotted to those within the boundary box of the map. For the sake of the exercise, we only select a random sample of `50000` trips from the remaining trip records.
+Since trips might actually start or end outside of NYC, we first restrict the sample of trips to those within the boundary box of the map. For the sake of the exercise, we only select a random sample of `50000` trips from the remaining trip records.
 
 
 
@@ -279,18 +279,18 @@ RDBMSs have two key features that tackle the two efficiency concerns mentioned a
 
 - The *relational data model*: The overall data set is split by columns (covariates) into tables in order to reduce the storage of redundant variable-value repetitions. The resulting database tables are then linked via key-variables (unique identifiers). Thus (simply put), each type of entity on which observations exist resides in its own database table. Within this table, each observation has it's unique id. Keeping the data in such a structure is very efficient in terms of storage space used. 
 
-- *Indexing*: The key-columns of the database tables are indexed, meaning (in simple terms) ordered on disk. Indexing a table takes time but it has to be performed only once (unless the content of the table changes). The resulting index is then stored on disk as part of the database. These indices substantially reduce the number of disk accesses required to query/find specific observations. Thus, they make the loading of specific parts of the data for analysis much more efficient (in terms of loading time).
+- *Indexing*: The key-columns of the database tables are indexed, meaning (in simple terms) ordered on disk. Indexing a table takes time but it has to be performed only once (unless the content of the table changes). The resulting index is then stored on disk as part of the database. These indices substantially reduce the number of disk accesses required to query/find specific observations. Thus, they make the loading of specific parts of the data for analysis much more efficient.
 
-The loading/querying of data from an RDBMS typically involves the selection of specific observations (rows) and covariates (columns) from different tables. Due to the indexing, observations are selected efficiently, and  the defined relations between tables (via keys) facilitate the joining of columns to a new table (the queried data).
+The loading/querying of data from an RDBMS typically involves the selection of specific observations (rows) and covariates (columns) from different tables. Due to the indexing, observations are selected efficiently, and the defined relations between tables (via keys) facilitate the joining of columns to a new table (the queried data).
 
 
 ## Getting started with (R)SQLite
 
-[SQLite](https://sqlite.org/index.html) is an free full-featured SQL database engine and widely used across platforms and is typically pre-installed with Windows and OSX distributions. It is perfect to learn how to use RDBMSs/SQL. The R-package `RSQLite` embeds SQLite in R. That is, it provides functions that allow us to us SQLite directly from within R. 
+[SQLite](https://sqlite.org/index.html) is a free full-featured SQL database engine and widely used across platforms and is typically pre-installed with Windows and OSX distributions. It is perfect to learn how to use RDBMSs/SQL. The R-package `RSQLite` embeds SQLite in R. That is, it provides functions that allow us to us SQLite directly from within R. 
 
 ### First steps in SQLite
 
-In the terminal, we can directly call SQLite as a command-line tool (on most modern computers this is now `sqlite3`). In this short example, we set up our first SQLite database, using the command line. In the file structure of the course repository, we first change to the data directory.
+In the terminal, we can directly call SQLite as a command-line tool (on most modern computers this is now `sqlite3`). In this short example, we set up our first SQLite database, using the command line. In the file structure of the course repository, we first switch to the data directory.
 
 ```{bash eval=FALSE, purl=FALSE}
 cd materials/data 
@@ -314,7 +314,7 @@ con <- dbConnect(RSQLite::SQLite(), "../data/mydb.sqlite")
 .tables
 ```
 
-As expected, nothing is returned. Now, let's create our first table and import the already known `economics.csv` data set to it. In SQLite it makes sense to first set up an empty table in which all column data types are defined before importing data from a CSV-file to it. If a CSV is directly imported to a new table (without type definitions), all columns will be set to `TEXT` by default.
+As expected, nothing is returned. Now, let's create our first table and import the `economics.csv` data set to it. In SQLite, it makes sense to first set up an empty table in which all column data types are defined before importing data from a CSV-file to it. If a CSV is directly imported to a new table (without type definitions), all columns will be set to `TEXT` by default.
 
 
 ```{sql connection=con, eval = FALSE, purl=FALSE}
@@ -389,7 +389,7 @@ order by date;
 
 When done working with the database, we can exit SQLite with the `.quit` command.
 
-### Indeces and joins
+### Indices and joins
 
 So far we have only had a look at the basic functionality of SQLite. But we have not really looked at the key features of an RDBMS (indexing and relations between tables).
 
@@ -423,7 +423,7 @@ Again, we can check if everything worked out well with `.tables` and `.schema`.
 .schema flights
 ```
 
-In `flights`, each row describes a flight (the day it took place, its origin, its destination etc.). It contains a covariate `carrier` containing the unique ID of the respective airline/carrier carrying out the flight as well as the covariates `origin` and `dest`. The latter two variables contain the unique IATA-codes of the airports from which the flights departured and where they arrived, respectively. In `flights` we thus have observations at the level of individual flights.
+In `flights`, each row describes a flight (the day it took place, its origin, its destination etc.). It contains a covariate `carrier` containing the unique ID of the respective airline/carrier carrying out the flight as well as the covariates `origin` and `dest`. The latter two variables contain the unique IATA-codes of the airports from which the flights departed and where they arrived, respectively. In `flights` we thus have observations at the level of individual flights.
 
 Now we extend our database in a meaningful way, following the relational data model idea. From the [ASA's website], we download two additional csv files containing data that relate to the flights table:
 
