@@ -628,14 +628,14 @@ summary {
 <a class="sourceLine" id="cb8-10" data-line-number="10">                                         <span class="dt">data =</span> x,</a>
 <a class="sourceLine" id="cb8-11" data-line-number="11">                                         <span class="dt">FUN =</span> mean,</a>
 <a class="sourceLine" id="cb8-12" data-line-number="12">                                         <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)})</a></code></pre></div>
-<pre><code>## 2020-03-19 15:15:56, calculating split sizes</code></pre>
-<pre><code>## 2020-03-19 15:15:56, building up split locations</code></pre>
-<pre><code>## 2020-03-19 15:15:57, working on split 1/2, extracting data in RAM of 1 split elements, totalling, 0.0815 GB, while max specified data specified using BATCHBYTES is 0.09313 GB</code></pre>
-<pre><code>## 2020-03-19 15:15:57, ... applying FUN to selected data</code></pre>
-<pre><code>## 2020-03-19 15:15:57, ... appending result to the output ffdf</code></pre>
-<pre><code>## 2020-03-19 15:15:57, working on split 2/2, extracting data in RAM of 3 split elements, totalling, 0.02281 GB, while max specified data specified using BATCHBYTES is 0.09313 GB</code></pre>
-<pre><code>## 2020-03-19 15:15:57, ... applying FUN to selected data</code></pre>
-<pre><code>## 2020-03-19 15:15:57, ... appending result to the output ffdf</code></pre>
+<pre><code>## 2020-03-26 10:29:13, calculating split sizes</code></pre>
+<pre><code>## 2020-03-26 10:29:13, building up split locations</code></pre>
+<pre><code>## 2020-03-26 10:29:14, working on split 1/2, extracting data in RAM of 1 split elements, totalling, 0.0815 GB, while max specified data specified using BATCHBYTES is 0.09313 GB</code></pre>
+<pre><code>## 2020-03-26 10:29:14, ... applying FUN to selected data</code></pre>
+<pre><code>## 2020-03-26 10:29:14, ... appending result to the output ffdf</code></pre>
+<pre><code>## 2020-03-26 10:29:14, working on split 2/2, extracting data in RAM of 3 split elements, totalling, 0.02281 GB, while max specified data specified using BATCHBYTES is 0.09313 GB</code></pre>
+<pre><code>## 2020-03-26 10:29:14, ... applying FUN to selected data</code></pre>
+<pre><code>## 2020-03-26 10:29:14, ... appending result to the output ffdf</code></pre>
 <p>Note how the output describes the procedure step by step. Now we can have a look at the resulting summary statistic in the form of a <code>data.frame()</code>.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="kw">as.data.frame</span>(tip_pcategory)</a></code></pre></div>
 <pre><code>##   payment_type tip_amount.mean
@@ -657,14 +657,14 @@ summary {
 <a class="sourceLine" id="cb19-10" data-line-number="10">                                         <span class="dt">data =</span> x,</a>
 <a class="sourceLine" id="cb19-11" data-line-number="11">                                         <span class="dt">FUN =</span> mean,</a>
 <a class="sourceLine" id="cb19-12" data-line-number="12">                                         <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)})</a></code></pre></div>
-<pre><code>## 2020-03-19 15:15:57, calculating split sizes</code></pre>
-<pre><code>## 2020-03-19 15:15:57, building up split locations</code></pre>
-<pre><code>## 2020-03-19 15:15:58, working on split 1/2, extracting data in RAM of 1 split elements, totalling, 0.08732 GB, while max specified data specified using BATCHBYTES is 0.09313 GB</code></pre>
-<pre><code>## 2020-03-19 15:15:58, ... applying FUN to selected data</code></pre>
-<pre><code>## 2020-03-19 15:15:58, ... appending result to the output ffdf</code></pre>
-<pre><code>## 2020-03-19 15:15:58, working on split 2/2, extracting data in RAM of 3 split elements, totalling, 0.02444 GB, while max specified data specified using BATCHBYTES is 0.09313 GB</code></pre>
-<pre><code>## 2020-03-19 15:15:58, ... applying FUN to selected data</code></pre>
-<pre><code>## 2020-03-19 15:15:58, ... appending result to the output ffdf</code></pre>
+<pre><code>## 2020-03-26 10:29:14, calculating split sizes</code></pre>
+<pre><code>## 2020-03-26 10:29:14, building up split locations</code></pre>
+<pre><code>## 2020-03-26 10:29:15, working on split 1/2, extracting data in RAM of 1 split elements, totalling, 0.08732 GB, while max specified data specified using BATCHBYTES is 0.09313 GB</code></pre>
+<pre><code>## 2020-03-26 10:29:15, ... applying FUN to selected data</code></pre>
+<pre><code>## 2020-03-26 10:29:15, ... appending result to the output ffdf</code></pre>
+<pre><code>## 2020-03-26 10:29:15, working on split 2/2, extracting data in RAM of 3 split elements, totalling, 0.02444 GB, while max specified data specified using BATCHBYTES is 0.09313 GB</code></pre>
+<pre><code>## 2020-03-26 10:29:15, ... applying FUN to selected data</code></pre>
+<pre><code>## 2020-03-26 10:29:15, ... appending result to the output ffdf</code></pre>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="co"># show result as data frame</span></a>
 <a class="sourceLine" id="cb28-2" data-line-number="2"><span class="kw">as.data.frame</span>(tip_pcategory)</a></code></pre></div>
 <pre><code>##   payment_type percent_tip.mean
