@@ -20,10 +20,65 @@ library(knitr)
 
 # Updates
 
+## Status
+
+ 1. Introduction: Big Data, Data Economy. Walkowiak (2016): Chapter 1.
+ 2. Computation and Memory in Applied Econometrics.
+ 3. Computation and Memory in Applied Econometrics II.*
+ 4. Advanced R Programming. Wickham (2019): Chapters 2, 3, 17,23, 24.
+ 5. Import, Cleaning and Transformation of Big Data. Walkowiak (2016): Chapter 3: p. 74‑118.
+ 6. Aggregation and Visualization. Walkowiak (2016): Chapter 3: p. 118‑127; Wickham et al.(2015); Schwabish (2014).
+ 7. *Data Visualization Part II & Data Storage, Databases Interaction with R. Walkowiak (2016): Chapter 5.
+ 8. Cloud Computing: Introduction/Overview, Distributed Systems, Walkowiak (2016): Chapter 4.*
+ 9. Applied Econometrics with Spark; Machine Learning and GPUs.
+ 10. Q&A (7 May, 2020).
+ 11. Q&A, Feedback. (14 May, 2020; Hand-in voice-over-slides presentations)
+
+# Recap Week 6
+
+## Setting
+
+- Data source: NYC Taxi & Limousine Commission (TLC)
+- Data on all trip records including pick-up and drop-off times/locations.
+     - (2009-2018)
+     - Trip-level observations
+     - Amount of fare paid
+     - Amount of tip paid, etc.
+- All raw data: over 200GB 
+     - *Here: First 1 million observations (in January 2009)*
+
+## Data aggregation: The 'split-apply-combine' strategy
+
+- Background: Compute a statistic for specific groups (e.g. women vs men,  etc.)
+
+1. Split the data into subsamples (e.g. one for women, one for men)
+2. Compute the statistic for each of the subsamples.
+3. Combine all results in one table.
+
+
+## Tow approaches discussed
+
+- Data aggregation with chunked data files (`ff`)
+- High-speed in-memory data aggregation with `data.table`
+
+
+<!-- ## Necessary condition for `data.table` -->
+
+<!-- - Data still fit into RAM -->
+<!-- - Possible with our subsample of 1 million rows (on most modern computers). -->
+<!-- - Unlikely to work well with the full data set (200GB) -->
+
+
+## Visualization: Grammar of Graphics/`ggplot2`
+
+```{r ggplot, echo=FALSE, out.width = "80%", fig.align='center', purl=FALSE}
+include_graphics("../img/taxiplot.png")
+```
+
+
 
 
 # Data Visualization Part II
-
 
 
 ```{r warning=FALSE, echo=FALSE, message=FALSE}
