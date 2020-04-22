@@ -1,0 +1,601 @@
+---
+title: "Big Data Analytics"
+subtitle: 'Lecture 9: Applied Econometrics with Spark; Machine Learning and GPUs'
+author: |
+     | Prof. Dr. Ulrich Matter
+     | (University of St. Gallen)
+date: "30/04/2020"
+output:
+  html_document:
+    highlight: tango
+    theme: cerulean
+    mathjax: "http://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"
+  pdf_document:
+    pandoc_args:
+    - --filter
+    - ../../code/math.py
+header-includes:
+- \usepackage[T1]{fontenc}
+- \usepackage{hyperref}
+css: ../../style/notes_hsg.css
+bibliography: ../references/bigdata.bib
+---
+
+
+```{r set-options, echo=FALSE, cache=FALSE, purl=FALSE}
+options(width = 100)
+library(knitr)
+library(bookdown)
+knitr::opts_chunk$set(fig.pos = 'htb!')
+
+```
+
+
+
+# Applied Econometrics with Apache Spark
+
+<!-- TODO: -->
+<!-- - cover http://localhost:4040 briefly -->
+<!-- - cover more of sparklyr -->
+
+## Spark basics
+
+Building on the MapReduce model discussed in the previous lecture, [Apache Spark](https://spark.apache.org/) is a cluster computing platform particularly made for data analytics. From the technical perspective (in very simple terms), Spark improves some shortcomings of the older [Hadoop](https://hadoop.apache.org/) platform, further improving efficiency/speed. More importantly for our purposes, in contrast to Hadoop, Spark is specifically made for analytics tasks and therefore more easily accessible for people with an applied econometrics background but no substantial knowledge in MapReduce cluster computing. In particular, it comes with several high-level operators that make it rather easy to implement analytics tasks. Moreover (in contrast to basic Hadoop), its very easy to use interactively from R, Python, Scala, and SQL. This makes the platform much more accessible and worth the while for empirical economic research, even for relatively simple econometric analyses. 
+
+The following figure illustrates the basic components of Spark. The main functionality, including memory management, task scheduling, and the implementation of Spark's capabilities to handle and manipulate data distributed across many nodes in parallel. Several built-in libraries extend the core implementation, covering specific domains of practical data analytics tasks (querying structured data via SQL, processing streams of data, machine learning, and network/graph analysis). The latter two provide various common functions/algorithms frequently used in data analytics/applied econometrics, such as generalized linear regression, summary statistics, and principal component analysis.
+
+```{r sparkstack, echo=FALSE, out.width = "60%", fig.align='center', fig.cap= "(ref:sparkstack)", purl=FALSE}
+include_graphics("https://spark.apache.org/images/spark-stack.png")
+```
+
+(ref:sparkstack) Basic Spark stack (source: https://spark.apache.org/images/spark-stack.png)
+
+At the heart of big data analytics with Spark is the fundamental data structure called 'resilient distributed dataset' (RDD). When loading/importing data into Spark, the data is automatically distributed across the cluster in RDDs (~ as distributed collections of elements) and manipulations are then executed in parallel in these RDDs. However, the entire Spark framework also works locally on a simple laptop or desktop computer. This is of great advantage when learning Spark and testing/debugging an analytics script on a small sample of the real dataset. 
+
+
+## Spark in R 
+
+There are two prominent packages to use Spark in connection to R: `SparkR` and RStudio's `sparklyr`, the former is in some ways closer to Spark's Python API, the latter is closer to the `dplyr`-type of data handling (and is 'compatible' with the '`tidyverse`').^[See [this blog post](https://cosminsanda.com/posts/a-compelling-case-for-sparkr/) for a more detailed comparison and discussion of advantages of either package.] For the very simple introductory examples below, either package could have been used equally well. For the general introduction we focus on `SparkR` and later have a look at a simple regression example based on `sparklyr`.
+
+To install and use Spark from the R shell, only a few preparatory steps are needed. The following examples are based on installing/running Spark on a Linux machine with  the `SparkR` package. `SparkR` depends on Java (version 8). Thus, we first should make sure the right Java version is installed. If several Java versions are installed, we might have to select version 8 manually via the following terminal command (Linux). 
+
+<!-- <!-- in Mac OS (after doing this: https://stackoverflow.com/questions/21964709/how-to-set-or-change-the-default-java-jdk-version-on-os-x) -->
+<!-- ```{bash eval = FALSE} -->
+<!-- cd  -->
+<!-- source .bash_profile -->
+<!-- j8 -->
+<!-- ``` -->
+
+<!-- ```{r} -->
+<!-- system("cd -->
+<!--        source .bash_profile -->
+<!--        j8") -->
+
+<!-- ``` -->
+
+
+```{bash echo=FALSE, eval=FALSE}
+# might have to switch to java version 8 first
+sudo update-alternatives --config java 
+```
+
+With the right version of Java running, we can install `SparkR` as usual with `install.packages("SparkR")`. After installing `SparkR`, the call `SparkR::install.spark()` will download and install Apache Spark to a local directory. No we can start an interactive Spark session from within R.
+
+```{r warning=FALSE, message=FALSE}
+# install.packages("SparkR")
+
+# load packages
+library(SparkR)
+
+# start session
+sparkR.session()
+
+```
+
+By default this starts a local standalone session (no connection to a cluster computer needed). While the examples below are all intended to run on a local machine, it is straightforward to connect to a remote Spark cluster and run the same examples there.^[Simply set the `master` argument of `sparkR.session()` to the URL of the Spark master node of the remote cluster. Importantly, the local Spark and Hadoop versions should match the corresponding versions on the remote cluster.]
+
+### Data import and summary statistics
+
+First, we want to have a brief look at how to perform the first few steps of a typical econometric analysis: import data and compute summary statistics. We analyze the already familiar `flights.csv` dataset. The basic Spark installation provides direct support to import common data formats such as CSV and JSON  via the `read.df()` function (for many additional formats, specific Spark libraries are available). To import`flights.csv`, we set the `source`-argument to `"csv"̀.
+
+```{r}
+
+# Import data and create a SparkDataFrame (a distributed collection of data, RDD)
+flights <- read.df(path="../data/flights.csv", source = "csv", header="true")
+
+
+# inspect the object
+str(flights)
+head(flights)
+
+```
+
+By default, all variables have been imported as type `character`. For several variables this is, of course, not the optimal data type to compute summary statistics. We thus first have to convert some columns to other data types with the `cast` function.
+
+```{r}
+flights$dep_delay <- cast(flights$dep_delay, "double")
+flights$dep_time <- cast(flights$dep_time, "double")
+flights$arr_time <- cast(flights$arr_time, "double")
+flights$arr_delay <- cast(flights$arr_delay, "double")
+flights$air_time <- cast(flights$air_time, "double")
+flights$distance <- cast(flights$distance, "double")
+```
+
+
+Suppose we only want to compute average  arrival delays per carrier for flights with a distance over 1000 miles. Variable selection and filtering of observations is implemented in `select()` and `filter()` (as in the `dplyr` package). 
+
+
+```{r}
+# filter
+long_flights <- select(flights, "carrier", "year", "arr_delay", "distance")
+long_flights <- filter(long_flights, long_flights$distance >= 1000)
+head(long_flights)
+```
+
+Now we summarize the arrival delays for the subset of long flights by carrier. This is the 'split-apply-combine' approach applied in `SparkR`.
+
+```{r}
+# aggregation: mean delay per carrier
+long_flights_delays<- summarize(groupBy(long_flights, long_flights$carrier),
+                      avg_delay = mean(long_flights$arr_delay))
+head(long_flights_delays)
+```
+
+Finally, we want to convert the result back into a usual `data.frame` (loaded in our current R session) in order to further process the summary statistics (output to LaTex table, plot, etc.). Note that as in the previous aggregation exercises with the `ff` package, the computed summary statistics (in the form of a table/df) are obviously much smaller than the raw data. However, note that converting a `SparkDataFrame` back into a native R object generally means all the data stored in the RDDs constituting the `SparkDataFrame` object are loaded into local RAM. Hence, when working with actual big data on a Spark cluster, this type of operation can quickly overflow local RAM.
+
+
+
+```{r}
+# Convert result back into native R object
+delays <- collect(long_flights_delays)
+class(delays)
+delays
+```
+
+
+### Regression analysis
+
+Suppose we want to conduct a correlation study of what factors are associated with more or less arrival delay. Spark provides via its built-in 'MLib' library several high-level functions to conduct regression analyses. When calling these functions via `SparkR` their usage is actually very similar to the usual R packages/functions commonly used to run regressions in R. 
+
+As a simple point of reference, we first estimate a linear model with the usual R approach (all computed in the R environment). First, we load the data as a common `data.table`. We could also convert a copy of the entire `SparkDataFrame` object to a `data.frame` or `data.table` and get essentially the same outcome. However, collecting the data from the RDD structure would take much longer than parsing the csv with `fread`. In addition, we only import the first 300 rows. Running regression analysis with relatively large datasets in Spark on a small local machine might fail or be rather slow.^[Again, it is important to keep in mind that running Spark on a small local machine is only optimal for learning and testing code (based on relatively small samples). The whole framework is not optimized to be run on a small machine but for cluster computers.]
+
+```{r warning=FALSE, message=FALSE}
+# flights_r <- collect(flights) # very slow!
+flights_r <- data.table::fread("../data/flights.csv", nrows = 300) 
+```
+
+Now we run a simple linear regression (OLS) and show the summary output.
+
+```{r}
+# specify the linear model
+model1 <- arr_delay ~ dep_delay + distance
+# fit the model with ols
+fit1 <- lm(model1, flights_r)
+# compute t-tests etc.
+summary(fit1)
+```
+
+Now we aim to compute essentially the same model estimate in `SparkR`. Note that most regression models commonly used in traditional applied econometrics are accessible via `SparkR::glm()`. 
+
+```{r message=FALSE, warning=FALSE}
+# create SparkDataFrame
+flights2 <- createDataFrame(flights_r)
+# fit the model
+fit1_spark <- spark.glm( formula = model1, data = flights2 , family="gaussian")
+# compute t-tests etc.
+summary(fit1_spark)
+
+```
+
+
+Alternative with `sparklyr`:
+
+```{r message=FALSE, warning=FALSE}
+library(sparklyr)
+
+# connect with default configuration
+sc <- spark_connect(master = "local", 
+                    version = "2.4.5")
+
+# load data to spark
+flights3 <- copy_to(sc, flights_r, "flights3")
+
+# fit the model
+fit2_spark <- ml_linear_regression(flights3, formula = model1)
+# compute t-tests etc.
+summary(fit2_spark)
+```
+
+
+
+
+
+# GPUs for Scientific Computing
+
+The success of the computer games industry in the late 1990s/early 2000s led to an interesting positive externality for scientific computing. The ever more demanding graphics of modern computer games and the huge economic success of the computer games industry set incentives for hardware producers to invest in research and development of more powerful 'graphic cards', extending a normal PC/computing environment with additional computing power solely dedicated to graphics. At the heart of these graphic cards are so-called GPUs (Graphic Processing Units), microprocessors specifically optimized for graphics processing. The image below depicts a modern graphics card with NVIDIA GPUs, which is quite common in today's 'gaming' PCs. 
+
+
+```{r nvidiagpu, echo=FALSE, out.width = "60%", fig.align='center', purl=FALSE}
+include_graphics("../img/nvidia_geeforce.png")
+```
+
+
+Why did the hardware industry not simply invest in the development of more powerful CPUs to deal with the more demanding PC games? The main reason is that the architecture of CPUs is designed not only for efficiency but also flexibility. That is, a CPU needs to perform well in all kind of computations, some parallel, some sequential, etc. Computing graphics is a comparatively narrow domain of computation and desining a processing unit architecture that is custom-made to excell just at this one task is thus much more cost efficient. Interestingly, this graphics-specific architecture  (specialized on highly parallel numerical [floating point] workloads) turns out to be also very usefull in some core scientific computing tasks. In particular, matrix multiplications (see @fatahalian_etal2004 for a detailed discussion of why that is the case). A key aspect of GPUs is that they are composed of several multiprocessor units, of which each has in turn several cores. GPUS thus can perform computations with hundreds or even thousands of threads in parallel. The figure below illustrates this point.
+
+
+```{r nvidia_architecture, echo=FALSE, out.width = "60%", fig.align='center', fig.cap= "(ref:nvidiaarchitecture)", purl=FALSE}
+include_graphics("../img/nvidia_gpu.png")
+```
+
+(ref:nvidiaarchitecture) Typical NVIDIA GPU architecture (illustration and notes by @hernandez_etal2013): The GPU is comprised of a set of Streaming MultiProcessors (SM). Each SM is comprised of several Stream Processor (SP) cores, as shown for the NVIDIA’s Fermi architecture (a). The GPU resources are controlled by the programmer through the CUDA programming model, shown in (b).
+
+While, intially, programming GPUs for scientific computing required a very good understanding of the hardware. Graphics card producers have realized that there is an additional market for their products (in particular with the recent rise of deep learning), and provide several high-level APIs to use GPUs for other tasks than graphics processing. Over the last few years more  high-level software has been developed, which makes it much easier to use GPUs in parallel computing tasks. The following subsections shows some examples of such software in the R environment.^[Note that while these examples are easy to implement and run, setting up a GPU for scientific computing still can involve many steps and some knowledge of your computer's system. The examples presuppose that all installation and configuration steps (GPU drivers, CUDA, etc.) have already been completed successfully.]
+
+
+
+
+## GPUs in R
+
+<!-- ## Installation -->
+
+<!-- This is for pop OS machines. Install drivers etc. for NVIDIA card -->
+<!-- ```{bash eval=FALSE} -->
+<!-- # sudo apt install tensorflow-cuda-latest -->
+<!-- ``` -->
+
+<!-- Install OpenCL -->
+
+<!-- ```{bash eval=FALSE} -->
+<!-- # sudo apt install tensorflow-cuda-latest -->
+<!-- ``` -->
+
+
+<!-- Install `gpuR` in R (`install.packages("gpuR")`). -->
+
+
+## Example I: Matrix multiplication comparison (`gpuR`)
+
+The `gpuR` package provides basic R functions to compute with GPUs from  within the R environmnent. In the following example we compare the performance of the CPU with the GPU based on a matrix multiplication exercise. For a large $N\times P$ matrix $X$, we want to compute $X^tX$.
+
+
+In a first step, we load the `gpuR`-package.^[As with the setting up of GPUs on your machine in general, installing all prerequisites to make `gpuR` work on your local machine can be a bit of work and can depend a lot on your system.] Note the output to the console. It shows the type of GPU  identified by `gpuR`. This is the platform on which `gpuR` will compute the GPU examples. In order to compare the performances, we also load the `bench` package used in previous lectures.
+
+```{r  warning=FALSE, message=FALSE }
+# load package
+library(bench)
+library(gpuR)
+
+```
+
+
+Next, we initiate a large matrix filled with pseudo random numbers, representing a dataset with $N$ observations and $P$ variables.
+
+```{r}
+# initiate dataset with pseudo random numbers
+N <- 10000  # number of observations
+P <- 100 # number of variables
+X <- matrix(rnorm(N * P, 0, 1), nrow = N, ncol =P)
+
+```
+
+For the GPU examples to work, we need one more preparatory step. GPUs have their own memory, which they can access faster than they can access RAM. However, this GPU memory is typically not very large compared to the memory CPUs have access to. Hence, there is a potential trade-off between losing some efficiency but working with more data or vice versa.^[If we instruct the GPU to use the own memory, but the data does not fit in it, the program will result in an error.] Here, we show both variants. With `gpuMatrix()` we create an object representing matrix `X` for computation on the GPU. However, this only points the GPU to the matrix and does not actually transfer data to the GPU's memory. The latter is done in the other variant with `vclMatrix()`.
+
+```{r}
+# prepare GPU-specific objects/settings
+gpuX <- gpuMatrix(X, type = "float")  # point GPU to matrix (matrix stored in non-GPU memory)
+vclX <- vclMatrix(X, type = "float")  # transfer matrix to GPU (matrix stored in GPU memory)
+```
+
+
+Now we run the three examples: first, based on standard R, using the CPU. Then, computing on the GPU but using CPU memory. And finally, computing on the GPU and using GPU memory. In order to make the comparison fair, we force `bench::mark()` to run at least 20 iterations per benchmarked variant.
+
+```{r}
+# compare three approaches
+(gpu_cpu <- bench::mark(
+  
+  # compute with CPU 
+  cpu <- t(X) %*% X,
+  
+  # GPU version, GPU pointer to CPU memory (gpuMatrix is simply a pointer)
+  gpu1_pointer <- t(gpuX) %*% gpuX,
+  
+  # GPU version, in GPU memory (vclMatrix formation is a memory transfer)
+  gpu2_memory <- t(vclX) %*% vclX,
+ 
+check = FALSE, min_iterations = 20))
+```
+
+The performance comparison is visualized with boxplots.
+
+```{r}
+plot(gpu_cpu, type = "boxplot")
+```
+
+
+
+<!-- ## Example II: Basic statistics (`Rth`) -->
+
+<!-- Install package  -->
+<!-- - needs cuda and thrust (in latest cuda versions included). -->
+<!-- - gcc version 8 or younger (use ` sudo update-alternatives --config gcc` to switch to version 8 if necessary). -->
+<!-- - point directly to thrust when installing -->
+<!--  STILL DOES NOT WORK -->
+<!-- ```{r} -->
+<!-- devtools::install_github("matloff/Rth", configure.args = "--with-thrust-home=/usr/lib/cuda-10.2/targets/x86_64-linux/include/thrust/ --with-backend=CUDA") -->
+<!-- ``` -->
+
+
+
+<!-- Load package -->
+<!-- ```{r} -->
+<!-- # load packages -->
+<!-- library(Rth) -->
+<!-- ``` -->
+
+<!-- Compute histogram and correlation of a 100 million row dataset. -->
+
+<!-- Create the dataset (based on pseudo random numbers) -->
+<!-- ```{r} -->
+<!-- # set fix vars -->
+<!-- N <- 100000000 # number of observations -->
+<!-- P <- 2 # number of variables -->
+
+<!-- # draw random dataset -->
+<!-- randat <- matrix(runif(N*P), ncol = P) -->
+
+<!-- ``` -->
+
+
+<!-- Compute histogram of first var -->
+<!-- ```{r} -->
+<!-- var1 <- randat[,1] -->
+<!-- rthhist("var1") -->
+<!-- Rth::rthhist("var1") -->
+<!-- ``` -->
+
+
+
+<!-- Micro benchmarking of correlation computation -->
+
+
+
+<!-- # Extended Example: OLS -->
+<!-- Here, the CPU is faster! -->
+
+<!-- ```{r} -->
+
+<!-- # Example taken from https://www.arc.vt.edu/wp-content/uploads/2017/04/GPU_R_Workshop_2017_slidy.html#13 -->
+
+<!-- set.seed(123456) -->
+<!-- np <- 40  #number of predictors -->
+<!-- nr <- 1e+05  #number of observations -->
+<!-- X <- cbind(5, 1:nr, matrix(rnorm((np - 1) * nr, 0, 0.01), nrow = nr, ncol = (np - -->
+<!--     1))) -->
+<!-- beta <- matrix(c(1, 3, runif(np - 1, 0, 0.2)), ncol = 1) -->
+<!-- y <- X %*% beta + matrix(rnorm(nr, 0, 1), nrow = nr, ncol = 1) -->
+<!-- # CPU bound version, slight optimize via crossprod but otherwise vanilla -->
+<!-- time2 <- system.time({ -->
+<!--     ms2 <- solve(crossprod(X), crossprod(X, y)) -->
+<!-- }) -->
+<!-- # GPU version, GPU pointer to CPU memory!! (gpuMatrix is simply a pointer) -->
+<!-- gpuX = gpuMatrix(X, type = "float")  #point GPU to matrix -->
+<!-- gpuy = gpuMatrix(y, type = "float") -->
+<!-- time4 <- system.time({ -->
+<!--     ms4 <- gpuR::solve(gpuR::crossprod(gpuX), gpuR::crossprod(gpuX, gpuy)) -->
+<!-- }) -->
+<!-- # GPU version, in GPU memory!! (vclMatrix formation is a memory transfer) -->
+<!-- vclX = vclMatrix(X, type = "float")  #push matrix to GPU -->
+<!-- vcly = vclMatrix(y, type = "float") -->
+<!-- time5 <- system.time({ -->
+<!--     ms5 <- gpuR::solve(gpuR::crossprod(vclX), gpuR::crossprod(vclX, vcly)) -->
+<!-- }) -->
+
+<!-- data.frame(CPU=time3[3], -->
+<!--            GPU_CPUmem=time4[3], -->
+<!--            GPU_GPUmem=time5[3]) -->
+<!-- ``` -->
+
+
+
+## GPUs and Machine Learning
+
+A most common application of GPUs for scientific computing is machine learning, in particular deep learning (machine learning based on artificial neural networks). Training deep learning models can be very computationally intense and to an important part depends on tensor (matrix) multiplications. This is also an area where you might come across highly parallelized computing based on GPUs without even noticing it, as the now commonly used software to build and train deep neural nets ([tensorflow](https://www.tensorflow.org/), and the high-level [Keras](https://keras.io/) API) can easily be run on a CPU or GPU without any further configuration/preparation (apart from the initial installation of these programs). The example below is a simple illustration of how such techniques can be used in an econometrics context.
+
+<!-- ```{r warning=FALSE, message=FALSE} -->
+
+<!-- library(keras) -->
+<!-- mnist <- dataset_mnist() -->
+<!-- x_train <- mnist$train$x -->
+<!-- y_train <- mnist$train$y -->
+<!-- x_test <- mnist$test$x -->
+<!-- y_test <- mnist$test$y -->
+
+
+<!-- # reshape -->
+<!-- x_train <- array_reshape(x_train, c(nrow(x_train), 784)) -->
+<!-- x_test <- array_reshape(x_test, c(nrow(x_test), 784)) -->
+<!-- # rescale -->
+<!-- x_train <- x_train / 255 -->
+<!-- x_test <- x_test / 255 -->
+
+
+<!-- y_train <- to_categorical(y_train, 10) -->
+<!-- y_test <- to_categorical(y_test, 10) -->
+
+
+
+<!-- model <- keras_model_sequential() -->
+<!-- model %>% -->
+<!--   layer_dense(units = 256, activation = 'relu', input_shape = c(784)) %>% -->
+<!--   layer_dropout(rate = 0.4) %>% -->
+<!--   layer_dense(units = 128, activation = 'relu') %>% -->
+<!--   layer_dropout(rate = 0.3) %>% -->
+<!--   layer_dense(units = 10, activation = 'softmax') -->
+
+
+<!-- summary(model) -->
+
+
+<!-- model %>% compile( -->
+<!--   loss = 'categorical_crossentropy', -->
+<!--   optimizer = optimizer_rmsprop(), -->
+<!--   metrics = c('accuracy') -->
+<!-- ) -->
+
+
+<!-- history <- model %>% fit( -->
+<!--   x_train, y_train, -->
+<!--   epochs = 30, batch_size = 128, -->
+<!--   validation_split = 0.2 -->
+<!-- ) -->
+
+
+<!-- plot(history) -->
+<!-- ``` -->
+
+
+###  Tensorflow/Keras example: predict housing prices
+
+In this example we train a simple sequential model with two hidden layers in order to predict the median value of owner-occupied homes (in USD 1,000) in the Boston area (data are from the 1970s). The original data and a detailed description can be found [here](https://www.cs.toronto.edu/~delve/data/boston/bostonDetail.html). The example follows closely [this keras tutorial](https://keras.rstudio.com/articles/tutorial_basic_regression.html#the-boston-housing-prices-dataset) published by RStudio. See [RStudio's keras installation guide](https://keras.rstudio.com/index.html) for how to install keras (and tensorflow) and the corresponding R package `keras`.^[This might involve the installation of additional packages and software outside the R environment.] While the purpose of the example here is to demonstrate a typical (but very simple!) usage case of GPUs in machine learning, the same code should also run on a normal machine (without using GPUs) with a default installation of keras.
+
+Apart from `keras`, we load packages to prepare the data and visualize the output. Via `dataset_boston_housing()`, we load the dataset (shipped with the keras installation) in the format preferred by the `keras` library.
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+if (Sys.info()["sysname"]=="Darwin"){ # run on mac os machine
+     
+        use_python("/Users/umatter/opt/anaconda3/bin/python") # IMPORTANT: keras/tensorflow is set up to run in this environment on this machine!
+}
+
+```
+
+
+```{r warning=FALSE}
+# load packages
+library(keras)
+library(tibble)
+library(ggplot2)
+
+
+# load data
+boston_housing <- dataset_boston_housing()
+str(boston_housing)
+```
+
+In a first step, we split the data into a training set and a test set. The latter is used to monitor the out-of-sample performance of the model fit. Testing the validity of an estimated model by looking at how it performs out-of-sample is of particular relevance when working with (deep) neural networks, as they can easily lead to over-fitting. Validity checks based on the test sample are, therefore, often an integral part of modelling with tensorflow/keras.
+
+```{r}
+# assign training and test data/labels
+c(train_data, train_labels) %<-% boston_housing$train
+c(test_data, test_labels) %<-% boston_housing$test
+
+```
+
+
+In order to better understand and interpret the dataset we add the original variable names, and convert it to a `tibble`. 
+
+```{r warning=FALSE}
+# prepare data 
+column_names <- c('CRIM', 'ZN', 'INDUS', 'CHAS', 'NOX', 'RM', 'AGE', 
+                  'DIS', 'RAD', 'TAX', 'PTRATIO', 'B', 'LSTAT')
+train_df <- as_tibble(train_data)
+colnames(train_df) <- column_names
+
+train_df
+```
+
+
+
+Next, we have a close look at the data. Note the usage of the term 'label' for what is usually called the 'dependent variable' in econometrics.^[Typical textbook examples in machine learning deal with classification (e.g. a logit model), while in microeconometrics the typical example is usually a linear model (continuous dependent variable).] As the aim of the exercise is to predict median prices of homes, the output of the model will be a continuous value ('labels').
+
+```{r}
+# check example data dimensions and content
+paste0("Training entries: ", length(train_data), ", labels: ", length(train_labels))
+summary(train_data)
+summary(train_labels) # Display first 10 entries
+```
+As the dataset contains variables ranging from per capita crime rate to indicators for highway access, the variables are obviously measured in different units and hence displayed on different scales. This is not per se a problem for the fitting procedure. However, fitting is more efficient when all features (variables) are normalized.
+
+```{r}
+# Normalize training data
+train_data <- scale(train_data) 
+
+# Use means and standard deviations from training set to normalize test set
+col_means_train <- attr(train_data, "scaled:center") 
+col_stddevs_train <- attr(train_data, "scaled:scale")
+test_data <- scale(test_data, center = col_means_train, scale = col_stddevs_train)
+
+train_data[1, ] # First training sample, normalized
+
+```
+
+
+
+We specify the model as a linear stack of layers: The input (all 13 explanatory variables), two densely connected hidden layers (each with a 64-dimensional output space), and finally the one-dimensional output layer (the 'dependent variable').
+
+
+```{r warning=FALSE, message=FALSE}
+# Create the model
+# model specification
+model <- keras_model_sequential() %>%
+  layer_dense(units = 64, activation = "relu",
+              input_shape = dim(train_data)[2]) %>%
+  layer_dense(units = 64, activation = "relu") %>%
+  layer_dense(units = 1)
+```
+
+In order to fit the model, we first have to compile it (configure it for training). At this step we set the configuration parameters that will guide the training/optimization procedure. We use the mean squared errors loss function (`mse`) typically used for regressions. We chose the [RMSProp](http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf) optimizer to find the minimum loss.
+
+```{r}
+# compile the model  
+  model %>% compile(
+    loss = "mse",
+    optimizer = optimizer_rmsprop(),
+    metrics = list("mean_absolute_error"))
+```
+
+Now we can get a summary of the model we are about to fit to the data.
+
+```{r}
+# get a summary of the model
+model
+```
+
+Given the relatively simple model and small dataset, we set the maximum number of epochs to 500 and allow for early stopping in case the validation loss (based on test data) is not improving for a while.
+
+```{r}
+
+# Set max. number of epochs
+epochs <- 500
+
+# The patience parameter is the amount of epochs to check for improvement.
+early_stop <- callback_early_stopping(monitor = "val_loss", patience = 20)
+
+```
+
+
+Finally, we fit the model while preserving the training history, and visualize the training progress.
+
+```{r warning=FALSE, message=FALSE}
+# Fit the model and store training stats
+history <- model %>% fit(
+  train_data,
+  train_labels,
+  epochs = epochs,
+  validation_split = 0.2,
+  verbose = 0,
+  callbacks = list(early_stop)
+)
+
+plot(history, metrics = "mean_absolute_error", smooth = FALSE) +
+  coord_cartesian(xlim = c(0, 100), ylim = c(0, 5))
+```
+
+
+## A word of caution
+
+From just comparing the number of threads of a modern CPU with the number of threads of a modern GPU, one might get the impression that parallel tasks should always be implemented for GPU computing. However, whether one approach or the other is faster can depend a lot on the overall task and the data at hand. Moreover, the parallel implementation of tasks can be done more or less well on either system. Really efficient parallel implementation of tasks can take a lot of coding time (particularly when done for GPUs).^[For a more detailed discussion of the relevant factors for well done parallelization (either on CPUs or GPUs), see @matloff_2015].
+
+
+
+# References

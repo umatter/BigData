@@ -1,10 +1,10 @@
 ---
 title: "Big Data Analytics"
-subtitle: 'Lecture 7: Cloud Computing'
+subtitle: 'Lecture 8: Cloud Computing, Distributed Systems'
 author: |
      | Prof. Dr. Ulrich Matter
      | (University of St. Gallen)
-date: "16/04/2020"
+date: "23/04/2020"
 output:
   html_document:
     highlight: tango
@@ -22,9 +22,18 @@ bibliography: ../references/bigdata.bib
 ---
 
 
+```{r set-options, echo=FALSE, cache=FALSE, purl=FALSE}
+options(width = 100)
+library(knitr)
+library(bookdown)
+knitr::opts_chunk$set(fig.pos = 'htb!')
+
+```
+
+
 # Cloud Services for Big Data Analytics
 
-So far we have focused on how to deal with large amounts of data and/or computationally demanding tasks on our local machine (desktop/laptop). A key aspect of this course has thus been in a first step to understand why our local machine is struggling with a data analysis task when there is a large amount of data to be processed. In a second step we have looked into practical solutions to these challenges. These solutions are in essence tools (in this course particularly tools provided in the R environment) to use the key components of our computing environment (CPU, RAM, mass storage) most efficiently:
+So far we have focused on how to deal with large amounts of data and/or computationally demanding tasks on our local machines (desktop/laptop). A key aspect of this course has thus been in a first step to understand why our local machine is struggling with a data analysis task when there is a large amount of data to be processed. In a second step we have looked into practical solutions to these challenges. These solutions are in essence tools (in this course particularly tools provided in the R environment) to use the key components of our computing environment (CPU, RAM, mass storage) most efficiently:
 
  - Computationally intense tasks (but not pushing RAM to the limit): parallelization, using several CPU cores (nodes) in parallel.
  - Memory-intense tasks (data still fits into RAM): efficient memory allocation (`data.table`-package).
@@ -45,7 +54,7 @@ In such situations, we have to think about horizontal and vertical scaling beyon
  
 For details on what some of the largest platforms provide, see the overview in the online chapter to @walkowiak_2016 ['Pushing R Further'](https://www.packtpub.com/sites/default/files/downloads/5396_6457OS_PushingRFurther.pdf).
 
-When we use such cloud services to *scale up* (vertical scaling) the computing resources, the transition from our local implementation of a data analytics task to the cloud implementation is often rather simple. Once we have set up a cloud instance and figured out how to communicate with it, we typically can even run the exact same R-script locally or in the cloud. This is typically the case for parallelized tasks (simply run the same script on a machine with more cores), in-memory tasks (rent a machine with more RAM but still use `data.table()` etc.), and working with an SQL database (simply set up the database in the cloud instead of locally).
+When we use such cloud services to *scale up* (vertical scaling) the computing resources, the transition from our local implementation of a data analytics task to the cloud implementation is often rather simple. Once we have set up a cloud instance and figured out how to communicate with it, we typically can even run the exact same R-script locally or in the cloud. This is usually the case for parallelized tasks (simply run the same script on a machine with more cores), in-memory tasks (rent a machine with more RAM but still use `data.table()` etc.), and working with an SQL database (simply set up the database in the cloud instead of locally).
 
 However, for really memory-intense tasks, the cloud provides options to *scale out* (horizontal scaling). Meaning, a task is distributed among a cluster of computing instances/servers. The implementation of such data analytics tasks is based on a  paradigm that we rather do not encounter when working locally: *Map/Reduce* (implemented in the *Hadoop* framework).
 
@@ -53,35 +62,32 @@ In the following we look first at scaling up more familiar approaches with the h
 
 # Scaling up in the Cloud
 
-In the following examples we use different cloud services provided by AWS. See the online chapter to @walkowiak_2016 ['Pushing R Further'](https://www.packtpub.com/sites/default/files/downloads/5396_6457OS_PushingRFurther.pdf) for how to set up an AWS account and the basics for how to set up AWS instances. The examples below are based on the assumption that the EC2 instance and RStudio Server have been set up exactly as explained in ['Pushing R Further'](https://www.packtpub.com/sites/default/files/downloads/5396_6457OS_PushingRFurther.pdf), pages 22-38.
+In the following examples we use different cloud services provided by AWS. See the online chapter to @walkowiak_2016 ['Pushing R Further'](https://www.packtpub.com/sites/default/files/downloads/5396_6457OS_PushingRFurther.pdf) for how to set up an AWS account and the basics for how to set up AWS instances. The examples below are based on the assumption that the EC2 instance and RStudio Server have been set up essentially as explained in ['Pushing R Further'](https://www.packtpub.com/sites/default/files/downloads/5396_6457OS_PushingRFurther.pdf), pages 22-38. However, AWS changed a few things regarding the way their linux machines are set up since the online chapter was published first. In order to install core R on your ec2 instance, use the following command in the terminal (instead of `sudo yum install R`):
+
+```{bash eval=FALSE}
+sudo amazon-linux-extras install R3.4
+```
+
+and confirm the installation of additional dependencies with `y`. In a second step, we install the latest CentOS 6-7 version of RStudio Server with the following commands.
+
+```{bash eval=FALSE}
+# April 2020
+wget https://download2.rstudio.org/server/centos6/x86_64/rstudio-server-rhel-1.2.5033-x86_64.rpm
+sudo yum install rstudio-server-rhel-1.2.5033-x86_64.rpm
+```
+
 
 
 ## Parallelization with an EC2 instance
 
-In this short tutorial we scale the computation of clustered standard errors shown in Lecture 3 up by running it on an AWS EC2 instance. Below we use the same source code as in the original example (see [`03_computation_memory.Rmd`](https://github.com/umatter/BigData/blob/master/materials/notes/03_computation_memory.Rmd)). Note that there are a few things that we need to keep in mind in order to make the script run on an AWS EC2 instance in RStudio Server. 
+This short tutorial illustrates how to scale the computation of clustered standard errors shown in Lecture 3 up by running it on an AWS EC2 instance. Below we use the same source code as in the original example (see [`03_computation_memory.Rmd`](https://github.com/umatter/BigData/blob/master/materials/notes/03_computation_memory.Rmd)). Note that there are a few things that we need to keep in mind in order to make the script run on an AWS EC2 instance in RStudio Server. 
 
-First, our EC2 instance is a Linux machine. Most of you are probably rather used to running R on a Mac or Windows PC. When running R on a Linux machine, there is an additional step to install R packages (at least for most of the packages): R packages need to be compiled before they can be installed. The command to install packages is exactly the same (`install.packages()`) and normally you only notice a slight difference in the output shown in the R console during installation (and the installation process takes a little longer than what you are used to). However, in some cases the compilation of a package fails (and thus the installation fails) because of some configuration on your Linux machine or because a lower-level program is not installed.  Currently, this is what happens when you attempt to install the `data.table` package on your EC2 instance (set up for this example). By default, you won't be able to install `data.table` right away because the EC2 instance uses a new compiler that `data.table` doesn't like. In order to resolve this issue we first have to switch to the terminal window in our current RStudio Server session and run the following two lines of code (source: https://stackoverflow.com/a/48724665):
-
-```{bash eval=FALSE}
-mkdir ~/.R
-echo "CC=gcc64" >> ~/.R/Makevars
-```
-
-This will point the R package installer to an older compiler which resolves the issue. Obviously, this is just one small example which does not generalize and might not be an issue at all in the near future (with a new `data.table` package version). However, it is a nice example of an additional step needed to make your locally (Mac/Windows) tested R-script work on a Linux machine in the cloud.
+First, our EC2 instance is a Linux machine. Most of you are probably rather used to running R on a Mac or Windows PC. When running R on a Linux machine, there is an additional step to install R packages (at least for most of the packages): R packages need to be compiled before they can be installed. The command to install packages is exactly the same (`install.packages()`) and normally you only notice a slight difference in the output shown in the R console during installation (and the installation process takes a little longer than what you are used to). Apart from that, using R via RStudio Server in the cloud looks/feels very similar if not identical as when using R/RStudio locally.
 
 Now, let's go through the bootstrap example. First, let's run the non-parallel implementation of the script. When executing the code below line-by-line, you will notice that essentially all parts of the script work exactly as on your local machine. This is one of the great advantages of running R/RStudio Server in the cloud. You can implement your entire data analysis locally (based on a small sample), test it locally, and then move it to the cloud and run it on a larger scale in exactly the same way (even with the same GUI).
 
 ```{r eval=FALSE}
 # CASE STUDY: PARALLEL ---------------------------
-
-
-# NOTE: the default EC2 AMI instance uses a newer compiler which data.table does not like, 
-# before you can install data.table, switch to the terminal in your current RStudio Server session and 
-# type the following:
-# mkdir ~/.R
-# echo "CC=gcc64" >> ~/.R/Makevars
-# this sets the default to an older C compiler. 
-# See https://stackoverflow.com/questions/48576682/r-and-data-table-on-aws for details.
 
 # install packages
 install.packages("data.table")
@@ -212,21 +218,109 @@ se_boot
 ```
 
 
-## Mass Storage: MariaDB on a EC2 instance
+## Mass Storage: MariaDB on an EC2 instance
 
-Once we have set up RStudio Server on an EC2 instance, we can run the SQLite examples demonstrated locally in Lecture 6 on it. There are no additional steps needed to install SQLite. However, when using RDBMSs in the cloud, we typically have a more sophisticated implementation than SQLite in mind. Particularly, we want to set up an actual RDBMS-server running in the cloud to which several clients can connect (via RStudio Server). The following example, based on @walkowiak_2016, guides you through the first step to set up such a database in the cloud. To keep things simple, the example sets up a database of the same data set as shown in the first SQLite example in Lecture 6, but this time with MariaDB on an EC2 instance in the cloud. For most of the installation steps you are referred to the respective pages in @walkowiak_2016 (Chapter 5: 'MariaDB with R on a Amazon EC2 instance, pages 255ff). However, since some of the steps shown in the book are outdated, the example below hints to some alternative/additional steps needed to make the database run on an Ubuntu 18.04 machine.
+Once we have set up RStudio Server on an EC2 instance, we can run the SQLite examples demonstrated locally in Lecture 7 on it. There are no additional steps needed to install SQLite. However, when using RDBMSs in the cloud, we typically have a more sophisticated implementation than SQLite in mind. Particularly, we want to set up an actual RDBMS-server running in the cloud to which several clients can connect (via RStudio Server). The following example, based on @walkowiak_2016, guides you through the first step to set up such a database in the cloud. To keep things simple, the example sets up a database of the same data set as shown in the first SQLite example in Lecture 7, but this time with MariaDB on an EC2 instance in the cloud. For most of the installation steps you are referred to the respective pages in @walkowiak_2016 (Chapter 5: 'MariaDB with R on a Amazon EC2 instance, pages 255ff). However, since some of the steps shown in the book are outdated, the example below hints to some alternative/additional steps needed to make the database run on an Ubuntu 18.04 machine.
+
+After launching the EC2 instance on AWS, use the following terminal commands to install R:
+
+```{bash eval=FALSE}
+# update ubuntu packages
+ sudo apt-get update
+ sudo apt-get upgrade
+```
+
+```{bash eval=FALSE}
+sudo apt-get install r-base
+```
+
+and to install RStudio Server (on Ubuntu 18.04, as of April 2020):
+
+```{bash eval=FALSE}
+sudo apt-get install gdebi-core
+wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.2.5033-amd64.deb
+sudo gdebi rstudio-server-1.2.5033-amd64.deb
+```
+
+Following @walkowiak_2016 (pages 257f), we first set up a new user and give it permissions to `ssh` directly to the EC2 instance (this way we can then more easily upload data 'for this user').
+
+```{bash eval=FALSE}
+# create user
+sudo adduser umatter 
+```
+
+When prompted for additional information just hit enter (for default). Now we can grant the user the permissions
+
+```{bash eval=FALSE}
+sudo cp -r /home/ubuntu/.ssh /home/umatter/
+cd /home/umatter/
+sudo chown -R umatter:umatter .ssh
+```
+
+Then install MariaDB as follows.
+
+```{bash eval= FALSE}
+sudo apt update
+sudo apt install mariadb-server
+sudo apt install libmariadbclient-dev
+sudo apt install libxml2-dev # needed later (dependency for some R packages)
+```
+
+If prompted to set a password for the root database user (user with all database priviledges), type in and confirm the chosen password.^[Below it is shown how to do this 'manually', if not promted at this step.]
+
+
 
 ### Data import
 
-We import the same simple data set `economics.csv` used in the local SQLite examples of Lecture 6. Following the Instructions of @walkowiak_2016, pages 252 to 254, we upload the `economics.csv` file (instead of the example data used in @walkowiak_2016).^[Note that in all the code examples below, the username is `umatter`, and the IP-address will have to be replaced with the public IP-address of your EC2 instance.]
+With the permissions set above, we can send data from the local machine directly to the instance via `ssh`. We use this to first transfer the raw data to the instance and then import it to the database. 
 
+The aim is to import the same simple data set `economics.csv` used in the local SQLite examples of Lecture 7. Following the instructions of @walkowiak_2016, pages 252 to 254, we upload the `economics.csv` file (instead of the example data used in @walkowiak_2016). Note that in all the code examples below, the username is `umatter`, and the IP-address will have to be replaced with the public IP-address of your EC2 instance.
+
+Open a new terminal window and send the `economics.csv` data as follows to the instance.
 
 ```{bash eval= FALSE}
 # from the directory where the key-file is stored...
 scp -r -i "mariadb_ec2.pem" ~/Desktop/economics.csv umatter@ec2-184-72-202-166.compute-1.amazonaws.com:~/
 ```
 
-After installing MariaDB and starting a new database called `data1` (following @walkowiak_2016, pages 255-259), we now create the first table of our database and import data to it. Note that we only have to slightly adjust the former SQLite syntax to make this work (remove double quotes for field names). In addition, note that we can use the same field types as in the SQLite DB.^[However, MariaDB is a much more sophisticated RDBMS than SQLite and comes with many more field types, see the official [list of supported data types](https://mariadb.com/kb/en/library/data-types/).]
+Then switch back to the terminal connected to the instance and start the MariaDB server. 
+
+```{bash eval=FALSE}
+# start the MariaDB server
+sudo service mysql start
+# log into the MariaDB client as root 
+sudo mysql -uroot 
+```
+
+If not prompted to do so when installing MariaDB (see above), add a new root user in order to login to MariaDB without the `sudo` (here we simply set the password to 'Password1'). 
+
+```{sql eval = FALSE, purl=FALSE}
+GRANT ALL PRIVILEGES on *.* to 'root'@'localhost' IDENTIFIED BY 'Password1';
+FLUSH PRIVILEGES;
+```
+
+Restart the mysql server and log in with the database root user.
+
+```{bash eval=FALSE}
+# start the MariaDB server
+sudo service mysql restart
+# log into the MariaDB client as root 
+mysql -uroot -p
+```
+
+Now we can initiate a new database called `data1`.
+
+```{sql eval = FALSE, purl=FALSE}
+CREATE database data1;
+```
+
+To work with the newly created database, we have to 'select' it.
+
+```{sql eval = FALSE, purl=FALSE}
+USE data1;
+```
+
+Then, we create the first table of our database and import data into it. Note that we only have to slightly adjust the former SQLite syntax to make this work (remove double quotes for field names). In addition, note that we can use the same field types as in the SQLite DB.^[However, MariaDB is a much more sophisticated RDBMS than SQLite and comes with many more field types, see the official [list of supported data types](https://mariadb.com/kb/en/library/data-types/).]
 
 ```{sql eval = FALSE, purl=FALSE}
 -- Create the new table
@@ -241,7 +335,7 @@ unemploy INTEGER
 
 ```
 
-After following the steps in @walkowiak_2016, pages 259-262, we can import the `economics.csv`-file to the `econ` table in MariaDB (again, assuming the username is `umatter`). Note that the syntax to import data to a table is quite different from the SQLite example in Lecture 6.
+After following the steps in @walkowiak_2016, pages 259-262, we can import the `economics.csv`-file to the `econ` table in MariaDB (again, assuming the username is `umatter`). Note that the syntax to import data to a table is quite different from the SQLite example in Lecture 7.
 
 ```{sql eval = FALSE, purl=FALSE}
 LOAD DATA LOCAL INFILE
@@ -252,32 +346,21 @@ LINES TERMINATED BY '\n'
 IGNORE 1 ROWS;
 ```
 
-Now we can start using the newly created database from within RStudio Server running on our EC2 instance (following @walkowiak_2016, pages 263ff). Note that with the current version of Ubuntu Linux running on EC2, you need to install a newer version of the MariaDB client. The following solution suggested [here](https://stackoverflow.com/a/51111074) should work.
+Now we can start using the newly created database from within RStudio Server running on our EC2 instance (following @walkowiak_2016, pages 263ff). 
 
-```{bash eval= FALSE}
-sudo apt-get install software-properties-common
-sudo apt-key adv --recv-keys --keyserver hkp://keyserver.ubuntu.com:80 0xF1656F24C74CD1D8
-sudo add-apt-repository 'deb [arch=amd64,arm64,ppc64el] http://sfo1.mirrors.digitalocean.com/mariadb/repo/10.3/ubuntu bionic main'
-sudo apt update
-sudo apt install mariadb-server
-sudo apt install mariadb-client
-sudo apt install libmariadb-dev
-sudo apt install libmariadb-dev-compat
-sudo apt-get install libmariadbclient18
-```
-
-
-As in the SQLite examples in Lecture 6, we can now query the database from within the R console (this time using `RMySQL` instead of `RSQLite`, and using R from within RStudio Server in the cloud!). 
+As in the SQLite examples in Lecture 7, we can now query the database from within the R console (this time using `RMySQL` instead of `RSQLite`, and using R from within RStudio Server in the cloud!). 
 
 First, we need to connect to the newly created MariaDB database.
 
 ```{R eval= FALSE}
+# install package
+#install.packages("RMySQL")
 # load packages
 library(RMySQL)
 
 # connect to the db
 con <- dbConnect(RMySQL::MySQL(), 
-                 user = "umatter",
+                 user = "root",
                  password = "Password1",
                  host = "localhost",
                  dbname = "data1")
@@ -337,11 +420,11 @@ head(unemp)
 
 When done working with the database, we close the connection to the MariaDB database with `dbDisconnect(con)`.
 
-# Distributed Systems/Map Reduce
+# Distributed Systems/MapReduce
 
 ## Map/Reduce Concept: Illustration in R
 
-In order to better understand the basic concept behind the MapReduce-Framework on a distributed system, let's look at how we can combine the basic functions `map()` and `reduce()` in R to implement the basic MapReduce example shown in @walkowiak_2016, Chapter 4, pages 132-134 (this is just to illustrate the underlying idea, not to suggest that MapReduce actually is just an application of the classical `map` and `reduce (fold)` functions in functional programming).^[For a more detailed discussion of what `map` and `reduce` have *actually* to do with MapReduce see [this post](https://medium.com/@jkff/mapreduce-is-not-functional-programming-39109a4ba7b2).] The overall aim of the program is to count the number of times each word is repeated in a given text. The input to the program is thus a text, the output is a list of key-value pairs with the unique words occurring in the text as keys and their respective number of occurrences as values.
+In order to better understand the basic concept behind the MapReduce-Framework on a distributed system, let's look at how we can combine the basic functions `map()` and `reduce()` in R to implement the basic MapReduce example shown in @walkowiak_2016, Chapter 4, pages 132-134 (this is just to illustrate the underlying idea, *not* to suggest that MapReduce actually is simply an application of the classical `map` and `reduce (fold)` functions in functional programming).^[For a more detailed discussion of what `map` and `reduce` have *actually* to do with MapReduce see [this post](https://medium.com/@jkff/mapreduce-is-not-functional-programming-39109a4ba7b2).] The overall aim of the program is to count the number of times each word is repeated in a given text. The input to the program is thus a text, the output is a list of key-value pairs with the unique words occurring in the text as keys and their respective number of occurrences as values.
 
 In the code example, we will use the following text as input.
 
@@ -404,7 +487,7 @@ shuffled <- lapply(keys,
 shuffled
 ```
 
-Now we can sum up the keys in order to the the word count for the entire input.
+Now we can sum up the keys in order to get the word count for the entire input.
 
 ```{r}
 sums <- sapply(shuffled, sum)
@@ -435,60 +518,151 @@ reduced
 
 
 
-## Notes on Deploying Hortonworks Sandbox on Azure
+# Hadoop Word Count
 
-The instructions in @walkowiak_2016 Chapter 4, pages 138ff are partly outdated. You will notice that the screenshots do not anymore correspond with the current Azure layout. The Hortonworks tutorial ['Deploying Hortonworks Sandbox on Microsoft Azure'](https://hortonworks.com/tutorial/sandbox-deployment-and-install-guide/section/4/#creating-the-sandbox) is more up to date.^[For a short description of how to set up Hortonworks Sandbox on AWS, see [here](https://community.hortonworks.com/articles/103754/hdp-sandbox-on-aws-1.html).] The layout of Microsoft Azure's dashboard has slightly changed. The settings are essentially the same but might occur an a different order than what you see in the Hortonworks tutorial. There are also small changes in the default settings. You might have to add an additional inbound rule in the 'Networking' settings (either when setting up the virtual machine or after starting it) that allows ssh (port 22) and HTTP (port 80) inbound traffic.
+Example adapted from [this tutorial](https://www.digitalocean.com/community/tutorials/how-to-install-hadoop-in-stand-alone-mode-on-ubuntu-18-04#step-2-%E2%80%94-installing-hadoop) by Melissa Anderson and Hanif Jetha.
 
-Once you've gone through all the steps in the ['Deploying Hortonworks Sandbox on Microsoft Azure'](https://hortonworks.com/tutorial/sandbox-deployment-and-install-guide/section/4/#creating-the-sandbox) tutorial, open a terminal window and connect to the virtual machine as suggested in the tutorial:
 
-```{bash eval=FALSE}
-ssh azureSandbox
-```
-
-Open another terminal window and run the following command to connect with the hadoop sandbox. You will be asked for the password. The default password is `hadoop`. After entering the password you will be prompted to change the password (`Changing password for root. (current) UNIX password:`). In order to change it you have to re-enter the current password (`hadoop`) and then enter your new password for root.
+## Install Hadoop (on Linux)
 
 ```{bash eval=FALSE}
-ssh root@localhost -p 2222 
-```
+# download binary
+wget https://downloads.apache.org/hadoop/common/hadoop-2.10.0/hadoop-2.10.0.tar.gz
+# download checksum
+wget https://www.apache.org/dist/hadoop/common/hadoop-2.10.0/hadoop-2.10.0.tar.gz.sha512
+
+# run the verification
+shasum -a 512 hadoop-2.10.0.tar.gz
+# compare with value in mds file
+cat hadoop-2.10.0.tar.gz.sha512
+
+# if all is fine, unpack
+tar -xzvf hadoop-2.10.0.tar.gz
+# move to proper place
+sudo mv hadoop-2.10.0 /usr/local/hadoop
 
 
-## Notes on working with Hortonworks Sandbox/Hadoop on Azure
-*(@walkowiak_2016: A word count example in Hadoop using Java)*
+# then point to this version from hadoop
+# open the file /usr/local/hadoop/etc/hadoop/hadoop-env.sh
+# in a text editor and add (where export JAVA_HOME=...)
+export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
 
-Now everything should be set up and running and you can continue with the tutorial in @walkowiak_2016, pages 152 (unlike in the example in the book, the prompt will read `[root@sandbox-hdp ~]`) with the line `hadoop version`. If you do not want to go through the tutorial as `root`, you can add a user as follows (replacing `<username>` with a user name of your choice).
-
-```{bash eval=FALSE}
-useradd <username>
-passwd <username>
-```
-
-Note that you will have to grant the user additional rights for some of the commands in the book's tutorial. Follow [these instructions](https://superuser.com/a/120342) to do so.
-
-In the following I use the user name `umatter` (with `sudo` permission). In order to connect to the sandbox with the new user, open a new terminal window and type the following command.
-
-```{bash eval=FALSE}
-ssh umatter@localhost -p 2222
-```
-
-
-To transfer the data set as instructed on page 160 in @walkowiak_2016, use the following command in a new Terminal
-
-```{bash eval=FALSE}
-scp -P 2222 -r ~/Desktop/twain_data.txt umatter@localhost:~/data
+# clean up
+rm hadoop-2.10.0.tar.gz
+rm hadoop-2.10.0.tar.gz.sha512
 ```
 
 
-Similarly, for uploading the Java classes as instructed on page 162:
+## Run Hadoop
 
 ```{bash eval=FALSE}
- scp -P 2222 -r ~/Desktop/wordcount umatter@localhost:~/wordcount
+# check installation
+/usr/local/hadoop/bin/hadoop
 ```
 
-And finally to download the final output of the word count exercise:
+## Run example
+
+The basic Hadoop installation comes with a few examples for very typical map/reduce programs.^[More sophisticated programs need to be custom made, written in Java.] Below we replicate the same word-count example as shown in simple R code above. 
+
+In a first step, we create an input directory where we store the input file(s) to feed to Hadoop.
 
 ```{bash eval=FALSE}
-scp -P 2222 -r umatter@localhost:~/wordcount/wordcount.txt ~/Desktop/wordcount_final.txt
+# create directory for input files (typically text files)
+mkdir ~/input
 ```
+
+Then we add a textfile containing the same text as in the example as above (to make things simpler, we already remove special characters).
+
+```{bash eval=FALSE}
+echo "Simon is a friend of Becky
+Becky is a friend of Ann
+Ann is not a friend of Simon" >>  ~/input/text.txt
+
+```
+
+Now we can run the MapReduce/Hadoop word count as follows, storing the results in a new directory called `wordcount_example`.
+
+```{bash eval=FALSE}
+# run mapreduce word count
+/usr/local/hadoop/bin/hadoop jar /usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.10.0.jar wordcount ~/input ~/wc_example
+```
+
+
+Show the output:
+
+```{bash }
+cat ~/wc_example/*
+```
+
+
+<!-- Next, we can use the following command to run the MapReduce hadoop-mapreduce-examples program, a Java archive with several options. We’ll invoke its grep program, one of the many examples included in hadoop-mapreduce-examples, followed by the input directory, input and the output directory grep_example. The MapReduce grep program will count the matches of a literal word or regular expression. Finally, we’ll supply the regular expression allowed[.]* to find occurrences of the word allowed within or at the end of a declarative sentence. The expression is case-sensitive, so we wouldn’t find the word if it were capitalized at the beginning of a sentence: -->
+
+<!-- ```{bash} -->
+<!-- # create directory for input files (typically text files) -->
+<!-- mkdir ~/input -->
+<!-- # copy example data to input directory -->
+<!-- cp /usr/local/hadoop/etc/hadoop/*.xml ~/input -->
+<!-- # run mapreduce grep  -->
+<!-- # to find occurrences of the word 'allowed' (witin or at the end of a sentence) -->
+<!-- /usr/local/hadoop/bin/hadoop jar /usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.10.0.jar grep ~/input ~/grep_example 'allowed[.]*' -->
+<!-- ``` -->
+
+
+
+<!-- ## Notes on Deploying Hortonworks Sandbox on Azure -->
+
+<!-- The instructions in @walkowiak_2016 Chapter 4, pages 138ff are partly outdated. You will notice that the screenshots do not anymore correspond with the current Azure layout. The Hortonworks tutorial ['Deploying Hortonworks Sandbox on Microsoft Azure'](https://hortonworks.com/tutorial/sandbox-deployment-and-install-guide/section/4/#creating-the-sandbox) is more up to date.^[For a short description of how to set up Hortonworks Sandbox on AWS, see [here](https://community.hortonworks.com/articles/103754/hdp-sandbox-on-aws-1.html).] The layout of Microsoft Azure's dashboard has slightly changed. The settings are essentially the same but might occur an a different order than what you see in the Hortonworks tutorial. There are also small changes in the default settings. You might have to add an additional inbound rule in the 'Networking' settings (either when setting up the virtual machine or after starting it) that allows ssh (port 22) and HTTP (port 80) inbound traffic. -->
+
+<!-- Once you've gone through all the steps in the ['Deploying Hortonworks Sandbox on Microsoft Azure'](https://hortonworks.com/tutorial/sandbox-deployment-and-install-guide/section/4/#creating-the-sandbox) tutorial, open a terminal window and connect to the virtual machine as suggested in the tutorial: -->
+
+<!-- ```{bash eval=FALSE} -->
+<!-- ssh azureSandbox -->
+<!-- ``` -->
+
+<!-- Open another terminal window and run the following command to connect with the hadoop sandbox. You will be asked for the password. The default password is `hadoop`. After entering the password you will be prompted to change the password (`Changing password for root. (current) UNIX password:`). In order to change it you have to re-enter the current password (`hadoop`) and then enter your new password for root. -->
+
+<!-- ```{bash eval=FALSE} -->
+<!-- ssh root@localhost -p 2222  -->
+<!-- ``` -->
+
+
+<!-- ## Notes on working with Hortonworks Sandbox/Hadoop on Azure -->
+<!-- *(@walkowiak_2016: A word count example in Hadoop using Java)* -->
+
+<!-- Now everything should be set up and running and you can continue with the tutorial in @walkowiak_2016, pages 152 (unlike in the example in the book, the prompt will read `[root@sandbox-hdp ~]`) with the line `hadoop version`. If you do not want to go through the tutorial as `root`, you can add a user as follows (replacing `<username>` with a user name of your choice). -->
+
+<!-- ```{bash eval=FALSE} -->
+<!-- useradd <username> -->
+<!-- passwd <username> -->
+<!-- ``` -->
+
+<!-- Note that you will have to grant the user additional rights for some of the commands in the book's tutorial. Follow [these instructions](https://superuser.com/a/120342) to do so. -->
+
+<!-- In the following I use the user name `umatter` (with `sudo` permission). In order to connect to the sandbox with the new user, open a new terminal window and type the following command. -->
+
+<!-- ```{bash eval=FALSE} -->
+<!-- ssh umatter@localhost -p 2222 -->
+<!-- ``` -->
+
+
+<!-- To transfer the data set as instructed on page 160 in @walkowiak_2016, use the following command in a new Terminal -->
+
+<!-- ```{bash eval=FALSE} -->
+<!-- scp -P 2222 -r ~/Desktop/twain_data.txt umatter@localhost:~/data -->
+<!-- ``` -->
+
+
+<!-- Similarly, for uploading the Java classes as instructed on page 162: -->
+
+<!-- ```{bash eval=FALSE} -->
+<!--  scp -P 2222 -r ~/Desktop/wordcount umatter@localhost:~/wordcount -->
+<!-- ``` -->
+
+<!-- And finally to download the final output of the word count exercise: -->
+
+<!-- ```{bash eval=FALSE} -->
+<!-- scp -P 2222 -r umatter@localhost:~/wordcount/wordcount.txt ~/Desktop/wordcount_final.txt -->
+<!-- ``` -->
 
 
 

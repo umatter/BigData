@@ -1,8 +1,8 @@
 ---
 title: "Big Data Analytics"
-subtitle: 'Lecture 7:<br>Cloud Computing'
+subtitle: 'Lecture 8:<br>Cloud Computing: Introduction/Overview, Distributed Systems'
 author: "Prof. Dr. Ulrich Matter"
-date: "16/04/2020"
+date: "23/04/2020"
 output:
   ioslides_presentation:
     css: ../../style/ioslides.css
@@ -22,14 +22,17 @@ library(knitr)
 
 ## Schedule {.smaller}
 
- 1. Introduction: Big Data, Data Economy (Concepts). M: Walkowiak (2016): Chapter 1
- 2. Programming with Data, R Refresher Course (Concepts/Applied). M: Walkowiak (2016): Chapter 2
- 3. Computation and Memory (Concepts)
- 4. Cleaning and Transformation of Big Data (Applied). M: Walkowiak (2016): Chapter 3: p. 74‐118.
- 5. Aggregation and Visualization (Applied: data tables, ggplot). M: Walkowiak (2016): Chapter 3: p. 118‐127. C: Wickham et al. (2015), Schwabish (2014).
- 6. Data Storage, Databases Interaction with R. M: Walkowiak (2016): Chapter 5.
- 7. *Distributed Systems, MapReduce/Hadoop with R (Concepts/Applied). M: Walkowiak (2016): Chapter 4.*
- 
+ 1. Introduction: Big Data, Data Economy. Walkowiak (2016): Chapter 1.
+ 2. Computation and Memory in Applied Econometrics.
+ 3. *Computation and Memory in Applied Econometrics II.*
+ 4. *Advanced R Programming. Wickham (2019): Chapters 2, 3, 17,23, 24.*
+ 5. Import, Cleaning and Transformation of Big Data. Walkowiak (2016): Chapter 3: p. 74‑118.
+ 6. Aggregation and Visualization. Walkowiak (2016): Chapter 3: p. 118‑127; Wickham et al.(2015); Schwabish (2014).
+ 7. Data Storage, Databases Interaction with R. Walkowiak (2016): Chapter 5.
+ 8. *Cloud Computing: Introduction/Overview, Distributed Systems, Walkowiak (2016): Chapter 4.*
+ 9. Applied Econometrics with Spark; Machine Learning and GPUs.
+ 10. *Q&A in Zoom*
+ 11. *Q&A in Zoom, (hand in presentations)*
  
  
 
@@ -121,23 +124,6 @@ include_graphics("../img/07_server.png")
 
 
 
-## The Cloud: Scaling Out
-
-
-```{r scaleout, echo=FALSE, out.width = "20%", fig.align='center', purl=FALSE}
-include_graphics("../img/07_server.png")
-```
-
-
-```{r scaleout2, echo=FALSE, out.width = "20%", fig.align='center', purl=FALSE}
-include_graphics("../img/07_server.png")
-```
-
-
-```{r scaleout3, echo=FALSE, out.width = "20%", fig.align='center', purl=FALSE}
-include_graphics("../img/07_server.png")
-```
-
 
 ## The Cloud: Scaling Out
 
@@ -156,7 +142,7 @@ include_graphics("../img/07_server.png")
 include_graphics("../img/07_server.png")
 ```
 
- - MapReduce/Hadoop etc.
+ - *Distributed Systems*: MapReduce/Hadoop etc.
  - Rather rare in an applied econometrics setting.
 
 
@@ -187,17 +173,15 @@ Rent (virtual) machines on a flexible basis (hourly rate, etc.) from a cloud com
 
 Run non-parallelized implementation in the cloud.
 
+<!-- ```{r} -->
+<!-- # User created for 'rstudio_ec2' t2.micro instance for the examples below: user01 -->
+<!-- # UM, April 2020  -->
+<!-- ``` -->
+
+
 ```{r eval=FALSE}
 # CASE STUDY: PARALLEL ---------------------------
 
-
-# NOTE: the default EC2 AMI instance uses a newer compiler which data.table does not like, 
-# before you can install data.table, switch to the terminal in your current RStudio Server session and 
-# type the following:
-# mkdir ~/.R
-# echo "CC=gcc64" >> ~/.R/Makevars
-# this sets the default to an older C compiler. 
-# See https://stackoverflow.com/questions/48576682/r-and-data-table-on-aws for details.
 
 # install packages
 install.packages("data.table")
@@ -277,6 +261,13 @@ parallel::detectCores()
 
 ## Parallelization with an EC2 instance
 
+
+<!-- ```{r} -->
+<!-- # User created for 'rstudio_ec2' t2.micro instance for the examples below: user01 -->
+<!-- # UM, April 2020  -->
+<!-- ``` -->
+
+
 Run the parallelized implementation on an EC2 instance.
 
 ```{r eval=FALSE}
@@ -343,10 +334,15 @@ se_boot
 ## Mass Storage: MariaDB on an EC2 instance
 
 - For most of the installation steps, see @walkowiak_2016 (Chapter 5: 'MariaDB with R on a Amazon EC2 instance, pages 255ff). 
-- However, since some of the steps shown in the book are outdated, the example below hints to some alternative/additional steps needed to make the database run on an Ubuntu 18.04 machine.
-- `economics.csv` used in the local SQLite examples of Lecture 6.
+- `economics.csv` used in the local SQLite examples of Lecture 7.
 
 ## Data upload (server-side)
+
+
+<!-- ```{r} -->
+<!-- # User created for 'rstudio_mariadb' t2.micro instance for the examples below: umatter -->
+<!-- # UM, April 2020  -->
+<!-- ``` -->
 
 
 ```{bash eval= FALSE}
@@ -449,11 +445,20 @@ head(unemp)
 
 
 
-# Scaling Out: MapReduce/Hadoop
+# Distributed Systems/MapReduce
+
+## Distributed systems
+
+
+```{r distributedsystems, echo=FALSE, out.width = "30%", fig.align='center', fig.cap= "Illustration by [Miym](https://commons.wikimedia.org/wiki/User:Miym). [CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/deed.en)", purl=FALSE}
+include_graphics("../img/distributed_systems_darkscreen.png")
+```
+
+
 
 ## MapReduce: Word Count Example
 
-From @walkowiak_2016 (Chapter 4)
+From @walkowiak_2016, Chapter 4:
 
 <center>
 *Simon is a friend of Becky.*
@@ -583,7 +588,123 @@ reduced
 
 
 
-# Map/Reduce with Hadoop on an Azure VM
+# Map/Reduce with Hadoop 
+
+---
+
+```{r hadoop, echo=FALSE, out.width = "90%", fig.align='center', purl=FALSE}
+include_graphics("../img/hadoop.png")
+```
+
+
+
+## Hadoop locally (on Ubuntu/Pop_os Linux)
+
+The following example and installation instructions are in part adapted from [this tutorial](https://www.digitalocean.com/community/tutorials/how-to-install-hadoop-in-stand-alone-mode-on-ubuntu-18-04#step-2-%E2%80%94-installing-hadoop) by Melissa Anderson and Hanif Jetha.
+
+
+```{bash eval=FALSE}
+# download binary
+wget https://downloads.apache.org/hadoop/common/hadoop-2.10.0/hadoop-2.10.0.tar.gz
+# download checksum
+wget https://www.apache.org/dist/hadoop/common/hadoop-2.10.0/hadoop-2.10.0.tar.gz.sha512
+
+# run the verification
+shasum -a 512 hadoop-2.10.0.tar.gz
+# compare with value in mds file
+cat hadoop-2.10.0.tar.gz.sha512
+
+# if all is fine, unpack
+tar -xzvf hadoop-2.10.0.tar.gz
+# move to proper place
+sudo mv hadoop-2.10.0 /usr/local/hadoop
+
+# point hadoop to the right java version
+export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
+
+# clean up after installation/configuration
+rm hadoop-2.10.0.tar.gz
+rm hadoop-2.10.0.tar.gz.sha512
+```
+
+
+## Check the installation
+
+```{bash eval=FALSE}
+# check installation
+/usr/local/hadoop/bin/hadoop version
+
+```
+
+## Run Hadoop example
+
+- Basic Hadoop installation comes with a few examples for very typical map/reduce programs.
+- More sophisticated programs need to be custom made, written in Java.
+
+Below we replicate the same word-count example as shown in simple R code above. 
+
+
+## Run Hadoop example
+
+In a first step, we create an input directory where we store the input file(s) to feed to Hadoop.
+
+```{bash eval=FALSE}
+# create directory for input files (typically text files)
+mkdir ~/input
+```
+
+## Run Hadoop example
+
+Then we add a textfile containing the same text as in the example as above (to make things simpler, we already remove special characters).
+
+```{bash eval=FALSE}
+echo "Simon is a friend of Becky
+Becky is a friend of Ann
+Ann is not a friend of Simon" >>  ~/input/text.txt
+
+```
+
+
+## Run Hadoop example
+
+Now we can run the MapReduce/Hadoop word count as follows, storing the results in a new directory called `wordcount_example`.
+
+```{bash eval=FALSE}
+# run mapreduce word count
+# the specific hadoop program with the implemented wordcount is stored in a java-archive application (.jar-file)
+/usr/local/hadoop/bin/hadoop jar /usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.10.0.jar wordcount ~/input ~/wc_example
+```
+
+
+## Run Hadoop example
+
+Inspect the results
+
+```{bash eval=FALSE}
+cat ~/wc_example/*
+```
+
+
+```{ eval=FALSE}
+## Ann  2
+## Becky    2
+## Simon    2
+## a    3
+## friend   3
+## is   3
+## not  1
+## of   3
+```
+
+
+## MapReduce/Hadoop summary
+
+- Motivation: need to scale out storage/memory.
+- Hadoop:MapReduce principle implemented to run on distributed systems.
+- Can be run locally (on one node): develop/test code.
+- Allows for massive horizontal scaling.
+- RAM/storage distributed across machines.
+
 
 
 ## References {.smaller}
