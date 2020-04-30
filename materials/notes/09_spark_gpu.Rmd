@@ -6,7 +6,7 @@ author: |
      | (University of St. Gallen)
 date: "30/04/2020"
 output:
-  html_document:
+  bookdown::html_document2:
     highlight: tango
     theme: cerulean
     mathjax: "http://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML"
@@ -15,8 +15,9 @@ output:
     - --filter
     - ../../code/math.py
 header-includes:
-- \usepackage[T1]{fontenc}
-- \usepackage{hyperref}
+  - \usepackage[T1]{fontenc}
+  - \usepackage{hyperref}
+  - \usepackage{caption}
 css: ../../style/notes_hsg.css
 bibliography: ../references/bigdata.bib
 ---
@@ -45,7 +46,7 @@ Building on the MapReduce model discussed in the previous lecture, [Apache Spark
 The following figure illustrates the basic components of Spark. The main functionality, including memory management, task scheduling, and the implementation of Spark's capabilities to handle and manipulate data distributed across many nodes in parallel. Several built-in libraries extend the core implementation, covering specific domains of practical data analytics tasks (querying structured data via SQL, processing streams of data, machine learning, and network/graph analysis). The latter two provide various common functions/algorithms frequently used in data analytics/applied econometrics, such as generalized linear regression, summary statistics, and principal component analysis.
 
 ```{r sparkstack, echo=FALSE, out.width = "60%", fig.align='center', fig.cap= "(ref:sparkstack)", purl=FALSE}
-include_graphics("https://spark.apache.org/images/spark-stack.png")
+include_graphics("../img/spark-stack.png")
 ```
 
 (ref:sparkstack) Basic Spark stack (source: https://spark.apache.org/images/spark-stack.png)
@@ -96,7 +97,7 @@ By default this starts a local standalone session (no connection to a cluster co
 
 ### Data import and summary statistics
 
-First, we want to have a brief look at how to perform the first few steps of a typical econometric analysis: import data and compute summary statistics. We analyze the already familiar `flights.csv` dataset. The basic Spark installation provides direct support to import common data formats such as CSV and JSON  via the `read.df()` function (for many additional formats, specific Spark libraries are available). To import`flights.csv`, we set the `source`-argument to `"csv"̀.
+First, we want to have a brief look at how to perform the first few steps of a typical econometric analysis: import data and compute summary statistics. We analyze the already familiar `flights.csv` dataset. The basic Spark installation provides direct support to import common data formats such as CSV and JSON  via the `read.df()` function (for many additional formats, specific Spark libraries are available). To import`flights.csv`, we set the `source`-argument to `"csv"`.
 
 ```{r}
 
