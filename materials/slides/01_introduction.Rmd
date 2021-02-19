@@ -2,7 +2,7 @@
 title: "Big Data Analytics"
 subtitle: "Lecture 1: Introduction"
 author: "Prof. Dr. Ulrich Matter"
-date: "20/02/2020"
+date: "25/02/2021"
 output:
   ioslides_presentation:
     css: ../../style/ioslides.css
@@ -24,52 +24,6 @@ library(knitr)
 include_graphics("../img/01_what_is.jpg")
 ```
 
-
- <!-- - Go to this page: http://bit.ly/bigdatastat  ! -->
- <!-- - Fill in some keywords related to Big Data! -->
-
-
-<!-- ## Class Survey -->
-
-<!-- ```{r setup, echo=FALSE, purl=FALSE, message=FALSE, warning=FALSE} -->
-<!-- # Load required packages. Install if needed. -->
-<!-- library(gsheet) -->
-<!-- library(tidyverse) -->
-
-<!-- # Download survey data -->
-<!-- # Download data -->
-<!-- URL <- 'https://docs.google.com/spreadsheets/d/1_eF-DN2ie13doVQRjJNtjplzfKCLk6z6g8fk96cs1dA/edit#gid=0' -->
-<!-- keywords <- gsheet2tbl(URL) -->
-<!-- names(keywords) <- "keyword" -->
-
-<!-- # clean data -->
-<!-- keywords <- tibble(keyword = na.omit(as.vector(do.call("rbind", keywords)))) -->
-<!-- keywords$keyword <- tolower(keywords$keyword) -->
-<!-- keywords$keyword <- trimws(keywords$keyword) -->
-<!-- keywords$keyword <- gsub("[^[:alnum:][:blank:]+?&/\\-]", "", keywords$keyword) -->
-
-<!-- # analyze data -->
-<!-- keywords_count <- keywords %>% group_by(keyword) %>% tally() -->
-
-<!-- # prepare data -->
-<!-- keywords_count <-  keywords_count[order(keywords_count$n,  -->
-<!--                                         decreasing = FALSE),] -->
-<!-- keywords_count$keyword <- factor(keywords_count$keyword,  -->
-<!--                                  levels = keywords_count$keyword) -->
-<!-- max_show <- ifelse(nrow(keywords_count)>9, 10, nrow(keywords_count)) -->
-<!-- #keywords_count <- keywords_count[1:max_show, ] -->
-
-<!-- # plot data -->
-<!-- ggplot(keywords_count, aes(x= keyword, y = n)) + -->
-<!--      ggtitle("Big Data", subtitle = "What comes to mind?") + -->
-<!--      geom_bar(fill= "darkgreen", stat = "identity") + -->
-<!--      coord_flip() +  -->
-<!--      theme_minimal(base_size = 20) + -->
-<!--      xlab("Keyword (standardized)") + -->
-<!--      ylab("Frequency mentioned") -->
-
-
-<!-- ``` -->
 
 
 -----
@@ -286,20 +240,26 @@ include_graphics("../img/01_twitter_stockmarket.png")
 - Understand the *technical challenges* of Big Data Analytics and how to practically deal with them.
 - Know how to *apply* the relevant R packages and programming practices to effectively and efficiently handle large data sets.
 
+## Schedule
+
+```{r schedule, echo=FALSE, out.height = "85%", fig.align='center', purl=FALSE}
+include_graphics("../img/schedule.png")
+```
+
 
 
 ## Schedule {.smaller}
 
  1. *Introduction: Big Data, Data Economy. Walkowiak (2016): Chapter 1.*
  2. Computation and Memory in Applied Econometrics.
- 3. Advanced R Programming. Wickham (2019): Chapters 2, 3, 17,23, 24.
- 4. Import, Cleaning and Transformation of Big Data. Walkowiak (2016): Chapter 3: p. 74‑118.
- 5. Aggregation and Visualization. Walkowiak (2016): Chapter 3: p. 118‑127; Wickham et al.(2015); Schwabish (2014).
- 6. Data Storage, Databases Interaction with R. Walkowiak (2016): Chapter 5.
- 7. Cloud Computing: Introduction/Overview.
- 8. Distributed Systems, Hadoop with R. Walkowiak (2016): Chapter 4.
+ 3. Computation and Memory in Applied Econometrics II.
+ 4. Advanced R Programming. Wickham (2019): Chapters 2, 3, 17,23, 24.
+ 5. Import, Cleaning and Transformation of Big Data. Walkowiak (2016): Chapter 3: p. 74‑118.
+ 6. Aggregation and Visualization. Walkowiak (2016): Chapter 3: p. 118‑127; Wickham et al.(2015); Schwabish (2014).
+ 7. Data Storage, Databases Interaction with R. Walkowiak (2016): Chapter 5.
+ 8. Cloud Computing: Introduction/Overview, Distributed Systems, Walkowiak (2016): Chapter 4.
  9. Applied Econometrics with Spark; Machine Learning and GPUs.
- 10. Project Presentations (7 May, 2020; 08:15-10:00; Room 23-103).
+ 10. Project Presentations.
  11. Project Presentations; Q&A.
  
 
@@ -307,14 +267,14 @@ include_graphics("../img/01_twitter_stockmarket.png")
 
  1. Introduction: Big Data, Data Economy. Walkowiak (2016): Chapter 1.
  2. *Computation and Memory in Applied Econometrics.*
- 3. Advanced R Programming. Wickham (2019): Chapters 2, 3, 17,23, 24.
- 4. Import, Cleaning and Transformation of Big Data. Walkowiak (2016): Chapter 3: p. 74‑118.
- 5. Aggregation and Visualization. Walkowiak (2016): Chapter 3: p. 118‑127; Wickham et al.(2015); Schwabish (2014).
- 6. Data Storage, Databases Interaction with R. Walkowiak (2016): Chapter 5.
- 7. Cloud Computing: Introduction/Overview.
- 8. Distributed Systems, Hadoop with R. Walkowiak (2016): Chapter 4.
+ 3. Computation and Memory in Applied Econometrics II.
+ 4. Advanced R Programming. Wickham (2019): Chapters 2, 3, 17,23, 24.
+ 5. Import, Cleaning and Transformation of Big Data. Walkowiak (2016): Chapter 3: p. 74‑118.
+ 6. Aggregation and Visualization. Walkowiak (2016): Chapter 3: p. 118‑127; Wickham et al.(2015); Schwabish (2014).
+ 7. Data Storage, Databases Interaction with R. Walkowiak (2016): Chapter 5.
+ 8. Cloud Computing: Introduction/Overview, Distributed Systems, Walkowiak (2016): Chapter 4.
  9. Applied Econometrics with Spark; Machine Learning and GPUs.
- 10. Project Presentations (7 May, 2020; 08:15-10:00; Room 23-103).
+ 10. Project Presentations.
  11. Project Presentations; Q&A.
  
 
@@ -322,14 +282,14 @@ include_graphics("../img/01_twitter_stockmarket.png")
 
  1. Introduction: Big Data, Data Economy. Walkowiak (2016): Chapter 1.
  2. Computation and Memory in Applied Econometrics.
- 3. *Advanced R Programming. Wickham (2019): Chapters 2, 3, 17,23, 24.*
- 4. Import, Cleaning and Transformation of Big Data. Walkowiak (2016): Chapter 3: p. 74‑118.
- 5. Aggregation and Visualization. Walkowiak (2016): Chapter 3: p. 118‑127; Wickham et al.(2015); Schwabish (2014).
- 6. Data Storage, Databases Interaction with R. Walkowiak (2016): Chapter 5.
- 7. Cloud Computing: Introduction/Overview.
- 8. Distributed Systems, Hadoop with R. Walkowiak (2016): Chapter 4.
+ 3. *Computation and Memory in Applied Econometrics II.*
+ 4. Advanced R Programming. Wickham (2019): Chapters 2, 3, 17,23, 24.
+ 5. Import, Cleaning and Transformation of Big Data. Walkowiak (2016): Chapter 3: p. 74‑118.
+ 6. Aggregation and Visualization. Walkowiak (2016): Chapter 3: p. 118‑127; Wickham et al.(2015); Schwabish (2014).
+ 7. Data Storage, Databases Interaction with R. Walkowiak (2016): Chapter 5.
+ 8. Cloud Computing: Introduction/Overview, Distributed Systems, Walkowiak (2016): Chapter 4.
  9. Applied Econometrics with Spark; Machine Learning and GPUs.
- 10. Project Presentations (7 May, 2020; 08:15-10:00; Room 23-103).
+ 10. Project Presentations.
  11. Project Presentations; Q&A.
  
 
@@ -337,14 +297,14 @@ include_graphics("../img/01_twitter_stockmarket.png")
 
  1. Introduction: Big Data, Data Economy. Walkowiak (2016): Chapter 1.
  2. Computation and Memory in Applied Econometrics.
- 3. Advanced R Programming. Wickham (2019): Chapters 2, 3, 17,23, 24.
- 4. *Import, Cleaning and Transformation of Big Data. Walkowiak (2016): Chapter 3: p. 74‑118.*
- 5. Aggregation and Visualization. Walkowiak (2016): Chapter 3: p. 118‑127; Wickham et al.(2015); Schwabish (2014).
- 6. Data Storage, Databases Interaction with R. Walkowiak (2016): Chapter 5.
- 7. Cloud Computing: Introduction/Overview.
- 8. Distributed Systems, Hadoop with R. Walkowiak (2016): Chapter 4.
+ 3. Computation and Memory in Applied Econometrics II.
+ 4. *Advanced R Programming. Wickham (2019): Chapters 2, 3, 17,23, 24.*
+ 5. Import, Cleaning and Transformation of Big Data. Walkowiak (2016): Chapter 3: p. 74‑118.
+ 6. Aggregation and Visualization. Walkowiak (2016): Chapter 3: p. 118‑127; Wickham et al.(2015); Schwabish (2014).
+ 7. Data Storage, Databases Interaction with R. Walkowiak (2016): Chapter 5.
+ 8. Cloud Computing: Introduction/Overview, Distributed Systems, Walkowiak (2016): Chapter 4.
  9. Applied Econometrics with Spark; Machine Learning and GPUs.
- 10. Project Presentations (7 May, 2020; 08:15-10:00; Room 23-103).
+ 10. Project Presentations.
  11. Project Presentations; Q&A.
  
 
@@ -352,14 +312,14 @@ include_graphics("../img/01_twitter_stockmarket.png")
 
  1. Introduction: Big Data, Data Economy. Walkowiak (2016): Chapter 1.
  2. Computation and Memory in Applied Econometrics.
- 3. Advanced R Programming. Wickham (2019): Chapters 2, 3, 17,23, 24.
- 4. Import, Cleaning and Transformation of Big Data. Walkowiak (2016): Chapter 3: p. 74‑118.
- 5. *Aggregation and Visualization. Walkowiak (2016): Chapter 3: p. 118‑127; Wickham et al.(2015); Schwabish (2014).*
- 6. Data Storage, Databases Interaction with R. Walkowiak (2016): Chapter 5.
- 7. Cloud Computing: Introduction/Overview.
- 8. Distributed Systems, Hadoop with R. Walkowiak (2016): Chapter 4.
+ 3. Computation and Memory in Applied Econometrics II.
+ 4. Advanced R Programming. Wickham (2019): Chapters 2, 3, 17,23, 24.
+ 5. *Import, Cleaning and Transformation of Big Data. Walkowiak (2016): Chapter 3: p. 74‑118.*
+ 6. Aggregation and Visualization. Walkowiak (2016): Chapter 3: p. 118‑127; Wickham et al.(2015); Schwabish (2014).
+ 7. Data Storage, Databases Interaction with R. Walkowiak (2016): Chapter 5.
+ 8. Cloud Computing: Introduction/Overview, Distributed Systems, Walkowiak (2016): Chapter 4.
  9. Applied Econometrics with Spark; Machine Learning and GPUs.
- 10. Project Presentations (7 May, 2020; 08:15-10:00; Room 23-103).
+ 10. Project Presentations.
  11. Project Presentations; Q&A.
  
 
@@ -367,14 +327,14 @@ include_graphics("../img/01_twitter_stockmarket.png")
 
  1. Introduction: Big Data, Data Economy. Walkowiak (2016): Chapter 1.
  2. Computation and Memory in Applied Econometrics.
- 3. Advanced R Programming. Wickham (2019): Chapters 2, 3, 17,23, 24.
- 4. Import, Cleaning and Transformation of Big Data. Walkowiak (2016): Chapter 3: p. 74‑118.
- 5. Aggregation and Visualization. Walkowiak (2016): Chapter 3: p. 118‑127; Wickham et al.(2015); Schwabish (2014).
- 6. *Data Storage, Databases Interaction with R. Walkowiak (2016): Chapter 5.*
- 7. Cloud Computing: Introduction/Overview.
- 8. Distributed Systems, Hadoop with R. Walkowiak (2016): Chapter 4.
+ 3. Computation and Memory in Applied Econometrics II.
+ 4. Advanced R Programming. Wickham (2019): Chapters 2, 3, 17,23, 24.
+ 5. Import, Cleaning and Transformation of Big Data. Walkowiak (2016): Chapter 3: p. 74‑118.
+ 6. *Aggregation and Visualization. Walkowiak (2016): Chapter 3: p. 118‑127; Wickham et al.(2015); Schwabish (2014).*
+ 7. Data Storage, Databases Interaction with R. Walkowiak (2016): Chapter 5.
+ 8. Cloud Computing: Introduction/Overview, Distributed Systems, Walkowiak (2016): Chapter 4.
  9. Applied Econometrics with Spark; Machine Learning and GPUs.
- 10. Project Presentations (7 May, 2020; 08:15-10:00; Room 23-103).
+ 10. Project Presentations.
  11. Project Presentations; Q&A.
  
 
@@ -382,14 +342,14 @@ include_graphics("../img/01_twitter_stockmarket.png")
 
  1. Introduction: Big Data, Data Economy. Walkowiak (2016): Chapter 1.
  2. Computation and Memory in Applied Econometrics.
- 3. Advanced R Programming. Wickham (2019): Chapters 2, 3, 17,23, 24.
- 4. Import, Cleaning and Transformation of Big Data. Walkowiak (2016): Chapter 3: p. 74‑118.
- 5. Aggregation and Visualization. Walkowiak (2016): Chapter 3: p. 118‑127; Wickham et al.(2015); Schwabish (2014).
- 6. Data Storage, Databases Interaction with R. Walkowiak (2016): Chapter 5.
- 7. *Cloud Computing: Introduction/Overview.*
- 8. Distributed Systems, Hadoop with R. Walkowiak (2016): Chapter 4.
+ 3. Computation and Memory in Applied Econometrics II.
+ 4. Advanced R Programming. Wickham (2019): Chapters 2, 3, 17,23, 24.
+ 5. Import, Cleaning and Transformation of Big Data. Walkowiak (2016): Chapter 3: p. 74‑118.
+ 6. Aggregation and Visualization. Walkowiak (2016): Chapter 3: p. 118‑127; Wickham et al.(2015); Schwabish (2014).
+ 7. *Data Storage, Databases Interaction with R. Walkowiak (2016): Chapter 5.*
+ 8. Cloud Computing: Introduction/Overview, Distributed Systems, Walkowiak (2016): Chapter 4.
  9. Applied Econometrics with Spark; Machine Learning and GPUs.
- 10. Project Presentations (7 May, 2020; 08:15-10:00; Room 23-103).
+ 10. Project Presentations.
  11. Project Presentations; Q&A.
  
 
@@ -397,14 +357,14 @@ include_graphics("../img/01_twitter_stockmarket.png")
 
  1. Introduction: Big Data, Data Economy. Walkowiak (2016): Chapter 1.
  2. Computation and Memory in Applied Econometrics.
- 3. Advanced R Programming. Wickham (2019): Chapters 2, 3, 17,23, 24.
- 4. Import, Cleaning and Transformation of Big Data. Walkowiak (2016): Chapter 3: p. 74‑118.
- 5. Aggregation and Visualization. Walkowiak (2016): Chapter 3: p. 118‑127; Wickham et al.(2015); Schwabish (2014).
- 6. Data Storage, Databases Interaction with R. Walkowiak (2016): Chapter 5.
- 7. Cloud Computing: Introduction/Overview.
- 8. *Distributed Systems, Hadoop with R. Walkowiak (2016): Chapter 4.*
+ 3. Computation and Memory in Applied Econometrics II.
+ 4. Advanced R Programming. Wickham (2019): Chapters 2, 3, 17,23, 24.
+ 5. Import, Cleaning and Transformation of Big Data. Walkowiak (2016): Chapter 3: p. 74‑118.
+ 6. Aggregation and Visualization. Walkowiak (2016): Chapter 3: p. 118‑127; Wickham et al.(2015); Schwabish (2014).
+ 7. Data Storage, Databases Interaction with R. Walkowiak (2016): Chapter 5.
+ 8. *Cloud Computing: Introduction/Overview, Distributed Systems, Walkowiak (2016): Chapter 4.*
  9. Applied Econometrics with Spark; Machine Learning and GPUs.
- 10. Project Presentations (7 May, 2020; 08:15-10:00; Room 23-103).
+ 10. Project Presentations.
  11. Project Presentations; Q&A.
  
 
@@ -412,14 +372,14 @@ include_graphics("../img/01_twitter_stockmarket.png")
 
  1. Introduction: Big Data, Data Economy. Walkowiak (2016): Chapter 1.
  2. Computation and Memory in Applied Econometrics.
- 3. Advanced R Programming. Wickham (2019): Chapters 2, 3, 17,23, 24.
- 4. Import, Cleaning and Transformation of Big Data. Walkowiak (2016): Chapter 3: p. 74‑118.
- 5. Aggregation and Visualization. Walkowiak (2016): Chapter 3: p. 118‑127; Wickham et al.(2015); Schwabish (2014).
- 6. Data Storage, Databases Interaction with R. Walkowiak (2016): Chapter 5.
- 7. Cloud Computing: Introduction/Overview.
- 8. Distributed Systems, Hadoop with R. Walkowiak (2016): Chapter 4.
+ 3. Computation and Memory in Applied Econometrics II.
+ 4. Advanced R Programming. Wickham (2019): Chapters 2, 3, 17,23, 24.
+ 5. Import, Cleaning and Transformation of Big Data. Walkowiak (2016): Chapter 3: p. 74‑118.
+ 6. Aggregation and Visualization. Walkowiak (2016): Chapter 3: p. 118‑127; Wickham et al.(2015); Schwabish (2014).
+ 7. Data Storage, Databases Interaction with R. Walkowiak (2016): Chapter 5.
+ 8. Cloud Computing: Introduction/Overview, Distributed Systems, Walkowiak (2016): Chapter 4.
  9. *Applied Econometrics with Spark; Machine Learning and GPUs.*
- 10. Project Presentations (7 May, 2020; 08:15-10:00; Room 23-103).
+ 10. Project Presentations.
  11. Project Presentations; Q&A.
  
 
@@ -427,29 +387,17 @@ include_graphics("../img/01_twitter_stockmarket.png")
 
  1. Introduction: Big Data, Data Economy. Walkowiak (2016): Chapter 1.
  2. Computation and Memory in Applied Econometrics.
- 3. Advanced R Programming. Wickham (2019): Chapters 2, 3, 17,23, 24.
- 4. Import, Cleaning and Transformation of Big Data. Walkowiak (2016): Chapter 3: p. 74‑118.
- 5. Aggregation and Visualization. Walkowiak (2016): Chapter 3: p. 118‑127; Wickham et al.(2015); Schwabish (2014).
- 6. Data Storage, Databases Interaction with R. Walkowiak (2016): Chapter 5.
- 7. Cloud Computing: Introduction/Overview.
- 8. Distributed Systems, Hadoop with R. Walkowiak (2016): Chapter 4.
+ 3. Computation and Memory in Applied Econometrics II.
+ 4. Advanced R Programming. Wickham (2019): Chapters 2, 3, 17,23, 24.
+ 5. Import, Cleaning and Transformation of Big Data. Walkowiak (2016): Chapter 3: p. 74‑118.
+ 6. Aggregation and Visualization. Walkowiak (2016): Chapter 3: p. 118‑127; Wickham et al.(2015); Schwabish (2014).
+ 7. Data Storage, Databases Interaction with R. Walkowiak (2016): Chapter 5.
+ 8. Cloud Computing: Introduction/Overview, Distributed Systems, Walkowiak (2016): Chapter 4.
  9. Applied Econometrics with Spark; Machine Learning and GPUs.
- 10. *Project Presentations (7 May, 2020; 08:15-10:00; Room 23-103).*
- 11. Project Presentations; Q&A.
- 
-## Schedule {.smaller}
-
- 1. Introduction: Big Data, Data Economy. Walkowiak (2016): Chapter 1.
- 2. Computation and Memory in Applied Econometrics.
- 3. Advanced R Programming. Wickham (2019): Chapters 2, 3, 17,23, 24.
- 4. Import, Cleaning and Transformation of Big Data. Walkowiak (2016): Chapter 3: p. 74‑118.
- 5. Aggregation and Visualization. Walkowiak (2016): Chapter 3: p. 118‑127; Wickham et al.(2015); Schwabish (2014).
- 6. Data Storage, Databases Interaction with R. Walkowiak (2016): Chapter 5.
- 7. Cloud Computing: Introduction/Overview.
- 8. Distributed Systems, Hadoop with R. Walkowiak (2016): Chapter 4.
- 9. Applied Econometrics with Spark; Machine Learning and GPUs.
- 10. Project Presentations (7 May, 2020; 08:15-10:00; Room 23-103).
+ 10. *Project Presentations.*
  11. *Project Presentations; Q&A.*
+ 
+
  
 
 
@@ -461,7 +409,7 @@ include_graphics("../img/01_twitter_stockmarket.png")
 - Group size: 3 (or 2) students.
 - Take‐home exercises: Application of basic concepts in R when working with big data. Conceptual questions related to the application.
 
-<center> *Hand in on June 8 2020, 16:00* </center>
+<center> *Hand in on June 14 2021, 16:00* </center>
 <center> *More details next week* </center>
  
  
@@ -470,8 +418,8 @@ include_graphics("../img/01_twitter_stockmarket.png")
 - Group examination: presentation + code (all given the same grades) (40%)
 - Big data analytics group projects: Own approach/strategy, implemented in R, presentation of results in class.
 
-<center> *7 May 2020, 08:15-10:00* </center>
-<center> *(14 May 2020, 08:15-10:00)* </center>
+<center> *20 May 2021, 08:15-10:00* </center>
+<center> *27 May 2021, 08:15-10:00* </center>
 <center> *More details next week* </center>
  
  

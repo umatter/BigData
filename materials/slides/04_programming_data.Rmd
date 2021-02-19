@@ -2,12 +2,11 @@
 title: "Big Data Analytics"
 subtitle: "Lecture 4:<br>Advanced R Programming"
 author: "Prof. Dr. Ulrich Matter"
-date: "12/03/2020"
+date: "18/03/2021"
 output:
   ioslides_presentation:
     css: ../../style/ioslides.css
     template: ../../style/nologo_template.html
-  slidy_presentation: default
 logo: ../img/logo.png
 
 bibliography: ../references/bigdata.bib
@@ -1008,7 +1007,8 @@ library(bench)
 x <- runif(100)
 (lb <- bench::mark(
   sqrt(x),
-  x ^ 0.5
+  x ^ 0.5,
+  memory = FALSE
 ))
 ```
 

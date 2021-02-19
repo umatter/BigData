@@ -2,7 +2,7 @@
 title: "Big Data Analytics"
 subtitle: 'Lecture 3:<br>Computation and Memory Part II'
 author: "Prof. Dr. Ulrich Matter"
-date: "05/03/2020"
+date: "11/03/2021"
 output:
   ioslides_presentation:
     css: ../../style/ioslides.css
@@ -23,14 +23,14 @@ library(knitr)
 
  1. Introduction: Big Data, Data Economy. Walkowiak (2016): Chapter 1.
  2. Computation and Memory in Applied Econometrics.
- 3. *Computation and Memory in Applied Econometrics II.*
- 4. *Advanced R Programming. Wickham (2019): Chapters 2, 3, 17,23, 24.*
+ 3. Computation and Memory in Applied Econometrics II.
+ 4. Advanced R Programming. Wickham (2019): Chapters 2, 3, 17,23, 24.
  5. Import, Cleaning and Transformation of Big Data. Walkowiak (2016): Chapter 3: p. 74‑118.
  6. Aggregation and Visualization. Walkowiak (2016): Chapter 3: p. 118‑127; Wickham et al.(2015); Schwabish (2014).
  7. Data Storage, Databases Interaction with R. Walkowiak (2016): Chapter 5.
- 8. *Cloud Computing: Introduction/Overview, Distributed Systems, Walkowiak (2016): Chapter 4.*
+ 8. Cloud Computing: Introduction/Overview, Distributed Systems, Walkowiak (2016): Chapter 4.
  9. Applied Econometrics with Spark; Machine Learning and GPUs.
- 10. Project Presentations (7 May, 2020; 08:15-10:00; Room 23-103).
+ 10. Project Presentations.
  11. Project Presentations; Q&A.
 
 ## Build groups for group examination
@@ -145,9 +145,9 @@ include_graphics("../img/03_ram.jpg")
 ## Case study: Parallel processing
 
 We start with importing the data into R.
-```{r}
+```{r message=FALSE, warning=FALSE}
 url <- "https://vincentarelbundock.github.io/Rdatasets/csv/carData/MplsStops.csv"
-stopdata <- read.csv(url)
+stopdata <- data.table::fread(url) # skipNul avoids running into encoding issues with this data set
 ```
 
 ## Case study: Parallel processing

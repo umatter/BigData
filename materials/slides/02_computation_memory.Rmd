@@ -2,7 +2,7 @@
 title: "Big Data Analytics"
 subtitle: 'Lecture 2: Computation and Memory'
 author: "Prof. Dr. Ulrich Matter"
-date: "27/02/2020"
+date: "04/03/2021"
 output:
   ioslides_presentation:
     css: ../../style/ioslides.css
@@ -640,7 +640,8 @@ include_graphics("../img/03_ram.jpg")
 
 We start with importing the data into R.
 ```{r}
-stopdata <- read.csv("https://vincentarelbundock.github.io/Rdatasets/csv/carData/MplsStops.csv")
+url <- "https://vincentarelbundock.github.io/Rdatasets/csv/carData/MplsStops.csv"
+stopdata <- data.table::fread(url) # skipNul avoids running into encoding issues with this data set
 ```
 
 ## Case study: Parallel processing
