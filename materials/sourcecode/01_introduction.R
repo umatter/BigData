@@ -95,7 +95,7 @@ time_per_row
 
 
 ## -------------------------------------------------------------------------------------------------
-# Do it 'the R wqy'
+# Do it 'the R way'
 deflator <- 1.05 # define deflator
 # Exploit R's vectorization!
 time_elapsed <- 

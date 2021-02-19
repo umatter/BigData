@@ -1,5 +1,6 @@
-## -------------------------------------------------------------------------------------------------
-stopdata <- read.csv("https://vincentarelbundock.github.io/Rdatasets/csv/carData/MplsStops.csv")
+## ----message=FALSE, warning=FALSE-----------------------------------------------------------------
+url <- "https://vincentarelbundock.github.io/Rdatasets/csv/carData/MplsStops.csv"
+stopdata <- data.table::fread(url) 
 
 
 ## -------------------------------------------------------------------------------------------------

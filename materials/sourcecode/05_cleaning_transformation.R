@@ -141,7 +141,7 @@ mem_change(flights.data.ff <- merge.ffdf(flights.ff, airlines.ff, by="AIRLINE_ID
 #The new object is only 551.2 Kb in size
 class(flights.data.ff)
 dim(flights.data.ff)
-dimnames.ffdf(flights.data.ff)
+names(flights.data.ff)
 
 
 ## -------------------------------------------------------------------------------------------------
@@ -156,25 +156,6 @@ mem_change(flights.data.table <- merge(flights.table,
                                        by="AIRLINE_ID"))
 #The new object is already 105.7 Mb in size
 #A rapid spike in RAM use when processing
-
-
-## -------------------------------------------------------------------------------------------------
-
-# Inspect the current variable
-table.ff(flights.data.ff$DAY_OF_WEEK)
-head(flights.data.ff$DAY_OF_WEEK)
-
-# Convert numeric ff DAY_OF_WEEK vector to a ff factor:
-flights.data.ff$WEEKDAY <- cut.ff(flights.data.ff$DAY_OF_WEEK, 
-                                   breaks = 7, 
-                                   labels = c("Monday", "Tuesday", 
-                                              "Wednesday", "Thursday", 
-                                              "Friday", "Saturday",
-                                              "Sunday"))
-# inspect the result
-head(flights.data.ff$WEEKDAY)
-table.ff(flights.data.ff$WEEKDAY)
-
 
 
 ## -------------------------------------------------------------------------------------------------
@@ -206,6 +187,8 @@ save.ffdf(subs1.ff, overwrite = TRUE) #7 files (one for each column) created in 
 rm(subs1.ff)
 gc()
 load.ffdf("ffdb")
+# check the class and structure of the loaded data
+class(subs1.ff) 
 str(subs1.ff)
 dim(subs1.ff)
 dimnames(subs1.ff)
