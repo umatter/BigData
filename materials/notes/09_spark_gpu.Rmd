@@ -4,7 +4,7 @@ subtitle: 'Lecture 9: Applied Econometrics with Spark; Machine Learning and GPUs
 author: |
      | Prof. Dr. Ulrich Matter
      | (University of St. Gallen)
-date: "30/04/2020"
+date: "06/05/2021"
 output:
   bookdown::html_document2:
     highlight: tango
@@ -84,6 +84,9 @@ With the right version of Java running, we can install `SparkR` as usual with `i
 
 ```{r warning=FALSE, message=FALSE}
 # install.packages("SparkR")
+# or, if temporarily not available on CRAN:
+#if (!require('devtools')) install.packages('devtools')
+#devtools::install_github('apache/spark@v2.x.x', subdir='R/pkg') # replace x.x with the version of your spark installation
 
 # load packages
 library(SparkR)
@@ -106,7 +109,7 @@ flights <- read.df(path="../data/flights.csv", source = "csv", header="true")
 
 
 # inspect the object
-str(flights)
+class(flights)
 head(flights)
 
 ```
@@ -154,9 +157,9 @@ delays
 ```
 
 
-### Regression analysis
+### Regression analysis with `sparklyr`
 
-Suppose we want to conduct a correlation study of what factors are associated with more or less arrival delay. Spark provides via its built-in 'MLib' library several high-level functions to conduct regression analyses. When calling these functions via `SparkR` their usage is actually very similar to the usual R packages/functions commonly used to run regressions in R. 
+Suppose we want to conduct a correlation study of what factors are associated with more or less arrival delay. Spark provides via its built-in 'MLib' library several high-level functions to conduct regression analyses. When calling these functions via `sparklyr` (or `SparkR`), their usage is actually very similar to the usual R packages/functions commonly used to run regressions in R. 
 
 As a simple point of reference, we first estimate a linear model with the usual R approach (all computed in the R environment). First, we load the data as a common `data.table`. We could also convert a copy of the entire `SparkDataFrame` object to a `data.frame` or `data.table` and get essentially the same outcome. However, collecting the data from the RDD structure would take much longer than parsing the csv with `fread`. In addition, we only import the first 300 rows. Running regression analysis with relatively large datasets in Spark on a small local machine might fail or be rather slow.^[Again, it is important to keep in mind that running Spark on a small local machine is only optimal for learning and testing code (based on relatively small samples). The whole framework is not optimized to be run on a small machine but for cluster computers.]
 
@@ -176,20 +179,7 @@ fit1 <- lm(model1, flights_r)
 summary(fit1)
 ```
 
-Now we aim to compute essentially the same model estimate in `SparkR`. Note that most regression models commonly used in traditional applied econometrics are accessible via `SparkR::glm()`. 
-
-```{r message=FALSE, warning=FALSE}
-# create SparkDataFrame
-flights2 <- createDataFrame(flights_r)
-# fit the model
-fit1_spark <- spark.glm( formula = model1, data = flights2 , family="gaussian")
-# compute t-tests etc.
-summary(fit1_spark)
-
-```
-
-
-Alternative with `sparklyr`:
+Now we aim to compute essentially the same model estimate in `sparklyr`.^[Most regression models commonly used in traditional applied econometrics are in some form provided in `sparklyr` or `SparkR`. See the package documentations for more details.] In order to use Spark via the `sparklyr` package we need to first load the package and establish a connection with Spark (similar to `SparkR::sparkR.session()`).
 
 ```{r message=FALSE, warning=FALSE}
 library(sparklyr)
@@ -197,14 +187,32 @@ library(sparklyr)
 # connect with default configuration
 sc <- spark_connect(master = "local", 
                     version = "2.4.5")
+```
+
+We then copy the data.table `flights_r` (previously loaded into our R session) to Spark. Again, working on a normal laptop this seems trivial, but the exact same command would allow us (when connected with Spark on a cluster computer in the cloud) to properly load and distribute the data.table on the cluster. Finally, we then fit the model with `ml_linear_regression()` and compute 
+
+```{r message=FALSE, warning=FALSE}
 
 # load data to spark
 flights3 <- copy_to(sc, flights_r, "flights3")
-
 # fit the model
-fit2_spark <- ml_linear_regression(flights3, formula = model1)
+fit1_spark <- ml_linear_regression(flights3, formula = model1)
+# compute summary stats
+summary(fit1_spark)
+```
+
+
+
+Alternatively, we can do essentially the same with the `SparkR` package:
+
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+# create SparkDataFrame
+flights3 <- createDataFrame(flights_r)
+# fit the model
+fit2_spark <- spark.glm( formula = model1, data = flights3 , family="gaussian")
 # compute t-tests etc.
 summary(fit2_spark)
+
 ```
 
 
@@ -303,7 +311,7 @@ Now we run the three examples: first, based on standard R, using the CPU. Then, 
   # GPU version, in GPU memory (vclMatrix formation is a memory transfer)
   gpu2_memory <- t(vclX) %*% vclX,
  
-check = FALSE, min_iterations = 20))
+check = FALSE, memory = FALSE, min_iterations = 20))
 ```
 
 The performance comparison is visualized with boxplots.
@@ -476,6 +484,7 @@ if (Sys.info()["sysname"]=="Darwin"){ # run on mac os machine
 library(keras)
 library(tibble)
 library(ggplot2)
+library(tfdatasets)
 
 
 # load data
@@ -495,14 +504,21 @@ c(test_data, test_labels) %<-% boston_housing$test
 
 In order to better understand and interpret the dataset we add the original variable names, and convert it to a `tibble`. 
 
-```{r warning=FALSE}
-# prepare data 
+```{r warning=FALSE, message=FALSE}
+library(dplyr)
+
 column_names <- c('CRIM', 'ZN', 'INDUS', 'CHAS', 'NOX', 'RM', 'AGE', 
                   'DIS', 'RAD', 'TAX', 'PTRATIO', 'B', 'LSTAT')
-train_df <- as_tibble(train_data)
-colnames(train_df) <- column_names
 
-train_df
+train_df <- train_data %>% 
+  as_tibble(.name_repair = "minimal") %>% 
+  setNames(column_names) %>% 
+  mutate(label = train_labels)
+
+test_df <- test_data %>% 
+  as_tibble(.name_repair = "minimal") %>% 
+  setNames(column_names) %>% 
+  mutate(label = test_labels)
 ```
 
 
@@ -518,15 +534,15 @@ summary(train_labels) # Display first 10 entries
 As the dataset contains variables ranging from per capita crime rate to indicators for highway access, the variables are obviously measured in different units and hence displayed on different scales. This is not per se a problem for the fitting procedure. However, fitting is more efficient when all features (variables) are normalized.
 
 ```{r}
-# Normalize training data
-train_data <- scale(train_data) 
+spec <- feature_spec(train_df, label ~ . ) %>% 
+  step_numeric_column(all_numeric(), normalizer_fn = scaler_standard()) %>% 
+  fit()
 
-# Use means and standard deviations from training set to normalize test set
-col_means_train <- attr(train_data, "scaled:center") 
-col_stddevs_train <- attr(train_data, "scaled:scale")
-test_data <- scale(test_data, center = col_means_train, scale = col_stddevs_train)
-
-train_data[1, ] # First training sample, normalized
+layer <- layer_dense_features(
+  feature_columns = dense_features(spec), 
+  dtype = tf$float32
+)
+layer(train_df)
 
 ```
 
@@ -538,21 +554,28 @@ We specify the model as a linear stack of layers: The input (all 13 explanatory 
 ```{r warning=FALSE, message=FALSE}
 # Create the model
 # model specification
-model <- keras_model_sequential() %>%
-  layer_dense(units = 64, activation = "relu",
-              input_shape = dim(train_data)[2]) %>%
+input <- layer_input_from_dataset(train_df %>% select(-label))
+
+output <- input %>% 
+  layer_dense_features(dense_features(spec)) %>% 
   layer_dense(units = 64, activation = "relu") %>%
-  layer_dense(units = 1)
+  layer_dense(units = 64, activation = "relu") %>%
+  layer_dense(units = 1) 
+
+model <- keras_model(input, output)
+
 ```
 
 In order to fit the model, we first have to compile it (configure it for training). At this step we set the configuration parameters that will guide the training/optimization procedure. We use the mean squared errors loss function (`mse`) typically used for regressions. We chose the [RMSProp](http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf) optimizer to find the minimum loss.
 
 ```{r}
 # compile the model  
-  model %>% compile(
+model %>% 
+  compile(
     loss = "mse",
     optimizer = optimizer_rmsprop(),
-    metrics = list("mean_absolute_error"))
+    metrics = list("mean_absolute_error")
+  )
 ```
 
 Now we can get a summary of the model we are about to fit to the data.
@@ -569,9 +592,6 @@ Given the relatively simple model and small dataset, we set the maximum number o
 # Set max. number of epochs
 epochs <- 500
 
-# The patience parameter is the amount of epochs to check for improvement.
-early_stop <- callback_early_stopping(monitor = "val_loss", patience = 20)
-
 ```
 
 
@@ -579,17 +599,17 @@ Finally, we fit the model while preserving the training history, and visualize t
 
 ```{r warning=FALSE, message=FALSE}
 # Fit the model and store training stats
+
 history <- model %>% fit(
-  train_data,
-  train_labels,
+  x = train_df %>% select(-label),
+  y = train_df$label,
   epochs = epochs,
   validation_split = 0.2,
-  verbose = 0,
-  callbacks = list(early_stop)
+  verbose = 0
 )
 
-plot(history, metrics = "mean_absolute_error", smooth = FALSE) +
-  coord_cartesian(xlim = c(0, 100), ylim = c(0, 5))
+
+plot(history)
 ```
 
 

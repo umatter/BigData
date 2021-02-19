@@ -1,20 +1,32 @@
 <!DOCTYPE html>
 
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 
 <head>
 
 <meta charset="utf-8" />
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="generator" content="pandoc" />
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
 
-<meta name="date" content="2020-05-03" />
+<meta name="date" content="2021-11-03" />
 
 <title>Big Data Analytics</title>
 
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
 <script>/*! jQuery v1.11.3 | (c) 2005, 2015 jQuery Foundation, Inc. | jquery.org/license */
 !function(a,b){"object"==typeof module&&"object"==typeof module.exports?module.exports=a.document?b(a,!0):function(a){if(!a.document)throw new Error("jQuery requires a window with a document");return b(a)}:b(a)}("undefined"!=typeof window?window:this,function(a,b){var c=[],d=c.slice,e=c.concat,f=c.push,g=c.indexOf,h={},i=h.toString,j=h.hasOwnProperty,k={},l="1.11.3",m=function(a,b){return new m.fn.init(a,b)},n=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,o=/^-ms-/,p=/-([\da-z])/gi,q=function(a,b){return b.toUpperCase()};m.fn=m.prototype={jquery:l,constructor:m,selector:"",length:0,toArray:function(){return d.call(this)},get:function(a){return null!=a?0>a?this[a+this.length]:this[a]:d.call(this)},pushStack:function(a){var b=m.merge(this.constructor(),a);return b.prevObject=this,b.context=this.context,b},each:function(a,b){return m.each(this,a,b)},map:function(a){return this.pushStack(m.map(this,function(b,c){return a.call(b,c,b)}))},slice:function(){return this.pushStack(d.apply(this,arguments))},first:function(){return this.eq(0)},last:function(){return this.eq(-1)},eq:function(a){var b=this.length,c=+a+(0>a?b:0);return this.pushStack(c>=0&&b>c?[this[c]]:[])},end:function(){return this.prevObject||this.constructor(null)},push:f,sort:c.sort,splice:c.splice},m.extend=m.fn.extend=function(){var a,b,c,d,e,f,g=arguments[0]||{},h=1,i=arguments.length,j=!1;for("boolean"==typeof g&&(j=g,g=arguments[h]||{},h++),"object"==typeof g||m.isFunction(g)||(g={}),h===i&&(g=this,h--);i>h;h++)if(null!=(e=arguments[h]))for(d in e)a=g[d],c=e[d],g!==c&&(j&&c&&(m.isPlainObject(c)||(b=m.isArray(c)))?(b?(b=!1,f=a&&m.isArray(a)?a:[]):f=a&&m.isPlainObject(a)?a:{},g[d]=m.extend(j,f,c)):void 0!==c&&(g[d]=c));return g},m.extend({expando:"jQuery"+(l+Math.random()).replace(/\D/g,""),isReady:!0,error:function(a){throw new Error(a)},noop:function(){},isFunction:function(a){return"function"===m.type(a)},isArray:Array.isArray||function(a){return"array"===m.type(a)},isWindow:function(a){return null!=a&&a==a.window},isNumeric:function(a){return!m.isArray(a)&&a-parseFloat(a)+1>=0},isEmptyObject:function(a){var b;for(b in a)return!1;return!0},isPlainObject:function(a){var b;if(!a||"object"!==m.type(a)||a.nodeType||m.isWindow(a))return!1;try{if(a.constructor&&!j.call(a,"constructor")&&!j.call(a.constructor.prototype,"isPrototypeOf"))return!1}catch(c){return!1}if(k.ownLast)for(b in a)return j.call(a,b);for(b in a);return void 0===b||j.call(a,b)},type:function(a){return null==a?a+"":"object"==typeof a||"function"==typeof a?h[i.call(a)]||"object":typeof a},globalEval:function(b){b&&m.trim(b)&&(a.execScript||function(b){a.eval.call(a,b)})(b)},camelCase:function(a){return a.replace(o,"ms-").replace(p,q)},nodeName:function(a,b){return a.nodeName&&a.nodeName.toLowerCase()===b.toLowerCase()},each:function(a,b,c){var d,e=0,f=a.length,g=r(a);if(c){if(g){for(;f>e;e++)if(d=b.apply(a[e],c),d===!1)break}else for(e in a)if(d=b.apply(a[e],c),d===!1)break}else if(g){for(;f>e;e++)if(d=b.call(a[e],e,a[e]),d===!1)break}else for(e in a)if(d=b.call(a[e],e,a[e]),d===!1)break;return a},trim:function(a){return null==a?"":(a+"").replace(n,"")},makeArray:function(a,b){var c=b||[];return null!=a&&(r(Object(a))?m.merge(c,"string"==typeof a?[a]:a):f.call(c,a)),c},inArray:function(a,b,c){var d;if(b){if(g)return g.call(b,a,c);for(d=b.length,c=c?0>c?Math.max(0,d+c):c:0;d>c;c++)if(c in b&&b[c]===a)return c}return-1},merge:function(a,b){var c=+b.length,d=0,e=a.length;while(c>d)a[e++]=b[d++];if(c!==c)while(void 0!==b[d])a[e++]=b[d++];return a.length=e,a},grep:function(a,b,c){for(var d,e=[],f=0,g=a.length,h=!c;g>f;f++)d=!b(a[f],f),d!==h&&e.push(a[f]);return e},map:function(a,b,c){var d,f=0,g=a.length,h=r(a),i=[];if(h)for(;g>f;f++)d=b(a[f],f,c),null!=d&&i.push(d);else for(f in a)d=b(a[f],f,c),null!=d&&i.push(d);return e.apply([],i)},guid:1,proxy:function(a,b){var c,e,f;return"string"==typeof b&&(f=a[b],b=a,a=f),m.isFunction(a)?(c=d.call(arguments,2),e=function(){return a.apply(b||this,c.concat(d.call(arguments)))},e.guid=a.guid=a.guid||m.guid++,e):void 0},now:function(){return+new Date},support:k}),m.each("Boolean Number String Function Array Date RegExp Object Error".split(" "),function(a,b){h["[object "+b+"]"]=b.toLowerCase()});function r(a){var b="length"in a&&a.length,c=m.type(a);return"function"===c||m.isWindow(a)?!1:1===a.nodeType&&b?!0:"array"===c||0===b||"number"==typeof b&&b>0&&b-1 in a}var s=function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u="sizzle"+1*new Date,v=a.document,w=0,x=0,y=ha(),z=ha(),A=ha(),B=function(a,b){return a===b&&(l=!0),0},C=1<<31,D={}.hasOwnProperty,E=[],F=E.pop,G=E.push,H=E.push,I=E.slice,J=function(a,b){for(var c=0,d=a.length;d>c;c++)if(a[c]===b)return c;return-1},K="checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",L="[\\x20\\t\\r\\n\\f]",M="(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+",N=M.replace("w","w#"),O="\\["+L+"*("+M+")(?:"+L+"*([*^$|!~]?=)"+L+"*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|("+N+"))|)"+L+"*\\]",P=":("+M+")(?:\\((('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|((?:\\\\.|[^\\\\()[\\]]|"+O+")*)|.*)\\)|)",Q=new RegExp(L+"+","g"),R=new RegExp("^"+L+"+|((?:^|[^\\\\])(?:\\\\.)*)"+L+"+$","g"),S=new RegExp("^"+L+"*,"+L+"*"),T=new RegExp("^"+L+"*([>+~]|"+L+")"+L+"*"),U=new RegExp("="+L+"*([^\\]'\"]*?)"+L+"*\\]","g"),V=new RegExp(P),W=new RegExp("^"+N+"$"),X={ID:new RegExp("^#("+M+")"),CLASS:new RegExp("^\\.("+M+")"),TAG:new RegExp("^("+M.replace("w","w*")+")"),ATTR:new RegExp("^"+O),PSEUDO:new RegExp("^"+P),CHILD:new RegExp("^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\("+L+"*(even|odd|(([+-]|)(\\d*)n|)"+L+"*(?:([+-]|)"+L+"*(\\d+)|))"+L+"*\\)|)","i"),bool:new RegExp("^(?:"+K+")$","i"),needsContext:new RegExp("^"+L+"*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\("+L+"*((?:-\\d)?\\d*)"+L+"*\\)|)(?=[^-]|$)","i")},Y=/^(?:input|select|textarea|button)$/i,Z=/^h\d$/i,$=/^[^{]+\{\s*\[native \w/,_=/^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,aa=/[+~]/,ba=/'|\\/g,ca=new RegExp("\\\\([\\da-f]{1,6}"+L+"?|("+L+")|.)","ig"),da=function(a,b,c){var d="0x"+b-65536;return d!==d||c?b:0>d?String.fromCharCode(d+65536):String.fromCharCode(d>>10|55296,1023&d|56320)},ea=function(){m()};try{H.apply(E=I.call(v.childNodes),v.childNodes),E[v.childNodes.length].nodeType}catch(fa){H={apply:E.length?function(a,b){G.apply(a,I.call(b))}:function(a,b){var c=a.length,d=0;while(a[c++]=b[d++]);a.length=c-1}}}function ga(a,b,d,e){var f,h,j,k,l,o,r,s,w,x;if((b?b.ownerDocument||b:v)!==n&&m(b),b=b||n,d=d||[],k=b.nodeType,"string"!=typeof a||!a||1!==k&&9!==k&&11!==k)return d;if(!e&&p){if(11!==k&&(f=_.exec(a)))if(j=f[1]){if(9===k){if(h=b.getElementById(j),!h||!h.parentNode)return d;if(h.id===j)return d.push(h),d}else if(b.ownerDocument&&(h=b.ownerDocument.getElementById(j))&&t(b,h)&&h.id===j)return d.push(h),d}else{if(f[2])return H.apply(d,b.getElementsByTagName(a)),d;if((j=f[3])&&c.getElementsByClassName)return H.apply(d,b.getElementsByClassName(j)),d}if(c.qsa&&(!q||!q.test(a))){if(s=r=u,w=b,x=1!==k&&a,1===k&&"object"!==b.nodeName.toLowerCase()){o=g(a),(r=b.getAttribute("id"))?s=r.replace(ba,"\\$&"):b.setAttribute("id",s),s="[id='"+s+"'] ",l=o.length;while(l--)o[l]=s+ra(o[l]);w=aa.test(a)&&pa(b.parentNode)||b,x=o.join(",")}if(x)try{return H.apply(d,w.querySelectorAll(x)),d}catch(y){}finally{r||b.removeAttribute("id")}}}return i(a.replace(R,"$1"),b,d,e)}function ha(){var a=[];function b(c,e){return a.push(c+" ")>d.cacheLength&&delete b[a.shift()],b[c+" "]=e}return b}function ia(a){return a[u]=!0,a}function ja(a){var b=n.createElement("div");try{return!!a(b)}catch(c){return!1}finally{b.parentNode&&b.parentNode.removeChild(b),b=null}}function ka(a,b){var c=a.split("|"),e=a.length;while(e--)d.attrHandle[c[e]]=b}function la(a,b){var c=b&&a,d=c&&1===a.nodeType&&1===b.nodeType&&(~b.sourceIndex||C)-(~a.sourceIndex||C);if(d)return d;if(c)while(c=c.nextSibling)if(c===b)return-1;return a?1:-1}function ma(a){return function(b){var c=b.nodeName.toLowerCase();return"input"===c&&b.type===a}}function na(a){return function(b){var c=b.nodeName.toLowerCase();return("input"===c||"button"===c)&&b.type===a}}function oa(a){return ia(function(b){return b=+b,ia(function(c,d){var e,f=a([],c.length,b),g=f.length;while(g--)c[e=f[g]]&&(c[e]=!(d[e]=c[e]))})})}function pa(a){return a&&"undefined"!=typeof a.getElementsByTagName&&a}c=ga.support={},f=ga.isXML=function(a){var b=a&&(a.ownerDocument||a).documentElement;return b?"HTML"!==b.nodeName:!1},m=ga.setDocument=function(a){var b,e,g=a?a.ownerDocument||a:v;return g!==n&&9===g.nodeType&&g.documentElement?(n=g,o=g.documentElement,e=g.defaultView,e&&e!==e.top&&(e.addEventListener?e.addEventListener("unload",ea,!1):e.attachEvent&&e.attachEvent("onunload",ea)),p=!f(g),c.attributes=ja(function(a){return a.className="i",!a.getAttribute("className")}),c.getElementsByTagName=ja(function(a){return a.appendChild(g.createComment("")),!a.getElementsByTagName("*").length}),c.getElementsByClassName=$.test(g.getElementsByClassName),c.getById=ja(function(a){return o.appendChild(a).id=u,!g.getElementsByName||!g.getElementsByName(u).length}),c.getById?(d.find.ID=function(a,b){if("undefined"!=typeof b.getElementById&&p){var c=b.getElementById(a);return c&&c.parentNode?[c]:[]}},d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){return a.getAttribute("id")===b}}):(delete d.find.ID,d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){var c="undefined"!=typeof a.getAttributeNode&&a.getAttributeNode("id");return c&&c.value===b}}),d.find.TAG=c.getElementsByTagName?function(a,b){return"undefined"!=typeof b.getElementsByTagName?b.getElementsByTagName(a):c.qsa?b.querySelectorAll(a):void 0}:function(a,b){var c,d=[],e=0,f=b.getElementsByTagName(a);if("*"===a){while(c=f[e++])1===c.nodeType&&d.push(c);return d}return f},d.find.CLASS=c.getElementsByClassName&&function(a,b){return p?b.getElementsByClassName(a):void 0},r=[],q=[],(c.qsa=$.test(g.querySelectorAll))&&(ja(function(a){o.appendChild(a).innerHTML="<a id='"+u+"'></a><select id='"+u+"-\f]' msallowcapture=''><option selected=''></option></select>",a.querySelectorAll("[msallowcapture^='']").length&&q.push("[*^$]="+L+"*(?:''|\"\")"),a.querySelectorAll("[selected]").length||q.push("\\["+L+"*(?:value|"+K+")"),a.querySelectorAll("[id~="+u+"-]").length||q.push("~="),a.querySelectorAll(":checked").length||q.push(":checked"),a.querySelectorAll("a#"+u+"+*").length||q.push(".#.+[+~]")}),ja(function(a){var b=g.createElement("input");b.setAttribute("type","hidden"),a.appendChild(b).setAttribute("name","D"),a.querySelectorAll("[name=d]").length&&q.push("name"+L+"*[*^$|!~]?="),a.querySelectorAll(":enabled").length||q.push(":enabled",":disabled"),a.querySelectorAll("*,:x"),q.push(",.*:")})),(c.matchesSelector=$.test(s=o.matches||o.webkitMatchesSelector||o.mozMatchesSelector||o.oMatchesSelector||o.msMatchesSelector))&&ja(function(a){c.disconnectedMatch=s.call(a,"div"),s.call(a,"[s!='']:x"),r.push("!=",P)}),q=q.length&&new RegExp(q.join("|")),r=r.length&&new RegExp(r.join("|")),b=$.test(o.compareDocumentPosition),t=b||$.test(o.contains)?function(a,b){var c=9===a.nodeType?a.documentElement:a,d=b&&b.parentNode;return a===d||!(!d||1!==d.nodeType||!(c.contains?c.contains(d):a.compareDocumentPosition&&16&a.compareDocumentPosition(d)))}:function(a,b){if(b)while(b=b.parentNode)if(b===a)return!0;return!1},B=b?function(a,b){if(a===b)return l=!0,0;var d=!a.compareDocumentPosition-!b.compareDocumentPosition;return d?d:(d=(a.ownerDocument||a)===(b.ownerDocument||b)?a.compareDocumentPosition(b):1,1&d||!c.sortDetached&&b.compareDocumentPosition(a)===d?a===g||a.ownerDocument===v&&t(v,a)?-1:b===g||b.ownerDocument===v&&t(v,b)?1:k?J(k,a)-J(k,b):0:4&d?-1:1)}:function(a,b){if(a===b)return l=!0,0;var c,d=0,e=a.parentNode,f=b.parentNode,h=[a],i=[b];if(!e||!f)return a===g?-1:b===g?1:e?-1:f?1:k?J(k,a)-J(k,b):0;if(e===f)return la(a,b);c=a;while(c=c.parentNode)h.unshift(c);c=b;while(c=c.parentNode)i.unshift(c);while(h[d]===i[d])d++;return d?la(h[d],i[d]):h[d]===v?-1:i[d]===v?1:0},g):n},ga.matches=function(a,b){return ga(a,null,null,b)},ga.matchesSelector=function(a,b){if((a.ownerDocument||a)!==n&&m(a),b=b.replace(U,"='$1']"),!(!c.matchesSelector||!p||r&&r.test(b)||q&&q.test(b)))try{var d=s.call(a,b);if(d||c.disconnectedMatch||a.document&&11!==a.document.nodeType)return d}catch(e){}return ga(b,n,null,[a]).length>0},ga.contains=function(a,b){return(a.ownerDocument||a)!==n&&m(a),t(a,b)},ga.attr=function(a,b){(a.ownerDocument||a)!==n&&m(a);var e=d.attrHandle[b.toLowerCase()],f=e&&D.call(d.attrHandle,b.toLowerCase())?e(a,b,!p):void 0;return void 0!==f?f:c.attributes||!p?a.getAttribute(b):(f=a.getAttributeNode(b))&&f.specified?f.value:null},ga.error=function(a){throw new Error("Syntax error, unrecognized expression: "+a)},ga.uniqueSort=function(a){var b,d=[],e=0,f=0;if(l=!c.detectDuplicates,k=!c.sortStable&&a.slice(0),a.sort(B),l){while(b=a[f++])b===a[f]&&(e=d.push(f));while(e--)a.splice(d[e],1)}return k=null,a},e=ga.getText=function(a){var b,c="",d=0,f=a.nodeType;if(f){if(1===f||9===f||11===f){if("string"==typeof a.textContent)return a.textContent;for(a=a.firstChild;a;a=a.nextSibling)c+=e(a)}else if(3===f||4===f)return a.nodeValue}else while(b=a[d++])c+=e(b);return c},d=ga.selectors={cacheLength:50,createPseudo:ia,match:X,attrHandle:{},find:{},relative:{">":{dir:"parentNode",first:!0}," ":{dir:"parentNode"},"+":{dir:"previousSibling",first:!0},"~":{dir:"previousSibling"}},preFilter:{ATTR:function(a){return a[1]=a[1].replace(ca,da),a[3]=(a[3]||a[4]||a[5]||"").replace(ca,da),"~="===a[2]&&(a[3]=" "+a[3]+" "),a.slice(0,4)},CHILD:function(a){return a[1]=a[1].toLowerCase(),"nth"===a[1].slice(0,3)?(a[3]||ga.error(a[0]),a[4]=+(a[4]?a[5]+(a[6]||1):2*("even"===a[3]||"odd"===a[3])),a[5]=+(a[7]+a[8]||"odd"===a[3])):a[3]&&ga.error(a[0]),a},PSEUDO:function(a){var b,c=!a[6]&&a[2];return X.CHILD.test(a[0])?null:(a[3]?a[2]=a[4]||a[5]||"":c&&V.test(c)&&(b=g(c,!0))&&(b=c.indexOf(")",c.length-b)-c.length)&&(a[0]=a[0].slice(0,b),a[2]=c.slice(0,b)),a.slice(0,3))}},filter:{TAG:function(a){var b=a.replace(ca,da).toLowerCase();return"*"===a?function(){return!0}:function(a){return a.nodeName&&a.nodeName.toLowerCase()===b}},CLASS:function(a){var b=y[a+" "];return b||(b=new RegExp("(^|"+L+")"+a+"("+L+"|$)"))&&y(a,function(a){return b.test("string"==typeof a.className&&a.className||"undefined"!=typeof a.getAttribute&&a.getAttribute("class")||"")})},ATTR:function(a,b,c){return function(d){var e=ga.attr(d,a);return null==e?"!="===b:b?(e+="","="===b?e===c:"!="===b?e!==c:"^="===b?c&&0===e.indexOf(c):"*="===b?c&&e.indexOf(c)>-1:"$="===b?c&&e.slice(-c.length)===c:"~="===b?(" "+e.replace(Q," ")+" ").indexOf(c)>-1:"|="===b?e===c||e.slice(0,c.length+1)===c+"-":!1):!0}},CHILD:function(a,b,c,d,e){var f="nth"!==a.slice(0,3),g="last"!==a.slice(-4),h="of-type"===b;return 1===d&&0===e?function(a){return!!a.parentNode}:function(b,c,i){var j,k,l,m,n,o,p=f!==g?"nextSibling":"previousSibling",q=b.parentNode,r=h&&b.nodeName.toLowerCase(),s=!i&&!h;if(q){if(f){while(p){l=b;while(l=l[p])if(h?l.nodeName.toLowerCase()===r:1===l.nodeType)return!1;o=p="only"===a&&!o&&"nextSibling"}return!0}if(o=[g?q.firstChild:q.lastChild],g&&s){k=q[u]||(q[u]={}),j=k[a]||[],n=j[0]===w&&j[1],m=j[0]===w&&j[2],l=n&&q.childNodes[n];while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if(1===l.nodeType&&++m&&l===b){k[a]=[w,n,m];break}}else if(s&&(j=(b[u]||(b[u]={}))[a])&&j[0]===w)m=j[1];else while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if((h?l.nodeName.toLowerCase()===r:1===l.nodeType)&&++m&&(s&&((l[u]||(l[u]={}))[a]=[w,m]),l===b))break;return m-=e,m===d||m%d===0&&m/d>=0}}},PSEUDO:function(a,b){var c,e=d.pseudos[a]||d.setFilters[a.toLowerCase()]||ga.error("unsupported pseudo: "+a);return e[u]?e(b):e.length>1?(c=[a,a,"",b],d.setFilters.hasOwnProperty(a.toLowerCase())?ia(function(a,c){var d,f=e(a,b),g=f.length;while(g--)d=J(a,f[g]),a[d]=!(c[d]=f[g])}):function(a){return e(a,0,c)}):e}},pseudos:{not:ia(function(a){var b=[],c=[],d=h(a.replace(R,"$1"));return d[u]?ia(function(a,b,c,e){var f,g=d(a,null,e,[]),h=a.length;while(h--)(f=g[h])&&(a[h]=!(b[h]=f))}):function(a,e,f){return b[0]=a,d(b,null,f,c),b[0]=null,!c.pop()}}),has:ia(function(a){return function(b){return ga(a,b).length>0}}),contains:ia(function(a){return a=a.replace(ca,da),function(b){return(b.textContent||b.innerText||e(b)).indexOf(a)>-1}}),lang:ia(function(a){return W.test(a||"")||ga.error("unsupported lang: "+a),a=a.replace(ca,da).toLowerCase(),function(b){var c;do if(c=p?b.lang:b.getAttribute("xml:lang")||b.getAttribute("lang"))return c=c.toLowerCase(),c===a||0===c.indexOf(a+"-");while((b=b.parentNode)&&1===b.nodeType);return!1}}),target:function(b){var c=a.location&&a.location.hash;return c&&c.slice(1)===b.id},root:function(a){return a===o},focus:function(a){return a===n.activeElement&&(!n.hasFocus||n.hasFocus())&&!!(a.type||a.href||~a.tabIndex)},enabled:function(a){return a.disabled===!1},disabled:function(a){return a.disabled===!0},checked:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&!!a.checked||"option"===b&&!!a.selected},selected:function(a){return a.parentNode&&a.parentNode.selectedIndex,a.selected===!0},empty:function(a){for(a=a.firstChild;a;a=a.nextSibling)if(a.nodeType<6)return!1;return!0},parent:function(a){return!d.pseudos.empty(a)},header:function(a){return Z.test(a.nodeName)},input:function(a){return Y.test(a.nodeName)},button:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&"button"===a.type||"button"===b},text:function(a){var b;return"input"===a.nodeName.toLowerCase()&&"text"===a.type&&(null==(b=a.getAttribute("type"))||"text"===b.toLowerCase())},first:oa(function(){return[0]}),last:oa(function(a,b){return[b-1]}),eq:oa(function(a,b,c){return[0>c?c+b:c]}),even:oa(function(a,b){for(var c=0;b>c;c+=2)a.push(c);return a}),odd:oa(function(a,b){for(var c=1;b>c;c+=2)a.push(c);return a}),lt:oa(function(a,b,c){for(var d=0>c?c+b:c;--d>=0;)a.push(d);return a}),gt:oa(function(a,b,c){for(var d=0>c?c+b:c;++d<b;)a.push(d);return a})}},d.pseudos.nth=d.pseudos.eq;for(b in{radio:!0,checkbox:!0,file:!0,password:!0,image:!0})d.pseudos[b]=ma(b);for(b in{submit:!0,reset:!0})d.pseudos[b]=na(b);function qa(){}qa.prototype=d.filters=d.pseudos,d.setFilters=new qa,g=ga.tokenize=function(a,b){var c,e,f,g,h,i,j,k=z[a+" "];if(k)return b?0:k.slice(0);h=a,i=[],j=d.preFilter;while(h){(!c||(e=S.exec(h)))&&(e&&(h=h.slice(e[0].length)||h),i.push(f=[])),c=!1,(e=T.exec(h))&&(c=e.shift(),f.push({value:c,type:e[0].replace(R," ")}),h=h.slice(c.length));for(g in d.filter)!(e=X[g].exec(h))||j[g]&&!(e=j[g](e))||(c=e.shift(),f.push({value:c,type:g,matches:e}),h=h.slice(c.length));if(!c)break}return b?h.length:h?ga.error(a):z(a,i).slice(0)};function ra(a){for(var b=0,c=a.length,d="";c>b;b++)d+=a[b].value;return d}function sa(a,b,c){var d=b.dir,e=c&&"parentNode"===d,f=x++;return b.first?function(b,c,f){while(b=b[d])if(1===b.nodeType||e)return a(b,c,f)}:function(b,c,g){var h,i,j=[w,f];if(g){while(b=b[d])if((1===b.nodeType||e)&&a(b,c,g))return!0}else while(b=b[d])if(1===b.nodeType||e){if(i=b[u]||(b[u]={}),(h=i[d])&&h[0]===w&&h[1]===f)return j[2]=h[2];if(i[d]=j,j[2]=a(b,c,g))return!0}}}function ta(a){return a.length>1?function(b,c,d){var e=a.length;while(e--)if(!a[e](b,c,d))return!1;return!0}:a[0]}function ua(a,b,c){for(var d=0,e=b.length;e>d;d++)ga(a,b[d],c);return c}function va(a,b,c,d,e){for(var f,g=[],h=0,i=a.length,j=null!=b;i>h;h++)(f=a[h])&&(!c||c(f,d,e))&&(g.push(f),j&&b.push(h));return g}function wa(a,b,c,d,e,f){return d&&!d[u]&&(d=wa(d)),e&&!e[u]&&(e=wa(e,f)),ia(function(f,g,h,i){var j,k,l,m=[],n=[],o=g.length,p=f||ua(b||"*",h.nodeType?[h]:h,[]),q=!a||!f&&b?p:va(p,m,a,h,i),r=c?e||(f?a:o||d)?[]:g:q;if(c&&c(q,r,h,i),d){j=va(r,n),d(j,[],h,i),k=j.length;while(k--)(l=j[k])&&(r[n[k]]=!(q[n[k]]=l))}if(f){if(e||a){if(e){j=[],k=r.length;while(k--)(l=r[k])&&j.push(q[k]=l);e(null,r=[],j,i)}k=r.length;while(k--)(l=r[k])&&(j=e?J(f,l):m[k])>-1&&(f[j]=!(g[j]=l))}}else r=va(r===g?r.splice(o,r.length):r),e?e(null,g,r,i):H.apply(g,r)})}function xa(a){for(var b,c,e,f=a.length,g=d.relative[a[0].type],h=g||d.relative[" "],i=g?1:0,k=sa(function(a){return a===b},h,!0),l=sa(function(a){return J(b,a)>-1},h,!0),m=[function(a,c,d){var e=!g&&(d||c!==j)||((b=c).nodeType?k(a,c,d):l(a,c,d));return b=null,e}];f>i;i++)if(c=d.relative[a[i].type])m=[sa(ta(m),c)];else{if(c=d.filter[a[i].type].apply(null,a[i].matches),c[u]){for(e=++i;f>e;e++)if(d.relative[a[e].type])break;return wa(i>1&&ta(m),i>1&&ra(a.slice(0,i-1).concat({value:" "===a[i-2].type?"*":""})).replace(R,"$1"),c,e>i&&xa(a.slice(i,e)),f>e&&xa(a=a.slice(e)),f>e&&ra(a))}m.push(c)}return ta(m)}function ya(a,b){var c=b.length>0,e=a.length>0,f=function(f,g,h,i,k){var l,m,o,p=0,q="0",r=f&&[],s=[],t=j,u=f||e&&d.find.TAG("*",k),v=w+=null==t?1:Math.random()||.1,x=u.length;for(k&&(j=g!==n&&g);q!==x&&null!=(l=u[q]);q++){if(e&&l){m=0;while(o=a[m++])if(o(l,g,h)){i.push(l);break}k&&(w=v)}c&&((l=!o&&l)&&p--,f&&r.push(l))}if(p+=q,c&&q!==p){m=0;while(o=b[m++])o(r,s,g,h);if(f){if(p>0)while(q--)r[q]||s[q]||(s[q]=F.call(i));s=va(s)}H.apply(i,s),k&&!f&&s.length>0&&p+b.length>1&&ga.uniqueSort(i)}return k&&(w=v,j=t),r};return c?ia(f):f}return h=ga.compile=function(a,b){var c,d=[],e=[],f=A[a+" "];if(!f){b||(b=g(a)),c=b.length;while(c--)f=xa(b[c]),f[u]?d.push(f):e.push(f);f=A(a,ya(e,d)),f.selector=a}return f},i=ga.select=function(a,b,e,f){var i,j,k,l,m,n="function"==typeof a&&a,o=!f&&g(a=n.selector||a);if(e=e||[],1===o.length){if(j=o[0]=o[0].slice(0),j.length>2&&"ID"===(k=j[0]).type&&c.getById&&9===b.nodeType&&p&&d.relative[j[1].type]){if(b=(d.find.ID(k.matches[0].replace(ca,da),b)||[])[0],!b)return e;n&&(b=b.parentNode),a=a.slice(j.shift().value.length)}i=X.needsContext.test(a)?0:j.length;while(i--){if(k=j[i],d.relative[l=k.type])break;if((m=d.find[l])&&(f=m(k.matches[0].replace(ca,da),aa.test(j[0].type)&&pa(b.parentNode)||b))){if(j.splice(i,1),a=f.length&&ra(j),!a)return H.apply(e,f),e;break}}}return(n||h(a,o))(f,b,!p,e,aa.test(a)&&pa(b.parentNode)||b),e},c.sortStable=u.split("").sort(B).join("")===u,c.detectDuplicates=!!l,m(),c.sortDetached=ja(function(a){return 1&a.compareDocumentPosition(n.createElement("div"))}),ja(function(a){return a.innerHTML="<a href='#'></a>","#"===a.firstChild.getAttribute("href")})||ka("type|href|height|width",function(a,b,c){return c?void 0:a.getAttribute(b,"type"===b.toLowerCase()?1:2)}),c.attributes&&ja(function(a){return a.innerHTML="<input/>",a.firstChild.setAttribute("value",""),""===a.firstChild.getAttribute("value")})||ka("value",function(a,b,c){return c||"input"!==a.nodeName.toLowerCase()?void 0:a.defaultValue}),ja(function(a){return null==a.getAttribute("disabled")})||ka(K,function(a,b,c){var d;return c?void 0:a[b]===!0?b.toLowerCase():(d=a.getAttributeNode(b))&&d.specified?d.value:null}),ga}(a);m.find=s,m.expr=s.selectors,m.expr[":"]=m.expr.pseudos,m.unique=s.uniqueSort,m.text=s.getText,m.isXMLDoc=s.isXML,m.contains=s.contains;var t=m.expr.match.needsContext,u=/^<(\w+)\s*\/?>(?:<\/\1>|)$/,v=/^.[^:#\[\.,]*$/;function w(a,b,c){if(m.isFunction(b))return m.grep(a,function(a,d){return!!b.call(a,d,a)!==c});if(b.nodeType)return m.grep(a,function(a){return a===b!==c});if("string"==typeof b){if(v.test(b))return m.filter(b,a,c);b=m.filter(b,a)}return m.grep(a,function(a){return m.inArray(a,b)>=0!==c})}m.filter=function(a,b,c){var d=b[0];return c&&(a=":not("+a+")"),1===b.length&&1===d.nodeType?m.find.matchesSelector(d,a)?[d]:[]:m.find.matches(a,m.grep(b,function(a){return 1===a.nodeType}))},m.fn.extend({find:function(a){var b,c=[],d=this,e=d.length;if("string"!=typeof a)return this.pushStack(m(a).filter(function(){for(b=0;e>b;b++)if(m.contains(d[b],this))return!0}));for(b=0;e>b;b++)m.find(a,d[b],c);return c=this.pushStack(e>1?m.unique(c):c),c.selector=this.selector?this.selector+" "+a:a,c},filter:function(a){return this.pushStack(w(this,a||[],!1))},not:function(a){return this.pushStack(w(this,a||[],!0))},is:function(a){return!!w(this,"string"==typeof a&&t.test(a)?m(a):a||[],!1).length}});var x,y=a.document,z=/^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/,A=m.fn.init=function(a,b){var c,d;if(!a)return this;if("string"==typeof a){if(c="<"===a.charAt(0)&&">"===a.charAt(a.length-1)&&a.length>=3?[null,a,null]:z.exec(a),!c||!c[1]&&b)return!b||b.jquery?(b||x).find(a):this.constructor(b).find(a);if(c[1]){if(b=b instanceof m?b[0]:b,m.merge(this,m.parseHTML(c[1],b&&b.nodeType?b.ownerDocument||b:y,!0)),u.test(c[1])&&m.isPlainObject(b))for(c in b)m.isFunction(this[c])?this[c](b[c]):this.attr(c,b[c]);return this}if(d=y.getElementById(c[2]),d&&d.parentNode){if(d.id!==c[2])return x.find(a);this.length=1,this[0]=d}return this.context=y,this.selector=a,this}return a.nodeType?(this.context=this[0]=a,this.length=1,this):m.isFunction(a)?"undefined"!=typeof x.ready?x.ready(a):a(m):(void 0!==a.selector&&(this.selector=a.selector,this.context=a.context),m.makeArray(a,this))};A.prototype=m.fn,x=m(y);var B=/^(?:parents|prev(?:Until|All))/,C={children:!0,contents:!0,next:!0,prev:!0};m.extend({dir:function(a,b,c){var d=[],e=a[b];while(e&&9!==e.nodeType&&(void 0===c||1!==e.nodeType||!m(e).is(c)))1===e.nodeType&&d.push(e),e=e[b];return d},sibling:function(a,b){for(var c=[];a;a=a.nextSibling)1===a.nodeType&&a!==b&&c.push(a);return c}}),m.fn.extend({has:function(a){var b,c=m(a,this),d=c.length;return this.filter(function(){for(b=0;d>b;b++)if(m.contains(this,c[b]))return!0})},closest:function(a,b){for(var c,d=0,e=this.length,f=[],g=t.test(a)||"string"!=typeof a?m(a,b||this.context):0;e>d;d++)for(c=this[d];c&&c!==b;c=c.parentNode)if(c.nodeType<11&&(g?g.index(c)>-1:1===c.nodeType&&m.find.matchesSelector(c,a))){f.push(c);break}return this.pushStack(f.length>1?m.unique(f):f)},index:function(a){return a?"string"==typeof a?m.inArray(this[0],m(a)):m.inArray(a.jquery?a[0]:a,this):this[0]&&this[0].parentNode?this.first().prevAll().length:-1},add:function(a,b){return this.pushStack(m.unique(m.merge(this.get(),m(a,b))))},addBack:function(a){return this.add(null==a?this.prevObject:this.prevObject.filter(a))}});function D(a,b){do a=a[b];while(a&&1!==a.nodeType);return a}m.each({parent:function(a){var b=a.parentNode;return b&&11!==b.nodeType?b:null},parents:function(a){return m.dir(a,"parentNode")},parentsUntil:function(a,b,c){return m.dir(a,"parentNode",c)},next:function(a){return D(a,"nextSibling")},prev:function(a){return D(a,"previousSibling")},nextAll:function(a){return m.dir(a,"nextSibling")},prevAll:function(a){return m.dir(a,"previousSibling")},nextUntil:function(a,b,c){return m.dir(a,"nextSibling",c)},prevUntil:function(a,b,c){return m.dir(a,"previousSibling",c)},siblings:function(a){return m.sibling((a.parentNode||{}).firstChild,a)},children:function(a){return m.sibling(a.firstChild)},contents:function(a){return m.nodeName(a,"iframe")?a.contentDocument||a.contentWindow.document:m.merge([],a.childNodes)}},function(a,b){m.fn[a]=function(c,d){var e=m.map(this,b,c);return"Until"!==a.slice(-5)&&(d=c),d&&"string"==typeof d&&(e=m.filter(d,e)),this.length>1&&(C[a]||(e=m.unique(e)),B.test(a)&&(e=e.reverse())),this.pushStack(e)}});var E=/\S+/g,F={};function G(a){var b=F[a]={};return m.each(a.match(E)||[],function(a,c){b[c]=!0}),b}m.Callbacks=function(a){a="string"==typeof a?F[a]||G(a):m.extend({},a);var b,c,d,e,f,g,h=[],i=!a.once&&[],j=function(l){for(c=a.memory&&l,d=!0,f=g||0,g=0,e=h.length,b=!0;h&&e>f;f++)if(h[f].apply(l[0],l[1])===!1&&a.stopOnFalse){c=!1;break}b=!1,h&&(i?i.length&&j(i.shift()):c?h=[]:k.disable())},k={add:function(){if(h){var d=h.length;!function f(b){m.each(b,function(b,c){var d=m.type(c);"function"===d?a.unique&&k.has(c)||h.push(c):c&&c.length&&"string"!==d&&f(c)})}(arguments),b?e=h.length:c&&(g=d,j(c))}return this},remove:function(){return h&&m.each(arguments,function(a,c){var d;while((d=m.inArray(c,h,d))>-1)h.splice(d,1),b&&(e>=d&&e--,f>=d&&f--)}),this},has:function(a){return a?m.inArray(a,h)>-1:!(!h||!h.length)},empty:function(){return h=[],e=0,this},disable:function(){return h=i=c=void 0,this},disabled:function(){return!h},lock:function(){return i=void 0,c||k.disable(),this},locked:function(){return!i},fireWith:function(a,c){return!h||d&&!i||(c=c||[],c=[a,c.slice?c.slice():c],b?i.push(c):j(c)),this},fire:function(){return k.fireWith(this,arguments),this},fired:function(){return!!d}};return k},m.extend({Deferred:function(a){var b=[["resolve","done",m.Callbacks("once memory"),"resolved"],["reject","fail",m.Callbacks("once memory"),"rejected"],["notify","progress",m.Callbacks("memory")]],c="pending",d={state:function(){return c},always:function(){return e.done(arguments).fail(arguments),this},then:function(){var a=arguments;return m.Deferred(function(c){m.each(b,function(b,f){var g=m.isFunction(a[b])&&a[b];e[f[1]](function(){var a=g&&g.apply(this,arguments);a&&m.isFunction(a.promise)?a.promise().done(c.resolve).fail(c.reject).progress(c.notify):c[f[0]+"With"](this===d?c.promise():this,g?[a]:arguments)})}),a=null}).promise()},promise:function(a){return null!=a?m.extend(a,d):d}},e={};return d.pipe=d.then,m.each(b,function(a,f){var g=f[2],h=f[3];d[f[1]]=g.add,h&&g.add(function(){c=h},b[1^a][2].disable,b[2][2].lock),e[f[0]]=function(){return e[f[0]+"With"](this===e?d:this,arguments),this},e[f[0]+"With"]=g.fireWith}),d.promise(e),a&&a.call(e,e),e},when:function(a){var b=0,c=d.call(arguments),e=c.length,f=1!==e||a&&m.isFunction(a.promise)?e:0,g=1===f?a:m.Deferred(),h=function(a,b,c){return function(e){b[a]=this,c[a]=arguments.length>1?d.call(arguments):e,c===i?g.notifyWith(b,c):--f||g.resolveWith(b,c)}},i,j,k;if(e>1)for(i=new Array(e),j=new Array(e),k=new Array(e);e>b;b++)c[b]&&m.isFunction(c[b].promise)?c[b].promise().done(h(b,k,c)).fail(g.reject).progress(h(b,j,i)):--f;return f||g.resolveWith(k,c),g.promise()}});var H;m.fn.ready=function(a){return m.ready.promise().done(a),this},m.extend({isReady:!1,readyWait:1,holdReady:function(a){a?m.readyWait++:m.ready(!0)},ready:function(a){if(a===!0?!--m.readyWait:!m.isReady){if(!y.body)return setTimeout(m.ready);m.isReady=!0,a!==!0&&--m.readyWait>0||(H.resolveWith(y,[m]),m.fn.triggerHandler&&(m(y).triggerHandler("ready"),m(y).off("ready")))}}});function I(){y.addEventListener?(y.removeEventListener("DOMContentLoaded",J,!1),a.removeEventListener("load",J,!1)):(y.detachEvent("onreadystatechange",J),a.detachEvent("onload",J))}function J(){(y.addEventListener||"load"===event.type||"complete"===y.readyState)&&(I(),m.ready())}m.ready.promise=function(b){if(!H)if(H=m.Deferred(),"complete"===y.readyState)setTimeout(m.ready);else if(y.addEventListener)y.addEventListener("DOMContentLoaded",J,!1),a.addEventListener("load",J,!1);else{y.attachEvent("onreadystatechange",J),a.attachEvent("onload",J);var c=!1;try{c=null==a.frameElement&&y.documentElement}catch(d){}c&&c.doScroll&&!function e(){if(!m.isReady){try{c.doScroll("left")}catch(a){return setTimeout(e,50)}I(),m.ready()}}()}return H.promise(b)};var K="undefined",L;for(L in m(k))break;k.ownLast="0"!==L,k.inlineBlockNeedsLayout=!1,m(function(){var a,b,c,d;c=y.getElementsByTagName("body")[0],c&&c.style&&(b=y.createElement("div"),d=y.createElement("div"),d.style.cssText="position:absolute;border:0;width:0;height:0;top:0;left:-9999px",c.appendChild(d).appendChild(b),typeof b.style.zoom!==K&&(b.style.cssText="display:inline;margin:0;border:0;padding:1px;width:1px;zoom:1",k.inlineBlockNeedsLayout=a=3===b.offsetWidth,a&&(c.style.zoom=1)),c.removeChild(d))}),function(){var a=y.createElement("div");if(null==k.deleteExpando){k.deleteExpando=!0;try{delete a.test}catch(b){k.deleteExpando=!1}}a=null}(),m.acceptData=function(a){var b=m.noData[(a.nodeName+" ").toLowerCase()],c=+a.nodeType||1;return 1!==c&&9!==c?!1:!b||b!==!0&&a.getAttribute("classid")===b};var M=/^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,N=/([A-Z])/g;function O(a,b,c){if(void 0===c&&1===a.nodeType){var d="data-"+b.replace(N,"-$1").toLowerCase();if(c=a.getAttribute(d),"string"==typeof c){try{c="true"===c?!0:"false"===c?!1:"null"===c?null:+c+""===c?+c:M.test(c)?m.parseJSON(c):c}catch(e){}m.data(a,b,c)}else c=void 0}return c}function P(a){var b;for(b in a)if(("data"!==b||!m.isEmptyObject(a[b]))&&"toJSON"!==b)return!1;
 
@@ -190,30 +202,56 @@ window.buildTabsets = function(tocID) {
 };
 
 </script>
+<script>// Hide empty <a> tag within highlighted CodeBlock for screen reader accessibility (see https://github.com/jgm/pandoc/issues/6352#issuecomment-626106786) -->
+// v0.0.1
+// Written by JooYoung Seo (jooyoung@psu.edu) and Atsushi Yasumoto on June 1st, 2020.
+
+document.addEventListener('DOMContentLoaded', function() {
+  const codeList = document.getElementsByClassName("sourceCode");
+  for (var i = 0; i < codeList.length; i++) {
+    var linkList = codeList[i].getElementsByTagName('a');
+    for (var j = 0; j < linkList.length; j++) {
+      if (linkList[j].innerHTML === "") {
+        linkList[j].setAttribute('aria-hidden', 'true');
+      }
+    }
+  }
+});
+</script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -222,9 +260,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  { background-color: #f8f8f8; }
+  {  background-color: #f8f8f8; }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
@@ -310,6 +348,7 @@ h6 {
   text-align: left;
 }
 </style>
+
 
 <style type="text/css">
 .author {
@@ -426,6 +465,7 @@ summary {
   border: none;
   display: inline-block;
   border-radius: 4px;
+  background-color: transparent;
 }
 
 .tabset-dropdown > .nav-tabs.nav-tabs-open > li {
@@ -461,34 +501,35 @@ summary {
 <h3 class="subtitle">Lecture 3:<br> Computation and Memory II</h3>
 <h4 class="author"><div class="line-block">Prof. Dr. Ulrich Matter<br />
 (University of St. Gallen)</div></h4>
-<h4 class="date">05/03/2020</h4>
+<h4 class="date">11/03/2021</h4>
 
 </div>
 
 
-<div id="resource-allocation" class="section level1">
+<div id="resource-allocation" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Resource allocation</h1>
-<p>When optimizing the performance of an analytics program processing large amounts of data, it is useful to differentiate between the efficient allocation of computational (CPU) power, and the allocation of RAM (and mass storage).^I[n many data analysis tasks the two are, of course, intertwined. However, keeping both aspects in mind when optimizing an analytics program helps to choose the right tools.] Below, we will look at both aspects in turn.</p>
-<div id="case-study-parallel-processing" class="section level2">
+<p>When optimizing the performance of an analytics program processing large amounts of data, it is useful to differentiate between the efficient allocation of computational (CPU) power, and the allocation of RAM (and mass storage).<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> Below, we will look at both aspects in turn.</p>
+<div id="case-study-parallel-processing" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> Case study: Parallel processing</h2>
-<p>In this example, we estimate a simple regression model that aims to assess racial discrimination in the context of police stops.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> The example is based on the ‘Minneapolis Police Department 2017 Stop Dataset’, containing data on nearly all stops made by the Minneapolis Police Department for the year 2017.</p>
+<p>In this example, we estimate a simple regression model that aims to assess racial discrimination in the context of police stops.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> The example is based on the ‘Minneapolis Police Department 2017 Stop Dataset’, containing data on nearly all stops made by the Minneapolis Police Department for the year 2017.</p>
 <p>We start with importing the data into R.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">stopdata &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://vincentarelbundock.github.io/Rdatasets/csv/carData/MplsStops.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>url &lt;-<span class="st"> &quot;https://vincentarelbundock.github.io/Rdatasets/csv/carData/MplsStops.csv&quot;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>stopdata &lt;-<span class="st"> </span>data.table<span class="op">::</span><span class="kw">fread</span>(url) </span></code></pre></div>
 <p>We specify a simple linear probability model that aims to test whether a stopped person identified as ‘white’ is less likely to have her vehicle searched when stopped by the police. In order to take into account level-differences between different police precincts, we add precinct-indicators to the regression specification</p>
 <p>First, let’s remove observations with missing entries (<code>NA</code>) and code our main explanatory variable and the dependent variable.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="co"># remove incomplete obs</span></a>
-<a class="sourceLine" id="cb2-2" data-line-number="2">stopdata &lt;-<span class="st"> </span><span class="kw">na.omit</span>(stopdata)</a>
-<a class="sourceLine" id="cb2-3" data-line-number="3"><span class="co"># code dependent var</span></a>
-<a class="sourceLine" id="cb2-4" data-line-number="4">stopdata<span class="op">$</span>vsearch &lt;-<span class="st"> </span><span class="dv">0</span></a>
-<a class="sourceLine" id="cb2-5" data-line-number="5">stopdata<span class="op">$</span>vsearch[stopdata<span class="op">$</span>vehicleSearch<span class="op">==</span><span class="st">&quot;YES&quot;</span>] &lt;-<span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb2-6" data-line-number="6"><span class="co"># code explanatory var</span></a>
-<a class="sourceLine" id="cb2-7" data-line-number="7">stopdata<span class="op">$</span>white &lt;-<span class="st"> </span><span class="dv">0</span></a>
-<a class="sourceLine" id="cb2-8" data-line-number="8">stopdata<span class="op">$</span>white[stopdata<span class="op">$</span>race<span class="op">==</span><span class="st">&quot;White&quot;</span>] &lt;-<span class="st"> </span><span class="dv">1</span></a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co"># remove incomplete obs</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>stopdata &lt;-<span class="st"> </span><span class="kw">na.omit</span>(stopdata)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="co"># code dependent var</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true"></a>stopdata<span class="op">$</span>vsearch &lt;-<span class="st"> </span><span class="dv">0</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true"></a>stopdata<span class="op">$</span>vsearch[stopdata<span class="op">$</span>vehicleSearch<span class="op">==</span><span class="st">&quot;YES&quot;</span>] &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true"></a><span class="co"># code explanatory var</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true"></a>stopdata<span class="op">$</span>white &lt;-<span class="st"> </span><span class="dv">0</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true"></a>stopdata<span class="op">$</span>white[stopdata<span class="op">$</span>race<span class="op">==</span><span class="st">&quot;White&quot;</span>] &lt;-<span class="st"> </span><span class="dv">1</span></span></code></pre></div>
 <p>We specify our baseline model as follows.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1">model &lt;-<span class="st"> </span>vsearch <span class="op">~</span><span class="st"> </span>white <span class="op">+</span><span class="st"> </span><span class="kw">factor</span>(policePrecinct)</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a>model &lt;-<span class="st"> </span>vsearch <span class="op">~</span><span class="st"> </span>white <span class="op">+</span><span class="st"> </span><span class="kw">factor</span>(policePrecinct)</span></code></pre></div>
 <p>And estimate the linear probability model via OLS (the <code>lm</code> function).</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(model, stopdata)</a>
-<a class="sourceLine" id="cb4-2" data-line-number="2"><span class="kw">summary</span>(fit)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>fit &lt;-<span class="st"> </span><span class="kw">lm</span>(model, stopdata)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true"></a><span class="kw">summary</span>(fit)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = model, data = stopdata)
@@ -506,159 +547,161 @@ summary {
 ## factor(policePrecinct)4  0.084639   0.006232  13.582  &lt; 2e-16 ***
 ## factor(policePrecinct)5 -0.012465   0.006371  -1.956   0.0504 .  
 ## ---
-## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 0.254 on 19078 degrees of freedom
 ## Multiple R-squared:  0.02502,    Adjusted R-squared:  0.02476 
 ## F-statistic: 97.92 on 5 and 19078 DF,  p-value: &lt; 2.2e-16</code></pre>
-<p>A potential problem with this approach (and there might be many more in this simple example) is that observations stemming from different police precincts might be correlated over time. If that is the case, we likely underestimate the coefficient’s standard errors. There is a standard approach to compute estimates for so-called <em>cluster-robust</em> standard errors which would take the problem of correlation over time within clusters into consideration (and deliver a more conservative estimate of the SEs). However this approach only works well if the number of clusters in the data is roughly 50 or more. Here we only have 5.</p>
+<p>A potential problem with this approach (and there might be many more in this simple example) is that observations stemming from different police precincts might be correlated over time. If that is the case, we likely underestimate the coefficient’s standard errors. There is a standard approach to compute estimates for so-called <em>cluster-robust</em> standard errors which would take the problem of correlation over time within clusters into consideration (and deliver a more conservative estimate of the SEs). However, this approach only works well if the number of clusters in the data is roughly 50 or more. Here we only have 5.</p>
 <p>The alternative approach is to compute bootstrapped standard errors. That is, we apply the <a href="https://en.wikipedia.org/wiki/Bootstrapping_(statistics)">bootstrap resampling procedure</a> at the cluster level. Specifically, we draw <span class="math inline">\(B\)</span> samples (with replacement), estimate and record for each bootstrap-sample the coefficient vector, and then estimate <span class="math inline">\(SE_{boot}\)</span> based on the standard deviation of all respective estimated coefficient values.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="co"># load packages</span></a>
-<a class="sourceLine" id="cb6-2" data-line-number="2"><span class="kw">library</span>(data.table)</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3"><span class="co"># set the 'seed' for random numbers (makes the example reproducible)</span></a>
-<a class="sourceLine" id="cb6-4" data-line-number="4"><span class="kw">set.seed</span>(<span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb6-5" data-line-number="5"></a>
-<a class="sourceLine" id="cb6-6" data-line-number="6"><span class="co"># set number of bootstrap iterations</span></a>
-<a class="sourceLine" id="cb6-7" data-line-number="7">B &lt;-<span class="st"> </span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb6-8" data-line-number="8"><span class="co"># get selection of precincts</span></a>
-<a class="sourceLine" id="cb6-9" data-line-number="9">precincts &lt;-<span class="st"> </span><span class="kw">unique</span>(stopdata<span class="op">$</span>policePrecinct)</a>
-<a class="sourceLine" id="cb6-10" data-line-number="10"><span class="co"># container for coefficients</span></a>
-<a class="sourceLine" id="cb6-11" data-line-number="11">boot_coefs &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow =</span> B, <span class="dt">ncol =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb6-12" data-line-number="12"><span class="co"># draw bootstrap samples, estimate model for each sample</span></a>
-<a class="sourceLine" id="cb6-13" data-line-number="13"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>B) {</a>
-<a class="sourceLine" id="cb6-14" data-line-number="14">     </a>
-<a class="sourceLine" id="cb6-15" data-line-number="15">     <span class="co"># draw sample of precincts (cluster level)</span></a>
-<a class="sourceLine" id="cb6-16" data-line-number="16">     precincts_i &lt;-<span class="st"> </span><span class="kw">sample</span>(precincts, <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb6-17" data-line-number="17">     <span class="co"># get observations</span></a>
-<a class="sourceLine" id="cb6-18" data-line-number="18">     bs_i &lt;-<span class="st"> </span><span class="kw">lapply</span>(precincts_i, <span class="cf">function</span>(x) stopdata[stopdata<span class="op">$</span>policePrecinct<span class="op">==</span>x,])</a>
-<a class="sourceLine" id="cb6-19" data-line-number="19">     bs_i &lt;-<span class="st"> </span><span class="kw">rbindlist</span>(bs_i)</a>
-<a class="sourceLine" id="cb6-20" data-line-number="20">     </a>
-<a class="sourceLine" id="cb6-21" data-line-number="21">     <span class="co"># estimate model and record coefficients</span></a>
-<a class="sourceLine" id="cb6-22" data-line-number="22">     boot_coefs[i,] &lt;-<span class="st"> </span><span class="kw">coef</span>(<span class="kw">lm</span>(model, bs_i))[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>] <span class="co"># ignore FE-coefficients</span></a>
-<a class="sourceLine" id="cb6-23" data-line-number="23">}</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="co"># load packages</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="kw">library</span>(data.table)</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="co"># set the &#39;seed&#39; for random numbers (makes the example reproducible)</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">2</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true"></a></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true"></a><span class="co"># set number of bootstrap iterations</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true"></a>B &lt;-<span class="st"> </span><span class="dv">10</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true"></a><span class="co"># get selection of precincts</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true"></a>precincts &lt;-<span class="st"> </span><span class="kw">unique</span>(stopdata<span class="op">$</span>policePrecinct)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true"></a><span class="co"># container for coefficients</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true"></a>boot_coefs &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow =</span> B, <span class="dt">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true"></a><span class="co"># draw bootstrap samples, estimate model for each sample</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>B) {</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true"></a>     </span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true"></a>     <span class="co"># draw sample of precincts (cluster level)</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true"></a>     precincts_i &lt;-<span class="st"> </span><span class="kw">sample</span>(precincts, <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true"></a>     <span class="co"># get observations</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true"></a>     bs_i &lt;-<span class="st"> </span><span class="kw">lapply</span>(precincts_i, <span class="cf">function</span>(x) stopdata[stopdata<span class="op">$</span>policePrecinct<span class="op">==</span>x,])</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true"></a>     bs_i &lt;-<span class="st"> </span><span class="kw">rbindlist</span>(bs_i)</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true"></a>     </span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true"></a>     <span class="co"># estimate model and record coefficients</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true"></a>     boot_coefs[i,] &lt;-<span class="st"> </span><span class="kw">coef</span>(<span class="kw">lm</span>(model, bs_i))[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>] <span class="co"># ignore FE-coefficients</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true"></a>}</span></code></pre></div>
 <p>Finally, let’s compute <span class="math inline">\(SE_{boot}\)</span>.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1">se_boot &lt;-<span class="st"> </span><span class="kw">apply</span>(boot_coefs, </a>
-<a class="sourceLine" id="cb7-2" data-line-number="2">                 <span class="dt">MARGIN =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb7-3" data-line-number="3">                 <span class="dt">FUN =</span> sd)</a>
-<a class="sourceLine" id="cb7-4" data-line-number="4">se_boot</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a>se_boot &lt;-<span class="st"> </span><span class="kw">apply</span>(boot_coefs, </span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true"></a>                 <span class="dt">MARGIN =</span> <span class="dv">2</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a>                 <span class="dt">FUN =</span> sd)</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a>se_boot</span></code></pre></div>
 <pre><code>## [1] 0.004042725 0.004689611</code></pre>
 <p>Note that even with a very small <span class="math inline">\(B\)</span>, computing <span class="math inline">\(SE_{boot}\)</span> takes up some time to compute. When setting <span class="math inline">\(B\)</span> to over 500, computation time will be substantial. Also note that running this code does hardly use up more memory then the very simple approach without bootstrapping (after all, in each bootstrap iteration the data set used to estimate the model is approximately the same size as the original data set). There is little we can do to improve the script’s performance regarding memory. However we can tell R how to allocate CPU resources more efficiently to handle that many regression estimates.</p>
 <p>Particularly, we can make use of the fact that most modern computing environments (such as a laptop) have CPUs with several <em>cores</em>. We can exploit this fact by instructing the computer to run the computations <em>in parallel</em> (simultaneously computing on several cores). The following code is a parallel implementation of our bootstrap procedure which does exactly that.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="co"># install.packages(&quot;doSNOW&quot;, &quot;parallel&quot;)</span></a>
-<a class="sourceLine" id="cb9-2" data-line-number="2"><span class="co"># load packages for parallel processing</span></a>
-<a class="sourceLine" id="cb9-3" data-line-number="3"><span class="kw">library</span>(doSNOW)</a>
-<a class="sourceLine" id="cb9-4" data-line-number="4"></a>
-<a class="sourceLine" id="cb9-5" data-line-number="5"><span class="co"># get the number of cores available</span></a>
-<a class="sourceLine" id="cb9-6" data-line-number="6">ncores &lt;-<span class="st"> </span>parallel<span class="op">::</span><span class="kw">detectCores</span>()</a>
-<a class="sourceLine" id="cb9-7" data-line-number="7"><span class="co"># set cores for parallel processing</span></a>
-<a class="sourceLine" id="cb9-8" data-line-number="8">ctemp &lt;-<span class="st"> </span><span class="kw">makeCluster</span>(ncores) <span class="co"># </span></a>
-<a class="sourceLine" id="cb9-9" data-line-number="9"><span class="kw">registerDoSNOW</span>(ctemp)</a>
-<a class="sourceLine" id="cb9-10" data-line-number="10"></a>
-<a class="sourceLine" id="cb9-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb9-12" data-line-number="12"><span class="co"># set number of bootstrap iterations</span></a>
-<a class="sourceLine" id="cb9-13" data-line-number="13">B &lt;-<span class="st"> </span><span class="dv">10</span></a>
-<a class="sourceLine" id="cb9-14" data-line-number="14"><span class="co"># get selection of precincts</span></a>
-<a class="sourceLine" id="cb9-15" data-line-number="15">precincts &lt;-<span class="st"> </span><span class="kw">unique</span>(stopdata<span class="op">$</span>policePrecinct)</a>
-<a class="sourceLine" id="cb9-16" data-line-number="16"><span class="co"># container for coefficients</span></a>
-<a class="sourceLine" id="cb9-17" data-line-number="17">boot_coefs &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow =</span> B, <span class="dt">ncol =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb9-18" data-line-number="18"></a>
-<a class="sourceLine" id="cb9-19" data-line-number="19"><span class="co"># bootstrapping in parallel</span></a>
-<a class="sourceLine" id="cb9-20" data-line-number="20">boot_coefs &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb9-21" data-line-number="21"><span class="st">     </span><span class="kw">foreach</span>(<span class="dt">i =</span> <span class="dv">1</span><span class="op">:</span>B, <span class="dt">.combine =</span> rbind, <span class="dt">.packages=</span><span class="st">&quot;data.table&quot;</span>) <span class="op">%dopar%</span><span class="st"> </span>{</a>
-<a class="sourceLine" id="cb9-22" data-line-number="22">          </a>
-<a class="sourceLine" id="cb9-23" data-line-number="23">          <span class="co"># draw sample of precincts (cluster level)</span></a>
-<a class="sourceLine" id="cb9-24" data-line-number="24">          precincts_i &lt;-<span class="st"> </span><span class="kw">sample</span>(precincts, <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb9-25" data-line-number="25">          <span class="co"># get observations</span></a>
-<a class="sourceLine" id="cb9-26" data-line-number="26">          bs_i &lt;-<span class="st"> </span><span class="kw">lapply</span>(precincts_i, <span class="cf">function</span>(x) stopdata[stopdata<span class="op">$</span>policePrecinct<span class="op">==</span>x,])</a>
-<a class="sourceLine" id="cb9-27" data-line-number="27">          bs_i &lt;-<span class="st"> </span><span class="kw">rbindlist</span>(bs_i)</a>
-<a class="sourceLine" id="cb9-28" data-line-number="28">          </a>
-<a class="sourceLine" id="cb9-29" data-line-number="29">          <span class="co"># estimate model and record coefficients</span></a>
-<a class="sourceLine" id="cb9-30" data-line-number="30">          <span class="kw">coef</span>(<span class="kw">lm</span>(model, bs_i))[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>] <span class="co"># ignore FE-coefficients</span></a>
-<a class="sourceLine" id="cb9-31" data-line-number="31">      </a>
-<a class="sourceLine" id="cb9-32" data-line-number="32">     }</a>
-<a class="sourceLine" id="cb9-33" data-line-number="33"></a>
-<a class="sourceLine" id="cb9-34" data-line-number="34"></a>
-<a class="sourceLine" id="cb9-35" data-line-number="35"><span class="co"># be a good citizen and stop the snow clusters</span></a>
-<a class="sourceLine" id="cb9-36" data-line-number="36"><span class="kw">stopCluster</span>(<span class="dt">cl =</span> ctemp)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="co"># install.packages(&quot;doSNOW&quot;, &quot;parallel&quot;)</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a><span class="co"># load packages for parallel processing</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true"></a><span class="kw">library</span>(doSNOW)</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true"></a></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true"></a><span class="co"># get the number of cores available</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true"></a>ncores &lt;-<span class="st"> </span>parallel<span class="op">::</span><span class="kw">detectCores</span>()</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true"></a><span class="co"># set cores for parallel processing</span></span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true"></a>ctemp &lt;-<span class="st"> </span><span class="kw">makeCluster</span>(ncores) <span class="co"># </span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true"></a><span class="kw">registerDoSNOW</span>(ctemp)</span>
+<span id="cb9-10"><a href="#cb9-10" aria-hidden="true"></a></span>
+<span id="cb9-11"><a href="#cb9-11" aria-hidden="true"></a></span>
+<span id="cb9-12"><a href="#cb9-12" aria-hidden="true"></a><span class="co"># set number of bootstrap iterations</span></span>
+<span id="cb9-13"><a href="#cb9-13" aria-hidden="true"></a>B &lt;-<span class="st"> </span><span class="dv">10</span></span>
+<span id="cb9-14"><a href="#cb9-14" aria-hidden="true"></a><span class="co"># get selection of precincts</span></span>
+<span id="cb9-15"><a href="#cb9-15" aria-hidden="true"></a>precincts &lt;-<span class="st"> </span><span class="kw">unique</span>(stopdata<span class="op">$</span>policePrecinct)</span>
+<span id="cb9-16"><a href="#cb9-16" aria-hidden="true"></a><span class="co"># container for coefficients</span></span>
+<span id="cb9-17"><a href="#cb9-17" aria-hidden="true"></a>boot_coefs &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow =</span> B, <span class="dt">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb9-18"><a href="#cb9-18" aria-hidden="true"></a></span>
+<span id="cb9-19"><a href="#cb9-19" aria-hidden="true"></a><span class="co"># bootstrapping in parallel</span></span>
+<span id="cb9-20"><a href="#cb9-20" aria-hidden="true"></a>boot_coefs &lt;-<span class="st"> </span></span>
+<span id="cb9-21"><a href="#cb9-21" aria-hidden="true"></a><span class="st">     </span><span class="kw">foreach</span>(<span class="dt">i =</span> <span class="dv">1</span><span class="op">:</span>B, <span class="dt">.combine =</span> rbind, <span class="dt">.packages=</span><span class="st">&quot;data.table&quot;</span>) <span class="op">%dopar%</span><span class="st"> </span>{</span>
+<span id="cb9-22"><a href="#cb9-22" aria-hidden="true"></a>          </span>
+<span id="cb9-23"><a href="#cb9-23" aria-hidden="true"></a>          <span class="co"># draw sample of precincts (cluster level)</span></span>
+<span id="cb9-24"><a href="#cb9-24" aria-hidden="true"></a>          precincts_i &lt;-<span class="st"> </span><span class="kw">sample</span>(precincts, <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb9-25"><a href="#cb9-25" aria-hidden="true"></a>          <span class="co"># get observations</span></span>
+<span id="cb9-26"><a href="#cb9-26" aria-hidden="true"></a>          bs_i &lt;-<span class="st"> </span><span class="kw">lapply</span>(precincts_i, <span class="cf">function</span>(x) stopdata[stopdata<span class="op">$</span>policePrecinct<span class="op">==</span>x,])</span>
+<span id="cb9-27"><a href="#cb9-27" aria-hidden="true"></a>          bs_i &lt;-<span class="st"> </span><span class="kw">rbindlist</span>(bs_i)</span>
+<span id="cb9-28"><a href="#cb9-28" aria-hidden="true"></a>          </span>
+<span id="cb9-29"><a href="#cb9-29" aria-hidden="true"></a>          <span class="co"># estimate model and record coefficients</span></span>
+<span id="cb9-30"><a href="#cb9-30" aria-hidden="true"></a>          <span class="kw">coef</span>(<span class="kw">lm</span>(model, bs_i))[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>] <span class="co"># ignore FE-coefficients</span></span>
+<span id="cb9-31"><a href="#cb9-31" aria-hidden="true"></a>      </span>
+<span id="cb9-32"><a href="#cb9-32" aria-hidden="true"></a>     }</span>
+<span id="cb9-33"><a href="#cb9-33" aria-hidden="true"></a></span>
+<span id="cb9-34"><a href="#cb9-34" aria-hidden="true"></a></span>
+<span id="cb9-35"><a href="#cb9-35" aria-hidden="true"></a><span class="co"># be a good citizen and stop the snow clusters</span></span>
+<span id="cb9-36"><a href="#cb9-36" aria-hidden="true"></a><span class="kw">stopCluster</span>(<span class="dt">cl =</span> ctemp)</span></code></pre></div>
 <p>As a last step, we compute again <span class="math inline">\(SE_{boot}\)</span>.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1">se_boot &lt;-<span class="st"> </span><span class="kw">apply</span>(boot_coefs, </a>
-<a class="sourceLine" id="cb10-2" data-line-number="2">                 <span class="dt">MARGIN =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb10-3" data-line-number="3">                 <span class="dt">FUN =</span> sd)</a>
-<a class="sourceLine" id="cb10-4" data-line-number="4">se_boot</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a>se_boot &lt;-<span class="st"> </span><span class="kw">apply</span>(boot_coefs, </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a>                 <span class="dt">MARGIN =</span> <span class="dv">2</span>,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a>                 <span class="dt">FUN =</span> sd)</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a>se_boot</span></code></pre></div>
 <pre><code>## (Intercept)       white 
-## 0.003782617 0.002593871</code></pre>
+## 0.003605109 0.003947732</code></pre>
 </div>
-<div id="case-study-memory-allocation" class="section level2">
+<div id="case-study-memory-allocation" class="section level2" number="1.2">
 <h2><span class="header-section-number">1.2</span> Case study: Memory allocation</h2>
 <p>Consider the first steps of a data pipeline in R. The first part of our script to import and clean the data looks as follows.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="co">###########################################################</span></a>
-<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="co"># Big Data Statistics: Flights data import and preparation</span></a>
-<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="co">#</span></a>
-<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="co"># U. Matter, January 2019</span></a>
-<a class="sourceLine" id="cb12-5" data-line-number="5"><span class="co">###########################################################</span></a>
-<a class="sourceLine" id="cb12-6" data-line-number="6"></a>
-<a class="sourceLine" id="cb12-7" data-line-number="7"><span class="co"># SET UP -----------------</span></a>
-<a class="sourceLine" id="cb12-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb12-9" data-line-number="9"><span class="co"># fix variables</span></a>
-<a class="sourceLine" id="cb12-10" data-line-number="10">DATA_PATH &lt;-<span class="st"> &quot;materials/data/flights.csv&quot;</span></a>
-<a class="sourceLine" id="cb12-11" data-line-number="11"></a>
-<a class="sourceLine" id="cb12-12" data-line-number="12"><span class="co"># DATA IMPORT ----------------</span></a>
-<a class="sourceLine" id="cb12-13" data-line-number="13">flights &lt;-<span class="st"> </span><span class="kw">read.csv</span>(DATA_PATH)</a>
-<a class="sourceLine" id="cb12-14" data-line-number="14"></a>
-<a class="sourceLine" id="cb12-15" data-line-number="15"><span class="co"># DATA PREPARATION --------</span></a>
-<a class="sourceLine" id="cb12-16" data-line-number="16">flights &lt;-<span class="st"> </span>flights[,<span class="op">-</span><span class="dv">1</span><span class="op">:-</span><span class="dv">3</span>]</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="co">###########################################################</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a><span class="co"># Big Data Statistics: Flights data import and preparation</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true"></a><span class="co">#</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true"></a><span class="co"># U. Matter, January 2019</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true"></a><span class="co">###########################################################</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true"></a><span class="co"># SET UP -----------------</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true"></a></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true"></a><span class="co"># fix variables</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true"></a>DATA_PATH &lt;-<span class="st"> &quot;materials/data/flights.csv&quot;</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true"></a></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true"></a><span class="co"># DATA IMPORT ----------------</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true"></a>flights &lt;-<span class="st"> </span><span class="kw">read.csv</span>(DATA_PATH)</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true"></a></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true"></a><span class="co"># DATA PREPARATION --------</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true"></a>flights &lt;-<span class="st"> </span>flights[,<span class="op">-</span><span class="dv">1</span><span class="op">:-</span><span class="dv">3</span>]</span></code></pre></div>
 <p>When running this script, we notice that some of the steps take a while. Moreover, while none of these steps obviously involves a lot of computation (such as a matrix inversion or numerical optimization), it quite likely involves memory allocation. We first read data into RAM (allocated to R by our operating system). It turns out that there are different ways to allocate RAM when reading data from a CSV file. Depending on the amount of data to be read in, one or the other approach might be faster. We first investigate the RAM allocation in R with <code>mem_change()</code> and <code>mem_used()</code>.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="co"># SET UP -----------------</span></a>
-<a class="sourceLine" id="cb13-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb13-3" data-line-number="3"><span class="co"># fix variables</span></a>
-<a class="sourceLine" id="cb13-4" data-line-number="4">DATA_PATH &lt;-<span class="st"> &quot;../data/flights.csv&quot;</span></a>
-<a class="sourceLine" id="cb13-5" data-line-number="5"><span class="co"># load packages</span></a>
-<a class="sourceLine" id="cb13-6" data-line-number="6"><span class="kw">library</span>(pryr) </a></code></pre></div>
-<pre><code>## Registered S3 method overwritten by 'pryr':
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="co"># SET UP -----------------</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true"></a><span class="co"># fix variables</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true"></a>DATA_PATH &lt;-<span class="st"> &quot;../data/flights.csv&quot;</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true"></a><span class="co"># load packages</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true"></a><span class="kw">library</span>(pryr) </span></code></pre></div>
+<pre><code>## Registered S3 method overwritten by &#39;pryr&#39;:
 ##   method      from
 ##   print.bytes Rcpp</code></pre>
 <pre><code>## 
-## Attaching package: 'pryr'</code></pre>
-<pre><code>## The following object is masked from 'package:data.table':
+## Attaching package: &#39;pryr&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:data.table&#39;:
 ## 
 ##     address</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1"><span class="co"># check how much memory is used by R (overall)</span></a>
-<a class="sourceLine" id="cb17-2" data-line-number="2"><span class="kw">mem_used</span>()</a></code></pre></div>
-<pre><code>## 1.04 GB</code></pre>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="co"># check the change in memory due to each step</span></a>
-<a class="sourceLine" id="cb19-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb19-3" data-line-number="3"><span class="co"># DATA IMPORT ----------------</span></a>
-<a class="sourceLine" id="cb19-4" data-line-number="4"><span class="kw">mem_change</span>(flights &lt;-<span class="st"> </span><span class="kw">read.csv</span>(DATA_PATH))</a></code></pre></div>
-<pre><code>## 26.6 MB</code></pre>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="co"># DATA PREPARATION --------</span></a>
-<a class="sourceLine" id="cb21-2" data-line-number="2">flights &lt;-<span class="st"> </span>flights[,<span class="op">-</span><span class="dv">1</span><span class="op">:-</span><span class="dv">3</span>]</a>
-<a class="sourceLine" id="cb21-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb21-4" data-line-number="4"><span class="co"># check how much memory is used by R now</span></a>
-<a class="sourceLine" id="cb21-5" data-line-number="5"><span class="kw">mem_used</span>()</a></code></pre></div>
-<pre><code>## 1.06 GB</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true"></a><span class="co"># check how much memory is used by R (overall)</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true"></a><span class="kw">mem_used</span>()</span></code></pre></div>
+<pre><code>## 1.05 GB</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true"></a><span class="co"># check the change in memory due to each step</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true"></a></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true"></a><span class="co"># DATA IMPORT ----------------</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true"></a><span class="kw">mem_change</span>(flights &lt;-<span class="st"> </span><span class="kw">read.csv</span>(DATA_PATH))</span></code></pre></div>
+<pre><code>## 33.2 MB</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true"></a><span class="co"># DATA PREPARATION --------</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true"></a>flights &lt;-<span class="st"> </span>flights[,<span class="op">-</span><span class="dv">1</span><span class="op">:-</span><span class="dv">3</span>]</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true"></a></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true"></a><span class="co"># check how much memory is used by R now</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true"></a><span class="kw">mem_used</span>()</span></code></pre></div>
+<pre><code>## 1.07 GB</code></pre>
 <p>The last result is kind of interesting. The object <code>flights</code> must have been larger right after importing it than at the end of the script. We have thrown out several variables, after all. Why does R still use that much memory? R does by default not ‘clean up’ memory unless it is really necessary (meaning no more memory is available). In this case, R has still way more memory available from the operating system, thus there is no need to ‘collect the garbage’ yet. However, we can force R to collect the garbage on the spot with <code>gc()</code>. This can be helpful to better keep track of the memory needed by an analytics script.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">gc</span>()</a></code></pre></div>
-<pre><code>##             used  (Mb) gc trigger   (Mb) limit (Mb)  max used   (Mb)
-## Ncells   1020008  54.5    2085852  111.4         NA   1270221   67.9
-## Vcells 125746514 959.4  256657211 1958.2      16384 256657211 1958.2</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true"></a><span class="kw">gc</span>()</span></code></pre></div>
+<pre><code>##             used  (Mb) gc trigger   (Mb)  max used   (Mb)
+## Ncells   1087434  58.1    1816511   97.1   1816511   97.1
+## Vcells 126708259 966.8  256809277 1959.3 256809277 1959.3</code></pre>
 <p>Now, let’s see how we can improve the performance of this script with regard to memory allocation. Most memory is allocated when importing the file. Obviously, any improvement of the script must still result in importing all the data. However, there are different ways to read data into RAM. <code>read.csv()</code> reads all lines of a csv file consecutively. In contrast, <code>data.table::fread()</code> first ‘maps’ the data file into memory and only then actually reads it in line by line. This involves an additional initial step, but the larger the file, the less relevant is this first step with regard to the total time needed to read all the data into memory. By switching on the <code>verbose</code> option, we can actually see what <code>fread</code> is doing.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1"><span class="co"># load packages</span></a>
-<a class="sourceLine" id="cb25-2" data-line-number="2"><span class="kw">library</span>(data.table)</a>
-<a class="sourceLine" id="cb25-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb25-4" data-line-number="4"><span class="co"># DATA IMPORT ----------------</span></a>
-<a class="sourceLine" id="cb25-5" data-line-number="5">flights &lt;-<span class="st"> </span><span class="kw">fread</span>(DATA_PATH, <span class="dt">verbose =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
-<pre><code>##   omp_get_num_procs()            4
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true"></a><span class="co"># load packages</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true"></a><span class="kw">library</span>(data.table)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true"></a><span class="co"># DATA IMPORT ----------------</span></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true"></a>flights &lt;-<span class="st"> </span><span class="kw">fread</span>(DATA_PATH, <span class="dt">verbose =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>##   OpenMP version (_OPENMP)       201511
+##   omp_get_num_procs()            12
 ##   R_DATATABLE_NUM_PROCS_PERCENT  unset (default 50)
 ##   R_DATATABLE_NUM_THREADS        unset
+##   R_DATATABLE_THROTTLE           unset (default 1024)
 ##   omp_get_thread_limit()         2147483647
-##   omp_get_max_threads()          4
+##   omp_get_max_threads()          12
 ##   OMP_THREAD_LIMIT               unset
 ##   OMP_NUM_THREADS                unset
 ##   RestoreAfterFork               true
-##   data.table is using 2 threads. See ?setDTthreads.
+##   data.table is using 6 threads with throttle==1024. See ?setDTthreads.
 ## Input contains no \n. Taking this to be a filename to open
 ## [01] Check arguments
-##   Using 2 threads (omp_get_max_threads()=4, nth=2)
+##   Using 6 threads (omp_get_max_threads()=12, nth=6)
 ##   NAstrings = [&lt;&lt;NA&gt;&gt;]
 ##   None of the NAstrings look like numbers.
 ##   show progress = 0
@@ -674,15 +717,15 @@ summary {
 ##   Positioned on line 1 starting: &lt;&lt;year,month,day,dep_time,sched_&gt;&gt;
 ## [06] Detect separator, quoting rule, and ncolumns
 ##   Detecting sep automatically ...
-##   sep=','  with 100 lines of 19 fields using quote rule 0
+##   sep=&#39;,&#39;  with 100 lines of 19 fields using quote rule 0
 ##   Detected 19 columns on line 1. This line is either column names or first data row. Line starts as: &lt;&lt;year,month,day,dep_time,sched_&gt;&gt;
 ##   Quote rule picked = 0
 ##   fill=false and the most number of columns found is 19
 ## [07] Detect column types, good nrow estimate and whether first row is column names
 ##   Number of sampling jump points = 100 because (30960659 bytes from row 1 to eof) / (2 * 8882 jump0size) == 1742
-##   Type codes (jump 000)    : 555555555A5AAA5555A  Quote rule 0
-##   Type codes (jump 100)    : 555555555A5AAA5555A  Quote rule 0
-##   'header' determined to be true due to column 1 containing a string on row 1 and a lower type (int32) in the rest of the 10048 sample rows
+##   Type codes (jump 000)    : 555555555C5CCC5555B  Quote rule 0
+##   Type codes (jump 100)    : 555555555C5CCC5555B  Quote rule 0
+##   &#39;header&#39; determined to be true due to column 1 containing a string on row 1 and a lower type (int32) in the rest of the 10048 sample rows
 ##   =====
 ##   Sampled 10048 rows (handled \n inside quoted fields) at 101 jump points
 ##   Bytes from first data row on line 2 to the end of last row: 30960501
@@ -692,51 +735,51 @@ summary {
 ##   =====
 ## [08] Assign column names
 ## [09] Apply user overrides on column types
-##   After 0 type and 0 drop user overrides : 555555555A5AAA5555A
+##   After 0 type and 0 drop user overrides : 555555555C5CCC5555B
 ## [10] Allocate memory for the datatable
 ##   Allocating 19 column slots (19 - 0 dropped) with 370043 rows
 ## [11] Read the data
 ##   jumps=[0..30), chunk_size=1032016, total_size=30960501
-## Read 336776 rows x 19 columns from 29.53MB (30960660 bytes) file in 00:00.157 wall clock time
+## Read 336776 rows x 19 columns from 29.53MB (30960660 bytes) file in 00:00.046 wall clock time
 ## [12] Finalizing the datatable
 ##   Type counts:
-##         14 : int32     '5'
-##          5 : string    'A'
+##         14 : int32     &#39;5&#39;
+##          1 : float64   &#39;B&#39;
+##          4 : string    &#39;C&#39;
 ## =============================
-##    0.001s (  1%) Memory map 0.029GB file
-##    0.004s (  3%) sep=',' ncol=19 and header detection
+##    0.000s (  0%) Memory map 0.029GB file
+##    0.003s (  6%) sep=&#39;,&#39; ncol=19 and header detection
 ##    0.000s (  0%) Column type detection using 10048 sample rows
-##    0.006s (  4%) Allocation of 370043 rows x 19 cols (0.033GB) of which 336776 ( 91%) rows used
-##    0.145s ( 93%) Reading 30 chunks (0 swept) of 0.984MB (each chunk 11225 rows) using 2 threads
-##    +    0.061s ( 39%) Parse to row-major thread buffers (grown 0 times)
-##    +    0.080s ( 51%) Transpose
-##    +    0.004s (  3%) Waiting
+##    0.001s (  2%) Allocation of 370043 rows x 19 cols (0.033GB) of which 336776 ( 91%) rows used
+##    0.042s ( 92%) Reading 30 chunks (0 swept) of 0.984MB (each chunk 11225 rows) using 6 threads
+##    +    0.012s ( 26%) Parse to row-major thread buffers (grown 0 times)
+##    +    0.019s ( 42%) Transpose
+##    +    0.011s ( 24%) Waiting
 ##    0.000s (  0%) Rereading 0 columns due to out-of-sample type exceptions
-##    0.157s        Total</code></pre>
+##    0.046s        Total</code></pre>
 <p>Let’s put it all together and look at the memory changes and usage. For a fair comparison, we first have to delete <code>flights</code> and collect the garbage with <code>gc()</code>.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="co"># SET UP -----------------</span></a>
-<a class="sourceLine" id="cb27-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb27-3" data-line-number="3"><span class="co"># fix variables</span></a>
-<a class="sourceLine" id="cb27-4" data-line-number="4">DATA_PATH &lt;-<span class="st"> &quot;../data/flights.csv&quot;</span></a>
-<a class="sourceLine" id="cb27-5" data-line-number="5"><span class="co"># load packages</span></a>
-<a class="sourceLine" id="cb27-6" data-line-number="6"><span class="kw">library</span>(pryr) </a>
-<a class="sourceLine" id="cb27-7" data-line-number="7"><span class="kw">library</span>(data.table)</a>
-<a class="sourceLine" id="cb27-8" data-line-number="8"></a>
-<a class="sourceLine" id="cb27-9" data-line-number="9"><span class="co"># housekeeping</span></a>
-<a class="sourceLine" id="cb27-10" data-line-number="10">flights &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb27-11" data-line-number="11"><span class="kw">gc</span>()</a></code></pre></div>
-<pre><code>##             used  (Mb) gc trigger   (Mb) limit (Mb)  max used   (Mb)
-## Ncells   1013728  54.2    2085852  111.4         NA   1270221   67.9
-## Vcells 123423262 941.7  256657211 1958.2      16384 256657211 1958.2</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" data-line-number="1"><span class="co"># check the change in memory due to each step</span></a>
-<a class="sourceLine" id="cb29-2" data-line-number="2"></a>
-<a class="sourceLine" id="cb29-3" data-line-number="3"><span class="co"># DATA IMPORT ----------------</span></a>
-<a class="sourceLine" id="cb29-4" data-line-number="4"><span class="kw">mem_change</span>(flights &lt;-<span class="st"> </span><span class="kw">fread</span>(DATA_PATH))</a></code></pre></div>
-<pre><code>## 36.4 MB</code></pre>
-<p>Note that <code>fread()</code> uses up more memory. By default, <code>fread</code> does not parse strings as <code>factors</code> (and <code>read.csv()</code> does). Storing strings in factors is more memory efficient.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true"></a><span class="co"># SET UP -----------------</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true"></a></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true"></a><span class="co"># fix variables</span></span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true"></a>DATA_PATH &lt;-<span class="st"> &quot;../data/flights.csv&quot;</span></span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true"></a><span class="co"># load packages</span></span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true"></a><span class="kw">library</span>(pryr) </span>
+<span id="cb27-7"><a href="#cb27-7" aria-hidden="true"></a><span class="kw">library</span>(data.table)</span>
+<span id="cb27-8"><a href="#cb27-8" aria-hidden="true"></a></span>
+<span id="cb27-9"><a href="#cb27-9" aria-hidden="true"></a><span class="co"># housekeeping</span></span>
+<span id="cb27-10"><a href="#cb27-10" aria-hidden="true"></a>flights &lt;-<span class="st"> </span><span class="ot">NULL</span></span>
+<span id="cb27-11"><a href="#cb27-11" aria-hidden="true"></a><span class="kw">gc</span>()</span></code></pre></div>
+<pre><code>##             used  (Mb) gc trigger   (Mb)  max used   (Mb)
+## Ncells   1076469  57.5    1816511   97.1   1816511   97.1
+## Vcells 123542511 942.6  256809277 1959.3 256809277 1959.3</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true"></a><span class="co"># check the change in memory due to each step</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true"></a></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true"></a><span class="co"># DATA IMPORT ----------------</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true"></a><span class="kw">mem_change</span>(flights &lt;-<span class="st"> </span><span class="kw">fread</span>(DATA_PATH))</span></code></pre></div>
+<pre><code>## 35.8 MB</code></pre>
 </div>
 </div>
-<div id="beyond-memory" class="section level1">
+<div id="beyond-memory" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Beyond memory</h1>
 <p>In the previous example we have inspected how RAM is allocated to store objects in the R computing environment. But what if all RAM of our computer is not enough to store all the data we want to analyze?</p>
 <p>Modern operating systems have a way to dealing with such a situation. Once all RAM is used up by the currently running programs, the OS allocates parts of the memory back to the hard-disk which then works as <em>virtual memory</em>. The following figure illustrates this point.</p>
@@ -748,12 +791,12 @@ Figure 2.1: Virtual memory. Figure by Ehamberg (<a href="https://creativecommons
 </div>
 
 <p>For example, when we implement an R-script that imports one file after the other into the R environment, ignoring the RAM capacity of our computer, the OS will start <em>paging</em> data to the virtual memory. This happens ‘under the hood’ without explicit instructions by the user. We quite likely notice that the computer slows down a lot when this happens.</p>
-<p>While this default usage of virtual memory by the OS is helpful to run several applications at the same time, each taking up a moderate amount of memory, it is not a really useful tool for processing large amounts of data in one application (R). However, the underlying idea of using both RAM and Mass storage simultaneously in order to cope with a lack of memory, is very useful in the context of big data statistics.</p>
-<p>Several R packages have been developed that exploit the idea behind virtual memory explicitly for big data analytics. The basic idea behind these packages is to map a data set to the hard disk when loading it into R. The actual data values are stored in chunks on the hard-disk, while the structure/metadata of the data set is loaded into R. See this week’s slide set as well as <span class="citation">Walkowiak (2016)</span>, Chapter 3 for more details and example code.</p>
+<p>While this default usage of virtual memory by the OS is helpful to run several applications at the same time, each taking up a moderate amount of memory, it is not a really useful tool for processing large amounts of data in one application (R). However, the underlying idea of using both RAM and Mass storage simultaneously in order to cope with a lack of memory, is very useful in the context of big data analytics.</p>
+<p>Several R packages have been developed that exploit the idea behind virtual memory explicitly for analyzing large amounts of data. The basic idea behind these packages is to map a data set to the hard disk when loading it into R. The actual data values are stored in chunks on the hard-disk, while the structure/metadata of the data set is loaded into R. See this week’s slide set as well as <span class="citation">Walkowiak (2016)</span>, Chapter 3 for more details and example code.</p>
 </div>
-<div id="references" class="section level1 unnumbered">
+<div id="references" class="section level1 unnumbered" number>
 <h1>References</h1>
-<div id="refs" class="references">
+<div id="refs" class="references hanging-indent">
 <div id="ref-walkowiak_2016">
 <p>Walkowiak, Simkon. 2016. <em>Big Data Analytics with R</em>. Birmingham, UK: PACKT Publishing.</p>
 </div>
@@ -762,7 +805,8 @@ Figure 2.1: Virtual memory. Figure by Ehamberg (<a href="https://creativecommons
 <div class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>Note that this example aims to illustrate a point about computation in an applied econometrics context. It does not make any argument about identification or the broader research question whatsoever.<a href="#fnref1" class="footnote-back">↩</a></p></li>
+<li id="fn1"><p>In many data analysis tasks the two are, of course, intertwined. However, keeping both aspects in mind when optimizing an analytics program helps to choose the right tools.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Note that this example aims to illustrate a point about computation in an applied econometrics context. It does not make any argument about identification or the broader research question whatsoever.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 
@@ -775,7 +819,7 @@ Figure 2.1: Virtual memory. Figure by Ehamberg (<a href="https://creativecommons
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();

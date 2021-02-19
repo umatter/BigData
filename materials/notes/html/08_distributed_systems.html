@@ -13,6 +13,19 @@
 
 <title>Big Data Analytics</title>
 
+<script>// Pandoc 2.9 adds attributes on both header and div. We remove the former (to
+// be compatible with the behavior of Pandoc < 2.8).
+document.addEventListener('DOMContentLoaded', function(e) {
+  var hs = document.querySelectorAll("div.section[class*='level'] > :first-child");
+  var i, h, a;
+  for (i = 0; i < hs.length; i++) {
+    h = hs[i];
+    if (!/^h[1-6]$/i.test(h.tagName)) continue;  // it should be a header h1-h6
+    a = h.attributes;
+    while (a.length > 0) h.removeAttribute(a[0].name);
+  }
+});
+</script>
 <script>/*! jQuery v1.11.3 | (c) 2005, 2015 jQuery Foundation, Inc. | jquery.org/license */
 !function(a,b){"object"==typeof module&&"object"==typeof module.exports?module.exports=a.document?b(a,!0):function(a){if(!a.document)throw new Error("jQuery requires a window with a document");return b(a)}:b(a)}("undefined"!=typeof window?window:this,function(a,b){var c=[],d=c.slice,e=c.concat,f=c.push,g=c.indexOf,h={},i=h.toString,j=h.hasOwnProperty,k={},l="1.11.3",m=function(a,b){return new m.fn.init(a,b)},n=/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g,o=/^-ms-/,p=/-([\da-z])/gi,q=function(a,b){return b.toUpperCase()};m.fn=m.prototype={jquery:l,constructor:m,selector:"",length:0,toArray:function(){return d.call(this)},get:function(a){return null!=a?0>a?this[a+this.length]:this[a]:d.call(this)},pushStack:function(a){var b=m.merge(this.constructor(),a);return b.prevObject=this,b.context=this.context,b},each:function(a,b){return m.each(this,a,b)},map:function(a){return this.pushStack(m.map(this,function(b,c){return a.call(b,c,b)}))},slice:function(){return this.pushStack(d.apply(this,arguments))},first:function(){return this.eq(0)},last:function(){return this.eq(-1)},eq:function(a){var b=this.length,c=+a+(0>a?b:0);return this.pushStack(c>=0&&b>c?[this[c]]:[])},end:function(){return this.prevObject||this.constructor(null)},push:f,sort:c.sort,splice:c.splice},m.extend=m.fn.extend=function(){var a,b,c,d,e,f,g=arguments[0]||{},h=1,i=arguments.length,j=!1;for("boolean"==typeof g&&(j=g,g=arguments[h]||{},h++),"object"==typeof g||m.isFunction(g)||(g={}),h===i&&(g=this,h--);i>h;h++)if(null!=(e=arguments[h]))for(d in e)a=g[d],c=e[d],g!==c&&(j&&c&&(m.isPlainObject(c)||(b=m.isArray(c)))?(b?(b=!1,f=a&&m.isArray(a)?a:[]):f=a&&m.isPlainObject(a)?a:{},g[d]=m.extend(j,f,c)):void 0!==c&&(g[d]=c));return g},m.extend({expando:"jQuery"+(l+Math.random()).replace(/\D/g,""),isReady:!0,error:function(a){throw new Error(a)},noop:function(){},isFunction:function(a){return"function"===m.type(a)},isArray:Array.isArray||function(a){return"array"===m.type(a)},isWindow:function(a){return null!=a&&a==a.window},isNumeric:function(a){return!m.isArray(a)&&a-parseFloat(a)+1>=0},isEmptyObject:function(a){var b;for(b in a)return!1;return!0},isPlainObject:function(a){var b;if(!a||"object"!==m.type(a)||a.nodeType||m.isWindow(a))return!1;try{if(a.constructor&&!j.call(a,"constructor")&&!j.call(a.constructor.prototype,"isPrototypeOf"))return!1}catch(c){return!1}if(k.ownLast)for(b in a)return j.call(a,b);for(b in a);return void 0===b||j.call(a,b)},type:function(a){return null==a?a+"":"object"==typeof a||"function"==typeof a?h[i.call(a)]||"object":typeof a},globalEval:function(b){b&&m.trim(b)&&(a.execScript||function(b){a.eval.call(a,b)})(b)},camelCase:function(a){return a.replace(o,"ms-").replace(p,q)},nodeName:function(a,b){return a.nodeName&&a.nodeName.toLowerCase()===b.toLowerCase()},each:function(a,b,c){var d,e=0,f=a.length,g=r(a);if(c){if(g){for(;f>e;e++)if(d=b.apply(a[e],c),d===!1)break}else for(e in a)if(d=b.apply(a[e],c),d===!1)break}else if(g){for(;f>e;e++)if(d=b.call(a[e],e,a[e]),d===!1)break}else for(e in a)if(d=b.call(a[e],e,a[e]),d===!1)break;return a},trim:function(a){return null==a?"":(a+"").replace(n,"")},makeArray:function(a,b){var c=b||[];return null!=a&&(r(Object(a))?m.merge(c,"string"==typeof a?[a]:a):f.call(c,a)),c},inArray:function(a,b,c){var d;if(b){if(g)return g.call(b,a,c);for(d=b.length,c=c?0>c?Math.max(0,d+c):c:0;d>c;c++)if(c in b&&b[c]===a)return c}return-1},merge:function(a,b){var c=+b.length,d=0,e=a.length;while(c>d)a[e++]=b[d++];if(c!==c)while(void 0!==b[d])a[e++]=b[d++];return a.length=e,a},grep:function(a,b,c){for(var d,e=[],f=0,g=a.length,h=!c;g>f;f++)d=!b(a[f],f),d!==h&&e.push(a[f]);return e},map:function(a,b,c){var d,f=0,g=a.length,h=r(a),i=[];if(h)for(;g>f;f++)d=b(a[f],f,c),null!=d&&i.push(d);else for(f in a)d=b(a[f],f,c),null!=d&&i.push(d);return e.apply([],i)},guid:1,proxy:function(a,b){var c,e,f;return"string"==typeof b&&(f=a[b],b=a,a=f),m.isFunction(a)?(c=d.call(arguments,2),e=function(){return a.apply(b||this,c.concat(d.call(arguments)))},e.guid=a.guid=a.guid||m.guid++,e):void 0},now:function(){return+new Date},support:k}),m.each("Boolean Number String Function Array Date RegExp Object Error".split(" "),function(a,b){h["[object "+b+"]"]=b.toLowerCase()});function r(a){var b="length"in a&&a.length,c=m.type(a);return"function"===c||m.isWindow(a)?!1:1===a.nodeType&&b?!0:"array"===c||0===b||"number"==typeof b&&b>0&&b-1 in a}var s=function(a){var b,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u="sizzle"+1*new Date,v=a.document,w=0,x=0,y=ha(),z=ha(),A=ha(),B=function(a,b){return a===b&&(l=!0),0},C=1<<31,D={}.hasOwnProperty,E=[],F=E.pop,G=E.push,H=E.push,I=E.slice,J=function(a,b){for(var c=0,d=a.length;d>c;c++)if(a[c]===b)return c;return-1},K="checked|selected|async|autofocus|autoplay|controls|defer|disabled|hidden|ismap|loop|multiple|open|readonly|required|scoped",L="[\\x20\\t\\r\\n\\f]",M="(?:\\\\.|[\\w-]|[^\\x00-\\xa0])+",N=M.replace("w","w#"),O="\\["+L+"*("+M+")(?:"+L+"*([*^$|!~]?=)"+L+"*(?:'((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\"|("+N+"))|)"+L+"*\\]",P=":("+M+")(?:\\((('((?:\\\\.|[^\\\\'])*)'|\"((?:\\\\.|[^\\\\\"])*)\")|((?:\\\\.|[^\\\\()[\\]]|"+O+")*)|.*)\\)|)",Q=new RegExp(L+"+","g"),R=new RegExp("^"+L+"+|((?:^|[^\\\\])(?:\\\\.)*)"+L+"+$","g"),S=new RegExp("^"+L+"*,"+L+"*"),T=new RegExp("^"+L+"*([>+~]|"+L+")"+L+"*"),U=new RegExp("="+L+"*([^\\]'\"]*?)"+L+"*\\]","g"),V=new RegExp(P),W=new RegExp("^"+N+"$"),X={ID:new RegExp("^#("+M+")"),CLASS:new RegExp("^\\.("+M+")"),TAG:new RegExp("^("+M.replace("w","w*")+")"),ATTR:new RegExp("^"+O),PSEUDO:new RegExp("^"+P),CHILD:new RegExp("^:(only|first|last|nth|nth-last)-(child|of-type)(?:\\("+L+"*(even|odd|(([+-]|)(\\d*)n|)"+L+"*(?:([+-]|)"+L+"*(\\d+)|))"+L+"*\\)|)","i"),bool:new RegExp("^(?:"+K+")$","i"),needsContext:new RegExp("^"+L+"*[>+~]|:(even|odd|eq|gt|lt|nth|first|last)(?:\\("+L+"*((?:-\\d)?\\d*)"+L+"*\\)|)(?=[^-]|$)","i")},Y=/^(?:input|select|textarea|button)$/i,Z=/^h\d$/i,$=/^[^{]+\{\s*\[native \w/,_=/^(?:#([\w-]+)|(\w+)|\.([\w-]+))$/,aa=/[+~]/,ba=/'|\\/g,ca=new RegExp("\\\\([\\da-f]{1,6}"+L+"?|("+L+")|.)","ig"),da=function(a,b,c){var d="0x"+b-65536;return d!==d||c?b:0>d?String.fromCharCode(d+65536):String.fromCharCode(d>>10|55296,1023&d|56320)},ea=function(){m()};try{H.apply(E=I.call(v.childNodes),v.childNodes),E[v.childNodes.length].nodeType}catch(fa){H={apply:E.length?function(a,b){G.apply(a,I.call(b))}:function(a,b){var c=a.length,d=0;while(a[c++]=b[d++]);a.length=c-1}}}function ga(a,b,d,e){var f,h,j,k,l,o,r,s,w,x;if((b?b.ownerDocument||b:v)!==n&&m(b),b=b||n,d=d||[],k=b.nodeType,"string"!=typeof a||!a||1!==k&&9!==k&&11!==k)return d;if(!e&&p){if(11!==k&&(f=_.exec(a)))if(j=f[1]){if(9===k){if(h=b.getElementById(j),!h||!h.parentNode)return d;if(h.id===j)return d.push(h),d}else if(b.ownerDocument&&(h=b.ownerDocument.getElementById(j))&&t(b,h)&&h.id===j)return d.push(h),d}else{if(f[2])return H.apply(d,b.getElementsByTagName(a)),d;if((j=f[3])&&c.getElementsByClassName)return H.apply(d,b.getElementsByClassName(j)),d}if(c.qsa&&(!q||!q.test(a))){if(s=r=u,w=b,x=1!==k&&a,1===k&&"object"!==b.nodeName.toLowerCase()){o=g(a),(r=b.getAttribute("id"))?s=r.replace(ba,"\\$&"):b.setAttribute("id",s),s="[id='"+s+"'] ",l=o.length;while(l--)o[l]=s+ra(o[l]);w=aa.test(a)&&pa(b.parentNode)||b,x=o.join(",")}if(x)try{return H.apply(d,w.querySelectorAll(x)),d}catch(y){}finally{r||b.removeAttribute("id")}}}return i(a.replace(R,"$1"),b,d,e)}function ha(){var a=[];function b(c,e){return a.push(c+" ")>d.cacheLength&&delete b[a.shift()],b[c+" "]=e}return b}function ia(a){return a[u]=!0,a}function ja(a){var b=n.createElement("div");try{return!!a(b)}catch(c){return!1}finally{b.parentNode&&b.parentNode.removeChild(b),b=null}}function ka(a,b){var c=a.split("|"),e=a.length;while(e--)d.attrHandle[c[e]]=b}function la(a,b){var c=b&&a,d=c&&1===a.nodeType&&1===b.nodeType&&(~b.sourceIndex||C)-(~a.sourceIndex||C);if(d)return d;if(c)while(c=c.nextSibling)if(c===b)return-1;return a?1:-1}function ma(a){return function(b){var c=b.nodeName.toLowerCase();return"input"===c&&b.type===a}}function na(a){return function(b){var c=b.nodeName.toLowerCase();return("input"===c||"button"===c)&&b.type===a}}function oa(a){return ia(function(b){return b=+b,ia(function(c,d){var e,f=a([],c.length,b),g=f.length;while(g--)c[e=f[g]]&&(c[e]=!(d[e]=c[e]))})})}function pa(a){return a&&"undefined"!=typeof a.getElementsByTagName&&a}c=ga.support={},f=ga.isXML=function(a){var b=a&&(a.ownerDocument||a).documentElement;return b?"HTML"!==b.nodeName:!1},m=ga.setDocument=function(a){var b,e,g=a?a.ownerDocument||a:v;return g!==n&&9===g.nodeType&&g.documentElement?(n=g,o=g.documentElement,e=g.defaultView,e&&e!==e.top&&(e.addEventListener?e.addEventListener("unload",ea,!1):e.attachEvent&&e.attachEvent("onunload",ea)),p=!f(g),c.attributes=ja(function(a){return a.className="i",!a.getAttribute("className")}),c.getElementsByTagName=ja(function(a){return a.appendChild(g.createComment("")),!a.getElementsByTagName("*").length}),c.getElementsByClassName=$.test(g.getElementsByClassName),c.getById=ja(function(a){return o.appendChild(a).id=u,!g.getElementsByName||!g.getElementsByName(u).length}),c.getById?(d.find.ID=function(a,b){if("undefined"!=typeof b.getElementById&&p){var c=b.getElementById(a);return c&&c.parentNode?[c]:[]}},d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){return a.getAttribute("id")===b}}):(delete d.find.ID,d.filter.ID=function(a){var b=a.replace(ca,da);return function(a){var c="undefined"!=typeof a.getAttributeNode&&a.getAttributeNode("id");return c&&c.value===b}}),d.find.TAG=c.getElementsByTagName?function(a,b){return"undefined"!=typeof b.getElementsByTagName?b.getElementsByTagName(a):c.qsa?b.querySelectorAll(a):void 0}:function(a,b){var c,d=[],e=0,f=b.getElementsByTagName(a);if("*"===a){while(c=f[e++])1===c.nodeType&&d.push(c);return d}return f},d.find.CLASS=c.getElementsByClassName&&function(a,b){return p?b.getElementsByClassName(a):void 0},r=[],q=[],(c.qsa=$.test(g.querySelectorAll))&&(ja(function(a){o.appendChild(a).innerHTML="<a id='"+u+"'></a><select id='"+u+"-\f]' msallowcapture=''><option selected=''></option></select>",a.querySelectorAll("[msallowcapture^='']").length&&q.push("[*^$]="+L+"*(?:''|\"\")"),a.querySelectorAll("[selected]").length||q.push("\\["+L+"*(?:value|"+K+")"),a.querySelectorAll("[id~="+u+"-]").length||q.push("~="),a.querySelectorAll(":checked").length||q.push(":checked"),a.querySelectorAll("a#"+u+"+*").length||q.push(".#.+[+~]")}),ja(function(a){var b=g.createElement("input");b.setAttribute("type","hidden"),a.appendChild(b).setAttribute("name","D"),a.querySelectorAll("[name=d]").length&&q.push("name"+L+"*[*^$|!~]?="),a.querySelectorAll(":enabled").length||q.push(":enabled",":disabled"),a.querySelectorAll("*,:x"),q.push(",.*:")})),(c.matchesSelector=$.test(s=o.matches||o.webkitMatchesSelector||o.mozMatchesSelector||o.oMatchesSelector||o.msMatchesSelector))&&ja(function(a){c.disconnectedMatch=s.call(a,"div"),s.call(a,"[s!='']:x"),r.push("!=",P)}),q=q.length&&new RegExp(q.join("|")),r=r.length&&new RegExp(r.join("|")),b=$.test(o.compareDocumentPosition),t=b||$.test(o.contains)?function(a,b){var c=9===a.nodeType?a.documentElement:a,d=b&&b.parentNode;return a===d||!(!d||1!==d.nodeType||!(c.contains?c.contains(d):a.compareDocumentPosition&&16&a.compareDocumentPosition(d)))}:function(a,b){if(b)while(b=b.parentNode)if(b===a)return!0;return!1},B=b?function(a,b){if(a===b)return l=!0,0;var d=!a.compareDocumentPosition-!b.compareDocumentPosition;return d?d:(d=(a.ownerDocument||a)===(b.ownerDocument||b)?a.compareDocumentPosition(b):1,1&d||!c.sortDetached&&b.compareDocumentPosition(a)===d?a===g||a.ownerDocument===v&&t(v,a)?-1:b===g||b.ownerDocument===v&&t(v,b)?1:k?J(k,a)-J(k,b):0:4&d?-1:1)}:function(a,b){if(a===b)return l=!0,0;var c,d=0,e=a.parentNode,f=b.parentNode,h=[a],i=[b];if(!e||!f)return a===g?-1:b===g?1:e?-1:f?1:k?J(k,a)-J(k,b):0;if(e===f)return la(a,b);c=a;while(c=c.parentNode)h.unshift(c);c=b;while(c=c.parentNode)i.unshift(c);while(h[d]===i[d])d++;return d?la(h[d],i[d]):h[d]===v?-1:i[d]===v?1:0},g):n},ga.matches=function(a,b){return ga(a,null,null,b)},ga.matchesSelector=function(a,b){if((a.ownerDocument||a)!==n&&m(a),b=b.replace(U,"='$1']"),!(!c.matchesSelector||!p||r&&r.test(b)||q&&q.test(b)))try{var d=s.call(a,b);if(d||c.disconnectedMatch||a.document&&11!==a.document.nodeType)return d}catch(e){}return ga(b,n,null,[a]).length>0},ga.contains=function(a,b){return(a.ownerDocument||a)!==n&&m(a),t(a,b)},ga.attr=function(a,b){(a.ownerDocument||a)!==n&&m(a);var e=d.attrHandle[b.toLowerCase()],f=e&&D.call(d.attrHandle,b.toLowerCase())?e(a,b,!p):void 0;return void 0!==f?f:c.attributes||!p?a.getAttribute(b):(f=a.getAttributeNode(b))&&f.specified?f.value:null},ga.error=function(a){throw new Error("Syntax error, unrecognized expression: "+a)},ga.uniqueSort=function(a){var b,d=[],e=0,f=0;if(l=!c.detectDuplicates,k=!c.sortStable&&a.slice(0),a.sort(B),l){while(b=a[f++])b===a[f]&&(e=d.push(f));while(e--)a.splice(d[e],1)}return k=null,a},e=ga.getText=function(a){var b,c="",d=0,f=a.nodeType;if(f){if(1===f||9===f||11===f){if("string"==typeof a.textContent)return a.textContent;for(a=a.firstChild;a;a=a.nextSibling)c+=e(a)}else if(3===f||4===f)return a.nodeValue}else while(b=a[d++])c+=e(b);return c},d=ga.selectors={cacheLength:50,createPseudo:ia,match:X,attrHandle:{},find:{},relative:{">":{dir:"parentNode",first:!0}," ":{dir:"parentNode"},"+":{dir:"previousSibling",first:!0},"~":{dir:"previousSibling"}},preFilter:{ATTR:function(a){return a[1]=a[1].replace(ca,da),a[3]=(a[3]||a[4]||a[5]||"").replace(ca,da),"~="===a[2]&&(a[3]=" "+a[3]+" "),a.slice(0,4)},CHILD:function(a){return a[1]=a[1].toLowerCase(),"nth"===a[1].slice(0,3)?(a[3]||ga.error(a[0]),a[4]=+(a[4]?a[5]+(a[6]||1):2*("even"===a[3]||"odd"===a[3])),a[5]=+(a[7]+a[8]||"odd"===a[3])):a[3]&&ga.error(a[0]),a},PSEUDO:function(a){var b,c=!a[6]&&a[2];return X.CHILD.test(a[0])?null:(a[3]?a[2]=a[4]||a[5]||"":c&&V.test(c)&&(b=g(c,!0))&&(b=c.indexOf(")",c.length-b)-c.length)&&(a[0]=a[0].slice(0,b),a[2]=c.slice(0,b)),a.slice(0,3))}},filter:{TAG:function(a){var b=a.replace(ca,da).toLowerCase();return"*"===a?function(){return!0}:function(a){return a.nodeName&&a.nodeName.toLowerCase()===b}},CLASS:function(a){var b=y[a+" "];return b||(b=new RegExp("(^|"+L+")"+a+"("+L+"|$)"))&&y(a,function(a){return b.test("string"==typeof a.className&&a.className||"undefined"!=typeof a.getAttribute&&a.getAttribute("class")||"")})},ATTR:function(a,b,c){return function(d){var e=ga.attr(d,a);return null==e?"!="===b:b?(e+="","="===b?e===c:"!="===b?e!==c:"^="===b?c&&0===e.indexOf(c):"*="===b?c&&e.indexOf(c)>-1:"$="===b?c&&e.slice(-c.length)===c:"~="===b?(" "+e.replace(Q," ")+" ").indexOf(c)>-1:"|="===b?e===c||e.slice(0,c.length+1)===c+"-":!1):!0}},CHILD:function(a,b,c,d,e){var f="nth"!==a.slice(0,3),g="last"!==a.slice(-4),h="of-type"===b;return 1===d&&0===e?function(a){return!!a.parentNode}:function(b,c,i){var j,k,l,m,n,o,p=f!==g?"nextSibling":"previousSibling",q=b.parentNode,r=h&&b.nodeName.toLowerCase(),s=!i&&!h;if(q){if(f){while(p){l=b;while(l=l[p])if(h?l.nodeName.toLowerCase()===r:1===l.nodeType)return!1;o=p="only"===a&&!o&&"nextSibling"}return!0}if(o=[g?q.firstChild:q.lastChild],g&&s){k=q[u]||(q[u]={}),j=k[a]||[],n=j[0]===w&&j[1],m=j[0]===w&&j[2],l=n&&q.childNodes[n];while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if(1===l.nodeType&&++m&&l===b){k[a]=[w,n,m];break}}else if(s&&(j=(b[u]||(b[u]={}))[a])&&j[0]===w)m=j[1];else while(l=++n&&l&&l[p]||(m=n=0)||o.pop())if((h?l.nodeName.toLowerCase()===r:1===l.nodeType)&&++m&&(s&&((l[u]||(l[u]={}))[a]=[w,m]),l===b))break;return m-=e,m===d||m%d===0&&m/d>=0}}},PSEUDO:function(a,b){var c,e=d.pseudos[a]||d.setFilters[a.toLowerCase()]||ga.error("unsupported pseudo: "+a);return e[u]?e(b):e.length>1?(c=[a,a,"",b],d.setFilters.hasOwnProperty(a.toLowerCase())?ia(function(a,c){var d,f=e(a,b),g=f.length;while(g--)d=J(a,f[g]),a[d]=!(c[d]=f[g])}):function(a){return e(a,0,c)}):e}},pseudos:{not:ia(function(a){var b=[],c=[],d=h(a.replace(R,"$1"));return d[u]?ia(function(a,b,c,e){var f,g=d(a,null,e,[]),h=a.length;while(h--)(f=g[h])&&(a[h]=!(b[h]=f))}):function(a,e,f){return b[0]=a,d(b,null,f,c),b[0]=null,!c.pop()}}),has:ia(function(a){return function(b){return ga(a,b).length>0}}),contains:ia(function(a){return a=a.replace(ca,da),function(b){return(b.textContent||b.innerText||e(b)).indexOf(a)>-1}}),lang:ia(function(a){return W.test(a||"")||ga.error("unsupported lang: "+a),a=a.replace(ca,da).toLowerCase(),function(b){var c;do if(c=p?b.lang:b.getAttribute("xml:lang")||b.getAttribute("lang"))return c=c.toLowerCase(),c===a||0===c.indexOf(a+"-");while((b=b.parentNode)&&1===b.nodeType);return!1}}),target:function(b){var c=a.location&&a.location.hash;return c&&c.slice(1)===b.id},root:function(a){return a===o},focus:function(a){return a===n.activeElement&&(!n.hasFocus||n.hasFocus())&&!!(a.type||a.href||~a.tabIndex)},enabled:function(a){return a.disabled===!1},disabled:function(a){return a.disabled===!0},checked:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&!!a.checked||"option"===b&&!!a.selected},selected:function(a){return a.parentNode&&a.parentNode.selectedIndex,a.selected===!0},empty:function(a){for(a=a.firstChild;a;a=a.nextSibling)if(a.nodeType<6)return!1;return!0},parent:function(a){return!d.pseudos.empty(a)},header:function(a){return Z.test(a.nodeName)},input:function(a){return Y.test(a.nodeName)},button:function(a){var b=a.nodeName.toLowerCase();return"input"===b&&"button"===a.type||"button"===b},text:function(a){var b;return"input"===a.nodeName.toLowerCase()&&"text"===a.type&&(null==(b=a.getAttribute("type"))||"text"===b.toLowerCase())},first:oa(function(){return[0]}),last:oa(function(a,b){return[b-1]}),eq:oa(function(a,b,c){return[0>c?c+b:c]}),even:oa(function(a,b){for(var c=0;b>c;c+=2)a.push(c);return a}),odd:oa(function(a,b){for(var c=1;b>c;c+=2)a.push(c);return a}),lt:oa(function(a,b,c){for(var d=0>c?c+b:c;--d>=0;)a.push(d);return a}),gt:oa(function(a,b,c){for(var d=0>c?c+b:c;++d<b;)a.push(d);return a})}},d.pseudos.nth=d.pseudos.eq;for(b in{radio:!0,checkbox:!0,file:!0,password:!0,image:!0})d.pseudos[b]=ma(b);for(b in{submit:!0,reset:!0})d.pseudos[b]=na(b);function qa(){}qa.prototype=d.filters=d.pseudos,d.setFilters=new qa,g=ga.tokenize=function(a,b){var c,e,f,g,h,i,j,k=z[a+" "];if(k)return b?0:k.slice(0);h=a,i=[],j=d.preFilter;while(h){(!c||(e=S.exec(h)))&&(e&&(h=h.slice(e[0].length)||h),i.push(f=[])),c=!1,(e=T.exec(h))&&(c=e.shift(),f.push({value:c,type:e[0].replace(R," ")}),h=h.slice(c.length));for(g in d.filter)!(e=X[g].exec(h))||j[g]&&!(e=j[g](e))||(c=e.shift(),f.push({value:c,type:g,matches:e}),h=h.slice(c.length));if(!c)break}return b?h.length:h?ga.error(a):z(a,i).slice(0)};function ra(a){for(var b=0,c=a.length,d="";c>b;b++)d+=a[b].value;return d}function sa(a,b,c){var d=b.dir,e=c&&"parentNode"===d,f=x++;return b.first?function(b,c,f){while(b=b[d])if(1===b.nodeType||e)return a(b,c,f)}:function(b,c,g){var h,i,j=[w,f];if(g){while(b=b[d])if((1===b.nodeType||e)&&a(b,c,g))return!0}else while(b=b[d])if(1===b.nodeType||e){if(i=b[u]||(b[u]={}),(h=i[d])&&h[0]===w&&h[1]===f)return j[2]=h[2];if(i[d]=j,j[2]=a(b,c,g))return!0}}}function ta(a){return a.length>1?function(b,c,d){var e=a.length;while(e--)if(!a[e](b,c,d))return!1;return!0}:a[0]}function ua(a,b,c){for(var d=0,e=b.length;e>d;d++)ga(a,b[d],c);return c}function va(a,b,c,d,e){for(var f,g=[],h=0,i=a.length,j=null!=b;i>h;h++)(f=a[h])&&(!c||c(f,d,e))&&(g.push(f),j&&b.push(h));return g}function wa(a,b,c,d,e,f){return d&&!d[u]&&(d=wa(d)),e&&!e[u]&&(e=wa(e,f)),ia(function(f,g,h,i){var j,k,l,m=[],n=[],o=g.length,p=f||ua(b||"*",h.nodeType?[h]:h,[]),q=!a||!f&&b?p:va(p,m,a,h,i),r=c?e||(f?a:o||d)?[]:g:q;if(c&&c(q,r,h,i),d){j=va(r,n),d(j,[],h,i),k=j.length;while(k--)(l=j[k])&&(r[n[k]]=!(q[n[k]]=l))}if(f){if(e||a){if(e){j=[],k=r.length;while(k--)(l=r[k])&&j.push(q[k]=l);e(null,r=[],j,i)}k=r.length;while(k--)(l=r[k])&&(j=e?J(f,l):m[k])>-1&&(f[j]=!(g[j]=l))}}else r=va(r===g?r.splice(o,r.length):r),e?e(null,g,r,i):H.apply(g,r)})}function xa(a){for(var b,c,e,f=a.length,g=d.relative[a[0].type],h=g||d.relative[" "],i=g?1:0,k=sa(function(a){return a===b},h,!0),l=sa(function(a){return J(b,a)>-1},h,!0),m=[function(a,c,d){var e=!g&&(d||c!==j)||((b=c).nodeType?k(a,c,d):l(a,c,d));return b=null,e}];f>i;i++)if(c=d.relative[a[i].type])m=[sa(ta(m),c)];else{if(c=d.filter[a[i].type].apply(null,a[i].matches),c[u]){for(e=++i;f>e;e++)if(d.relative[a[e].type])break;return wa(i>1&&ta(m),i>1&&ra(a.slice(0,i-1).concat({value:" "===a[i-2].type?"*":""})).replace(R,"$1"),c,e>i&&xa(a.slice(i,e)),f>e&&xa(a=a.slice(e)),f>e&&ra(a))}m.push(c)}return ta(m)}function ya(a,b){var c=b.length>0,e=a.length>0,f=function(f,g,h,i,k){var l,m,o,p=0,q="0",r=f&&[],s=[],t=j,u=f||e&&d.find.TAG("*",k),v=w+=null==t?1:Math.random()||.1,x=u.length;for(k&&(j=g!==n&&g);q!==x&&null!=(l=u[q]);q++){if(e&&l){m=0;while(o=a[m++])if(o(l,g,h)){i.push(l);break}k&&(w=v)}c&&((l=!o&&l)&&p--,f&&r.push(l))}if(p+=q,c&&q!==p){m=0;while(o=b[m++])o(r,s,g,h);if(f){if(p>0)while(q--)r[q]||s[q]||(s[q]=F.call(i));s=va(s)}H.apply(i,s),k&&!f&&s.length>0&&p+b.length>1&&ga.uniqueSort(i)}return k&&(w=v,j=t),r};return c?ia(f):f}return h=ga.compile=function(a,b){var c,d=[],e=[],f=A[a+" "];if(!f){b||(b=g(a)),c=b.length;while(c--)f=xa(b[c]),f[u]?d.push(f):e.push(f);f=A(a,ya(e,d)),f.selector=a}return f},i=ga.select=function(a,b,e,f){var i,j,k,l,m,n="function"==typeof a&&a,o=!f&&g(a=n.selector||a);if(e=e||[],1===o.length){if(j=o[0]=o[0].slice(0),j.length>2&&"ID"===(k=j[0]).type&&c.getById&&9===b.nodeType&&p&&d.relative[j[1].type]){if(b=(d.find.ID(k.matches[0].replace(ca,da),b)||[])[0],!b)return e;n&&(b=b.parentNode),a=a.slice(j.shift().value.length)}i=X.needsContext.test(a)?0:j.length;while(i--){if(k=j[i],d.relative[l=k.type])break;if((m=d.find[l])&&(f=m(k.matches[0].replace(ca,da),aa.test(j[0].type)&&pa(b.parentNode)||b))){if(j.splice(i,1),a=f.length&&ra(j),!a)return H.apply(e,f),e;break}}}return(n||h(a,o))(f,b,!p,e,aa.test(a)&&pa(b.parentNode)||b),e},c.sortStable=u.split("").sort(B).join("")===u,c.detectDuplicates=!!l,m(),c.sortDetached=ja(function(a){return 1&a.compareDocumentPosition(n.createElement("div"))}),ja(function(a){return a.innerHTML="<a href='#'></a>","#"===a.firstChild.getAttribute("href")})||ka("type|href|height|width",function(a,b,c){return c?void 0:a.getAttribute(b,"type"===b.toLowerCase()?1:2)}),c.attributes&&ja(function(a){return a.innerHTML="<input/>",a.firstChild.setAttribute("value",""),""===a.firstChild.getAttribute("value")})||ka("value",function(a,b,c){return c||"input"!==a.nodeName.toLowerCase()?void 0:a.defaultValue}),ja(function(a){return null==a.getAttribute("disabled")})||ka(K,function(a,b,c){var d;return c?void 0:a[b]===!0?b.toLowerCase():(d=a.getAttributeNode(b))&&d.specified?d.value:null}),ga}(a);m.find=s,m.expr=s.selectors,m.expr[":"]=m.expr.pseudos,m.unique=s.uniqueSort,m.text=s.getText,m.isXMLDoc=s.isXML,m.contains=s.contains;var t=m.expr.match.needsContext,u=/^<(\w+)\s*\/?>(?:<\/\1>|)$/,v=/^.[^:#\[\.,]*$/;function w(a,b,c){if(m.isFunction(b))return m.grep(a,function(a,d){return!!b.call(a,d,a)!==c});if(b.nodeType)return m.grep(a,function(a){return a===b!==c});if("string"==typeof b){if(v.test(b))return m.filter(b,a,c);b=m.filter(b,a)}return m.grep(a,function(a){return m.inArray(a,b)>=0!==c})}m.filter=function(a,b,c){var d=b[0];return c&&(a=":not("+a+")"),1===b.length&&1===d.nodeType?m.find.matchesSelector(d,a)?[d]:[]:m.find.matches(a,m.grep(b,function(a){return 1===a.nodeType}))},m.fn.extend({find:function(a){var b,c=[],d=this,e=d.length;if("string"!=typeof a)return this.pushStack(m(a).filter(function(){for(b=0;e>b;b++)if(m.contains(d[b],this))return!0}));for(b=0;e>b;b++)m.find(a,d[b],c);return c=this.pushStack(e>1?m.unique(c):c),c.selector=this.selector?this.selector+" "+a:a,c},filter:function(a){return this.pushStack(w(this,a||[],!1))},not:function(a){return this.pushStack(w(this,a||[],!0))},is:function(a){return!!w(this,"string"==typeof a&&t.test(a)?m(a):a||[],!1).length}});var x,y=a.document,z=/^(?:\s*(<[\w\W]+>)[^>]*|#([\w-]*))$/,A=m.fn.init=function(a,b){var c,d;if(!a)return this;if("string"==typeof a){if(c="<"===a.charAt(0)&&">"===a.charAt(a.length-1)&&a.length>=3?[null,a,null]:z.exec(a),!c||!c[1]&&b)return!b||b.jquery?(b||x).find(a):this.constructor(b).find(a);if(c[1]){if(b=b instanceof m?b[0]:b,m.merge(this,m.parseHTML(c[1],b&&b.nodeType?b.ownerDocument||b:y,!0)),u.test(c[1])&&m.isPlainObject(b))for(c in b)m.isFunction(this[c])?this[c](b[c]):this.attr(c,b[c]);return this}if(d=y.getElementById(c[2]),d&&d.parentNode){if(d.id!==c[2])return x.find(a);this.length=1,this[0]=d}return this.context=y,this.selector=a,this}return a.nodeType?(this.context=this[0]=a,this.length=1,this):m.isFunction(a)?"undefined"!=typeof x.ready?x.ready(a):a(m):(void 0!==a.selector&&(this.selector=a.selector,this.context=a.context),m.makeArray(a,this))};A.prototype=m.fn,x=m(y);var B=/^(?:parents|prev(?:Until|All))/,C={children:!0,contents:!0,next:!0,prev:!0};m.extend({dir:function(a,b,c){var d=[],e=a[b];while(e&&9!==e.nodeType&&(void 0===c||1!==e.nodeType||!m(e).is(c)))1===e.nodeType&&d.push(e),e=e[b];return d},sibling:function(a,b){for(var c=[];a;a=a.nextSibling)1===a.nodeType&&a!==b&&c.push(a);return c}}),m.fn.extend({has:function(a){var b,c=m(a,this),d=c.length;return this.filter(function(){for(b=0;d>b;b++)if(m.contains(this,c[b]))return!0})},closest:function(a,b){for(var c,d=0,e=this.length,f=[],g=t.test(a)||"string"!=typeof a?m(a,b||this.context):0;e>d;d++)for(c=this[d];c&&c!==b;c=c.parentNode)if(c.nodeType<11&&(g?g.index(c)>-1:1===c.nodeType&&m.find.matchesSelector(c,a))){f.push(c);break}return this.pushStack(f.length>1?m.unique(f):f)},index:function(a){return a?"string"==typeof a?m.inArray(this[0],m(a)):m.inArray(a.jquery?a[0]:a,this):this[0]&&this[0].parentNode?this.first().prevAll().length:-1},add:function(a,b){return this.pushStack(m.unique(m.merge(this.get(),m(a,b))))},addBack:function(a){return this.add(null==a?this.prevObject:this.prevObject.filter(a))}});function D(a,b){do a=a[b];while(a&&1!==a.nodeType);return a}m.each({parent:function(a){var b=a.parentNode;return b&&11!==b.nodeType?b:null},parents:function(a){return m.dir(a,"parentNode")},parentsUntil:function(a,b,c){return m.dir(a,"parentNode",c)},next:function(a){return D(a,"nextSibling")},prev:function(a){return D(a,"previousSibling")},nextAll:function(a){return m.dir(a,"nextSibling")},prevAll:function(a){return m.dir(a,"previousSibling")},nextUntil:function(a,b,c){return m.dir(a,"nextSibling",c)},prevUntil:function(a,b,c){return m.dir(a,"previousSibling",c)},siblings:function(a){return m.sibling((a.parentNode||{}).firstChild,a)},children:function(a){return m.sibling(a.firstChild)},contents:function(a){return m.nodeName(a,"iframe")?a.contentDocument||a.contentWindow.document:m.merge([],a.childNodes)}},function(a,b){m.fn[a]=function(c,d){var e=m.map(this,b,c);return"Until"!==a.slice(-5)&&(d=c),d&&"string"==typeof d&&(e=m.filter(d,e)),this.length>1&&(C[a]||(e=m.unique(e)),B.test(a)&&(e=e.reverse())),this.pushStack(e)}});var E=/\S+/g,F={};function G(a){var b=F[a]={};return m.each(a.match(E)||[],function(a,c){b[c]=!0}),b}m.Callbacks=function(a){a="string"==typeof a?F[a]||G(a):m.extend({},a);var b,c,d,e,f,g,h=[],i=!a.once&&[],j=function(l){for(c=a.memory&&l,d=!0,f=g||0,g=0,e=h.length,b=!0;h&&e>f;f++)if(h[f].apply(l[0],l[1])===!1&&a.stopOnFalse){c=!1;break}b=!1,h&&(i?i.length&&j(i.shift()):c?h=[]:k.disable())},k={add:function(){if(h){var d=h.length;!function f(b){m.each(b,function(b,c){var d=m.type(c);"function"===d?a.unique&&k.has(c)||h.push(c):c&&c.length&&"string"!==d&&f(c)})}(arguments),b?e=h.length:c&&(g=d,j(c))}return this},remove:function(){return h&&m.each(arguments,function(a,c){var d;while((d=m.inArray(c,h,d))>-1)h.splice(d,1),b&&(e>=d&&e--,f>=d&&f--)}),this},has:function(a){return a?m.inArray(a,h)>-1:!(!h||!h.length)},empty:function(){return h=[],e=0,this},disable:function(){return h=i=c=void 0,this},disabled:function(){return!h},lock:function(){return i=void 0,c||k.disable(),this},locked:function(){return!i},fireWith:function(a,c){return!h||d&&!i||(c=c||[],c=[a,c.slice?c.slice():c],b?i.push(c):j(c)),this},fire:function(){return k.fireWith(this,arguments),this},fired:function(){return!!d}};return k},m.extend({Deferred:function(a){var b=[["resolve","done",m.Callbacks("once memory"),"resolved"],["reject","fail",m.Callbacks("once memory"),"rejected"],["notify","progress",m.Callbacks("memory")]],c="pending",d={state:function(){return c},always:function(){return e.done(arguments).fail(arguments),this},then:function(){var a=arguments;return m.Deferred(function(c){m.each(b,function(b,f){var g=m.isFunction(a[b])&&a[b];e[f[1]](function(){var a=g&&g.apply(this,arguments);a&&m.isFunction(a.promise)?a.promise().done(c.resolve).fail(c.reject).progress(c.notify):c[f[0]+"With"](this===d?c.promise():this,g?[a]:arguments)})}),a=null}).promise()},promise:function(a){return null!=a?m.extend(a,d):d}},e={};return d.pipe=d.then,m.each(b,function(a,f){var g=f[2],h=f[3];d[f[1]]=g.add,h&&g.add(function(){c=h},b[1^a][2].disable,b[2][2].lock),e[f[0]]=function(){return e[f[0]+"With"](this===e?d:this,arguments),this},e[f[0]+"With"]=g.fireWith}),d.promise(e),a&&a.call(e,e),e},when:function(a){var b=0,c=d.call(arguments),e=c.length,f=1!==e||a&&m.isFunction(a.promise)?e:0,g=1===f?a:m.Deferred(),h=function(a,b,c){return function(e){b[a]=this,c[a]=arguments.length>1?d.call(arguments):e,c===i?g.notifyWith(b,c):--f||g.resolveWith(b,c)}},i,j,k;if(e>1)for(i=new Array(e),j=new Array(e),k=new Array(e);e>b;b++)c[b]&&m.isFunction(c[b].promise)?c[b].promise().done(h(b,k,c)).fail(g.reject).progress(h(b,j,i)):--f;return f||g.resolveWith(k,c),g.promise()}});var H;m.fn.ready=function(a){return m.ready.promise().done(a),this},m.extend({isReady:!1,readyWait:1,holdReady:function(a){a?m.readyWait++:m.ready(!0)},ready:function(a){if(a===!0?!--m.readyWait:!m.isReady){if(!y.body)return setTimeout(m.ready);m.isReady=!0,a!==!0&&--m.readyWait>0||(H.resolveWith(y,[m]),m.fn.triggerHandler&&(m(y).triggerHandler("ready"),m(y).off("ready")))}}});function I(){y.addEventListener?(y.removeEventListener("DOMContentLoaded",J,!1),a.removeEventListener("load",J,!1)):(y.detachEvent("onreadystatechange",J),a.detachEvent("onload",J))}function J(){(y.addEventListener||"load"===event.type||"complete"===y.readyState)&&(I(),m.ready())}m.ready.promise=function(b){if(!H)if(H=m.Deferred(),"complete"===y.readyState)setTimeout(m.ready);else if(y.addEventListener)y.addEventListener("DOMContentLoaded",J,!1),a.addEventListener("load",J,!1);else{y.attachEvent("onreadystatechange",J),a.attachEvent("onload",J);var c=!1;try{c=null==a.frameElement&&y.documentElement}catch(d){}c&&c.doScroll&&!function e(){if(!m.isReady){try{c.doScroll("left")}catch(a){return setTimeout(e,50)}I(),m.ready()}}()}return H.promise(b)};var K="undefined",L;for(L in m(k))break;k.ownLast="0"!==L,k.inlineBlockNeedsLayout=!1,m(function(){var a,b,c,d;c=y.getElementsByTagName("body")[0],c&&c.style&&(b=y.createElement("div"),d=y.createElement("div"),d.style.cssText="position:absolute;border:0;width:0;height:0;top:0;left:-9999px",c.appendChild(d).appendChild(b),typeof b.style.zoom!==K&&(b.style.cssText="display:inline;margin:0;border:0;padding:1px;width:1px;zoom:1",k.inlineBlockNeedsLayout=a=3===b.offsetWidth,a&&(c.style.zoom=1)),c.removeChild(d))}),function(){var a=y.createElement("div");if(null==k.deleteExpando){k.deleteExpando=!0;try{delete a.test}catch(b){k.deleteExpando=!1}}a=null}(),m.acceptData=function(a){var b=m.noData[(a.nodeName+" ").toLowerCase()],c=+a.nodeType||1;return 1!==c&&9!==c?!1:!b||b!==!0&&a.getAttribute("classid")===b};var M=/^(?:\{[\w\W]*\}|\[[\w\W]*\])$/,N=/([A-Z])/g;function O(a,b,c){if(void 0===c&&1===a.nodeType){var d="data-"+b.replace(N,"-$1").toLowerCase();if(c=a.getAttribute(d),"string"==typeof c){try{c="true"===c?!0:"false"===c?!1:"null"===c?null:+c+""===c?+c:M.test(c)?m.parseJSON(c):c}catch(e){}m.data(a,b,c)}else c=void 0}return c}function P(a){var b;for(b in a)if(("data"!==b||!m.isEmptyObject(a[b]))&&"toJSON"!==b)return!1;
 
@@ -188,30 +201,56 @@ window.buildTabsets = function(tocID) {
 };
 
 </script>
+<script>// Hide empty <a> tag within highlighted CodeBlock for screen reader accessibility (see https://github.com/jgm/pandoc/issues/6352#issuecomment-626106786) -->
+// v0.0.1
+// Written by JooYoung Seo (jooyoung@psu.edu) and Atsushi Yasumoto on June 1st, 2020.
+
+document.addEventListener('DOMContentLoaded', function() {
+  const codeList = document.getElementsByClassName("sourceCode");
+  for (var i = 0; i < codeList.length; i++) {
+    var linkList = codeList[i].getElementsByTagName('a');
+    for (var j = 0; j < linkList.length; j++) {
+      if (linkList[j].innerHTML === "") {
+        linkList[j].setAttribute('aria-hidden', 'true');
+      }
+    }
+  }
+});
+</script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
 
 
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 div.sourceCode { margin: 1em 0; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(title);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -220,9 +259,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  { background-color: #f8f8f8; }
+  {  background-color: #f8f8f8; }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
@@ -308,6 +347,7 @@ h6 {
   text-align: left;
 }
 </style>
+
 
 <style type="text/css">
 .author {
@@ -460,12 +500,12 @@ summary {
 <h3 class="subtitle">Lecture 8: Cloud Computing, Distributed Systems</h3>
 <h4 class="author"><div class="line-block">Prof. Dr. Ulrich Matter<br />
 (University of St. Gallen)</div></h4>
-<h4 class="date">23/04/2020</h4>
+<h4 class="date">29/04/2021</h4>
 
 </div>
 
 
-<div id="cloud-services-for-big-data-analytics" class="section level1">
+<div id="cloud-services-for-big-data-analytics" class="section level1" number="1">
 <h1><span class="header-section-number">1</span> Cloud Services for Big Data Analytics</h1>
 <p>So far we have focused on how to deal with large amounts of data and/or computationally demanding tasks on our local machines (desktop/laptop). A key aspect of this course has thus been in a first step to understand why our local machine is struggling with a data analysis task when there is a large amount of data to be processed. In a second step we have looked into practical solutions to these challenges. These solutions are in essence tools (in this course particularly tools provided in the R environment) to use the key components of our computing environment (CPU, RAM, mass storage) most efficiently:</p>
 <ul>
@@ -490,235 +530,235 @@ summary {
 <p>However, for really memory-intense tasks, the cloud provides options to <em>scale out</em> (horizontal scaling). Meaning, a task is distributed among a cluster of computing instances/servers. The implementation of such data analytics tasks is based on a paradigm that we rather do not encounter when working locally: <em>Map/Reduce</em> (implemented in the <em>Hadoop</em> framework).</p>
 <p>In the following we look first at scaling up more familiar approaches with the help of the cloud and then look at the Map/Reduce concept and how it can be applied in <em>Hadoop</em> running on cloud instances.</p>
 </div>
-<div id="scaling-up-in-the-cloud" class="section level1">
+<div id="scaling-up-in-the-cloud" class="section level1" number="2">
 <h1><span class="header-section-number">2</span> Scaling up in the Cloud</h1>
 <p>In the following examples we use different cloud services provided by AWS. See the online chapter to <span class="citation">Walkowiak (2016)</span> <a href="https://www.packtpub.com/sites/default/files/downloads/5396_6457OS_PushingRFurther.pdf">‘Pushing R Further’</a> for how to set up an AWS account and the basics for how to set up AWS instances. The examples below are based on the assumption that the EC2 instance and RStudio Server have been set up essentially as explained in <a href="https://www.packtpub.com/sites/default/files/downloads/5396_6457OS_PushingRFurther.pdf">‘Pushing R Further’</a>, pages 22-38. However, AWS changed a few things regarding the way their linux machines are set up since the online chapter was published first. In order to install core R on your ec2 instance, use the following command in the terminal (instead of <code>sudo yum install R</code>):</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb1-1" title="1"><span class="fu">sudo</span> amazon-linux-extras install R3.4</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a><span class="fu">sudo</span> amazon-linux-extras install R3.4</span></code></pre></div>
 <p>and confirm the installation of additional dependencies with <code>y</code>. In a second step, we install the latest CentOS 6-7 version of RStudio Server with the following commands.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb2-1" title="1"><span class="co"># April 2020</span></a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="fu">wget</span> https://download2.rstudio.org/server/centos6/x86_64/rstudio-server-rhel-1.2.5033-x86_64.rpm</a>
-<a class="sourceLine" id="cb2-3" title="3"><span class="fu">sudo</span> yum install rstudio-server-rhel-1.2.5033-x86_64.rpm</a></code></pre></div>
-<div id="parallelization-with-an-ec2-instance" class="section level2">
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co"># April 2020</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a><span class="fu">wget</span> https://download2.rstudio.org/server/centos6/x86_64/rstudio-server-rhel-1.2.5033-x86_64.rpm</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true"></a><span class="fu">sudo</span> yum install rstudio-server-rhel-1.2.5033-x86_64.rpm</span></code></pre></div>
+<div id="parallelization-with-an-ec2-instance" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> Parallelization with an EC2 instance</h2>
 <p>This short tutorial illustrates how to scale the computation of clustered standard errors shown in Lecture 3 up by running it on an AWS EC2 instance. Below we use the same source code as in the original example (see <a href="https://github.com/umatter/BigData/blob/master/materials/notes/03_computation_memory.Rmd"><code>03_computation_memory.Rmd</code></a>). Note that there are a few things that we need to keep in mind in order to make the script run on an AWS EC2 instance in RStudio Server.</p>
 <p>First, our EC2 instance is a Linux machine. Most of you are probably rather used to running R on a Mac or Windows PC. When running R on a Linux machine, there is an additional step to install R packages (at least for most of the packages): R packages need to be compiled before they can be installed. The command to install packages is exactly the same (<code>install.packages()</code>) and normally you only notice a slight difference in the output shown in the R console during installation (and the installation process takes a little longer than what you are used to). Apart from that, using R via RStudio Server in the cloud looks/feels very similar if not identical as when using R/RStudio locally.</p>
 <p>Now, let’s go through the bootstrap example. First, let’s run the non-parallel implementation of the script. When executing the code below line-by-line, you will notice that essentially all parts of the script work exactly as on your local machine. This is one of the great advantages of running R/RStudio Server in the cloud. You can implement your entire data analysis locally (based on a small sample), test it locally, and then move it to the cloud and run it on a larger scale in exactly the same way (even with the same GUI).</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"><span class="co"># CASE STUDY: PARALLEL ---------------------------</span></a>
-<a class="sourceLine" id="cb3-2" title="2"></a>
-<a class="sourceLine" id="cb3-3" title="3"><span class="co"># install packages</span></a>
-<a class="sourceLine" id="cb3-4" title="4"><span class="kw">install.packages</span>(<span class="st">&quot;data.table&quot;</span>)</a>
-<a class="sourceLine" id="cb3-5" title="5"><span class="kw">install.packages</span>(<span class="st">&quot;doSNOW&quot;</span>)</a>
-<a class="sourceLine" id="cb3-6" title="6"></a>
-<a class="sourceLine" id="cb3-7" title="7"><span class="co"># load packages</span></a>
-<a class="sourceLine" id="cb3-8" title="8"><span class="kw">library</span>(data.table)</a>
-<a class="sourceLine" id="cb3-9" title="9"></a>
-<a class="sourceLine" id="cb3-10" title="10"></a>
-<a class="sourceLine" id="cb3-11" title="11"><span class="co">## ------------------------------------------------------------------------</span></a>
-<a class="sourceLine" id="cb3-12" title="12">stopdata &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://vincentarelbundock.github.io/Rdatasets/csv/carData/MplsStops.csv&quot;</span>)</a>
-<a class="sourceLine" id="cb3-13" title="13"></a>
-<a class="sourceLine" id="cb3-14" title="14"><span class="co">## ------------------------------------------------------------------------</span></a>
-<a class="sourceLine" id="cb3-15" title="15"><span class="co"># remove incomplete obs</span></a>
-<a class="sourceLine" id="cb3-16" title="16">stopdata &lt;-<span class="st"> </span><span class="kw">na.omit</span>(stopdata)</a>
-<a class="sourceLine" id="cb3-17" title="17"><span class="co"># code dependent var</span></a>
-<a class="sourceLine" id="cb3-18" title="18">stopdata<span class="op">$</span>vsearch &lt;-<span class="st"> </span><span class="dv">0</span></a>
-<a class="sourceLine" id="cb3-19" title="19">stopdata<span class="op">$</span>vsearch[stopdata<span class="op">$</span>vehicleSearch<span class="op">==</span><span class="st">&quot;YES&quot;</span>] &lt;-<span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb3-20" title="20"><span class="co"># code explanatory var</span></a>
-<a class="sourceLine" id="cb3-21" title="21">stopdata<span class="op">$</span>white &lt;-<span class="st"> </span><span class="dv">0</span></a>
-<a class="sourceLine" id="cb3-22" title="22">stopdata<span class="op">$</span>white[stopdata<span class="op">$</span>race<span class="op">==</span><span class="st">&quot;White&quot;</span>] &lt;-<span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb3-23" title="23"></a>
-<a class="sourceLine" id="cb3-24" title="24"><span class="co">## ------------------------------------------------------------------------</span></a>
-<a class="sourceLine" id="cb3-25" title="25">model &lt;-<span class="st"> </span>vsearch <span class="op">~</span><span class="st"> </span>white <span class="op">+</span><span class="st"> </span><span class="kw">factor</span>(policePrecinct)</a>
-<a class="sourceLine" id="cb3-26" title="26"></a>
-<a class="sourceLine" id="cb3-27" title="27"><span class="co">## ------------------------------------------------------------------------</span></a>
-<a class="sourceLine" id="cb3-28" title="28">fit &lt;-<span class="st"> </span><span class="kw">lm</span>(model, stopdata)</a>
-<a class="sourceLine" id="cb3-29" title="29"><span class="kw">summary</span>(fit)</a>
-<a class="sourceLine" id="cb3-30" title="30"></a>
-<a class="sourceLine" id="cb3-31" title="31"></a>
-<a class="sourceLine" id="cb3-32" title="32"><span class="co"># bootstrapping: normal approach</span></a>
-<a class="sourceLine" id="cb3-33" title="33"></a>
-<a class="sourceLine" id="cb3-34" title="34"><span class="co">## ----message=FALSE-------------------------------------------------------</span></a>
-<a class="sourceLine" id="cb3-35" title="35"></a>
-<a class="sourceLine" id="cb3-36" title="36"><span class="co"># set the &#39;seed&#39; for random numbers (makes the example reproducible)</span></a>
-<a class="sourceLine" id="cb3-37" title="37"><span class="kw">set.seed</span>(<span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb3-38" title="38"></a>
-<a class="sourceLine" id="cb3-39" title="39"><span class="co"># set number of bootstrap iterations</span></a>
-<a class="sourceLine" id="cb3-40" title="40">B &lt;-<span class="st"> </span><span class="dv">50</span></a>
-<a class="sourceLine" id="cb3-41" title="41"><span class="co"># get selection of precincts</span></a>
-<a class="sourceLine" id="cb3-42" title="42">precincts &lt;-<span class="st"> </span><span class="kw">unique</span>(stopdata<span class="op">$</span>policePrecinct)</a>
-<a class="sourceLine" id="cb3-43" title="43"><span class="co"># container for coefficients</span></a>
-<a class="sourceLine" id="cb3-44" title="44">boot_coefs &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow =</span> B, <span class="dt">ncol =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb3-45" title="45"><span class="co"># draw bootstrap samples, estimate model for each sample</span></a>
-<a class="sourceLine" id="cb3-46" title="46"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>B) {</a>
-<a class="sourceLine" id="cb3-47" title="47">  </a>
-<a class="sourceLine" id="cb3-48" title="48">  <span class="co"># draw sample of precincts (cluster level)</span></a>
-<a class="sourceLine" id="cb3-49" title="49">  precincts_i &lt;-<span class="st"> </span><span class="kw">sample</span>(precincts, <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb3-50" title="50">  <span class="co"># get observations</span></a>
-<a class="sourceLine" id="cb3-51" title="51">  bs_i &lt;-<span class="st"> </span><span class="kw">lapply</span>(precincts_i, <span class="cf">function</span>(x) stopdata[stopdata<span class="op">$</span>policePrecinct<span class="op">==</span>x,])</a>
-<a class="sourceLine" id="cb3-52" title="52">  bs_i &lt;-<span class="st"> </span><span class="kw">rbindlist</span>(bs_i)</a>
-<a class="sourceLine" id="cb3-53" title="53">  </a>
-<a class="sourceLine" id="cb3-54" title="54">  <span class="co"># estimate model and record coefficients</span></a>
-<a class="sourceLine" id="cb3-55" title="55">  boot_coefs[i,] &lt;-<span class="st"> </span><span class="kw">coef</span>(<span class="kw">lm</span>(model, bs_i))[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>] <span class="co"># ignore FE-coefficients</span></a>
-<a class="sourceLine" id="cb3-56" title="56">}</a>
-<a class="sourceLine" id="cb3-57" title="57"></a>
-<a class="sourceLine" id="cb3-58" title="58"><span class="co">## ------------------------------------------------------------------------</span></a>
-<a class="sourceLine" id="cb3-59" title="59">se_boot &lt;-<span class="st"> </span><span class="kw">apply</span>(boot_coefs, </a>
-<a class="sourceLine" id="cb3-60" title="60">                 <span class="dt">MARGIN =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb3-61" title="61">                 <span class="dt">FUN =</span> sd)</a>
-<a class="sourceLine" id="cb3-62" title="62">se_boot</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true"></a><span class="co"># CASE STUDY: PARALLEL ---------------------------</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true"></a><span class="co"># install packages</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">&quot;data.table&quot;</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true"></a><span class="kw">install.packages</span>(<span class="st">&quot;doSNOW&quot;</span>)</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true"></a><span class="co"># load packages</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true"></a><span class="kw">library</span>(data.table)</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true"></a></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true"></a></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true"></a><span class="co">## ------------------------------------------------------------------------</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true"></a>stopdata &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;https://vincentarelbundock.github.io/Rdatasets/csv/carData/MplsStops.csv&quot;</span>)</span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true"></a></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true"></a><span class="co">## ------------------------------------------------------------------------</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true"></a><span class="co"># remove incomplete obs</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true"></a>stopdata &lt;-<span class="st"> </span><span class="kw">na.omit</span>(stopdata)</span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true"></a><span class="co"># code dependent var</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true"></a>stopdata<span class="op">$</span>vsearch &lt;-<span class="st"> </span><span class="dv">0</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true"></a>stopdata<span class="op">$</span>vsearch[stopdata<span class="op">$</span>vehicleSearch<span class="op">==</span><span class="st">&quot;YES&quot;</span>] &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true"></a><span class="co"># code explanatory var</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true"></a>stopdata<span class="op">$</span>white &lt;-<span class="st"> </span><span class="dv">0</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true"></a>stopdata<span class="op">$</span>white[stopdata<span class="op">$</span>race<span class="op">==</span><span class="st">&quot;White&quot;</span>] &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true"></a><span class="co">## ------------------------------------------------------------------------</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true"></a>model &lt;-<span class="st"> </span>vsearch <span class="op">~</span><span class="st"> </span>white <span class="op">+</span><span class="st"> </span><span class="kw">factor</span>(policePrecinct)</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true"></a></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true"></a><span class="co">## ------------------------------------------------------------------------</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true"></a>fit &lt;-<span class="st"> </span><span class="kw">lm</span>(model, stopdata)</span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true"></a><span class="kw">summary</span>(fit)</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true"></a></span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true"></a></span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true"></a><span class="co"># bootstrapping: normal approach</span></span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true"></a><span class="co">## ----message=FALSE-------------------------------------------------------</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true"></a></span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true"></a><span class="co"># set the &#39;seed&#39; for random numbers (makes the example reproducible)</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true"></a><span class="kw">set.seed</span>(<span class="dv">2</span>)</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true"></a></span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true"></a><span class="co"># set number of bootstrap iterations</span></span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true"></a>B &lt;-<span class="st"> </span><span class="dv">50</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true"></a><span class="co"># get selection of precincts</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-hidden="true"></a>precincts &lt;-<span class="st"> </span><span class="kw">unique</span>(stopdata<span class="op">$</span>policePrecinct)</span>
+<span id="cb3-43"><a href="#cb3-43" aria-hidden="true"></a><span class="co"># container for coefficients</span></span>
+<span id="cb3-44"><a href="#cb3-44" aria-hidden="true"></a>boot_coefs &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow =</span> B, <span class="dt">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb3-45"><a href="#cb3-45" aria-hidden="true"></a><span class="co"># draw bootstrap samples, estimate model for each sample</span></span>
+<span id="cb3-46"><a href="#cb3-46" aria-hidden="true"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span>B) {</span>
+<span id="cb3-47"><a href="#cb3-47" aria-hidden="true"></a>  </span>
+<span id="cb3-48"><a href="#cb3-48" aria-hidden="true"></a>  <span class="co"># draw sample of precincts (cluster level)</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-hidden="true"></a>  precincts_i &lt;-<span class="st"> </span><span class="kw">sample</span>(precincts, <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb3-50"><a href="#cb3-50" aria-hidden="true"></a>  <span class="co"># get observations</span></span>
+<span id="cb3-51"><a href="#cb3-51" aria-hidden="true"></a>  bs_i &lt;-<span class="st"> </span><span class="kw">lapply</span>(precincts_i, <span class="cf">function</span>(x) stopdata[stopdata<span class="op">$</span>policePrecinct<span class="op">==</span>x,])</span>
+<span id="cb3-52"><a href="#cb3-52" aria-hidden="true"></a>  bs_i &lt;-<span class="st"> </span><span class="kw">rbindlist</span>(bs_i)</span>
+<span id="cb3-53"><a href="#cb3-53" aria-hidden="true"></a>  </span>
+<span id="cb3-54"><a href="#cb3-54" aria-hidden="true"></a>  <span class="co"># estimate model and record coefficients</span></span>
+<span id="cb3-55"><a href="#cb3-55" aria-hidden="true"></a>  boot_coefs[i,] &lt;-<span class="st"> </span><span class="kw">coef</span>(<span class="kw">lm</span>(model, bs_i))[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>] <span class="co"># ignore FE-coefficients</span></span>
+<span id="cb3-56"><a href="#cb3-56" aria-hidden="true"></a>}</span>
+<span id="cb3-57"><a href="#cb3-57" aria-hidden="true"></a></span>
+<span id="cb3-58"><a href="#cb3-58" aria-hidden="true"></a><span class="co">## ------------------------------------------------------------------------</span></span>
+<span id="cb3-59"><a href="#cb3-59" aria-hidden="true"></a>se_boot &lt;-<span class="st"> </span><span class="kw">apply</span>(boot_coefs, </span>
+<span id="cb3-60"><a href="#cb3-60" aria-hidden="true"></a>                 <span class="dt">MARGIN =</span> <span class="dv">2</span>,</span>
+<span id="cb3-61"><a href="#cb3-61" aria-hidden="true"></a>                 <span class="dt">FUN =</span> sd)</span>
+<span id="cb3-62"><a href="#cb3-62" aria-hidden="true"></a>se_boot</span></code></pre></div>
 <p>So far, we have only demonstrated that the simple implementation (non-parallel) works both locally and in the cloud. The real purpose of using an EC2 instance in this example is to make use of the fact that we can scale up our instance to have more CPU cores available for the parallel implementation of our bootstrap procedure. Recall that running the script below on our local machine will employ all cores available to an compute the bootstrap resampling in parallel on all these cores. Exactly the same thing happens when running the code below on our simple <code>t2.micro</code> instance. However this type of EC2 instance only has one core. You can check this when running the following line of code in RStudio Server (assuming the <code>doSNOW</code> package is installed and loaded):</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">parallel<span class="op">::</span><span class="kw">detectCores</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true"></a>parallel<span class="op">::</span><span class="kw">detectCores</span>()</span></code></pre></div>
 <p>When running the entire parallel implementation below, you will thus notice that it won’t compute the bootstrap SE any faster than with the non-parallel version above. However, by simply initiating another EC2 type with more cores, we can distribute the workload across many CPU cores, using exactly the same R-script.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co"># bootstrapping: parallel approaach</span></a>
-<a class="sourceLine" id="cb5-2" title="2"></a>
-<a class="sourceLine" id="cb5-3" title="3"><span class="co">## ----message=FALSE-------------------------------------------------------</span></a>
-<a class="sourceLine" id="cb5-4" title="4"><span class="co"># install.packages(&quot;doSNOW&quot;, &quot;parallel&quot;)</span></a>
-<a class="sourceLine" id="cb5-5" title="5"><span class="co"># load packages for parallel processing</span></a>
-<a class="sourceLine" id="cb5-6" title="6"><span class="kw">library</span>(doSNOW)</a>
-<a class="sourceLine" id="cb5-7" title="7"></a>
-<a class="sourceLine" id="cb5-8" title="8"><span class="co"># get the number of cores available</span></a>
-<a class="sourceLine" id="cb5-9" title="9">ncores &lt;-<span class="st"> </span>parallel<span class="op">::</span><span class="kw">detectCores</span>()</a>
-<a class="sourceLine" id="cb5-10" title="10"><span class="co"># set cores for parallel processing</span></a>
-<a class="sourceLine" id="cb5-11" title="11">ctemp &lt;-<span class="st"> </span><span class="kw">makeCluster</span>(ncores) <span class="co"># </span></a>
-<a class="sourceLine" id="cb5-12" title="12"><span class="kw">registerDoSNOW</span>(ctemp)</a>
-<a class="sourceLine" id="cb5-13" title="13"></a>
-<a class="sourceLine" id="cb5-14" title="14"></a>
-<a class="sourceLine" id="cb5-15" title="15"><span class="co"># set number of bootstrap iterations</span></a>
-<a class="sourceLine" id="cb5-16" title="16">B &lt;-<span class="st"> </span><span class="dv">50</span></a>
-<a class="sourceLine" id="cb5-17" title="17"><span class="co"># get selection of precincts</span></a>
-<a class="sourceLine" id="cb5-18" title="18">precincts &lt;-<span class="st"> </span><span class="kw">unique</span>(stopdata<span class="op">$</span>policePrecinct)</a>
-<a class="sourceLine" id="cb5-19" title="19"><span class="co"># container for coefficients</span></a>
-<a class="sourceLine" id="cb5-20" title="20">boot_coefs &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow =</span> B, <span class="dt">ncol =</span> <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb5-21" title="21"></a>
-<a class="sourceLine" id="cb5-22" title="22"><span class="co"># bootstrapping in parallel</span></a>
-<a class="sourceLine" id="cb5-23" title="23">boot_coefs &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb5-24" title="24"><span class="st">  </span><span class="kw">foreach</span>(<span class="dt">i =</span> <span class="dv">1</span><span class="op">:</span>B, <span class="dt">.combine =</span> rbind, <span class="dt">.packages=</span><span class="st">&quot;data.table&quot;</span>) <span class="op">%dopar%</span><span class="st"> </span>{</a>
-<a class="sourceLine" id="cb5-25" title="25">    </a>
-<a class="sourceLine" id="cb5-26" title="26">    <span class="co"># draw sample of precincts (cluster level)</span></a>
-<a class="sourceLine" id="cb5-27" title="27">    precincts_i &lt;-<span class="st"> </span><span class="kw">sample</span>(precincts, <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</a>
-<a class="sourceLine" id="cb5-28" title="28">    <span class="co"># get observations</span></a>
-<a class="sourceLine" id="cb5-29" title="29">    bs_i &lt;-<span class="st"> </span><span class="kw">lapply</span>(precincts_i, <span class="cf">function</span>(x) stopdata[stopdata<span class="op">$</span>policePrecinct<span class="op">==</span>x,])</a>
-<a class="sourceLine" id="cb5-30" title="30">    bs_i &lt;-<span class="st"> </span><span class="kw">rbindlist</span>(bs_i)</a>
-<a class="sourceLine" id="cb5-31" title="31">    </a>
-<a class="sourceLine" id="cb5-32" title="32">    <span class="co"># estimate model and record coefficients</span></a>
-<a class="sourceLine" id="cb5-33" title="33">    <span class="kw">coef</span>(<span class="kw">lm</span>(model, bs_i))[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>] <span class="co"># ignore FE-coefficients</span></a>
-<a class="sourceLine" id="cb5-34" title="34">    </a>
-<a class="sourceLine" id="cb5-35" title="35">  }</a>
-<a class="sourceLine" id="cb5-36" title="36"></a>
-<a class="sourceLine" id="cb5-37" title="37"></a>
-<a class="sourceLine" id="cb5-38" title="38"><span class="co"># be a good citizen and stop the snow clusters</span></a>
-<a class="sourceLine" id="cb5-39" title="39"><span class="kw">stopCluster</span>(<span class="dt">cl =</span> ctemp)</a>
-<a class="sourceLine" id="cb5-40" title="40"></a>
-<a class="sourceLine" id="cb5-41" title="41"></a>
-<a class="sourceLine" id="cb5-42" title="42"></a>
-<a class="sourceLine" id="cb5-43" title="43"><span class="co">## ------------------------------------------------------------------------</span></a>
-<a class="sourceLine" id="cb5-44" title="44">se_boot &lt;-<span class="st"> </span><span class="kw">apply</span>(boot_coefs, </a>
-<a class="sourceLine" id="cb5-45" title="45">                 <span class="dt">MARGIN =</span> <span class="dv">2</span>,</a>
-<a class="sourceLine" id="cb5-46" title="46">                 <span class="dt">FUN =</span> sd)</a>
-<a class="sourceLine" id="cb5-47" title="47">se_boot</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true"></a><span class="co"># bootstrapping: parallel approaach</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true"></a><span class="co">## ----message=FALSE-------------------------------------------------------</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true"></a><span class="co"># install.packages(&quot;doSNOW&quot;, &quot;parallel&quot;)</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true"></a><span class="co"># load packages for parallel processing</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true"></a><span class="kw">library</span>(doSNOW)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true"></a></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true"></a><span class="co"># get the number of cores available</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true"></a>ncores &lt;-<span class="st"> </span>parallel<span class="op">::</span><span class="kw">detectCores</span>()</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true"></a><span class="co"># set cores for parallel processing</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true"></a>ctemp &lt;-<span class="st"> </span><span class="kw">makeCluster</span>(ncores) <span class="co"># </span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true"></a><span class="kw">registerDoSNOW</span>(ctemp)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true"></a></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true"></a></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true"></a><span class="co"># set number of bootstrap iterations</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true"></a>B &lt;-<span class="st"> </span><span class="dv">50</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true"></a><span class="co"># get selection of precincts</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true"></a>precincts &lt;-<span class="st"> </span><span class="kw">unique</span>(stopdata<span class="op">$</span>policePrecinct)</span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true"></a><span class="co"># container for coefficients</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true"></a>boot_coefs &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="ot">NA</span>, <span class="dt">nrow =</span> B, <span class="dt">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true"></a></span>
+<span id="cb5-22"><a href="#cb5-22" aria-hidden="true"></a><span class="co"># bootstrapping in parallel</span></span>
+<span id="cb5-23"><a href="#cb5-23" aria-hidden="true"></a>boot_coefs &lt;-<span class="st"> </span></span>
+<span id="cb5-24"><a href="#cb5-24" aria-hidden="true"></a><span class="st">  </span><span class="kw">foreach</span>(<span class="dt">i =</span> <span class="dv">1</span><span class="op">:</span>B, <span class="dt">.combine =</span> rbind, <span class="dt">.packages=</span><span class="st">&quot;data.table&quot;</span>) <span class="op">%dopar%</span><span class="st"> </span>{</span>
+<span id="cb5-25"><a href="#cb5-25" aria-hidden="true"></a>    </span>
+<span id="cb5-26"><a href="#cb5-26" aria-hidden="true"></a>    <span class="co"># draw sample of precincts (cluster level)</span></span>
+<span id="cb5-27"><a href="#cb5-27" aria-hidden="true"></a>    precincts_i &lt;-<span class="st"> </span><span class="kw">sample</span>(precincts, <span class="dt">size =</span> <span class="dv">5</span>, <span class="dt">replace =</span> <span class="ot">TRUE</span>)</span>
+<span id="cb5-28"><a href="#cb5-28" aria-hidden="true"></a>    <span class="co"># get observations</span></span>
+<span id="cb5-29"><a href="#cb5-29" aria-hidden="true"></a>    bs_i &lt;-<span class="st"> </span><span class="kw">lapply</span>(precincts_i, <span class="cf">function</span>(x) stopdata[stopdata<span class="op">$</span>policePrecinct<span class="op">==</span>x,])</span>
+<span id="cb5-30"><a href="#cb5-30" aria-hidden="true"></a>    bs_i &lt;-<span class="st"> </span><span class="kw">rbindlist</span>(bs_i)</span>
+<span id="cb5-31"><a href="#cb5-31" aria-hidden="true"></a>    </span>
+<span id="cb5-32"><a href="#cb5-32" aria-hidden="true"></a>    <span class="co"># estimate model and record coefficients</span></span>
+<span id="cb5-33"><a href="#cb5-33" aria-hidden="true"></a>    <span class="kw">coef</span>(<span class="kw">lm</span>(model, bs_i))[<span class="dv">1</span><span class="op">:</span><span class="dv">2</span>] <span class="co"># ignore FE-coefficients</span></span>
+<span id="cb5-34"><a href="#cb5-34" aria-hidden="true"></a>    </span>
+<span id="cb5-35"><a href="#cb5-35" aria-hidden="true"></a>  }</span>
+<span id="cb5-36"><a href="#cb5-36" aria-hidden="true"></a></span>
+<span id="cb5-37"><a href="#cb5-37" aria-hidden="true"></a></span>
+<span id="cb5-38"><a href="#cb5-38" aria-hidden="true"></a><span class="co"># be a good citizen and stop the snow clusters</span></span>
+<span id="cb5-39"><a href="#cb5-39" aria-hidden="true"></a><span class="kw">stopCluster</span>(<span class="dt">cl =</span> ctemp)</span>
+<span id="cb5-40"><a href="#cb5-40" aria-hidden="true"></a></span>
+<span id="cb5-41"><a href="#cb5-41" aria-hidden="true"></a></span>
+<span id="cb5-42"><a href="#cb5-42" aria-hidden="true"></a></span>
+<span id="cb5-43"><a href="#cb5-43" aria-hidden="true"></a><span class="co">## ------------------------------------------------------------------------</span></span>
+<span id="cb5-44"><a href="#cb5-44" aria-hidden="true"></a>se_boot &lt;-<span class="st"> </span><span class="kw">apply</span>(boot_coefs, </span>
+<span id="cb5-45"><a href="#cb5-45" aria-hidden="true"></a>                 <span class="dt">MARGIN =</span> <span class="dv">2</span>,</span>
+<span id="cb5-46"><a href="#cb5-46" aria-hidden="true"></a>                 <span class="dt">FUN =</span> sd)</span>
+<span id="cb5-47"><a href="#cb5-47" aria-hidden="true"></a>se_boot</span></code></pre></div>
 </div>
-<div id="mass-storage-mariadb-on-an-ec2-instance" class="section level2">
+<div id="mass-storage-mariadb-on-an-ec2-instance" class="section level2" number="2.2">
 <h2><span class="header-section-number">2.2</span> Mass Storage: MariaDB on an EC2 instance</h2>
 <p>Once we have set up RStudio Server on an EC2 instance, we can run the SQLite examples demonstrated locally in Lecture 7 on it. There are no additional steps needed to install SQLite. However, when using RDBMSs in the cloud, we typically have a more sophisticated implementation than SQLite in mind. Particularly, we want to set up an actual RDBMS-server running in the cloud to which several clients can connect (via RStudio Server). The following example, based on <span class="citation">Walkowiak (2016)</span>, guides you through the first step to set up such a database in the cloud. To keep things simple, the example sets up a database of the same data set as shown in the first SQLite example in Lecture 7, but this time with MariaDB on an EC2 instance in the cloud. For most of the installation steps you are referred to the respective pages in <span class="citation">Walkowiak (2016)</span> (Chapter 5: ’MariaDB with R on a Amazon EC2 instance, pages 255ff). However, since some of the steps shown in the book are outdated, the example below hints to some alternative/additional steps needed to make the database run on an Ubuntu 18.04 machine.</p>
 <p>After launching the EC2 instance on AWS, use the following terminal commands to install R:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb6-1" title="1"><span class="co"># update ubuntu packages</span></a>
-<a class="sourceLine" id="cb6-2" title="2"> <span class="fu">sudo</span> apt-get update</a>
-<a class="sourceLine" id="cb6-3" title="3"> <span class="fu">sudo</span> apt-get upgrade</a></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb7-1" title="1"><span class="fu">sudo</span> apt-get install r-base</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="co"># update ubuntu packages</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a> <span class="fu">sudo</span> apt-get update</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a> <span class="fu">sudo</span> apt-get upgrade</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true"></a><span class="fu">sudo</span> apt-get install r-base</span></code></pre></div>
 <p>and to install RStudio Server (on Ubuntu 18.04, as of April 2020):</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb8-1" title="1"><span class="fu">sudo</span> apt-get install gdebi-core</a>
-<a class="sourceLine" id="cb8-2" title="2"><span class="fu">wget</span> https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.2.5033-amd64.deb</a>
-<a class="sourceLine" id="cb8-3" title="3"><span class="fu">sudo</span> gdebi rstudio-server-1.2.5033-amd64.deb</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true"></a><span class="fu">sudo</span> apt-get install gdebi-core</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true"></a><span class="fu">wget</span> https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.2.5033-amd64.deb</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true"></a><span class="fu">sudo</span> gdebi rstudio-server-1.2.5033-amd64.deb</span></code></pre></div>
 <p>Following <span class="citation">Walkowiak (2016)</span> (pages 257f), we first set up a new user and give it permissions to <code>ssh</code> directly to the EC2 instance (this way we can then more easily upload data ‘for this user’).</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb9-1" title="1"><span class="co"># create user</span></a>
-<a class="sourceLine" id="cb9-2" title="2"><span class="fu">sudo</span> adduser umatter </a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="co"># create user</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a><span class="fu">sudo</span> adduser umatter </span></code></pre></div>
 <p>When prompted for additional information just hit enter (for default). Now we can grant the user the permissions</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb10-1" title="1"><span class="fu">sudo</span> cp -r /home/ubuntu/.ssh /home/umatter/</a>
-<a class="sourceLine" id="cb10-2" title="2"><span class="bu">cd</span> /home/umatter/</a>
-<a class="sourceLine" id="cb10-3" title="3"><span class="fu">sudo</span> chown -R umatter:umatter .ssh</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true"></a><span class="fu">sudo</span> cp -r /home/ubuntu/.ssh /home/umatter/</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true"></a><span class="bu">cd</span> /home/umatter/</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a><span class="fu">sudo</span> chown -R umatter:umatter .ssh</span></code></pre></div>
 <p>Then install MariaDB as follows.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb11-1" title="1"><span class="fu">sudo</span> apt update</a>
-<a class="sourceLine" id="cb11-2" title="2"><span class="fu">sudo</span> apt install mariadb-server</a>
-<a class="sourceLine" id="cb11-3" title="3"><span class="fu">sudo</span> apt install libmariadbclient-dev</a>
-<a class="sourceLine" id="cb11-4" title="4"><span class="fu">sudo</span> apt install libxml2-dev <span class="co"># needed later (dependency for some R packages)</span></a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true"></a><span class="fu">sudo</span> apt install mariadb-server</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true"></a><span class="fu">sudo</span> apt install libmariadbclient-dev</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true"></a><span class="fu">sudo</span> apt install libxml2-dev <span class="co"># needed later (dependency for some R packages)</span></span></code></pre></div>
 <p>If prompted to set a password for the root database user (user with all database priviledges), type in and confirm the chosen password.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
-<div id="data-import" class="section level3">
+<div id="data-import" class="section level3" number="2.2.1">
 <h3><span class="header-section-number">2.2.1</span> Data import</h3>
 <p>With the permissions set above, we can send data from the local machine directly to the instance via <code>ssh</code>. We use this to first transfer the raw data to the instance and then import it to the database.</p>
 <p>The aim is to import the same simple data set <code>economics.csv</code> used in the local SQLite examples of Lecture 7. Following the instructions of <span class="citation">Walkowiak (2016)</span>, pages 252 to 254, we upload the <code>economics.csv</code> file (instead of the example data used in <span class="citation">Walkowiak (2016)</span>). Note that in all the code examples below, the username is <code>umatter</code>, and the IP-address will have to be replaced with the public IP-address of your EC2 instance.</p>
 <p>Open a new terminal window and send the <code>economics.csv</code> data as follows to the instance.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb12-1" title="1"><span class="co"># from the directory where the key-file is stored...</span></a>
-<a class="sourceLine" id="cb12-2" title="2"><span class="fu">scp</span> -r -i <span class="st">&quot;mariadb_ec2.pem&quot;</span> ~/Desktop/economics.csv umatter@ec2-184-72-202-166.compute-1.amazonaws.com:~/</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true"></a><span class="co"># from the directory where the key-file is stored...</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true"></a><span class="fu">scp</span> -r -i <span class="st">&quot;mariadb_ec2.pem&quot;</span> ~/Desktop/economics.csv umatter@ec2-184-72-202-166.compute-1.amazonaws.com:~/</span></code></pre></div>
 <p>Then switch back to the terminal connected to the instance and start the MariaDB server.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb13-1" title="1"><span class="co"># start the MariaDB server</span></a>
-<a class="sourceLine" id="cb13-2" title="2"><span class="fu">sudo</span> service mysql start</a>
-<a class="sourceLine" id="cb13-3" title="3"><span class="co"># log into the MariaDB client as root </span></a>
-<a class="sourceLine" id="cb13-4" title="4"><span class="fu">sudo</span> mysql -uroot </a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="co"># start the MariaDB server</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a><span class="fu">sudo</span> service mysql start</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true"></a><span class="co"># log into the MariaDB client as root </span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true"></a><span class="fu">sudo</span> mysql -uroot </span></code></pre></div>
 <p>If not prompted to do so when installing MariaDB (see above), add a new root user in order to login to MariaDB without the <code>sudo</code> (here we simply set the password to ‘Password1’).</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb14-1" title="1"><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">on</span> <span class="op">*</span>.<span class="op">*</span> <span class="kw">to</span> <span class="st">&#39;root&#39;</span>@<span class="st">&#39;localhost&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;Password1&#39;</span>;</a>
-<a class="sourceLine" id="cb14-2" title="2"><span class="kw">FLUSH</span> <span class="kw">PRIVILEGES</span>;</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">on</span> <span class="op">*</span>.<span class="op">*</span> <span class="kw">to</span> <span class="st">&#39;root&#39;</span>@<span class="st">&#39;localhost&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;Password1&#39;</span>;</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true"></a><span class="kw">FLUSH</span> <span class="kw">PRIVILEGES</span>;</span></code></pre></div>
 <p>Restart the mysql server and log in with the database root user.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb15-1" title="1"><span class="co"># start the MariaDB server</span></a>
-<a class="sourceLine" id="cb15-2" title="2"><span class="fu">sudo</span> service mysql restart</a>
-<a class="sourceLine" id="cb15-3" title="3"><span class="co"># log into the MariaDB client as root </span></a>
-<a class="sourceLine" id="cb15-4" title="4"><span class="ex">mysql</span> -uroot -p</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true"></a><span class="co"># start the MariaDB server</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true"></a><span class="fu">sudo</span> service mysql restart</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true"></a><span class="co"># log into the MariaDB client as root </span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true"></a><span class="ex">mysql</span> -uroot -p</span></code></pre></div>
 <p>Now we can initiate a new database called <code>data1</code>.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb16-1" title="1"><span class="kw">CREATE</span> <span class="kw">database</span> data1;</a></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">database</span> data1;</span></code></pre></div>
 <p>To work with the newly created database, we have to ‘select’ it.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb17-1" title="1"><span class="kw">USE</span> data1;</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true"></a><span class="kw">USE</span> data1;</span></code></pre></div>
 <p>Then, we create the first table of our database and import data into it. Note that we only have to slightly adjust the former SQLite syntax to make this work (remove double quotes for field names). In addition, note that we can use the same field types as in the SQLite DB.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a></p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb18-1" title="1"><span class="co">-- Create the new table</span></a>
-<a class="sourceLine" id="cb18-2" title="2"><span class="kw">CREATE</span> <span class="kw">TABLE</span> econ(</a>
-<a class="sourceLine" id="cb18-3" title="3"><span class="dt">date</span> <span class="dt">DATE</span>,</a>
-<a class="sourceLine" id="cb18-4" title="4">pce <span class="dt">REAL</span>,</a>
-<a class="sourceLine" id="cb18-5" title="5">pop <span class="dt">INTEGER</span>,</a>
-<a class="sourceLine" id="cb18-6" title="6">psavert <span class="dt">REAL</span>,</a>
-<a class="sourceLine" id="cb18-7" title="7">uempmed <span class="dt">REAL</span>,</a>
-<a class="sourceLine" id="cb18-8" title="8">unemploy <span class="dt">INTEGER</span></a>
-<a class="sourceLine" id="cb18-9" title="9">);</a></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true"></a><span class="co">-- Create the new table</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> econ(</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true"></a><span class="dt">date</span> <span class="dt">DATE</span>,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true"></a>pce <span class="dt">REAL</span>,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true"></a>pop <span class="dt">INTEGER</span>,</span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true"></a>psavert <span class="dt">REAL</span>,</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true"></a>uempmed <span class="dt">REAL</span>,</span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true"></a>unemploy <span class="dt">INTEGER</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true"></a>);</span></code></pre></div>
 <p>After following the steps in <span class="citation">Walkowiak (2016)</span>, pages 259-262, we can import the <code>economics.csv</code>-file to the <code>econ</code> table in MariaDB (again, assuming the username is <code>umatter</code>). Note that the syntax to import data to a table is quite different from the SQLite example in Lecture 7.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode sql"><code class="sourceCode sql"><a class="sourceLine" id="cb19-1" title="1">LOAD <span class="kw">DATA</span> <span class="kw">LOCAL</span> INFILE</a>
-<a class="sourceLine" id="cb19-2" title="2"><span class="st">&#39;/home/umatter/economics.csv&#39;</span> </a>
-<a class="sourceLine" id="cb19-3" title="3"><span class="kw">INTO</span> <span class="kw">TABLE</span> econ</a>
-<a class="sourceLine" id="cb19-4" title="4">FIELDS TERMINATED <span class="kw">BY</span> <span class="st">&#39;,&#39;</span></a>
-<a class="sourceLine" id="cb19-5" title="5">LINES TERMINATED <span class="kw">BY</span> <span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span></a>
-<a class="sourceLine" id="cb19-6" title="6">IGNORE <span class="dv">1</span> <span class="kw">ROWS</span>;</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true"></a>LOAD <span class="kw">DATA</span> <span class="kw">LOCAL</span> INFILE</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true"></a><span class="st">&#39;/home/umatter/economics.csv&#39;</span> </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true"></a><span class="kw">INTO</span> <span class="kw">TABLE</span> econ</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true"></a>FIELDS TERMINATED <span class="kw">BY</span> <span class="st">&#39;,&#39;</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true"></a>LINES TERMINATED <span class="kw">BY</span> <span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span></span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true"></a>IGNORE <span class="dv">1</span> <span class="kw">ROWS</span>;</span></code></pre></div>
 <p>Now we can start using the newly created database from within RStudio Server running on our EC2 instance (following <span class="citation">Walkowiak (2016)</span>, pages 263ff).</p>
 <p>As in the SQLite examples in Lecture 7, we can now query the database from within the R console (this time using <code>RMySQL</code> instead of <code>RSQLite</code>, and using R from within RStudio Server in the cloud!).</p>
 <p>First, we need to connect to the newly created MariaDB database.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="co"># install package</span></a>
-<a class="sourceLine" id="cb20-2" title="2"><span class="co">#install.packages(&quot;RMySQL&quot;)</span></a>
-<a class="sourceLine" id="cb20-3" title="3"><span class="co"># load packages</span></a>
-<a class="sourceLine" id="cb20-4" title="4"><span class="kw">library</span>(RMySQL)</a>
-<a class="sourceLine" id="cb20-5" title="5"></a>
-<a class="sourceLine" id="cb20-6" title="6"><span class="co"># connect to the db</span></a>
-<a class="sourceLine" id="cb20-7" title="7">con &lt;-<span class="st"> </span><span class="kw">dbConnect</span>(RMySQL<span class="op">::</span><span class="kw">MySQL</span>(), </a>
-<a class="sourceLine" id="cb20-8" title="8">                 <span class="dt">user =</span> <span class="st">&quot;root&quot;</span>,</a>
-<a class="sourceLine" id="cb20-9" title="9">                 <span class="dt">password =</span> <span class="st">&quot;Password1&quot;</span>,</a>
-<a class="sourceLine" id="cb20-10" title="10">                 <span class="dt">host =</span> <span class="st">&quot;localhost&quot;</span>,</a>
-<a class="sourceLine" id="cb20-11" title="11">                 <span class="dt">dbname =</span> <span class="st">&quot;data1&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true"></a><span class="co"># install package</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true"></a><span class="co">#install.packages(&quot;RMySQL&quot;)</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true"></a><span class="co"># load packages</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true"></a><span class="kw">library</span>(RMySQL)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true"></a></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true"></a><span class="co"># connect to the db</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true"></a>con &lt;-<span class="st"> </span><span class="kw">dbConnect</span>(RMySQL<span class="op">::</span><span class="kw">MySQL</span>(), </span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true"></a>                 <span class="dt">user =</span> <span class="st">&quot;root&quot;</span>,</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true"></a>                 <span class="dt">password =</span> <span class="st">&quot;Password1&quot;</span>,</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true"></a>                 <span class="dt">host =</span> <span class="st">&quot;localhost&quot;</span>,</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true"></a>                 <span class="dt">dbname =</span> <span class="st">&quot;data1&quot;</span>)</span></code></pre></div>
 <p>In our first query, we select all (<code>*</code>) variable values of the observation of January 1968.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="co"># define the query</span></a>
-<a class="sourceLine" id="cb21-2" title="2">query1 &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb21-3" title="3"><span class="st">&quot;</span></a>
-<a class="sourceLine" id="cb21-4" title="4"><span class="st">SELECT * FROM econ</span></a>
-<a class="sourceLine" id="cb21-5" title="5"><span class="st">WHERE date = &#39;1968-01-01&#39;;</span></a>
-<a class="sourceLine" id="cb21-6" title="6"><span class="st">&quot;</span></a>
-<a class="sourceLine" id="cb21-7" title="7"><span class="co"># send the query to the db and get the result</span></a>
-<a class="sourceLine" id="cb21-8" title="8">jan &lt;-<span class="st"> </span><span class="kw">dbGetQuery</span>(con, query1)</a>
-<a class="sourceLine" id="cb21-9" title="9">jan</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true"></a><span class="co"># define the query</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true"></a>query1 &lt;-<span class="st"> </span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true"></a><span class="st">&quot;</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true"></a><span class="st">SELECT * FROM econ</span></span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true"></a><span class="st">WHERE date = &#39;1968-01-01&#39;;</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true"></a><span class="st">&quot;</span></span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true"></a><span class="co"># send the query to the db and get the result</span></span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true"></a>jan &lt;-<span class="st"> </span><span class="kw">dbGetQuery</span>(con, query1)</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true"></a>jan</span></code></pre></div>
 <pre><code>#        date   pce    pop psavert uempmed unemploy
 # 1 1968-01-01 531.5 199808    11.7     5.1     2878</code></pre>
 <p>Now let’s select all year/months in which there were more than 15 million unemployed, ordered by date.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1">query2 &lt;-</a>
-<a class="sourceLine" id="cb23-2" title="2"><span class="st">&quot;</span></a>
-<a class="sourceLine" id="cb23-3" title="3"><span class="st">SELECT date FROM econ </span></a>
-<a class="sourceLine" id="cb23-4" title="4"><span class="st">WHERE unemploy &gt; 15000</span></a>
-<a class="sourceLine" id="cb23-5" title="5"><span class="st">ORDER BY date;</span></a>
-<a class="sourceLine" id="cb23-6" title="6"><span class="st">&quot;</span></a>
-<a class="sourceLine" id="cb23-7" title="7"></a>
-<a class="sourceLine" id="cb23-8" title="8"><span class="co"># send the query to the db and get the result</span></a>
-<a class="sourceLine" id="cb23-9" title="9">unemp &lt;-<span class="st"> </span><span class="kw">dbGetQuery</span>(con, query2)</a>
-<a class="sourceLine" id="cb23-10" title="10"><span class="kw">head</span>(unemp)</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true"></a>query2 &lt;-</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true"></a><span class="st">&quot;</span></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true"></a><span class="st">SELECT date FROM econ </span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true"></a><span class="st">WHERE unemploy &gt; 15000</span></span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true"></a><span class="st">ORDER BY date;</span></span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true"></a><span class="st">&quot;</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true"></a></span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true"></a><span class="co"># send the query to the db and get the result</span></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true"></a>unemp &lt;-<span class="st"> </span><span class="kw">dbGetQuery</span>(con, query2)</span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true"></a><span class="kw">head</span>(unemp)</span></code></pre></div>
 <pre><code>#         date
 # 1 2009-09-01
 # 2 2009-10-01
@@ -731,22 +771,22 @@ summary {
 </div>
 </div>
 </div>
-<div id="distributed-systemsmapreduce" class="section level1">
+<div id="distributed-systemsmapreduce" class="section level1" number="3">
 <h1><span class="header-section-number">3</span> Distributed Systems/MapReduce</h1>
-<div id="mapreduce-concept-illustration-in-r" class="section level2">
+<div id="mapreduce-concept-illustration-in-r" class="section level2" number="3.1">
 <h2><span class="header-section-number">3.1</span> Map/Reduce Concept: Illustration in R</h2>
 <p>In order to better understand the basic concept behind the MapReduce-Framework on a distributed system, let’s look at how we can combine the basic functions <code>map()</code> and <code>reduce()</code> in R to implement the basic MapReduce example shown in <span class="citation">Walkowiak (2016)</span>, Chapter 4, pages 132-134 (this is just to illustrate the underlying idea, <em>not</em> to suggest that MapReduce actually is simply an application of the classical <code>map</code> and <code>reduce (fold)</code> functions in functional programming).<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> The overall aim of the program is to count the number of times each word is repeated in a given text. The input to the program is thus a text, the output is a list of key-value pairs with the unique words occurring in the text as keys and their respective number of occurrences as values.</p>
 <p>In the code example, we will use the following text as input.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1">input_text &lt;-</a>
-<a class="sourceLine" id="cb25-2" title="2"><span class="st">&quot;Simon is a friend of Becky.</span></a>
-<a class="sourceLine" id="cb25-3" title="3"><span class="st">Becky is a friend of Ann.</span></a>
-<a class="sourceLine" id="cb25-4" title="4"><span class="st">Ann is not a friend of Simon.&quot;</span></a></code></pre></div>
-<div id="mapper" class="section level3">
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true"></a>input_text &lt;-</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true"></a><span class="st">&quot;Simon is a friend of Becky.</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true"></a><span class="st">Becky is a friend of Ann.</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true"></a><span class="st">Ann is not a friend of Simon.&quot;</span></span></code></pre></div>
+<div id="mapper" class="section level3" number="3.1.1">
 <h3><span class="header-section-number">3.1.1</span> Mapper</h3>
 <p>The Mapper first splits the text into lines, and then splits the lines into key-value pairs, assigning to each key the value <code>1</code>. For the first step we use <code>strsplit()</code> that takes a character string as input and splits it into a list of substrings according to the matches of a substring (here <code>&quot;\n&quot;</code>, indicating the end of a line).</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="co"># Mapper splits input into lines</span></a>
-<a class="sourceLine" id="cb26-2" title="2">lines &lt;-<span class="st"> </span><span class="kw">as.list</span>(<span class="kw">strsplit</span>(input_text, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)[[<span class="dv">1</span>]])</a>
-<a class="sourceLine" id="cb26-3" title="3">lines</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true"></a><span class="co"># Mapper splits input into lines</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true"></a>lines &lt;-<span class="st"> </span><span class="kw">as.list</span>(<span class="kw">strsplit</span>(input_text, <span class="st">&quot;</span><span class="ch">\n</span><span class="st">&quot;</span>)[[<span class="dv">1</span>]])</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true"></a>lines</span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] &quot;Simon is a friend of Becky.&quot;
 ## 
@@ -756,25 +796,25 @@ summary {
 ## [[3]]
 ## [1] &quot;Ann is not a friend of Simon.&quot;</code></pre>
 <p>In a second step, we apply our own function (<code>map_fun()</code>) to each line of text via <code>Map()</code>. <code>map_fun()</code> splits each line into words (keys) and assigns a value of <code>1</code> to each key.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="co"># Mapper splits lines into Key-Value pairs</span></a>
-<a class="sourceLine" id="cb28-2" title="2">map_fun &lt;-</a>
-<a class="sourceLine" id="cb28-3" title="3"><span class="st">     </span><span class="cf">function</span>(x){</a>
-<a class="sourceLine" id="cb28-4" title="4">          </a>
-<a class="sourceLine" id="cb28-5" title="5">          <span class="co"># remove special characters</span></a>
-<a class="sourceLine" id="cb28-6" title="6">          x_clean &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;[[:punct:]]&quot;</span>, <span class="st">&quot;&quot;</span>, x)</a>
-<a class="sourceLine" id="cb28-7" title="7">          <span class="co"># split line into words</span></a>
-<a class="sourceLine" id="cb28-8" title="8">          keys &lt;-<span class="st"> </span><span class="kw">unlist</span>(<span class="kw">strsplit</span>(x_clean, <span class="st">&quot; &quot;</span>))</a>
-<a class="sourceLine" id="cb28-9" title="9">          <span class="co"># initiate key-value pairs</span></a>
-<a class="sourceLine" id="cb28-10" title="10">          key_values &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">1</span>, <span class="kw">length</span>(keys))</a>
-<a class="sourceLine" id="cb28-11" title="11">          <span class="kw">names</span>(key_values) &lt;-<span class="st"> </span>keys</a>
-<a class="sourceLine" id="cb28-12" title="12">          </a>
-<a class="sourceLine" id="cb28-13" title="13">          <span class="kw">return</span>(key_values)</a>
-<a class="sourceLine" id="cb28-14" title="14">     }</a>
-<a class="sourceLine" id="cb28-15" title="15"></a>
-<a class="sourceLine" id="cb28-16" title="16">kv_pairs &lt;-<span class="st"> </span><span class="kw">Map</span>(map_fun, lines)</a>
-<a class="sourceLine" id="cb28-17" title="17"></a>
-<a class="sourceLine" id="cb28-18" title="18"><span class="co"># look at the result</span></a>
-<a class="sourceLine" id="cb28-19" title="19">kv_pairs</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true"></a><span class="co"># Mapper splits lines into Key-Value pairs</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true"></a>map_fun &lt;-</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true"></a><span class="st">     </span><span class="cf">function</span>(x){</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true"></a>          </span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true"></a>          <span class="co"># remove special characters</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true"></a>          x_clean &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;[[:punct:]]&quot;</span>, <span class="st">&quot;&quot;</span>, x)</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true"></a>          <span class="co"># split line into words</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true"></a>          keys &lt;-<span class="st"> </span><span class="kw">unlist</span>(<span class="kw">strsplit</span>(x_clean, <span class="st">&quot; &quot;</span>))</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true"></a>          <span class="co"># initiate key-value pairs</span></span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true"></a>          key_values &lt;-<span class="st"> </span><span class="kw">rep</span>(<span class="dv">1</span>, <span class="kw">length</span>(keys))</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true"></a>          <span class="kw">names</span>(key_values) &lt;-<span class="st"> </span>keys</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true"></a>          </span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true"></a>          <span class="kw">return</span>(key_values)</span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true"></a>     }</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true"></a></span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true"></a>kv_pairs &lt;-<span class="st"> </span><span class="kw">Map</span>(map_fun, lines)</span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true"></a></span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true"></a><span class="co"># look at the result</span></span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true"></a>kv_pairs</span></code></pre></div>
 <pre><code>## [[1]]
 ##  Simon     is      a friend     of  Becky 
 ##      1      1      1      1      1      1 
@@ -787,16 +827,16 @@ summary {
 ##    Ann     is    not      a friend     of  Simon 
 ##      1      1      1      1      1      1      1</code></pre>
 </div>
-<div id="reducer" class="section level3">
+<div id="reducer" class="section level3" number="3.1.2">
 <h3><span class="header-section-number">3.1.2</span> Reducer</h3>
 <p>The Reducer first sorts and shuffles the input from the Mapper and then reduces the key-value pairs by summing up the values for each key.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="co"># order and shuffle</span></a>
-<a class="sourceLine" id="cb30-2" title="2">kv_pairs &lt;-<span class="st"> </span><span class="kw">unlist</span>(kv_pairs)</a>
-<a class="sourceLine" id="cb30-3" title="3">keys &lt;-<span class="st"> </span><span class="kw">unique</span>(<span class="kw">names</span>(kv_pairs))</a>
-<a class="sourceLine" id="cb30-4" title="4">keys &lt;-<span class="st"> </span>keys[<span class="kw">order</span>(keys)]</a>
-<a class="sourceLine" id="cb30-5" title="5">shuffled &lt;-<span class="st"> </span><span class="kw">lapply</span>(keys,</a>
-<a class="sourceLine" id="cb30-6" title="6">                    <span class="cf">function</span>(x) kv_pairs[x <span class="op">==</span><span class="st"> </span><span class="kw">names</span>(kv_pairs)])</a>
-<a class="sourceLine" id="cb30-7" title="7">shuffled</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true"></a><span class="co"># order and shuffle</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true"></a>kv_pairs &lt;-<span class="st"> </span><span class="kw">unlist</span>(kv_pairs)</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true"></a>keys &lt;-<span class="st"> </span><span class="kw">unique</span>(<span class="kw">names</span>(kv_pairs))</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true"></a>keys &lt;-<span class="st"> </span>keys[<span class="kw">order</span>(keys)]</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true"></a>shuffled &lt;-<span class="st"> </span><span class="kw">lapply</span>(keys,</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true"></a>                    <span class="cf">function</span>(x) kv_pairs[x <span class="op">==</span><span class="st"> </span><span class="kw">names</span>(kv_pairs)])</span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true"></a>shuffled</span></code></pre></div>
 <pre><code>## [[1]]
 ## a a a 
 ## 1 1 1 
@@ -829,26 +869,26 @@ summary {
 ## Simon Simon 
 ##     1     1</code></pre>
 <p>Now we can sum up the keys in order to get the word count for the entire input.</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1">sums &lt;-<span class="st"> </span><span class="kw">sapply</span>(shuffled, sum)</a>
-<a class="sourceLine" id="cb32-2" title="2"><span class="kw">names</span>(sums) &lt;-<span class="st"> </span>keys</a>
-<a class="sourceLine" id="cb32-3" title="3">sums</a></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true"></a>sums &lt;-<span class="st"> </span><span class="kw">sapply</span>(shuffled, sum)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true"></a><span class="kw">names</span>(sums) &lt;-<span class="st"> </span>keys</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true"></a>sums</span></code></pre></div>
 <pre><code>##      a    Ann  Becky friend     is    not     of  Simon 
 ##      3      2      2      3      3      1      3      2</code></pre>
 </div>
-<div id="simpler-example-compute-the-total-number-of-words" class="section level3">
+<div id="simpler-example-compute-the-total-number-of-words" class="section level3" number="3.1.3">
 <h3><span class="header-section-number">3.1.3</span> Simpler example: Compute the total number of words</h3>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1"><span class="co"># assigns the number of words per line as value</span></a>
-<a class="sourceLine" id="cb34-2" title="2">map_fun2 &lt;-<span class="st"> </span></a>
-<a class="sourceLine" id="cb34-3" title="3"><span class="st">     </span><span class="cf">function</span>(x){</a>
-<a class="sourceLine" id="cb34-4" title="4">          <span class="co"># remove special characters</span></a>
-<a class="sourceLine" id="cb34-5" title="5">          x_clean &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;[[:punct:]]&quot;</span>, <span class="st">&quot;&quot;</span>, x)</a>
-<a class="sourceLine" id="cb34-6" title="6">          <span class="co"># split line into words, count no. of words per line</span></a>
-<a class="sourceLine" id="cb34-7" title="7">          values &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">unlist</span>(<span class="kw">strsplit</span>(x_clean, <span class="st">&quot; &quot;</span>)))</a>
-<a class="sourceLine" id="cb34-8" title="8">          <span class="kw">return</span>(values)</a>
-<a class="sourceLine" id="cb34-9" title="9">     }</a>
-<a class="sourceLine" id="cb34-10" title="10"><span class="co"># Mapper</span></a>
-<a class="sourceLine" id="cb34-11" title="11">mapped &lt;-<span class="st"> </span><span class="kw">Map</span>(map_fun2, lines)</a>
-<a class="sourceLine" id="cb34-12" title="12">mapped</a></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true"></a><span class="co"># assigns the number of words per line as value</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true"></a>map_fun2 &lt;-<span class="st"> </span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true"></a><span class="st">     </span><span class="cf">function</span>(x){</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true"></a>          <span class="co"># remove special characters</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true"></a>          x_clean &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;[[:punct:]]&quot;</span>, <span class="st">&quot;&quot;</span>, x)</span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true"></a>          <span class="co"># split line into words, count no. of words per line</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true"></a>          values &lt;-<span class="st"> </span><span class="kw">length</span>(<span class="kw">unlist</span>(<span class="kw">strsplit</span>(x_clean, <span class="st">&quot; &quot;</span>)))</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true"></a>          <span class="kw">return</span>(values)</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true"></a>     }</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true"></a><span class="co"># Mapper</span></span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true"></a>mapped &lt;-<span class="st"> </span><span class="kw">Map</span>(map_fun2, lines)</span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true"></a>mapped</span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] 6
 ## 
@@ -857,63 +897,63 @@ summary {
 ## 
 ## [[3]]
 ## [1] 7</code></pre>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" title="1"><span class="co"># Reducer</span></a>
-<a class="sourceLine" id="cb36-2" title="2">reduced &lt;-<span class="st"> </span><span class="kw">Reduce</span>(sum, mapped)</a>
-<a class="sourceLine" id="cb36-3" title="3">reduced</a></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true"></a><span class="co"># Reducer</span></span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true"></a>reduced &lt;-<span class="st"> </span><span class="kw">Reduce</span>(sum, mapped)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true"></a>reduced</span></code></pre></div>
 <pre><code>## [1] 19</code></pre>
 </div>
 </div>
 </div>
-<div id="hadoop-word-count" class="section level1">
+<div id="hadoop-word-count" class="section level1" number="4">
 <h1><span class="header-section-number">4</span> Hadoop Word Count</h1>
 <p>Example adapted from <a href="https://www.digitalocean.com/community/tutorials/how-to-install-hadoop-in-stand-alone-mode-on-ubuntu-18-04#step-2-%E2%80%94-installing-hadoop">this tutorial</a> by Melissa Anderson and Hanif Jetha.</p>
-<div id="install-hadoop-on-linux" class="section level2">
-<h2><span class="header-section-number">4.1</span> Install Hadoop (on Linux)</h2>
-<div class="sourceCode" id="cb38"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb38-1" title="1"><span class="co"># download binary</span></a>
-<a class="sourceLine" id="cb38-2" title="2"><span class="fu">wget</span> https://downloads.apache.org/hadoop/common/hadoop-2.10.0/hadoop-2.10.0.tar.gz</a>
-<a class="sourceLine" id="cb38-3" title="3"><span class="co"># download checksum</span></a>
-<a class="sourceLine" id="cb38-4" title="4"><span class="fu">wget</span> https://www.apache.org/dist/hadoop/common/hadoop-2.10.0/hadoop-2.10.0.tar.gz.sha512</a>
-<a class="sourceLine" id="cb38-5" title="5"></a>
-<a class="sourceLine" id="cb38-6" title="6"><span class="co"># run the verification</span></a>
-<a class="sourceLine" id="cb38-7" title="7"><span class="ex">shasum</span> -a 512 hadoop-2.10.0.tar.gz</a>
-<a class="sourceLine" id="cb38-8" title="8"><span class="co"># compare with value in mds file</span></a>
-<a class="sourceLine" id="cb38-9" title="9"><span class="fu">cat</span> hadoop-2.10.0.tar.gz.sha512</a>
-<a class="sourceLine" id="cb38-10" title="10"></a>
-<a class="sourceLine" id="cb38-11" title="11"><span class="co"># if all is fine, unpack</span></a>
-<a class="sourceLine" id="cb38-12" title="12"><span class="fu">tar</span> -xzvf hadoop-2.10.0.tar.gz</a>
-<a class="sourceLine" id="cb38-13" title="13"><span class="co"># move to proper place</span></a>
-<a class="sourceLine" id="cb38-14" title="14"><span class="fu">sudo</span> mv hadoop-2.10.0 /usr/local/hadoop</a>
-<a class="sourceLine" id="cb38-15" title="15"></a>
-<a class="sourceLine" id="cb38-16" title="16"></a>
-<a class="sourceLine" id="cb38-17" title="17"><span class="co"># then point to this version from hadoop</span></a>
-<a class="sourceLine" id="cb38-18" title="18"><span class="co"># open the file /usr/local/hadoop/etc/hadoop/hadoop-env.sh</span></a>
-<a class="sourceLine" id="cb38-19" title="19"><span class="co"># in a text editor and add (where export JAVA_HOME=...)</span></a>
-<a class="sourceLine" id="cb38-20" title="20"><span class="bu">export</span> <span class="va">JAVA_HOME=$(</span><span class="fu">readlink</span> -f /usr/bin/java <span class="kw">|</span> <span class="fu">sed</span> <span class="st">&quot;s:bin/java::&quot;</span><span class="va">)</span></a>
-<a class="sourceLine" id="cb38-21" title="21"></a>
-<a class="sourceLine" id="cb38-22" title="22"><span class="co"># clean up</span></a>
-<a class="sourceLine" id="cb38-23" title="23"><span class="fu">rm</span> hadoop-2.10.0.tar.gz</a>
-<a class="sourceLine" id="cb38-24" title="24"><span class="fu">rm</span> hadoop-2.10.0.tar.gz.sha512</a></code></pre></div>
+<div id="install-hadoop-on-ubuntupop_os-linux" class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Install Hadoop (on Ubuntu/Pop!_OS Linux)</h2>
+<div class="sourceCode" id="cb38"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true"></a><span class="co"># download binary</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true"></a><span class="fu">wget</span> https://downloads.apache.org/hadoop/common/hadoop-2.10.0/hadoop-2.10.0.tar.gz</span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true"></a><span class="co"># download checksum</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true"></a><span class="fu">wget</span> https://www.apache.org/dist/hadoop/common/hadoop-2.10.0/hadoop-2.10.0.tar.gz.sha512</span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true"></a></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true"></a><span class="co"># run the verification</span></span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true"></a><span class="ex">shasum</span> -a 512 hadoop-2.10.0.tar.gz</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true"></a><span class="co"># compare with value in mds file</span></span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true"></a><span class="fu">cat</span> hadoop-2.10.0.tar.gz.sha512</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true"></a></span>
+<span id="cb38-11"><a href="#cb38-11" aria-hidden="true"></a><span class="co"># if all is fine, unpack</span></span>
+<span id="cb38-12"><a href="#cb38-12" aria-hidden="true"></a><span class="fu">tar</span> -xzvf hadoop-2.10.0.tar.gz</span>
+<span id="cb38-13"><a href="#cb38-13" aria-hidden="true"></a><span class="co"># move to proper place</span></span>
+<span id="cb38-14"><a href="#cb38-14" aria-hidden="true"></a><span class="fu">sudo</span> mv hadoop-2.10.0 /usr/local/hadoop</span>
+<span id="cb38-15"><a href="#cb38-15" aria-hidden="true"></a></span>
+<span id="cb38-16"><a href="#cb38-16" aria-hidden="true"></a></span>
+<span id="cb38-17"><a href="#cb38-17" aria-hidden="true"></a><span class="co"># then point to this version from hadoop</span></span>
+<span id="cb38-18"><a href="#cb38-18" aria-hidden="true"></a><span class="co"># open the file /usr/local/hadoop/etc/hadoop/hadoop-env.sh</span></span>
+<span id="cb38-19"><a href="#cb38-19" aria-hidden="true"></a><span class="co"># in a text editor and add (where export JAVA_HOME=...)</span></span>
+<span id="cb38-20"><a href="#cb38-20" aria-hidden="true"></a><span class="bu">export</span> <span class="va">JAVA_HOME=$(</span><span class="fu">readlink</span> -f /usr/bin/java <span class="kw">|</span> <span class="fu">sed</span> <span class="st">&quot;s:bin/java::&quot;</span><span class="va">)</span></span>
+<span id="cb38-21"><a href="#cb38-21" aria-hidden="true"></a></span>
+<span id="cb38-22"><a href="#cb38-22" aria-hidden="true"></a><span class="co"># clean up</span></span>
+<span id="cb38-23"><a href="#cb38-23" aria-hidden="true"></a><span class="fu">rm</span> hadoop-2.10.0.tar.gz</span>
+<span id="cb38-24"><a href="#cb38-24" aria-hidden="true"></a><span class="fu">rm</span> hadoop-2.10.0.tar.gz.sha512</span></code></pre></div>
 </div>
-<div id="run-hadoop" class="section level2">
+<div id="run-hadoop" class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> Run Hadoop</h2>
-<div class="sourceCode" id="cb39"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb39-1" title="1"><span class="co"># check installation</span></a>
-<a class="sourceLine" id="cb39-2" title="2"><span class="ex">/usr/local/hadoop/bin/hadoop</span></a></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true"></a><span class="co"># check installation</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true"></a><span class="ex">/usr/local/hadoop/bin/hadoop</span></span></code></pre></div>
 </div>
-<div id="run-example" class="section level2">
+<div id="run-example" class="section level2" number="4.3">
 <h2><span class="header-section-number">4.3</span> Run example</h2>
 <p>The basic Hadoop installation comes with a few examples for very typical map/reduce programs.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> Below we replicate the same word-count example as shown in simple R code above.</p>
 <p>In a first step, we create an input directory where we store the input file(s) to feed to Hadoop.</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb40-1" title="1"><span class="co"># create directory for input files (typically text files)</span></a>
-<a class="sourceLine" id="cb40-2" title="2"><span class="fu">mkdir</span> ~/input</a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true"></a><span class="co"># create directory for input files (typically text files)</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true"></a><span class="fu">mkdir</span> ~/input</span></code></pre></div>
 <p>Then we add a textfile containing the same text as in the example as above (to make things simpler, we already remove special characters).</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb41-1" title="1"><span class="bu">echo</span> <span class="st">&quot;Simon is a friend of Becky</span></a>
-<a class="sourceLine" id="cb41-2" title="2"><span class="st">Becky is a friend of Ann</span></a>
-<a class="sourceLine" id="cb41-3" title="3"><span class="st">Ann is not a friend of Simon&quot;</span> <span class="op">&gt;&gt;</span>  ~/input/text.txt</a></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true"></a><span class="bu">echo</span> <span class="st">&quot;Simon is a friend of Becky</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true"></a><span class="st">Becky is a friend of Ann</span></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true"></a><span class="st">Ann is not a friend of Simon&quot;</span> <span class="op">&gt;&gt;</span>  ~/input/text.txt</span></code></pre></div>
 <p>Now we can run the MapReduce/Hadoop word count as follows, storing the results in a new directory called <code>wordcount_example</code>.</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb42-1" title="1"><span class="co"># run mapreduce word count</span></a>
-<a class="sourceLine" id="cb42-2" title="2"><span class="ex">/usr/local/hadoop/bin/hadoop</span> jar /usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.10.0.jar wordcount ~/input ~/wc_example</a></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true"></a><span class="co"># run mapreduce word count</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true"></a><span class="ex">/usr/local/hadoop/bin/hadoop</span> jar /usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.10.0.jar wordcount ~/input ~/wc_example</span></code></pre></div>
 <p>Show the output:</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode bash"><code class="sourceCode bash"><a class="sourceLine" id="cb43-1" title="1"><span class="fu">cat</span> ~/wc_example/*</a></code></pre></div>
+<div class="sourceCode" id="cb43"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true"></a><span class="fu">cat</span> ~/wc_example/*</span></code></pre></div>
 <pre><code>## Ann  2
 ## Becky    2
 ## Simon    2
@@ -968,9 +1008,9 @@ summary {
 <!-- ``` -->
 </div>
 </div>
-<div id="references" class="section level1 unnumbered">
+<div id="references" class="section level1 unnumbered" number>
 <h1>References</h1>
-<div id="refs" class="references">
+<div id="refs" class="references hanging-indent">
 <div id="ref-walkowiak_2016">
 <p>Walkowiak, Simkon. 2016. <em>Big Data Analytics with R</em>. Birmingham, UK: PACKT Publishing.</p>
 </div>
@@ -979,10 +1019,10 @@ summary {
 <div class="footnotes">
 <hr />
 <ol>
-<li id="fn1"><p>Below it is shown how to do this ‘manually’, if not promted at this step.<a href="#fnref1" class="footnote-back">↩</a></p></li>
-<li id="fn2"><p>However, MariaDB is a much more sophisticated RDBMS than SQLite and comes with many more field types, see the official <a href="https://mariadb.com/kb/en/library/data-types/">list of supported data types</a>.<a href="#fnref2" class="footnote-back">↩</a></p></li>
-<li id="fn3"><p>For a more detailed discussion of what <code>map</code> and <code>reduce</code> have <em>actually</em> to do with MapReduce see <a href="https://medium.com/@jkff/mapreduce-is-not-functional-programming-39109a4ba7b2">this post</a>.<a href="#fnref3" class="footnote-back">↩</a></p></li>
-<li id="fn4"><p>More sophisticated programs need to be custom made, written in Java.<a href="#fnref4" class="footnote-back">↩</a></p></li>
+<li id="fn1"><p>Below it is shown how to do this ‘manually’, if not promted at this step.<a href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>However, MariaDB is a much more sophisticated RDBMS than SQLite and comes with many more field types, see the official <a href="https://mariadb.com/kb/en/library/data-types/">list of supported data types</a>.<a href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>For a more detailed discussion of what <code>map</code> and <code>reduce</code> have <em>actually</em> to do with MapReduce see <a href="https://medium.com/@jkff/mapreduce-is-not-functional-programming-39109a4ba7b2">this post</a>.<a href="#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>More sophisticated programs need to be custom made, written in Java.<a href="#fnref4" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
 
@@ -995,7 +1035,7 @@ summary {
 
 // add bootstrap table styles to pandoc tables
 function bootstrapStylePandocTables() {
-  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
 }
 $(document).ready(function () {
   bootstrapStylePandocTables();

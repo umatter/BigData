@@ -4,7 +4,7 @@ subtitle: 'Lecture 1: Introduction'
 author: |
      | Prof. Dr. Ulrich Matter
      | (University of St. Gallen)
-date: "20/02/2020"
+date: "25/02/2021"
 output:
   html_document:
     highlight: tango
@@ -169,12 +169,12 @@ This looks much better, but we can do even better.
 
 ### Improvement 2: Exploit vectorization
 
-In this approach, we exploit the fact that in R 'everything is a vector' and that many of the basic R functions (such as math operators) are *vectorized*. In simple terms, this means that a vectorized operation is implemented in such a way that it can take advantage of the similarity of each of the vector's elements. That is, R only has to figure out once how to apply a given function to a vector element in order to apply it to all elements of the vector. In a simple loop, R has to through the same 'preparatory' steps again and again in each iteration, this is time-intensive.
+In this approach, we exploit the fact that in R 'everything is a vector' and that many of the basic R functions (such as math operators) are *vectorized*. In simple terms, this means that a vectorized operation is implemented in such a way that it can take advantage of the similarity of each of the vector's elements. That is, R only has to figure out once how to apply a given function to a vector element in order to apply it to all elements of the vector. In a simple loop, R has to go through the same 'preparatory' steps again and again in each iteration, this is time-intensive.
 
 In this example, we specifically exploit that the division operator `/` is actually a vectorized function. Thus, the division by our `deflator` is applied to each element of `economics$pce`.
 
 ```{r}
-# Do it 'the R wqy'
+# Do it 'the R way'
 deflator <- 1.05 # define deflator
 # Exploit R's vectorization!
 time_elapsed <- 
