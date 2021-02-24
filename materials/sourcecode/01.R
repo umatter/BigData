@@ -1,10 +1,15 @@
 ## -------------------------------------------------------------------------------------------------
 # read dataset into R
-economics <- read.csv("data/economics.csv")
+# This dataset was produced from US economic time series data 
+# available from http://research.stlouisfed.org/fred2. (provided in the ggplot2 package)
+economics <- as.data.frame(ggplot2::economics)
+# or:
+# economics <- read.csv("data/economics.csv") 
+
 # have a look at the data
 head(economics, 2)
 # create a 'large' dataset out of this
-for (i in 1:3) {
+for (i in 1:5) {
      economics <- rbind(economics, economics)
 }
 dim(economics)
@@ -31,7 +36,7 @@ head(pce_real, 2)
 # Naïve approach (ignorant of R)
 deflator <- 1.05 # define deflator
 # iterate through each observation
-pce_real <- list()
+pce_real <- c()
 n_obs <- length(economics$pce)
 time_elapsed <-
      system.time(
@@ -50,7 +55,7 @@ time_per_row
 
 
 
-## -------------------------------------------------------------------------------------------------
+##  What if we have 100 million rows ?-------------------------------------------------------------------------------------------------
 # in seconds
 (time_per_row*100^4) 
 # in minutes
