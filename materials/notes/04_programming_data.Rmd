@@ -181,7 +181,7 @@ package | function | purpose
 
 ## Data types and memory/storage
 
-Data loaded into RAM can be interpreted differently by R depending on the data *type*. Some operators or functions in R only accept data of a specific type as arguments. For example, we can store the integer values `1.5` and `3` in the variables `a` and `b`, respectively.
+Data loaded into RAM can be interpreted differently by R depending on the data *type*. Some operators or functions in R only accept data of a specific type as arguments. For example, we can store the numeric values `1.5` and `3` in the variables `a` and `b`, respectively.
 
 ```{r}
 a <- 1.5
@@ -198,7 +198,7 @@ object.size(a)
 ```
 
 
-If however, we define `a` and `b` as follows, R will interpret the values stored in `a` and `b` as text (`character`).
+If, however, we define `a` and `b` as follows, R will interpret the values stored in `a` and `b` as text (`character`).
 
 ```{r eval=FALSE}
 a <- "1.5"
@@ -305,7 +305,7 @@ include_graphics("../img/02_df.png")
 
 The historical implementation of data frames in R is not very comfortable to work with large data sets.^[In the early days of R this was not really an issue because data sets that are rather large by today's standards (in the Gigabytes) could not have been handled properly by normal computers anyhow (due to a lack of RAM).] Several newer implementations of the data-frame concept in R aim to make data processing faster. One is called `tibbles`,  implemented and used in the `tidyverse` packages. The other is called `data table`, implemented in the `data.table`-package. In this course we will focus on the `data.table`-package.
 
-Here is how we define a `data.table` in R, based on the examples of vectors and factors shown above.
+Here is how we define a `data.table` in R:
 
 ```{r}
 # load package

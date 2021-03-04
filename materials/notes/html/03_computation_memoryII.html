@@ -515,7 +515,7 @@ summary {
 <p>We start with importing the data into R.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true"></a>url &lt;-<span class="st"> &quot;https://vincentarelbundock.github.io/Rdatasets/csv/carData/MplsStops.csv&quot;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true"></a>stopdata &lt;-<span class="st"> </span>data.table<span class="op">::</span><span class="kw">fread</span>(url) </span></code></pre></div>
-<p>We specify a simple linear probability model that aims to test whether a stopped person identified as ‘white’ is less likely to have her vehicle searched when stopped by the police. In order to take into account level-differences between different police precincts, we add precinct-indicators to the regression specification</p>
+<p>We specify a simple linear probability model that aims to test whether a person identified as ‘white’ is less likely to have her vehicle searched when stopped by the police. In order to take into account level-differences between different police precincts, we add precinct-indicators to the regression specification</p>
 <p>First, let’s remove observations with missing entries (<code>NA</code>) and code our main explanatory variable and the dependent variable.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true"></a><span class="co"># remove incomplete obs</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true"></a>stopdata &lt;-<span class="st"> </span><span class="kw">na.omit</span>(stopdata)</span>
@@ -553,7 +553,7 @@ summary {
 ## Multiple R-squared:  0.02502,    Adjusted R-squared:  0.02476 
 ## F-statistic: 97.92 on 5 and 19078 DF,  p-value: &lt; 2.2e-16</code></pre>
 <p>A potential problem with this approach (and there might be many more in this simple example) is that observations stemming from different police precincts might be correlated over time. If that is the case, we likely underestimate the coefficient’s standard errors. There is a standard approach to compute estimates for so-called <em>cluster-robust</em> standard errors which would take the problem of correlation over time within clusters into consideration (and deliver a more conservative estimate of the SEs). However, this approach only works well if the number of clusters in the data is roughly 50 or more. Here we only have 5.</p>
-<p>The alternative approach is to compute bootstrapped standard errors. That is, we apply the <a href="https://en.wikipedia.org/wiki/Bootstrapping_(statistics)">bootstrap resampling procedure</a> at the cluster level. Specifically, we draw <span class="math inline">\(B\)</span> samples (with replacement), estimate and record for each bootstrap-sample the coefficient vector, and then estimate <span class="math inline">\(SE_{boot}\)</span> based on the standard deviation of all respective estimated coefficient values.</p>
+<p>The alternative approach is to compute bootstrapped clustered standard errors. That is, we apply the <a href="https://en.wikipedia.org/wiki/Bootstrapping_(statistics)">bootstrap resampling procedure</a> at the cluster level. Specifically, we draw <span class="math inline">\(B\)</span> samples (with replacement), estimate and record for each bootstrap-sample the coefficient vector, and then estimate <span class="math inline">\(SE_{boot}\)</span> based on the standard deviation of all respective estimated coefficient values.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true"></a><span class="co"># load packages</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true"></a><span class="kw">library</span>(data.table)</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true"></a><span class="co"># set the &#39;seed&#39; for random numbers (makes the example reproducible)</span></span>
@@ -583,7 +583,7 @@ summary {
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true"></a>                 <span class="dt">FUN =</span> sd)</span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true"></a>se_boot</span></code></pre></div>
 <pre><code>## [1] 0.004042725 0.004689611</code></pre>
-<p>Note that even with a very small <span class="math inline">\(B\)</span>, computing <span class="math inline">\(SE_{boot}\)</span> takes up some time to compute. When setting <span class="math inline">\(B\)</span> to over 500, computation time will be substantial. Also note that running this code does hardly use up more memory then the very simple approach without bootstrapping (after all, in each bootstrap iteration the data set used to estimate the model is approximately the same size as the original data set). There is little we can do to improve the script’s performance regarding memory. However we can tell R how to allocate CPU resources more efficiently to handle that many regression estimates.</p>
+<p>Note that even with a very small <span class="math inline">\(B\)</span>, computing <span class="math inline">\(SE_{boot}\)</span> takes up some time to compute. When setting <span class="math inline">\(B\)</span> to over 500, computation time will be substantial. Also note that running this code does hardly use up more memory than the very simple approach without bootstrapping (after all, in each bootstrap iteration the data set used to estimate the model is approximately the same size as the original data set). There is little we can do to improve the script’s performance regarding memory. However we can tell R how to allocate CPU resources more efficiently to handle that many regression estimates.</p>
 <p>Particularly, we can make use of the fact that most modern computing environments (such as a laptop) have CPUs with several <em>cores</em>. We can exploit this fact by instructing the computer to run the computations <em>in parallel</em> (simultaneously computing on several cores). The following code is a parallel implementation of our bootstrap procedure which does exactly that.</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true"></a><span class="co"># install.packages(&quot;doSNOW&quot;, &quot;parallel&quot;)</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true"></a><span class="co"># load packages for parallel processing</span></span>
@@ -627,7 +627,7 @@ summary {
 <span id="cb10-3"><a href="#cb10-3" aria-hidden="true"></a>                 <span class="dt">FUN =</span> sd)</span>
 <span id="cb10-4"><a href="#cb10-4" aria-hidden="true"></a>se_boot</span></code></pre></div>
 <pre><code>## (Intercept)       white 
-## 0.003605109 0.003947732</code></pre>
+## 0.004124356 0.005948340</code></pre>
 </div>
 <div id="case-study-memory-allocation" class="section level2" number="1.2">
 <h2><span class="header-section-number">1.2</span> Case study: Memory allocation</h2>
@@ -648,7 +648,7 @@ summary {
 <span id="cb12-14"><a href="#cb12-14" aria-hidden="true"></a></span>
 <span id="cb12-15"><a href="#cb12-15" aria-hidden="true"></a><span class="co"># DATA PREPARATION --------</span></span>
 <span id="cb12-16"><a href="#cb12-16" aria-hidden="true"></a>flights &lt;-<span class="st"> </span>flights[,<span class="op">-</span><span class="dv">1</span><span class="op">:-</span><span class="dv">3</span>]</span></code></pre></div>
-<p>When running this script, we notice that some of the steps take a while. Moreover, while none of these steps obviously involves a lot of computation (such as a matrix inversion or numerical optimization), it quite likely involves memory allocation. We first read data into RAM (allocated to R by our operating system). It turns out that there are different ways to allocate RAM when reading data from a CSV file. Depending on the amount of data to be read in, one or the other approach might be faster. We first investigate the RAM allocation in R with <code>mem_change()</code> and <code>mem_used()</code>.</p>
+<p>When running this script, we notice that some of the steps need a noticable amount of time to process. Moreover, while none of these steps obviously involves a lot of computation (such as a matrix inversion or numerical optimization), it quite likely involves memory allocation. We first read data into RAM (allocated to R by our operating system). It turns out that there are different ways to allocate RAM when reading data from a CSV file. Depending on the amount of data to be read in, one or the other approach might be faster. We first investigate the RAM allocation in R with <code>mem_change()</code> and <code>mem_used()</code>.</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true"></a><span class="co"># SET UP -----------------</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true"></a></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true"></a><span class="co"># fix variables</span></span>
@@ -680,8 +680,8 @@ summary {
 <p>The last result is kind of interesting. The object <code>flights</code> must have been larger right after importing it than at the end of the script. We have thrown out several variables, after all. Why does R still use that much memory? R does by default not ‘clean up’ memory unless it is really necessary (meaning no more memory is available). In this case, R has still way more memory available from the operating system, thus there is no need to ‘collect the garbage’ yet. However, we can force R to collect the garbage on the spot with <code>gc()</code>. This can be helpful to better keep track of the memory needed by an analytics script.</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true"></a><span class="kw">gc</span>()</span></code></pre></div>
 <pre><code>##             used  (Mb) gc trigger   (Mb)  max used   (Mb)
-## Ncells   1087434  58.1    1816511   97.1   1816511   97.1
-## Vcells 126708259 966.8  256809277 1959.3 256809277 1959.3</code></pre>
+## Ncells   1087434  58.1    1816977   97.1   1816977   97.1
+## Vcells 126708266 966.8  256809277 1959.3 256809277 1959.3</code></pre>
 <p>Now, let’s see how we can improve the performance of this script with regard to memory allocation. Most memory is allocated when importing the file. Obviously, any improvement of the script must still result in importing all the data. However, there are different ways to read data into RAM. <code>read.csv()</code> reads all lines of a csv file consecutively. In contrast, <code>data.table::fread()</code> first ‘maps’ the data file into memory and only then actually reads it in line by line. This involves an additional initial step, but the larger the file, the less relevant is this first step with regard to the total time needed to read all the data into memory. By switching on the <code>verbose</code> option, we can actually see what <code>fread</code> is doing.</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true"></a><span class="co"># load packages</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true"></a><span class="kw">library</span>(data.table)</span>
@@ -740,7 +740,7 @@ summary {
 ##   Allocating 19 column slots (19 - 0 dropped) with 370043 rows
 ## [11] Read the data
 ##   jumps=[0..30), chunk_size=1032016, total_size=30960501
-## Read 336776 rows x 19 columns from 29.53MB (30960660 bytes) file in 00:00.046 wall clock time
+## Read 336776 rows x 19 columns from 29.53MB (30960660 bytes) file in 00:00.056 wall clock time
 ## [12] Finalizing the datatable
 ##   Type counts:
 ##         14 : int32     &#39;5&#39;
@@ -748,15 +748,15 @@ summary {
 ##          4 : string    &#39;C&#39;
 ## =============================
 ##    0.000s (  0%) Memory map 0.029GB file
-##    0.003s (  6%) sep=&#39;,&#39; ncol=19 and header detection
+##    0.003s (  5%) sep=&#39;,&#39; ncol=19 and header detection
 ##    0.000s (  0%) Column type detection using 10048 sample rows
-##    0.001s (  2%) Allocation of 370043 rows x 19 cols (0.033GB) of which 336776 ( 91%) rows used
-##    0.042s ( 92%) Reading 30 chunks (0 swept) of 0.984MB (each chunk 11225 rows) using 6 threads
-##    +    0.012s ( 26%) Parse to row-major thread buffers (grown 0 times)
-##    +    0.019s ( 42%) Transpose
-##    +    0.011s ( 24%) Waiting
+##    0.001s (  1%) Allocation of 370043 rows x 19 cols (0.033GB) of which 336776 ( 91%) rows used
+##    0.052s ( 93%) Reading 30 chunks (0 swept) of 0.984MB (each chunk 11225 rows) using 6 threads
+##    +    0.014s ( 25%) Parse to row-major thread buffers (grown 0 times)
+##    +    0.024s ( 43%) Transpose
+##    +    0.014s ( 25%) Waiting
 ##    0.000s (  0%) Rereading 0 columns due to out-of-sample type exceptions
-##    0.046s        Total</code></pre>
+##    0.056s        Total</code></pre>
 <p>Let’s put it all together and look at the memory changes and usage. For a fair comparison, we first have to delete <code>flights</code> and collect the garbage with <code>gc()</code>.</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true"></a><span class="co"># SET UP -----------------</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true"></a></span>
@@ -770,8 +770,8 @@ summary {
 <span id="cb27-10"><a href="#cb27-10" aria-hidden="true"></a>flights &lt;-<span class="st"> </span><span class="ot">NULL</span></span>
 <span id="cb27-11"><a href="#cb27-11" aria-hidden="true"></a><span class="kw">gc</span>()</span></code></pre></div>
 <pre><code>##             used  (Mb) gc trigger   (Mb)  max used   (Mb)
-## Ncells   1076469  57.5    1816511   97.1   1816511   97.1
-## Vcells 123542511 942.6  256809277 1959.3 256809277 1959.3</code></pre>
+## Ncells   1076469  57.5    1816977   97.1   1816977   97.1
+## Vcells 123542518 942.6  256809277 1959.3 256809277 1959.3</code></pre>
 <div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true"></a><span class="co"># check the change in memory due to each step</span></span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true"></a></span>
 <span id="cb29-3"><a href="#cb29-3" aria-hidden="true"></a><span class="co"># DATA IMPORT ----------------</span></span>
@@ -791,7 +791,7 @@ Figure 2.1: Virtual memory. Figure by Ehamberg (<a href="https://creativecommons
 </div>
 
 <p>For example, when we implement an R-script that imports one file after the other into the R environment, ignoring the RAM capacity of our computer, the OS will start <em>paging</em> data to the virtual memory. This happens ‘under the hood’ without explicit instructions by the user. We quite likely notice that the computer slows down a lot when this happens.</p>
-<p>While this default usage of virtual memory by the OS is helpful to run several applications at the same time, each taking up a moderate amount of memory, it is not a really useful tool for processing large amounts of data in one application (R). However, the underlying idea of using both RAM and Mass storage simultaneously in order to cope with a lack of memory, is very useful in the context of big data analytics.</p>
+<p>While this default usage of virtual memory by the OS is helpful to run several applications at the same time, each taking up a moderate amount of memory, it is not a really useful tool for processing large amounts of data in one application (R). However, the underlying idea of using both RAM and Mass storage simultaneously in order to cope with a lack of memory is very useful in the context of big data analytics.</p>
 <p>Several R packages have been developed that exploit the idea behind virtual memory explicitly for analyzing large amounts of data. The basic idea behind these packages is to map a data set to the hard disk when loading it into R. The actual data values are stored in chunks on the hard-disk, while the structure/metadata of the data set is loaded into R. See this week’s slide set as well as <span class="citation">Walkowiak (2016)</span>, Chapter 3 for more details and example code.</p>
 </div>
 <div id="references" class="section level1 unnumbered" number>

@@ -48,7 +48,7 @@ url <- "https://vincentarelbundock.github.io/Rdatasets/csv/carData/MplsStops.csv
 stopdata <- data.table::fread(url) 
 ```
 
-We specify a simple linear probability model that aims to test whether a stopped person identified as 'white' is less likely to have her vehicle searched when stopped by the police. In order to take into account level-differences between different police precincts, we add precinct-indicators to the regression specification
+We specify a simple linear probability model that aims to test whether a person identified as 'white' is less likely to have her vehicle searched when stopped by the police. In order to take into account level-differences between different police precincts, we add precinct-indicators to the regression specification
 
 First, let's remove observations with missing entries (`NA`) and code our main explanatory variable and the dependent variable.
 
@@ -79,7 +79,7 @@ summary(fit)
 
 A potential problem with this approach (and there might be many more in this simple example) is that observations stemming from different police precincts might be correlated over time. If that is the case, we likely underestimate the coefficient's standard errors. There is a standard approach to compute estimates for so-called *cluster-robust* standard errors which would take the problem of correlation over time within clusters into consideration (and deliver a more conservative estimate of the SEs). However, this approach only works well if the number of clusters in the data is roughly 50 or more. Here we only have 5. 
 
-The alternative approach is to compute bootstrapped standard errors. That is, we apply the [bootstrap resampling procedure](https://en.wikipedia.org/wiki/Bootstrapping_(statistics)) at the cluster level. Specifically, we draw $B$ samples (with replacement), estimate and record for each bootstrap-sample the coefficient vector, and then estimate $SE_{boot}$ based on the standard deviation of all respective estimated coefficient values.
+The alternative approach is to compute bootstrapped clustered standard errors. That is, we apply the [bootstrap resampling procedure](https://en.wikipedia.org/wiki/Bootstrapping_(statistics)) at the cluster level. Specifically, we draw $B$ samples (with replacement), estimate and record for each bootstrap-sample the coefficient vector, and then estimate $SE_{boot}$ based on the standard deviation of all respective estimated coefficient values.
 
 ```{r message=FALSE}
 # load packages
@@ -118,7 +118,7 @@ se_boot
 ```
 
 
-Note that even with a very small $B$, computing $SE_{boot}$ takes up some time to compute. When setting $B$ to over 500, computation time will be substantial. Also note that running this code does hardly use up more memory then the very simple approach without bootstrapping (after all, in each bootstrap iteration the data set used to estimate the model is approximately the same size as the original data set). There is little we can do to improve the script's performance regarding memory. However we can tell R how to allocate CPU resources more efficiently to handle that many regression estimates.
+Note that even with a very small $B$, computing $SE_{boot}$ takes up some time to compute. When setting $B$ to over 500, computation time will be substantial. Also note that running this code does hardly use up more memory than the very simple approach without bootstrapping (after all, in each bootstrap iteration the data set used to estimate the model is approximately the same size as the original data set). There is little we can do to improve the script's performance regarding memory. However we can tell R how to allocate CPU resources more efficiently to handle that many regression estimates.
 
 Particularly, we can make use of the fact that most modern computing environments (such as a laptop) have CPUs with several *cores*. We can exploit this fact by instructing the computer to run the computations *in parallel* (simultaneously computing on several cores). The following code is a parallel implementation of our bootstrap procedure which does exactly that.
 
@@ -207,7 +207,7 @@ DATA_PATH <- "materials/data/flights.csv"
 ```
 
 
-When running this script, we notice that some of the steps take a while. Moreover, while none of these steps obviously involves a lot of computation (such as a matrix inversion or numerical optimization), it quite likely involves memory allocation. We first read data into RAM (allocated to R by our operating system). It turns out that there are different ways to allocate RAM when reading data from a CSV file. Depending on the amount of data to be read in, one or the other approach might be faster. We first investigate the RAM allocation in R with `mem_change()` and `mem_used()`.
+When running this script, we notice that some of the steps need a noticable amount of time to process. Moreover, while none of these steps obviously involves a lot of computation (such as a matrix inversion or numerical optimization), it quite likely involves memory allocation. We first read data into RAM (allocated to R by our operating system). It turns out that there are different ways to allocate RAM when reading data from a CSV file. Depending on the amount of data to be read in, one or the other approach might be faster. We first investigate the RAM allocation in R with `mem_change()` and `mem_used()`.
 
 ```{r}
 
@@ -295,7 +295,7 @@ include_graphics("../img/03_virtualmemory.png")
 
 For example, when we implement an R-script that imports one file after the other into the R environment, ignoring the RAM capacity of our computer, the OS will start *paging* data to the virtual memory. This happens 'under the hood' without explicit instructions by the user. We quite likely notice that the computer slows down a lot when this happens.
 
-While this default usage of virtual memory by the OS is helpful to run several applications at the same time, each taking up a moderate amount of memory, it is not a really useful tool for processing large amounts of data in one application (R). However, the underlying idea of using both RAM and Mass storage simultaneously in order to cope with a lack of memory, is very useful in the context of big data analytics.
+While this default usage of virtual memory by the OS is helpful to run several applications at the same time, each taking up a moderate amount of memory, it is not a really useful tool for processing large amounts of data in one application (R). However, the underlying idea of using both RAM and Mass storage simultaneously in order to cope with a lack of memory is very useful in the context of big data analytics.
 
 Several R packages have been developed that exploit the idea behind virtual memory explicitly for analyzing large amounts of data. The basic idea behind these packages is to map a data set to the hard disk when loading it into R. The actual data values are stored in chunks on the hard-disk, while the structure/metadata of the data set is loaded into R. See this week's slide set as well as @walkowiak_2016, Chapter 3 for more details and example code.
 

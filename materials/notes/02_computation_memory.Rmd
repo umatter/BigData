@@ -136,9 +136,9 @@ object.size(139)
 
 <!-- Finally, even if all of the techniques outlined above are taken into account in order to optimize the implementation of a statistical analysis of large data sets in R (or any other language), there might be room for improvement.  -->
 
-When thinking about how to approach a data anyltics task based on large amounts of data, it is helpful to consider two key aspects concerning the computational burden involved. $(i)$ how is the statistic we have in mind computed. That is, what is the formal definition of the statistic (and how computationally demanding is it)? And $(ii)$, given a definition of the statistic, how does the program/software/language implement the computation thereof?
+When thinking about how to approach a data analytics task based on large amounts of data, it is helpful to consider two key aspects concerning the computational burden involved. $(i)$ how is the statistic we have in mind computed. That is, what is the formal definition of the statistic (and how computationally demanding is it)? And $(ii)$, given a definition of the statistic, how does the program/software/language implement the computation thereof?
 
-Regarding the former, we might realize that there is an alternative statistical procedure that would provide essentially the same output butthat happens to be more efficient (here: computationally efficient in contrast to statistically efficient). The latter point is a question of how to efficiently implement the given statistical procedure in your computing environment (taking into consideration the computer's available resources: CPU, RAM, etc.).
+Regarding the former, we might realize that there is an alternative statistical procedure that would provide essentially the same output but that happens to be more efficient (here: computationally efficient in contrast to statistically efficient). The latter point is a question of how to efficiently implement the given statistical procedure in your computing environment (taking into consideration the computer's available resources: CPU, RAM, etc.).
 
 Below, we look at both of these two aspects by means of illustrative examples. 
 
@@ -183,7 +183,7 @@ X <- cbind(rep(1, n), X)
 
 ```
 
-Now we define how the real linear model looks like that we have in mind and compute the output `y` of this model, given the input `X`.^[In reality we would not know this, of course. Acting as if we knew the real model is exactly point of Monte Carlo studies to analyze the properties of estimators by simulation.]
+Now we define how the real linear model looks like that we have in mind and compute the output `y` of this model, given the input `X`.^[In reality we would not know this, of course. Acting as if we knew the real model is exactly the point of Monte Carlo studies. It allows us to analyze the properties of estimators by simulation.]
 
 ```{r}
 # MC model
