@@ -4558,30 +4558,6 @@ font-style: italic;
 
 <slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Updates</h2></hgroup><article  id="updates">
 
-</article></slide><slide class=""><hgroup><h2>Schedule update</h2></hgroup><article  class="smaller" id="schedule-update">
-
-<ol>
-<li>Introduction: Big Data, Data Economy. Walkowiak (2016): Chapter 1.</li>
-<li>Computation and Memory in Applied Econometrics.</li>
-<li>Computation and Memory in Applied Econometrics II.</li>
-<li>Advanced R Programming. Wickham (2019): Chapters 2, 3, 17,23, 24.</li>
-<li>Import, Cleaning and Transformation of Big Data. Walkowiak (2016): Chapter 3: p. 74‑118.</li>
-<li>Aggregation and Visualization. Walkowiak (2016): Chapter 3: p. 118‑127; Wickham et al.(2015); Schwabish (2014).</li>
-<li>Data Storage, Databases Interaction with R. Walkowiak (2016): Chapter 5.</li>
-<li>Cloud Computing: Introduction/Overview, Distributed Systems, Walkowiak (2016): Chapter 4.</li>
-<li>Applied Econometrics with Spark; Machine Learning and GPUs.</li>
-<li>Project Presentations.</li>
-<li>Project Presentations; Q&amp;A.</li>
-</ol>
-
-</article></slide><slide class=""><hgroup><h2>Build groups for group examination</h2></hgroup><article  id="build-groups-for-group-examination">
-
-<ul>
-<li>Teams of 2-3.</li>
-<li>See <em>Canvas Announcement</em>.</li>
-<li>All team members must have a GitHub account.</li>
-</ul>
-
 </article></slide><slide class=""><hgroup><h2>Group examination: take-home exercises</h2></hgroup><article  id="group-examination-take-home-exercises">
 
 <ul>
@@ -4598,7 +4574,7 @@ font-style: italic;
 <li>A large (&gt;2GB) data set (of your choice).
 
 <ul>
-<li>Get inspired <a href='https://docs.google.com/spreadsheets/d/1wZhPLMCHKJvwOkP4juclhjFgqIY8fQFMemwKL2c64vk/edit#gid=0' title=''>here</a> and <a href='https://registry.opendata.aws/' title=''>here</a></li>
+<li>Get inspired <a href='https://www.kaggle.com/datasets?sizeStart=2%2CGB&amp;sizeEnd=100%2CGB&amp;page=6' title=''>here</a>, <a href='https://console.cloud.google.com/marketplace/browse?filter=solution-type:dataset' title=''>here</a>, and <a href='https://registry.opendata.aws/' title=''>here</a></li>
 </ul></li>
 <li>Implement analysis in R.</li>
 <li>Present results in 6-7 minutes.
@@ -4619,7 +4595,6 @@ font-style: italic;
 <li>Research question</li>
 <li>Idea for analysis (statistical approach)</li>
 </ul></li>
-<li>Have slides ready</li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>Goals for today</h2></hgroup><article  id="goals-for-today">
@@ -4849,7 +4824,7 @@ stopCluster(cl = ctemp)</pre>
 se_boot</pre>
 
 <pre >## (Intercept)       white 
-## 0.001582729 0.004850392</pre>
+## 0.004989630 0.002641027</pre>
 
 </article></slide><slide class=""><hgroup><h2>Case study: Memory allocation</h2></hgroup><article  id="case-study-memory-allocation">
 
@@ -4909,8 +4884,8 @@ mem_used()</pre>
 <pre class = 'prettyprint lang-r'>gc()</pre>
 
 <pre >##             used  (Mb) gc trigger   (Mb)  max used   (Mb)
-## Ncells   1063431  56.8    1758534   94.0   1758534   94.0
-## Vcells 127595415 973.5  213343868 1627.7 211038278 1610.1</pre>
+## Ncells   1063414  56.8    1759040   94.0   1759040   94.0
+## Vcells 127595092 973.5  213343342 1627.7 211037840 1610.1</pre>
 
 </article></slide><slide class=""><hgroup><h2>Case study: Memory allocation</h2></hgroup><article  id="case-study-memory-allocation-3">
 
@@ -4974,7 +4949,7 @@ flights &lt;- fread(DATA_PATH, verbose = TRUE)</pre>
 ##   Allocating 19 column slots (19 - 0 dropped) with 370043 rows
 ## [11] Read the data
 ##   jumps=[0..30), chunk_size=1032016, total_size=30960501
-## Read 336776 rows x 19 columns from 29.53MB (30960660 bytes) file in 00:00.056 wall clock time
+## Read 336776 rows x 19 columns from 29.53MB (30960660 bytes) file in 00:00.060 wall clock time
 ## [12] Finalizing the datatable
 ##   Type counts:
 ##         14 : int32     &#39;5&#39;
@@ -4985,12 +4960,12 @@ flights &lt;- fread(DATA_PATH, verbose = TRUE)</pre>
 ##    0.003s (  5%) sep=&#39;,&#39; ncol=19 and header detection
 ##    0.000s (  0%) Column type detection using 10048 sample rows
 ##    0.001s (  1%) Allocation of 370043 rows x 19 cols (0.033GB) of which 336776 ( 91%) rows used
-##    0.052s ( 94%) Reading 30 chunks (0 swept) of 0.984MB (each chunk 11225 rows) using 6 threads
-##    +    0.015s ( 27%) Parse to row-major thread buffers (grown 0 times)
-##    +    0.024s ( 44%) Transpose
-##    +    0.013s ( 23%) Waiting
+##    0.056s ( 93%) Reading 30 chunks (0 swept) of 0.984MB (each chunk 11225 rows) using 6 threads
+##    +    0.015s ( 24%) Parse to row-major thread buffers (grown 0 times)
+##    +    0.024s ( 40%) Transpose
+##    +    0.018s ( 30%) Waiting
 ##    0.000s (  0%) Rereading 0 columns due to out-of-sample type exceptions
-##    0.056s        Total</pre>
+##    0.060s        Total</pre>
 
 </article></slide><slide class=""><hgroup><h2>Case study: Memory allocation</h2></hgroup><article  id="case-study-memory-allocation-4">
 
@@ -5009,8 +4984,8 @@ flights &lt;- NULL
 gc()</pre>
 
 <pre >##             used  (Mb) gc trigger   (Mb)  max used   (Mb)
-## Ncells   1052467  56.3    1758534   94.0   1758534   94.0
-## Vcells 124429667 949.4  213343868 1627.7 211038278 1610.1</pre>
+## Ncells   1052450  56.3    1759040   94.0   1759040   94.0
+## Vcells 124429344 949.4  213343342 1627.7 211037840 1610.1</pre>
 
 <pre class = 'prettyprint lang-r'># check the change in memory due to each step
 
@@ -5097,8 +5072,8 @@ options(fftempdir = &quot;ffdf&quot;)</pre>
 <p>Import data, inspect change in RAM.</p>
 
 <pre >##             used  (Mb) gc trigger   (Mb)  max used   (Mb)
-## Ncells   1086709  58.1    1758534   94.0   1758534   94.0
-## Vcells 128919940 983.6  213343868 1627.7 211038278 1610.1</pre>
+## Ncells   1086692  58.1    1759040   94.0   1759040   94.0
+## Vcells 128919617 983.6  213343342 1627.7 211037840 1610.1</pre>
 
 <pre class = 'prettyprint lang-r'>mem_change(
 flights &lt;- 
@@ -5110,11 +5085,11 @@ flights &lt;-
                      colClasses=NA)
 )</pre>
 
-<pre >## read.table.ffdf 1..100000 (100000)  csv-read=0.355sec ffdf-write=0.043sec
-## read.table.ffdf 100001..200000 (100000)  csv-read=0.385sec ffdf-write=0.03sec
-## read.table.ffdf 200001..300000 (100000)  csv-read=0.379sec ffdf-write=0.039sec
-## read.table.ffdf 300001..336776 (36776)  csv-read=0.147sec ffdf-write=0.024sec
-##  csv-read=1.266sec  ffdf-write=0.136sec  TOTAL=1.402sec</pre>
+<pre >## read.table.ffdf 1..100000 (100000)  csv-read=0.371sec ffdf-write=0.048sec
+## read.table.ffdf 100001..200000 (100000)  csv-read=0.387sec ffdf-write=0.035sec
+## read.table.ffdf 200001..300000 (100000)  csv-read=0.387sec ffdf-write=0.03sec
+## read.table.ffdf 300001..336776 (36776)  csv-read=0.152sec ffdf-write=0.016sec
+##  csv-read=1.297sec  ffdf-write=0.129sec  TOTAL=1.426sec</pre>
 
 <pre >## -30 MB</pre>
 
@@ -5125,330 +5100,440 @@ flights &lt;-
 <pre class = 'prettyprint lang-r'># show the files in the directory keeping the chunks
 list.files(&quot;ffdf&quot;)</pre>
 
-<pre >##   [1] &quot;clone1664b7fbd953f.ff&quot; &quot;clone1664b9b8cca9.ff&quot;  &quot;clone1e7014c0a1cd8.ff&quot;
-##   [4] &quot;clone1e7015a4f712e.ff&quot; &quot;clone2aea22211d9e1.ff&quot; &quot;clone2aea2360c6703.ff&quot;
-##   [7] &quot;clone2aea2566ab42d.ff&quot; &quot;clone2aea25e1c1f75.ff&quot; &quot;clone2d49618dbfbf6.ff&quot;
-##  [10] &quot;clone2d4965ee3349a.ff&quot; &quot;clone2d49664b07745.ff&quot; &quot;clone2d49672b82b88.ff&quot;
-##  [13] &quot;clone308112a4ca401.ff&quot; &quot;clone308113d044b7c.ff&quot; &quot;clone308113d22fb5f.ff&quot;
-##  [16] &quot;clone3081149714ed4.ff&quot; &quot;clone399cd5627eb1f.ff&quot; &quot;clone399cd72c6506d.ff&quot;
-##  [19] &quot;clone399cd78f6c4e6.ff&quot; &quot;clone399cd8b1f075.ff&quot;  &quot;clone3c3ef1e38eca1.ff&quot;
-##  [22] &quot;clone3c3ef4ac46441.ff&quot; &quot;clone3c3ef514956e9.ff&quot; &quot;clone3c3efcb5fb24.ff&quot; 
-##  [25] &quot;clone3f8e9146bba78.ff&quot; &quot;clone3f8e94d9633f0.ff&quot; &quot;clone3f8e9506fcdf1.ff&quot;
-##  [28] &quot;clone3f8e9b9a7b8.ff&quot;   &quot;clone432452f2dbbc3.ff&quot; &quot;clone4324578aefe51.ff&quot;
-##  [31] &quot;clone4324579d1ad52.ff&quot; &quot;clone432457a4743f9.ff&quot; &quot;ff1664b222c38f0.ff&quot;   
-##  [34] &quot;ff1664b4d23ee78.ff&quot;    &quot;ff1664b4d7f1e3e.ff&quot;    &quot;ff1e7011754e092.ff&quot;   
-##  [37] &quot;ff1e7011a76d5a6.ff&quot;    &quot;ff1e7017084631e.ff&quot;    &quot;ff2aea22c3703b9.ff&quot;   
-##  [40] &quot;ff2aea2664ee33.ff&quot;     &quot;ff2aea26b164ce7.ff&quot;    &quot;ff2d49627cd458.ff&quot;    
-##  [43] &quot;ff2d49631ca5a34.ff&quot;    &quot;ff2d4964237cc21.ff&quot;    &quot;ff30811207897c4.ff&quot;   
-##  [46] &quot;ff308115699c1a.ff&quot;     &quot;ff30811b3430e.ff&quot;      &quot;ff399cd1a2ffc0e.ff&quot;   
-##  [49] &quot;ff399cd1e963877.ff&quot;    &quot;ff399cd5477c29.ff&quot;     &quot;ff3c3ef17300293.ff&quot;   
-##  [52] &quot;ff3c3ef2229a09b.ff&quot;    &quot;ff3c3ef765d6fb7.ff&quot;    &quot;ff3f8e9435a0018.ff&quot;   
-##  [55] &quot;ff3f8e9615e63d.ff&quot;     &quot;ff3f8e96a58ed50.ff&quot;    &quot;ff432453e724ac7.ff&quot;   
-##  [58] &quot;ff432454dd9f249.ff&quot;    &quot;ff432455fb42793.ff&quot;    &quot;ffdf1664b11f63957.ff&quot; 
-##  [61] &quot;ffdf1664b12d379a7.ff&quot;  &quot;ffdf1664b16a5a516.ff&quot;  &quot;ffdf1664b16cc8da8.ff&quot; 
-##  [64] &quot;ffdf1664b16d72904.ff&quot;  &quot;ffdf1664b178a08cd.ff&quot;  &quot;ffdf1664b17c18654.ff&quot; 
-##  [67] &quot;ffdf1664b23c24fe0.ff&quot;  &quot;ffdf1664b24c84c7c.ff&quot;  &quot;ffdf1664b25a0763c.ff&quot; 
-##  [70] &quot;ffdf1664b2663b0d0.ff&quot;  &quot;ffdf1664b283091fe.ff&quot;  &quot;ffdf1664b2b44b5a4.ff&quot; 
-##  [73] &quot;ffdf1664b2c262d7d.ff&quot;  &quot;ffdf1664b2cd1a62.ff&quot;   &quot;ffdf1664b2e3a4c4e.ff&quot; 
-##  [76] &quot;ffdf1664b2ed055dd.ff&quot;  &quot;ffdf1664b3054a5d7.ff&quot;  &quot;ffdf1664b3078f7ce.ff&quot; 
-##  [79] &quot;ffdf1664b310e3e80.ff&quot;  &quot;ffdf1664b334c94f4.ff&quot;  &quot;ffdf1664b34d11719.ff&quot; 
-##  [82] &quot;ffdf1664b388c4b44.ff&quot;  &quot;ffdf1664b39224dcd.ff&quot;  &quot;ffdf1664b39a5a878.ff&quot; 
-##  [85] &quot;ffdf1664b39c6c3b6.ff&quot;  &quot;ffdf1664b3af201e8.ff&quot;  &quot;ffdf1664b3b734f1b.ff&quot; 
-##  [88] &quot;ffdf1664b3c340dc7.ff&quot;  &quot;ffdf1664b3da147d5.ff&quot;  &quot;ffdf1664b3dd310eb.ff&quot; 
-##  [91] &quot;ffdf1664b3ea58fa8.ff&quot;  &quot;ffdf1664b40a69eb6.ff&quot;  &quot;ffdf1664b40aa6c4e.ff&quot; 
-##  [94] &quot;ffdf1664b438a096c.ff&quot;  &quot;ffdf1664b44f516e4.ff&quot;  &quot;ffdf1664b4805a867.ff&quot; 
-##  [97] &quot;ffdf1664b49ebec96.ff&quot;  &quot;ffdf1664b4a28a649.ff&quot;  &quot;ffdf1664b4ae45ee8.ff&quot; 
-## [100] &quot;ffdf1664b4d469edf.ff&quot;  &quot;ffdf1664b4f073478.ff&quot;  &quot;ffdf1664b4f225206.ff&quot; 
-## [103] &quot;ffdf1664b504b5000.ff&quot;  &quot;ffdf1664b531499e6.ff&quot;  &quot;ffdf1664b542fe096.ff&quot; 
-## [106] &quot;ffdf1664b549b05d6.ff&quot;  &quot;ffdf1664b5795f4c9.ff&quot;  &quot;ffdf1664b58ba26cb.ff&quot; 
-## [109] &quot;ffdf1664b5b588fab.ff&quot;  &quot;ffdf1664b5bba6e30.ff&quot;  &quot;ffdf1664b5be03fcf.ff&quot; 
-## [112] &quot;ffdf1664b5c6b41d2.ff&quot;  &quot;ffdf1664b5dbcaae3.ff&quot;  &quot;ffdf1664b6443be89.ff&quot; 
-## [115] &quot;ffdf1664b64afc395.ff&quot;  &quot;ffdf1664b656e654e.ff&quot;  &quot;ffdf1664b65e821c7.ff&quot; 
-## [118] &quot;ffdf1664b68051f3.ff&quot;   &quot;ffdf1664b682d3c68.ff&quot;  &quot;ffdf1664b68dc5ac9.ff&quot; 
-## [121] &quot;ffdf1664b69265251.ff&quot;  &quot;ffdf1664b6c5d23e1.ff&quot;  &quot;ffdf1664b70b69393.ff&quot; 
-## [124] &quot;ffdf1664b70dab41.ff&quot;   &quot;ffdf1664b749659de.ff&quot;  &quot;ffdf1664b76055d56.ff&quot; 
-## [127] &quot;ffdf1664b7679060b.ff&quot;  &quot;ffdf1664b793471bd.ff&quot;  &quot;ffdf1664b799c228f.ff&quot; 
-## [130] &quot;ffdf1664b7a45795.ff&quot;   &quot;ffdf1664b7a9c6cf4.ff&quot;  &quot;ffdf1664b7c83bd2f.ff&quot; 
-## [133] &quot;ffdf1664b7f9ba27b.ff&quot;  &quot;ffdf1664bb4bf99c.ff&quot;   &quot;ffdf1664bc7e093a.ff&quot;  
-## [136] &quot;ffdf1664bd3e0371.ff&quot;   &quot;ffdf1664bfac865c.ff&quot;   &quot;ffdf1ace210b3793b.ff&quot; 
-## [139] &quot;ffdf1ace2152aa26c.ff&quot;  &quot;ffdf1ace21690c3a4.ff&quot;  &quot;ffdf1ace21cf46f6a.ff&quot; 
-## [142] &quot;ffdf1ace22037e706.ff&quot;  &quot;ffdf1ace227c71e57.ff&quot;  &quot;ffdf1ace22a1bec13.ff&quot; 
-## [145] &quot;ffdf1ace22d643bed.ff&quot;  &quot;ffdf1ace249c4aee4.ff&quot;  &quot;ffdf1ace25ea84ebf.ff&quot; 
-## [148] &quot;ffdf1ace25f0ff85a.ff&quot;  &quot;ffdf1ace260487a3d.ff&quot;  &quot;ffdf1ace260f82c73.ff&quot; 
-## [151] &quot;ffdf1ace264287025.ff&quot;  &quot;ffdf1ace2713ff6e3.ff&quot;  &quot;ffdf1ace296fe013.ff&quot;  
-## [154] &quot;ffdf1ace29d0dcd.ff&quot;    &quot;ffdf1ace2bb0a2cc.ff&quot;   &quot;ffdf1ace2e4274e3.ff&quot;  
-## [157] &quot;ffdf1c45014d3a58b.ff&quot;  &quot;ffdf1c45016fface9.ff&quot;  &quot;ffdf1c4501c1e8f51.ff&quot; 
-## [160] &quot;ffdf1c450283e6c31.ff&quot;  &quot;ffdf1c450332f29d8.ff&quot;  &quot;ffdf1c45036686e35.ff&quot; 
-## [163] &quot;ffdf1c4503a24d5d6.ff&quot;  &quot;ffdf1c4503d4fde96.ff&quot;  &quot;ffdf1c45040612509.ff&quot; 
-## [166] &quot;ffdf1c4504f84eb98.ff&quot;  &quot;ffdf1c4505346df0e.ff&quot;  &quot;ffdf1c450543a53b5.ff&quot; 
-## [169] &quot;ffdf1c4506ff73ad0.ff&quot;  &quot;ffdf1c4507014e9ab.ff&quot;  &quot;ffdf1c45071639c64.ff&quot; 
-## [172] &quot;ffdf1c4507932b10a.ff&quot;  &quot;ffdf1c4507a88a181.ff&quot;  &quot;ffdf1c4507d58d596.ff&quot; 
-## [175] &quot;ffdf1c450f24806.ff&quot;    &quot;ffdf1e70111ed2bfd.ff&quot;  &quot;ffdf1e701134419ba.ff&quot; 
-## [178] &quot;ffdf1e70113a93127.ff&quot;  &quot;ffdf1e7011454351.ff&quot;   &quot;ffdf1e701149cfd8f.ff&quot; 
-## [181] &quot;ffdf1e701163ec7ca.ff&quot;  &quot;ffdf1e70118df6828.ff&quot;  &quot;ffdf1e70119d9c8f2.ff&quot; 
-## [184] &quot;ffdf1e7011ab2cb13.ff&quot;  &quot;ffdf1e7011c6f1ef2.ff&quot;  &quot;ffdf1e7011ff3b5ce.ff&quot; 
-## [187] &quot;ffdf1e7012080598c.ff&quot;  &quot;ffdf1e701216aec13.ff&quot;  &quot;ffdf1e70121c294e4.ff&quot; 
-## [190] &quot;ffdf1e70123667b.ff&quot;    &quot;ffdf1e701242bc3aa.ff&quot;  &quot;ffdf1e701245cdace.ff&quot; 
-## [193] &quot;ffdf1e70124ff7829.ff&quot;  &quot;ffdf1e7012540c78a.ff&quot;  &quot;ffdf1e701255f11f.ff&quot;  
-## [196] &quot;ffdf1e70126d0c7cf.ff&quot;  &quot;ffdf1e70127b1bd84.ff&quot;  &quot;ffdf1e7012ac93ad1.ff&quot; 
-## [199] &quot;ffdf1e7012b2455b.ff&quot;   &quot;ffdf1e7012b78f8e4.ff&quot;  &quot;ffdf1e7012d2036a1.ff&quot; 
-## [202] &quot;ffdf1e70130e688f5.ff&quot;  &quot;ffdf1e7013133e1b9.ff&quot;  &quot;ffdf1e701321f514.ff&quot;  
-## [205] &quot;ffdf1e70133e5f9e0.ff&quot;  &quot;ffdf1e70134c315e7.ff&quot;  &quot;ffdf1e70137a512e6.ff&quot; 
-## [208] &quot;ffdf1e70138ea5638.ff&quot;  &quot;ffdf1e701391bbb2d.ff&quot;  &quot;ffdf1e7013923bfae.ff&quot; 
-## [211] &quot;ffdf1e7013a1a516b.ff&quot;  &quot;ffdf1e7013a79f8f7.ff&quot;  &quot;ffdf1e7013b75b97a.ff&quot; 
-## [214] &quot;ffdf1e7013b9685d.ff&quot;   &quot;ffdf1e7013cf0d95f.ff&quot;  &quot;ffdf1e7013d24a714.ff&quot; 
-## [217] &quot;ffdf1e7013dcced9.ff&quot;   &quot;ffdf1e70141dfe87b.ff&quot;  &quot;ffdf1e701441f7978.ff&quot; 
-## [220] &quot;ffdf1e7014450909c.ff&quot;  &quot;ffdf1e701459ec99b.ff&quot;  &quot;ffdf1e70145c0001a.ff&quot; 
-## [223] &quot;ffdf1e70146939527.ff&quot;  &quot;ffdf1e70146b76ea5.ff&quot;  &quot;ffdf1e70147035c6e.ff&quot; 
-## [226] &quot;ffdf1e701475ec4b9.ff&quot;  &quot;ffdf1e701489c06a5.ff&quot;  &quot;ffdf1e70149ec423d.ff&quot; 
-## [229] &quot;ffdf1e7014a6bfd58.ff&quot;  &quot;ffdf1e7014adee59d.ff&quot;  &quot;ffdf1e7014cd3d712.ff&quot; 
-## [232] &quot;ffdf1e7014cf73d8d.ff&quot;  &quot;ffdf1e7014d159c00.ff&quot;  &quot;ffdf1e7014def2f74.ff&quot; 
-## [235] &quot;ffdf1e7014e839a34.ff&quot;  &quot;ffdf1e70150d40c66.ff&quot;  &quot;ffdf1e701524f51d4.ff&quot; 
-## [238] &quot;ffdf1e70153e79795.ff&quot;  &quot;ffdf1e701547987a6.ff&quot;  &quot;ffdf1e70157dde213.ff&quot; 
-## [241] &quot;ffdf1e7015b4a2185.ff&quot;  &quot;ffdf1e7015c57a1a9.ff&quot;  &quot;ffdf1e7015f4e3692.ff&quot; 
-## [244] &quot;ffdf1e70160b3e23c.ff&quot;  &quot;ffdf1e7016123f92.ff&quot;   &quot;ffdf1e70166d10680.ff&quot; 
-## [247] &quot;ffdf1e701670e9b46.ff&quot;  &quot;ffdf1e70167d4beb6.ff&quot;  &quot;ffdf1e701684bd07d.ff&quot; 
-## [250] &quot;ffdf1e701692f8ef.ff&quot;   &quot;ffdf1e70169cb0e10.ff&quot;  &quot;ffdf1e7016b231d89.ff&quot; 
-## [253] &quot;ffdf1e7017025d87a.ff&quot;  &quot;ffdf1e70172061165.ff&quot;  &quot;ffdf1e701720dc7a.ff&quot;  
-## [256] &quot;ffdf1e70173bbda5c.ff&quot;  &quot;ffdf1e701750bc1b6.ff&quot;  &quot;ffdf1e70175cd4641.ff&quot; 
-## [259] &quot;ffdf1e701799b79a.ff&quot;   &quot;ffdf1e7017b68a809.ff&quot;  &quot;ffdf1e7017d502e6e.ff&quot; 
-## [262] &quot;ffdf1e7017e3e246d.ff&quot;  &quot;ffdf1e7017f9038b8.ff&quot;  &quot;ffdf1e7018551842.ff&quot;  
-## [265] &quot;ffdf1e7018700a14.ff&quot;   &quot;ffdf1e7018c39a1a.ff&quot;   &quot;ffdf1e7019003a51.ff&quot;  
-## [268] &quot;ffdf1e7019b4ee03.ff&quot;   &quot;ffdf1e701b460723.ff&quot;   &quot;ffdf1e701e16335e.ff&quot;  
-## [271] &quot;ffdf1e701f9706f9.ff&quot;   &quot;ffdf1e701ffd8e01.ff&quot;   &quot;ffdf2aea211a9d2f3.ff&quot; 
-## [274] &quot;ffdf2aea2125f9beb.ff&quot;  &quot;ffdf2aea212c50ad8.ff&quot;  &quot;ffdf2aea21373d31.ff&quot;  
-## [277] &quot;ffdf2aea21396d91c.ff&quot;  &quot;ffdf2aea215449e20.ff&quot;  &quot;ffdf2aea2159afc27.ff&quot; 
-## [280] &quot;ffdf2aea2197d5dd6.ff&quot;  &quot;ffdf2aea21a497ec5.ff&quot;  &quot;ffdf2aea21b4925e6.ff&quot; 
-## [283] &quot;ffdf2aea21bacebae.ff&quot;  &quot;ffdf2aea21be5d36.ff&quot;   &quot;ffdf2aea21c6d8ece.ff&quot; 
-## [286] &quot;ffdf2aea21dd0b799.ff&quot;  &quot;ffdf2aea22005aa3.ff&quot;   &quot;ffdf2aea2212708e2.ff&quot; 
-## [289] &quot;ffdf2aea221413bc8.ff&quot;  &quot;ffdf2aea221d20435.ff&quot;  &quot;ffdf2aea22271ba5f.ff&quot; 
-## [292] &quot;ffdf2aea22444718e.ff&quot;  &quot;ffdf2aea227aebdf1.ff&quot;  &quot;ffdf2aea227c003a0.ff&quot; 
-## [295] &quot;ffdf2aea2289f4e92.ff&quot;  &quot;ffdf2aea229991fa4.ff&quot;  &quot;ffdf2aea22df3ec18.ff&quot; 
-## [298] &quot;ffdf2aea2304f7e9d.ff&quot;  &quot;ffdf2aea230e4220d.ff&quot;  &quot;ffdf2aea233f9fcd5.ff&quot; 
-## [301] &quot;ffdf2aea23458da4b.ff&quot;  &quot;ffdf2aea2363d3988.ff&quot;  &quot;ffdf2aea2364b497f.ff&quot; 
-## [304] &quot;ffdf2aea237557cde.ff&quot;  &quot;ffdf2aea237d9f5d.ff&quot;   &quot;ffdf2aea238310f44.ff&quot; 
-## [307] &quot;ffdf2aea2393123c2.ff&quot;  &quot;ffdf2aea23b7087a8.ff&quot;  &quot;ffdf2aea23d70e24b.ff&quot; 
-## [310] &quot;ffdf2aea23ecbaf8e.ff&quot;  &quot;ffdf2aea23edf492e.ff&quot;  &quot;ffdf2aea23fae902.ff&quot;  
-## [313] &quot;ffdf2aea241d9c01.ff&quot;   &quot;ffdf2aea244314c61.ff&quot;  &quot;ffdf2aea244597972.ff&quot; 
-## [316] &quot;ffdf2aea24670062c.ff&quot;  &quot;ffdf2aea24733841d.ff&quot;  &quot;ffdf2aea24790d5f2.ff&quot; 
-## [319] &quot;ffdf2aea24b0b1425.ff&quot;  &quot;ffdf2aea24b1cf07a.ff&quot;  &quot;ffdf2aea24bae71f3.ff&quot; 
-## [322] &quot;ffdf2aea24f1ab53e.ff&quot;  &quot;ffdf2aea250d919c6.ff&quot;  &quot;ffdf2aea2529776fd.ff&quot; 
-## [325] &quot;ffdf2aea252aa7d3.ff&quot;   &quot;ffdf2aea252ae8199.ff&quot;  &quot;ffdf2aea254f9c0ef.ff&quot; 
-## [328] &quot;ffdf2aea25523e464.ff&quot;  &quot;ffdf2aea2553ce582.ff&quot;  &quot;ffdf2aea256a96a9b.ff&quot; 
-## [331] &quot;ffdf2aea257dc3698.ff&quot;  &quot;ffdf2aea25cf2cba3.ff&quot;  &quot;ffdf2aea25da0b7d4.ff&quot; 
-## [334] &quot;ffdf2aea25dc25075.ff&quot;  &quot;ffdf2aea2600ceb56.ff&quot;  &quot;ffdf2aea26199bed3.ff&quot; 
-## [337] &quot;ffdf2aea266305546.ff&quot;  &quot;ffdf2aea266cd72ff.ff&quot;  &quot;ffdf2aea268cf74c3.ff&quot; 
-## [340] &quot;ffdf2aea26ceef4af.ff&quot;  &quot;ffdf2aea26dff0410.ff&quot;  &quot;ffdf2aea26f4f85b3.ff&quot; 
-## [343] &quot;ffdf2aea27042e6d5.ff&quot;  &quot;ffdf2aea27086c2e4.ff&quot;  &quot;ffdf2aea273892246.ff&quot; 
-## [346] &quot;ffdf2aea27516f90d.ff&quot;  &quot;ffdf2aea27818cedf.ff&quot;  &quot;ffdf2aea27c3096a1.ff&quot; 
-## [349] &quot;ffdf2aea2bfa0b8b.ff&quot;   &quot;ffdf2aea2e7c30f0.ff&quot;   &quot;ffdf2d4961013983d.ff&quot; 
-## [352] &quot;ffdf2d496106d71ed.ff&quot;  &quot;ffdf2d49610dcc011.ff&quot;  &quot;ffdf2d49611582295.ff&quot; 
-## [355] &quot;ffdf2d49612fd0385.ff&quot;  &quot;ffdf2d49613d4f6ed.ff&quot;  &quot;ffdf2d49613d96f9e.ff&quot; 
-## [358] &quot;ffdf2d496169a9f59.ff&quot;  &quot;ffdf2d49616c18900.ff&quot;  &quot;ffdf2d49616c34633.ff&quot; 
-## [361] &quot;ffdf2d496183560e5.ff&quot;  &quot;ffdf2d49619378a62.ff&quot;  &quot;ffdf2d4961a902ea8.ff&quot; 
-## [364] &quot;ffdf2d4961c9263f0.ff&quot;  &quot;ffdf2d4961ca2ccc2.ff&quot;  &quot;ffdf2d4961d62507b.ff&quot; 
-## [367] &quot;ffdf2d4961e2276d7.ff&quot;  &quot;ffdf2d4961f34f0f1.ff&quot;  &quot;ffdf2d496203a0c22.ff&quot; 
-## [370] &quot;ffdf2d49620967a59.ff&quot;  &quot;ffdf2d49620b5ab8d.ff&quot;  &quot;ffdf2d49621c4e92e.ff&quot; 
-## [373] &quot;ffdf2d4962278efad.ff&quot;  &quot;ffdf2d49623c14951.ff&quot;  &quot;ffdf2d4962761eb91.ff&quot; 
-## [376] &quot;ffdf2d49627f5aeee.ff&quot;  &quot;ffdf2d496283b8a90.ff&quot;  &quot;ffdf2d4962a0dcff6.ff&quot; 
-## [379] &quot;ffdf2d4962d54e8ec.ff&quot;  &quot;ffdf2d4962db10d9.ff&quot;   &quot;ffdf2d4962db30dc9.ff&quot; 
-## [382] &quot;ffdf2d4962edfebd1.ff&quot;  &quot;ffdf2d4962ef6e9e5.ff&quot;  &quot;ffdf2d4962fe11818.ff&quot; 
-## [385] &quot;ffdf2d496321781a7.ff&quot;  &quot;ffdf2d49636444aec.ff&quot;  &quot;ffdf2d4963657f6ef.ff&quot; 
-## [388] &quot;ffdf2d4963841b710.ff&quot;  &quot;ffdf2d49638697848.ff&quot;  &quot;ffdf2d49638ef0169.ff&quot; 
-## [391] &quot;ffdf2d4963b84c621.ff&quot;  &quot;ffdf2d4963cab4dbb.ff&quot;  &quot;ffdf2d4963d316f51.ff&quot; 
-## [394] &quot;ffdf2d4963d352298.ff&quot;  &quot;ffdf2d4963f2376c9.ff&quot;  &quot;ffdf2d496406db597.ff&quot; 
-## [397] &quot;ffdf2d496408484c8.ff&quot;  &quot;ffdf2d496412d3950.ff&quot;  &quot;ffdf2d496414f5bd2.ff&quot; 
-## [400] &quot;ffdf2d4964267fd5d.ff&quot;  &quot;ffdf2d49642f80dd.ff&quot;   &quot;ffdf2d496434537a9.ff&quot; 
-## [403] &quot;ffdf2d496479bf7b3.ff&quot;  &quot;ffdf2d4964954fa74.ff&quot;  &quot;ffdf2d4964a1ead2.ff&quot;  
-## [406] &quot;ffdf2d4964c0cbd8d.ff&quot;  &quot;ffdf2d4964c7f709.ff&quot;   &quot;ffdf2d4964ea6637a.ff&quot; 
-## [409] &quot;ffdf2d4964f8d643f.ff&quot;  &quot;ffdf2d4964f98cd4a.ff&quot;  &quot;ffdf2d49653c84e28.ff&quot; 
-## [412] &quot;ffdf2d49654476e8d.ff&quot;  &quot;ffdf2d49655f252b9.ff&quot;  &quot;ffdf2d49656a8e37e.ff&quot; 
-## [415] &quot;ffdf2d496576bb953.ff&quot;  &quot;ffdf2d4965770d8d7.ff&quot;  &quot;ffdf2d496577e7084.ff&quot; 
-## [418] &quot;ffdf2d4965923f538.ff&quot;  &quot;ffdf2d4965b15d937.ff&quot;  &quot;ffdf2d4965c666042.ff&quot; 
-## [421] &quot;ffdf2d4965d108259.ff&quot;  &quot;ffdf2d4965d77957b.ff&quot;  &quot;ffdf2d49661628a1c.ff&quot; 
-## [424] &quot;ffdf2d4966271d843.ff&quot;  &quot;ffdf2d49663851f6d.ff&quot;  &quot;ffdf2d49664cbe6c5.ff&quot; 
-## [427] &quot;ffdf2d496654102d3.ff&quot;  &quot;ffdf2d4966608f1e5.ff&quot;  &quot;ffdf2d4966756073.ff&quot;  
-## [430] &quot;ffdf2d496681c13ac.ff&quot;  &quot;ffdf2d49669105fe2.ff&quot;  &quot;ffdf2d4966a82531c.ff&quot; 
-## [433] &quot;ffdf2d4966e81d93e.ff&quot;  &quot;ffdf2d4966f3bba34.ff&quot;  &quot;ffdf2d4966f7ce981.ff&quot; 
-## [436] &quot;ffdf2d4967323c411.ff&quot;  &quot;ffdf2d49674325791.ff&quot;  &quot;ffdf2d4967449a4e4.ff&quot; 
-## [439] &quot;ffdf2d496758840d9.ff&quot;  &quot;ffdf2d49679b3795a.ff&quot;  &quot;ffdf2d4967e0556de.ff&quot; 
-## [442] &quot;ffdf2d4967f407c47.ff&quot;  &quot;ffdf2d496b894f8f.ff&quot;   &quot;ffdf2d496c7ff2bf.ff&quot;  
-## [445] &quot;ffdf2d496d1db0f.ff&quot;    &quot;ffdf2d496d97ad.ff&quot;     &quot;ffdf2d496fcc9a35.ff&quot;  
-## [448] &quot;ffdf30811108aca03.ff&quot;  &quot;ffdf3081110a2897a.ff&quot;  &quot;ffdf30811132d8914.ff&quot; 
-## [451] &quot;ffdf3081113cc82fa.ff&quot;  &quot;ffdf3081115ee8d85.ff&quot;  &quot;ffdf30811160d41ca.ff&quot; 
-## [454] &quot;ffdf30811186296fd.ff&quot;  &quot;ffdf308111a495892.ff&quot;  &quot;ffdf308111adc7fb.ff&quot;  
-## [457] &quot;ffdf308111bbe474.ff&quot;   &quot;ffdf308111bfe70d2.ff&quot;  &quot;ffdf308111c40313.ff&quot;  
-## [460] &quot;ffdf308111e0ac89e.ff&quot;  &quot;ffdf308111f654ff4.ff&quot;  &quot;ffdf30811203f7ca6.ff&quot; 
-## [463] &quot;ffdf308112088d10f.ff&quot;  &quot;ffdf30811208e1bbb.ff&quot;  &quot;ffdf3081120bfd9a3.ff&quot; 
-## [466] &quot;ffdf30811212d537d.ff&quot;  &quot;ffdf3081121c035c5.ff&quot;  &quot;ffdf3081122b530ec.ff&quot; 
-## [469] &quot;ffdf3081122ff9dba.ff&quot;  &quot;ffdf3081124a262c6.ff&quot;  &quot;ffdf30811260536ef.ff&quot; 
-## [472] &quot;ffdf30811270c4434.ff&quot;  &quot;ffdf30811283531d.ff&quot;   &quot;ffdf308112a51272d.ff&quot; 
-## [475] &quot;ffdf308112ab5913c.ff&quot;  &quot;ffdf308112b71239b.ff&quot;  &quot;ffdf308112e01d29d.ff&quot; 
-## [478] &quot;ffdf308112f3c6ac8.ff&quot;  &quot;ffdf308113036acd8.ff&quot;  &quot;ffdf3081135e2ba00.ff&quot; 
-## [481] &quot;ffdf3081135f99c0e.ff&quot;  &quot;ffdf30811372c1d8d.ff&quot;  &quot;ffdf308113764ec6e.ff&quot; 
-## [484] &quot;ffdf308113770abf6.ff&quot;  &quot;ffdf3081138e8b18e.ff&quot;  &quot;ffdf308113a3663.ff&quot;   
-## [487] &quot;ffdf308113a7607bb.ff&quot;  &quot;ffdf308113ac1f056.ff&quot;  &quot;ffdf308113c06487.ff&quot;  
-## [490] &quot;ffdf308113c7a3610.ff&quot;  &quot;ffdf308113e24ad23.ff&quot;  &quot;ffdf3081142901c05.ff&quot; 
-## [493] &quot;ffdf3081142a88c8.ff&quot;   &quot;ffdf308114335eae6.ff&quot;  &quot;ffdf308114407b2ba.ff&quot; 
-## [496] &quot;ffdf3081146f8991c.ff&quot;  &quot;ffdf308114a668070.ff&quot;  &quot;ffdf308114cec2bd5.ff&quot; 
-## [499] &quot;ffdf3081150336648.ff&quot;  &quot;ffdf3081150b70389.ff&quot;  &quot;ffdf3081153203ca4.ff&quot; 
-## [502] &quot;ffdf308115351cafa.ff&quot;  &quot;ffdf308115646e279.ff&quot;  &quot;ffdf3081157122f82.ff&quot; 
-## [505] &quot;ffdf3081157819b0c.ff&quot;  &quot;ffdf3081157fc67e.ff&quot;   &quot;ffdf308115a6d4a42.ff&quot; 
-## [508] &quot;ffdf308115b71b912.ff&quot;  &quot;ffdf308115d05f56.ff&quot;   &quot;ffdf308115d51fa62.ff&quot; 
-## [511] &quot;ffdf308115fe5333c.ff&quot;  &quot;ffdf30811603aab49.ff&quot;  &quot;ffdf3081160db552c.ff&quot; 
-## [514] &quot;ffdf30811649083c9.ff&quot;  &quot;ffdf3081167ad915e.ff&quot;  &quot;ffdf3081168393266.ff&quot; 
-## [517] &quot;ffdf308116960c46a.ff&quot;  &quot;ffdf30811699bd8a.ff&quot;   &quot;ffdf308116a5b4957.ff&quot; 
-## [520] &quot;ffdf308116c091152.ff&quot;  &quot;ffdf308116cdaf1ff.ff&quot;  &quot;ffdf308116eb2f73.ff&quot;  
-## [523] &quot;ffdf308116fff319b.ff&quot;  &quot;ffdf30811731eac78.ff&quot;  &quot;ffdf30811735f5a1a.ff&quot; 
-## [526] &quot;ffdf30811736c97be.ff&quot;  &quot;ffdf3081173a6ce21.ff&quot;  &quot;ffdf30811756d6ceb.ff&quot; 
-## [529] &quot;ffdf30811757f260f.ff&quot;  &quot;ffdf308117649bf11.ff&quot;  &quot;ffdf3081177a2532b.ff&quot; 
-## [532] &quot;ffdf308117807183f.ff&quot;  &quot;ffdf308117879cdd8.ff&quot;  &quot;ffdf308117a32190.ff&quot;  
-## [535] &quot;ffdf308117ad11d55.ff&quot;  &quot;ffdf308117cb8c58d.ff&quot;  &quot;ffdf308117dbf4130.ff&quot; 
-## [538] &quot;ffdf308117f75ea93.ff&quot;  &quot;ffdf308117f828399.ff&quot;  &quot;ffdf308119f10c79.ff&quot;  
-## [541] &quot;ffdf30811d1a6ea5.ff&quot;   &quot;ffdf30811dc94717.ff&quot;   &quot;ffdf30811f5dcaec.ff&quot;  
-## [544] &quot;ffdf30811fa84ed.ff&quot;    &quot;ffdf32d6fb1077e9a7.ff&quot; &quot;ffdf32d6fb12668a53.ff&quot;
-## [547] &quot;ffdf32d6fb1c099ce6.ff&quot; &quot;ffdf32d6fb232e04c5.ff&quot; &quot;ffdf32d6fb38961624.ff&quot;
-## [550] &quot;ffdf32d6fb3b3fea59.ff&quot; &quot;ffdf32d6fb3d058d34.ff&quot; &quot;ffdf32d6fb3e37a088.ff&quot;
-## [553] &quot;ffdf32d6fb3f12402f.ff&quot; &quot;ffdf32d6fb4f98984.ff&quot;  &quot;ffdf32d6fb4f9a19c3.ff&quot;
-## [556] &quot;ffdf32d6fb50076313.ff&quot; &quot;ffdf32d6fb52c743ca.ff&quot; &quot;ffdf32d6fb52fd9b5c.ff&quot;
-## [559] &quot;ffdf32d6fb55647d4f.ff&quot; &quot;ffdf32d6fb591ce210.ff&quot; &quot;ffdf32d6fb5f23ddde.ff&quot;
-## [562] &quot;ffdf32d6fb627e13fa.ff&quot; &quot;ffdf32d6fb675729e0.ff&quot; &quot;ffdf399cd1366b246.ff&quot; 
-## [565] &quot;ffdf399cd14418c29.ff&quot;  &quot;ffdf399cd18c9d73f.ff&quot;  &quot;ffdf399cd18f6fcc3.ff&quot; 
-## [568] &quot;ffdf399cd1a33942.ff&quot;   &quot;ffdf399cd1af253b3.ff&quot;  &quot;ffdf399cd1b2b9eb4.ff&quot; 
-## [571] &quot;ffdf399cd1badd7a.ff&quot;   &quot;ffdf399cd1c4aa49d.ff&quot;  &quot;ffdf399cd1c59c49b.ff&quot; 
-## [574] &quot;ffdf399cd20320730.ff&quot;  &quot;ffdf399cd204c5f1f.ff&quot;  &quot;ffdf399cd2131e5d9.ff&quot; 
-## [577] &quot;ffdf399cd23c7da78.ff&quot;  &quot;ffdf399cd251ecfd4.ff&quot;  &quot;ffdf399cd27172371.ff&quot; 
-## [580] &quot;ffdf399cd27a83e6f.ff&quot;  &quot;ffdf399cd28a54d72.ff&quot;  &quot;ffdf399cd29091ee3.ff&quot; 
-## [583] &quot;ffdf399cd29481fdf.ff&quot;  &quot;ffdf399cd294b77b1.ff&quot;  &quot;ffdf399cd2a039f63.ff&quot; 
-## [586] &quot;ffdf399cd2a4e582a.ff&quot;  &quot;ffdf399cd2be2be8c.ff&quot;  &quot;ffdf399cd2cf7a043.ff&quot; 
-## [589] &quot;ffdf399cd2de374dd.ff&quot;  &quot;ffdf399cd2e40c7eb.ff&quot;  &quot;ffdf399cd2eb438f5.ff&quot; 
-## [592] &quot;ffdf399cd2f15fcc1.ff&quot;  &quot;ffdf399cd2f37ff6a.ff&quot;  &quot;ffdf399cd31044811.ff&quot; 
-## [595] &quot;ffdf399cd314684e2.ff&quot;  &quot;ffdf399cd367a904b.ff&quot;  &quot;ffdf399cd37d6535a.ff&quot; 
-## [598] &quot;ffdf399cd39455ff6.ff&quot;  &quot;ffdf399cd39a4a3eb.ff&quot;  &quot;ffdf399cd3b904810.ff&quot; 
-## [601] &quot;ffdf399cd3cd6b830.ff&quot;  &quot;ffdf399cd3eec2014.ff&quot;  &quot;ffdf399cd3f07bdd3.ff&quot; 
-## [604] &quot;ffdf399cd3f501710.ff&quot;  &quot;ffdf399cd40beeebc.ff&quot;  &quot;ffdf399cd42d4a82b.ff&quot; 
-## [607] &quot;ffdf399cd44198b9c.ff&quot;  &quot;ffdf399cd444e2b61.ff&quot;  &quot;ffdf399cd447e5438.ff&quot; 
-## [610] &quot;ffdf399cd46a34118.ff&quot;  &quot;ffdf399cd46bf5311.ff&quot;  &quot;ffdf399cd4c11e588.ff&quot; 
-## [613] &quot;ffdf399cd4cf5144c.ff&quot;  &quot;ffdf399cd4da998c5.ff&quot;  &quot;ffdf399cd4e8d23d0.ff&quot; 
-## [616] &quot;ffdf399cd4f36c4a3.ff&quot;  &quot;ffdf399cd4f91aef8.ff&quot;  &quot;ffdf399cd5052cfa1.ff&quot; 
-## [619] &quot;ffdf399cd516ce3fe.ff&quot;  &quot;ffdf399cd543017f6.ff&quot;  &quot;ffdf399cd5887665b.ff&quot; 
-## [622] &quot;ffdf399cd589f7fd5.ff&quot;  &quot;ffdf399cd5bc24f40.ff&quot;  &quot;ffdf399cd5c32d383.ff&quot; 
-## [625] &quot;ffdf399cd5c9a4e6b.ff&quot;  &quot;ffdf399cd5e3e2525.ff&quot;  &quot;ffdf399cd5e635182.ff&quot; 
-## [628] &quot;ffdf399cd62a4dec7.ff&quot;  &quot;ffdf399cd6307479.ff&quot;   &quot;ffdf399cd63b04978.ff&quot; 
-## [631] &quot;ffdf399cd63f6fc.ff&quot;    &quot;ffdf399cd679a3c02.ff&quot;  &quot;ffdf399cd67aaf6df.ff&quot; 
-## [634] &quot;ffdf399cd68531ea.ff&quot;   &quot;ffdf399cd6b17801b.ff&quot;  &quot;ffdf399cd6de42291.ff&quot; 
-## [637] &quot;ffdf399cd6eeb06eb.ff&quot;  &quot;ffdf399cd70fa07c6.ff&quot;  &quot;ffdf399cd71e74984.ff&quot; 
-## [640] &quot;ffdf399cd735dfbd2.ff&quot;  &quot;ffdf399cd7487dca4.ff&quot;  &quot;ffdf399cd74c0bc36.ff&quot; 
-## [643] &quot;ffdf399cd76c6823f.ff&quot;  &quot;ffdf399cd772a793b.ff&quot;  &quot;ffdf399cd7759d0f8.ff&quot; 
-## [646] &quot;ffdf399cd77ebbac1.ff&quot;  &quot;ffdf399cd787d7820.ff&quot;  &quot;ffdf399cd7969c3d9.ff&quot; 
-## [649] &quot;ffdf399cd7ae083b2.ff&quot;  &quot;ffdf399cd7b1e18cb.ff&quot;  &quot;ffdf399cd7dbe4fa9.ff&quot; 
-## [652] &quot;ffdf399cd7e33b759.ff&quot;  &quot;ffdf399cd94bda23.ff&quot;   &quot;ffdf399cdbe12a52.ff&quot;  
-## [655] &quot;ffdf399cdc27d311.ff&quot;   &quot;ffdf399cdc5848a5.ff&quot;   &quot;ffdf399cdda56e6.ff&quot;   
-## [658] &quot;ffdf399cde227f3b.ff&quot;   &quot;ffdf399cdf3105e8.ff&quot;   &quot;ffdf399cdf8c509f.ff&quot;  
-## [661] &quot;ffdf3c3ef1075cd1a.ff&quot;  &quot;ffdf3c3ef136180ac.ff&quot;  &quot;ffdf3c3ef1588a8c8.ff&quot; 
-## [664] &quot;ffdf3c3ef16f898bc.ff&quot;  &quot;ffdf3c3ef18449e8.ff&quot;   &quot;ffdf3c3ef188c5f39.ff&quot; 
-## [667] &quot;ffdf3c3ef1e0f0c60.ff&quot;  &quot;ffdf3c3ef1f79e2ca.ff&quot;  &quot;ffdf3c3ef208e0d.ff&quot;   
-## [670] &quot;ffdf3c3ef22a0b6b7.ff&quot;  &quot;ffdf3c3ef26980416.ff&quot;  &quot;ffdf3c3ef269bb5de.ff&quot; 
-## [673] &quot;ffdf3c3ef26e416f1.ff&quot;  &quot;ffdf3c3ef28760c8.ff&quot;   &quot;ffdf3c3ef2b1522c.ff&quot;  
-## [676] &quot;ffdf3c3ef2b5525b2.ff&quot;  &quot;ffdf3c3ef2bcc30e4.ff&quot;  &quot;ffdf3c3ef2c3d18ea.ff&quot; 
-## [679] &quot;ffdf3c3ef2cd38bf8.ff&quot;  &quot;ffdf3c3ef2d10ad28.ff&quot;  &quot;ffdf3c3ef2d635931.ff&quot; 
-## [682] &quot;ffdf3c3ef2dd4c753.ff&quot;  &quot;ffdf3c3ef2f15d6b0.ff&quot;  &quot;ffdf3c3ef30bea03a.ff&quot; 
-## [685] &quot;ffdf3c3ef330688e1.ff&quot;  &quot;ffdf3c3ef33aba7a4.ff&quot;  &quot;ffdf3c3ef3550edb1.ff&quot; 
-## [688] &quot;ffdf3c3ef3596f210.ff&quot;  &quot;ffdf3c3ef35cdc52.ff&quot;   &quot;ffdf3c3ef36c9b940.ff&quot; 
-## [691] &quot;ffdf3c3ef37e172d6.ff&quot;  &quot;ffdf3c3ef3b7b2f2b.ff&quot;  &quot;ffdf3c3ef3ccb5ab4.ff&quot; 
-## [694] &quot;ffdf3c3ef3d1249c2.ff&quot;  &quot;ffdf3c3ef3d7d4b12.ff&quot;  &quot;ffdf3c3ef3e299f31.ff&quot; 
-## [697] &quot;ffdf3c3ef3eac0e2e.ff&quot;  &quot;ffdf3c3ef3f6c3fb1.ff&quot;  &quot;ffdf3c3ef4012f7a3.ff&quot; 
-## [700] &quot;ffdf3c3ef4306d392.ff&quot;  &quot;ffdf3c3ef44935bc4.ff&quot;  &quot;ffdf3c3ef46091abd.ff&quot; 
-## [703] &quot;ffdf3c3ef4963a438.ff&quot;  &quot;ffdf3c3ef4a38a6fd.ff&quot;  &quot;ffdf3c3ef4e8fb035.ff&quot; 
-## [706] &quot;ffdf3c3ef4eedf47a.ff&quot;  &quot;ffdf3c3ef52240272.ff&quot;  &quot;ffdf3c3ef53d5d916.ff&quot; 
-## [709] &quot;ffdf3c3ef5476ca9c.ff&quot;  &quot;ffdf3c3ef54cd71b3.ff&quot;  &quot;ffdf3c3ef54f4e879.ff&quot; 
-## [712] &quot;ffdf3c3ef55a991b8.ff&quot;  &quot;ffdf3c3ef562ce991.ff&quot;  &quot;ffdf3c3ef5656c9d2.ff&quot; 
-## [715] &quot;ffdf3c3ef56d7486b.ff&quot;  &quot;ffdf3c3ef573fc17f.ff&quot;  &quot;ffdf3c3ef57fed162.ff&quot; 
-## [718] &quot;ffdf3c3ef581f5f6f.ff&quot;  &quot;ffdf3c3ef5832407e.ff&quot;  &quot;ffdf3c3ef595ebf51.ff&quot; 
-## [721] &quot;ffdf3c3ef5a0b1371.ff&quot;  &quot;ffdf3c3ef5c9e09e1.ff&quot;  &quot;ffdf3c3ef5cfaa16.ff&quot;  
-## [724] &quot;ffdf3c3ef5de9bede.ff&quot;  &quot;ffdf3c3ef5e43d1a.ff&quot;   &quot;ffdf3c3ef5ed9fd97.ff&quot; 
-## [727] &quot;ffdf3c3ef5f99e325.ff&quot;  &quot;ffdf3c3ef605c3cf4.ff&quot;  &quot;ffdf3c3ef61fc478d.ff&quot; 
-## [730] &quot;ffdf3c3ef641e8bc0.ff&quot;  &quot;ffdf3c3ef6478658b.ff&quot;  &quot;ffdf3c3ef649510d4.ff&quot; 
-## [733] &quot;ffdf3c3ef64a9a7ad.ff&quot;  &quot;ffdf3c3ef67094788.ff&quot;  &quot;ffdf3c3ef672b3fb4.ff&quot; 
-## [736] &quot;ffdf3c3ef67cdbefe.ff&quot;  &quot;ffdf3c3ef697af01.ff&quot;   &quot;ffdf3c3ef6f2d07e7.ff&quot; 
-## [739] &quot;ffdf3c3ef6fc296a4.ff&quot;  &quot;ffdf3c3ef71471665.ff&quot;  &quot;ffdf3c3ef71477fde.ff&quot; 
-## [742] &quot;ffdf3c3ef743bf5f1.ff&quot;  &quot;ffdf3c3ef7585f891.ff&quot;  &quot;ffdf3c3ef76768fce.ff&quot; 
-## [745] &quot;ffdf3c3ef780b285a.ff&quot;  &quot;ffdf3c3ef7b5f20f.ff&quot;   &quot;ffdf3c3ef7ba6ea43.ff&quot; 
-## [748] &quot;ffdf3c3ef7c8a8d30.ff&quot;  &quot;ffdf3c3ef7cae1244.ff&quot;  &quot;ffdf3c3ef7fb79eed.ff&quot; 
-## [751] &quot;ffdf3c3ef7fd61fbf.ff&quot;  &quot;ffdf3c3ef96cf994.ff&quot;   &quot;ffdf3c3ef9a9fe3f.ff&quot;  
-## [754] &quot;ffdf3c3ef9b8c347.ff&quot;   &quot;ffdf3c3efa12dfbd.ff&quot;   &quot;ffdf3c3efc1541f2.ff&quot;  
-## [757] &quot;ffdf3c3efd91d696.ff&quot;   &quot;ffdf3f8e91124f47a.ff&quot;  &quot;ffdf3f8e911bec726.ff&quot; 
-## [760] &quot;ffdf3f8e91326081d.ff&quot;  &quot;ffdf3f8e91372f458.ff&quot;  &quot;ffdf3f8e9154e1d3f.ff&quot; 
-## [763] &quot;ffdf3f8e9170e6179.ff&quot;  &quot;ffdf3f8e917ed3575.ff&quot;  &quot;ffdf3f8e917fe3429.ff&quot; 
-## [766] &quot;ffdf3f8e91c57d250.ff&quot;  &quot;ffdf3f8e91cb01fad.ff&quot;  &quot;ffdf3f8e91d3394d6.ff&quot; 
-## [769] &quot;ffdf3f8e91db789b5.ff&quot;  &quot;ffdf3f8e91e23612b.ff&quot;  &quot;ffdf3f8e92150e277.ff&quot; 
-## [772] &quot;ffdf3f8e921946eee.ff&quot;  &quot;ffdf3f8e92340d568.ff&quot;  &quot;ffdf3f8e92a34c671.ff&quot; 
-## [775] &quot;ffdf3f8e92b9cf6cc.ff&quot;  &quot;ffdf3f8e92baaa033.ff&quot;  &quot;ffdf3f8e92d3bf2ef.ff&quot; 
-## [778] &quot;ffdf3f8e930599cf3.ff&quot;  &quot;ffdf3f8e93221ca78.ff&quot;  &quot;ffdf3f8e9327fc53.ff&quot;  
-## [781] &quot;ffdf3f8e934ba770b.ff&quot;  &quot;ffdf3f8e934dd3908.ff&quot;  &quot;ffdf3f8e9362de3de.ff&quot; 
-## [784] &quot;ffdf3f8e9377a6f5d.ff&quot;  &quot;ffdf3f8e93c220b08.ff&quot;  &quot;ffdf3f8e93c4a540c.ff&quot; 
-## [787] &quot;ffdf3f8e93e2e801b.ff&quot;  &quot;ffdf3f8e93e3a35ff.ff&quot;  &quot;ffdf3f8e93f49cc9d.ff&quot; 
-## [790] &quot;ffdf3f8e9408834e4.ff&quot;  &quot;ffdf3f8e940a59e75.ff&quot;  &quot;ffdf3f8e9417608b1.ff&quot; 
-## [793] &quot;ffdf3f8e942a61556.ff&quot;  &quot;ffdf3f8e946c6a5fa.ff&quot;  &quot;ffdf3f8e947424ba1.ff&quot; 
-## [796] &quot;ffdf3f8e947f6aece.ff&quot;  &quot;ffdf3f8e9493a1978.ff&quot;  &quot;ffdf3f8e949eb4e9c.ff&quot; 
-## [799] &quot;ffdf3f8e94aa6af3e.ff&quot;  &quot;ffdf3f8e94cdc8c38.ff&quot;  &quot;ffdf3f8e94deeaaf7.ff&quot; 
-## [802] &quot;ffdf3f8e94e1b1953.ff&quot;  &quot;ffdf3f8e9510eea5d.ff&quot;  &quot;ffdf3f8e9554037f6.ff&quot; 
-## [805] &quot;ffdf3f8e955f9dfaf.ff&quot;  &quot;ffdf3f8e956994746.ff&quot;  &quot;ffdf3f8e958859d90.ff&quot; 
-## [808] &quot;ffdf3f8e9590112c7.ff&quot;  &quot;ffdf3f8e95904d39c.ff&quot;  &quot;ffdf3f8e95a29077a.ff&quot; 
-## [811] &quot;ffdf3f8e95a9c767b.ff&quot;  &quot;ffdf3f8e95af7109c.ff&quot;  &quot;ffdf3f8e95bcd0fac.ff&quot; 
-## [814] &quot;ffdf3f8e95c61f4b3.ff&quot;  &quot;ffdf3f8e95d385492.ff&quot;  &quot;ffdf3f8e95d7aae0b.ff&quot; 
-## [817] &quot;ffdf3f8e95f295865.ff&quot;  &quot;ffdf3f8e95f400dce.ff&quot;  &quot;ffdf3f8e96009a3ba.ff&quot; 
-## [820] &quot;ffdf3f8e961957ead.ff&quot;  &quot;ffdf3f8e9627a6dc2.ff&quot;  &quot;ffdf3f8e96320f841.ff&quot; 
-## [823] &quot;ffdf3f8e963952c34.ff&quot;  &quot;ffdf3f8e963fcfa89.ff&quot;  &quot;ffdf3f8e9651413fe.ff&quot; 
-## [826] &quot;ffdf3f8e966903bc5.ff&quot;  &quot;ffdf3f8e9682c417b.ff&quot;  &quot;ffdf3f8e96a0c572f.ff&quot; 
-## [829] &quot;ffdf3f8e96a8e5535.ff&quot;  &quot;ffdf3f8e96b0501be.ff&quot;  &quot;ffdf3f8e96b23970c.ff&quot; 
-## [832] &quot;ffdf3f8e96c429542.ff&quot;  &quot;ffdf3f8e96f1be8b4.ff&quot;  &quot;ffdf3f8e9706de4af.ff&quot; 
-## [835] &quot;ffdf3f8e9721a67c0.ff&quot;  &quot;ffdf3f8e9727bab50.ff&quot;  &quot;ffdf3f8e9729c4cbd.ff&quot; 
-## [838] &quot;ffdf3f8e974755e32.ff&quot;  &quot;ffdf3f8e9756e7e67.ff&quot;  &quot;ffdf3f8e976cddc36.ff&quot; 
-## [841] &quot;ffdf3f8e976d1b03.ff&quot;   &quot;ffdf3f8e976e90d59.ff&quot;  &quot;ffdf3f8e977f03c60.ff&quot; 
-## [844] &quot;ffdf3f8e979bb44d4.ff&quot;  &quot;ffdf3f8e97aa3c17b.ff&quot;  &quot;ffdf3f8e97ae8f9ac.ff&quot; 
-## [847] &quot;ffdf3f8e97b9420a9.ff&quot;  &quot;ffdf3f8e97f4ba7be.ff&quot;  &quot;ffdf3f8e97f7c0b20.ff&quot; 
-## [850] &quot;ffdf3f8e98516648.ff&quot;   &quot;ffdf3f8e988959bb.ff&quot;   &quot;ffdf3f8e996cb77f.ff&quot;  
-## [853] &quot;ffdf3f8e9c9b1b54.ff&quot;   &quot;ffdf3f8e9d99c2b9.ff&quot;   &quot;ffdf43245102f4f38.ff&quot; 
-## [856] &quot;ffdf4324510390bf8.ff&quot;  &quot;ffdf432451113874a.ff&quot;  &quot;ffdf4324511af0935.ff&quot; 
-## [859] &quot;ffdf43245122abda6.ff&quot;  &quot;ffdf43245126bdc18.ff&quot;  &quot;ffdf4324512bb9443.ff&quot; 
-## [862] &quot;ffdf4324515ab1dfb.ff&quot;  &quot;ffdf43245181977c4.ff&quot;  &quot;ffdf432451c4aed0f.ff&quot; 
-## [865] &quot;ffdf432451d298cb7.ff&quot;  &quot;ffdf432451d53aa2d.ff&quot;  &quot;ffdf432451eb62cdd.ff&quot; 
-## [868] &quot;ffdf432451ec7dcf9.ff&quot;  &quot;ffdf4324520274fed.ff&quot;  &quot;ffdf43245230c6634.ff&quot; 
-## [871] &quot;ffdf4324527089813.ff&quot;  &quot;ffdf43245281d6217.ff&quot;  &quot;ffdf4324529333865.ff&quot; 
-## [874] &quot;ffdf43245297b1418.ff&quot;  &quot;ffdf432452b079a5b.ff&quot;  &quot;ffdf432452bb83d70.ff&quot; 
-## [877] &quot;ffdf432452c12f40b.ff&quot;  &quot;ffdf432452cd6e3b0.ff&quot;  &quot;ffdf432452fdc336.ff&quot;  
-## [880] &quot;ffdf43245301033ac.ff&quot;  &quot;ffdf43245307eac50.ff&quot;  &quot;ffdf43245316f6c00.ff&quot; 
-## [883] &quot;ffdf4324532b4e538.ff&quot;  &quot;ffdf43245355c0e71.ff&quot;  &quot;ffdf432453578424c.ff&quot; 
-## [886] &quot;ffdf4324535d85afc.ff&quot;  &quot;ffdf432453802162f.ff&quot;  &quot;ffdf4324538655031.ff&quot; 
-## [889] &quot;ffdf432453b5f628a.ff&quot;  &quot;ffdf432453c194c1f.ff&quot;  &quot;ffdf432453cc1767e.ff&quot; 
-## [892] &quot;ffdf4324543f47b0c.ff&quot;  &quot;ffdf4324544d42b2c.ff&quot;  &quot;ffdf4324544e1a1f9.ff&quot; 
-## [895] &quot;ffdf43245455cde20.ff&quot;  &quot;ffdf432454563957.ff&quot;   &quot;ffdf4324546e78de.ff&quot;  
-## [898] &quot;ffdf43245472aa6bd.ff&quot;  &quot;ffdf4324547bff5b6.ff&quot;  &quot;ffdf43245485de11a.ff&quot; 
-## [901] &quot;ffdf4324548a66bed.ff&quot;  &quot;ffdf432454adc2dd8.ff&quot;  &quot;ffdf432454d25683a.ff&quot; 
-## [904] &quot;ffdf432454eec3424.ff&quot;  &quot;ffdf432454f220e2b.ff&quot;  &quot;ffdf432454f2f17bb.ff&quot; 
-## [907] &quot;ffdf432454fed3037.ff&quot;  &quot;ffdf432455004247d.ff&quot;  &quot;ffdf43245510a8086.ff&quot; 
-## [910] &quot;ffdf4324552cbec7a.ff&quot;  &quot;ffdf43245535aad02.ff&quot;  &quot;ffdf43245550d3724.ff&quot; 
-## [913] &quot;ffdf4324556bbd743.ff&quot;  &quot;ffdf43245589c0e68.ff&quot;  &quot;ffdf432455b2e56e2.ff&quot; 
-## [916] &quot;ffdf43245602a53d2.ff&quot;  &quot;ffdf4324562c35422.ff&quot;  &quot;ffdf43245639a55ae.ff&quot; 
-## [919] &quot;ffdf4324563e733a8.ff&quot;  &quot;ffdf43245652127ae.ff&quot;  &quot;ffdf432456553d9f6.ff&quot; 
-## [922] &quot;ffdf4324567848677.ff&quot;  &quot;ffdf432456844c83b.ff&quot;  &quot;ffdf432456a7493ed.ff&quot; 
-## [925] &quot;ffdf432456afea159.ff&quot;  &quot;ffdf432456b3eeb8d.ff&quot;  &quot;ffdf432456b5da61a.ff&quot; 
-## [928] &quot;ffdf432456bcb0a05.ff&quot;  &quot;ffdf432456dfd8442.ff&quot;  &quot;ffdf432456e25cab6.ff&quot; 
-## [931] &quot;ffdf432456e70bb6c.ff&quot;  &quot;ffdf432456ed300ad.ff&quot;  &quot;ffdf432456facb87c.ff&quot; 
-## [934] &quot;ffdf43245716bfde0.ff&quot;  &quot;ffdf4324574525d9a.ff&quot;  &quot;ffdf4324576e9c3a9.ff&quot; 
-## [937] &quot;ffdf43245780c79a1.ff&quot;  &quot;ffdf4324579a41a43.ff&quot;  &quot;ffdf4324579f633db.ff&quot; 
-## [940] &quot;ffdf432457af1e944.ff&quot;  &quot;ffdf432457c15cf37.ff&quot;  &quot;ffdf432457d383803.ff&quot; 
-## [943] &quot;ffdf432457e79123a.ff&quot;  &quot;ffdf432457f774d0b.ff&quot;  &quot;ffdf43245a96fe96.ff&quot;  
-## [946] &quot;ffdf43245a9be3da.ff&quot;   &quot;ffdf43245ab21f14.ff&quot;   &quot;ffdf43245c0c48b6.ff&quot;  
-## [949] &quot;ffdf43245ccd8e14.ff&quot;   &quot;ffdf43245e4a7ac7.ff&quot;   &quot;ffdf43245e523515.ff&quot;  
-## [952] &quot;ffdf47e9613f28f88.ff&quot;  &quot;ffdf47e961acc398f.ff&quot;  &quot;ffdf47e961c3dc2f5.ff&quot; 
-## [955] &quot;ffdf47e961df85207.ff&quot;  &quot;ffdf47e96234889e2.ff&quot;  &quot;ffdf47e9625becbff.ff&quot; 
-## [958] &quot;ffdf47e9635a0c330.ff&quot;  &quot;ffdf47e9638519b6.ff&quot;   &quot;ffdf47e963f8211b1.ff&quot; 
-## [961] &quot;ffdf47e96431c3e48.ff&quot;  &quot;ffdf47e9644c9e6f1.ff&quot;  &quot;ffdf47e964d8222b6.ff&quot; 
-## [964] &quot;ffdf47e964dce4597.ff&quot;  &quot;ffdf47e9659c04ab9.ff&quot;  &quot;ffdf47e96621fb277.ff&quot; 
-## [967] &quot;ffdf47e9663089f72.ff&quot;  &quot;ffdf47e9663376f0f.ff&quot;  &quot;ffdf47e966a14c272.ff&quot; 
-## [970] &quot;ffdf47e96b9c8f15.ff&quot;</pre>
+<pre >##    [1] &quot;clone1664b7fbd953f.ff&quot; &quot;clone1664b9b8cca9.ff&quot;  &quot;clone1e7014c0a1cd8.ff&quot;
+##    [4] &quot;clone1e7015a4f712e.ff&quot; &quot;clone2aea22211d9e1.ff&quot; &quot;clone2aea2360c6703.ff&quot;
+##    [7] &quot;clone2aea2566ab42d.ff&quot; &quot;clone2aea25e1c1f75.ff&quot; &quot;clone2d49618dbfbf6.ff&quot;
+##   [10] &quot;clone2d4965ee3349a.ff&quot; &quot;clone2d49664b07745.ff&quot; &quot;clone2d49672b82b88.ff&quot;
+##   [13] &quot;clone308112a4ca401.ff&quot; &quot;clone308113d044b7c.ff&quot; &quot;clone308113d22fb5f.ff&quot;
+##   [16] &quot;clone3081149714ed4.ff&quot; &quot;clone399cd5627eb1f.ff&quot; &quot;clone399cd72c6506d.ff&quot;
+##   [19] &quot;clone399cd78f6c4e6.ff&quot; &quot;clone399cd8b1f075.ff&quot;  &quot;clone3c3ef1e38eca1.ff&quot;
+##   [22] &quot;clone3c3ef4ac46441.ff&quot; &quot;clone3c3ef514956e9.ff&quot; &quot;clone3c3efcb5fb24.ff&quot; 
+##   [25] &quot;clone3f8e9146bba78.ff&quot; &quot;clone3f8e94d9633f0.ff&quot; &quot;clone3f8e9506fcdf1.ff&quot;
+##   [28] &quot;clone3f8e9b9a7b8.ff&quot;   &quot;clone432452f2dbbc3.ff&quot; &quot;clone4324578aefe51.ff&quot;
+##   [31] &quot;clone4324579d1ad52.ff&quot; &quot;clone432457a4743f9.ff&quot; &quot;clone47e962c215aa7.ff&quot;
+##   [34] &quot;clone47e9634b394d6.ff&quot; &quot;clone47e96595b1fd7.ff&quot; &quot;clone47e96a5d61e5.ff&quot; 
+##   [37] &quot;clone605a84106bec0.ff&quot; &quot;clone605a86e293a8f.ff&quot; &quot;clone605a86fc8f5a2.ff&quot;
+##   [40] &quot;clone605a8dfeeebd.ff&quot;  &quot;clonee6e02b3603f7.ff&quot;  &quot;clonee6e065135290.ff&quot; 
+##   [43] &quot;clonee6e0e80612d.ff&quot;   &quot;clonee6e0f7dd64d.ff&quot;   &quot;ff1664b222c38f0.ff&quot;   
+##   [46] &quot;ff1664b4d23ee78.ff&quot;    &quot;ff1664b4d7f1e3e.ff&quot;    &quot;ff1e7011754e092.ff&quot;   
+##   [49] &quot;ff1e7011a76d5a6.ff&quot;    &quot;ff1e7017084631e.ff&quot;    &quot;ff2aea22c3703b9.ff&quot;   
+##   [52] &quot;ff2aea2664ee33.ff&quot;     &quot;ff2aea26b164ce7.ff&quot;    &quot;ff2d49627cd458.ff&quot;    
+##   [55] &quot;ff2d49631ca5a34.ff&quot;    &quot;ff2d4964237cc21.ff&quot;    &quot;ff30811207897c4.ff&quot;   
+##   [58] &quot;ff308115699c1a.ff&quot;     &quot;ff30811b3430e.ff&quot;      &quot;ff399cd1a2ffc0e.ff&quot;   
+##   [61] &quot;ff399cd1e963877.ff&quot;    &quot;ff399cd5477c29.ff&quot;     &quot;ff3c3ef17300293.ff&quot;   
+##   [64] &quot;ff3c3ef2229a09b.ff&quot;    &quot;ff3c3ef765d6fb7.ff&quot;    &quot;ff3f8e9435a0018.ff&quot;   
+##   [67] &quot;ff3f8e9615e63d.ff&quot;     &quot;ff3f8e96a58ed50.ff&quot;    &quot;ff432453e724ac7.ff&quot;   
+##   [70] &quot;ff432454dd9f249.ff&quot;    &quot;ff432455fb42793.ff&quot;    &quot;ff47e96206a3922.ff&quot;   
+##   [73] &quot;ff47e964910d4dc.ff&quot;    &quot;ff47e9673ee2241.ff&quot;    &quot;ff605a818744acd.ff&quot;   
+##   [76] &quot;ff605a85187e8a3.ff&quot;    &quot;ff605a866ac333b.ff&quot;    &quot;ffdf1664b11f63957.ff&quot; 
+##   [79] &quot;ffdf1664b12d379a7.ff&quot;  &quot;ffdf1664b16a5a516.ff&quot;  &quot;ffdf1664b16cc8da8.ff&quot; 
+##   [82] &quot;ffdf1664b16d72904.ff&quot;  &quot;ffdf1664b178a08cd.ff&quot;  &quot;ffdf1664b17c18654.ff&quot; 
+##   [85] &quot;ffdf1664b23c24fe0.ff&quot;  &quot;ffdf1664b24c84c7c.ff&quot;  &quot;ffdf1664b25a0763c.ff&quot; 
+##   [88] &quot;ffdf1664b2663b0d0.ff&quot;  &quot;ffdf1664b283091fe.ff&quot;  &quot;ffdf1664b2b44b5a4.ff&quot; 
+##   [91] &quot;ffdf1664b2c262d7d.ff&quot;  &quot;ffdf1664b2cd1a62.ff&quot;   &quot;ffdf1664b2e3a4c4e.ff&quot; 
+##   [94] &quot;ffdf1664b2ed055dd.ff&quot;  &quot;ffdf1664b3054a5d7.ff&quot;  &quot;ffdf1664b3078f7ce.ff&quot; 
+##   [97] &quot;ffdf1664b310e3e80.ff&quot;  &quot;ffdf1664b334c94f4.ff&quot;  &quot;ffdf1664b34d11719.ff&quot; 
+##  [100] &quot;ffdf1664b388c4b44.ff&quot;  &quot;ffdf1664b39224dcd.ff&quot;  &quot;ffdf1664b39a5a878.ff&quot; 
+##  [103] &quot;ffdf1664b39c6c3b6.ff&quot;  &quot;ffdf1664b3af201e8.ff&quot;  &quot;ffdf1664b3b734f1b.ff&quot; 
+##  [106] &quot;ffdf1664b3c340dc7.ff&quot;  &quot;ffdf1664b3da147d5.ff&quot;  &quot;ffdf1664b3dd310eb.ff&quot; 
+##  [109] &quot;ffdf1664b3ea58fa8.ff&quot;  &quot;ffdf1664b40a69eb6.ff&quot;  &quot;ffdf1664b40aa6c4e.ff&quot; 
+##  [112] &quot;ffdf1664b438a096c.ff&quot;  &quot;ffdf1664b44f516e4.ff&quot;  &quot;ffdf1664b4805a867.ff&quot; 
+##  [115] &quot;ffdf1664b49ebec96.ff&quot;  &quot;ffdf1664b4a28a649.ff&quot;  &quot;ffdf1664b4ae45ee8.ff&quot; 
+##  [118] &quot;ffdf1664b4d469edf.ff&quot;  &quot;ffdf1664b4f073478.ff&quot;  &quot;ffdf1664b4f225206.ff&quot; 
+##  [121] &quot;ffdf1664b504b5000.ff&quot;  &quot;ffdf1664b531499e6.ff&quot;  &quot;ffdf1664b542fe096.ff&quot; 
+##  [124] &quot;ffdf1664b549b05d6.ff&quot;  &quot;ffdf1664b5795f4c9.ff&quot;  &quot;ffdf1664b58ba26cb.ff&quot; 
+##  [127] &quot;ffdf1664b5b588fab.ff&quot;  &quot;ffdf1664b5bba6e30.ff&quot;  &quot;ffdf1664b5be03fcf.ff&quot; 
+##  [130] &quot;ffdf1664b5c6b41d2.ff&quot;  &quot;ffdf1664b5dbcaae3.ff&quot;  &quot;ffdf1664b6443be89.ff&quot; 
+##  [133] &quot;ffdf1664b64afc395.ff&quot;  &quot;ffdf1664b656e654e.ff&quot;  &quot;ffdf1664b65e821c7.ff&quot; 
+##  [136] &quot;ffdf1664b68051f3.ff&quot;   &quot;ffdf1664b682d3c68.ff&quot;  &quot;ffdf1664b68dc5ac9.ff&quot; 
+##  [139] &quot;ffdf1664b69265251.ff&quot;  &quot;ffdf1664b6c5d23e1.ff&quot;  &quot;ffdf1664b70b69393.ff&quot; 
+##  [142] &quot;ffdf1664b70dab41.ff&quot;   &quot;ffdf1664b749659de.ff&quot;  &quot;ffdf1664b76055d56.ff&quot; 
+##  [145] &quot;ffdf1664b7679060b.ff&quot;  &quot;ffdf1664b793471bd.ff&quot;  &quot;ffdf1664b799c228f.ff&quot; 
+##  [148] &quot;ffdf1664b7a45795.ff&quot;   &quot;ffdf1664b7a9c6cf4.ff&quot;  &quot;ffdf1664b7c83bd2f.ff&quot; 
+##  [151] &quot;ffdf1664b7f9ba27b.ff&quot;  &quot;ffdf1664bb4bf99c.ff&quot;   &quot;ffdf1664bc7e093a.ff&quot;  
+##  [154] &quot;ffdf1664bd3e0371.ff&quot;   &quot;ffdf1664bfac865c.ff&quot;   &quot;ffdf1ace210b3793b.ff&quot; 
+##  [157] &quot;ffdf1ace2152aa26c.ff&quot;  &quot;ffdf1ace21690c3a4.ff&quot;  &quot;ffdf1ace21cf46f6a.ff&quot; 
+##  [160] &quot;ffdf1ace22037e706.ff&quot;  &quot;ffdf1ace227c71e57.ff&quot;  &quot;ffdf1ace22a1bec13.ff&quot; 
+##  [163] &quot;ffdf1ace22d643bed.ff&quot;  &quot;ffdf1ace249c4aee4.ff&quot;  &quot;ffdf1ace25ea84ebf.ff&quot; 
+##  [166] &quot;ffdf1ace25f0ff85a.ff&quot;  &quot;ffdf1ace260487a3d.ff&quot;  &quot;ffdf1ace260f82c73.ff&quot; 
+##  [169] &quot;ffdf1ace264287025.ff&quot;  &quot;ffdf1ace2713ff6e3.ff&quot;  &quot;ffdf1ace296fe013.ff&quot;  
+##  [172] &quot;ffdf1ace29d0dcd.ff&quot;    &quot;ffdf1ace2bb0a2cc.ff&quot;   &quot;ffdf1ace2e4274e3.ff&quot;  
+##  [175] &quot;ffdf1c45014d3a58b.ff&quot;  &quot;ffdf1c45016fface9.ff&quot;  &quot;ffdf1c4501c1e8f51.ff&quot; 
+##  [178] &quot;ffdf1c450283e6c31.ff&quot;  &quot;ffdf1c450332f29d8.ff&quot;  &quot;ffdf1c45036686e35.ff&quot; 
+##  [181] &quot;ffdf1c4503a24d5d6.ff&quot;  &quot;ffdf1c4503d4fde96.ff&quot;  &quot;ffdf1c45040612509.ff&quot; 
+##  [184] &quot;ffdf1c4504f84eb98.ff&quot;  &quot;ffdf1c4505346df0e.ff&quot;  &quot;ffdf1c450543a53b5.ff&quot; 
+##  [187] &quot;ffdf1c4506ff73ad0.ff&quot;  &quot;ffdf1c4507014e9ab.ff&quot;  &quot;ffdf1c45071639c64.ff&quot; 
+##  [190] &quot;ffdf1c4507932b10a.ff&quot;  &quot;ffdf1c4507a88a181.ff&quot;  &quot;ffdf1c4507d58d596.ff&quot; 
+##  [193] &quot;ffdf1c450f24806.ff&quot;    &quot;ffdf1e70111ed2bfd.ff&quot;  &quot;ffdf1e701134419ba.ff&quot; 
+##  [196] &quot;ffdf1e70113a93127.ff&quot;  &quot;ffdf1e7011454351.ff&quot;   &quot;ffdf1e701149cfd8f.ff&quot; 
+##  [199] &quot;ffdf1e701163ec7ca.ff&quot;  &quot;ffdf1e70118df6828.ff&quot;  &quot;ffdf1e70119d9c8f2.ff&quot; 
+##  [202] &quot;ffdf1e7011ab2cb13.ff&quot;  &quot;ffdf1e7011c6f1ef2.ff&quot;  &quot;ffdf1e7011ff3b5ce.ff&quot; 
+##  [205] &quot;ffdf1e7012080598c.ff&quot;  &quot;ffdf1e701216aec13.ff&quot;  &quot;ffdf1e70121c294e4.ff&quot; 
+##  [208] &quot;ffdf1e70123667b.ff&quot;    &quot;ffdf1e701242bc3aa.ff&quot;  &quot;ffdf1e701245cdace.ff&quot; 
+##  [211] &quot;ffdf1e70124ff7829.ff&quot;  &quot;ffdf1e7012540c78a.ff&quot;  &quot;ffdf1e701255f11f.ff&quot;  
+##  [214] &quot;ffdf1e70126d0c7cf.ff&quot;  &quot;ffdf1e70127b1bd84.ff&quot;  &quot;ffdf1e7012ac93ad1.ff&quot; 
+##  [217] &quot;ffdf1e7012b2455b.ff&quot;   &quot;ffdf1e7012b78f8e4.ff&quot;  &quot;ffdf1e7012d2036a1.ff&quot; 
+##  [220] &quot;ffdf1e70130e688f5.ff&quot;  &quot;ffdf1e7013133e1b9.ff&quot;  &quot;ffdf1e701321f514.ff&quot;  
+##  [223] &quot;ffdf1e70133e5f9e0.ff&quot;  &quot;ffdf1e70134c315e7.ff&quot;  &quot;ffdf1e70137a512e6.ff&quot; 
+##  [226] &quot;ffdf1e70138ea5638.ff&quot;  &quot;ffdf1e701391bbb2d.ff&quot;  &quot;ffdf1e7013923bfae.ff&quot; 
+##  [229] &quot;ffdf1e7013a1a516b.ff&quot;  &quot;ffdf1e7013a79f8f7.ff&quot;  &quot;ffdf1e7013b75b97a.ff&quot; 
+##  [232] &quot;ffdf1e7013b9685d.ff&quot;   &quot;ffdf1e7013cf0d95f.ff&quot;  &quot;ffdf1e7013d24a714.ff&quot; 
+##  [235] &quot;ffdf1e7013dcced9.ff&quot;   &quot;ffdf1e70141dfe87b.ff&quot;  &quot;ffdf1e701441f7978.ff&quot; 
+##  [238] &quot;ffdf1e7014450909c.ff&quot;  &quot;ffdf1e701459ec99b.ff&quot;  &quot;ffdf1e70145c0001a.ff&quot; 
+##  [241] &quot;ffdf1e70146939527.ff&quot;  &quot;ffdf1e70146b76ea5.ff&quot;  &quot;ffdf1e70147035c6e.ff&quot; 
+##  [244] &quot;ffdf1e701475ec4b9.ff&quot;  &quot;ffdf1e701489c06a5.ff&quot;  &quot;ffdf1e70149ec423d.ff&quot; 
+##  [247] &quot;ffdf1e7014a6bfd58.ff&quot;  &quot;ffdf1e7014adee59d.ff&quot;  &quot;ffdf1e7014cd3d712.ff&quot; 
+##  [250] &quot;ffdf1e7014cf73d8d.ff&quot;  &quot;ffdf1e7014d159c00.ff&quot;  &quot;ffdf1e7014def2f74.ff&quot; 
+##  [253] &quot;ffdf1e7014e839a34.ff&quot;  &quot;ffdf1e70150d40c66.ff&quot;  &quot;ffdf1e701524f51d4.ff&quot; 
+##  [256] &quot;ffdf1e70153e79795.ff&quot;  &quot;ffdf1e701547987a6.ff&quot;  &quot;ffdf1e70157dde213.ff&quot; 
+##  [259] &quot;ffdf1e7015b4a2185.ff&quot;  &quot;ffdf1e7015c57a1a9.ff&quot;  &quot;ffdf1e7015f4e3692.ff&quot; 
+##  [262] &quot;ffdf1e70160b3e23c.ff&quot;  &quot;ffdf1e7016123f92.ff&quot;   &quot;ffdf1e70166d10680.ff&quot; 
+##  [265] &quot;ffdf1e701670e9b46.ff&quot;  &quot;ffdf1e70167d4beb6.ff&quot;  &quot;ffdf1e701684bd07d.ff&quot; 
+##  [268] &quot;ffdf1e701692f8ef.ff&quot;   &quot;ffdf1e70169cb0e10.ff&quot;  &quot;ffdf1e7016b231d89.ff&quot; 
+##  [271] &quot;ffdf1e7017025d87a.ff&quot;  &quot;ffdf1e70172061165.ff&quot;  &quot;ffdf1e701720dc7a.ff&quot;  
+##  [274] &quot;ffdf1e70173bbda5c.ff&quot;  &quot;ffdf1e701750bc1b6.ff&quot;  &quot;ffdf1e70175cd4641.ff&quot; 
+##  [277] &quot;ffdf1e701799b79a.ff&quot;   &quot;ffdf1e7017b68a809.ff&quot;  &quot;ffdf1e7017d502e6e.ff&quot; 
+##  [280] &quot;ffdf1e7017e3e246d.ff&quot;  &quot;ffdf1e7017f9038b8.ff&quot;  &quot;ffdf1e7018551842.ff&quot;  
+##  [283] &quot;ffdf1e7018700a14.ff&quot;   &quot;ffdf1e7018c39a1a.ff&quot;   &quot;ffdf1e7019003a51.ff&quot;  
+##  [286] &quot;ffdf1e7019b4ee03.ff&quot;   &quot;ffdf1e701b460723.ff&quot;   &quot;ffdf1e701e16335e.ff&quot;  
+##  [289] &quot;ffdf1e701f9706f9.ff&quot;   &quot;ffdf1e701ffd8e01.ff&quot;   &quot;ffdf2aea211a9d2f3.ff&quot; 
+##  [292] &quot;ffdf2aea2125f9beb.ff&quot;  &quot;ffdf2aea212c50ad8.ff&quot;  &quot;ffdf2aea21373d31.ff&quot;  
+##  [295] &quot;ffdf2aea21396d91c.ff&quot;  &quot;ffdf2aea215449e20.ff&quot;  &quot;ffdf2aea2159afc27.ff&quot; 
+##  [298] &quot;ffdf2aea2197d5dd6.ff&quot;  &quot;ffdf2aea21a497ec5.ff&quot;  &quot;ffdf2aea21b4925e6.ff&quot; 
+##  [301] &quot;ffdf2aea21bacebae.ff&quot;  &quot;ffdf2aea21be5d36.ff&quot;   &quot;ffdf2aea21c6d8ece.ff&quot; 
+##  [304] &quot;ffdf2aea21dd0b799.ff&quot;  &quot;ffdf2aea22005aa3.ff&quot;   &quot;ffdf2aea2212708e2.ff&quot; 
+##  [307] &quot;ffdf2aea221413bc8.ff&quot;  &quot;ffdf2aea221d20435.ff&quot;  &quot;ffdf2aea22271ba5f.ff&quot; 
+##  [310] &quot;ffdf2aea22444718e.ff&quot;  &quot;ffdf2aea227aebdf1.ff&quot;  &quot;ffdf2aea227c003a0.ff&quot; 
+##  [313] &quot;ffdf2aea2289f4e92.ff&quot;  &quot;ffdf2aea229991fa4.ff&quot;  &quot;ffdf2aea22df3ec18.ff&quot; 
+##  [316] &quot;ffdf2aea2304f7e9d.ff&quot;  &quot;ffdf2aea230e4220d.ff&quot;  &quot;ffdf2aea233f9fcd5.ff&quot; 
+##  [319] &quot;ffdf2aea23458da4b.ff&quot;  &quot;ffdf2aea2363d3988.ff&quot;  &quot;ffdf2aea2364b497f.ff&quot; 
+##  [322] &quot;ffdf2aea237557cde.ff&quot;  &quot;ffdf2aea237d9f5d.ff&quot;   &quot;ffdf2aea238310f44.ff&quot; 
+##  [325] &quot;ffdf2aea2393123c2.ff&quot;  &quot;ffdf2aea23b7087a8.ff&quot;  &quot;ffdf2aea23d70e24b.ff&quot; 
+##  [328] &quot;ffdf2aea23ecbaf8e.ff&quot;  &quot;ffdf2aea23edf492e.ff&quot;  &quot;ffdf2aea23fae902.ff&quot;  
+##  [331] &quot;ffdf2aea241d9c01.ff&quot;   &quot;ffdf2aea244314c61.ff&quot;  &quot;ffdf2aea244597972.ff&quot; 
+##  [334] &quot;ffdf2aea24670062c.ff&quot;  &quot;ffdf2aea24733841d.ff&quot;  &quot;ffdf2aea24790d5f2.ff&quot; 
+##  [337] &quot;ffdf2aea24b0b1425.ff&quot;  &quot;ffdf2aea24b1cf07a.ff&quot;  &quot;ffdf2aea24bae71f3.ff&quot; 
+##  [340] &quot;ffdf2aea24f1ab53e.ff&quot;  &quot;ffdf2aea250d919c6.ff&quot;  &quot;ffdf2aea2529776fd.ff&quot; 
+##  [343] &quot;ffdf2aea252aa7d3.ff&quot;   &quot;ffdf2aea252ae8199.ff&quot;  &quot;ffdf2aea254f9c0ef.ff&quot; 
+##  [346] &quot;ffdf2aea25523e464.ff&quot;  &quot;ffdf2aea2553ce582.ff&quot;  &quot;ffdf2aea256a96a9b.ff&quot; 
+##  [349] &quot;ffdf2aea257dc3698.ff&quot;  &quot;ffdf2aea25cf2cba3.ff&quot;  &quot;ffdf2aea25da0b7d4.ff&quot; 
+##  [352] &quot;ffdf2aea25dc25075.ff&quot;  &quot;ffdf2aea2600ceb56.ff&quot;  &quot;ffdf2aea26199bed3.ff&quot; 
+##  [355] &quot;ffdf2aea266305546.ff&quot;  &quot;ffdf2aea266cd72ff.ff&quot;  &quot;ffdf2aea268cf74c3.ff&quot; 
+##  [358] &quot;ffdf2aea26ceef4af.ff&quot;  &quot;ffdf2aea26dff0410.ff&quot;  &quot;ffdf2aea26f4f85b3.ff&quot; 
+##  [361] &quot;ffdf2aea27042e6d5.ff&quot;  &quot;ffdf2aea27086c2e4.ff&quot;  &quot;ffdf2aea273892246.ff&quot; 
+##  [364] &quot;ffdf2aea27516f90d.ff&quot;  &quot;ffdf2aea27818cedf.ff&quot;  &quot;ffdf2aea27c3096a1.ff&quot; 
+##  [367] &quot;ffdf2aea2bfa0b8b.ff&quot;   &quot;ffdf2aea2e7c30f0.ff&quot;   &quot;ffdf2d4961013983d.ff&quot; 
+##  [370] &quot;ffdf2d496106d71ed.ff&quot;  &quot;ffdf2d49610dcc011.ff&quot;  &quot;ffdf2d49611582295.ff&quot; 
+##  [373] &quot;ffdf2d49612fd0385.ff&quot;  &quot;ffdf2d49613d4f6ed.ff&quot;  &quot;ffdf2d49613d96f9e.ff&quot; 
+##  [376] &quot;ffdf2d496169a9f59.ff&quot;  &quot;ffdf2d49616c18900.ff&quot;  &quot;ffdf2d49616c34633.ff&quot; 
+##  [379] &quot;ffdf2d496183560e5.ff&quot;  &quot;ffdf2d49619378a62.ff&quot;  &quot;ffdf2d4961a902ea8.ff&quot; 
+##  [382] &quot;ffdf2d4961c9263f0.ff&quot;  &quot;ffdf2d4961ca2ccc2.ff&quot;  &quot;ffdf2d4961d62507b.ff&quot; 
+##  [385] &quot;ffdf2d4961e2276d7.ff&quot;  &quot;ffdf2d4961f34f0f1.ff&quot;  &quot;ffdf2d496203a0c22.ff&quot; 
+##  [388] &quot;ffdf2d49620967a59.ff&quot;  &quot;ffdf2d49620b5ab8d.ff&quot;  &quot;ffdf2d49621c4e92e.ff&quot; 
+##  [391] &quot;ffdf2d4962278efad.ff&quot;  &quot;ffdf2d49623c14951.ff&quot;  &quot;ffdf2d4962761eb91.ff&quot; 
+##  [394] &quot;ffdf2d49627f5aeee.ff&quot;  &quot;ffdf2d496283b8a90.ff&quot;  &quot;ffdf2d4962a0dcff6.ff&quot; 
+##  [397] &quot;ffdf2d4962d54e8ec.ff&quot;  &quot;ffdf2d4962db10d9.ff&quot;   &quot;ffdf2d4962db30dc9.ff&quot; 
+##  [400] &quot;ffdf2d4962edfebd1.ff&quot;  &quot;ffdf2d4962ef6e9e5.ff&quot;  &quot;ffdf2d4962fe11818.ff&quot; 
+##  [403] &quot;ffdf2d496321781a7.ff&quot;  &quot;ffdf2d49636444aec.ff&quot;  &quot;ffdf2d4963657f6ef.ff&quot; 
+##  [406] &quot;ffdf2d4963841b710.ff&quot;  &quot;ffdf2d49638697848.ff&quot;  &quot;ffdf2d49638ef0169.ff&quot; 
+##  [409] &quot;ffdf2d4963b84c621.ff&quot;  &quot;ffdf2d4963cab4dbb.ff&quot;  &quot;ffdf2d4963d316f51.ff&quot; 
+##  [412] &quot;ffdf2d4963d352298.ff&quot;  &quot;ffdf2d4963f2376c9.ff&quot;  &quot;ffdf2d496406db597.ff&quot; 
+##  [415] &quot;ffdf2d496408484c8.ff&quot;  &quot;ffdf2d496412d3950.ff&quot;  &quot;ffdf2d496414f5bd2.ff&quot; 
+##  [418] &quot;ffdf2d4964267fd5d.ff&quot;  &quot;ffdf2d49642f80dd.ff&quot;   &quot;ffdf2d496434537a9.ff&quot; 
+##  [421] &quot;ffdf2d496479bf7b3.ff&quot;  &quot;ffdf2d4964954fa74.ff&quot;  &quot;ffdf2d4964a1ead2.ff&quot;  
+##  [424] &quot;ffdf2d4964c0cbd8d.ff&quot;  &quot;ffdf2d4964c7f709.ff&quot;   &quot;ffdf2d4964ea6637a.ff&quot; 
+##  [427] &quot;ffdf2d4964f8d643f.ff&quot;  &quot;ffdf2d4964f98cd4a.ff&quot;  &quot;ffdf2d49653c84e28.ff&quot; 
+##  [430] &quot;ffdf2d49654476e8d.ff&quot;  &quot;ffdf2d49655f252b9.ff&quot;  &quot;ffdf2d49656a8e37e.ff&quot; 
+##  [433] &quot;ffdf2d496576bb953.ff&quot;  &quot;ffdf2d4965770d8d7.ff&quot;  &quot;ffdf2d496577e7084.ff&quot; 
+##  [436] &quot;ffdf2d4965923f538.ff&quot;  &quot;ffdf2d4965b15d937.ff&quot;  &quot;ffdf2d4965c666042.ff&quot; 
+##  [439] &quot;ffdf2d4965d108259.ff&quot;  &quot;ffdf2d4965d77957b.ff&quot;  &quot;ffdf2d49661628a1c.ff&quot; 
+##  [442] &quot;ffdf2d4966271d843.ff&quot;  &quot;ffdf2d49663851f6d.ff&quot;  &quot;ffdf2d49664cbe6c5.ff&quot; 
+##  [445] &quot;ffdf2d496654102d3.ff&quot;  &quot;ffdf2d4966608f1e5.ff&quot;  &quot;ffdf2d4966756073.ff&quot;  
+##  [448] &quot;ffdf2d496681c13ac.ff&quot;  &quot;ffdf2d49669105fe2.ff&quot;  &quot;ffdf2d4966a82531c.ff&quot; 
+##  [451] &quot;ffdf2d4966e81d93e.ff&quot;  &quot;ffdf2d4966f3bba34.ff&quot;  &quot;ffdf2d4966f7ce981.ff&quot; 
+##  [454] &quot;ffdf2d4967323c411.ff&quot;  &quot;ffdf2d49674325791.ff&quot;  &quot;ffdf2d4967449a4e4.ff&quot; 
+##  [457] &quot;ffdf2d496758840d9.ff&quot;  &quot;ffdf2d49679b3795a.ff&quot;  &quot;ffdf2d4967e0556de.ff&quot; 
+##  [460] &quot;ffdf2d4967f407c47.ff&quot;  &quot;ffdf2d496b894f8f.ff&quot;   &quot;ffdf2d496c7ff2bf.ff&quot;  
+##  [463] &quot;ffdf2d496d1db0f.ff&quot;    &quot;ffdf2d496d97ad.ff&quot;     &quot;ffdf2d496fcc9a35.ff&quot;  
+##  [466] &quot;ffdf30811108aca03.ff&quot;  &quot;ffdf3081110a2897a.ff&quot;  &quot;ffdf30811132d8914.ff&quot; 
+##  [469] &quot;ffdf3081113cc82fa.ff&quot;  &quot;ffdf3081115ee8d85.ff&quot;  &quot;ffdf30811160d41ca.ff&quot; 
+##  [472] &quot;ffdf30811186296fd.ff&quot;  &quot;ffdf308111a495892.ff&quot;  &quot;ffdf308111adc7fb.ff&quot;  
+##  [475] &quot;ffdf308111bbe474.ff&quot;   &quot;ffdf308111bfe70d2.ff&quot;  &quot;ffdf308111c40313.ff&quot;  
+##  [478] &quot;ffdf308111e0ac89e.ff&quot;  &quot;ffdf308111f654ff4.ff&quot;  &quot;ffdf30811203f7ca6.ff&quot; 
+##  [481] &quot;ffdf308112088d10f.ff&quot;  &quot;ffdf30811208e1bbb.ff&quot;  &quot;ffdf3081120bfd9a3.ff&quot; 
+##  [484] &quot;ffdf30811212d537d.ff&quot;  &quot;ffdf3081121c035c5.ff&quot;  &quot;ffdf3081122b530ec.ff&quot; 
+##  [487] &quot;ffdf3081122ff9dba.ff&quot;  &quot;ffdf3081124a262c6.ff&quot;  &quot;ffdf30811260536ef.ff&quot; 
+##  [490] &quot;ffdf30811270c4434.ff&quot;  &quot;ffdf30811283531d.ff&quot;   &quot;ffdf308112a51272d.ff&quot; 
+##  [493] &quot;ffdf308112ab5913c.ff&quot;  &quot;ffdf308112b71239b.ff&quot;  &quot;ffdf308112e01d29d.ff&quot; 
+##  [496] &quot;ffdf308112f3c6ac8.ff&quot;  &quot;ffdf308113036acd8.ff&quot;  &quot;ffdf3081135e2ba00.ff&quot; 
+##  [499] &quot;ffdf3081135f99c0e.ff&quot;  &quot;ffdf30811372c1d8d.ff&quot;  &quot;ffdf308113764ec6e.ff&quot; 
+##  [502] &quot;ffdf308113770abf6.ff&quot;  &quot;ffdf3081138e8b18e.ff&quot;  &quot;ffdf308113a3663.ff&quot;   
+##  [505] &quot;ffdf308113a7607bb.ff&quot;  &quot;ffdf308113ac1f056.ff&quot;  &quot;ffdf308113c06487.ff&quot;  
+##  [508] &quot;ffdf308113c7a3610.ff&quot;  &quot;ffdf308113e24ad23.ff&quot;  &quot;ffdf3081142901c05.ff&quot; 
+##  [511] &quot;ffdf3081142a88c8.ff&quot;   &quot;ffdf308114335eae6.ff&quot;  &quot;ffdf308114407b2ba.ff&quot; 
+##  [514] &quot;ffdf3081146f8991c.ff&quot;  &quot;ffdf308114a668070.ff&quot;  &quot;ffdf308114cec2bd5.ff&quot; 
+##  [517] &quot;ffdf3081150336648.ff&quot;  &quot;ffdf3081150b70389.ff&quot;  &quot;ffdf3081153203ca4.ff&quot; 
+##  [520] &quot;ffdf308115351cafa.ff&quot;  &quot;ffdf308115646e279.ff&quot;  &quot;ffdf3081157122f82.ff&quot; 
+##  [523] &quot;ffdf3081157819b0c.ff&quot;  &quot;ffdf3081157fc67e.ff&quot;   &quot;ffdf308115a6d4a42.ff&quot; 
+##  [526] &quot;ffdf308115b71b912.ff&quot;  &quot;ffdf308115d05f56.ff&quot;   &quot;ffdf308115d51fa62.ff&quot; 
+##  [529] &quot;ffdf308115fe5333c.ff&quot;  &quot;ffdf30811603aab49.ff&quot;  &quot;ffdf3081160db552c.ff&quot; 
+##  [532] &quot;ffdf30811649083c9.ff&quot;  &quot;ffdf3081167ad915e.ff&quot;  &quot;ffdf3081168393266.ff&quot; 
+##  [535] &quot;ffdf308116960c46a.ff&quot;  &quot;ffdf30811699bd8a.ff&quot;   &quot;ffdf308116a5b4957.ff&quot; 
+##  [538] &quot;ffdf308116c091152.ff&quot;  &quot;ffdf308116cdaf1ff.ff&quot;  &quot;ffdf308116eb2f73.ff&quot;  
+##  [541] &quot;ffdf308116fff319b.ff&quot;  &quot;ffdf30811731eac78.ff&quot;  &quot;ffdf30811735f5a1a.ff&quot; 
+##  [544] &quot;ffdf30811736c97be.ff&quot;  &quot;ffdf3081173a6ce21.ff&quot;  &quot;ffdf30811756d6ceb.ff&quot; 
+##  [547] &quot;ffdf30811757f260f.ff&quot;  &quot;ffdf308117649bf11.ff&quot;  &quot;ffdf3081177a2532b.ff&quot; 
+##  [550] &quot;ffdf308117807183f.ff&quot;  &quot;ffdf308117879cdd8.ff&quot;  &quot;ffdf308117a32190.ff&quot;  
+##  [553] &quot;ffdf308117ad11d55.ff&quot;  &quot;ffdf308117cb8c58d.ff&quot;  &quot;ffdf308117dbf4130.ff&quot; 
+##  [556] &quot;ffdf308117f75ea93.ff&quot;  &quot;ffdf308117f828399.ff&quot;  &quot;ffdf308119f10c79.ff&quot;  
+##  [559] &quot;ffdf30811d1a6ea5.ff&quot;   &quot;ffdf30811dc94717.ff&quot;   &quot;ffdf30811f5dcaec.ff&quot;  
+##  [562] &quot;ffdf30811fa84ed.ff&quot;    &quot;ffdf32d6fb1077e9a7.ff&quot; &quot;ffdf32d6fb12668a53.ff&quot;
+##  [565] &quot;ffdf32d6fb1c099ce6.ff&quot; &quot;ffdf32d6fb232e04c5.ff&quot; &quot;ffdf32d6fb38961624.ff&quot;
+##  [568] &quot;ffdf32d6fb3b3fea59.ff&quot; &quot;ffdf32d6fb3d058d34.ff&quot; &quot;ffdf32d6fb3e37a088.ff&quot;
+##  [571] &quot;ffdf32d6fb3f12402f.ff&quot; &quot;ffdf32d6fb4f98984.ff&quot;  &quot;ffdf32d6fb4f9a19c3.ff&quot;
+##  [574] &quot;ffdf32d6fb50076313.ff&quot; &quot;ffdf32d6fb52c743ca.ff&quot; &quot;ffdf32d6fb52fd9b5c.ff&quot;
+##  [577] &quot;ffdf32d6fb55647d4f.ff&quot; &quot;ffdf32d6fb591ce210.ff&quot; &quot;ffdf32d6fb5f23ddde.ff&quot;
+##  [580] &quot;ffdf32d6fb627e13fa.ff&quot; &quot;ffdf32d6fb675729e0.ff&quot; &quot;ffdf399cd1366b246.ff&quot; 
+##  [583] &quot;ffdf399cd14418c29.ff&quot;  &quot;ffdf399cd18c9d73f.ff&quot;  &quot;ffdf399cd18f6fcc3.ff&quot; 
+##  [586] &quot;ffdf399cd1a33942.ff&quot;   &quot;ffdf399cd1af253b3.ff&quot;  &quot;ffdf399cd1b2b9eb4.ff&quot; 
+##  [589] &quot;ffdf399cd1badd7a.ff&quot;   &quot;ffdf399cd1c4aa49d.ff&quot;  &quot;ffdf399cd1c59c49b.ff&quot; 
+##  [592] &quot;ffdf399cd20320730.ff&quot;  &quot;ffdf399cd204c5f1f.ff&quot;  &quot;ffdf399cd2131e5d9.ff&quot; 
+##  [595] &quot;ffdf399cd23c7da78.ff&quot;  &quot;ffdf399cd251ecfd4.ff&quot;  &quot;ffdf399cd27172371.ff&quot; 
+##  [598] &quot;ffdf399cd27a83e6f.ff&quot;  &quot;ffdf399cd28a54d72.ff&quot;  &quot;ffdf399cd29091ee3.ff&quot; 
+##  [601] &quot;ffdf399cd29481fdf.ff&quot;  &quot;ffdf399cd294b77b1.ff&quot;  &quot;ffdf399cd2a039f63.ff&quot; 
+##  [604] &quot;ffdf399cd2a4e582a.ff&quot;  &quot;ffdf399cd2be2be8c.ff&quot;  &quot;ffdf399cd2cf7a043.ff&quot; 
+##  [607] &quot;ffdf399cd2de374dd.ff&quot;  &quot;ffdf399cd2e40c7eb.ff&quot;  &quot;ffdf399cd2eb438f5.ff&quot; 
+##  [610] &quot;ffdf399cd2f15fcc1.ff&quot;  &quot;ffdf399cd2f37ff6a.ff&quot;  &quot;ffdf399cd31044811.ff&quot; 
+##  [613] &quot;ffdf399cd314684e2.ff&quot;  &quot;ffdf399cd367a904b.ff&quot;  &quot;ffdf399cd37d6535a.ff&quot; 
+##  [616] &quot;ffdf399cd39455ff6.ff&quot;  &quot;ffdf399cd39a4a3eb.ff&quot;  &quot;ffdf399cd3b904810.ff&quot; 
+##  [619] &quot;ffdf399cd3cd6b830.ff&quot;  &quot;ffdf399cd3eec2014.ff&quot;  &quot;ffdf399cd3f07bdd3.ff&quot; 
+##  [622] &quot;ffdf399cd3f501710.ff&quot;  &quot;ffdf399cd40beeebc.ff&quot;  &quot;ffdf399cd42d4a82b.ff&quot; 
+##  [625] &quot;ffdf399cd44198b9c.ff&quot;  &quot;ffdf399cd444e2b61.ff&quot;  &quot;ffdf399cd447e5438.ff&quot; 
+##  [628] &quot;ffdf399cd46a34118.ff&quot;  &quot;ffdf399cd46bf5311.ff&quot;  &quot;ffdf399cd4c11e588.ff&quot; 
+##  [631] &quot;ffdf399cd4cf5144c.ff&quot;  &quot;ffdf399cd4da998c5.ff&quot;  &quot;ffdf399cd4e8d23d0.ff&quot; 
+##  [634] &quot;ffdf399cd4f36c4a3.ff&quot;  &quot;ffdf399cd4f91aef8.ff&quot;  &quot;ffdf399cd5052cfa1.ff&quot; 
+##  [637] &quot;ffdf399cd516ce3fe.ff&quot;  &quot;ffdf399cd543017f6.ff&quot;  &quot;ffdf399cd5887665b.ff&quot; 
+##  [640] &quot;ffdf399cd589f7fd5.ff&quot;  &quot;ffdf399cd5bc24f40.ff&quot;  &quot;ffdf399cd5c32d383.ff&quot; 
+##  [643] &quot;ffdf399cd5c9a4e6b.ff&quot;  &quot;ffdf399cd5e3e2525.ff&quot;  &quot;ffdf399cd5e635182.ff&quot; 
+##  [646] &quot;ffdf399cd62a4dec7.ff&quot;  &quot;ffdf399cd6307479.ff&quot;   &quot;ffdf399cd63b04978.ff&quot; 
+##  [649] &quot;ffdf399cd63f6fc.ff&quot;    &quot;ffdf399cd679a3c02.ff&quot;  &quot;ffdf399cd67aaf6df.ff&quot; 
+##  [652] &quot;ffdf399cd68531ea.ff&quot;   &quot;ffdf399cd6b17801b.ff&quot;  &quot;ffdf399cd6de42291.ff&quot; 
+##  [655] &quot;ffdf399cd6eeb06eb.ff&quot;  &quot;ffdf399cd70fa07c6.ff&quot;  &quot;ffdf399cd71e74984.ff&quot; 
+##  [658] &quot;ffdf399cd735dfbd2.ff&quot;  &quot;ffdf399cd7487dca4.ff&quot;  &quot;ffdf399cd74c0bc36.ff&quot; 
+##  [661] &quot;ffdf399cd76c6823f.ff&quot;  &quot;ffdf399cd772a793b.ff&quot;  &quot;ffdf399cd7759d0f8.ff&quot; 
+##  [664] &quot;ffdf399cd77ebbac1.ff&quot;  &quot;ffdf399cd787d7820.ff&quot;  &quot;ffdf399cd7969c3d9.ff&quot; 
+##  [667] &quot;ffdf399cd7ae083b2.ff&quot;  &quot;ffdf399cd7b1e18cb.ff&quot;  &quot;ffdf399cd7dbe4fa9.ff&quot; 
+##  [670] &quot;ffdf399cd7e33b759.ff&quot;  &quot;ffdf399cd94bda23.ff&quot;   &quot;ffdf399cdbe12a52.ff&quot;  
+##  [673] &quot;ffdf399cdc27d311.ff&quot;   &quot;ffdf399cdc5848a5.ff&quot;   &quot;ffdf399cdda56e6.ff&quot;   
+##  [676] &quot;ffdf399cde227f3b.ff&quot;   &quot;ffdf399cdf3105e8.ff&quot;   &quot;ffdf399cdf8c509f.ff&quot;  
+##  [679] &quot;ffdf3c3ef1075cd1a.ff&quot;  &quot;ffdf3c3ef136180ac.ff&quot;  &quot;ffdf3c3ef1588a8c8.ff&quot; 
+##  [682] &quot;ffdf3c3ef16f898bc.ff&quot;  &quot;ffdf3c3ef18449e8.ff&quot;   &quot;ffdf3c3ef188c5f39.ff&quot; 
+##  [685] &quot;ffdf3c3ef1e0f0c60.ff&quot;  &quot;ffdf3c3ef1f79e2ca.ff&quot;  &quot;ffdf3c3ef208e0d.ff&quot;   
+##  [688] &quot;ffdf3c3ef22a0b6b7.ff&quot;  &quot;ffdf3c3ef26980416.ff&quot;  &quot;ffdf3c3ef269bb5de.ff&quot; 
+##  [691] &quot;ffdf3c3ef26e416f1.ff&quot;  &quot;ffdf3c3ef28760c8.ff&quot;   &quot;ffdf3c3ef2b1522c.ff&quot;  
+##  [694] &quot;ffdf3c3ef2b5525b2.ff&quot;  &quot;ffdf3c3ef2bcc30e4.ff&quot;  &quot;ffdf3c3ef2c3d18ea.ff&quot; 
+##  [697] &quot;ffdf3c3ef2cd38bf8.ff&quot;  &quot;ffdf3c3ef2d10ad28.ff&quot;  &quot;ffdf3c3ef2d635931.ff&quot; 
+##  [700] &quot;ffdf3c3ef2dd4c753.ff&quot;  &quot;ffdf3c3ef2f15d6b0.ff&quot;  &quot;ffdf3c3ef30bea03a.ff&quot; 
+##  [703] &quot;ffdf3c3ef330688e1.ff&quot;  &quot;ffdf3c3ef33aba7a4.ff&quot;  &quot;ffdf3c3ef3550edb1.ff&quot; 
+##  [706] &quot;ffdf3c3ef3596f210.ff&quot;  &quot;ffdf3c3ef35cdc52.ff&quot;   &quot;ffdf3c3ef36c9b940.ff&quot; 
+##  [709] &quot;ffdf3c3ef37e172d6.ff&quot;  &quot;ffdf3c3ef3b7b2f2b.ff&quot;  &quot;ffdf3c3ef3ccb5ab4.ff&quot; 
+##  [712] &quot;ffdf3c3ef3d1249c2.ff&quot;  &quot;ffdf3c3ef3d7d4b12.ff&quot;  &quot;ffdf3c3ef3e299f31.ff&quot; 
+##  [715] &quot;ffdf3c3ef3eac0e2e.ff&quot;  &quot;ffdf3c3ef3f6c3fb1.ff&quot;  &quot;ffdf3c3ef4012f7a3.ff&quot; 
+##  [718] &quot;ffdf3c3ef4306d392.ff&quot;  &quot;ffdf3c3ef44935bc4.ff&quot;  &quot;ffdf3c3ef46091abd.ff&quot; 
+##  [721] &quot;ffdf3c3ef4963a438.ff&quot;  &quot;ffdf3c3ef4a38a6fd.ff&quot;  &quot;ffdf3c3ef4e8fb035.ff&quot; 
+##  [724] &quot;ffdf3c3ef4eedf47a.ff&quot;  &quot;ffdf3c3ef52240272.ff&quot;  &quot;ffdf3c3ef53d5d916.ff&quot; 
+##  [727] &quot;ffdf3c3ef5476ca9c.ff&quot;  &quot;ffdf3c3ef54cd71b3.ff&quot;  &quot;ffdf3c3ef54f4e879.ff&quot; 
+##  [730] &quot;ffdf3c3ef55a991b8.ff&quot;  &quot;ffdf3c3ef562ce991.ff&quot;  &quot;ffdf3c3ef5656c9d2.ff&quot; 
+##  [733] &quot;ffdf3c3ef56d7486b.ff&quot;  &quot;ffdf3c3ef573fc17f.ff&quot;  &quot;ffdf3c3ef57fed162.ff&quot; 
+##  [736] &quot;ffdf3c3ef581f5f6f.ff&quot;  &quot;ffdf3c3ef5832407e.ff&quot;  &quot;ffdf3c3ef595ebf51.ff&quot; 
+##  [739] &quot;ffdf3c3ef5a0b1371.ff&quot;  &quot;ffdf3c3ef5c9e09e1.ff&quot;  &quot;ffdf3c3ef5cfaa16.ff&quot;  
+##  [742] &quot;ffdf3c3ef5de9bede.ff&quot;  &quot;ffdf3c3ef5e43d1a.ff&quot;   &quot;ffdf3c3ef5ed9fd97.ff&quot; 
+##  [745] &quot;ffdf3c3ef5f99e325.ff&quot;  &quot;ffdf3c3ef605c3cf4.ff&quot;  &quot;ffdf3c3ef61fc478d.ff&quot; 
+##  [748] &quot;ffdf3c3ef641e8bc0.ff&quot;  &quot;ffdf3c3ef6478658b.ff&quot;  &quot;ffdf3c3ef649510d4.ff&quot; 
+##  [751] &quot;ffdf3c3ef64a9a7ad.ff&quot;  &quot;ffdf3c3ef67094788.ff&quot;  &quot;ffdf3c3ef672b3fb4.ff&quot; 
+##  [754] &quot;ffdf3c3ef67cdbefe.ff&quot;  &quot;ffdf3c3ef697af01.ff&quot;   &quot;ffdf3c3ef6f2d07e7.ff&quot; 
+##  [757] &quot;ffdf3c3ef6fc296a4.ff&quot;  &quot;ffdf3c3ef71471665.ff&quot;  &quot;ffdf3c3ef71477fde.ff&quot; 
+##  [760] &quot;ffdf3c3ef743bf5f1.ff&quot;  &quot;ffdf3c3ef7585f891.ff&quot;  &quot;ffdf3c3ef76768fce.ff&quot; 
+##  [763] &quot;ffdf3c3ef780b285a.ff&quot;  &quot;ffdf3c3ef7b5f20f.ff&quot;   &quot;ffdf3c3ef7ba6ea43.ff&quot; 
+##  [766] &quot;ffdf3c3ef7c8a8d30.ff&quot;  &quot;ffdf3c3ef7cae1244.ff&quot;  &quot;ffdf3c3ef7fb79eed.ff&quot; 
+##  [769] &quot;ffdf3c3ef7fd61fbf.ff&quot;  &quot;ffdf3c3ef96cf994.ff&quot;   &quot;ffdf3c3ef9a9fe3f.ff&quot;  
+##  [772] &quot;ffdf3c3ef9b8c347.ff&quot;   &quot;ffdf3c3efa12dfbd.ff&quot;   &quot;ffdf3c3efc1541f2.ff&quot;  
+##  [775] &quot;ffdf3c3efd91d696.ff&quot;   &quot;ffdf3f8e91124f47a.ff&quot;  &quot;ffdf3f8e911bec726.ff&quot; 
+##  [778] &quot;ffdf3f8e91326081d.ff&quot;  &quot;ffdf3f8e91372f458.ff&quot;  &quot;ffdf3f8e9154e1d3f.ff&quot; 
+##  [781] &quot;ffdf3f8e9170e6179.ff&quot;  &quot;ffdf3f8e917ed3575.ff&quot;  &quot;ffdf3f8e917fe3429.ff&quot; 
+##  [784] &quot;ffdf3f8e91c57d250.ff&quot;  &quot;ffdf3f8e91cb01fad.ff&quot;  &quot;ffdf3f8e91d3394d6.ff&quot; 
+##  [787] &quot;ffdf3f8e91db789b5.ff&quot;  &quot;ffdf3f8e91e23612b.ff&quot;  &quot;ffdf3f8e92150e277.ff&quot; 
+##  [790] &quot;ffdf3f8e921946eee.ff&quot;  &quot;ffdf3f8e92340d568.ff&quot;  &quot;ffdf3f8e92a34c671.ff&quot; 
+##  [793] &quot;ffdf3f8e92b9cf6cc.ff&quot;  &quot;ffdf3f8e92baaa033.ff&quot;  &quot;ffdf3f8e92d3bf2ef.ff&quot; 
+##  [796] &quot;ffdf3f8e930599cf3.ff&quot;  &quot;ffdf3f8e93221ca78.ff&quot;  &quot;ffdf3f8e9327fc53.ff&quot;  
+##  [799] &quot;ffdf3f8e934ba770b.ff&quot;  &quot;ffdf3f8e934dd3908.ff&quot;  &quot;ffdf3f8e9362de3de.ff&quot; 
+##  [802] &quot;ffdf3f8e9377a6f5d.ff&quot;  &quot;ffdf3f8e93c220b08.ff&quot;  &quot;ffdf3f8e93c4a540c.ff&quot; 
+##  [805] &quot;ffdf3f8e93e2e801b.ff&quot;  &quot;ffdf3f8e93e3a35ff.ff&quot;  &quot;ffdf3f8e93f49cc9d.ff&quot; 
+##  [808] &quot;ffdf3f8e9408834e4.ff&quot;  &quot;ffdf3f8e940a59e75.ff&quot;  &quot;ffdf3f8e9417608b1.ff&quot; 
+##  [811] &quot;ffdf3f8e942a61556.ff&quot;  &quot;ffdf3f8e946c6a5fa.ff&quot;  &quot;ffdf3f8e947424ba1.ff&quot; 
+##  [814] &quot;ffdf3f8e947f6aece.ff&quot;  &quot;ffdf3f8e9493a1978.ff&quot;  &quot;ffdf3f8e949eb4e9c.ff&quot; 
+##  [817] &quot;ffdf3f8e94aa6af3e.ff&quot;  &quot;ffdf3f8e94cdc8c38.ff&quot;  &quot;ffdf3f8e94deeaaf7.ff&quot; 
+##  [820] &quot;ffdf3f8e94e1b1953.ff&quot;  &quot;ffdf3f8e9510eea5d.ff&quot;  &quot;ffdf3f8e9554037f6.ff&quot; 
+##  [823] &quot;ffdf3f8e955f9dfaf.ff&quot;  &quot;ffdf3f8e956994746.ff&quot;  &quot;ffdf3f8e958859d90.ff&quot; 
+##  [826] &quot;ffdf3f8e9590112c7.ff&quot;  &quot;ffdf3f8e95904d39c.ff&quot;  &quot;ffdf3f8e95a29077a.ff&quot; 
+##  [829] &quot;ffdf3f8e95a9c767b.ff&quot;  &quot;ffdf3f8e95af7109c.ff&quot;  &quot;ffdf3f8e95bcd0fac.ff&quot; 
+##  [832] &quot;ffdf3f8e95c61f4b3.ff&quot;  &quot;ffdf3f8e95d385492.ff&quot;  &quot;ffdf3f8e95d7aae0b.ff&quot; 
+##  [835] &quot;ffdf3f8e95f295865.ff&quot;  &quot;ffdf3f8e95f400dce.ff&quot;  &quot;ffdf3f8e96009a3ba.ff&quot; 
+##  [838] &quot;ffdf3f8e961957ead.ff&quot;  &quot;ffdf3f8e9627a6dc2.ff&quot;  &quot;ffdf3f8e96320f841.ff&quot; 
+##  [841] &quot;ffdf3f8e963952c34.ff&quot;  &quot;ffdf3f8e963fcfa89.ff&quot;  &quot;ffdf3f8e9651413fe.ff&quot; 
+##  [844] &quot;ffdf3f8e966903bc5.ff&quot;  &quot;ffdf3f8e9682c417b.ff&quot;  &quot;ffdf3f8e96a0c572f.ff&quot; 
+##  [847] &quot;ffdf3f8e96a8e5535.ff&quot;  &quot;ffdf3f8e96b0501be.ff&quot;  &quot;ffdf3f8e96b23970c.ff&quot; 
+##  [850] &quot;ffdf3f8e96c429542.ff&quot;  &quot;ffdf3f8e96f1be8b4.ff&quot;  &quot;ffdf3f8e9706de4af.ff&quot; 
+##  [853] &quot;ffdf3f8e9721a67c0.ff&quot;  &quot;ffdf3f8e9727bab50.ff&quot;  &quot;ffdf3f8e9729c4cbd.ff&quot; 
+##  [856] &quot;ffdf3f8e974755e32.ff&quot;  &quot;ffdf3f8e9756e7e67.ff&quot;  &quot;ffdf3f8e976cddc36.ff&quot; 
+##  [859] &quot;ffdf3f8e976d1b03.ff&quot;   &quot;ffdf3f8e976e90d59.ff&quot;  &quot;ffdf3f8e977f03c60.ff&quot; 
+##  [862] &quot;ffdf3f8e979bb44d4.ff&quot;  &quot;ffdf3f8e97aa3c17b.ff&quot;  &quot;ffdf3f8e97ae8f9ac.ff&quot; 
+##  [865] &quot;ffdf3f8e97b9420a9.ff&quot;  &quot;ffdf3f8e97f4ba7be.ff&quot;  &quot;ffdf3f8e97f7c0b20.ff&quot; 
+##  [868] &quot;ffdf3f8e98516648.ff&quot;   &quot;ffdf3f8e988959bb.ff&quot;   &quot;ffdf3f8e996cb77f.ff&quot;  
+##  [871] &quot;ffdf3f8e9c9b1b54.ff&quot;   &quot;ffdf3f8e9d99c2b9.ff&quot;   &quot;ffdf43245102f4f38.ff&quot; 
+##  [874] &quot;ffdf4324510390bf8.ff&quot;  &quot;ffdf432451113874a.ff&quot;  &quot;ffdf4324511af0935.ff&quot; 
+##  [877] &quot;ffdf43245122abda6.ff&quot;  &quot;ffdf43245126bdc18.ff&quot;  &quot;ffdf4324512bb9443.ff&quot; 
+##  [880] &quot;ffdf4324515ab1dfb.ff&quot;  &quot;ffdf43245181977c4.ff&quot;  &quot;ffdf432451c4aed0f.ff&quot; 
+##  [883] &quot;ffdf432451d298cb7.ff&quot;  &quot;ffdf432451d53aa2d.ff&quot;  &quot;ffdf432451eb62cdd.ff&quot; 
+##  [886] &quot;ffdf432451ec7dcf9.ff&quot;  &quot;ffdf4324520274fed.ff&quot;  &quot;ffdf43245230c6634.ff&quot; 
+##  [889] &quot;ffdf4324527089813.ff&quot;  &quot;ffdf43245281d6217.ff&quot;  &quot;ffdf4324529333865.ff&quot; 
+##  [892] &quot;ffdf43245297b1418.ff&quot;  &quot;ffdf432452b079a5b.ff&quot;  &quot;ffdf432452bb83d70.ff&quot; 
+##  [895] &quot;ffdf432452c12f40b.ff&quot;  &quot;ffdf432452cd6e3b0.ff&quot;  &quot;ffdf432452fdc336.ff&quot;  
+##  [898] &quot;ffdf43245301033ac.ff&quot;  &quot;ffdf43245307eac50.ff&quot;  &quot;ffdf43245316f6c00.ff&quot; 
+##  [901] &quot;ffdf4324532b4e538.ff&quot;  &quot;ffdf43245355c0e71.ff&quot;  &quot;ffdf432453578424c.ff&quot; 
+##  [904] &quot;ffdf4324535d85afc.ff&quot;  &quot;ffdf432453802162f.ff&quot;  &quot;ffdf4324538655031.ff&quot; 
+##  [907] &quot;ffdf432453b5f628a.ff&quot;  &quot;ffdf432453c194c1f.ff&quot;  &quot;ffdf432453cc1767e.ff&quot; 
+##  [910] &quot;ffdf4324543f47b0c.ff&quot;  &quot;ffdf4324544d42b2c.ff&quot;  &quot;ffdf4324544e1a1f9.ff&quot; 
+##  [913] &quot;ffdf43245455cde20.ff&quot;  &quot;ffdf432454563957.ff&quot;   &quot;ffdf4324546e78de.ff&quot;  
+##  [916] &quot;ffdf43245472aa6bd.ff&quot;  &quot;ffdf4324547bff5b6.ff&quot;  &quot;ffdf43245485de11a.ff&quot; 
+##  [919] &quot;ffdf4324548a66bed.ff&quot;  &quot;ffdf432454adc2dd8.ff&quot;  &quot;ffdf432454d25683a.ff&quot; 
+##  [922] &quot;ffdf432454eec3424.ff&quot;  &quot;ffdf432454f220e2b.ff&quot;  &quot;ffdf432454f2f17bb.ff&quot; 
+##  [925] &quot;ffdf432454fed3037.ff&quot;  &quot;ffdf432455004247d.ff&quot;  &quot;ffdf43245510a8086.ff&quot; 
+##  [928] &quot;ffdf4324552cbec7a.ff&quot;  &quot;ffdf43245535aad02.ff&quot;  &quot;ffdf43245550d3724.ff&quot; 
+##  [931] &quot;ffdf4324556bbd743.ff&quot;  &quot;ffdf43245589c0e68.ff&quot;  &quot;ffdf432455b2e56e2.ff&quot; 
+##  [934] &quot;ffdf43245602a53d2.ff&quot;  &quot;ffdf4324562c35422.ff&quot;  &quot;ffdf43245639a55ae.ff&quot; 
+##  [937] &quot;ffdf4324563e733a8.ff&quot;  &quot;ffdf43245652127ae.ff&quot;  &quot;ffdf432456553d9f6.ff&quot; 
+##  [940] &quot;ffdf4324567848677.ff&quot;  &quot;ffdf432456844c83b.ff&quot;  &quot;ffdf432456a7493ed.ff&quot; 
+##  [943] &quot;ffdf432456afea159.ff&quot;  &quot;ffdf432456b3eeb8d.ff&quot;  &quot;ffdf432456b5da61a.ff&quot; 
+##  [946] &quot;ffdf432456bcb0a05.ff&quot;  &quot;ffdf432456dfd8442.ff&quot;  &quot;ffdf432456e25cab6.ff&quot; 
+##  [949] &quot;ffdf432456e70bb6c.ff&quot;  &quot;ffdf432456ed300ad.ff&quot;  &quot;ffdf432456facb87c.ff&quot; 
+##  [952] &quot;ffdf43245716bfde0.ff&quot;  &quot;ffdf4324574525d9a.ff&quot;  &quot;ffdf4324576e9c3a9.ff&quot; 
+##  [955] &quot;ffdf43245780c79a1.ff&quot;  &quot;ffdf4324579a41a43.ff&quot;  &quot;ffdf4324579f633db.ff&quot; 
+##  [958] &quot;ffdf432457af1e944.ff&quot;  &quot;ffdf432457c15cf37.ff&quot;  &quot;ffdf432457d383803.ff&quot; 
+##  [961] &quot;ffdf432457e79123a.ff&quot;  &quot;ffdf432457f774d0b.ff&quot;  &quot;ffdf43245a96fe96.ff&quot;  
+##  [964] &quot;ffdf43245a9be3da.ff&quot;   &quot;ffdf43245ab21f14.ff&quot;   &quot;ffdf43245c0c48b6.ff&quot;  
+##  [967] &quot;ffdf43245ccd8e14.ff&quot;   &quot;ffdf43245e4a7ac7.ff&quot;   &quot;ffdf43245e523515.ff&quot;  
+##  [970] &quot;ffdf47e96110d24c.ff&quot;   &quot;ffdf47e9613af174d.ff&quot;  &quot;ffdf47e9613f28f88.ff&quot; 
+##  [973] &quot;ffdf47e9616ec9133.ff&quot;  &quot;ffdf47e9619b7e2eb.ff&quot;  &quot;ffdf47e961acc398f.ff&quot; 
+##  [976] &quot;ffdf47e961ad62ec7.ff&quot;  &quot;ffdf47e961b581683.ff&quot;  &quot;ffdf47e961b64266e.ff&quot; 
+##  [979] &quot;ffdf47e961c3dc2f5.ff&quot;  &quot;ffdf47e961c562778.ff&quot;  &quot;ffdf47e961cb9f643.ff&quot; 
+##  [982] &quot;ffdf47e961dc599eb.ff&quot;  &quot;ffdf47e961df85207.ff&quot;  &quot;ffdf47e961e5e7e27.ff&quot; 
+##  [985] &quot;ffdf47e9620176d0f.ff&quot;  &quot;ffdf47e9620e40a8b.ff&quot;  &quot;ffdf47e9621787693.ff&quot; 
+##  [988] &quot;ffdf47e96234889e2.ff&quot;  &quot;ffdf47e9625becbff.ff&quot;  &quot;ffdf47e9625f0c89e.ff&quot; 
+##  [991] &quot;ffdf47e9627afc0d4.ff&quot;  &quot;ffdf47e962adaa426.ff&quot;  &quot;ffdf47e962b597ff0.ff&quot; 
+##  [994] &quot;ffdf47e962b6b4494.ff&quot;  &quot;ffdf47e962c2cb635.ff&quot;  &quot;ffdf47e962c7c16e0.ff&quot; 
+##  [997] &quot;ffdf47e962e62170b.ff&quot;  &quot;ffdf47e9630bc749d.ff&quot;  &quot;ffdf47e9630e7e03b.ff&quot; 
+## [1000] &quot;ffdf47e96320d9574.ff&quot;  &quot;ffdf47e9633382422.ff&quot;  &quot;ffdf47e96358a0b00.ff&quot; 
+## [1003] &quot;ffdf47e9635a0c330.ff&quot;  &quot;ffdf47e9636e6907.ff&quot;   &quot;ffdf47e9638519b6.ff&quot;  
+## [1006] &quot;ffdf47e96399e8eb4.ff&quot;  &quot;ffdf47e963a2578d3.ff&quot;  &quot;ffdf47e963a423e5.ff&quot;  
+## [1009] &quot;ffdf47e963bdcf601.ff&quot;  &quot;ffdf47e963c369715.ff&quot;  &quot;ffdf47e963c4ea55a.ff&quot; 
+## [1012] &quot;ffdf47e963d42b299.ff&quot;  &quot;ffdf47e963f8211b1.ff&quot;  &quot;ffdf47e9640a629d3.ff&quot; 
+## [1015] &quot;ffdf47e96414c8d09.ff&quot;  &quot;ffdf47e9642a03fed.ff&quot;  &quot;ffdf47e96431c3e48.ff&quot; 
+## [1018] &quot;ffdf47e9643d01451.ff&quot;  &quot;ffdf47e96446b8bea.ff&quot;  &quot;ffdf47e9644c9e6f1.ff&quot; 
+## [1021] &quot;ffdf47e9648de312.ff&quot;   &quot;ffdf47e9649afa0a3.ff&quot;  &quot;ffdf47e964af07d21.ff&quot; 
+## [1024] &quot;ffdf47e964d1e09aa.ff&quot;  &quot;ffdf47e964d8222b6.ff&quot;  &quot;ffdf47e964dce4597.ff&quot; 
+## [1027] &quot;ffdf47e964e77cd8d.ff&quot;  &quot;ffdf47e964efdbdf2.ff&quot;  &quot;ffdf47e9652792ec1.ff&quot; 
+## [1030] &quot;ffdf47e965611d7df.ff&quot;  &quot;ffdf47e965814e917.ff&quot;  &quot;ffdf47e9659c04ab9.ff&quot; 
+## [1033] &quot;ffdf47e965abdfc9b.ff&quot;  &quot;ffdf47e965d550a7a.ff&quot;  &quot;ffdf47e965d937c2d.ff&quot; 
+## [1036] &quot;ffdf47e965ece916.ff&quot;   &quot;ffdf47e96606b50e9.ff&quot;  &quot;ffdf47e96617bc708.ff&quot; 
+## [1039] &quot;ffdf47e96621fb277.ff&quot;  &quot;ffdf47e96623ba1f.ff&quot;   &quot;ffdf47e96629d7733.ff&quot; 
+## [1042] &quot;ffdf47e9663089f72.ff&quot;  &quot;ffdf47e9663376f0f.ff&quot;  &quot;ffdf47e96638cb6d5.ff&quot; 
+## [1045] &quot;ffdf47e966571d862.ff&quot;  &quot;ffdf47e96673d55a7.ff&quot;  &quot;ffdf47e9668d47327.ff&quot; 
+## [1048] &quot;ffdf47e966966e838.ff&quot;  &quot;ffdf47e9669dbf3fb.ff&quot;  &quot;ffdf47e966a14c272.ff&quot; 
+## [1051] &quot;ffdf47e966da151df.ff&quot;  &quot;ffdf47e9670d79370.ff&quot;  &quot;ffdf47e96719ab78c.ff&quot; 
+## [1054] &quot;ffdf47e9671b80770.ff&quot;  &quot;ffdf47e9671b9f6af.ff&quot;  &quot;ffdf47e96765c0fe8.ff&quot; 
+## [1057] &quot;ffdf47e967679215f.ff&quot;  &quot;ffdf47e96771a7c78.ff&quot;  &quot;ffdf47e9677283080.ff&quot; 
+## [1060] &quot;ffdf47e967e05e9e5.ff&quot;  &quot;ffdf47e967f3e8e5f.ff&quot;  &quot;ffdf47e96b9c8f15.ff&quot;  
+## [1063] &quot;ffdf47e96c9eee6.ff&quot;    &quot;ffdf47e96df7dde9.ff&quot;   &quot;ffdf47e96e529095.ff&quot;  
+## [1066] &quot;ffdf47e96f1c7f7b.ff&quot;   &quot;ffdf605a811b005ce.ff&quot;  &quot;ffdf605a81225f999.ff&quot; 
+## [1069] &quot;ffdf605a8142141c5.ff&quot;  &quot;ffdf605a8148c058e.ff&quot;  &quot;ffdf605a815c64517.ff&quot; 
+## [1072] &quot;ffdf605a8163923.ff&quot;    &quot;ffdf605a8184c3f50.ff&quot;  &quot;ffdf605a8188a83f0.ff&quot; 
+## [1075] &quot;ffdf605a81962c61b.ff&quot;  &quot;ffdf605a8197bd841.ff&quot;  &quot;ffdf605a81aa3f7ec.ff&quot; 
+## [1078] &quot;ffdf605a81b36c3be.ff&quot;  &quot;ffdf605a81b5e0b8f.ff&quot;  &quot;ffdf605a81bad10f3.ff&quot; 
+## [1081] &quot;ffdf605a81d85e49.ff&quot;   &quot;ffdf605a81e07564d.ff&quot;  &quot;ffdf605a81e63d2e9.ff&quot; 
+## [1084] &quot;ffdf605a81eee03d3.ff&quot;  &quot;ffdf605a81fc00839.ff&quot;  &quot;ffdf605a81fe1098a.ff&quot; 
+## [1087] &quot;ffdf605a8210e8240.ff&quot;  &quot;ffdf605a82195b22b.ff&quot;  &quot;ffdf605a8222de35d.ff&quot; 
+## [1090] &quot;ffdf605a8234357c8.ff&quot;  &quot;ffdf605a8250d2f72.ff&quot;  &quot;ffdf605a825f3d4a6.ff&quot; 
+## [1093] &quot;ffdf605a826d04f3e.ff&quot;  &quot;ffdf605a828b48f00.ff&quot;  &quot;ffdf605a828cd7d54.ff&quot; 
+## [1096] &quot;ffdf605a82a8b4c89.ff&quot;  &quot;ffdf605a82b128f74.ff&quot;  &quot;ffdf605a82c376194.ff&quot; 
+## [1099] &quot;ffdf605a82d55396b.ff&quot;  &quot;ffdf605a82deecba9.ff&quot;  &quot;ffdf605a82e1f11c7.ff&quot; 
+## [1102] &quot;ffdf605a831c81792.ff&quot;  &quot;ffdf605a83329302d.ff&quot;  &quot;ffdf605a8349f3d8b.ff&quot; 
+## [1105] &quot;ffdf605a834fdeea2.ff&quot;  &quot;ffdf605a836d4c757.ff&quot;  &quot;ffdf605a83818ff8.ff&quot;  
+## [1108] &quot;ffdf605a83c74d7e5.ff&quot;  &quot;ffdf605a83eca26e4.ff&quot;  &quot;ffdf605a840450b60.ff&quot; 
+## [1111] &quot;ffdf605a840b39e41.ff&quot;  &quot;ffdf605a842b2920c.ff&quot;  &quot;ffdf605a8441ebbfc.ff&quot; 
+## [1114] &quot;ffdf605a8455f25ce.ff&quot;  &quot;ffdf605a845f71a45.ff&quot;  &quot;ffdf605a846b158c8.ff&quot; 
+## [1117] &quot;ffdf605a847bf9e09.ff&quot;  &quot;ffdf605a848588ce6.ff&quot;  &quot;ffdf605a84aa8157d.ff&quot; 
+## [1120] &quot;ffdf605a84bb90c55.ff&quot;  &quot;ffdf605a84c60d8ca.ff&quot;  &quot;ffdf605a84cdd0308.ff&quot; 
+## [1123] &quot;ffdf605a84cf82ffd.ff&quot;  &quot;ffdf605a84e4e2191.ff&quot;  &quot;ffdf605a84eeaeb97.ff&quot; 
+## [1126] &quot;ffdf605a85489577c.ff&quot;  &quot;ffdf605a85548d511.ff&quot;  &quot;ffdf605a85592c44e.ff&quot; 
+## [1129] &quot;ffdf605a8565d0d08.ff&quot;  &quot;ffdf605a856679f78.ff&quot;  &quot;ffdf605a85694cf90.ff&quot; 
+## [1132] &quot;ffdf605a8581df3a8.ff&quot;  &quot;ffdf605a859de59b3.ff&quot;  &quot;ffdf605a85a4312e.ff&quot;  
+## [1135] &quot;ffdf605a85fe3370b.ff&quot;  &quot;ffdf605a861d4ecf0.ff&quot;  &quot;ffdf605a86234f3f3.ff&quot; 
+## [1138] &quot;ffdf605a86827f782.ff&quot;  &quot;ffdf605a86ca561bc.ff&quot;  &quot;ffdf605a86d5d5aa2.ff&quot; 
+## [1141] &quot;ffdf605a86db71c84.ff&quot;  &quot;ffdf605a86ea269eb.ff&quot;  &quot;ffdf605a86ea6bd77.ff&quot; 
+## [1144] &quot;ffdf605a86f7ed61c.ff&quot;  &quot;ffdf605a86fb0f30d.ff&quot;  &quot;ffdf605a87099b77f.ff&quot; 
+## [1147] &quot;ffdf605a870cc6833.ff&quot;  &quot;ffdf605a870d2bf06.ff&quot;  &quot;ffdf605a872205eaf.ff&quot; 
+## [1150] &quot;ffdf605a87223f9e3.ff&quot;  &quot;ffdf605a873eba5c3.ff&quot;  &quot;ffdf605a876164c5.ff&quot;  
+## [1153] &quot;ffdf605a8786ffe43.ff&quot;  &quot;ffdf605a87a4aa908.ff&quot;  &quot;ffdf605a87b224d2b.ff&quot; 
+## [1156] &quot;ffdf605a87b70475a.ff&quot;  &quot;ffdf605a87b8084b1.ff&quot;  &quot;ffdf605a87b8ce332.ff&quot; 
+## [1159] &quot;ffdf605a87b96bdd4.ff&quot;  &quot;ffdf605a87d157b92.ff&quot;  &quot;ffdf605a87e0e4a1b.ff&quot; 
+## [1162] &quot;ffdf605a89bdffbd.ff&quot;   &quot;ffdf605a8a46c3b3.ff&quot;   &quot;ffdf63f2312834a37.ff&quot; 
+## [1165] &quot;ffdf63f23175710e.ff&quot;   &quot;ffdf63f23230f9854.ff&quot;  &quot;ffdf63f232a3e4a89.ff&quot; 
+## [1168] &quot;ffdf63f23321e5017.ff&quot;  &quot;ffdf63f23405b9b78.ff&quot;  &quot;ffdf63f23418ed964.ff&quot; 
+## [1171] &quot;ffdf63f234c78ff61.ff&quot;  &quot;ffdf63f234d7fb7cc.ff&quot;  &quot;ffdf63f2356bd32bc.ff&quot; 
+## [1174] &quot;ffdf63f235f257b0.ff&quot;   &quot;ffdf63f2366601411.ff&quot;  &quot;ffdf63f236d897df6.ff&quot; 
+## [1177] &quot;ffdf63f236e544739.ff&quot;  &quot;ffdf63f23763395dd.ff&quot;  &quot;ffdf63f237c32bf78.ff&quot; 
+## [1180] &quot;ffdf63f23939234e.ff&quot;   &quot;ffdf63f23ce71572.ff&quot;   &quot;ffdf63f23e05a53b.ff&quot;  
+## [1183] &quot;ffdfe5f82a783569.ff&quot;   &quot;ffdfe5f82c945547.ff&quot;   &quot;ffdfe5f82cfb64c3.ff&quot;  
+## [1186] &quot;ffdfe5f832f28999.ff&quot;   &quot;ffdfe5f8363498f6.ff&quot;   &quot;ffdfe5f836f1079a.ff&quot;  
+## [1189] &quot;ffdfe5f837265a47.ff&quot;   &quot;ffdfe5f839fa9647.ff&quot;   &quot;ffdfe5f83af13972.ff&quot;  
+## [1192] &quot;ffdfe5f83e6abf2e.ff&quot;   &quot;ffdfe5f85127b5f0.ff&quot;   &quot;ffdfe5f8522d8505.ff&quot;  
+## [1195] &quot;ffdfe5f856972132.ff&quot;   &quot;ffdfe5f85c048607.ff&quot;   &quot;ffdfe5f8619c930.ff&quot;   
+## [1198] &quot;ffdfe5f86e77171.ff&quot;    &quot;ffdfe5f871edeb45.ff&quot;   &quot;ffdfe5f872a02d0d.ff&quot;  
+## [1201] &quot;ffdfe5f8a2a2ba4.ff&quot;    &quot;ffdfe69211cfa687.ff&quot;   &quot;ffdfe69220794987.ff&quot;  
+## [1204] &quot;ffdfe69223779874.ff&quot;   &quot;ffdfe69224b0480f.ff&quot;   &quot;ffdfe6922ba4acbe.ff&quot;  
+## [1207] &quot;ffdfe692314ae39a.ff&quot;   &quot;ffdfe69231bb4bdf.ff&quot;   &quot;ffdfe69231c31c8a.ff&quot;  
+## [1210] &quot;ffdfe69248490454.ff&quot;   &quot;ffdfe6924c4097d5.ff&quot;   &quot;ffdfe69257bdf233.ff&quot;  
+## [1213] &quot;ffdfe69257f52986.ff&quot;   &quot;ffdfe69277681f45.ff&quot;   &quot;ffdfe69277f65102.ff&quot;  
+## [1216] &quot;ffdfe6927aca4eb8.ff&quot;   &quot;ffdfe6927f7236fa.ff&quot;   &quot;ffdfe69286c18c.ff&quot;    
+## [1219] &quot;ffdfe692b9f9dd.ff&quot;     &quot;ffdfe692f0cce99.ff&quot;    &quot;ffdfe6e012cdb66d.ff&quot;  
+## [1222] &quot;ffdfe6e0137cf1bb.ff&quot;   &quot;ffdfe6e014acc5cf.ff&quot;   &quot;ffdfe6e014bb58d8.ff&quot;  
+## [1225] &quot;ffdfe6e0150d16f9.ff&quot;   &quot;ffdfe6e017c5d78a.ff&quot;   &quot;ffdfe6e019d3028d.ff&quot;  
+## [1228] &quot;ffdfe6e01aacee5.ff&quot;    &quot;ffdfe6e01aad4ec.ff&quot;    &quot;ffdfe6e01e311ed3.ff&quot;  
+## [1231] &quot;ffdfe6e0208ef38a.ff&quot;   &quot;ffdfe6e020949e00.ff&quot;   &quot;ffdfe6e020b17fa8.ff&quot;  
+## [1234] &quot;ffdfe6e020c552fb.ff&quot;   &quot;ffdfe6e020f1cad7.ff&quot;   &quot;ffdfe6e0244f2b55.ff&quot;  
+## [1237] &quot;ffdfe6e0275c1905.ff&quot;   &quot;ffdfe6e02aba12ef.ff&quot;   &quot;ffdfe6e02adebe21.ff&quot;  
+## [1240] &quot;ffdfe6e02c024f9.ff&quot;    &quot;ffdfe6e02c2db784.ff&quot;   &quot;ffdfe6e030e8c43a.ff&quot;  
+## [1243] &quot;ffdfe6e031f2ffc0.ff&quot;   &quot;ffdfe6e0368c74de.ff&quot;   &quot;ffdfe6e03810074c.ff&quot;  
+## [1246] &quot;ffdfe6e038c224ec.ff&quot;   &quot;ffdfe6e03900f2a.ff&quot;    &quot;ffdfe6e03dc9b137.ff&quot;  
+## [1249] &quot;ffdfe6e03e2e1f7e.ff&quot;   &quot;ffdfe6e042ee25c5.ff&quot;   &quot;ffdfe6e04364e558.ff&quot;  
+## [1252] &quot;ffdfe6e04615a916.ff&quot;   &quot;ffdfe6e04798ae7a.ff&quot;   &quot;ffdfe6e04874afde.ff&quot;  
+## [1255] &quot;ffdfe6e0491b192.ff&quot;    &quot;ffdfe6e049a5ec12.ff&quot;   &quot;ffdfe6e04ba1c2ec.ff&quot;  
+## [1258] &quot;ffdfe6e04da7dcea.ff&quot;   &quot;ffdfe6e04fa4072c.ff&quot;   &quot;ffdfe6e057fe0ef8.ff&quot;  
+## [1261] &quot;ffdfe6e05947e84.ff&quot;    &quot;ffdfe6e05aeea3a3.ff&quot;   &quot;ffdfe6e05dfb9abe.ff&quot;  
+## [1264] &quot;ffdfe6e060091a53.ff&quot;   &quot;ffdfe6e0615b26fa.ff&quot;   &quot;ffdfe6e0623bfa26.ff&quot;  
+## [1267] &quot;ffdfe6e064c63cfb.ff&quot;   &quot;ffdfe6e06533ff5c.ff&quot;   &quot;ffdfe6e0658583c8.ff&quot;  
+## [1270] &quot;ffdfe6e066d39039.ff&quot;   &quot;ffdfe6e0673e634a.ff&quot;   &quot;ffdfe6e06888e8e9.ff&quot;  
+## [1273] &quot;ffdfe6e069043abe.ff&quot;   &quot;ffdfe6e0693950f8.ff&quot;   &quot;ffdfe6e06c462b1f.ff&quot;  
+## [1276] &quot;ffdfe6e06c4c8439.ff&quot;   &quot;ffdfe6e06d6b51c4.ff&quot;   &quot;ffdfe6e06fe235fb.ff&quot;  
+## [1279] &quot;ffdfe6e06ffdd938.ff&quot;   &quot;ffdfe6e072656f02.ff&quot;   &quot;ffdfe6e072b937c1.ff&quot;  
+## [1282] &quot;ffdfe6e073c0bbbc.ff&quot;   &quot;ffdfe6e074734e9c.ff&quot;   &quot;ffdfe6e074f51d3d.ff&quot;  
+## [1285] &quot;ffdfe6e0759f7066.ff&quot;   &quot;ffdfe6e07680d2ce.ff&quot;   &quot;ffdfe6e078e6f04e.ff&quot;  
+## [1288] &quot;ffdfe6e07920ea95.ff&quot;   &quot;ffdfe6e07a294419.ff&quot;   &quot;ffdfe6e07acaed8b.ff&quot;  
+## [1291] &quot;ffdfe6e07d1122b5.ff&quot;   &quot;ffdfe6e07f6ecb6f.ff&quot;   &quot;ffdfe6e07f83b7bf.ff&quot;  
+## [1294] &quot;ffdfe6e0852cbc8.ff&quot;    &quot;ffdfe6e0916f9b9.ff&quot;    &quot;ffdfe6e0e5f403b.ff&quot;   
+## [1297] &quot;ffdfe6e0f6eab73.ff&quot;    &quot;ffdfe6e0f71e8dc.ff&quot;    &quot;ffe6e01990eebb.ff&quot;    
+## [1300] &quot;ffe6e057919fc7.ff&quot;     &quot;ffe6e07a64a326.ff&quot;</pre>
 
 <pre class = 'prettyprint lang-r'># investigate the structure of the object created in the R environment
 summary(flights)</pre>
@@ -5530,7 +5615,7 @@ flights &lt;- read.big.matrix(&quot;../data/flights.csv&quot;,
 
 <pre >## An object of class &quot;big.matrix&quot;
 ## Slot &quot;address&quot;:
-## &lt;pointer: 0x5625374ac600&gt;</pre>
+## &lt;pointer: 0x558ce6187310&gt;</pre>
 
 </article></slide><slide class=""><hgroup><h2>Memory mapping with <code>bigmemory</code></h2></hgroup><article  id="memory-mapping-with-bigmemory-4">
 
@@ -5554,7 +5639,7 @@ system.time(
 )</pre>
 
 <pre >##    user  system elapsed 
-##   1.074   0.024   1.098</pre>
+##   1.164   0.016   1.180</pre>
 
 <pre class = 'prettyprint lang-r'># import data and check memory used
 mem_change(
@@ -5570,7 +5655,7 @@ mem_change(
 
 <pre >## An object of class &quot;big.matrix&quot;
 ## Slot &quot;address&quot;:
-## &lt;pointer: 0x56253826a320&gt;</pre>
+## &lt;pointer: 0x558ce110f260&gt;</pre>
 
 </article></slide><slide class=""><hgroup><h2>Memory mapping with <code>bigmemory</code></h2></hgroup><article  id="memory-mapping-with-bigmemory-6">
 
@@ -5590,7 +5675,7 @@ system.time(
 )</pre>
 
 <pre >##    user  system elapsed 
-##   1.129   0.008   1.138</pre>
+##   1.100   0.048   1.148</pre>
 
 <pre class = 'prettyprint lang-r'># import data and check memory used
 mem_change(
@@ -5609,7 +5694,7 @@ mem_change(
 
 <pre >## An object of class &quot;big.matrix&quot;
 ## Slot &quot;address&quot;:
-## &lt;pointer: 0x5625316af690&gt;</pre>
+## &lt;pointer: 0x558ce5a65230&gt;</pre>
 
 </article></slide><slide class=""><hgroup><h2>Memory mapping with <code>bigmemory</code></h2></hgroup><article  id="memory-mapping-with-bigmemory-7">
 
@@ -5624,13 +5709,13 @@ rm(flights2)
 system.time(flights2 &lt;- attach.big.matrix(&quot;flights2.desc&quot;))</pre>
 
 <pre >##    user  system elapsed 
-##   0.001   0.000   0.001</pre>
+##   0.000   0.000   0.001</pre>
 
 <pre class = 'prettyprint lang-r'>flights2</pre>
 
 <pre >## An object of class &quot;big.matrix&quot;
 ## Slot &quot;address&quot;:
-## &lt;pointer: 0x5625316af690&gt;</pre>
+## &lt;pointer: 0x558ce5a65230&gt;</pre>
 
 </article></slide><slide class=""><hgroup><h2>References</h2></hgroup><article  class="smaller" id="references">
 
