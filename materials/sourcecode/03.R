@@ -1,9 +1,9 @@
-## -------------------------------------------------------------------------------------------------
+## Load/Import Data -----------------------------------------------------
 url <- "https://vincentarelbundock.github.io/Rdatasets/csv/carData/MplsStops.csv"
 stopdata <- read.csv(url)
 
 
-## -------------------------------------------------------------------------------------------------
+## Data Preparation -------------------------------------------------------------------------------------------------
 # remove incomplete obs
 stopdata <- na.omit(stopdata)
 # code dependent var
@@ -14,16 +14,18 @@ stopdata$white <- 0
 stopdata$white[stopdata$race=="White"] <- 1
 
 
-## -------------------------------------------------------------------------------------------------
+
+
+
+## Fit linear model, compute SEs  --------------------------------------
 model <- vsearch ~ white + factor(policePrecinct)
-
-
-## -------------------------------------------------------------------------------------------------
 fit <- lm(model, stopdata)
 summary(fit)
 
 
-## ----message=FALSE--------------------------------------------------------------------------------
+
+
+## Bootstrap Clustered SEs sequential implementation --------------------------------------------------------------------------------
 # load packages
 library(data.table)
 # set the 'seed' for random numbers (makes the example reproducible)
@@ -49,14 +51,16 @@ for (i in 1:B) {
 }
 
 
-## -------------------------------------------------------------------------------------------------
+## Compute the SEs as the standard deviation of all the coefficient estimates
 se_boot <- apply(boot_coefs, 
                  MARGIN = 2,
                  FUN = sd)
 se_boot
 
 
-## ----message=FALSE--------------------------------------------------------------------------------
+
+
+## Parallel implementation ---------------------------------------
 # install.packages("doSNOW", "parallel")
 # load packages for parallel processing
 library(doSNOW)
@@ -69,11 +73,11 @@ registerDoSNOW(ctemp)
 
 
 # set number of bootstrap iterations
-B <- 10
+B <- 100
 # get selection of precincts
 precincts <- unique(stopdata$policePrecinct)
 # container for coefficients
-boot_coefs <- matrix(NA, nrow = B, ncol = 2)
+#boot_coefs <- matrix(NA, nrow = B, ncol = 2)
 
 # bootstrapping in parallel
 boot_coefs <- 
@@ -97,36 +101,15 @@ stopCluster(cl = ctemp)
 
 
 
-## -------------------------------------------------------------------------------------------------
+## Compute the SEs as the standard deviation of all the coefficient estimates
 se_boot <- apply(boot_coefs, 
                  MARGIN = 2,
                  FUN = sd)
 se_boot
 
 
-## ----eval = FALSE---------------------------------------------------------------------------------
-## ###########################################################
-## # Big Data Statistics: Flights data import and preparation
-## #
-## # U. Matter, January 2019
-## ###########################################################
-## 
-## # SET UP -----------------
-## 
-## # fix variables
-## DATA_PATH <- "../data/flights.csv"
-## 
-## # DATA IMPORT ----------------
-## flights <- read.csv(DATA_PATH)
-## 
-## # DATA PREPARATION --------
-## flights <- flights[,-1:-3]
-## 
-## 
-## 
 
-
-## -------------------------------------------------------------------------------------------------
+## MEMORY MAPPING -------------------------------------------------------------------------------------------------
 
 # SET UP -----------------
 
@@ -151,7 +134,7 @@ flights <- flights[,-1:-3]
 mem_used()
 
 
-## -------------------------------------------------------------------------------------------------
+## clean up
 gc()
 
 
