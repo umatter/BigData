@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Data Aggregation | Big Data Analytics</title>
+  <meta name="description" content="A guide to practical big data analytics in R." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Data Aggregation | Big Data Analytics" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="img/cover.png" />
+  <meta property="og:description" content="A guide to practical big data analytics in R." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Data Aggregation | Big Data Analytics" />
+  
+  <meta name="twitter:description" content="A guide to practical big data analytics in R." />
+  <meta name="twitter:image" content="img/cover.png" />
+
+<meta name="author" content="Ulrich Matter" />
+
+
+<meta name="date" content="2022-01-20" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="big-data-cleaning-and-transformation.html"/>
+<link rel="next" href="data-storage-and-databases.html"/>
+<script src="libs/header-attrs/header-attrs.js"></script>
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Big Data Analytics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#example-of-computation-time-and-memory-allocation"><i class="fa fa-check"></i><b>1.1</b> Example of Computation Time and Memory Allocation</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="introduction.html"><a href="introduction.html#preparation"><i class="fa fa-check"></i><b>1.1.1</b> Preparation</a></li>
+<li class="chapter" data-level="1.1.2" data-path="introduction.html"><a href="introduction.html#naïve-approach-ignorant-of-r"><i class="fa fa-check"></i><b>1.1.2</b> Naïve Approach (ignorant of R)</a></li>
+<li class="chapter" data-level="1.1.3" data-path="introduction.html"><a href="introduction.html#improvement-1-pre-allocation-of-memory"><i class="fa fa-check"></i><b>1.1.3</b> Improvement 1: Pre-allocation of memory</a></li>
+<li class="chapter" data-level="1.1.4" data-path="introduction.html"><a href="introduction.html#improvement-2-exploit-vectorization"><i class="fa fa-check"></i><b>1.1.4</b> Improvement 2: Exploit vectorization</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="computing-resources.html"><a href="computing-resources.html"><i class="fa fa-check"></i><b>2</b> Computing Resources</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="computing-resources.html"><a href="computing-resources.html#components-of-a-standard-computing-environment"><i class="fa fa-check"></i><b>2.1</b> Components of a standard computing environment</a></li>
+<li class="chapter" data-level="2.2" data-path="computing-resources.html"><a href="computing-resources.html#units-of-informationdata-storage"><i class="fa fa-check"></i><b>2.2</b> Units of information/data storage</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="computing-resources.html"><a href="computing-resources.html#example-in-r-data-types-and-information-storage"><i class="fa fa-check"></i><b>2.2.1</b> Example in R: Data types and information storage</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="computing-resources.html"><a href="computing-resources.html#big-data-econometrics"><i class="fa fa-check"></i><b>2.3</b> Big Data econometrics</a></li>
+<li class="chapter" data-level="2.4" data-path="computing-resources.html"><a href="computing-resources.html#example-fast-least-squares-regression"><i class="fa fa-check"></i><b>2.4</b> Example: Fast least squares regression</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="computing-resources.html"><a href="computing-resources.html#ols-as-a-point-of-reference"><i class="fa fa-check"></i><b>2.4.1</b> OLS as a point of reference</a></li>
+<li class="chapter" data-level="2.4.2" data-path="computing-resources.html"><a href="computing-resources.html#the-uluru-algorithm-as-an-alternative-to-ols"><i class="fa fa-check"></i><b>2.4.2</b> The Uluru algorithm as an alternative to OLS</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="resource-allocation.html"><a href="resource-allocation.html"><i class="fa fa-check"></i><b>3</b> Resource allocation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="resource-allocation.html"><a href="resource-allocation.html#case-study-parallel-processing"><i class="fa fa-check"></i><b>3.1</b> Case study: Parallel processing</a></li>
+<li class="chapter" data-level="3.2" data-path="resource-allocation.html"><a href="resource-allocation.html#case-study-memory-allocation"><i class="fa fa-check"></i><b>3.2</b> Case study: Memory allocation</a></li>
+<li class="chapter" data-level="3.3" data-path="resource-allocation.html"><a href="resource-allocation.html#beyond-memory"><i class="fa fa-check"></i><b>3.3</b> Beyond memory</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html"><i class="fa fa-check"></i><b>4</b> Advanced R Programming</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#r-tools-to-investigate-performanceresource-allocation"><i class="fa fa-check"></i><b>4.1</b> R-tools to investigate performance/resource allocation</a></li>
+<li class="chapter" data-level="4.2" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#r-tools-to-investigate-structures-and-types"><i class="fa fa-check"></i><b>4.2</b> R-tools to investigate structures and types</a></li>
+<li class="chapter" data-level="4.3" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#data-types-and-memorystorage"><i class="fa fa-check"></i><b>4.3</b> Data types and memory/storage</a></li>
+<li class="chapter" data-level="4.4" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#data-structures"><i class="fa fa-check"></i><b>4.4</b> Data structures</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#vectors-vs-factors-in-r"><i class="fa fa-check"></i><b>4.4.1</b> Vectors vs Factors in R</a></li>
+<li class="chapter" data-level="4.4.2" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#matricesarrays"><i class="fa fa-check"></i><b>4.4.2</b> Matrices/Arrays</a></li>
+<li class="chapter" data-level="4.4.3" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#data-frames-tibbles-and-data-tables"><i class="fa fa-check"></i><b>4.4.3</b> Data frames, tibbles, and data tables</a></li>
+<li class="chapter" data-level="4.4.4" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#lists"><i class="fa fa-check"></i><b>4.4.4</b> Lists</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#programming-with-big-data-in-r"><i class="fa fa-check"></i><b>4.5</b> Programming with (Big) Data in R</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#typical-programming-tasks"><i class="fa fa-check"></i><b>4.5.1</b> Typical Programming Tasks</a></li>
+<li class="chapter" data-level="4.5.2" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#building-blocks-for-programming-with-big-data"><i class="fa fa-check"></i><b>4.5.2</b> Building blocks for programming with big data</a></li>
+<li class="chapter" data-level="4.5.3" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#writing-efficient-code"><i class="fa fa-check"></i><b>4.5.3</b> Writing efficient code</a></li>
+<li class="chapter" data-level="4.5.4" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#r-beyond-r"><i class="fa fa-check"></i><b>4.5.4</b> R, beyond R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html"><i class="fa fa-check"></i><b>5</b> Big Data Cleaning and Transformation</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#out-of-memory-strategies"><i class="fa fa-check"></i><b>5.1</b> ‘Out-of-memory’ strategies</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#chunking-data-with-the-ff-package"><i class="fa fa-check"></i><b>5.1.1</b> Chunking data with the <code>ff</code>-package</a></li>
+<li class="chapter" data-level="5.1.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#memory-mapping-with-bigmemory"><i class="fa fa-check"></i><b>5.1.2</b> Memory mapping with <code>bigmemory</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#typical-cleaning-tasks"><i class="fa fa-check"></i><b>5.2</b> Typical cleaning tasks</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#data-preparation-with-ff"><i class="fa fa-check"></i><b>5.2.1</b> Data Preparation with <code>ff</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data-aggregation.html"><a href="data-aggregation.html"><i class="fa fa-check"></i><b>6</b> Data Aggregation</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="data-aggregation.html"><a href="data-aggregation.html#data-aggregation-the-split-apply-combine-strategy"><i class="fa fa-check"></i><b>6.1</b> Data aggregation: The ‘split-apply-combine’ strategy</a></li>
+<li class="chapter" data-level="6.2" data-path="data-aggregation.html"><a href="data-aggregation.html#data-aggregation-tutorial"><i class="fa fa-check"></i><b>6.2</b> Data aggregation tutorial</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="data-aggregation.html"><a href="data-aggregation.html#gathering-and-compilation-of-all-the-raw-data"><i class="fa fa-check"></i><b>6.2.1</b> Gathering and Compilation of all the raw data</a></li>
+<li class="chapter" data-level="6.2.2" data-path="data-aggregation.html"><a href="data-aggregation.html#data-aggregation-with-chunked-data-files"><i class="fa fa-check"></i><b>6.2.2</b> Data aggregation with chunked data files</a></li>
+<li class="chapter" data-level="6.2.3" data-path="data-aggregation.html"><a href="data-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>6.2.3</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html"><i class="fa fa-check"></i><b>7</b> Data Storage and Databases</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#big-data-storage"><i class="fa fa-check"></i><b>7.1</b> (Big) Data Storage</a></li>
+<li class="chapter" data-level="7.2" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#rdbms-basics"><i class="fa fa-check"></i><b>7.2</b> RDBMS basics</a></li>
+<li class="chapter" data-level="7.3" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#getting-started-with-rsqlite"><i class="fa fa-check"></i><b>7.3</b> Getting started with (R)SQLite</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#first-steps-in-sqlite"><i class="fa fa-check"></i><b>7.3.1</b> First steps in SQLite</a></li>
+<li class="chapter" data-level="7.3.2" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#indices-and-joins"><i class="fa fa-check"></i><b>7.3.2</b> Indices and joins</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#sqlite-from-within-r"><i class="fa fa-check"></i><b>7.4</b> SQLite from within R</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#creating-a-new-database-with-rsqlite"><i class="fa fa-check"></i><b>7.4.1</b> Creating a new database with <code>RSQLite</code></a></li>
+<li class="chapter" data-level="7.4.2" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#importing-data"><i class="fa fa-check"></i><b>7.4.2</b> Importing data</a></li>
+<li class="chapter" data-level="7.4.3" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#issue-queries"><i class="fa fa-check"></i><b>7.4.3</b> Issue queries</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="big-data-visualization.html"><a href="big-data-visualization.html"><i class="fa fa-check"></i><b>8</b> (Big) Data Visualization</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#data-set"><i class="fa fa-check"></i><b>8.1</b> Data Set</a></li>
+<li class="chapter" data-level="8.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-modify-and-create-themes"><i class="fa fa-check"></i><b>8.2</b> Excursus: modify and create themes</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#create-your-own-theme-simple-approach"><i class="fa fa-check"></i><b>8.2.1</b> Create your own theme: simple approach</a></li>
+<li class="chapter" data-level="8.2.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#implementing-actual-themes-as-functions."><i class="fa fa-check"></i><b>8.2.2</b> Implementing actual themes as functions.</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="big-data-visualization.html"><a href="big-data-visualization.html#visualize-time-and-space"><i class="fa fa-check"></i><b>8.3</b> Visualize Time and Space</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#preparations"><i class="fa fa-check"></i><b>8.3.1</b> Preparations</a></li>
+<li class="chapter" data-level="8.3.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#pick-up-and-drop-off-locations"><i class="fa fa-check"></i><b>8.3.2</b> Pick-up and drop-off locations</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-change-color-schemes"><i class="fa fa-check"></i><b>8.4</b> Excursus: change color schemes</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html"><i class="fa fa-check"></i><b>9</b> Cloud Services for Big Data Analytics</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#scaling-up-in-the-cloud"><i class="fa fa-check"></i><b>9.1</b> Scaling up in the Cloud</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#parallelization-with-an-ec2-instance"><i class="fa fa-check"></i><b>9.1.1</b> Parallelization with an EC2 instance</a></li>
+<li class="chapter" data-level="9.1.2" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#mass-storage-mariadb-on-an-ec2-instance"><i class="fa fa-check"></i><b>9.1.2</b> Mass Storage: MariaDB on an EC2 instance</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#distributed-systemsmapreduce"><i class="fa fa-check"></i><b>9.2</b> Distributed Systems/MapReduce</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#mapreduce-concept-illustration-in-r"><i class="fa fa-check"></i><b>9.2.1</b> Map/Reduce Concept: Illustration in R</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#hadoop-word-count"><i class="fa fa-check"></i><b>9.3</b> Hadoop Word Count</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#install-hadoop-on-ubuntupop_os-linux"><i class="fa fa-check"></i><b>9.3.1</b> Install Hadoop (on Ubuntu/Pop!_OS Linux)</a></li>
+<li class="chapter" data-level="9.3.2" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#run-hadoop"><i class="fa fa-check"></i><b>9.3.2</b> Run Hadoop</a></li>
+<li class="chapter" data-level="9.3.3" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#run-example"><i class="fa fa-check"></i><b>9.3.3</b> Run example</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html"><i class="fa fa-check"></i><b>10</b> GPUs for Scientific Computing</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#gpus-in-r"><i class="fa fa-check"></i><b>10.1</b> GPUs in R</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#example-i-matrix-multiplication-comparison-gpur"><i class="fa fa-check"></i><b>10.1.1</b> Example I: Matrix multiplication comparison (<code>gpuR</code>)</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#gpus-and-machine-learning"><i class="fa fa-check"></i><b>10.2</b> GPUs and Machine Learning</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#tensorflowkeras-example-predict-housing-prices"><i class="fa fa-check"></i><b>10.2.1</b> Tensorflow/Keras example: predict housing prices</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#a-word-of-caution"><i class="fa fa-check"></i><b>10.3</b> A word of caution</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html"><i class="fa fa-check"></i><b>11</b> Applied Econometrics with Apache Spark</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html#spark-basics"><i class="fa fa-check"></i><b>11.1</b> Spark basics</a></li>
+<li class="chapter" data-level="11.2" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html#spark-in-r"><i class="fa fa-check"></i><b>11.2</b> Spark in R</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html#data-import-and-summary-statistics"><i class="fa fa-check"></i><b>11.2.1</b> Data import and summary statistics</a></li>
+<li class="chapter" data-level="11.2.2" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html#regression-analysis-with-sparklyr"><i class="fa fa-check"></i><b>11.2.2</b> Regression analysis with <code>sparklyr</code></a></li>
+</ul></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="appendix-a.html"><a href="appendix-a.html"><i class="fa fa-check"></i><b>A</b> Appendix A</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="appendix-a.html"><a href="appendix-a.html#github"><i class="fa fa-check"></i><b>A.1</b> GitHub</a>
+<ul>
+<li class="chapter" data-level="A.1.1" data-path="appendix-a.html"><a href="appendix-a.html#initiate-a-new-repository"><i class="fa fa-check"></i><b>A.1.1</b> Initiate a new repository</a></li>
+<li class="chapter" data-level="A.1.2" data-path="appendix-a.html"><a href="appendix-a.html#clone-this-courses-repository"><i class="fa fa-check"></i><b>A.1.2</b> Clone this course’s repository</a></li>
+<li class="chapter" data-level="A.1.3" data-path="appendix-a.html"><a href="appendix-a.html#fork-this-courses-repository"><i class="fa fa-check"></i><b>A.1.3</b> Fork this course’s repository</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="appendix-b.html"><a href="appendix-b.html"><i class="fa fa-check"></i><b>B</b> Appendix B</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://umatter.github.io" target="blank">umatter.github.io</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Big Data Analytics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-aggregation" class="section level1" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Data Aggregation</h1>
+<div id="data-aggregation-the-split-apply-combine-strategy" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> Data aggregation: The ‘split-apply-combine’ strategy</h2>
+<p>The ‘split-apply-combine’ strategy plays an important role in many data analysis tasks, ranging from data preparation to summary statistics and model-fitting.<a href="#fn8" class="footnote-ref" id="fnref8"><sup>8</sup></a> The strategy can be defined as “break up a problem into manageable pieces, operate on each piece independently and then put all the pieces back together.” <span class="citation">(<a href="references.html#ref-wickham_2011" role="doc-biblioref">Wickham 2011, 1</a>)</span></p>
+<p>Many R users are familiar with the basic concept of split-apply-combine implemented in the <code>plyr</code>-package intended for the usual in-memory operations (data set fits into RAM). Here, we explore the options for split-apply-combine approaches to large data sets that do not fit into RAM.</p>
+</div>
+<div id="data-aggregation-tutorial" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> Data aggregation tutorial</h2>
+<p>In this tutorial we explore the world of New York’s famous Yellow Caps. The NYC Taxi &amp; Limousine Commission (TLC) provides detailed data on all trip records including pick-up and drop-off times/locations. When combining all available trip records (2009-2018), we get a rather large data set of over 200GB. The code examples below illustrate how to collect and compile the entire data set. In order to avoid long computing times, the code examples shown below are based on a small sub-set of the actual raw data (however, all examples involving virtual memory, are in theory scalable to the extent of the entire raw data set).</p>
+<div id="gathering-and-compilation-of-all-the-raw-data" class="section level3" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Gathering and Compilation of all the raw data</h3>
+<p>The raw data consists of several monthly CSV-files and can be downloaded via the <a href="https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page">TLC’s website</a>. The following short R-script automates the downloading of all available trip-record files. <em>NOTE</em>: Downloading all files can take several hours and will occupy over 200GB!</p>
+<div class="sourceCode" id="cb234"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb234-1"><a href="data-aggregation.html#cb234-1" aria-hidden="true" tabindex="-1"></a><span class="do">#################################</span></span>
+<span id="cb234-2"><a href="data-aggregation.html#cb234-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Fetch all TLC trip recrods</span></span>
+<span id="cb234-3"><a href="data-aggregation.html#cb234-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Data source: </span></span>
+<span id="cb234-4"><a href="data-aggregation.html#cb234-4" aria-hidden="true" tabindex="-1"></a><span class="co"># https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page</span></span>
+<span id="cb234-5"><a href="data-aggregation.html#cb234-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Input: Monthly csv files from urls</span></span>
+<span id="cb234-6"><a href="data-aggregation.html#cb234-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: one large csv file</span></span>
+<span id="cb234-7"><a href="data-aggregation.html#cb234-7" aria-hidden="true" tabindex="-1"></a><span class="co"># UM, St. Gallen, January 2019</span></span>
+<span id="cb234-8"><a href="data-aggregation.html#cb234-8" aria-hidden="true" tabindex="-1"></a><span class="do">#################################</span></span>
+<span id="cb234-9"><a href="data-aggregation.html#cb234-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb234-10"><a href="data-aggregation.html#cb234-10" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP -----------------</span></span>
+<span id="cb234-11"><a href="data-aggregation.html#cb234-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb234-12"><a href="data-aggregation.html#cb234-12" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb234-13"><a href="data-aggregation.html#cb234-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb234-14"><a href="data-aggregation.html#cb234-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)</span>
+<span id="cb234-15"><a href="data-aggregation.html#cb234-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr)</span>
+<span id="cb234-16"><a href="data-aggregation.html#cb234-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb234-17"><a href="data-aggregation.html#cb234-17" aria-hidden="true" tabindex="-1"></a><span class="co"># fix vars</span></span>
+<span id="cb234-18"><a href="data-aggregation.html#cb234-18" aria-hidden="true" tabindex="-1"></a>BASE_URL <span class="ot">&lt;-</span> <span class="st">&quot;https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2018-01.csv&quot;</span></span>
+<span id="cb234-19"><a href="data-aggregation.html#cb234-19" aria-hidden="true" tabindex="-1"></a>OUTPUT_PATH <span class="ot">&lt;-</span> <span class="st">&quot;data/tlc_trips.csv&quot;</span></span>
+<span id="cb234-20"><a href="data-aggregation.html#cb234-20" aria-hidden="true" tabindex="-1"></a>START_DATE <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">&quot;2009-01-01&quot;</span>)</span>
+<span id="cb234-21"><a href="data-aggregation.html#cb234-21" aria-hidden="true" tabindex="-1"></a>END_DATE <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">&quot;2018-06-01&quot;</span>)</span>
+<span id="cb234-22"><a href="data-aggregation.html#cb234-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb234-23"><a href="data-aggregation.html#cb234-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb234-24"><a href="data-aggregation.html#cb234-24" aria-hidden="true" tabindex="-1"></a><span class="co"># BUILD URLS -----------</span></span>
+<span id="cb234-25"><a href="data-aggregation.html#cb234-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb234-26"><a href="data-aggregation.html#cb234-26" aria-hidden="true" tabindex="-1"></a><span class="co"># parse base url</span></span>
+<span id="cb234-27"><a href="data-aggregation.html#cb234-27" aria-hidden="true" tabindex="-1"></a>base_url <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;2018-01.csv&quot;</span>, <span class="st">&quot;&quot;</span>, BASE_URL)</span>
+<span id="cb234-28"><a href="data-aggregation.html#cb234-28" aria-hidden="true" tabindex="-1"></a><span class="co"># build urls</span></span>
+<span id="cb234-29"><a href="data-aggregation.html#cb234-29" aria-hidden="true" tabindex="-1"></a>dates <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from=</span> START_DATE,</span>
+<span id="cb234-30"><a href="data-aggregation.html#cb234-30" aria-hidden="true" tabindex="-1"></a>                   <span class="at">to =</span> END_DATE,</span>
+<span id="cb234-31"><a href="data-aggregation.html#cb234-31" aria-hidden="true" tabindex="-1"></a>                   <span class="at">by =</span> <span class="st">&quot;month&quot;</span>)</span>
+<span id="cb234-32"><a href="data-aggregation.html#cb234-32" aria-hidden="true" tabindex="-1"></a>year_months <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;-01$&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="fu">as.character</span>(dates))</span>
+<span id="cb234-33"><a href="data-aggregation.html#cb234-33" aria-hidden="true" tabindex="-1"></a>data_urls <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, year_months, <span class="st">&quot;.csv&quot;</span>)</span>
+<span id="cb234-34"><a href="data-aggregation.html#cb234-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb234-35"><a href="data-aggregation.html#cb234-35" aria-hidden="true" tabindex="-1"></a><span class="co"># FETCH AND STACK CSVS ----------------</span></span>
+<span id="cb234-36"><a href="data-aggregation.html#cb234-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb234-37"><a href="data-aggregation.html#cb234-37" aria-hidden="true" tabindex="-1"></a><span class="co"># download, parse all files, write them to one csv</span></span>
+<span id="cb234-38"><a href="data-aggregation.html#cb234-38" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (url <span class="cf">in</span> data_urls) {</span>
+<span id="cb234-39"><a href="data-aggregation.html#cb234-39" aria-hidden="true" tabindex="-1"></a>     </span>
+<span id="cb234-40"><a href="data-aggregation.html#cb234-40" aria-hidden="true" tabindex="-1"></a>     <span class="co"># download to temporary file</span></span>
+<span id="cb234-41"><a href="data-aggregation.html#cb234-41" aria-hidden="true" tabindex="-1"></a>     tmpfile <span class="ot">&lt;-</span> <span class="fu">tempfile</span>()</span>
+<span id="cb234-42"><a href="data-aggregation.html#cb234-42" aria-hidden="true" tabindex="-1"></a>     <span class="fu">download.file</span>(url, <span class="at">destfile =</span> tmpfile)</span>
+<span id="cb234-43"><a href="data-aggregation.html#cb234-43" aria-hidden="true" tabindex="-1"></a>     </span>
+<span id="cb234-44"><a href="data-aggregation.html#cb234-44" aria-hidden="true" tabindex="-1"></a>     <span class="co"># parse downloaded file, write to output csv, remove tempfile</span></span>
+<span id="cb234-45"><a href="data-aggregation.html#cb234-45" aria-hidden="true" tabindex="-1"></a>     csv_parsed <span class="ot">&lt;-</span> <span class="fu">fread</span>(tmpfile)</span>
+<span id="cb234-46"><a href="data-aggregation.html#cb234-46" aria-hidden="true" tabindex="-1"></a>     <span class="fu">fwrite</span>(csv_parsed,</span>
+<span id="cb234-47"><a href="data-aggregation.html#cb234-47" aria-hidden="true" tabindex="-1"></a>            <span class="at">file =</span>  OUTPUT_PATH,</span>
+<span id="cb234-48"><a href="data-aggregation.html#cb234-48" aria-hidden="true" tabindex="-1"></a>            <span class="at">append =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb234-49"><a href="data-aggregation.html#cb234-49" aria-hidden="true" tabindex="-1"></a>     <span class="fu">unlink</span>(tmpfile)</span>
+<span id="cb234-50"><a href="data-aggregation.html#cb234-50" aria-hidden="true" tabindex="-1"></a>     </span>
+<span id="cb234-51"><a href="data-aggregation.html#cb234-51" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+</div>
+<div id="data-aggregation-with-chunked-data-files" class="section level3" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> Data aggregation with chunked data files</h3>
+<p>In this first part of the data aggregation tutorial, we will focus on the <code>ff</code>-based approach to employ parts of the hard disk as ‘virtual memory.’ This means, all of the examples are easily scalable without risking too much memory pressure. Given the size of the entire TLC database (over 200GB), we will only use one million taxi trips records of January 2009.<a href="#fn9" class="footnote-ref" id="fnref9"><sup>9</sup></a></p>
+<div id="data-import-1" class="section level4" number="6.2.2.1">
+<h4><span class="header-section-number">6.2.2.1</span> Data import</h4>
+<p>First, we read the raw taxi trips records into R with the <code>ff</code>-package.</p>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="data-aggregation.html#cb235-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb235-2"><a href="data-aggregation.html#cb235-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ff)</span>
+<span id="cb235-3"><a href="data-aggregation.html#cb235-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ffbase)</span>
+<span id="cb235-4"><a href="data-aggregation.html#cb235-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb235-5"><a href="data-aggregation.html#cb235-5" aria-hidden="true" tabindex="-1"></a><span class="co"># set up the ff directory (for data file chunks)</span></span>
+<span id="cb235-6"><a href="data-aggregation.html#cb235-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="st">&quot;fftaxi&quot;</span>)){</span>
+<span id="cb235-7"><a href="data-aggregation.html#cb235-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">system</span>(<span class="st">&quot;mkdir fftaxi&quot;</span>)</span>
+<span id="cb235-8"><a href="data-aggregation.html#cb235-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb235-9"><a href="data-aggregation.html#cb235-9" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">fftempdir =</span> <span class="st">&quot;fftaxi&quot;</span>)</span>
+<span id="cb235-10"><a href="data-aggregation.html#cb235-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb235-11"><a href="data-aggregation.html#cb235-11" aria-hidden="true" tabindex="-1"></a><span class="co"># import a few lines of the data, setting the column classes explicitly</span></span>
+<span id="cb235-12"><a href="data-aggregation.html#cb235-12" aria-hidden="true" tabindex="-1"></a>col_classes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">V1 =</span> <span class="st">&quot;factor&quot;</span>,</span>
+<span id="cb235-13"><a href="data-aggregation.html#cb235-13" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V2 =</span> <span class="st">&quot;POSIXct&quot;</span>,</span>
+<span id="cb235-14"><a href="data-aggregation.html#cb235-14" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V3 =</span> <span class="st">&quot;POSIXct&quot;</span>,</span>
+<span id="cb235-15"><a href="data-aggregation.html#cb235-15" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V4 =</span> <span class="st">&quot;integer&quot;</span>,</span>
+<span id="cb235-16"><a href="data-aggregation.html#cb235-16" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V5 =</span> <span class="st">&quot;numeric&quot;</span>,</span>
+<span id="cb235-17"><a href="data-aggregation.html#cb235-17" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V6 =</span> <span class="st">&quot;numeric&quot;</span>,</span>
+<span id="cb235-18"><a href="data-aggregation.html#cb235-18" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V7 =</span> <span class="st">&quot;numeric&quot;</span>,</span>
+<span id="cb235-19"><a href="data-aggregation.html#cb235-19" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V8 =</span> <span class="st">&quot;numeric&quot;</span>,</span>
+<span id="cb235-20"><a href="data-aggregation.html#cb235-20" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V9 =</span> <span class="st">&quot;numeric&quot;</span>,</span>
+<span id="cb235-21"><a href="data-aggregation.html#cb235-21" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V10 =</span> <span class="st">&quot;numeric&quot;</span>,</span>
+<span id="cb235-22"><a href="data-aggregation.html#cb235-22" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V11 =</span> <span class="st">&quot;numeric&quot;</span>,</span>
+<span id="cb235-23"><a href="data-aggregation.html#cb235-23" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V12 =</span> <span class="st">&quot;factor&quot;</span>,</span>
+<span id="cb235-24"><a href="data-aggregation.html#cb235-24" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V13 =</span> <span class="st">&quot;numeric&quot;</span>,</span>
+<span id="cb235-25"><a href="data-aggregation.html#cb235-25" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V14 =</span> <span class="st">&quot;numeric&quot;</span>,</span>
+<span id="cb235-26"><a href="data-aggregation.html#cb235-26" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V15 =</span> <span class="st">&quot;factor&quot;</span>,</span>
+<span id="cb235-27"><a href="data-aggregation.html#cb235-27" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V16 =</span> <span class="st">&quot;numeric&quot;</span>,</span>
+<span id="cb235-28"><a href="data-aggregation.html#cb235-28" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V17 =</span> <span class="st">&quot;numeric&quot;</span>,</span>
+<span id="cb235-29"><a href="data-aggregation.html#cb235-29" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V18 =</span> <span class="st">&quot;numeric&quot;</span>)</span>
+<span id="cb235-30"><a href="data-aggregation.html#cb235-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb235-31"><a href="data-aggregation.html#cb235-31" aria-hidden="true" tabindex="-1"></a><span class="co"># import the first one million observations</span></span>
+<span id="cb235-32"><a href="data-aggregation.html#cb235-32" aria-hidden="true" tabindex="-1"></a>taxi <span class="ot">&lt;-</span> <span class="fu">read.table.ffdf</span>(<span class="at">file =</span> <span class="st">&quot;data/tlc_trips.csv&quot;</span>,</span>
+<span id="cb235-33"><a href="data-aggregation.html#cb235-33" aria-hidden="true" tabindex="-1"></a>                        <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>,</span>
+<span id="cb235-34"><a href="data-aggregation.html#cb235-34" aria-hidden="true" tabindex="-1"></a>                        <span class="at">header =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb235-35"><a href="data-aggregation.html#cb235-35" aria-hidden="true" tabindex="-1"></a>                        <span class="at">next.rows =</span> <span class="dv">100000</span>,</span>
+<span id="cb235-36"><a href="data-aggregation.html#cb235-36" aria-hidden="true" tabindex="-1"></a>                        <span class="at">colClasses=</span> col_classes,</span>
+<span id="cb235-37"><a href="data-aggregation.html#cb235-37" aria-hidden="true" tabindex="-1"></a>                        <span class="at">nrows =</span> <span class="dv">1000000</span></span>
+<span id="cb235-38"><a href="data-aggregation.html#cb235-38" aria-hidden="true" tabindex="-1"></a>                        )</span></code></pre></div>
+<p>Following the data documentation provided by TLC, we give the columns of our data set more meaningful names and remove the empty columns (some covariates are only collected in later years).</p>
+<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="data-aggregation.html#cb236-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first, we remove the empty vars V8 and V9</span></span>
+<span id="cb236-2"><a href="data-aggregation.html#cb236-2" aria-hidden="true" tabindex="-1"></a>taxi<span class="sc">$</span>V8 <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb236-3"><a href="data-aggregation.html#cb236-3" aria-hidden="true" tabindex="-1"></a>taxi<span class="sc">$</span>V9 <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb236-4"><a href="data-aggregation.html#cb236-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb236-5"><a href="data-aggregation.html#cb236-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb236-6"><a href="data-aggregation.html#cb236-6" aria-hidden="true" tabindex="-1"></a><span class="co"># set covariate names according to the data dictionary</span></span>
+<span id="cb236-7"><a href="data-aggregation.html#cb236-7" aria-hidden="true" tabindex="-1"></a><span class="co"># see https://www1.nyc.gov/assets/tlc/downloads/pdf/data_dictionary_trip_records_yellow.pdf</span></span>
+<span id="cb236-8"><a href="data-aggregation.html#cb236-8" aria-hidden="true" tabindex="-1"></a><span class="co"># note instead of taxizonne ids, long/lat are provided</span></span>
+<span id="cb236-9"><a href="data-aggregation.html#cb236-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb236-10"><a href="data-aggregation.html#cb236-10" aria-hidden="true" tabindex="-1"></a>varnames <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;vendor_id&quot;</span>,</span>
+<span id="cb236-11"><a href="data-aggregation.html#cb236-11" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;pickup_time&quot;</span>,</span>
+<span id="cb236-12"><a href="data-aggregation.html#cb236-12" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;dropoff_time&quot;</span>,</span>
+<span id="cb236-13"><a href="data-aggregation.html#cb236-13" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;passenger_count&quot;</span>,</span>
+<span id="cb236-14"><a href="data-aggregation.html#cb236-14" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;trip_distance&quot;</span>,</span>
+<span id="cb236-15"><a href="data-aggregation.html#cb236-15" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;start_lat&quot;</span>,</span>
+<span id="cb236-16"><a href="data-aggregation.html#cb236-16" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;start_long&quot;</span>,</span>
+<span id="cb236-17"><a href="data-aggregation.html#cb236-17" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;dest_lat&quot;</span>,</span>
+<span id="cb236-18"><a href="data-aggregation.html#cb236-18" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;dest_long&quot;</span>,</span>
+<span id="cb236-19"><a href="data-aggregation.html#cb236-19" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;payment_type&quot;</span>,</span>
+<span id="cb236-20"><a href="data-aggregation.html#cb236-20" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;fare_amount&quot;</span>,</span>
+<span id="cb236-21"><a href="data-aggregation.html#cb236-21" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;extra&quot;</span>,</span>
+<span id="cb236-22"><a href="data-aggregation.html#cb236-22" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;mta_tax&quot;</span>,</span>
+<span id="cb236-23"><a href="data-aggregation.html#cb236-23" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;tip_amount&quot;</span>,</span>
+<span id="cb236-24"><a href="data-aggregation.html#cb236-24" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;tolls_amount&quot;</span>,</span>
+<span id="cb236-25"><a href="data-aggregation.html#cb236-25" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;total_amount&quot;</span>)</span>
+<span id="cb236-26"><a href="data-aggregation.html#cb236-26" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(taxi) <span class="ot">&lt;-</span> varnames</span></code></pre></div>
+<p>When inspecting the factor variables of the data set, we notice that some of the values are not standardized/normalized and the resulting factor levels are, therefore, somewhat ambiguous. We better clean this before getting into data aggregation tasks. Note the <code>ff</code>-specific syntax needed to recode the factor.</p>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="data-aggregation.html#cb237-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect the factor levels</span></span>
+<span id="cb237-2"><a href="data-aggregation.html#cb237-2" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(taxi<span class="sc">$</span>payment_type)</span></code></pre></div>
+<pre><code>## [1] &quot;Cash&quot;      &quot;CASH&quot;      &quot;Credit&quot;    &quot;CREDIT&quot;   
+## [5] &quot;Dispute&quot;   &quot;No Charge&quot;</code></pre>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="data-aggregation.html#cb239-1" aria-hidden="true" tabindex="-1"></a><span class="co"># recode them</span></span>
+<span id="cb239-2"><a href="data-aggregation.html#cb239-2" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(taxi<span class="sc">$</span>payment_type) <span class="ot">&lt;-</span> <span class="fu">tolower</span>(<span class="fu">levels</span>(taxi<span class="sc">$</span>payment_type))</span>
+<span id="cb239-3"><a href="data-aggregation.html#cb239-3" aria-hidden="true" tabindex="-1"></a>taxi<span class="sc">$</span>payment_type <span class="ot">&lt;-</span> <span class="fu">ff</span>(taxi<span class="sc">$</span>payment_type,</span>
+<span id="cb239-4"><a href="data-aggregation.html#cb239-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">unique</span>(<span class="fu">levels</span>(taxi<span class="sc">$</span>payment_type)),</span>
+<span id="cb239-5"><a href="data-aggregation.html#cb239-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">ramclass =</span> <span class="st">&quot;factor&quot;</span>)</span>
+<span id="cb239-6"><a href="data-aggregation.html#cb239-6" aria-hidden="true" tabindex="-1"></a><span class="co"># check result</span></span>
+<span id="cb239-7"><a href="data-aggregation.html#cb239-7" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(taxi<span class="sc">$</span>payment_type)</span></code></pre></div>
+<pre><code>## [1] &quot;cash&quot;      &quot;credit&quot;    &quot;dispute&quot;   &quot;no charge&quot;</code></pre>
+</div>
+<div id="aggregation-with-split-apply-combine" class="section level4" number="6.2.2.2">
+<h4><span class="header-section-number">6.2.2.2</span> Aggregation with split-apply-combine</h4>
+<p>First, we have a look at whether trips paid with credit card tend to involve lower tip amounts than trips paid by cash. In order to do so, we create a table that shows the average amount of tip paid for each payment-type category.</p>
+<p>In simple words, this means we first split the data set into subsets, each of which containing all observations belonging to a distinct payment type. Then, we compute the arithmetic mean of the tip-column of each of these subsets. Finally, we combine all of these results in one table (i.e., the split-apply-combine strategy). When working with <code>ff</code>, the <code>ffdfply()</code>-function provides a user-friendly implementation of split-apply-combine type of tasks.</p>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="data-aggregation.html#cb241-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb241-2"><a href="data-aggregation.html#cb241-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(doBy)</span>
+<span id="cb241-3"><a href="data-aggregation.html#cb241-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb241-4"><a href="data-aggregation.html#cb241-4" aria-hidden="true" tabindex="-1"></a><span class="co"># split-apply-combine procedure on data file chunks</span></span>
+<span id="cb241-5"><a href="data-aggregation.html#cb241-5" aria-hidden="true" tabindex="-1"></a>tip_pcategory <span class="ot">&lt;-</span> <span class="fu">ffdfdply</span>(taxi,</span>
+<span id="cb241-6"><a href="data-aggregation.html#cb241-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">split =</span> taxi<span class="sc">$</span>payment_type,</span>
+<span id="cb241-7"><a href="data-aggregation.html#cb241-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">BATCHBYTES =</span> <span class="dv">100000000</span>,</span>
+<span id="cb241-8"><a href="data-aggregation.html#cb241-8" aria-hidden="true" tabindex="-1"></a>                          <span class="at">FUN =</span> <span class="cf">function</span>(x) {</span>
+<span id="cb241-9"><a href="data-aggregation.html#cb241-9" aria-hidden="true" tabindex="-1"></a>                               <span class="fu">summaryBy</span>(tip_amount<span class="sc">~</span>payment_type,</span>
+<span id="cb241-10"><a href="data-aggregation.html#cb241-10" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">data =</span> x,</span>
+<span id="cb241-11"><a href="data-aggregation.html#cb241-11" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">FUN =</span> mean,</span>
+<span id="cb241-12"><a href="data-aggregation.html#cb241-12" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">na.rm =</span> <span class="cn">TRUE</span>)})</span></code></pre></div>
+<pre><code>## 2022-01-20 15:51:28, calculating split sizes</code></pre>
+<pre><code>## 2022-01-20 15:51:28, building up split locations</code></pre>
+<pre><code>## 2022-01-20 15:51:29, working on split 1/2, extracting data in RAM of 1 split elements, totalling, 0.0815 GB, while max specified data specified using BATCHBYTES is 0.09313 GB</code></pre>
+<pre><code>## 2022-01-20 15:51:29, ... applying FUN to selected data</code></pre>
+<pre><code>## 2022-01-20 15:51:29, ... appending result to the output ffdf</code></pre>
+<pre><code>## 2022-01-20 15:51:29, working on split 2/2, extracting data in RAM of 3 split elements, totalling, 0.02281 GB, while max specified data specified using BATCHBYTES is 0.09313 GB</code></pre>
+<pre><code>## 2022-01-20 15:51:29, ... applying FUN to selected data</code></pre>
+<pre><code>## 2022-01-20 15:51:29, ... appending result to the output ffdf</code></pre>
+<p>Note how the output describes the procedure step by step. Now we can have a look at the resulting summary statistic in the form of a <code>data.frame()</code>.</p>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="data-aggregation.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(tip_pcategory)</span></code></pre></div>
+<pre><code>##   payment_type tip_amount.mean
+## 1         cash       0.0008162
+## 2       credit       2.1619737
+## 3      dispute       0.0035075
+## 4    no charge       0.0041056</code></pre>
+<p>The result would go against our initial hypothesis. However, the comparison is a little flawed. If trips paid by credit card also tend to be longer, the result is not too surprising. We should thus look at the share of tip (or percentage), given the overall amount paid for the trip.</p>
+<p>We add an additional variable <code>percent_tip</code> and then repeat the aggregation exercise for this variable.</p>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="data-aggregation.html#cb252-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add additional column with the share of tip</span></span>
+<span id="cb252-2"><a href="data-aggregation.html#cb252-2" aria-hidden="true" tabindex="-1"></a>taxi<span class="sc">$</span>percent_tip <span class="ot">&lt;-</span> (taxi<span class="sc">$</span>tip_amount<span class="sc">/</span>taxi<span class="sc">$</span>total_amount)<span class="sc">*</span><span class="dv">100</span></span>
+<span id="cb252-3"><a href="data-aggregation.html#cb252-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb252-4"><a href="data-aggregation.html#cb252-4" aria-hidden="true" tabindex="-1"></a><span class="co"># recompute the aggregate stats</span></span>
+<span id="cb252-5"><a href="data-aggregation.html#cb252-5" aria-hidden="true" tabindex="-1"></a>tip_pcategory <span class="ot">&lt;-</span> <span class="fu">ffdfdply</span>(taxi,</span>
+<span id="cb252-6"><a href="data-aggregation.html#cb252-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">split =</span> taxi<span class="sc">$</span>payment_type,</span>
+<span id="cb252-7"><a href="data-aggregation.html#cb252-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">BATCHBYTES =</span> <span class="dv">100000000</span>,</span>
+<span id="cb252-8"><a href="data-aggregation.html#cb252-8" aria-hidden="true" tabindex="-1"></a>                          <span class="at">FUN =</span> <span class="cf">function</span>(x) {</span>
+<span id="cb252-9"><a href="data-aggregation.html#cb252-9" aria-hidden="true" tabindex="-1"></a>                               <span class="fu">summaryBy</span>(percent_tip<span class="sc">~</span>payment_type, <span class="co"># note the difference here</span></span>
+<span id="cb252-10"><a href="data-aggregation.html#cb252-10" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">data =</span> x,</span>
+<span id="cb252-11"><a href="data-aggregation.html#cb252-11" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">FUN =</span> mean,</span>
+<span id="cb252-12"><a href="data-aggregation.html#cb252-12" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">na.rm =</span> <span class="cn">TRUE</span>)})</span></code></pre></div>
+<pre><code>## 2022-01-20 15:51:29, calculating split sizes</code></pre>
+<pre><code>## 2022-01-20 15:51:29, building up split locations</code></pre>
+<pre><code>## 2022-01-20 15:51:30, working on split 1/2, extracting data in RAM of 1 split elements, totalling, 0.08732 GB, while max specified data specified using BATCHBYTES is 0.09313 GB</code></pre>
+<pre><code>## 2022-01-20 15:51:30, ... applying FUN to selected data</code></pre>
+<pre><code>## 2022-01-20 15:51:30, ... appending result to the output ffdf</code></pre>
+<pre><code>## 2022-01-20 15:51:30, working on split 2/2, extracting data in RAM of 3 split elements, totalling, 0.02444 GB, while max specified data specified using BATCHBYTES is 0.09313 GB</code></pre>
+<pre><code>## 2022-01-20 15:51:30, ... applying FUN to selected data</code></pre>
+<pre><code>## 2022-01-20 15:51:30, ... appending result to the output ffdf</code></pre>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="data-aggregation.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="co"># show result as data frame</span></span>
+<span id="cb261-2"><a href="data-aggregation.html#cb261-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(tip_pcategory)</span></code></pre></div>
+<pre><code>##   payment_type percent_tip.mean
+## 1         cash         0.005978
+## 2       credit        16.004173
+## 3      dispute         0.045660
+## 4    no charge         0.040433</code></pre>
+</div>
+<div id="cross-tabulation-of-ff-vectors" class="section level4" number="6.2.2.3">
+<h4><span class="header-section-number">6.2.2.3</span> Cross-tabulation of <code>ff</code> vectors</h4>
+<p>Also in relative terms, trips paid by credit card tend to be tipped more. However, are there actually many trips paid by credit card? In order to figure this out, we count the number of trips per payment type by applying the <code>table.ff</code>-function provided in <code>ffbase</code>.</p>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="data-aggregation.html#cb263-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table.ff</span>(taxi<span class="sc">$</span>payment_type)</span></code></pre></div>
+<pre><code>## 
+##      cash    credit   dispute no charge 
+##    781295    215424       536      2745</code></pre>
+<p>Incidentally, trips paid in cash are way more frequent than trips paid by credit card. Again using the <code>table.ff</code>-function, we investigate what factors might be correlated with payment types. First, we have a look at whether payment type is associated with the number of passengers in a trip.</p>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="data-aggregation.html#cb265-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select the subset of observations only containing trips paid by credit card or cash</span></span>
+<span id="cb265-2"><a href="data-aggregation.html#cb265-2" aria-hidden="true" tabindex="-1"></a>taxi_sub <span class="ot">&lt;-</span> <span class="fu">subset.ffdf</span>(taxi, payment_type<span class="sc">==</span><span class="st">&quot;credit&quot;</span> <span class="sc">|</span> payment_type <span class="sc">==</span> <span class="st">&quot;cash&quot;</span>)</span>
+<span id="cb265-3"><a href="data-aggregation.html#cb265-3" aria-hidden="true" tabindex="-1"></a>taxi_sub<span class="sc">$</span>payment_type <span class="ot">&lt;-</span> <span class="fu">ff</span>(taxi_sub<span class="sc">$</span>payment_type,</span>
+<span id="cb265-4"><a href="data-aggregation.html#cb265-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;credit&quot;</span>, <span class="st">&quot;cash&quot;</span>),</span>
+<span id="cb265-5"><a href="data-aggregation.html#cb265-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">ramclass =</span> <span class="st">&quot;factor&quot;</span>)</span>
+<span id="cb265-6"><a href="data-aggregation.html#cb265-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb265-7"><a href="data-aggregation.html#cb265-7" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the cross tabulation</span></span>
+<span id="cb265-8"><a href="data-aggregation.html#cb265-8" aria-hidden="true" tabindex="-1"></a>crosstab <span class="ot">&lt;-</span> <span class="fu">table.ff</span>(taxi_sub<span class="sc">$</span>passenger_count,</span>
+<span id="cb265-9"><a href="data-aggregation.html#cb265-9" aria-hidden="true" tabindex="-1"></a>                     taxi_sub<span class="sc">$</span>payment_type</span>
+<span id="cb265-10"><a href="data-aggregation.html#cb265-10" aria-hidden="true" tabindex="-1"></a>                     )</span>
+<span id="cb265-11"><a href="data-aggregation.html#cb265-11" aria-hidden="true" tabindex="-1"></a><span class="co"># add names to the margins</span></span>
+<span id="cb265-12"><a href="data-aggregation.html#cb265-12" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(<span class="fu">dimnames</span>(crosstab)) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Passenger count&quot;</span>, <span class="st">&quot;Payment type&quot;</span>)</span>
+<span id="cb265-13"><a href="data-aggregation.html#cb265-13" aria-hidden="true" tabindex="-1"></a><span class="co"># show result</span></span>
+<span id="cb265-14"><a href="data-aggregation.html#cb265-14" aria-hidden="true" tabindex="-1"></a>crosstab</span></code></pre></div>
+<pre><code>##                Payment type
+## Passenger count credit   cash
+##               0      2     44
+##               1 149990 516828
+##               2  32891 133468
+##               3   7847  36439
+##               4   2909  17901
+##               5  20688  73027
+##               6   1097   3588</code></pre>
+<p>From the raw numbers it is hard to see whether there are significant differences between the categories cash and credit. We therefore use a visualization technique called ‘mosaic plot’ to visualize the cross-tabulation.</p>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="data-aggregation.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(vcd)</span></span>
+<span id="cb267-2"><a href="data-aggregation.html#cb267-2" aria-hidden="true" tabindex="-1"></a><span class="co"># load package for mosaic plot</span></span>
+<span id="cb267-3"><a href="data-aggregation.html#cb267-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vcd)</span></code></pre></div>
+<pre><code>## Loading required package: grid</code></pre>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="data-aggregation.html#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generate a mosaic plot</span></span>
+<span id="cb269-2"><a href="data-aggregation.html#cb269-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mosaic</span>(crosstab, <span class="at">shade =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="bigdata_files/figure-html/unnamed-chunk-95-1.png" width="672" /></p>
+<p>The plot suggests that trips involving more than one passenger tend to be paid rather by cash than by credit card.</p>
+</div>
+</div>
+<div id="high-speed-in-memory-data-aggregation-with-data.table" class="section level3" number="6.2.3">
+<h3><span class="header-section-number">6.2.3</span> High-speed in-memory data aggregation with <code>data.table</code></h3>
+<p>For large data sets that still fit into RAM, the <code>data.table</code>-package provides very fast and elegant functions to compute aggregate statistics.</p>
+<div id="data-import-2" class="section level4" number="6.2.3.1">
+<h4><span class="header-section-number">6.2.3.1</span> Data import</h4>
+<p>We use the already familiar <code>fread()</code> to import the same first million observations from the January 2009 taxi trips records.</p>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="data-aggregation.html#cb270-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb270-2"><a href="data-aggregation.html#cb270-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb270-3"><a href="data-aggregation.html#cb270-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb270-4"><a href="data-aggregation.html#cb270-4" aria-hidden="true" tabindex="-1"></a><span class="co"># import data into RAM (needs around 200MB)</span></span>
+<span id="cb270-5"><a href="data-aggregation.html#cb270-5" aria-hidden="true" tabindex="-1"></a>taxi <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;data/tlc_trips.csv&quot;</span>,</span>
+<span id="cb270-6"><a href="data-aggregation.html#cb270-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">nrows =</span> <span class="dv">1000000</span>)</span></code></pre></div>
+</div>
+<div id="data-preparation" class="section level4" number="6.2.3.2">
+<h4><span class="header-section-number">6.2.3.2</span> Data preparation</h4>
+<p>We prepare/clean the data as in the <code>ff</code>-approach above.</p>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="data-aggregation.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first, we remove the empty vars V8 and V9</span></span>
+<span id="cb271-2"><a href="data-aggregation.html#cb271-2" aria-hidden="true" tabindex="-1"></a>taxi<span class="sc">$</span>V8 <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb271-3"><a href="data-aggregation.html#cb271-3" aria-hidden="true" tabindex="-1"></a>taxi<span class="sc">$</span>V9 <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb271-4"><a href="data-aggregation.html#cb271-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-5"><a href="data-aggregation.html#cb271-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-6"><a href="data-aggregation.html#cb271-6" aria-hidden="true" tabindex="-1"></a><span class="co"># set covariate names according to the data dictionary</span></span>
+<span id="cb271-7"><a href="data-aggregation.html#cb271-7" aria-hidden="true" tabindex="-1"></a><span class="co"># see https://www1.nyc.gov/assets/tlc/downloads/pdf/data_dictionary_trip_records_yellow.pdf</span></span>
+<span id="cb271-8"><a href="data-aggregation.html#cb271-8" aria-hidden="true" tabindex="-1"></a><span class="co"># note instead of taxizonne ids, long/lat are provided</span></span>
+<span id="cb271-9"><a href="data-aggregation.html#cb271-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-10"><a href="data-aggregation.html#cb271-10" aria-hidden="true" tabindex="-1"></a>varnames <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;vendor_id&quot;</span>,</span>
+<span id="cb271-11"><a href="data-aggregation.html#cb271-11" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;pickup_time&quot;</span>,</span>
+<span id="cb271-12"><a href="data-aggregation.html#cb271-12" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;dropoff_time&quot;</span>,</span>
+<span id="cb271-13"><a href="data-aggregation.html#cb271-13" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;passenger_count&quot;</span>,</span>
+<span id="cb271-14"><a href="data-aggregation.html#cb271-14" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;trip_distance&quot;</span>,</span>
+<span id="cb271-15"><a href="data-aggregation.html#cb271-15" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;start_lat&quot;</span>,</span>
+<span id="cb271-16"><a href="data-aggregation.html#cb271-16" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;start_long&quot;</span>,</span>
+<span id="cb271-17"><a href="data-aggregation.html#cb271-17" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;dest_lat&quot;</span>,</span>
+<span id="cb271-18"><a href="data-aggregation.html#cb271-18" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;dest_long&quot;</span>,</span>
+<span id="cb271-19"><a href="data-aggregation.html#cb271-19" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;payment_type&quot;</span>,</span>
+<span id="cb271-20"><a href="data-aggregation.html#cb271-20" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;fare_amount&quot;</span>,</span>
+<span id="cb271-21"><a href="data-aggregation.html#cb271-21" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;extra&quot;</span>,</span>
+<span id="cb271-22"><a href="data-aggregation.html#cb271-22" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;mta_tax&quot;</span>,</span>
+<span id="cb271-23"><a href="data-aggregation.html#cb271-23" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;tip_amount&quot;</span>,</span>
+<span id="cb271-24"><a href="data-aggregation.html#cb271-24" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;tolls_amount&quot;</span>,</span>
+<span id="cb271-25"><a href="data-aggregation.html#cb271-25" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;total_amount&quot;</span>)</span>
+<span id="cb271-26"><a href="data-aggregation.html#cb271-26" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(taxi) <span class="ot">&lt;-</span> varnames</span>
+<span id="cb271-27"><a href="data-aggregation.html#cb271-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb271-28"><a href="data-aggregation.html#cb271-28" aria-hidden="true" tabindex="-1"></a><span class="co"># clean the factor levels</span></span>
+<span id="cb271-29"><a href="data-aggregation.html#cb271-29" aria-hidden="true" tabindex="-1"></a>taxi<span class="sc">$</span>payment_type <span class="ot">&lt;-</span> <span class="fu">tolower</span>(taxi<span class="sc">$</span>payment_type)</span>
+<span id="cb271-30"><a href="data-aggregation.html#cb271-30" aria-hidden="true" tabindex="-1"></a>taxi<span class="sc">$</span>payment_type <span class="ot">&lt;-</span> <span class="fu">factor</span>(taxi<span class="sc">$</span>payment_type, <span class="at">levels =</span> <span class="fu">unique</span>(taxi<span class="sc">$</span>payment_type))     </span></code></pre></div>
+<p>Note the simpler syntax of essentially doing the same thing, but all in-memory.</p>
+</div>
+<div id="data.table-syntax-for-split-apply-combine-operations" class="section level4" number="6.2.3.3">
+<h4><span class="header-section-number">6.2.3.3</span> <code>data.table</code>-syntax for ‘split-apply-combine’ operations</h4>
+<p>With the <code>[]</code>-syntax we index/subset usual <code>data.frame</code> objects in R. When working with <code>data.table</code>s, much more can be done in the step of ‘sub-setting’ the frame.<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a></p>
+<p>For example, we can directly compute on columns.</p>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="data-aggregation.html#cb272-1" aria-hidden="true" tabindex="-1"></a>taxi[, <span class="fu">mean</span>(tip_amount<span class="sc">/</span>total_amount)]</span></code></pre></div>
+<pre><code>## [1] 0.03452</code></pre>
+<p>Moreover, in the same step, we can ‘split’ the rows <em>by</em> specific groups and apply the function to each subset.</p>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="data-aggregation.html#cb274-1" aria-hidden="true" tabindex="-1"></a>taxi[, .(<span class="at">percent_tip =</span> <span class="fu">mean</span>((tip_amount<span class="sc">/</span>total_amount)<span class="sc">*</span><span class="dv">100</span>)), by <span class="ot">=</span> payment_type]</span></code></pre></div>
+<pre><code>##    payment_type percent_tip
+## 1:         cash    0.005978
+## 2:       credit   16.004173
+## 3:    no charge    0.040433
+## 4:      dispute    0.045660</code></pre>
+<p>Similarly, we can use <code>data.table</code>’s <code>dcast()</code> for cross-tabulation-like operations.</p>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="data-aggregation.html#cb276-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dcast</span>(taxi[payment_type <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;credit&quot;</span>, <span class="st">&quot;cash&quot;</span>)],</span>
+<span id="cb276-2"><a href="data-aggregation.html#cb276-2" aria-hidden="true" tabindex="-1"></a>      passenger_count<span class="sc">~</span>payment_type, </span>
+<span id="cb276-3"><a href="data-aggregation.html#cb276-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">fun.aggregate =</span> length,</span>
+<span id="cb276-4"><a href="data-aggregation.html#cb276-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">value.var =</span> <span class="st">&quot;vendor_id&quot;</span>)</span></code></pre></div>
+<pre><code>##    passenger_count   cash credit
+## 1:               0     44      2
+## 2:               1 516828 149990
+## 3:               2 133468  32891
+## 4:               3  36439   7847
+## 5:               4  17901   2909
+## 6:               5  73027  20688
+## 7:               6   3588   1097</code></pre>
+
+</div>
+</div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="8">
+<li id="fn8"><p>Moreover, ‘split-apply-combine’ is closely related to a core strategy of Big Data analytics with distributed systems: Map/Reduce - more on this in the lecture on distributed systems.<a href="data-aggregation.html#fnref8" class="footnote-back">↩︎</a></p></li>
+<li id="fn9"><p>Note that the code examples below could also be run based on the entire TLC database (provided that there is enough hard-disk space available). But, creating the <code>ff</code> chunked file structure for a 200GB CSV would take hours or even days.<a href="data-aggregation.html#fnref9" class="footnote-back">↩︎</a></p></li>
+<li id="fn10"><p>See <a href="https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html" class="uri">https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html</a> for a detailed introduction to the syntax.<a href="data-aggregation.html#fnref10" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="big-data-cleaning-and-transformation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-storage-and-databases.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 1
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bigdata.pdf", "bigdata.html", "bigdata.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

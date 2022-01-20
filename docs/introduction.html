@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 1 Introduction | Big Data Analytics</title>
+  <meta name="description" content="A guide to practical big data analytics in R." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 1 Introduction | Big Data Analytics" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="img/cover.png" />
+  <meta property="og:description" content="A guide to practical big data analytics in R." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 1 Introduction | Big Data Analytics" />
+  
+  <meta name="twitter:description" content="A guide to practical big data analytics in R." />
+  <meta name="twitter:image" content="img/cover.png" />
+
+<meta name="author" content="Ulrich Matter" />
+
+
+<meta name="date" content="2022-01-20" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="computing-resources.html"/>
+<script src="libs/header-attrs/header-attrs.js"></script>
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Big Data Analytics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#example-of-computation-time-and-memory-allocation"><i class="fa fa-check"></i><b>1.1</b> Example of Computation Time and Memory Allocation</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="introduction.html"><a href="introduction.html#preparation"><i class="fa fa-check"></i><b>1.1.1</b> Preparation</a></li>
+<li class="chapter" data-level="1.1.2" data-path="introduction.html"><a href="introduction.html#naïve-approach-ignorant-of-r"><i class="fa fa-check"></i><b>1.1.2</b> Naïve Approach (ignorant of R)</a></li>
+<li class="chapter" data-level="1.1.3" data-path="introduction.html"><a href="introduction.html#improvement-1-pre-allocation-of-memory"><i class="fa fa-check"></i><b>1.1.3</b> Improvement 1: Pre-allocation of memory</a></li>
+<li class="chapter" data-level="1.1.4" data-path="introduction.html"><a href="introduction.html#improvement-2-exploit-vectorization"><i class="fa fa-check"></i><b>1.1.4</b> Improvement 2: Exploit vectorization</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="computing-resources.html"><a href="computing-resources.html"><i class="fa fa-check"></i><b>2</b> Computing Resources</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="computing-resources.html"><a href="computing-resources.html#components-of-a-standard-computing-environment"><i class="fa fa-check"></i><b>2.1</b> Components of a standard computing environment</a></li>
+<li class="chapter" data-level="2.2" data-path="computing-resources.html"><a href="computing-resources.html#units-of-informationdata-storage"><i class="fa fa-check"></i><b>2.2</b> Units of information/data storage</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="computing-resources.html"><a href="computing-resources.html#example-in-r-data-types-and-information-storage"><i class="fa fa-check"></i><b>2.2.1</b> Example in R: Data types and information storage</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="computing-resources.html"><a href="computing-resources.html#big-data-econometrics"><i class="fa fa-check"></i><b>2.3</b> Big Data econometrics</a></li>
+<li class="chapter" data-level="2.4" data-path="computing-resources.html"><a href="computing-resources.html#example-fast-least-squares-regression"><i class="fa fa-check"></i><b>2.4</b> Example: Fast least squares regression</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="computing-resources.html"><a href="computing-resources.html#ols-as-a-point-of-reference"><i class="fa fa-check"></i><b>2.4.1</b> OLS as a point of reference</a></li>
+<li class="chapter" data-level="2.4.2" data-path="computing-resources.html"><a href="computing-resources.html#the-uluru-algorithm-as-an-alternative-to-ols"><i class="fa fa-check"></i><b>2.4.2</b> The Uluru algorithm as an alternative to OLS</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="resource-allocation.html"><a href="resource-allocation.html"><i class="fa fa-check"></i><b>3</b> Resource allocation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="resource-allocation.html"><a href="resource-allocation.html#case-study-parallel-processing"><i class="fa fa-check"></i><b>3.1</b> Case study: Parallel processing</a></li>
+<li class="chapter" data-level="3.2" data-path="resource-allocation.html"><a href="resource-allocation.html#case-study-memory-allocation"><i class="fa fa-check"></i><b>3.2</b> Case study: Memory allocation</a></li>
+<li class="chapter" data-level="3.3" data-path="resource-allocation.html"><a href="resource-allocation.html#beyond-memory"><i class="fa fa-check"></i><b>3.3</b> Beyond memory</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html"><i class="fa fa-check"></i><b>4</b> Advanced R Programming</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#r-tools-to-investigate-performanceresource-allocation"><i class="fa fa-check"></i><b>4.1</b> R-tools to investigate performance/resource allocation</a></li>
+<li class="chapter" data-level="4.2" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#r-tools-to-investigate-structures-and-types"><i class="fa fa-check"></i><b>4.2</b> R-tools to investigate structures and types</a></li>
+<li class="chapter" data-level="4.3" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#data-types-and-memorystorage"><i class="fa fa-check"></i><b>4.3</b> Data types and memory/storage</a></li>
+<li class="chapter" data-level="4.4" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#data-structures"><i class="fa fa-check"></i><b>4.4</b> Data structures</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#vectors-vs-factors-in-r"><i class="fa fa-check"></i><b>4.4.1</b> Vectors vs Factors in R</a></li>
+<li class="chapter" data-level="4.4.2" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#matricesarrays"><i class="fa fa-check"></i><b>4.4.2</b> Matrices/Arrays</a></li>
+<li class="chapter" data-level="4.4.3" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#data-frames-tibbles-and-data-tables"><i class="fa fa-check"></i><b>4.4.3</b> Data frames, tibbles, and data tables</a></li>
+<li class="chapter" data-level="4.4.4" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#lists"><i class="fa fa-check"></i><b>4.4.4</b> Lists</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#programming-with-big-data-in-r"><i class="fa fa-check"></i><b>4.5</b> Programming with (Big) Data in R</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#typical-programming-tasks"><i class="fa fa-check"></i><b>4.5.1</b> Typical Programming Tasks</a></li>
+<li class="chapter" data-level="4.5.2" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#building-blocks-for-programming-with-big-data"><i class="fa fa-check"></i><b>4.5.2</b> Building blocks for programming with big data</a></li>
+<li class="chapter" data-level="4.5.3" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#writing-efficient-code"><i class="fa fa-check"></i><b>4.5.3</b> Writing efficient code</a></li>
+<li class="chapter" data-level="4.5.4" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#r-beyond-r"><i class="fa fa-check"></i><b>4.5.4</b> R, beyond R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html"><i class="fa fa-check"></i><b>5</b> Big Data Cleaning and Transformation</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#out-of-memory-strategies"><i class="fa fa-check"></i><b>5.1</b> ‘Out-of-memory’ strategies</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#chunking-data-with-the-ff-package"><i class="fa fa-check"></i><b>5.1.1</b> Chunking data with the <code>ff</code>-package</a></li>
+<li class="chapter" data-level="5.1.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#memory-mapping-with-bigmemory"><i class="fa fa-check"></i><b>5.1.2</b> Memory mapping with <code>bigmemory</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#typical-cleaning-tasks"><i class="fa fa-check"></i><b>5.2</b> Typical cleaning tasks</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#data-preparation-with-ff"><i class="fa fa-check"></i><b>5.2.1</b> Data Preparation with <code>ff</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data-aggregation.html"><a href="data-aggregation.html"><i class="fa fa-check"></i><b>6</b> Data Aggregation</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="data-aggregation.html"><a href="data-aggregation.html#data-aggregation-the-split-apply-combine-strategy"><i class="fa fa-check"></i><b>6.1</b> Data aggregation: The ‘split-apply-combine’ strategy</a></li>
+<li class="chapter" data-level="6.2" data-path="data-aggregation.html"><a href="data-aggregation.html#data-aggregation-tutorial"><i class="fa fa-check"></i><b>6.2</b> Data aggregation tutorial</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="data-aggregation.html"><a href="data-aggregation.html#gathering-and-compilation-of-all-the-raw-data"><i class="fa fa-check"></i><b>6.2.1</b> Gathering and Compilation of all the raw data</a></li>
+<li class="chapter" data-level="6.2.2" data-path="data-aggregation.html"><a href="data-aggregation.html#data-aggregation-with-chunked-data-files"><i class="fa fa-check"></i><b>6.2.2</b> Data aggregation with chunked data files</a></li>
+<li class="chapter" data-level="6.2.3" data-path="data-aggregation.html"><a href="data-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>6.2.3</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html"><i class="fa fa-check"></i><b>7</b> Data Storage and Databases</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#big-data-storage"><i class="fa fa-check"></i><b>7.1</b> (Big) Data Storage</a></li>
+<li class="chapter" data-level="7.2" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#rdbms-basics"><i class="fa fa-check"></i><b>7.2</b> RDBMS basics</a></li>
+<li class="chapter" data-level="7.3" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#getting-started-with-rsqlite"><i class="fa fa-check"></i><b>7.3</b> Getting started with (R)SQLite</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#first-steps-in-sqlite"><i class="fa fa-check"></i><b>7.3.1</b> First steps in SQLite</a></li>
+<li class="chapter" data-level="7.3.2" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#indices-and-joins"><i class="fa fa-check"></i><b>7.3.2</b> Indices and joins</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#sqlite-from-within-r"><i class="fa fa-check"></i><b>7.4</b> SQLite from within R</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#creating-a-new-database-with-rsqlite"><i class="fa fa-check"></i><b>7.4.1</b> Creating a new database with <code>RSQLite</code></a></li>
+<li class="chapter" data-level="7.4.2" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#importing-data"><i class="fa fa-check"></i><b>7.4.2</b> Importing data</a></li>
+<li class="chapter" data-level="7.4.3" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#issue-queries"><i class="fa fa-check"></i><b>7.4.3</b> Issue queries</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="big-data-visualization.html"><a href="big-data-visualization.html"><i class="fa fa-check"></i><b>8</b> (Big) Data Visualization</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#data-set"><i class="fa fa-check"></i><b>8.1</b> Data Set</a></li>
+<li class="chapter" data-level="8.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-modify-and-create-themes"><i class="fa fa-check"></i><b>8.2</b> Excursus: modify and create themes</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#create-your-own-theme-simple-approach"><i class="fa fa-check"></i><b>8.2.1</b> Create your own theme: simple approach</a></li>
+<li class="chapter" data-level="8.2.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#implementing-actual-themes-as-functions."><i class="fa fa-check"></i><b>8.2.2</b> Implementing actual themes as functions.</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="big-data-visualization.html"><a href="big-data-visualization.html#visualize-time-and-space"><i class="fa fa-check"></i><b>8.3</b> Visualize Time and Space</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#preparations"><i class="fa fa-check"></i><b>8.3.1</b> Preparations</a></li>
+<li class="chapter" data-level="8.3.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#pick-up-and-drop-off-locations"><i class="fa fa-check"></i><b>8.3.2</b> Pick-up and drop-off locations</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-change-color-schemes"><i class="fa fa-check"></i><b>8.4</b> Excursus: change color schemes</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html"><i class="fa fa-check"></i><b>9</b> Cloud Services for Big Data Analytics</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#scaling-up-in-the-cloud"><i class="fa fa-check"></i><b>9.1</b> Scaling up in the Cloud</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#parallelization-with-an-ec2-instance"><i class="fa fa-check"></i><b>9.1.1</b> Parallelization with an EC2 instance</a></li>
+<li class="chapter" data-level="9.1.2" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#mass-storage-mariadb-on-an-ec2-instance"><i class="fa fa-check"></i><b>9.1.2</b> Mass Storage: MariaDB on an EC2 instance</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#distributed-systemsmapreduce"><i class="fa fa-check"></i><b>9.2</b> Distributed Systems/MapReduce</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#mapreduce-concept-illustration-in-r"><i class="fa fa-check"></i><b>9.2.1</b> Map/Reduce Concept: Illustration in R</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#hadoop-word-count"><i class="fa fa-check"></i><b>9.3</b> Hadoop Word Count</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#install-hadoop-on-ubuntupop_os-linux"><i class="fa fa-check"></i><b>9.3.1</b> Install Hadoop (on Ubuntu/Pop!_OS Linux)</a></li>
+<li class="chapter" data-level="9.3.2" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#run-hadoop"><i class="fa fa-check"></i><b>9.3.2</b> Run Hadoop</a></li>
+<li class="chapter" data-level="9.3.3" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#run-example"><i class="fa fa-check"></i><b>9.3.3</b> Run example</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html"><i class="fa fa-check"></i><b>10</b> GPUs for Scientific Computing</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#gpus-in-r"><i class="fa fa-check"></i><b>10.1</b> GPUs in R</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#example-i-matrix-multiplication-comparison-gpur"><i class="fa fa-check"></i><b>10.1.1</b> Example I: Matrix multiplication comparison (<code>gpuR</code>)</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#gpus-and-machine-learning"><i class="fa fa-check"></i><b>10.2</b> GPUs and Machine Learning</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#tensorflowkeras-example-predict-housing-prices"><i class="fa fa-check"></i><b>10.2.1</b> Tensorflow/Keras example: predict housing prices</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#a-word-of-caution"><i class="fa fa-check"></i><b>10.3</b> A word of caution</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html"><i class="fa fa-check"></i><b>11</b> Applied Econometrics with Apache Spark</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html#spark-basics"><i class="fa fa-check"></i><b>11.1</b> Spark basics</a></li>
+<li class="chapter" data-level="11.2" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html#spark-in-r"><i class="fa fa-check"></i><b>11.2</b> Spark in R</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html#data-import-and-summary-statistics"><i class="fa fa-check"></i><b>11.2.1</b> Data import and summary statistics</a></li>
+<li class="chapter" data-level="11.2.2" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html#regression-analysis-with-sparklyr"><i class="fa fa-check"></i><b>11.2.2</b> Regression analysis with <code>sparklyr</code></a></li>
+</ul></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="appendix-a.html"><a href="appendix-a.html"><i class="fa fa-check"></i><b>A</b> Appendix A</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="appendix-a.html"><a href="appendix-a.html#github"><i class="fa fa-check"></i><b>A.1</b> GitHub</a>
+<ul>
+<li class="chapter" data-level="A.1.1" data-path="appendix-a.html"><a href="appendix-a.html#initiate-a-new-repository"><i class="fa fa-check"></i><b>A.1.1</b> Initiate a new repository</a></li>
+<li class="chapter" data-level="A.1.2" data-path="appendix-a.html"><a href="appendix-a.html#clone-this-courses-repository"><i class="fa fa-check"></i><b>A.1.2</b> Clone this course’s repository</a></li>
+<li class="chapter" data-level="A.1.3" data-path="appendix-a.html"><a href="appendix-a.html#fork-this-courses-repository"><i class="fa fa-check"></i><b>A.1.3</b> Fork this course’s repository</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="appendix-b.html"><a href="appendix-b.html"><i class="fa fa-check"></i><b>B</b> Appendix B</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://umatter.github.io" target="blank">umatter.github.io</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Big Data Analytics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="introduction" class="section level1" number="1">
+<h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
+<div id="example-of-computation-time-and-memory-allocation" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> Example of Computation Time and Memory Allocation</h2>
+<div id="preparation" class="section level3" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Preparation</h3>
+<p>We first read the <code>economics</code> data set into R and extend it by duplicating its rows in order to get a slightly larger data set (this step can easily be adapted to create a very large data set).</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="introduction.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read dataset into R</span></span>
+<span id="cb1-2"><a href="introduction.html#cb1-2" aria-hidden="true" tabindex="-1"></a>economics <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/economics.csv&quot;</span>)</span>
+<span id="cb1-3"><a href="introduction.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># have a look at the data</span></span>
+<span id="cb1-4"><a href="introduction.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(economics, <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>##         date   pce    pop psavert uempmed unemploy
+## 1 1967-07-01 507.4 198712    12.5     4.5     2944
+## 2 1967-08-01 510.5 198911    12.5     4.7     2945</code></pre>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="introduction.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a &#39;large&#39; dataset out of this</span></span>
+<span id="cb3-2"><a href="introduction.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) {</span>
+<span id="cb3-3"><a href="introduction.html#cb3-3" aria-hidden="true" tabindex="-1"></a>     economics <span class="ot">&lt;-</span> <span class="fu">rbind</span>(economics, economics)</span>
+<span id="cb3-4"><a href="introduction.html#cb3-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-5"><a href="introduction.html#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(economics)</span></code></pre></div>
+<pre><code>## [1] 4592    6</code></pre>
+</div>
+<div id="naïve-approach-ignorant-of-r" class="section level3" number="1.1.2">
+<h3><span class="header-section-number">1.1.2</span> Naïve Approach (ignorant of R)</h3>
+<p>The goal of this code example is to compute the real personal consumption expenditures, assuming that <code>pce</code> in the <code>economics</code> data set provides the nominal personal consumption expenditures. Thus, we divide each value in the vector <code>pce</code> by a deflator <code>1.05</code>.</p>
+<p>The first approach we take is based on a simple <code>for</code>-loop. In each iteration one element in <code>pce</code> is divided by the <code>deflator</code> and the resulting value is stored as a new element in the vector <code>pce_real</code>.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="introduction.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Naïve approach (ignorant of R)</span></span>
+<span id="cb5-2"><a href="introduction.html#cb5-2" aria-hidden="true" tabindex="-1"></a>deflator <span class="ot">&lt;-</span> <span class="fl">1.05</span> <span class="co"># define deflator</span></span>
+<span id="cb5-3"><a href="introduction.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># iterate through each observation</span></span>
+<span id="cb5-4"><a href="introduction.html#cb5-4" aria-hidden="true" tabindex="-1"></a>pce_real <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb5-5"><a href="introduction.html#cb5-5" aria-hidden="true" tabindex="-1"></a>n_obs <span class="ot">&lt;-</span> <span class="fu">length</span>(economics<span class="sc">$</span>pce)</span>
+<span id="cb5-6"><a href="introduction.html#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_obs) {</span>
+<span id="cb5-7"><a href="introduction.html#cb5-7" aria-hidden="true" tabindex="-1"></a>  pce_real <span class="ot">&lt;-</span> <span class="fu">c</span>(pce_real, economics<span class="sc">$</span>pce[i]<span class="sc">/</span>deflator)</span>
+<span id="cb5-8"><a href="introduction.html#cb5-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb5-9"><a href="introduction.html#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-10"><a href="introduction.html#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># look at the result</span></span>
+<span id="cb5-11"><a href="introduction.html#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pce_real, <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 483.2 486.2</code></pre>
+<p>How long does it take?</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="introduction.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Naïve approach (ignorant of R)</span></span>
+<span id="cb7-2"><a href="introduction.html#cb7-2" aria-hidden="true" tabindex="-1"></a>deflator <span class="ot">&lt;-</span> <span class="fl">1.05</span> <span class="co"># define deflator</span></span>
+<span id="cb7-3"><a href="introduction.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># iterate through each observation</span></span>
+<span id="cb7-4"><a href="introduction.html#cb7-4" aria-hidden="true" tabindex="-1"></a>pce_real <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb7-5"><a href="introduction.html#cb7-5" aria-hidden="true" tabindex="-1"></a>n_obs <span class="ot">&lt;-</span> <span class="fu">length</span>(economics<span class="sc">$</span>pce)</span>
+<span id="cb7-6"><a href="introduction.html#cb7-6" aria-hidden="true" tabindex="-1"></a>time_elapsed <span class="ot">&lt;-</span></span>
+<span id="cb7-7"><a href="introduction.html#cb7-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">system.time</span>(</span>
+<span id="cb7-8"><a href="introduction.html#cb7-8" aria-hidden="true" tabindex="-1"></a>         <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_obs) {</span>
+<span id="cb7-9"><a href="introduction.html#cb7-9" aria-hidden="true" tabindex="-1"></a>              pce_real <span class="ot">&lt;-</span> <span class="fu">c</span>(pce_real, economics<span class="sc">$</span>pce[i]<span class="sc">/</span>deflator)</span>
+<span id="cb7-10"><a href="introduction.html#cb7-10" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb7-11"><a href="introduction.html#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-12"><a href="introduction.html#cb7-12" aria-hidden="true" tabindex="-1"></a>time_elapsed</span></code></pre></div>
+<pre><code>##    user  system elapsed 
+##   0.070   0.020   0.091</code></pre>
+<p>Assuming a linear time algorithm (<span class="math inline">\(O(n)\)</span>), we need that much time for one additional row of data:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="introduction.html#cb9-1" aria-hidden="true" tabindex="-1"></a>time_per_row <span class="ot">&lt;-</span> time_elapsed[<span class="dv">3</span>]<span class="sc">/</span>n_obs</span>
+<span id="cb9-2"><a href="introduction.html#cb9-2" aria-hidden="true" tabindex="-1"></a>time_per_row</span></code></pre></div>
+<pre><code>##   elapsed 
+## 1.982e-05</code></pre>
+<p>If we deal with big data, say 100 million rows, that is</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="introduction.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in seconds</span></span>
+<span id="cb11-2"><a href="introduction.html#cb11-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>) </span></code></pre></div>
+<pre><code>## elapsed 
+##    1982</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="introduction.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in minutes</span></span>
+<span id="cb13-2"><a href="introduction.html#cb13-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>)<span class="sc">/</span><span class="dv">60</span> </span></code></pre></div>
+<pre><code>## elapsed 
+##   33.03</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="introduction.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in hours</span></span>
+<span id="cb15-2"><a href="introduction.html#cb15-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>)<span class="sc">/</span><span class="dv">60</span><span class="sc">^</span><span class="dv">2</span> </span></code></pre></div>
+<pre><code>## elapsed 
+##  0.5505</code></pre>
+<p>Can we improve this?</p>
+</div>
+<div id="improvement-1-pre-allocation-of-memory" class="section level3" number="1.1.3">
+<h3><span class="header-section-number">1.1.3</span> Improvement 1: Pre-allocation of memory</h3>
+<p>In the naïve approach taken above, each iteration of the loop causes R to re-allocate memory because the number of elements in vector <code>pce_element</code> is changing. In simple terms, this means that R needs to execute more steps in each iteration. We can improve this with a simple trick by initiating the vector in the right size to begin with (filled with <code>NA</code> values).</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="introduction.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Improve memory allocation (still somewhat ignorant of R)</span></span>
+<span id="cb17-2"><a href="introduction.html#cb17-2" aria-hidden="true" tabindex="-1"></a>deflator <span class="ot">&lt;-</span> <span class="fl">1.05</span> <span class="co"># define deflator</span></span>
+<span id="cb17-3"><a href="introduction.html#cb17-3" aria-hidden="true" tabindex="-1"></a>n_obs <span class="ot">&lt;-</span> <span class="fu">length</span>(economics<span class="sc">$</span>pce)</span>
+<span id="cb17-4"><a href="introduction.html#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># allocate memory beforehand</span></span>
+<span id="cb17-5"><a href="introduction.html#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Initiate the vector in the right size</span></span>
+<span id="cb17-6"><a href="introduction.html#cb17-6" aria-hidden="true" tabindex="-1"></a>pce_real <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, n_obs)</span>
+<span id="cb17-7"><a href="introduction.html#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># iterate through each observation</span></span>
+<span id="cb17-8"><a href="introduction.html#cb17-8" aria-hidden="true" tabindex="-1"></a>time_elapsed <span class="ot">&lt;-</span></span>
+<span id="cb17-9"><a href="introduction.html#cb17-9" aria-hidden="true" tabindex="-1"></a>     <span class="fu">system.time</span>(</span>
+<span id="cb17-10"><a href="introduction.html#cb17-10" aria-hidden="true" tabindex="-1"></a>         <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_obs) {</span>
+<span id="cb17-11"><a href="introduction.html#cb17-11" aria-hidden="true" tabindex="-1"></a>              pce_real[i] <span class="ot">&lt;-</span> economics<span class="sc">$</span>pce[i]<span class="sc">/</span>deflator</span>
+<span id="cb17-12"><a href="introduction.html#cb17-12" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<p>Let’s see if this helped to make the code faster.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="introduction.html#cb18-1" aria-hidden="true" tabindex="-1"></a>time_per_row <span class="ot">&lt;-</span> time_elapsed[<span class="dv">3</span>]<span class="sc">/</span>n_obs</span>
+<span id="cb18-2"><a href="introduction.html#cb18-2" aria-hidden="true" tabindex="-1"></a>time_per_row</span></code></pre></div>
+<pre><code>##   elapsed 
+## 1.089e-06</code></pre>
+<p>Again, we can extrapolate (approximately) the computation time, assuming the data set had millions of rows.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="introduction.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in seconds</span></span>
+<span id="cb20-2"><a href="introduction.html#cb20-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>) </span></code></pre></div>
+<pre><code>## elapsed 
+##   108.9</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="introduction.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in minutes</span></span>
+<span id="cb22-2"><a href="introduction.html#cb22-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>)<span class="sc">/</span><span class="dv">60</span> </span></code></pre></div>
+<pre><code>## elapsed 
+##   1.815</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="introduction.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in hours</span></span>
+<span id="cb24-2"><a href="introduction.html#cb24-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>)<span class="sc">/</span><span class="dv">60</span><span class="sc">^</span><span class="dv">2</span> </span></code></pre></div>
+<pre><code>## elapsed 
+## 0.03025</code></pre>
+<p>This looks much better, but we can do even better.</p>
+</div>
+<div id="improvement-2-exploit-vectorization" class="section level3" number="1.1.4">
+<h3><span class="header-section-number">1.1.4</span> Improvement 2: Exploit vectorization</h3>
+<p>In this approach, we exploit the fact that in R ‘everything is a vector’ and that many of the basic R functions (such as math operators) are <em>vectorized</em>. In simple terms, this means that a vectorized operation is implemented in such a way that it can take advantage of the similarity of each of the vector’s elements. That is, R only has to figure out once how to apply a given function to a vector element in order to apply it to all elements of the vector. In a simple loop, R has to go through the same ‘preparatory’ steps again and again in each iteration, this is time-intensive.</p>
+<p>In this example, we specifically exploit that the division operator <code>/</code> is actually a vectorized function. Thus, the division by our <code>deflator</code> is applied to each element of <code>economics$pce</code>.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="introduction.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Do it &#39;the R way&#39;</span></span>
+<span id="cb26-2"><a href="introduction.html#cb26-2" aria-hidden="true" tabindex="-1"></a>deflator <span class="ot">&lt;-</span> <span class="fl">1.05</span> <span class="co"># define deflator</span></span>
+<span id="cb26-3"><a href="introduction.html#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Exploit R&#39;s vectorization!</span></span>
+<span id="cb26-4"><a href="introduction.html#cb26-4" aria-hidden="true" tabindex="-1"></a>time_elapsed <span class="ot">&lt;-</span> </span>
+<span id="cb26-5"><a href="introduction.html#cb26-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">system.time</span>(</span>
+<span id="cb26-6"><a href="introduction.html#cb26-6" aria-hidden="true" tabindex="-1"></a>     pce_real <span class="ot">&lt;-</span> economics<span class="sc">$</span>pce<span class="sc">/</span>deflator</span>
+<span id="cb26-7"><a href="introduction.html#cb26-7" aria-hidden="true" tabindex="-1"></a>          )</span>
+<span id="cb26-8"><a href="introduction.html#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co"># same result</span></span>
+<span id="cb26-9"><a href="introduction.html#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pce_real, <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 483.2 486.2</code></pre>
+<p>Now this is much faster. In fact, <code>system.time()</code> is not precise enough to capture the time elapsed…</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="introduction.html#cb28-1" aria-hidden="true" tabindex="-1"></a>time_per_row <span class="ot">&lt;-</span> time_elapsed[<span class="dv">3</span>]<span class="sc">/</span>n_obs</span>
+<span id="cb28-2"><a href="introduction.html#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-3"><a href="introduction.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># in seconds</span></span>
+<span id="cb28-4"><a href="introduction.html#cb28-4" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>) </span></code></pre></div>
+<pre><code>## elapsed 
+##       0</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="introduction.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in minutes</span></span>
+<span id="cb30-2"><a href="introduction.html#cb30-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>)<span class="sc">/</span><span class="dv">60</span> </span></code></pre></div>
+<pre><code>## elapsed 
+##       0</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="introduction.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in hours</span></span>
+<span id="cb32-2"><a href="introduction.html#cb32-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>)<span class="sc">/</span><span class="dv">60</span><span class="sc">^</span><span class="dv">2</span> </span></code></pre></div>
+<pre><code>## elapsed 
+##       0</code></pre>
+<p>In order to measure the improvement, we use <code>microbenchmark::microbenchmark()</code> to measure the elapsed time in microseconds (millionth of a second).</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="introduction.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(microbenchmark)</span>
+<span id="cb34-2"><a href="introduction.html#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co"># measure elapsed time in microseconds (avg.)</span></span>
+<span id="cb34-3"><a href="introduction.html#cb34-3" aria-hidden="true" tabindex="-1"></a>time_elapsed <span class="ot">&lt;-</span> </span>
+<span id="cb34-4"><a href="introduction.html#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>(<span class="fu">microbenchmark</span>(pce_real <span class="ot">&lt;-</span> economics<span class="sc">$</span>pce<span class="sc">/</span>deflator))<span class="sc">$</span>mean</span>
+<span id="cb34-5"><a href="introduction.html#cb34-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-6"><a href="introduction.html#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="co"># per row (in sec)</span></span>
+<span id="cb34-7"><a href="introduction.html#cb34-7" aria-hidden="true" tabindex="-1"></a>time_per_row <span class="ot">&lt;-</span> (time_elapsed<span class="sc">/</span>n_obs)<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span></span></code></pre></div>
+<p>Now we get a more precise picture regarding the improvement due to vectorization (again, assuming 100 million rows):</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="introduction.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in seconds</span></span>
+<span id="cb35-2"><a href="introduction.html#cb35-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>) </span></code></pre></div>
+<pre><code>## [1] 0.3258</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="introduction.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in minutes</span></span>
+<span id="cb37-2"><a href="introduction.html#cb37-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>)<span class="sc">/</span><span class="dv">60</span> </span></code></pre></div>
+<pre><code>## [1] 0.00543</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="introduction.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in hours</span></span>
+<span id="cb39-2"><a href="introduction.html#cb39-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>)<span class="sc">/</span><span class="dv">60</span><span class="sc">^</span><span class="dv">2</span> </span></code></pre></div>
+<pre><code>## [1] 9.05e-05</code></pre>
+<div id="what-do-we-learn-from-this" class="section level4" number="1.1.4.1">
+<h4><span class="header-section-number">1.1.4.1</span> What do we learn from this?</h4>
+<ol style="list-style-type: decimal">
+<li>How R allocates and deallocates memory can have a substantial effect on computation time.
+<ul>
+<li>(Particularly, if we deal with a large data set!)</li>
+</ul></li>
+<li>In what way the computation is implemented can matter a lot for the time elapsed.
+<ul>
+<li>(For example, loops vs. vectorization/apply)</li>
+</ul></li>
+</ol>
+
+</div>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="computing-resources.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 1
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bigdata.pdf", "bigdata.html", "bigdata.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

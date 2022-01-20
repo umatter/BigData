@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Resource allocation | Big Data Analytics</title>
+  <meta name="description" content="A guide to practical big data analytics in R." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Resource allocation | Big Data Analytics" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:image" content="img/cover.png" />
+  <meta property="og:description" content="A guide to practical big data analytics in R." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Resource allocation | Big Data Analytics" />
+  
+  <meta name="twitter:description" content="A guide to practical big data analytics in R." />
+  <meta name="twitter:image" content="img/cover.png" />
+
+<meta name="author" content="Ulrich Matter" />
+
+
+<meta name="date" content="2022-01-20" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="computing-resources.html"/>
+<link rel="next" href="advanced-r-programming.html"/>
+<script src="libs/header-attrs/header-attrs.js"></script>
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Big Data Analytics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#example-of-computation-time-and-memory-allocation"><i class="fa fa-check"></i><b>1.1</b> Example of Computation Time and Memory Allocation</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="introduction.html"><a href="introduction.html#preparation"><i class="fa fa-check"></i><b>1.1.1</b> Preparation</a></li>
+<li class="chapter" data-level="1.1.2" data-path="introduction.html"><a href="introduction.html#naïve-approach-ignorant-of-r"><i class="fa fa-check"></i><b>1.1.2</b> Naïve Approach (ignorant of R)</a></li>
+<li class="chapter" data-level="1.1.3" data-path="introduction.html"><a href="introduction.html#improvement-1-pre-allocation-of-memory"><i class="fa fa-check"></i><b>1.1.3</b> Improvement 1: Pre-allocation of memory</a></li>
+<li class="chapter" data-level="1.1.4" data-path="introduction.html"><a href="introduction.html#improvement-2-exploit-vectorization"><i class="fa fa-check"></i><b>1.1.4</b> Improvement 2: Exploit vectorization</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="computing-resources.html"><a href="computing-resources.html"><i class="fa fa-check"></i><b>2</b> Computing Resources</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="computing-resources.html"><a href="computing-resources.html#components-of-a-standard-computing-environment"><i class="fa fa-check"></i><b>2.1</b> Components of a standard computing environment</a></li>
+<li class="chapter" data-level="2.2" data-path="computing-resources.html"><a href="computing-resources.html#units-of-informationdata-storage"><i class="fa fa-check"></i><b>2.2</b> Units of information/data storage</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="computing-resources.html"><a href="computing-resources.html#example-in-r-data-types-and-information-storage"><i class="fa fa-check"></i><b>2.2.1</b> Example in R: Data types and information storage</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="computing-resources.html"><a href="computing-resources.html#big-data-econometrics"><i class="fa fa-check"></i><b>2.3</b> Big Data econometrics</a></li>
+<li class="chapter" data-level="2.4" data-path="computing-resources.html"><a href="computing-resources.html#example-fast-least-squares-regression"><i class="fa fa-check"></i><b>2.4</b> Example: Fast least squares regression</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="computing-resources.html"><a href="computing-resources.html#ols-as-a-point-of-reference"><i class="fa fa-check"></i><b>2.4.1</b> OLS as a point of reference</a></li>
+<li class="chapter" data-level="2.4.2" data-path="computing-resources.html"><a href="computing-resources.html#the-uluru-algorithm-as-an-alternative-to-ols"><i class="fa fa-check"></i><b>2.4.2</b> The Uluru algorithm as an alternative to OLS</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="resource-allocation.html"><a href="resource-allocation.html"><i class="fa fa-check"></i><b>3</b> Resource allocation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="resource-allocation.html"><a href="resource-allocation.html#case-study-parallel-processing"><i class="fa fa-check"></i><b>3.1</b> Case study: Parallel processing</a></li>
+<li class="chapter" data-level="3.2" data-path="resource-allocation.html"><a href="resource-allocation.html#case-study-memory-allocation"><i class="fa fa-check"></i><b>3.2</b> Case study: Memory allocation</a></li>
+<li class="chapter" data-level="3.3" data-path="resource-allocation.html"><a href="resource-allocation.html#beyond-memory"><i class="fa fa-check"></i><b>3.3</b> Beyond memory</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html"><i class="fa fa-check"></i><b>4</b> Advanced R Programming</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#r-tools-to-investigate-performanceresource-allocation"><i class="fa fa-check"></i><b>4.1</b> R-tools to investigate performance/resource allocation</a></li>
+<li class="chapter" data-level="4.2" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#r-tools-to-investigate-structures-and-types"><i class="fa fa-check"></i><b>4.2</b> R-tools to investigate structures and types</a></li>
+<li class="chapter" data-level="4.3" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#data-types-and-memorystorage"><i class="fa fa-check"></i><b>4.3</b> Data types and memory/storage</a></li>
+<li class="chapter" data-level="4.4" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#data-structures"><i class="fa fa-check"></i><b>4.4</b> Data structures</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#vectors-vs-factors-in-r"><i class="fa fa-check"></i><b>4.4.1</b> Vectors vs Factors in R</a></li>
+<li class="chapter" data-level="4.4.2" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#matricesarrays"><i class="fa fa-check"></i><b>4.4.2</b> Matrices/Arrays</a></li>
+<li class="chapter" data-level="4.4.3" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#data-frames-tibbles-and-data-tables"><i class="fa fa-check"></i><b>4.4.3</b> Data frames, tibbles, and data tables</a></li>
+<li class="chapter" data-level="4.4.4" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#lists"><i class="fa fa-check"></i><b>4.4.4</b> Lists</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#programming-with-big-data-in-r"><i class="fa fa-check"></i><b>4.5</b> Programming with (Big) Data in R</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#typical-programming-tasks"><i class="fa fa-check"></i><b>4.5.1</b> Typical Programming Tasks</a></li>
+<li class="chapter" data-level="4.5.2" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#building-blocks-for-programming-with-big-data"><i class="fa fa-check"></i><b>4.5.2</b> Building blocks for programming with big data</a></li>
+<li class="chapter" data-level="4.5.3" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#writing-efficient-code"><i class="fa fa-check"></i><b>4.5.3</b> Writing efficient code</a></li>
+<li class="chapter" data-level="4.5.4" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#r-beyond-r"><i class="fa fa-check"></i><b>4.5.4</b> R, beyond R</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html"><i class="fa fa-check"></i><b>5</b> Big Data Cleaning and Transformation</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#out-of-memory-strategies"><i class="fa fa-check"></i><b>5.1</b> ‘Out-of-memory’ strategies</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#chunking-data-with-the-ff-package"><i class="fa fa-check"></i><b>5.1.1</b> Chunking data with the <code>ff</code>-package</a></li>
+<li class="chapter" data-level="5.1.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#memory-mapping-with-bigmemory"><i class="fa fa-check"></i><b>5.1.2</b> Memory mapping with <code>bigmemory</code></a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#typical-cleaning-tasks"><i class="fa fa-check"></i><b>5.2</b> Typical cleaning tasks</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#data-preparation-with-ff"><i class="fa fa-check"></i><b>5.2.1</b> Data Preparation with <code>ff</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data-aggregation.html"><a href="data-aggregation.html"><i class="fa fa-check"></i><b>6</b> Data Aggregation</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="data-aggregation.html"><a href="data-aggregation.html#data-aggregation-the-split-apply-combine-strategy"><i class="fa fa-check"></i><b>6.1</b> Data aggregation: The ‘split-apply-combine’ strategy</a></li>
+<li class="chapter" data-level="6.2" data-path="data-aggregation.html"><a href="data-aggregation.html#data-aggregation-tutorial"><i class="fa fa-check"></i><b>6.2</b> Data aggregation tutorial</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="data-aggregation.html"><a href="data-aggregation.html#gathering-and-compilation-of-all-the-raw-data"><i class="fa fa-check"></i><b>6.2.1</b> Gathering and Compilation of all the raw data</a></li>
+<li class="chapter" data-level="6.2.2" data-path="data-aggregation.html"><a href="data-aggregation.html#data-aggregation-with-chunked-data-files"><i class="fa fa-check"></i><b>6.2.2</b> Data aggregation with chunked data files</a></li>
+<li class="chapter" data-level="6.2.3" data-path="data-aggregation.html"><a href="data-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>6.2.3</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html"><i class="fa fa-check"></i><b>7</b> Data Storage and Databases</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#big-data-storage"><i class="fa fa-check"></i><b>7.1</b> (Big) Data Storage</a></li>
+<li class="chapter" data-level="7.2" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#rdbms-basics"><i class="fa fa-check"></i><b>7.2</b> RDBMS basics</a></li>
+<li class="chapter" data-level="7.3" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#getting-started-with-rsqlite"><i class="fa fa-check"></i><b>7.3</b> Getting started with (R)SQLite</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#first-steps-in-sqlite"><i class="fa fa-check"></i><b>7.3.1</b> First steps in SQLite</a></li>
+<li class="chapter" data-level="7.3.2" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#indices-and-joins"><i class="fa fa-check"></i><b>7.3.2</b> Indices and joins</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#sqlite-from-within-r"><i class="fa fa-check"></i><b>7.4</b> SQLite from within R</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#creating-a-new-database-with-rsqlite"><i class="fa fa-check"></i><b>7.4.1</b> Creating a new database with <code>RSQLite</code></a></li>
+<li class="chapter" data-level="7.4.2" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#importing-data"><i class="fa fa-check"></i><b>7.4.2</b> Importing data</a></li>
+<li class="chapter" data-level="7.4.3" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#issue-queries"><i class="fa fa-check"></i><b>7.4.3</b> Issue queries</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="big-data-visualization.html"><a href="big-data-visualization.html"><i class="fa fa-check"></i><b>8</b> (Big) Data Visualization</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#data-set"><i class="fa fa-check"></i><b>8.1</b> Data Set</a></li>
+<li class="chapter" data-level="8.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-modify-and-create-themes"><i class="fa fa-check"></i><b>8.2</b> Excursus: modify and create themes</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#create-your-own-theme-simple-approach"><i class="fa fa-check"></i><b>8.2.1</b> Create your own theme: simple approach</a></li>
+<li class="chapter" data-level="8.2.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#implementing-actual-themes-as-functions."><i class="fa fa-check"></i><b>8.2.2</b> Implementing actual themes as functions.</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="big-data-visualization.html"><a href="big-data-visualization.html#visualize-time-and-space"><i class="fa fa-check"></i><b>8.3</b> Visualize Time and Space</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#preparations"><i class="fa fa-check"></i><b>8.3.1</b> Preparations</a></li>
+<li class="chapter" data-level="8.3.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#pick-up-and-drop-off-locations"><i class="fa fa-check"></i><b>8.3.2</b> Pick-up and drop-off locations</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-change-color-schemes"><i class="fa fa-check"></i><b>8.4</b> Excursus: change color schemes</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html"><i class="fa fa-check"></i><b>9</b> Cloud Services for Big Data Analytics</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#scaling-up-in-the-cloud"><i class="fa fa-check"></i><b>9.1</b> Scaling up in the Cloud</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#parallelization-with-an-ec2-instance"><i class="fa fa-check"></i><b>9.1.1</b> Parallelization with an EC2 instance</a></li>
+<li class="chapter" data-level="9.1.2" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#mass-storage-mariadb-on-an-ec2-instance"><i class="fa fa-check"></i><b>9.1.2</b> Mass Storage: MariaDB on an EC2 instance</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#distributed-systemsmapreduce"><i class="fa fa-check"></i><b>9.2</b> Distributed Systems/MapReduce</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#mapreduce-concept-illustration-in-r"><i class="fa fa-check"></i><b>9.2.1</b> Map/Reduce Concept: Illustration in R</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#hadoop-word-count"><i class="fa fa-check"></i><b>9.3</b> Hadoop Word Count</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#install-hadoop-on-ubuntupop_os-linux"><i class="fa fa-check"></i><b>9.3.1</b> Install Hadoop (on Ubuntu/Pop!_OS Linux)</a></li>
+<li class="chapter" data-level="9.3.2" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#run-hadoop"><i class="fa fa-check"></i><b>9.3.2</b> Run Hadoop</a></li>
+<li class="chapter" data-level="9.3.3" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#run-example"><i class="fa fa-check"></i><b>9.3.3</b> Run example</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html"><i class="fa fa-check"></i><b>10</b> GPUs for Scientific Computing</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#gpus-in-r"><i class="fa fa-check"></i><b>10.1</b> GPUs in R</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#example-i-matrix-multiplication-comparison-gpur"><i class="fa fa-check"></i><b>10.1.1</b> Example I: Matrix multiplication comparison (<code>gpuR</code>)</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#gpus-and-machine-learning"><i class="fa fa-check"></i><b>10.2</b> GPUs and Machine Learning</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#tensorflowkeras-example-predict-housing-prices"><i class="fa fa-check"></i><b>10.2.1</b> Tensorflow/Keras example: predict housing prices</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#a-word-of-caution"><i class="fa fa-check"></i><b>10.3</b> A word of caution</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html"><i class="fa fa-check"></i><b>11</b> Applied Econometrics with Apache Spark</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html#spark-basics"><i class="fa fa-check"></i><b>11.1</b> Spark basics</a></li>
+<li class="chapter" data-level="11.2" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html#spark-in-r"><i class="fa fa-check"></i><b>11.2</b> Spark in R</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html#data-import-and-summary-statistics"><i class="fa fa-check"></i><b>11.2.1</b> Data import and summary statistics</a></li>
+<li class="chapter" data-level="11.2.2" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html#regression-analysis-with-sparklyr"><i class="fa fa-check"></i><b>11.2.2</b> Regression analysis with <code>sparklyr</code></a></li>
+</ul></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="appendix-a.html"><a href="appendix-a.html"><i class="fa fa-check"></i><b>A</b> Appendix A</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="appendix-a.html"><a href="appendix-a.html#github"><i class="fa fa-check"></i><b>A.1</b> GitHub</a>
+<ul>
+<li class="chapter" data-level="A.1.1" data-path="appendix-a.html"><a href="appendix-a.html#initiate-a-new-repository"><i class="fa fa-check"></i><b>A.1.1</b> Initiate a new repository</a></li>
+<li class="chapter" data-level="A.1.2" data-path="appendix-a.html"><a href="appendix-a.html#clone-this-courses-repository"><i class="fa fa-check"></i><b>A.1.2</b> Clone this course’s repository</a></li>
+<li class="chapter" data-level="A.1.3" data-path="appendix-a.html"><a href="appendix-a.html#fork-this-courses-repository"><i class="fa fa-check"></i><b>A.1.3</b> Fork this course’s repository</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="appendix-b.html"><a href="appendix-b.html"><i class="fa fa-check"></i><b>B</b> Appendix B</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://umatter.github.io" target="blank">umatter.github.io</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Big Data Analytics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="resource-allocation" class="section level1" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Resource allocation</h1>
+<p>When optimizing the performance of an analytics program processing large amounts of data, it is useful to differentiate between the efficient allocation of computational (CPU) power, and the allocation of RAM (and mass storage).<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> Below, we will look at both aspects in turn.</p>
+<div id="case-study-parallel-processing" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> Case study: Parallel processing</h2>
+<p>In this example, we estimate a simple regression model that aims to assess racial discrimination in the context of police stops.<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> The example is based on the ‘Minneapolis Police Department 2017 Stop Dataset,’ containing data on nearly all stops made by the Minneapolis Police Department for the year 2017.</p>
+<p>We start with importing the data into R.</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="resource-allocation.html#cb69-1" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://vincentarelbundock.github.io/Rdatasets/csv/carData/MplsStops.csv&quot;</span></span>
+<span id="cb69-2"><a href="resource-allocation.html#cb69-2" aria-hidden="true" tabindex="-1"></a>stopdata <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(url) </span></code></pre></div>
+<p>We specify a simple linear probability model that aims to test whether a person identified as ‘white’ is less likely to have her vehicle searched when stopped by the police. In order to take into account level-differences between different police precincts, we add precinct-indicators to the regression specification</p>
+<p>First, let’s remove observations with missing entries (<code>NA</code>) and code our main explanatory variable and the dependent variable.</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="resource-allocation.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove incomplete obs</span></span>
+<span id="cb70-2"><a href="resource-allocation.html#cb70-2" aria-hidden="true" tabindex="-1"></a>stopdata <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(stopdata)</span>
+<span id="cb70-3"><a href="resource-allocation.html#cb70-3" aria-hidden="true" tabindex="-1"></a><span class="co"># code dependent var</span></span>
+<span id="cb70-4"><a href="resource-allocation.html#cb70-4" aria-hidden="true" tabindex="-1"></a>stopdata<span class="sc">$</span>vsearch <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb70-5"><a href="resource-allocation.html#cb70-5" aria-hidden="true" tabindex="-1"></a>stopdata<span class="sc">$</span>vsearch[stopdata<span class="sc">$</span>vehicleSearch<span class="sc">==</span><span class="st">&quot;YES&quot;</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb70-6"><a href="resource-allocation.html#cb70-6" aria-hidden="true" tabindex="-1"></a><span class="co"># code explanatory var</span></span>
+<span id="cb70-7"><a href="resource-allocation.html#cb70-7" aria-hidden="true" tabindex="-1"></a>stopdata<span class="sc">$</span>white <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb70-8"><a href="resource-allocation.html#cb70-8" aria-hidden="true" tabindex="-1"></a>stopdata<span class="sc">$</span>white[stopdata<span class="sc">$</span>race<span class="sc">==</span><span class="st">&quot;White&quot;</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span></code></pre></div>
+<p>We specify our baseline model as follows.</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="resource-allocation.html#cb71-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> vsearch <span class="sc">~</span> white <span class="sc">+</span> <span class="fu">factor</span>(policePrecinct)</span></code></pre></div>
+<p>And estimate the linear probability model via OLS (the <code>lm</code> function).</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="resource-allocation.html#cb72-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(model, stopdata)</span>
+<span id="cb72-2"><a href="resource-allocation.html#cb72-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = model, data = stopdata)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -0.1394 -0.0633 -0.0547 -0.0423  0.9773 
+## 
+## Coefficients:
+##                         Estimate Std. Error t value
+## (Intercept)              0.05473    0.00515   10.62
+## white                   -0.01955    0.00446   -4.38
+## factor(policePrecinct)2  0.00856    0.00676    1.27
+## factor(policePrecinct)3  0.00341    0.00648    0.53
+## factor(policePrecinct)4  0.08464    0.00623   13.58
+## factor(policePrecinct)5 -0.01246    0.00637   -1.96
+##                         Pr(&gt;|t|)    
+## (Intercept)              &lt; 2e-16 ***
+## white                    1.2e-05 ***
+## factor(policePrecinct)2     0.21    
+## factor(policePrecinct)3     0.60    
+## factor(policePrecinct)4  &lt; 2e-16 ***
+## factor(policePrecinct)5     0.05 .  
+## ---
+## Signif. codes:  
+## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.254 on 19078 degrees of freedom
+## Multiple R-squared:  0.025,  Adjusted R-squared:  0.0248 
+## F-statistic: 97.9 on 5 and 19078 DF,  p-value: &lt;2e-16</code></pre>
+<p>A potential problem with this approach (and there might be many more in this simple example) is that observations stemming from different police precincts might be correlated over time. If that is the case, we likely underestimate the coefficient’s standard errors. There is a standard approach to compute estimates for so-called <em>cluster-robust</em> standard errors which would take the problem of correlation over time within clusters into consideration (and deliver a more conservative estimate of the SEs). However, this approach only works well if the number of clusters in the data is roughly 50 or more. Here we only have 5.</p>
+<p>The alternative approach is to compute bootstrapped clustered standard errors. That is, we apply the <a href="https://en.wikipedia.org/wiki/Bootstrapping_(statistics)">bootstrap resampling procedure</a> at the cluster level. Specifically, we draw <span class="math inline">\(B\)</span> samples (with replacement), estimate and record for each bootstrap-sample the coefficient vector, and then estimate <span class="math inline">\(SE_{boot}\)</span> based on the standard deviation of all respective estimated coefficient values.</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="resource-allocation.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb74-2"><a href="resource-allocation.html#cb74-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb74-3"><a href="resource-allocation.html#cb74-3" aria-hidden="true" tabindex="-1"></a><span class="co"># set the &#39;seed&#39; for random numbers (makes the example reproducible)</span></span>
+<span id="cb74-4"><a href="resource-allocation.html#cb74-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2</span>)</span>
+<span id="cb74-5"><a href="resource-allocation.html#cb74-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-6"><a href="resource-allocation.html#cb74-6" aria-hidden="true" tabindex="-1"></a><span class="co"># set number of bootstrap iterations</span></span>
+<span id="cb74-7"><a href="resource-allocation.html#cb74-7" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb74-8"><a href="resource-allocation.html#cb74-8" aria-hidden="true" tabindex="-1"></a><span class="co"># get selection of precincts</span></span>
+<span id="cb74-9"><a href="resource-allocation.html#cb74-9" aria-hidden="true" tabindex="-1"></a>precincts <span class="ot">&lt;-</span> <span class="fu">unique</span>(stopdata<span class="sc">$</span>policePrecinct)</span>
+<span id="cb74-10"><a href="resource-allocation.html#cb74-10" aria-hidden="true" tabindex="-1"></a><span class="co"># container for coefficients</span></span>
+<span id="cb74-11"><a href="resource-allocation.html#cb74-11" aria-hidden="true" tabindex="-1"></a>boot_coefs <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow =</span> B, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb74-12"><a href="resource-allocation.html#cb74-12" aria-hidden="true" tabindex="-1"></a><span class="co"># draw bootstrap samples, estimate model for each sample</span></span>
+<span id="cb74-13"><a href="resource-allocation.html#cb74-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>B) {</span>
+<span id="cb74-14"><a href="resource-allocation.html#cb74-14" aria-hidden="true" tabindex="-1"></a>     </span>
+<span id="cb74-15"><a href="resource-allocation.html#cb74-15" aria-hidden="true" tabindex="-1"></a>     <span class="co"># draw sample of precincts (cluster level)</span></span>
+<span id="cb74-16"><a href="resource-allocation.html#cb74-16" aria-hidden="true" tabindex="-1"></a>     precincts_i <span class="ot">&lt;-</span> <span class="fu">sample</span>(precincts, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb74-17"><a href="resource-allocation.html#cb74-17" aria-hidden="true" tabindex="-1"></a>     <span class="co"># get observations</span></span>
+<span id="cb74-18"><a href="resource-allocation.html#cb74-18" aria-hidden="true" tabindex="-1"></a>     bs_i <span class="ot">&lt;-</span> <span class="fu">lapply</span>(precincts_i, <span class="cf">function</span>(x) stopdata[stopdata<span class="sc">$</span>policePrecinct<span class="sc">==</span>x,])</span>
+<span id="cb74-19"><a href="resource-allocation.html#cb74-19" aria-hidden="true" tabindex="-1"></a>     bs_i <span class="ot">&lt;-</span> <span class="fu">rbindlist</span>(bs_i)</span>
+<span id="cb74-20"><a href="resource-allocation.html#cb74-20" aria-hidden="true" tabindex="-1"></a>     </span>
+<span id="cb74-21"><a href="resource-allocation.html#cb74-21" aria-hidden="true" tabindex="-1"></a>     <span class="co"># estimate model and record coefficients</span></span>
+<span id="cb74-22"><a href="resource-allocation.html#cb74-22" aria-hidden="true" tabindex="-1"></a>     boot_coefs[i,] <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">lm</span>(model, bs_i))[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>] <span class="co"># ignore FE-coefficients</span></span>
+<span id="cb74-23"><a href="resource-allocation.html#cb74-23" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Finally, let’s compute <span class="math inline">\(SE_{boot}\)</span>.</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="resource-allocation.html#cb75-1" aria-hidden="true" tabindex="-1"></a>se_boot <span class="ot">&lt;-</span> <span class="fu">apply</span>(boot_coefs, </span>
+<span id="cb75-2"><a href="resource-allocation.html#cb75-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">MARGIN =</span> <span class="dv">2</span>,</span>
+<span id="cb75-3"><a href="resource-allocation.html#cb75-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">FUN =</span> sd)</span>
+<span id="cb75-4"><a href="resource-allocation.html#cb75-4" aria-hidden="true" tabindex="-1"></a>se_boot</span></code></pre></div>
+<pre><code>## [1] 0.004043 0.004690</code></pre>
+<p>Note that even with a very small <span class="math inline">\(B\)</span>, computing <span class="math inline">\(SE_{boot}\)</span> takes up some time to compute. When setting <span class="math inline">\(B\)</span> to over 500, computation time will be substantial. Also note that running this code does hardly use up more memory than the very simple approach without bootstrapping (after all, in each bootstrap iteration the data set used to estimate the model is approximately the same size as the original data set). There is little we can do to improve the script’s performance regarding memory. However we can tell R how to allocate CPU resources more efficiently to handle that many regression estimates.</p>
+<p>Particularly, we can make use of the fact that most modern computing environments (such as a laptop) have CPUs with several <em>cores</em>. We can exploit this fact by instructing the computer to run the computations <em>in parallel</em> (simultaneously computing on several cores). The following code is a parallel implementation of our bootstrap procedure which does exactly that.</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="resource-allocation.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;doSNOW&quot;, &quot;parallel&quot;)</span></span>
+<span id="cb77-2"><a href="resource-allocation.html#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages for parallel processing</span></span>
+<span id="cb77-3"><a href="resource-allocation.html#cb77-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(doSNOW)</span>
+<span id="cb77-4"><a href="resource-allocation.html#cb77-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-5"><a href="resource-allocation.html#cb77-5" aria-hidden="true" tabindex="-1"></a><span class="co"># get the number of cores available</span></span>
+<span id="cb77-6"><a href="resource-allocation.html#cb77-6" aria-hidden="true" tabindex="-1"></a>ncores <span class="ot">&lt;-</span> parallel<span class="sc">::</span><span class="fu">detectCores</span>()</span>
+<span id="cb77-7"><a href="resource-allocation.html#cb77-7" aria-hidden="true" tabindex="-1"></a><span class="co"># set cores for parallel processing</span></span>
+<span id="cb77-8"><a href="resource-allocation.html#cb77-8" aria-hidden="true" tabindex="-1"></a>ctemp <span class="ot">&lt;-</span> <span class="fu">makeCluster</span>(ncores) <span class="co"># </span></span>
+<span id="cb77-9"><a href="resource-allocation.html#cb77-9" aria-hidden="true" tabindex="-1"></a><span class="fu">registerDoSNOW</span>(ctemp)</span>
+<span id="cb77-10"><a href="resource-allocation.html#cb77-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-11"><a href="resource-allocation.html#cb77-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-12"><a href="resource-allocation.html#cb77-12" aria-hidden="true" tabindex="-1"></a><span class="co"># set number of bootstrap iterations</span></span>
+<span id="cb77-13"><a href="resource-allocation.html#cb77-13" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb77-14"><a href="resource-allocation.html#cb77-14" aria-hidden="true" tabindex="-1"></a><span class="co"># get selection of precincts</span></span>
+<span id="cb77-15"><a href="resource-allocation.html#cb77-15" aria-hidden="true" tabindex="-1"></a>precincts <span class="ot">&lt;-</span> <span class="fu">unique</span>(stopdata<span class="sc">$</span>policePrecinct)</span>
+<span id="cb77-16"><a href="resource-allocation.html#cb77-16" aria-hidden="true" tabindex="-1"></a><span class="co"># container for coefficients</span></span>
+<span id="cb77-17"><a href="resource-allocation.html#cb77-17" aria-hidden="true" tabindex="-1"></a>boot_coefs <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow =</span> B, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb77-18"><a href="resource-allocation.html#cb77-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-19"><a href="resource-allocation.html#cb77-19" aria-hidden="true" tabindex="-1"></a><span class="co"># bootstrapping in parallel</span></span>
+<span id="cb77-20"><a href="resource-allocation.html#cb77-20" aria-hidden="true" tabindex="-1"></a>boot_coefs <span class="ot">&lt;-</span> </span>
+<span id="cb77-21"><a href="resource-allocation.html#cb77-21" aria-hidden="true" tabindex="-1"></a>     <span class="fu">foreach</span>(<span class="at">i =</span> <span class="dv">1</span><span class="sc">:</span>B, <span class="at">.combine =</span> rbind, <span class="at">.packages=</span><span class="st">&quot;data.table&quot;</span>) <span class="sc">%dopar%</span> {</span>
+<span id="cb77-22"><a href="resource-allocation.html#cb77-22" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb77-23"><a href="resource-allocation.html#cb77-23" aria-hidden="true" tabindex="-1"></a>          <span class="co"># draw sample of precincts (cluster level)</span></span>
+<span id="cb77-24"><a href="resource-allocation.html#cb77-24" aria-hidden="true" tabindex="-1"></a>          precincts_i <span class="ot">&lt;-</span> <span class="fu">sample</span>(precincts, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb77-25"><a href="resource-allocation.html#cb77-25" aria-hidden="true" tabindex="-1"></a>          <span class="co"># get observations</span></span>
+<span id="cb77-26"><a href="resource-allocation.html#cb77-26" aria-hidden="true" tabindex="-1"></a>          bs_i <span class="ot">&lt;-</span> <span class="fu">lapply</span>(precincts_i, <span class="cf">function</span>(x) stopdata[stopdata<span class="sc">$</span>policePrecinct<span class="sc">==</span>x,])</span>
+<span id="cb77-27"><a href="resource-allocation.html#cb77-27" aria-hidden="true" tabindex="-1"></a>          bs_i <span class="ot">&lt;-</span> <span class="fu">rbindlist</span>(bs_i)</span>
+<span id="cb77-28"><a href="resource-allocation.html#cb77-28" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb77-29"><a href="resource-allocation.html#cb77-29" aria-hidden="true" tabindex="-1"></a>          <span class="co"># estimate model and record coefficients</span></span>
+<span id="cb77-30"><a href="resource-allocation.html#cb77-30" aria-hidden="true" tabindex="-1"></a>          <span class="fu">coef</span>(<span class="fu">lm</span>(model, bs_i))[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>] <span class="co"># ignore FE-coefficients</span></span>
+<span id="cb77-31"><a href="resource-allocation.html#cb77-31" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb77-32"><a href="resource-allocation.html#cb77-32" aria-hidden="true" tabindex="-1"></a>     }</span>
+<span id="cb77-33"><a href="resource-allocation.html#cb77-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-34"><a href="resource-allocation.html#cb77-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb77-35"><a href="resource-allocation.html#cb77-35" aria-hidden="true" tabindex="-1"></a><span class="co"># be a good citizen and stop the snow clusters</span></span>
+<span id="cb77-36"><a href="resource-allocation.html#cb77-36" aria-hidden="true" tabindex="-1"></a><span class="fu">stopCluster</span>(<span class="at">cl =</span> ctemp)</span></code></pre></div>
+<p>As a last step, we compute again <span class="math inline">\(SE_{boot}\)</span>.</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="resource-allocation.html#cb78-1" aria-hidden="true" tabindex="-1"></a>se_boot <span class="ot">&lt;-</span> <span class="fu">apply</span>(boot_coefs, </span>
+<span id="cb78-2"><a href="resource-allocation.html#cb78-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">MARGIN =</span> <span class="dv">2</span>,</span>
+<span id="cb78-3"><a href="resource-allocation.html#cb78-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">FUN =</span> sd)</span>
+<span id="cb78-4"><a href="resource-allocation.html#cb78-4" aria-hidden="true" tabindex="-1"></a>se_boot</span></code></pre></div>
+<pre><code>## (Intercept)       white 
+##    0.003694    0.004910</code></pre>
+</div>
+<div id="case-study-memory-allocation" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Case study: Memory allocation</h2>
+<p>Consider the first steps of a data pipeline in R. The first part of our script to import and clean the data looks as follows.</p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="resource-allocation.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="do">###########################################################</span></span>
+<span id="cb80-2"><a href="resource-allocation.html#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Big Data Statistics: Flights data import and preparation</span></span>
+<span id="cb80-3"><a href="resource-allocation.html#cb80-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb80-4"><a href="resource-allocation.html#cb80-4" aria-hidden="true" tabindex="-1"></a><span class="co"># U. Matter, January 2019</span></span>
+<span id="cb80-5"><a href="resource-allocation.html#cb80-5" aria-hidden="true" tabindex="-1"></a><span class="do">###########################################################</span></span>
+<span id="cb80-6"><a href="resource-allocation.html#cb80-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-7"><a href="resource-allocation.html#cb80-7" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP -----------------</span></span>
+<span id="cb80-8"><a href="resource-allocation.html#cb80-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-9"><a href="resource-allocation.html#cb80-9" aria-hidden="true" tabindex="-1"></a><span class="co"># fix variables</span></span>
+<span id="cb80-10"><a href="resource-allocation.html#cb80-10" aria-hidden="true" tabindex="-1"></a>DATA_PATH <span class="ot">&lt;-</span> <span class="st">&quot;materials/data/flights.csv&quot;</span></span>
+<span id="cb80-11"><a href="resource-allocation.html#cb80-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-12"><a href="resource-allocation.html#cb80-12" aria-hidden="true" tabindex="-1"></a><span class="co"># DATA IMPORT ----------------</span></span>
+<span id="cb80-13"><a href="resource-allocation.html#cb80-13" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(DATA_PATH)</span>
+<span id="cb80-14"><a href="resource-allocation.html#cb80-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb80-15"><a href="resource-allocation.html#cb80-15" aria-hidden="true" tabindex="-1"></a><span class="co"># DATA PREPARATION --------</span></span>
+<span id="cb80-16"><a href="resource-allocation.html#cb80-16" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> flights[,<span class="sc">-</span><span class="dv">1</span><span class="sc">:-</span><span class="dv">3</span>]</span></code></pre></div>
+<p>When running this script, we notice that some of the steps need a noticable amount of time to process. Moreover, while none of these steps obviously involves a lot of computation (such as a matrix inversion or numerical optimization), it quite likely involves memory allocation. We first read data into RAM (allocated to R by our operating system). It turns out that there are different ways to allocate RAM when reading data from a CSV file. Depending on the amount of data to be read in, one or the other approach might be faster. We first investigate the RAM allocation in R with <code>mem_change()</code> and <code>mem_used()</code>.</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="resource-allocation.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP -----------------</span></span>
+<span id="cb81-2"><a href="resource-allocation.html#cb81-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb81-3"><a href="resource-allocation.html#cb81-3" aria-hidden="true" tabindex="-1"></a><span class="co"># fix variables</span></span>
+<span id="cb81-4"><a href="resource-allocation.html#cb81-4" aria-hidden="true" tabindex="-1"></a>DATA_PATH <span class="ot">&lt;-</span> <span class="st">&quot;data/flights.csv&quot;</span></span>
+<span id="cb81-5"><a href="resource-allocation.html#cb81-5" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb81-6"><a href="resource-allocation.html#cb81-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pryr) </span></code></pre></div>
+<pre><code>## Registered S3 method overwritten by &#39;pryr&#39;:
+##   method      from
+##   print.bytes Rcpp</code></pre>
+<pre><code>## 
+## Attaching package: &#39;pryr&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:data.table&#39;:
+## 
+##     address</code></pre>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="resource-allocation.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check how much memory is used by R (overall)</span></span>
+<span id="cb85-2"><a href="resource-allocation.html#cb85-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_used</span>()</span></code></pre></div>
+<pre><code>## 1.04 GB</code></pre>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="resource-allocation.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check the change in memory due to each step</span></span>
+<span id="cb87-2"><a href="resource-allocation.html#cb87-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-3"><a href="resource-allocation.html#cb87-3" aria-hidden="true" tabindex="-1"></a><span class="co"># DATA IMPORT ----------------</span></span>
+<span id="cb87-4"><a href="resource-allocation.html#cb87-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_change</span>(flights <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(DATA_PATH))</span></code></pre></div>
+<pre><code>## 33.2 MB</code></pre>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="resource-allocation.html#cb89-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DATA PREPARATION --------</span></span>
+<span id="cb89-2"><a href="resource-allocation.html#cb89-2" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> flights[,<span class="sc">-</span><span class="dv">1</span><span class="sc">:-</span><span class="dv">3</span>]</span>
+<span id="cb89-3"><a href="resource-allocation.html#cb89-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb89-4"><a href="resource-allocation.html#cb89-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check how much memory is used by R now</span></span>
+<span id="cb89-5"><a href="resource-allocation.html#cb89-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_used</span>()</span></code></pre></div>
+<pre><code>## 1.07 GB</code></pre>
+<p>The last result is kind of interesting. The object <code>flights</code> must have been larger right after importing it than at the end of the script. We have thrown out several variables, after all. Why does R still use that much memory? R does by default not ‘clean up’ memory unless it is really necessary (meaning no more memory is available). In this case, R has still way more memory available from the operating system, thus there is no need to ‘collect the garbage’ yet. However, we can force R to collect the garbage on the spot with <code>gc()</code>. This can be helpful to better keep track of the memory needed by an analytics script.</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="resource-allocation.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span></code></pre></div>
+<pre><code>##             used  (Mb) gc trigger   (Mb)  max used
+## Ncells   1081051  57.8    2027135  108.3   2027135
+## Vcells 126631861 966.2  213478480 1628.8 211150457
+##          (Mb)
+## Ncells  108.3
+## Vcells 1611.0</code></pre>
+<p>Now, let’s see how we can improve the performance of this script with regard to memory allocation. Most memory is allocated when importing the file. Obviously, any improvement of the script must still result in importing all the data. However, there are different ways to read data into RAM. <code>read.csv()</code> reads all lines of a csv file consecutively. In contrast, <code>data.table::fread()</code> first ‘maps’ the data file into memory and only then actually reads it in line by line. This involves an additional initial step, but the larger the file, the less relevant is this first step with regard to the total time needed to read all the data into memory. By switching on the <code>verbose</code> option, we can actually see what <code>fread</code> is doing.</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="resource-allocation.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb93-2"><a href="resource-allocation.html#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb93-3"><a href="resource-allocation.html#cb93-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-4"><a href="resource-allocation.html#cb93-4" aria-hidden="true" tabindex="-1"></a><span class="co"># DATA IMPORT ----------------</span></span>
+<span id="cb93-5"><a href="resource-allocation.html#cb93-5" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> <span class="fu">fread</span>(DATA_PATH, <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>##   OpenMP version (_OPENMP)       201511
+##   omp_get_num_procs()            12
+##   R_DATATABLE_NUM_PROCS_PERCENT  unset (default 50)
+##   R_DATATABLE_NUM_THREADS        unset
+##   R_DATATABLE_THROTTLE           unset (default 1024)
+##   omp_get_thread_limit()         2147483647
+##   omp_get_max_threads()          12
+##   OMP_THREAD_LIMIT               unset
+##   OMP_NUM_THREADS                unset
+##   RestoreAfterFork               true
+##   data.table is using 6 threads with throttle==1024. See ?setDTthreads.
+## freadR.c has been passed a filename: data/flights.csv
+## [01] Check arguments
+##   Using 6 threads (omp_get_max_threads()=12, nth=6)
+##   NAstrings = [&lt;&lt;NA&gt;&gt;]
+##   None of the NAstrings look like numbers.
+##   show progress = 0
+##   0/1 column will be read as integer
+## [02] Opening the file
+##   Opening file data/flights.csv
+##   File opened, size = 29.53MB (30960660 bytes).
+##   Memory mapped ok
+## [03] Detect and skip BOM
+## [04] Arrange mmap to be \0 terminated
+##   \n has been found in the input and different lines can end with different line endings (e.g. mixed \n and \r\n in one file). This is common and ideal.
+## [05] Skipping initial rows if needed
+##   Positioned on line 1 starting: &lt;&lt;year,month,day,dep_time,sched_&gt;&gt;
+## [06] Detect separator, quoting rule, and ncolumns
+##   Detecting sep automatically ...
+##   sep=&#39;,&#39;  with 100 lines of 19 fields using quote rule 0
+##   Detected 19 columns on line 1. This line is either column names or first data row. Line starts as: &lt;&lt;year,month,day,dep_time,sched_&gt;&gt;
+##   Quote rule picked = 0
+##   fill=false and the most number of columns found is 19
+## [07] Detect column types, good nrow estimate and whether first row is column names
+##   Number of sampling jump points = 100 because (30960659 bytes from row 1 to eof) / (2 * 8882 jump0size) == 1742
+##   Type codes (jump 000)    : 555555555C5CCC5555B  Quote rule 0
+##   Type codes (jump 100)    : 555555555C5CCC5555B  Quote rule 0
+##   &#39;header&#39; determined to be true due to column 1 containing a string on row 1 and a lower type (int32) in the rest of the 10048 sample rows
+##   =====
+##   Sampled 10048 rows (handled \n inside quoted fields) at 101 jump points
+##   Bytes from first data row on line 2 to the end of last row: 30960501
+##   Line length: mean=92.03 sd=3.56 min=68 max=98
+##   Estimated number of rows: 30960501 / 92.03 = 336403
+##   Initial alloc = 370043 rows (336403 + 9%) using bytes/max(mean-2*sd,min) clamped between [1.1*estn, 2.0*estn]
+##   =====
+## [08] Assign column names
+## [09] Apply user overrides on column types
+##   After 0 type and 0 drop user overrides : 555555555C5CCC5555B
+## [10] Allocate memory for the datatable
+##   Allocating 19 column slots (19 - 0 dropped) with 370043 rows
+## [11] Read the data
+##   jumps=[0..30), chunk_size=1032016, total_size=30960501
+## Read 336776 rows x 19 columns from 29.53MB (30960660 bytes) file in 00:00.059 wall clock time
+## [12] Finalizing the datatable
+##   Type counts:
+##         14 : int32     &#39;5&#39;
+##          1 : float64   &#39;B&#39;
+##          4 : string    &#39;C&#39;
+## =============================
+##    0.000s (  0%) Memory map 0.029GB file
+##    0.003s (  5%) sep=&#39;,&#39; ncol=19 and header detection
+##    0.000s (  0%) Column type detection using 10048 sample rows
+##    0.001s (  2%) Allocation of 370043 rows x 19 cols (0.033GB) of which 336776 ( 91%) rows used
+##    0.055s ( 94%) Reading 30 chunks (0 swept) of 0.984MB (each chunk 11225 rows) using 6 threads
+##    +    0.014s ( 24%) Parse to row-major thread buffers (grown 0 times)
+##    +    0.025s ( 43%) Transpose
+##    +    0.016s ( 27%) Waiting
+##    0.000s (  0%) Rereading 0 columns due to out-of-sample type exceptions
+##    0.059s        Total</code></pre>
+<p>Let’s put it all together and look at the memory changes and usage. For a fair comparison, we first have to delete <code>flights</code> and collect the garbage with <code>gc()</code>.</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="resource-allocation.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP -----------------</span></span>
+<span id="cb95-2"><a href="resource-allocation.html#cb95-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb95-3"><a href="resource-allocation.html#cb95-3" aria-hidden="true" tabindex="-1"></a><span class="co"># fix variables</span></span>
+<span id="cb95-4"><a href="resource-allocation.html#cb95-4" aria-hidden="true" tabindex="-1"></a>DATA_PATH <span class="ot">&lt;-</span> <span class="st">&quot;data/flights.csv&quot;</span></span>
+<span id="cb95-5"><a href="resource-allocation.html#cb95-5" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb95-6"><a href="resource-allocation.html#cb95-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pryr) </span>
+<span id="cb95-7"><a href="resource-allocation.html#cb95-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb95-8"><a href="resource-allocation.html#cb95-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb95-9"><a href="resource-allocation.html#cb95-9" aria-hidden="true" tabindex="-1"></a><span class="co"># housekeeping</span></span>
+<span id="cb95-10"><a href="resource-allocation.html#cb95-10" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb95-11"><a href="resource-allocation.html#cb95-11" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span></code></pre></div>
+<pre><code>##             used  (Mb) gc trigger   (Mb)  max used
+## Ncells   1070086  57.2    2027135  108.3   2027135
+## Vcells 123466116 942.0  213478480 1628.8 211150457
+##          (Mb)
+## Ncells  108.3
+## Vcells 1611.0</code></pre>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="resource-allocation.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check the change in memory due to each step</span></span>
+<span id="cb97-2"><a href="resource-allocation.html#cb97-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb97-3"><a href="resource-allocation.html#cb97-3" aria-hidden="true" tabindex="-1"></a><span class="co"># DATA IMPORT ----------------</span></span>
+<span id="cb97-4"><a href="resource-allocation.html#cb97-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_change</span>(flights <span class="ot">&lt;-</span> <span class="fu">fread</span>(DATA_PATH))</span></code></pre></div>
+<pre><code>## 35.8 MB</code></pre>
+</div>
+<div id="beyond-memory" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Beyond memory</h2>
+<p>In the previous example we have inspected how RAM is allocated to store objects in the R computing environment. But what if all RAM of our computer is not enough to store all the data we want to analyze?</p>
+<p>Modern operating systems have a way to dealing with such a situation. Once all RAM is used up by the currently running programs, the OS allocates parts of the memory back to the hard-disk which then works as <em>virtual memory</em>. The following figure illustrates this point.</p>
+<div class="figure" style="text-align: center"><span id="fig:vm"></span>
+<img src="img/03_virtualmemory.png" alt="Virtual memory. Figure by Ehamberg (CC BY-SA 3.0)." width="30%" />
+<p class="caption">
+Figure 3.1: Virtual memory. Figure by Ehamberg (CC BY-SA 3.0).
+</p>
+</div>
+
+<p>For example, when we implement an R-script that imports one file after the other into the R environment, ignoring the RAM capacity of our computer, the OS will start <em>paging</em> data to the virtual memory. This happens ‘under the hood’ without explicit instructions by the user. We quite likely notice that the computer slows down a lot when this happens.</p>
+<p>While this default usage of virtual memory by the OS is helpful to run several applications at the same time, each taking up a moderate amount of memory, it is not a really useful tool for processing large amounts of data in one application (R). However, the underlying idea of using both RAM and Mass storage simultaneously in order to cope with a lack of memory is very useful in the context of big data analytics.</p>
+<p>Several R packages have been developed that exploit the idea behind virtual memory explicitly for analyzing large amounts of data. The basic idea behind these packages is to map a data set to the hard disk when loading it into R. The actual data values are stored in chunks on the hard-disk, while the structure/metadata of the data set is loaded into R. See this week’s slide set as well as <span class="citation"><a href="references.html#ref-walkowiak_2016" role="doc-biblioref">Walkowiak</a> (<a href="references.html#ref-walkowiak_2016" role="doc-biblioref">2016</a>)</span>, Chapter 3 for more details and example code.</p>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="3">
+<li id="fn3"><p>In many data analysis tasks the two are, of course, intertwined. However, keeping both aspects in mind when optimizing an analytics program helps to choose the right tools.<a href="resource-allocation.html#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>Note that this example aims to illustrate a point about computation in an applied econometrics context. It does not make any argument about identification or the broader research question whatsoever.<a href="resource-allocation.html#fnref4" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="computing-resources.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="advanced-r-programming.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 1
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bigdata.pdf", "bigdata.html", "bigdata.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
