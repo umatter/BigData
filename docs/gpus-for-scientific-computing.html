@@ -4,35 +4,35 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 10 GPUs for Scientific Computing | Big Data Analytics</title>
+  <title>Chapter 3 GPUs for Scientific Computing | Big Data Analytics</title>
   <meta name="description" content="A guide to practical big data analytics in R." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 10 GPUs for Scientific Computing | Big Data Analytics" />
+  <meta property="og:title" content="Chapter 3 GPUs for Scientific Computing | Big Data Analytics" />
   <meta property="og:type" content="book" />
-  
-  <meta property="og:image" content="img/cover.png" />
+  <meta property="og:url" content="https://umatter.github.io/BigData" />
+  <meta property="og:image" content="https://umatter.github.io/BigDataimg/cover.png" />
   <meta property="og:description" content="A guide to practical big data analytics in R." />
-  
+  <meta name="github-repo" content="umatter/BigData" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 10 GPUs for Scientific Computing | Big Data Analytics" />
+  <meta name="twitter:title" content="Chapter 3 GPUs for Scientific Computing | Big Data Analytics" />
   
   <meta name="twitter:description" content="A guide to practical big data analytics in R." />
-  <meta name="twitter:image" content="img/cover.png" />
+  <meta name="twitter:image" content="https://umatter.github.io/BigDataimg/cover.png" />
 
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-01-20" />
+<meta name="date" content="2022-02-03" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="cloud-services-for-big-data-analytics.html"/>
-<link rel="next" href="applied-econometrics-with-apache-spark.html"/>
+<link rel="prev" href="hardware-computing-resources.html"/>
+<link rel="next" href="hardware-cloud-services.html"/>
 <script src="libs/header-attrs/header-attrs.js"></script>
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
@@ -137,136 +137,112 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#example-of-computation-time-and-memory-allocation"><i class="fa fa-check"></i><b>1.1</b> Example of Computation Time and Memory Allocation</a>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#what-is-big-in-big-data"><i class="fa fa-check"></i><b>1.1</b> What is <em>big</em> in “Big Data?”</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#content-overview"><i class="fa fa-check"></i><b>1.2</b> Content overview</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#prerequisits"><i class="fa fa-check"></i><b>1.3</b> Prerequisits</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html"><i class="fa fa-check"></i><b>2</b> Hardware: Computing Resources</a>
 <ul>
-<li class="chapter" data-level="1.1.1" data-path="introduction.html"><a href="introduction.html#preparation"><i class="fa fa-check"></i><b>1.1.1</b> Preparation</a></li>
-<li class="chapter" data-level="1.1.2" data-path="introduction.html"><a href="introduction.html#naïve-approach-ignorant-of-r"><i class="fa fa-check"></i><b>1.1.2</b> Naïve Approach (ignorant of R)</a></li>
-<li class="chapter" data-level="1.1.3" data-path="introduction.html"><a href="introduction.html#improvement-1-pre-allocation-of-memory"><i class="fa fa-check"></i><b>1.1.3</b> Improvement 1: Pre-allocation of memory</a></li>
-<li class="chapter" data-level="1.1.4" data-path="introduction.html"><a href="introduction.html#improvement-2-exploit-vectorization"><i class="fa fa-check"></i><b>1.1.4</b> Improvement 2: Exploit vectorization</a></li>
+<li class="chapter" data-level="2.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#units-of-informationdata-storage"><i class="fa fa-check"></i><b>2.1</b> Units of information/data storage</a></li>
+<li class="chapter" data-level="2.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#components-of-a-standard-computing-environment"><i class="fa fa-check"></i><b>2.2</b> Components of a standard computing environment</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html"><i class="fa fa-check"></i><b>3</b> GPUs for Scientific Computing</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#gpus-in-r"><i class="fa fa-check"></i><b>3.1</b> GPUs in R</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#example-i-matrix-multiplication-comparison-gpur"><i class="fa fa-check"></i><b>3.1.1</b> Example I: Matrix multiplication comparison (<code>gpuR</code>)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#beyond-memory"><i class="fa fa-check"></i><b>3.2</b> Beyond memory</a></li>
+<li class="chapter" data-level="3.3" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#resource-allocation"><i class="fa fa-check"></i><b>3.3</b> Resource allocation</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="hardware-cloud-services.html"><a href="hardware-cloud-services.html"><i class="fa fa-check"></i><b>4</b> Hardware: Cloud Services</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="hardware-cloud-services.html"><a href="hardware-cloud-services.html#scaling-up-in-the-cloud"><i class="fa fa-check"></i><b>4.1</b> Scaling up in the Cloud</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="hardware-cloud-services.html"><a href="hardware-cloud-services.html#parallelization-with-an-ec2-instance"><i class="fa fa-check"></i><b>4.1.1</b> Parallelization with an EC2 instance</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="computing-resources.html"><a href="computing-resources.html"><i class="fa fa-check"></i><b>2</b> Computing Resources</a>
+<li class="chapter" data-level="5" data-path="distributed-systemsmapreduce.html"><a href="distributed-systemsmapreduce.html"><i class="fa fa-check"></i><b>5</b> Distributed Systems/MapReduce</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="computing-resources.html"><a href="computing-resources.html#components-of-a-standard-computing-environment"><i class="fa fa-check"></i><b>2.1</b> Components of a standard computing environment</a></li>
-<li class="chapter" data-level="2.2" data-path="computing-resources.html"><a href="computing-resources.html#units-of-informationdata-storage"><i class="fa fa-check"></i><b>2.2</b> Units of information/data storage</a>
+<li class="chapter" data-level="5.0.1" data-path="distributed-systemsmapreduce.html"><a href="distributed-systemsmapreduce.html#mapreduce-concept-illustration-in-r"><i class="fa fa-check"></i><b>5.0.1</b> Map/Reduce Concept: Illustration in R</a></li>
+<li class="chapter" data-level="5.1" data-path="distributed-systemsmapreduce.html"><a href="distributed-systemsmapreduce.html#hadoop-word-count"><i class="fa fa-check"></i><b>5.1</b> Hadoop Word Count</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="computing-resources.html"><a href="computing-resources.html#example-in-r-data-types-and-information-storage"><i class="fa fa-check"></i><b>2.2.1</b> Example in R: Data types and information storage</a></li>
-</ul></li>
-<li class="chapter" data-level="2.3" data-path="computing-resources.html"><a href="computing-resources.html#big-data-econometrics"><i class="fa fa-check"></i><b>2.3</b> Big Data econometrics</a></li>
-<li class="chapter" data-level="2.4" data-path="computing-resources.html"><a href="computing-resources.html#example-fast-least-squares-regression"><i class="fa fa-check"></i><b>2.4</b> Example: Fast least squares regression</a>
-<ul>
-<li class="chapter" data-level="2.4.1" data-path="computing-resources.html"><a href="computing-resources.html#ols-as-a-point-of-reference"><i class="fa fa-check"></i><b>2.4.1</b> OLS as a point of reference</a></li>
-<li class="chapter" data-level="2.4.2" data-path="computing-resources.html"><a href="computing-resources.html#the-uluru-algorithm-as-an-alternative-to-ols"><i class="fa fa-check"></i><b>2.4.2</b> The Uluru algorithm as an alternative to OLS</a></li>
+<li class="chapter" data-level="5.1.1" data-path="distributed-systemsmapreduce.html"><a href="distributed-systemsmapreduce.html#install-hadoop-on-ubuntupop_os-linux"><i class="fa fa-check"></i><b>5.1.1</b> Install Hadoop (on Ubuntu/Pop!_OS Linux)</a></li>
+<li class="chapter" data-level="5.1.2" data-path="distributed-systemsmapreduce.html"><a href="distributed-systemsmapreduce.html#run-hadoop"><i class="fa fa-check"></i><b>5.1.2</b> Run Hadoop</a></li>
+<li class="chapter" data-level="5.1.3" data-path="distributed-systemsmapreduce.html"><a href="distributed-systemsmapreduce.html#run-example"><i class="fa fa-check"></i><b>5.1.3</b> Run example</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="resource-allocation.html"><a href="resource-allocation.html"><i class="fa fa-check"></i><b>3</b> Resource allocation</a>
+<li class="chapter" data-level="6" data-path="software-toolbox.html"><a href="software-toolbox.html"><i class="fa fa-check"></i><b>6</b> Software: Toolbox</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="resource-allocation.html"><a href="resource-allocation.html#case-study-parallel-processing"><i class="fa fa-check"></i><b>3.1</b> Case study: Parallel processing</a></li>
-<li class="chapter" data-level="3.2" data-path="resource-allocation.html"><a href="resource-allocation.html#case-study-memory-allocation"><i class="fa fa-check"></i><b>3.2</b> Case study: Memory allocation</a></li>
-<li class="chapter" data-level="3.3" data-path="resource-allocation.html"><a href="resource-allocation.html#beyond-memory"><i class="fa fa-check"></i><b>3.3</b> Beyond memory</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html"><i class="fa fa-check"></i><b>4</b> Advanced R Programming</a>
+<li class="chapter" data-level="6.1" data-path="software-toolbox.html"><a href="software-toolbox.html#advanced-r-programming"><i class="fa fa-check"></i><b>6.1</b> Advanced R Programming</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#r-tools-to-investigate-performanceresource-allocation"><i class="fa fa-check"></i><b>4.1</b> R-tools to investigate performance/resource allocation</a></li>
-<li class="chapter" data-level="4.2" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#r-tools-to-investigate-structures-and-types"><i class="fa fa-check"></i><b>4.2</b> R-tools to investigate structures and types</a></li>
-<li class="chapter" data-level="4.3" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#data-types-and-memorystorage"><i class="fa fa-check"></i><b>4.3</b> Data types and memory/storage</a></li>
-<li class="chapter" data-level="4.4" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#data-structures"><i class="fa fa-check"></i><b>4.4</b> Data structures</a>
-<ul>
-<li class="chapter" data-level="4.4.1" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#vectors-vs-factors-in-r"><i class="fa fa-check"></i><b>4.4.1</b> Vectors vs Factors in R</a></li>
-<li class="chapter" data-level="4.4.2" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#matricesarrays"><i class="fa fa-check"></i><b>4.4.2</b> Matrices/Arrays</a></li>
-<li class="chapter" data-level="4.4.3" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#data-frames-tibbles-and-data-tables"><i class="fa fa-check"></i><b>4.4.3</b> Data frames, tibbles, and data tables</a></li>
-<li class="chapter" data-level="4.4.4" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#lists"><i class="fa fa-check"></i><b>4.4.4</b> Lists</a></li>
-</ul></li>
-<li class="chapter" data-level="4.5" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#programming-with-big-data-in-r"><i class="fa fa-check"></i><b>4.5</b> Programming with (Big) Data in R</a>
-<ul>
-<li class="chapter" data-level="4.5.1" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#typical-programming-tasks"><i class="fa fa-check"></i><b>4.5.1</b> Typical Programming Tasks</a></li>
-<li class="chapter" data-level="4.5.2" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#building-blocks-for-programming-with-big-data"><i class="fa fa-check"></i><b>4.5.2</b> Building blocks for programming with big data</a></li>
-<li class="chapter" data-level="4.5.3" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#writing-efficient-code"><i class="fa fa-check"></i><b>4.5.3</b> Writing efficient code</a></li>
-<li class="chapter" data-level="4.5.4" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#r-beyond-r"><i class="fa fa-check"></i><b>4.5.4</b> R, beyond R</a></li>
+<li class="chapter" data-level="6.1.1" data-path="software-toolbox.html"><a href="software-toolbox.html#r-tools-to-investigate-performanceresource-allocation"><i class="fa fa-check"></i><b>6.1.1</b> R-tools to investigate performance/resource allocation</a></li>
+<li class="chapter" data-level="6.1.2" data-path="software-toolbox.html"><a href="software-toolbox.html#r-tools-to-investigate-structures-and-types"><i class="fa fa-check"></i><b>6.1.2</b> R-tools to investigate structures and types</a></li>
+<li class="chapter" data-level="6.1.3" data-path="software-toolbox.html"><a href="software-toolbox.html#data-types-and-memorystorage"><i class="fa fa-check"></i><b>6.1.3</b> Data types and memory/storage</a></li>
+<li class="chapter" data-level="6.1.4" data-path="software-toolbox.html"><a href="software-toolbox.html#data-structures"><i class="fa fa-check"></i><b>6.1.4</b> Data structures</a></li>
+<li class="chapter" data-level="6.1.5" data-path="software-toolbox.html"><a href="software-toolbox.html#vectors-vs-factors-in-r"><i class="fa fa-check"></i><b>6.1.5</b> Vectors vs Factors in R</a></li>
+<li class="chapter" data-level="6.1.6" data-path="software-toolbox.html"><a href="software-toolbox.html#programming-with-big-data-in-r"><i class="fa fa-check"></i><b>6.1.6</b> Programming with (Big) Data in R</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html"><i class="fa fa-check"></i><b>5</b> Big Data Cleaning and Transformation</a>
+<li class="chapter" data-level="7" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html"><i class="fa fa-check"></i><b>7</b> Big Data Cleaning and Transformation</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#out-of-memory-strategies"><i class="fa fa-check"></i><b>5.1</b> ‘Out-of-memory’ strategies</a>
+<li class="chapter" data-level="7.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#out-of-memory-strategies"><i class="fa fa-check"></i><b>7.1</b> ‘Out-of-memory’ strategies</a>
 <ul>
-<li class="chapter" data-level="5.1.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#chunking-data-with-the-ff-package"><i class="fa fa-check"></i><b>5.1.1</b> Chunking data with the <code>ff</code>-package</a></li>
-<li class="chapter" data-level="5.1.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#memory-mapping-with-bigmemory"><i class="fa fa-check"></i><b>5.1.2</b> Memory mapping with <code>bigmemory</code></a></li>
+<li class="chapter" data-level="7.1.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#chunking-data-with-the-ff-package"><i class="fa fa-check"></i><b>7.1.1</b> Chunking data with the <code>ff</code>-package</a></li>
+<li class="chapter" data-level="7.1.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#memory-mapping-with-bigmemory"><i class="fa fa-check"></i><b>7.1.2</b> Memory mapping with <code>bigmemory</code></a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#typical-cleaning-tasks"><i class="fa fa-check"></i><b>5.2</b> Typical cleaning tasks</a>
+<li class="chapter" data-level="7.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#typical-cleaning-tasks"><i class="fa fa-check"></i><b>7.2</b> Typical cleaning tasks</a>
 <ul>
-<li class="chapter" data-level="5.2.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#data-preparation-with-ff"><i class="fa fa-check"></i><b>5.2.1</b> Data Preparation with <code>ff</code></a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="data-aggregation.html"><a href="data-aggregation.html"><i class="fa fa-check"></i><b>6</b> Data Aggregation</a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="data-aggregation.html"><a href="data-aggregation.html#data-aggregation-the-split-apply-combine-strategy"><i class="fa fa-check"></i><b>6.1</b> Data aggregation: The ‘split-apply-combine’ strategy</a></li>
-<li class="chapter" data-level="6.2" data-path="data-aggregation.html"><a href="data-aggregation.html#data-aggregation-tutorial"><i class="fa fa-check"></i><b>6.2</b> Data aggregation tutorial</a>
-<ul>
-<li class="chapter" data-level="6.2.1" data-path="data-aggregation.html"><a href="data-aggregation.html#gathering-and-compilation-of-all-the-raw-data"><i class="fa fa-check"></i><b>6.2.1</b> Gathering and Compilation of all the raw data</a></li>
-<li class="chapter" data-level="6.2.2" data-path="data-aggregation.html"><a href="data-aggregation.html#data-aggregation-with-chunked-data-files"><i class="fa fa-check"></i><b>6.2.2</b> Data aggregation with chunked data files</a></li>
-<li class="chapter" data-level="6.2.3" data-path="data-aggregation.html"><a href="data-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>6.2.3</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
+<li class="chapter" data-level="7.2.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#data-preparation-with-ff"><i class="fa fa-check"></i><b>7.2.1</b> Data Preparation with <code>ff</code></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html"><i class="fa fa-check"></i><b>7</b> Data Storage and Databases</a>
+<li class="chapter" data-level="8" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html"><i class="fa fa-check"></i><b>8</b> Descriptive Statistics and Aggregation</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#big-data-storage"><i class="fa fa-check"></i><b>7.1</b> (Big) Data Storage</a></li>
-<li class="chapter" data-level="7.2" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#rdbms-basics"><i class="fa fa-check"></i><b>7.2</b> RDBMS basics</a></li>
-<li class="chapter" data-level="7.3" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#getting-started-with-rsqlite"><i class="fa fa-check"></i><b>7.3</b> Getting started with (R)SQLite</a>
+<li class="chapter" data-level="8.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-the-split-apply-combine-strategy"><i class="fa fa-check"></i><b>8.1</b> Data aggregation: The ‘split-apply-combine’ strategy</a></li>
+<li class="chapter" data-level="8.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-tutorial"><i class="fa fa-check"></i><b>8.2</b> Data aggregation tutorial</a>
 <ul>
-<li class="chapter" data-level="7.3.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#first-steps-in-sqlite"><i class="fa fa-check"></i><b>7.3.1</b> First steps in SQLite</a></li>
-<li class="chapter" data-level="7.3.2" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#indices-and-joins"><i class="fa fa-check"></i><b>7.3.2</b> Indices and joins</a></li>
-</ul></li>
-<li class="chapter" data-level="7.4" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#sqlite-from-within-r"><i class="fa fa-check"></i><b>7.4</b> SQLite from within R</a>
-<ul>
-<li class="chapter" data-level="7.4.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#creating-a-new-database-with-rsqlite"><i class="fa fa-check"></i><b>7.4.1</b> Creating a new database with <code>RSQLite</code></a></li>
-<li class="chapter" data-level="7.4.2" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#importing-data"><i class="fa fa-check"></i><b>7.4.2</b> Importing data</a></li>
-<li class="chapter" data-level="7.4.3" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#issue-queries"><i class="fa fa-check"></i><b>7.4.3</b> Issue queries</a></li>
+<li class="chapter" data-level="8.2.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#gathering-and-compilation-of-all-the-raw-data"><i class="fa fa-check"></i><b>8.2.1</b> Gathering and Compilation of all the raw data</a></li>
+<li class="chapter" data-level="8.2.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-with-chunked-data-files"><i class="fa fa-check"></i><b>8.2.2</b> Data aggregation with chunked data files</a></li>
+<li class="chapter" data-level="8.2.3" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>8.2.3</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="big-data-visualization.html"><a href="big-data-visualization.html"><i class="fa fa-check"></i><b>8</b> (Big) Data Visualization</a>
+<li class="chapter" data-level="9" data-path="big-data-visualization.html"><a href="big-data-visualization.html"><i class="fa fa-check"></i><b>9</b> (Big) Data Visualization</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#data-set"><i class="fa fa-check"></i><b>8.1</b> Data Set</a></li>
-<li class="chapter" data-level="8.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-modify-and-create-themes"><i class="fa fa-check"></i><b>8.2</b> Excursus: modify and create themes</a>
+<li class="chapter" data-level="9.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#data-set"><i class="fa fa-check"></i><b>9.1</b> Data Set</a></li>
+<li class="chapter" data-level="9.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-modify-and-create-themes"><i class="fa fa-check"></i><b>9.2</b> Excursus: modify and create themes</a>
 <ul>
-<li class="chapter" data-level="8.2.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#create-your-own-theme-simple-approach"><i class="fa fa-check"></i><b>8.2.1</b> Create your own theme: simple approach</a></li>
-<li class="chapter" data-level="8.2.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#implementing-actual-themes-as-functions."><i class="fa fa-check"></i><b>8.2.2</b> Implementing actual themes as functions.</a></li>
+<li class="chapter" data-level="9.2.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#create-your-own-theme-simple-approach"><i class="fa fa-check"></i><b>9.2.1</b> Create your own theme: simple approach</a></li>
+<li class="chapter" data-level="9.2.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#implementing-actual-themes-as-functions."><i class="fa fa-check"></i><b>9.2.2</b> Implementing actual themes as functions.</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="big-data-visualization.html"><a href="big-data-visualization.html#visualize-time-and-space"><i class="fa fa-check"></i><b>8.3</b> Visualize Time and Space</a>
+<li class="chapter" data-level="9.3" data-path="big-data-visualization.html"><a href="big-data-visualization.html#visualize-time-and-space"><i class="fa fa-check"></i><b>9.3</b> Visualize Time and Space</a>
 <ul>
-<li class="chapter" data-level="8.3.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#preparations"><i class="fa fa-check"></i><b>8.3.1</b> Preparations</a></li>
-<li class="chapter" data-level="8.3.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#pick-up-and-drop-off-locations"><i class="fa fa-check"></i><b>8.3.2</b> Pick-up and drop-off locations</a></li>
+<li class="chapter" data-level="9.3.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#preparations"><i class="fa fa-check"></i><b>9.3.1</b> Preparations</a></li>
+<li class="chapter" data-level="9.3.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#pick-up-and-drop-off-locations"><i class="fa fa-check"></i><b>9.3.2</b> Pick-up and drop-off locations</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-change-color-schemes"><i class="fa fa-check"></i><b>8.4</b> Excursus: change color schemes</a></li>
+<li class="chapter" data-level="9.4" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-change-color-schemes"><i class="fa fa-check"></i><b>9.4</b> Excursus: change color schemes</a></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html"><i class="fa fa-check"></i><b>9</b> Cloud Services for Big Data Analytics</a>
+<li class="chapter" data-level="10" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html"><i class="fa fa-check"></i><b>10</b> Bottle Necks in Local Big Data Analytics</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#scaling-up-in-the-cloud"><i class="fa fa-check"></i><b>9.1</b> Scaling up in the Cloud</a>
+<li class="chapter" data-level="10.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#example-of-computation-time-and-memory-allocation"><i class="fa fa-check"></i><b>10.1</b> Example of Computation Time and Memory Allocation</a>
 <ul>
-<li class="chapter" data-level="9.1.1" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#parallelization-with-an-ec2-instance"><i class="fa fa-check"></i><b>9.1.1</b> Parallelization with an EC2 instance</a></li>
-<li class="chapter" data-level="9.1.2" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#mass-storage-mariadb-on-an-ec2-instance"><i class="fa fa-check"></i><b>9.1.2</b> Mass Storage: MariaDB on an EC2 instance</a></li>
+<li class="chapter" data-level="10.1.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#preparation"><i class="fa fa-check"></i><b>10.1.1</b> Preparation</a></li>
+<li class="chapter" data-level="10.1.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#naïve-approach-ignorant-of-r"><i class="fa fa-check"></i><b>10.1.2</b> Naïve Approach (ignorant of R)</a></li>
+<li class="chapter" data-level="10.1.3" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#improvement-1-pre-allocation-of-memory"><i class="fa fa-check"></i><b>10.1.3</b> Improvement 1: Pre-allocation of memory</a></li>
+<li class="chapter" data-level="10.1.4" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#improvement-2-exploit-vectorization"><i class="fa fa-check"></i><b>10.1.4</b> Improvement 2: Exploit vectorization</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#distributed-systemsmapreduce"><i class="fa fa-check"></i><b>9.2</b> Distributed Systems/MapReduce</a>
+<li class="chapter" data-level="10.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#case-study-parallel-processing"><i class="fa fa-check"></i><b>10.2</b> Case study: Parallel processing</a></li>
+<li class="chapter" data-level="10.3" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#case-study-memory-allocation"><i class="fa fa-check"></i><b>10.3</b> Case study: Memory allocation</a></li>
+<li class="chapter" data-level="10.4" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#big-data-econometrics"><i class="fa fa-check"></i><b>10.4</b> Big Data econometrics</a></li>
+<li class="chapter" data-level="10.5" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#example-fast-least-squares-regression"><i class="fa fa-check"></i><b>10.5</b> Example: Fast least squares regression</a>
 <ul>
-<li class="chapter" data-level="9.2.1" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#mapreduce-concept-illustration-in-r"><i class="fa fa-check"></i><b>9.2.1</b> Map/Reduce Concept: Illustration in R</a></li>
+<li class="chapter" data-level="10.5.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#ols-as-a-point-of-reference"><i class="fa fa-check"></i><b>10.5.1</b> OLS as a point of reference</a></li>
+<li class="chapter" data-level="10.5.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#the-uluru-algorithm-as-an-alternative-to-ols"><i class="fa fa-check"></i><b>10.5.2</b> The Uluru algorithm as an alternative to OLS</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#hadoop-word-count"><i class="fa fa-check"></i><b>9.3</b> Hadoop Word Count</a>
+<li class="chapter" data-level="10.6" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#gpus-and-machine-learning"><i class="fa fa-check"></i><b>10.6</b> GPUs and Machine Learning</a>
 <ul>
-<li class="chapter" data-level="9.3.1" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#install-hadoop-on-ubuntupop_os-linux"><i class="fa fa-check"></i><b>9.3.1</b> Install Hadoop (on Ubuntu/Pop!_OS Linux)</a></li>
-<li class="chapter" data-level="9.3.2" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#run-hadoop"><i class="fa fa-check"></i><b>9.3.2</b> Run Hadoop</a></li>
-<li class="chapter" data-level="9.3.3" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#run-example"><i class="fa fa-check"></i><b>9.3.3</b> Run example</a></li>
+<li class="chapter" data-level="10.6.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#tensorflowkeras-example-predict-housing-prices"><i class="fa fa-check"></i><b>10.6.1</b> Tensorflow/Keras example: predict housing prices</a></li>
 </ul></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html"><i class="fa fa-check"></i><b>10</b> GPUs for Scientific Computing</a>
-<ul>
-<li class="chapter" data-level="10.1" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#gpus-in-r"><i class="fa fa-check"></i><b>10.1</b> GPUs in R</a>
-<ul>
-<li class="chapter" data-level="10.1.1" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#example-i-matrix-multiplication-comparison-gpur"><i class="fa fa-check"></i><b>10.1.1</b> Example I: Matrix multiplication comparison (<code>gpuR</code>)</a></li>
-</ul></li>
-<li class="chapter" data-level="10.2" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#gpus-and-machine-learning"><i class="fa fa-check"></i><b>10.2</b> GPUs and Machine Learning</a>
-<ul>
-<li class="chapter" data-level="10.2.1" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#tensorflowkeras-example-predict-housing-prices"><i class="fa fa-check"></i><b>10.2.1</b> Tensorflow/Keras example: predict housing prices</a></li>
-</ul></li>
-<li class="chapter" data-level="10.3" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#a-word-of-caution"><i class="fa fa-check"></i><b>10.3</b> A word of caution</a></li>
+<li class="chapter" data-level="10.7" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#a-word-of-caution"><i class="fa fa-check"></i><b>10.7</b> A word of caution</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html"><i class="fa fa-check"></i><b>11</b> Applied Econometrics with Apache Spark</a>
 <ul>
@@ -309,8 +285,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="gpus-for-scientific-computing" class="section level1" number="10">
-<h1><span class="header-section-number">Chapter 10</span> GPUs for Scientific Computing</h1>
+<div id="gpus-for-scientific-computing" class="section level1" number="3">
+<h1><span class="header-section-number">Chapter 3</span> GPUs for Scientific Computing</h1>
 <p>The success of the computer games industry in the late 1990s/early 2000s led to an interesting positive externality for scientific computing. The ever more demanding graphics of modern computer games and the huge economic success of the computer games industry set incentives for hardware producers to invest in research and development of more powerful ‘graphic cards,’ extending a normal PC/computing environment with additional computing power solely dedicated to graphics. At the heart of these graphic cards are so-called GPUs (Graphic Processing Units), microprocessors specifically optimized for graphics processing. The image below depicts a modern graphics card with NVIDIA GPUs, which is quite common in today’s ‘gaming’ PCs.</p>
 <p><img src="img/nvidia_geeforce.png" width="60%" style="display: block; margin: auto;" /></p>
 <p>Why did the hardware industry not simply invest in the development of more powerful CPUs to deal with the more demanding PC games? The main reason is that the architecture of CPUs is designed not only for efficiency but also flexibility. That is, a CPU needs to perform well in all kind of computations, some parallel, some sequential, etc. Computing graphics is a comparatively narrow domain of computation and designing a processing unit architecture that is custom-made to excel just at this one task is thus much more cost efficient. Interestingly, this graphics-specific architecture (specialized on highly parallel numerical [floating point] workloads) turns out to be also very useful in some core scientific computing tasks. In particular, matrix multiplications (see <span class="citation"><a href="references.html#ref-fatahalian_etal2004" role="doc-biblioref">Fatahalian, Sugerman, and Hanrahan</a> (<a href="references.html#ref-fatahalian_etal2004" role="doc-biblioref">2004</a>)</span> for a detailed discussion of why that is the case). A key aspect of GPUs is that they are composed of several multiprocessor units, of which each has in turn several cores. GPUS thus can perform computations with hundreds or even thousands of threads in parallel. The figure below illustrates this point.</p>
@@ -319,9 +295,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- include_graphics("img/nvidia_gpu.png") -->
 <!-- ``` -->
 <!-- (ref:nvidiaarchitecture) Typical NVIDIA GPU architecture (illustration and notes by @hernandez_etal2013). The GPU is comprised of a set of Streaming MultiProcessors (SM). Each SM is comprised of several Stream Processor (SP) cores, as shown for the NVIDIA’s Fermi architecture (a). The GPU resources are controlled by the programmer through the CUDA programming model, shown in (b). -->
-<p>While, initially, programming GPUs for scientific computing required a very good understanding of the hardware. Graphics card producers have realized that there is an additional market for their products (in particular with the recent rise of deep learning), and provide several high-level APIs to use GPUs for other tasks than graphics processing. Over the last few years more high-level software has been developed, which makes it much easier to use GPUs in parallel computing tasks. The following subsections shows some examples of such software in the R environment.<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a></p>
-<div id="gpus-in-r" class="section level2" number="10.1">
-<h2><span class="header-section-number">10.1</span> GPUs in R</h2>
+<p>While, initially, programming GPUs for scientific computing required a very good understanding of the hardware. Graphics card producers have realized that there is an additional market for their products (in particular with the recent rise of deep learning), and provide several high-level APIs to use GPUs for other tasks than graphics processing. Over the last few years more high-level software has been developed, which makes it much easier to use GPUs in parallel computing tasks. The following subsections shows some examples of such software in the R environment.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></p>
+<div id="gpus-in-r" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> GPUs in R</h2>
 <!-- ## Installation -->
 <!-- This is for pop OS machines. Install drivers etc. for NVIDIA card -->
 <!-- ```{bash eval=FALSE} -->
@@ -332,13 +308,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- # sudo apt install tensorflow-cuda-latest -->
 <!-- ``` -->
 <!-- Install `gpuR` in R (`install.packages("gpuR")`). -->
-<div id="example-i-matrix-multiplication-comparison-gpur" class="section level3" number="10.1.1">
-<h3><span class="header-section-number">10.1.1</span> Example I: Matrix multiplication comparison (<code>gpuR</code>)</h3>
+<div id="example-i-matrix-multiplication-comparison-gpur" class="section level3" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> Example I: Matrix multiplication comparison (<code>gpuR</code>)</h3>
 <p>The <code>gpuR</code> package provides basic R functions to compute with GPUs from within the R environmnent. In the following example we compare the performance of the CPU with the GPU based on a matrix multiplication exercise. For a large <span class="math inline">\(N\times P\)</span> matrix <span class="math inline">\(X\)</span>, we want to compute <span class="math inline">\(X^tX\)</span>.</p>
-<p>In a first step, we load the <code>gpuR</code>-package.<a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a> Note the output to the console. It shows the type of GPU identified by <code>gpuR</code>. This is the platform on which <code>gpuR</code> will compute the GPU examples. In order to compare the performances, we also load the <code>bench</code> package used in previous lectures.</p>
-<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="gpus-for-scientific-computing.html#cb385-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load package</span></span>
-<span id="cb385-2"><a href="gpus-for-scientific-computing.html#cb385-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bench)</span>
-<span id="cb385-3"><a href="gpus-for-scientific-computing.html#cb385-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gpuR)</span></code></pre></div>
+<p>In a first step, we load the <code>gpuR</code>-package.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> Note the output to the console. It shows the type of GPU identified by <code>gpuR</code>. This is the platform on which <code>gpuR</code> will compute the GPU examples. In order to compare the performances, we also load the <code>bench</code> package used in previous lectures.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="gpus-for-scientific-computing.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load package</span></span>
+<span id="cb1-2"><a href="gpus-for-scientific-computing.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bench)</span>
+<span id="cb1-3"><a href="gpus-for-scientific-computing.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gpuR)</span></code></pre></div>
 <pre><code>## Number of platforms: 1
 ## - platform: NVIDIA Corporation: OpenCL 3.0 CUDA 11.4.158
 ##   - context device index: 0
@@ -346,359 +322,70 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## checked all devices
 ## completed initialization</code></pre>
 <p>Next, we initiate a large matrix filled with pseudo random numbers, representing a dataset with <span class="math inline">\(N\)</span> observations and <span class="math inline">\(P\)</span> variables.</p>
-<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="gpus-for-scientific-computing.html#cb387-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initiate dataset with pseudo random numbers</span></span>
-<span id="cb387-2"><a href="gpus-for-scientific-computing.html#cb387-2" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">10000</span>  <span class="co"># number of observations</span></span>
-<span id="cb387-3"><a href="gpus-for-scientific-computing.html#cb387-3" aria-hidden="true" tabindex="-1"></a>P <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="co"># number of variables</span></span>
-<span id="cb387-4"><a href="gpus-for-scientific-computing.html#cb387-4" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(N <span class="sc">*</span> P, <span class="dv">0</span>, <span class="dv">1</span>), <span class="at">nrow =</span> N, <span class="at">ncol =</span>P)</span></code></pre></div>
-<p>For the GPU examples to work, we need one more preparatory step. GPUs have their own memory, which they can access faster than they can access RAM. However, this GPU memory is typically not very large compared to the memory CPUs have access to. Hence, there is a potential trade-off between losing some efficiency but working with more data or vice versa.<a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a> Here, we show both variants. With <code>gpuMatrix()</code> we create an object representing matrix <code>X</code> for computation on the GPU. However, this only points the GPU to the matrix and does not actually transfer data to the GPU’s memory. The latter is done in the other variant with <code>vclMatrix()</code>.</p>
-<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="gpus-for-scientific-computing.html#cb388-1" aria-hidden="true" tabindex="-1"></a><span class="co"># prepare GPU-specific objects/settings</span></span>
-<span id="cb388-2"><a href="gpus-for-scientific-computing.html#cb388-2" aria-hidden="true" tabindex="-1"></a>gpuX <span class="ot">&lt;-</span> <span class="fu">gpuMatrix</span>(X, <span class="at">type =</span> <span class="st">&quot;float&quot;</span>)  <span class="co"># point GPU to matrix (matrix stored in non-GPU memory)</span></span>
-<span id="cb388-3"><a href="gpus-for-scientific-computing.html#cb388-3" aria-hidden="true" tabindex="-1"></a>vclX <span class="ot">&lt;-</span> <span class="fu">vclMatrix</span>(X, <span class="at">type =</span> <span class="st">&quot;float&quot;</span>)  <span class="co"># transfer matrix to GPU (matrix stored in GPU memory)</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="gpus-for-scientific-computing.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initiate dataset with pseudo random numbers</span></span>
+<span id="cb3-2"><a href="gpus-for-scientific-computing.html#cb3-2" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">10000</span>  <span class="co"># number of observations</span></span>
+<span id="cb3-3"><a href="gpus-for-scientific-computing.html#cb3-3" aria-hidden="true" tabindex="-1"></a>P <span class="ot">&lt;-</span> <span class="dv">100</span> <span class="co"># number of variables</span></span>
+<span id="cb3-4"><a href="gpus-for-scientific-computing.html#cb3-4" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(N <span class="sc">*</span> P, <span class="dv">0</span>, <span class="dv">1</span>), <span class="at">nrow =</span> N, <span class="at">ncol =</span>P)</span></code></pre></div>
+<p>For the GPU examples to work, we need one more preparatory step. GPUs have their own memory, which they can access faster than they can access RAM. However, this GPU memory is typically not very large compared to the memory CPUs have access to. Hence, there is a potential trade-off between losing some efficiency but working with more data or vice versa.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a> Here, we show both variants. With <code>gpuMatrix()</code> we create an object representing matrix <code>X</code> for computation on the GPU. However, this only points the GPU to the matrix and does not actually transfer data to the GPU’s memory. The latter is done in the other variant with <code>vclMatrix()</code>.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="gpus-for-scientific-computing.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># prepare GPU-specific objects/settings</span></span>
+<span id="cb4-2"><a href="gpus-for-scientific-computing.html#cb4-2" aria-hidden="true" tabindex="-1"></a>gpuX <span class="ot">&lt;-</span> <span class="fu">gpuMatrix</span>(X, <span class="at">type =</span> <span class="st">&quot;float&quot;</span>)  <span class="co"># point GPU to matrix (matrix stored in non-GPU memory)</span></span>
+<span id="cb4-3"><a href="gpus-for-scientific-computing.html#cb4-3" aria-hidden="true" tabindex="-1"></a>vclX <span class="ot">&lt;-</span> <span class="fu">vclMatrix</span>(X, <span class="at">type =</span> <span class="st">&quot;float&quot;</span>)  <span class="co"># transfer matrix to GPU (matrix stored in GPU memory)</span></span></code></pre></div>
 <p>Now we run the three examples: first, based on standard R, using the CPU. Then, computing on the GPU but using CPU memory. And finally, computing on the GPU and using GPU memory. In order to make the comparison fair, we force <code>bench::mark()</code> to run at least 20 iterations per benchmarked variant.</p>
-<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="gpus-for-scientific-computing.html#cb389-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compare three approaches</span></span>
-<span id="cb389-2"><a href="gpus-for-scientific-computing.html#cb389-2" aria-hidden="true" tabindex="-1"></a>(gpu_cpu <span class="ot">&lt;-</span> bench<span class="sc">::</span><span class="fu">mark</span>(</span>
-<span id="cb389-3"><a href="gpus-for-scientific-computing.html#cb389-3" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb389-4"><a href="gpus-for-scientific-computing.html#cb389-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># compute with CPU </span></span>
-<span id="cb389-5"><a href="gpus-for-scientific-computing.html#cb389-5" aria-hidden="true" tabindex="-1"></a>  cpu <span class="ot">&lt;-</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> X,</span>
-<span id="cb389-6"><a href="gpus-for-scientific-computing.html#cb389-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb389-7"><a href="gpus-for-scientific-computing.html#cb389-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># GPU version, GPU pointer to CPU memory (gpuMatrix is simply a pointer)</span></span>
-<span id="cb389-8"><a href="gpus-for-scientific-computing.html#cb389-8" aria-hidden="true" tabindex="-1"></a>  gpu1_pointer <span class="ot">&lt;-</span> <span class="fu">t</span>(gpuX) <span class="sc">%*%</span> gpuX,</span>
-<span id="cb389-9"><a href="gpus-for-scientific-computing.html#cb389-9" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb389-10"><a href="gpus-for-scientific-computing.html#cb389-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># GPU version, in GPU memory (vclMatrix formation is a memory transfer)</span></span>
-<span id="cb389-11"><a href="gpus-for-scientific-computing.html#cb389-11" aria-hidden="true" tabindex="-1"></a>  gpu2_memory <span class="ot">&lt;-</span> <span class="fu">t</span>(vclX) <span class="sc">%*%</span> vclX,</span>
-<span id="cb389-12"><a href="gpus-for-scientific-computing.html#cb389-12" aria-hidden="true" tabindex="-1"></a> </span>
-<span id="cb389-13"><a href="gpus-for-scientific-computing.html#cb389-13" aria-hidden="true" tabindex="-1"></a><span class="at">check =</span> <span class="cn">FALSE</span>, <span class="at">memory =</span> <span class="cn">FALSE</span>, <span class="at">min_iterations =</span> <span class="dv">20</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="gpus-for-scientific-computing.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compare three approaches</span></span>
+<span id="cb5-2"><a href="gpus-for-scientific-computing.html#cb5-2" aria-hidden="true" tabindex="-1"></a>(gpu_cpu <span class="ot">&lt;-</span> bench<span class="sc">::</span><span class="fu">mark</span>(</span>
+<span id="cb5-3"><a href="gpus-for-scientific-computing.html#cb5-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-4"><a href="gpus-for-scientific-computing.html#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="co"># compute with CPU </span></span>
+<span id="cb5-5"><a href="gpus-for-scientific-computing.html#cb5-5" aria-hidden="true" tabindex="-1"></a>  cpu <span class="ot">&lt;-</span> <span class="fu">t</span>(X) <span class="sc">%*%</span> X,</span>
+<span id="cb5-6"><a href="gpus-for-scientific-computing.html#cb5-6" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-7"><a href="gpus-for-scientific-computing.html#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># GPU version, GPU pointer to CPU memory (gpuMatrix is simply a pointer)</span></span>
+<span id="cb5-8"><a href="gpus-for-scientific-computing.html#cb5-8" aria-hidden="true" tabindex="-1"></a>  gpu1_pointer <span class="ot">&lt;-</span> <span class="fu">t</span>(gpuX) <span class="sc">%*%</span> gpuX,</span>
+<span id="cb5-9"><a href="gpus-for-scientific-computing.html#cb5-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb5-10"><a href="gpus-for-scientific-computing.html#cb5-10" aria-hidden="true" tabindex="-1"></a>  <span class="co"># GPU version, in GPU memory (vclMatrix formation is a memory transfer)</span></span>
+<span id="cb5-11"><a href="gpus-for-scientific-computing.html#cb5-11" aria-hidden="true" tabindex="-1"></a>  gpu2_memory <span class="ot">&lt;-</span> <span class="fu">t</span>(vclX) <span class="sc">%*%</span> vclX,</span>
+<span id="cb5-12"><a href="gpus-for-scientific-computing.html#cb5-12" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb5-13"><a href="gpus-for-scientific-computing.html#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="at">check =</span> <span class="cn">FALSE</span>, <span class="at">memory =</span> <span class="cn">FALSE</span>, <span class="at">min_iterations =</span> <span class="dv">20</span>))</span></code></pre></div>
 <pre><code>## # A tibble: 3 x 6
 ##   expression                            min   median
 ##   &lt;bch:expr&gt;                       &lt;bch:tm&gt; &lt;bch:tm&gt;
-## 1 cpu &lt;- t(X) %*% X                 71.04ms   75.2ms
-## 2 gpu1_pointer &lt;- t(gpuX) %*% gpuX  29.06ms   29.6ms
-## 3 gpu2_memory &lt;- t(vclX) %*% vclX    7.71ms   14.2ms
+## 1 cpu &lt;- t(X) %*% X                 80.52ms   82.1ms
+## 2 gpu1_pointer &lt;- t(gpuX) %*% gpuX  29.35ms   32.6ms
+## 3 gpu2_memory &lt;- t(vclX) %*% vclX    7.66ms   14.4ms
 ## # … with 3 more variables: itr/sec &lt;dbl&gt;,
 ## #   mem_alloc &lt;bch:byt&gt;, gc/sec &lt;dbl&gt;</code></pre>
 <p>The performance comparison is visualized with boxplots.</p>
-<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="gpus-for-scientific-computing.html#cb391-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(gpu_cpu, <span class="at">type =</span> <span class="st">&quot;boxplot&quot;</span>)</span></code></pre></div>
-<p><img src="bigdata_files/figure-html/unnamed-chunk-195-1.png" width="672" /></p>
-<!-- ## Example II: Basic statistics (`Rth`) -->
-<!-- Install package  -->
-<!-- - needs cuda and thrust (in latest cuda versions included). -->
-<!-- - gcc version 8 or younger (use ` sudo update-alternatives --config gcc` to switch to version 8 if necessary). -->
-<!-- - point directly to thrust when installing -->
-<!--  STILL DOES NOT WORK -->
-<!-- ```{r} -->
-<!-- devtools::install_github("matloff/Rth", configure.args = "--with-thrust-home=/usr/lib/cuda-10.2/targets/x86_64-linux/include/thrust/ --with-backend=CUDA") -->
-<!-- ``` -->
-<!-- Load package -->
-<!-- ```{r} -->
-<!-- # load packages -->
-<!-- library(Rth) -->
-<!-- ``` -->
-<!-- Compute histogram and correlation of a 100 million row dataset. -->
-<!-- Create the dataset (based on pseudo random numbers) -->
-<!-- ```{r} -->
-<!-- # set fix vars -->
-<!-- N <- 100000000 # number of observations -->
-<!-- P <- 2 # number of variables -->
-<!-- # draw random dataset -->
-<!-- randat <- matrix(runif(N*P), ncol = P) -->
-<!-- ``` -->
-<!-- Compute histogram of first var -->
-<!-- ```{r} -->
-<!-- var1 <- randat[,1] -->
-<!-- rthhist("var1") -->
-<!-- Rth::rthhist("var1") -->
-<!-- ``` -->
-<!-- Micro benchmarking of correlation computation -->
-<!-- # Extended Example: OLS -->
-<!-- Here, the CPU is faster! -->
-<!-- ```{r} -->
-<!-- # Example taken from https://www.arc.vt.edu/wp-content/uploads/2017/04/GPU_R_Workshop_2017_slidy.html#13 -->
-<!-- set.seed(123456) -->
-<!-- np <- 40  #number of predictors -->
-<!-- nr <- 1e+05  #number of observations -->
-<!-- X <- cbind(5, 1:nr, matrix(rnorm((np - 1) * nr, 0, 0.01), nrow = nr, ncol = (np - -->
-<!--     1))) -->
-<!-- beta <- matrix(c(1, 3, runif(np - 1, 0, 0.2)), ncol = 1) -->
-<!-- y <- X %*% beta + matrix(rnorm(nr, 0, 1), nrow = nr, ncol = 1) -->
-<!-- # CPU bound version, slight optimize via crossprod but otherwise vanilla -->
-<!-- time2 <- system.time({ -->
-<!--     ms2 <- solve(crossprod(X), crossprod(X, y)) -->
-<!-- }) -->
-<!-- # GPU version, GPU pointer to CPU memory!! (gpuMatrix is simply a pointer) -->
-<!-- gpuX = gpuMatrix(X, type = "float")  #point GPU to matrix -->
-<!-- gpuy = gpuMatrix(y, type = "float") -->
-<!-- time4 <- system.time({ -->
-<!--     ms4 <- gpuR::solve(gpuR::crossprod(gpuX), gpuR::crossprod(gpuX, gpuy)) -->
-<!-- }) -->
-<!-- # GPU version, in GPU memory!! (vclMatrix formation is a memory transfer) -->
-<!-- vclX = vclMatrix(X, type = "float")  #push matrix to GPU -->
-<!-- vcly = vclMatrix(y, type = "float") -->
-<!-- time5 <- system.time({ -->
-<!--     ms5 <- gpuR::solve(gpuR::crossprod(vclX), gpuR::crossprod(vclX, vcly)) -->
-<!-- }) -->
-<!-- data.frame(CPU=time3[3], -->
-<!--            GPU_CPUmem=time4[3], -->
-<!--            GPU_GPUmem=time5[3]) -->
-<!-- ``` -->
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="gpus-for-scientific-computing.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(gpu_cpu, <span class="at">type =</span> <span class="st">&quot;boxplot&quot;</span>)</span></code></pre></div>
+<pre><code>## Loading required namespace: tidyr</code></pre>
+<p><img src="bigdata_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 </div>
 </div>
-<div id="gpus-and-machine-learning" class="section level2" number="10.2">
-<h2><span class="header-section-number">10.2</span> GPUs and Machine Learning</h2>
-<p>A most common application of GPUs for scientific computing is machine learning, in particular deep learning (machine learning based on artificial neural networks). Training deep learning models can be very computationally intense and to an important part depends on tensor (matrix) multiplications. This is also an area where you might come across highly parallelized computing based on GPUs without even noticing it, as the now commonly used software to build and train deep neural nets (<a href="https://www.tensorflow.org/">tensorflow</a>, and the high-level <a href="https://keras.io/">Keras</a> API) can easily be run on a CPU or GPU without any further configuration/preparation (apart from the initial installation of these programs). The example below is a simple illustration of how such techniques can be used in an econometrics context.</p>
-<!-- ```{r warning=FALSE, message=FALSE} -->
-<!-- library(keras) -->
-<!-- mnist <- dataset_mnist() -->
-<!-- x_train <- mnist$train$x -->
-<!-- y_train <- mnist$train$y -->
-<!-- x_test <- mnist$test$x -->
-<!-- y_test <- mnist$test$y -->
-<!-- # reshape -->
-<!-- x_train <- array_reshape(x_train, c(nrow(x_train), 784)) -->
-<!-- x_test <- array_reshape(x_test, c(nrow(x_test), 784)) -->
-<!-- # rescale -->
-<!-- x_train <- x_train / 255 -->
-<!-- x_test <- x_test / 255 -->
-<!-- y_train <- to_categorical(y_train, 10) -->
-<!-- y_test <- to_categorical(y_test, 10) -->
-<!-- model <- keras_model_sequential() -->
-<!-- model %>% -->
-<!--   layer_dense(units = 256, activation = 'relu', input_shape = c(784)) %>% -->
-<!--   layer_dropout(rate = 0.4) %>% -->
-<!--   layer_dense(units = 128, activation = 'relu') %>% -->
-<!--   layer_dropout(rate = 0.3) %>% -->
-<!--   layer_dense(units = 10, activation = 'softmax') -->
-<!-- summary(model) -->
-<!-- model %>% compile( -->
-<!--   loss = 'categorical_crossentropy', -->
-<!--   optimizer = optimizer_rmsprop(), -->
-<!--   metrics = c('accuracy') -->
-<!-- ) -->
-<!-- history <- model %>% fit( -->
-<!--   x_train, y_train, -->
-<!--   epochs = 30, batch_size = 128, -->
-<!--   validation_split = 0.2 -->
-<!-- ) -->
-<!-- plot(history) -->
-<!-- ``` -->
-<div id="tensorflowkeras-example-predict-housing-prices" class="section level3" number="10.2.1">
-<h3><span class="header-section-number">10.2.1</span> Tensorflow/Keras example: predict housing prices</h3>
-<p>In this example we train a simple sequential model with two hidden layers in order to predict the median value of owner-occupied homes (in USD 1,000) in the Boston area (data are from the 1970s). The original data and a detailed description can be found <a href="https://www.cs.toronto.edu/~delve/data/boston/bostonDetail.html">here</a>. The example follows closely <a href="https://keras.rstudio.com/articles/tutorial_basic_regression.html#the-boston-housing-prices-dataset">this keras tutorial</a> published by RStudio. See <a href="https://keras.rstudio.com/index.html">RStudio’s keras installation guide</a> for how to install keras (and tensorflow) and the corresponding R package <code>keras</code>.<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a> While the purpose of the example here is to demonstrate a typical (but very simple!) usage case of GPUs in machine learning, the same code should also run on a normal machine (without using GPUs) with a default installation of keras.</p>
-<p>Apart from <code>keras</code>, we load packages to prepare the data and visualize the output. Via <code>dataset_boston_housing()</code>, we load the dataset (shipped with the keras installation) in the format preferred by the <code>keras</code> library.</p>
-<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="gpus-for-scientific-computing.html#cb392-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb392-2"><a href="gpus-for-scientific-computing.html#cb392-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(keras)</span>
-<span id="cb392-3"><a href="gpus-for-scientific-computing.html#cb392-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb392-4"><a href="gpus-for-scientific-computing.html#cb392-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb392-5"><a href="gpus-for-scientific-computing.html#cb392-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tfdatasets)</span>
-<span id="cb392-6"><a href="gpus-for-scientific-computing.html#cb392-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb392-7"><a href="gpus-for-scientific-computing.html#cb392-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb392-8"><a href="gpus-for-scientific-computing.html#cb392-8" aria-hidden="true" tabindex="-1"></a><span class="co"># load data</span></span>
-<span id="cb392-9"><a href="gpus-for-scientific-computing.html#cb392-9" aria-hidden="true" tabindex="-1"></a>boston_housing <span class="ot">&lt;-</span> <span class="fu">dataset_boston_housing</span>()</span>
-<span id="cb392-10"><a href="gpus-for-scientific-computing.html#cb392-10" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(boston_housing)</span></code></pre></div>
-<pre><code>## List of 2
-##  $ train:List of 2
-##   ..$ x: num [1:404, 1:13] 1.2325 0.0218 4.8982 0.0396 3.6931 ...
-##   ..$ y: num [1:404(1d)] 15.2 42.3 50 21.1 17.7 18.5 11.3 15.6 15.6 14.4 ...
-##  $ test :List of 2
-##   ..$ x: num [1:102, 1:13] 18.0846 0.1233 0.055 1.2735 0.0715 ...
-##   ..$ y: num [1:102(1d)] 7.2 18.8 19 27 22.2 24.5 31.2 22.9 20.5 23.2 ...</code></pre>
-<p>In a first step, we split the data into a training set and a test set. The latter is used to monitor the out-of-sample performance of the model fit. Testing the validity of an estimated model by looking at how it performs out-of-sample is of particular relevance when working with (deep) neural networks, as they can easily lead to over-fitting. Validity checks based on the test sample are, therefore, often an integral part of modelling with tensorflow/keras.</p>
-<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="gpus-for-scientific-computing.html#cb394-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assign training and test data/labels</span></span>
-<span id="cb394-2"><a href="gpus-for-scientific-computing.html#cb394-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(train_data, train_labels) <span class="sc">%&lt;-%</span> boston_housing<span class="sc">$</span>train</span>
-<span id="cb394-3"><a href="gpus-for-scientific-computing.html#cb394-3" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(test_data, test_labels) <span class="sc">%&lt;-%</span> boston_housing<span class="sc">$</span>test</span></code></pre></div>
-<p>In order to better understand and interpret the dataset we add the original variable names, and convert it to a <code>tibble</code>.</p>
-<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="gpus-for-scientific-computing.html#cb395-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb395-2"><a href="gpus-for-scientific-computing.html#cb395-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb395-3"><a href="gpus-for-scientific-computing.html#cb395-3" aria-hidden="true" tabindex="-1"></a>column_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;CRIM&#39;</span>, <span class="st">&#39;ZN&#39;</span>, <span class="st">&#39;INDUS&#39;</span>, <span class="st">&#39;CHAS&#39;</span>, <span class="st">&#39;NOX&#39;</span>, <span class="st">&#39;RM&#39;</span>, <span class="st">&#39;AGE&#39;</span>, </span>
-<span id="cb395-4"><a href="gpus-for-scientific-computing.html#cb395-4" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&#39;DIS&#39;</span>, <span class="st">&#39;RAD&#39;</span>, <span class="st">&#39;TAX&#39;</span>, <span class="st">&#39;PTRATIO&#39;</span>, <span class="st">&#39;B&#39;</span>, <span class="st">&#39;LSTAT&#39;</span>)</span>
-<span id="cb395-5"><a href="gpus-for-scientific-computing.html#cb395-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb395-6"><a href="gpus-for-scientific-computing.html#cb395-6" aria-hidden="true" tabindex="-1"></a>train_df <span class="ot">&lt;-</span> train_data <span class="sc">%&gt;%</span> </span>
-<span id="cb395-7"><a href="gpus-for-scientific-computing.html#cb395-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>(<span class="at">.name_repair =</span> <span class="st">&quot;minimal&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb395-8"><a href="gpus-for-scientific-computing.html#cb395-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(column_names) <span class="sc">%&gt;%</span> </span>
-<span id="cb395-9"><a href="gpus-for-scientific-computing.html#cb395-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">label =</span> train_labels)</span>
-<span id="cb395-10"><a href="gpus-for-scientific-computing.html#cb395-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb395-11"><a href="gpus-for-scientific-computing.html#cb395-11" aria-hidden="true" tabindex="-1"></a>test_df <span class="ot">&lt;-</span> test_data <span class="sc">%&gt;%</span> </span>
-<span id="cb395-12"><a href="gpus-for-scientific-computing.html#cb395-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>(<span class="at">.name_repair =</span> <span class="st">&quot;minimal&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb395-13"><a href="gpus-for-scientific-computing.html#cb395-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(column_names) <span class="sc">%&gt;%</span> </span>
-<span id="cb395-14"><a href="gpus-for-scientific-computing.html#cb395-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">label =</span> test_labels)</span></code></pre></div>
-<p>Next, we have a close look at the data. Note the usage of the term ‘label’ for what is usually called the ‘dependent variable’ in econometrics.<a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a> As the aim of the exercise is to predict median prices of homes, the output of the model will be a continuous value (‘labels’).</p>
-<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="gpus-for-scientific-computing.html#cb396-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check example data dimensions and content</span></span>
-<span id="cb396-2"><a href="gpus-for-scientific-computing.html#cb396-2" aria-hidden="true" tabindex="-1"></a><span class="fu">paste0</span>(<span class="st">&quot;Training entries: &quot;</span>, <span class="fu">length</span>(train_data), <span class="st">&quot;, labels: &quot;</span>, <span class="fu">length</span>(train_labels))</span></code></pre></div>
-<pre><code>## [1] &quot;Training entries: 5252, labels: 404&quot;</code></pre>
-<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="gpus-for-scientific-computing.html#cb398-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(train_data)</span></code></pre></div>
-<pre><code>##        V1              V2              V3       
-##  Min.   : 0.01   Min.   :  0.0   Min.   : 0.46  
-##  1st Qu.: 0.08   1st Qu.:  0.0   1st Qu.: 5.13  
-##  Median : 0.27   Median :  0.0   Median : 9.69  
-##  Mean   : 3.75   Mean   : 11.5   Mean   :11.10  
-##  3rd Qu.: 3.67   3rd Qu.: 12.5   3rd Qu.:18.10  
-##  Max.   :88.98   Max.   :100.0   Max.   :27.74  
-##        V4               V5              V6      
-##  Min.   :0.0000   Min.   :0.385   Min.   :3.56  
-##  1st Qu.:0.0000   1st Qu.:0.453   1st Qu.:5.88  
-##  Median :0.0000   Median :0.538   Median :6.20  
-##  Mean   :0.0619   Mean   :0.557   Mean   :6.27  
-##  3rd Qu.:0.0000   3rd Qu.:0.631   3rd Qu.:6.61  
-##  Max.   :1.0000   Max.   :0.871   Max.   :8.72  
-##        V7              V8              V9       
-##  Min.   :  2.9   Min.   : 1.13   Min.   : 1.00  
-##  1st Qu.: 45.5   1st Qu.: 2.08   1st Qu.: 4.00  
-##  Median : 78.5   Median : 3.14   Median : 5.00  
-##  Mean   : 69.0   Mean   : 3.74   Mean   : 9.44  
-##  3rd Qu.: 94.1   3rd Qu.: 5.12   3rd Qu.:24.00  
-##  Max.   :100.0   Max.   :10.71   Max.   :24.00  
-##       V10           V11            V12       
-##  Min.   :188   Min.   :12.6   Min.   :  0.3  
-##  1st Qu.:279   1st Qu.:17.2   1st Qu.:374.7  
-##  Median :330   Median :19.1   Median :391.2  
-##  Mean   :406   Mean   :18.5   Mean   :354.8  
-##  3rd Qu.:666   3rd Qu.:20.2   3rd Qu.:396.2  
-##  Max.   :711   Max.   :22.0   Max.   :396.9  
-##       V13       
-##  Min.   : 1.73  
-##  1st Qu.: 6.89  
-##  Median :11.39  
-##  Mean   :12.74  
-##  3rd Qu.:17.09  
-##  Max.   :37.97</code></pre>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="gpus-for-scientific-computing.html#cb400-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(train_labels) <span class="co"># Display first 10 entries</span></span></code></pre></div>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##     5.0    16.7    20.8    22.4    24.8    50.0</code></pre>
-<p>As the dataset contains variables ranging from per capita crime rate to indicators for highway access, the variables are obviously measured in different units and hence displayed on different scales. This is not per se a problem for the fitting procedure. However, fitting is more efficient when all features (variables) are normalized.</p>
-<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="gpus-for-scientific-computing.html#cb402-1" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">feature_spec</span>(train_df, label <span class="sc">~</span> . ) <span class="sc">%&gt;%</span> </span>
-<span id="cb402-2"><a href="gpus-for-scientific-computing.html#cb402-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_numeric_column</span>(<span class="fu">all_numeric</span>(), <span class="at">normalizer_fn =</span> <span class="fu">scaler_standard</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb402-3"><a href="gpus-for-scientific-computing.html#cb402-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>()</span>
-<span id="cb402-4"><a href="gpus-for-scientific-computing.html#cb402-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb402-5"><a href="gpus-for-scientific-computing.html#cb402-5" aria-hidden="true" tabindex="-1"></a>layer <span class="ot">&lt;-</span> <span class="fu">layer_dense_features</span>(</span>
-<span id="cb402-6"><a href="gpus-for-scientific-computing.html#cb402-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">feature_columns =</span> <span class="fu">dense_features</span>(spec), </span>
-<span id="cb402-7"><a href="gpus-for-scientific-computing.html#cb402-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">dtype =</span> tf<span class="sc">$</span>float32</span>
-<span id="cb402-8"><a href="gpus-for-scientific-computing.html#cb402-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb402-9"><a href="gpus-for-scientific-computing.html#cb402-9" aria-hidden="true" tabindex="-1"></a><span class="fu">layer</span>(train_df)</span></code></pre></div>
-<pre><code>## tf.Tensor(
-## [[ 0.81205493  0.44752213 -0.2565147  ... -0.1762239  -0.59443307
-##   -0.48301655]
-##  [-1.9079947   0.43137115 -0.2565147  ...  1.8920003  -0.34800112
-##    2.9880793 ]
-##  [ 1.1091131   0.2203439  -0.2565147  ... -1.8274226   1.563349
-##   -0.48301655]
-##  ...
-##  [-1.6359899   0.07934052 -0.2565147  ... -0.3326088  -0.61246467
-##    0.9895695 ]
-##  [ 1.0554279  -0.98642045 -0.2565147  ... -0.7862657  -0.01742171
-##   -0.48301655]
-##  [-1.7970455   0.23288251 -0.2565147  ...  0.47467488 -0.84687555
-##    2.0414166 ]], shape=(404, 13), dtype=float32)</code></pre>
-<p>We specify the model as a linear stack of layers: The input (all 13 explanatory variables), two densely connected hidden layers (each with a 64-dimensional output space), and finally the one-dimensional output layer (the ‘dependent variable’).</p>
-<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="gpus-for-scientific-computing.html#cb404-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the model</span></span>
-<span id="cb404-2"><a href="gpus-for-scientific-computing.html#cb404-2" aria-hidden="true" tabindex="-1"></a><span class="co"># model specification</span></span>
-<span id="cb404-3"><a href="gpus-for-scientific-computing.html#cb404-3" aria-hidden="true" tabindex="-1"></a>input <span class="ot">&lt;-</span> <span class="fu">layer_input_from_dataset</span>(train_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>label))</span>
-<span id="cb404-4"><a href="gpus-for-scientific-computing.html#cb404-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb404-5"><a href="gpus-for-scientific-computing.html#cb404-5" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> input <span class="sc">%&gt;%</span> </span>
-<span id="cb404-6"><a href="gpus-for-scientific-computing.html#cb404-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_dense_features</span>(<span class="fu">dense_features</span>(spec)) <span class="sc">%&gt;%</span> </span>
-<span id="cb404-7"><a href="gpus-for-scientific-computing.html#cb404-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_dense</span>(<span class="at">units =</span> <span class="dv">64</span>, <span class="at">activation =</span> <span class="st">&quot;relu&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb404-8"><a href="gpus-for-scientific-computing.html#cb404-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_dense</span>(<span class="at">units =</span> <span class="dv">64</span>, <span class="at">activation =</span> <span class="st">&quot;relu&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb404-9"><a href="gpus-for-scientific-computing.html#cb404-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_dense</span>(<span class="at">units =</span> <span class="dv">1</span>) </span>
-<span id="cb404-10"><a href="gpus-for-scientific-computing.html#cb404-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb404-11"><a href="gpus-for-scientific-computing.html#cb404-11" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">keras_model</span>(input, output)</span></code></pre></div>
-<p>In order to fit the model, we first have to compile it (configure it for training). At this step we set the configuration parameters that will guide the training/optimization procedure. We use the mean squared errors loss function (<code>mse</code>) typically used for regressions. We chose the <a href="http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf">RMSProp</a> optimizer to find the minimum loss.</p>
-<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="gpus-for-scientific-computing.html#cb405-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compile the model  </span></span>
-<span id="cb405-2"><a href="gpus-for-scientific-computing.html#cb405-2" aria-hidden="true" tabindex="-1"></a>model <span class="sc">%&gt;%</span> </span>
-<span id="cb405-3"><a href="gpus-for-scientific-computing.html#cb405-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">compile</span>(</span>
-<span id="cb405-4"><a href="gpus-for-scientific-computing.html#cb405-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">loss =</span> <span class="st">&quot;mse&quot;</span>,</span>
-<span id="cb405-5"><a href="gpus-for-scientific-computing.html#cb405-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">optimizer =</span> <span class="fu">optimizer_rmsprop</span>(),</span>
-<span id="cb405-6"><a href="gpus-for-scientific-computing.html#cb405-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">metrics =</span> <span class="fu">list</span>(<span class="st">&quot;mean_absolute_error&quot;</span>)</span>
-<span id="cb405-7"><a href="gpus-for-scientific-computing.html#cb405-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
-<p>Now we can get a summary of the model we are about to fit to the data.</p>
-<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="gpus-for-scientific-computing.html#cb406-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get a summary of the model</span></span>
-<span id="cb406-2"><a href="gpus-for-scientific-computing.html#cb406-2" aria-hidden="true" tabindex="-1"></a>model</span></code></pre></div>
-<pre><code>## Model
-## Model: &quot;model&quot;
-## _______________________________________________________
-## Layer (type)      Output Shap Param Connected to       
-## =======================================================
-## AGE (InputLayer)  [(None,)]   0                        
-## _______________________________________________________
-## B (InputLayer)    [(None,)]   0                        
-## _______________________________________________________
-## CHAS (InputLayer) [(None,)]   0                        
-## _______________________________________________________
-## CRIM (InputLayer) [(None,)]   0                        
-## _______________________________________________________
-## DIS (InputLayer)  [(None,)]   0                        
-## _______________________________________________________
-## INDUS (InputLayer [(None,)]   0                        
-## _______________________________________________________
-## LSTAT (InputLayer [(None,)]   0                        
-## _______________________________________________________
-## NOX (InputLayer)  [(None,)]   0                        
-## _______________________________________________________
-## PTRATIO (InputLay [(None,)]   0                        
-## _______________________________________________________
-## RAD (InputLayer)  [(None,)]   0                        
-## _______________________________________________________
-## RM (InputLayer)   [(None,)]   0                        
-## _______________________________________________________
-## TAX (InputLayer)  [(None,)]   0                        
-## _______________________________________________________
-## ZN (InputLayer)   [(None,)]   0                        
-## _______________________________________________________
-## dense_features_1  (None, 13)  0     AGE[0][0]          
-##                                     B[0][0]            
-##                                     CHAS[0][0]         
-##                                     CRIM[0][0]         
-##                                     DIS[0][0]          
-##                                     INDUS[0][0]        
-##                                     LSTAT[0][0]        
-##                                     NOX[0][0]          
-##                                     PTRATIO[0][0]      
-##                                     RAD[0][0]          
-##                                     RM[0][0]           
-##                                     TAX[0][0]          
-##                                     ZN[0][0]           
-## _______________________________________________________
-## dense_2 (Dense)   (None, 64)  896   dense_features_1[0]
-## _______________________________________________________
-## dense_1 (Dense)   (None, 64)  4160  dense_2[0][0]      
-## _______________________________________________________
-## dense (Dense)     (None, 1)   65    dense_1[0][0]      
-## =======================================================
-## Total params: 5,121
-## Trainable params: 5,121
-## Non-trainable params: 0
-## _______________________________________________________</code></pre>
-<p>Given the relatively simple model and small dataset, we set the maximum number of epochs to 500 and allow for early stopping in case the validation loss (based on test data) is not improving for a while.</p>
-<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="gpus-for-scientific-computing.html#cb408-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set max. number of epochs</span></span>
-<span id="cb408-2"><a href="gpus-for-scientific-computing.html#cb408-2" aria-hidden="true" tabindex="-1"></a>epochs <span class="ot">&lt;-</span> <span class="dv">500</span></span></code></pre></div>
-<p>Finally, we fit the model while preserving the training history, and visualize the training progress.</p>
-<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="gpus-for-scientific-computing.html#cb409-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model and store training stats</span></span>
-<span id="cb409-2"><a href="gpus-for-scientific-computing.html#cb409-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb409-3"><a href="gpus-for-scientific-computing.html#cb409-3" aria-hidden="true" tabindex="-1"></a>history <span class="ot">&lt;-</span> model <span class="sc">%&gt;%</span> <span class="fu">fit</span>(</span>
-<span id="cb409-4"><a href="gpus-for-scientific-computing.html#cb409-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> train_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>label),</span>
-<span id="cb409-5"><a href="gpus-for-scientific-computing.html#cb409-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> train_df<span class="sc">$</span>label,</span>
-<span id="cb409-6"><a href="gpus-for-scientific-computing.html#cb409-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">epochs =</span> epochs,</span>
-<span id="cb409-7"><a href="gpus-for-scientific-computing.html#cb409-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">validation_split =</span> <span class="fl">0.2</span>,</span>
-<span id="cb409-8"><a href="gpus-for-scientific-computing.html#cb409-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="dv">0</span></span>
-<span id="cb409-9"><a href="gpus-for-scientific-computing.html#cb409-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb409-10"><a href="gpus-for-scientific-computing.html#cb409-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb409-11"><a href="gpus-for-scientific-computing.html#cb409-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb409-12"><a href="gpus-for-scientific-computing.html#cb409-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(history)</span></code></pre></div>
-<p><img src="bigdata_files/figure-html/unnamed-chunk-206-1.png" width="672" /></p>
+<div id="beyond-memory" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Beyond memory</h2>
+<p>In the previous example we have inspected how RAM is allocated to store objects in the R computing environment. But what if all RAM of our computer is not enough to store all the data we want to analyze?</p>
+<p>Modern operating systems have a way to dealing with such a situation. Once all RAM is used up by the currently running programs, the OS allocates parts of the memory back to the hard-disk which then works as <em>virtual memory</em>. The following figure illustrates this point.</p>
+<div class="figure" style="text-align: center"><span id="fig:vm"></span>
+<img src="img/03_virtualmemory.png" alt="Virtual memory. Figure by Ehamberg (CC BY-SA 3.0)." width="30%" />
+<p class="caption">
+Figure 3.1: Virtual memory. Figure by Ehamberg (CC BY-SA 3.0).
+</p>
 </div>
+
+<p>For example, when we implement an R-script that imports one file after the other into the R environment, ignoring the RAM capacity of our computer, the OS will start <em>paging</em> data to the virtual memory. This happens ‘under the hood’ without explicit instructions by the user. We quite likely notice that the computer slows down a lot when this happens.</p>
+<p>While this default usage of virtual memory by the OS is helpful to run several applications at the same time, each taking up a moderate amount of memory, it is not a really useful tool for processing large amounts of data in one application (R). However, the underlying idea of using both RAM and Mass storage simultaneously in order to cope with a lack of memory is very useful in the context of big data analytics.</p>
+<p>Several R packages have been developed that exploit the idea behind virtual memory explicitly for analyzing large amounts of data. The basic idea behind these packages is to map a data set to the hard disk when loading it into R. The actual data values are stored in chunks on the hard-disk, while the structure/metadata of the data set is loaded into R. See this week’s slide set as well as <span class="citation"><a href="references.html#ref-walkowiak_2016" role="doc-biblioref">Walkowiak</a> (<a href="references.html#ref-walkowiak_2016" role="doc-biblioref">2016</a>)</span>, Chapter 3 for more details and example code.</p>
 </div>
-<div id="a-word-of-caution" class="section level2" number="10.3">
-<h2><span class="header-section-number">10.3</span> A word of caution</h2>
-<p>From just comparing the number of threads of a modern CPU with the number of threads of a modern GPU, one might get the impression that parallel tasks should always be implemented for GPU computing. However, whether one approach or the other is faster can depend a lot on the overall task and the data at hand. Moreover, the parallel implementation of tasks can be done more or less well on either system. Really efficient parallel implementation of tasks can take a lot of coding time (particularly when done for GPUs).<a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a>.</p>
+<div id="resource-allocation" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> Resource allocation</h2>
+<p>When optimizing the performance of an analytics program processing large amounts of data, it is useful to differentiate between the efficient allocation of computational (CPU) power, and the allocation of RAM (and mass storage).<a href="#fn4" class="footnote-ref" id="fnref4"><sup>4</sup></a> Below, we will look at both aspects in turn.</p>
 
 </div>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="18">
-<li id="fn18"><p>Note that while these examples are easy to implement and run, setting up a GPU for scientific computing still can involve many steps and some knowledge of your computer’s system. The examples presuppose that all installation and configuration steps (GPU drivers, CUDA, etc.) have already been completed successfully.<a href="gpus-for-scientific-computing.html#fnref18" class="footnote-back">↩︎</a></p></li>
-<li id="fn19"><p>As with the setting up of GPUs on your machine in general, installing all prerequisites to make <code>gpuR</code> work on your local machine can be a bit of work and can depend a lot on your system.<a href="gpus-for-scientific-computing.html#fnref19" class="footnote-back">↩︎</a></p></li>
-<li id="fn20"><p>If we instruct the GPU to use the own memory, but the data does not fit in it, the program will result in an error.<a href="gpus-for-scientific-computing.html#fnref20" class="footnote-back">↩︎</a></p></li>
-<li id="fn21"><p>This might involve the installation of additional packages and software outside the R environment.<a href="gpus-for-scientific-computing.html#fnref21" class="footnote-back">↩︎</a></p></li>
-<li id="fn22"><p>Typical textbook examples in machine learning deal with classification (e.g. a logit model), while in microeconometrics the typical example is usually a linear model (continuous dependent variable).<a href="gpus-for-scientific-computing.html#fnref22" class="footnote-back">↩︎</a></p></li>
-<li id="fn23"><p>For a more detailed discussion of the relevant factors for well done parallelization (either on CPUs or GPUs), see <span class="citation"><a href="references.html#ref-matloff_2015" role="doc-biblioref">Matloff</a> (<a href="references.html#ref-matloff_2015" role="doc-biblioref">2015</a>)</span><a href="gpus-for-scientific-computing.html#fnref23" class="footnote-back">↩︎</a></p></li>
+<ol start="1">
+<li id="fn1"><p>Note that while these examples are easy to implement and run, setting up a GPU for scientific computing still can involve many steps and some knowledge of your computer’s system. The examples presuppose that all installation and configuration steps (GPU drivers, CUDA, etc.) have already been completed successfully.<a href="gpus-for-scientific-computing.html#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>As with the setting up of GPUs on your machine in general, installing all prerequisites to make <code>gpuR</code> work on your local machine can be a bit of work and can depend a lot on your system.<a href="gpus-for-scientific-computing.html#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>If we instruct the GPU to use the own memory, but the data does not fit in it, the program will result in an error.<a href="gpus-for-scientific-computing.html#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p>In many data analysis tasks the two are, of course, intertwined. However, keeping both aspects in mind when optimizing an analytics program helps to choose the right tools.<a href="gpus-for-scientific-computing.html#fnref4" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -706,8 +393,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="cloud-services-for-big-data-analytics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="applied-econometrics-with-apache-spark.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="hardware-computing-resources.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="hardware-cloud-services.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>

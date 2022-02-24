@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 10 Bottle Necks in Local Big Data Analytics | Big Data Analytics</title>
+  <meta name="description" content="A guide to practical big data analytics in R." />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 10 Bottle Necks in Local Big Data Analytics | Big Data Analytics" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://umatter.github.io/BigData" />
+  <meta property="og:image" content="https://umatter.github.io/BigDataimg/cover.png" />
+  <meta property="og:description" content="A guide to practical big data analytics in R." />
+  <meta name="github-repo" content="umatter/BigData" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 10 Bottle Necks in Local Big Data Analytics | Big Data Analytics" />
+  
+  <meta name="twitter:description" content="A guide to practical big data analytics in R." />
+  <meta name="twitter:image" content="https://umatter.github.io/BigDataimg/cover.png" />
+
+<meta name="author" content="Ulrich Matter" />
+
+
+<meta name="date" content="2022-02-16" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="big-data-visualization.html"/>
+<link rel="next" href="applied-econometrics-with-apache-spark.html"/>
+<script src="libs/header-attrs/header-attrs.js"></script>
+<script src="libs/jquery/jquery.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="libs/d3/d3.min.js"></script>
+<link href="libs/profvis/profvis.css" rel="stylesheet" />
+<script src="libs/profvis/profvis.js"></script>
+<script src="libs/profvis/scroll.js"></script>
+<link href="libs/highlight/textmate.css" rel="stylesheet" />
+<script src="libs/highlight/highlight.js"></script>
+<script src="libs/profvis-binding/profvis.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style/style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Big Data Analytics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#what-is-big-in-big-data"><i class="fa fa-check"></i><b>1.1</b> What is <em>big</em> in “Big Data?”</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#approaches-to-analyzing-big-data"><i class="fa fa-check"></i><b>1.2</b> Approaches to analyzing Big Data</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#content-overview"><i class="fa fa-check"></i><b>1.3</b> Content overview</a></li>
+<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#prerequisits"><i class="fa fa-check"></i><b>1.4</b> Prerequisits</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html"><i class="fa fa-check"></i><b>2</b> Software: Programming with (Big) Data</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#building-blocks-for-programming-with-big-data"><i class="fa fa-check"></i><b>2.1</b> Building blocks for programming with big data</a></li>
+<li class="chapter" data-level="2.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#measuring-r-performance"><i class="fa fa-check"></i><b>2.2</b> Measuring R performance</a></li>
+<li class="chapter" data-level="2.3" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#writing-efficient-code"><i class="fa fa-check"></i><b>2.3</b> Writing efficient code</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#memory-allocation-and-growing-objects"><i class="fa fa-check"></i><b>2.3.1</b> Memory allocation and growing objects</a></li>
+<li class="chapter" data-level="2.3.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#vectorization-in-basic-r-functions"><i class="fa fa-check"></i><b>2.3.2</b> Vectorization in basic R functions</a></li>
+<li class="chapter" data-level="2.3.3" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#apply-type-functions-and-vectorization"><i class="fa fa-check"></i><b>2.3.3</b> <code>apply</code>-type functions and vectorization</a></li>
+<li class="chapter" data-level="2.3.4" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#avoid-unnecessary-copying"><i class="fa fa-check"></i><b>2.3.4</b> Avoid unnecessary copying</a></li>
+<li class="chapter" data-level="2.3.5" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#releasing-memory"><i class="fa fa-check"></i><b>2.3.5</b> Releasing memory</a></li>
+<li class="chapter" data-level="2.3.6" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#beyond-r"><i class="fa fa-check"></i><b>2.3.6</b> Beyond R</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#sql-basics"><i class="fa fa-check"></i><b>2.4</b> SQL basics</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#first-steps-in-sqlite"><i class="fa fa-check"></i><b>2.4.1</b> First steps in SQL(ite)</a></li>
+<li class="chapter" data-level="2.4.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#joins"><i class="fa fa-check"></i><b>2.4.2</b> Joins</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html"><i class="fa fa-check"></i><b>3</b> Hardware: Computing Resources</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#components-of-a-standard-computing-environment"><i class="fa fa-check"></i><b>3.1</b> Components of a standard computing environment</a></li>
+<li class="chapter" data-level="3.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#mass-storage-and-memory"><i class="fa fa-check"></i><b>3.2</b> Mass Storage and Memory</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#units-of-informationdata-storage"><i class="fa fa-check"></i><b>3.2.1</b> Units of information/data storage</a></li>
+<li class="chapter" data-level="3.2.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#combining-ram-and-hard-disk-virtual-memory"><i class="fa fa-check"></i><b>3.2.2</b> Combining RAM and hard-disk: virtual memory</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#computation-cpu"><i class="fa fa-check"></i><b>3.3</b> Computation: CPU</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#parallelization"><i class="fa fa-check"></i><b>3.3.1</b> Parallelization</a></li>
+<li class="chapter" data-level="3.3.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#gpus-for-scientific-computing"><i class="fa fa-check"></i><b>3.3.2</b> GPUs for Scientific Computing</a></li>
+<li class="chapter" data-level="3.3.3" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#gpus-in-r"><i class="fa fa-check"></i><b>3.3.3</b> GPUs in R</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#resource-allocation"><i class="fa fa-check"></i><b>3.4</b> Resource allocation</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="distributed-systems.html"><a href="distributed-systems.html"><i class="fa fa-check"></i><b>4</b> Distributed Systems</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="distributed-systems.html"><a href="distributed-systems.html#mapreduce"><i class="fa fa-check"></i><b>4.1</b> MapReduce</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="distributed-systems.html"><a href="distributed-systems.html#mapreduce-concept-illustrated-in-r"><i class="fa fa-check"></i><b>4.1.1</b> Map/Reduce Concept Illustrated in R</a></li>
+<li class="chapter" data-level="4.1.2" data-path="distributed-systems.html"><a href="distributed-systems.html#mapper"><i class="fa fa-check"></i><b>4.1.2</b> Mapper</a></li>
+<li class="chapter" data-level="4.1.3" data-path="distributed-systems.html"><a href="distributed-systems.html#reducer"><i class="fa fa-check"></i><b>4.1.3</b> Reducer</a></li>
+<li class="chapter" data-level="4.1.4" data-path="distributed-systems.html"><a href="distributed-systems.html#simpler-example-compute-the-total-number-of-words"><i class="fa fa-check"></i><b>4.1.4</b> Simpler example: Compute the total number of words</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="distributed-systems.html"><a href="distributed-systems.html#hadoop"><i class="fa fa-check"></i><b>4.2</b> Hadoop</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="distributed-systems.html"><a href="distributed-systems.html#hadoop-word-count"><i class="fa fa-check"></i><b>4.2.1</b> Hadoop Word Count</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="cloud-computing.html"><a href="cloud-computing.html"><i class="fa fa-check"></i><b>5</b> Cloud Computing</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="cloud-computing.html"><a href="cloud-computing.html#scaling-up-parallel-computing"><i class="fa fa-check"></i><b>5.1</b> Scaling up: parallel computing</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="cloud-computing.html"><a href="cloud-computing.html#setting-up-aws-ec2-with-rrstudio"><i class="fa fa-check"></i><b>5.1.1</b> Setting up AWS EC2 with R/RStudio</a></li>
+<li class="chapter" data-level="5.1.2" data-path="cloud-computing.html"><a href="cloud-computing.html#parallelization-with-an-ec2-instance"><i class="fa fa-check"></i><b>5.1.2</b> Parallelization with an EC2 instance</a></li>
+<li class="chapter" data-level="5.1.3" data-path="cloud-computing.html"><a href="cloud-computing.html#aws-emr-mapreduce-in-the-cloud"><i class="fa fa-check"></i><b>5.1.3</b> AWS EMR: MapReduce in the cloud</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html"><i class="fa fa-check"></i><b>6</b> Data Storage and Databases</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#big-data-storage"><i class="fa fa-check"></i><b>6.1</b> (Big) Data Storage</a></li>
+<li class="chapter" data-level="6.2" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#rdbms-basics"><i class="fa fa-check"></i><b>6.2</b> RDBMS basics</a></li>
+<li class="chapter" data-level="6.3" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#row-based-vs-column-based-databases"><i class="fa fa-check"></i><b>6.3</b> Row-based vs column-based databases</a></li>
+<li class="chapter" data-level="6.4" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#getting-started-with-rsqlite"><i class="fa fa-check"></i><b>6.4</b> Getting started with RSQLite</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#warm-up-in-sqlite-indices-and-joins"><i class="fa fa-check"></i><b>6.4.1</b> Warm up in SQLite: indices and joins</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#sqlite-from-within-r"><i class="fa fa-check"></i><b>6.5</b> SQLite from within R</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#creating-a-new-database-with-rsqlite"><i class="fa fa-check"></i><b>6.5.1</b> Creating a new database with <code>RSQLite</code></a></li>
+<li class="chapter" data-level="6.5.2" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#importing-data"><i class="fa fa-check"></i><b>6.5.2</b> Importing data</a></li>
+<li class="chapter" data-level="6.5.3" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#issue-queries"><i class="fa fa-check"></i><b>6.5.3</b> Issue queries</a></li>
+<li class="chapter" data-level="6.5.4" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#mass-storage-mariadb-on-an-ec2-instance"><i class="fa fa-check"></i><b>6.5.4</b> Mass Storage: MariaDB on an EC2 instance</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html"><i class="fa fa-check"></i><b>7</b> Big Data Cleaning and Transformation</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#out-of-memory-strategies"><i class="fa fa-check"></i><b>7.1</b> ‘Out-of-memory’ strategies</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#chunking-data-with-the-ff-package"><i class="fa fa-check"></i><b>7.1.1</b> Chunking data with the <code>ff</code>-package</a></li>
+<li class="chapter" data-level="7.1.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#memory-mapping-with-bigmemory"><i class="fa fa-check"></i><b>7.1.2</b> Memory mapping with <code>bigmemory</code></a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#typical-cleaning-tasks"><i class="fa fa-check"></i><b>7.2</b> Typical cleaning tasks</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#data-preparation-with-ff"><i class="fa fa-check"></i><b>7.2.1</b> Data Preparation with <code>ff</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html"><i class="fa fa-check"></i><b>8</b> Descriptive Statistics and Aggregation</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-the-split-apply-combine-strategy"><i class="fa fa-check"></i><b>8.1</b> Data aggregation: The ‘split-apply-combine’ strategy</a></li>
+<li class="chapter" data-level="8.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-tutorial"><i class="fa fa-check"></i><b>8.2</b> Data aggregation tutorial</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#gathering-and-compilation-of-all-the-raw-data"><i class="fa fa-check"></i><b>8.2.1</b> Gathering and Compilation of all the raw data</a></li>
+<li class="chapter" data-level="8.2.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-with-chunked-data-files"><i class="fa fa-check"></i><b>8.2.2</b> Data aggregation with chunked data files</a></li>
+<li class="chapter" data-level="8.2.3" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>8.2.3</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="big-data-visualization.html"><a href="big-data-visualization.html"><i class="fa fa-check"></i><b>9</b> (Big) Data Visualization</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#data-set"><i class="fa fa-check"></i><b>9.1</b> Data Set</a></li>
+<li class="chapter" data-level="9.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-modify-and-create-themes"><i class="fa fa-check"></i><b>9.2</b> Excursus: modify and create themes</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#create-your-own-theme-simple-approach"><i class="fa fa-check"></i><b>9.2.1</b> Create your own theme: simple approach</a></li>
+<li class="chapter" data-level="9.2.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#implementing-actual-themes-as-functions."><i class="fa fa-check"></i><b>9.2.2</b> Implementing actual themes as functions.</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="big-data-visualization.html"><a href="big-data-visualization.html#visualize-time-and-space"><i class="fa fa-check"></i><b>9.3</b> Visualize Time and Space</a>
+<ul>
+<li class="chapter" data-level="9.3.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#preparations"><i class="fa fa-check"></i><b>9.3.1</b> Preparations</a></li>
+<li class="chapter" data-level="9.3.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#pick-up-and-drop-off-locations"><i class="fa fa-check"></i><b>9.3.2</b> Pick-up and drop-off locations</a></li>
+</ul></li>
+<li class="chapter" data-level="9.4" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-change-color-schemes"><i class="fa fa-check"></i><b>9.4</b> Excursus: change color schemes</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html"><i class="fa fa-check"></i><b>10</b> Bottle Necks in Local Big Data Analytics</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#example-of-computation-time-and-memory-allocation"><i class="fa fa-check"></i><b>10.1</b> Example of Computation Time and Memory Allocation</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#preparation"><i class="fa fa-check"></i><b>10.1.1</b> Preparation</a></li>
+<li class="chapter" data-level="10.1.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#naïve-approach-ignorant-of-r"><i class="fa fa-check"></i><b>10.1.2</b> Naïve Approach (ignorant of R)</a></li>
+<li class="chapter" data-level="10.1.3" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#improvement-1-pre-allocation-of-memory"><i class="fa fa-check"></i><b>10.1.3</b> Improvement 1: Pre-allocation of memory</a></li>
+<li class="chapter" data-level="10.1.4" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#improvement-2-exploit-vectorization"><i class="fa fa-check"></i><b>10.1.4</b> Improvement 2: Exploit vectorization</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#case-study-parallel-processing"><i class="fa fa-check"></i><b>10.2</b> Case study: Parallel processing</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#parallelization-with-an-ec2-instance-1"><i class="fa fa-check"></i><b>10.2.1</b> Parallelization with an EC2 instance</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#case-study-memory-allocation"><i class="fa fa-check"></i><b>10.3</b> Case study: Memory allocation</a></li>
+<li class="chapter" data-level="10.4" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#big-data-econometrics"><i class="fa fa-check"></i><b>10.4</b> Big Data econometrics</a></li>
+<li class="chapter" data-level="10.5" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#example-fast-least-squares-regression"><i class="fa fa-check"></i><b>10.5</b> Example: Fast least squares regression</a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#ols-as-a-point-of-reference"><i class="fa fa-check"></i><b>10.5.1</b> OLS as a point of reference</a></li>
+<li class="chapter" data-level="10.5.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#the-uluru-algorithm-as-an-alternative-to-ols"><i class="fa fa-check"></i><b>10.5.2</b> The Uluru algorithm as an alternative to OLS</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#gpus-and-machine-learning"><i class="fa fa-check"></i><b>10.6</b> GPUs and Machine Learning</a>
+<ul>
+<li class="chapter" data-level="10.6.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#tensorflowkeras-example-predict-housing-prices"><i class="fa fa-check"></i><b>10.6.1</b> Tensorflow/Keras example: predict housing prices</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#a-word-of-caution"><i class="fa fa-check"></i><b>10.7</b> A word of caution</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html"><i class="fa fa-check"></i><b>11</b> Applied Econometrics with Apache Spark</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html#spark-basics"><i class="fa fa-check"></i><b>11.1</b> Spark basics</a></li>
+<li class="chapter" data-level="11.2" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html#spark-in-r"><i class="fa fa-check"></i><b>11.2</b> Spark in R</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html#data-import-and-summary-statistics"><i class="fa fa-check"></i><b>11.2.1</b> Data import and summary statistics</a></li>
+<li class="chapter" data-level="11.2.2" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html#regression-analysis-with-sparklyr"><i class="fa fa-check"></i><b>11.2.2</b> Regression analysis with <code>sparklyr</code></a></li>
+</ul></li>
+</ul></li>
+<li class="appendix"><span><b>Appendix</b></span></li>
+<li class="chapter" data-level="A" data-path="appendix-a.html"><a href="appendix-a.html"><i class="fa fa-check"></i><b>A</b> Appendix A</a>
+<ul>
+<li class="chapter" data-level="A.1" data-path="appendix-a.html"><a href="appendix-a.html#github"><i class="fa fa-check"></i><b>A.1</b> GitHub</a>
+<ul>
+<li class="chapter" data-level="A.1.1" data-path="appendix-a.html"><a href="appendix-a.html#initiate-a-new-repository"><i class="fa fa-check"></i><b>A.1.1</b> Initiate a new repository</a></li>
+<li class="chapter" data-level="A.1.2" data-path="appendix-a.html"><a href="appendix-a.html#clone-this-courses-repository"><i class="fa fa-check"></i><b>A.1.2</b> Clone this course’s repository</a></li>
+<li class="chapter" data-level="A.1.3" data-path="appendix-a.html"><a href="appendix-a.html#fork-this-courses-repository"><i class="fa fa-check"></i><b>A.1.3</b> Fork this course’s repository</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="B" data-path="appendix-b.html"><a href="appendix-b.html"><i class="fa fa-check"></i><b>B</b> Appendix B</a>
+<ul>
+<li class="chapter" data-level="B.0.1" data-path="appendix-b.html"><a href="appendix-b.html#data-types-and-memorystorage"><i class="fa fa-check"></i><b>B.0.1</b> Data types and memory/storage</a></li>
+<li class="chapter" data-level="B.0.2" data-path="appendix-b.html"><a href="appendix-b.html#data-structures"><i class="fa fa-check"></i><b>B.0.2</b> Data structures</a></li>
+<li class="chapter" data-level="B.0.3" data-path="appendix-b.html"><a href="appendix-b.html#vectors-vs-factors-in-r"><i class="fa fa-check"></i><b>B.0.3</b> Vectors vs Factors in R</a></li>
+<li class="chapter" data-level="B.0.4" data-path="appendix-b.html"><a href="appendix-b.html#r-tools-to-investigate-structures-and-types"><i class="fa fa-check"></i><b>B.0.4</b> R-tools to investigate structures and types</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://umatter.github.io" target="blank">umatter.github.io</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Big Data Analytics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="bottle-necks-in-local-big-data-analytics" class="section level1" number="10">
+<h1><span class="header-section-number">Chapter 10</span> Bottle Necks in Local Big Data Analytics</h1>
+<div id="example-of-computation-time-and-memory-allocation" class="section level2" number="10.1">
+<h2><span class="header-section-number">10.1</span> Example of Computation Time and Memory Allocation</h2>
+<div id="preparation" class="section level3" number="10.1.1">
+<h3><span class="header-section-number">10.1.1</span> Preparation</h3>
+<p>We first read the <code>economics</code> data set into R and extend it by duplicating its rows in order to get a slightly larger data set (this step can easily be adapted to create a very large data set).</p>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb335-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read dataset into R</span></span>
+<span id="cb335-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb335-2" aria-hidden="true" tabindex="-1"></a>economics <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/economics.csv&quot;</span>)</span>
+<span id="cb335-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb335-3" aria-hidden="true" tabindex="-1"></a><span class="co"># have a look at the data</span></span>
+<span id="cb335-4"><a href="bottle-necks-in-local-big-data-analytics.html#cb335-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(economics, <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>##         date   pce    pop psavert uempmed unemploy
+## 1 1967-07-01 507.4 198712    12.5     4.5     2944
+## 2 1967-08-01 510.5 198911    12.5     4.7     2945</code></pre>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb337-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a &#39;large&#39; dataset out of this</span></span>
+<span id="cb337-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb337-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) {</span>
+<span id="cb337-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb337-3" aria-hidden="true" tabindex="-1"></a>     economics <span class="ot">&lt;-</span> <span class="fu">rbind</span>(economics, economics)</span>
+<span id="cb337-4"><a href="bottle-necks-in-local-big-data-analytics.html#cb337-4" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb337-5"><a href="bottle-necks-in-local-big-data-analytics.html#cb337-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(economics)</span></code></pre></div>
+<pre><code>## [1] 4592    6</code></pre>
+</div>
+<div id="naïve-approach-ignorant-of-r" class="section level3" number="10.1.2">
+<h3><span class="header-section-number">10.1.2</span> Naïve Approach (ignorant of R)</h3>
+<p>The goal of this code example is to compute the real personal consumption expenditures, assuming that <code>pce</code> in the <code>economics</code> data set provides the nominal personal consumption expenditures. Thus, we divide each value in the vector <code>pce</code> by a deflator <code>1.05</code>.</p>
+<p>The first approach we take is based on a simple <code>for</code>-loop. In each iteration one element in <code>pce</code> is divided by the <code>deflator</code> and the resulting value is stored as a new element in the vector <code>pce_real</code>.</p>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb339-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Naïve approach (ignorant of R)</span></span>
+<span id="cb339-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb339-2" aria-hidden="true" tabindex="-1"></a>deflator <span class="ot">&lt;-</span> <span class="fl">1.05</span> <span class="co"># define deflator</span></span>
+<span id="cb339-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb339-3" aria-hidden="true" tabindex="-1"></a><span class="co"># iterate through each observation</span></span>
+<span id="cb339-4"><a href="bottle-necks-in-local-big-data-analytics.html#cb339-4" aria-hidden="true" tabindex="-1"></a>pce_real <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb339-5"><a href="bottle-necks-in-local-big-data-analytics.html#cb339-5" aria-hidden="true" tabindex="-1"></a>n_obs <span class="ot">&lt;-</span> <span class="fu">length</span>(economics<span class="sc">$</span>pce)</span>
+<span id="cb339-6"><a href="bottle-necks-in-local-big-data-analytics.html#cb339-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_obs) {</span>
+<span id="cb339-7"><a href="bottle-necks-in-local-big-data-analytics.html#cb339-7" aria-hidden="true" tabindex="-1"></a>  pce_real <span class="ot">&lt;-</span> <span class="fu">c</span>(pce_real, economics<span class="sc">$</span>pce[i]<span class="sc">/</span>deflator)</span>
+<span id="cb339-8"><a href="bottle-necks-in-local-big-data-analytics.html#cb339-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb339-9"><a href="bottle-necks-in-local-big-data-analytics.html#cb339-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb339-10"><a href="bottle-necks-in-local-big-data-analytics.html#cb339-10" aria-hidden="true" tabindex="-1"></a><span class="co"># look at the result</span></span>
+<span id="cb339-11"><a href="bottle-necks-in-local-big-data-analytics.html#cb339-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pce_real, <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 483.2 486.2</code></pre>
+<p>How long does it take?</p>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb341-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Naïve approach (ignorant of R)</span></span>
+<span id="cb341-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb341-2" aria-hidden="true" tabindex="-1"></a>deflator <span class="ot">&lt;-</span> <span class="fl">1.05</span> <span class="co"># define deflator</span></span>
+<span id="cb341-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb341-3" aria-hidden="true" tabindex="-1"></a><span class="co"># iterate through each observation</span></span>
+<span id="cb341-4"><a href="bottle-necks-in-local-big-data-analytics.html#cb341-4" aria-hidden="true" tabindex="-1"></a>pce_real <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb341-5"><a href="bottle-necks-in-local-big-data-analytics.html#cb341-5" aria-hidden="true" tabindex="-1"></a>n_obs <span class="ot">&lt;-</span> <span class="fu">length</span>(economics<span class="sc">$</span>pce)</span>
+<span id="cb341-6"><a href="bottle-necks-in-local-big-data-analytics.html#cb341-6" aria-hidden="true" tabindex="-1"></a>time_elapsed <span class="ot">&lt;-</span></span>
+<span id="cb341-7"><a href="bottle-necks-in-local-big-data-analytics.html#cb341-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">system.time</span>(</span>
+<span id="cb341-8"><a href="bottle-necks-in-local-big-data-analytics.html#cb341-8" aria-hidden="true" tabindex="-1"></a>         <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_obs) {</span>
+<span id="cb341-9"><a href="bottle-necks-in-local-big-data-analytics.html#cb341-9" aria-hidden="true" tabindex="-1"></a>              pce_real <span class="ot">&lt;-</span> <span class="fu">c</span>(pce_real, economics<span class="sc">$</span>pce[i]<span class="sc">/</span>deflator)</span>
+<span id="cb341-10"><a href="bottle-necks-in-local-big-data-analytics.html#cb341-10" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb341-11"><a href="bottle-necks-in-local-big-data-analytics.html#cb341-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb341-12"><a href="bottle-necks-in-local-big-data-analytics.html#cb341-12" aria-hidden="true" tabindex="-1"></a>time_elapsed</span></code></pre></div>
+<pre><code>##    user  system elapsed 
+##   0.085   0.000   0.085</code></pre>
+<p>Assuming a linear time algorithm (<span class="math inline">\(O(n)\)</span>), we need that much time for one additional row of data:</p>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb343-1" aria-hidden="true" tabindex="-1"></a>time_per_row <span class="ot">&lt;-</span> time_elapsed[<span class="dv">3</span>]<span class="sc">/</span>n_obs</span>
+<span id="cb343-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb343-2" aria-hidden="true" tabindex="-1"></a>time_per_row</span></code></pre></div>
+<pre><code>##   elapsed 
+## 1.851e-05</code></pre>
+<p>If we deal with big data, say 100 million rows, that is</p>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb345-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in seconds</span></span>
+<span id="cb345-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb345-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>) </span></code></pre></div>
+<pre><code>## elapsed 
+##    1851</code></pre>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb347-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in minutes</span></span>
+<span id="cb347-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb347-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>)<span class="sc">/</span><span class="dv">60</span> </span></code></pre></div>
+<pre><code>## elapsed 
+##   30.85</code></pre>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb349-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in hours</span></span>
+<span id="cb349-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb349-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>)<span class="sc">/</span><span class="dv">60</span><span class="sc">^</span><span class="dv">2</span> </span></code></pre></div>
+<pre><code>## elapsed 
+##  0.5142</code></pre>
+<p>Can we improve this?</p>
+</div>
+<div id="improvement-1-pre-allocation-of-memory" class="section level3" number="10.1.3">
+<h3><span class="header-section-number">10.1.3</span> Improvement 1: Pre-allocation of memory</h3>
+<p>In the naïve approach taken above, each iteration of the loop causes R to re-allocate memory because the number of elements in vector <code>pce_element</code> is changing. In simple terms, this means that R needs to execute more steps in each iteration. We can improve this with a simple trick by initiating the vector in the right size to begin with (filled with <code>NA</code> values).</p>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb351-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Improve memory allocation (still somewhat ignorant of R)</span></span>
+<span id="cb351-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb351-2" aria-hidden="true" tabindex="-1"></a>deflator <span class="ot">&lt;-</span> <span class="fl">1.05</span> <span class="co"># define deflator</span></span>
+<span id="cb351-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb351-3" aria-hidden="true" tabindex="-1"></a>n_obs <span class="ot">&lt;-</span> <span class="fu">length</span>(economics<span class="sc">$</span>pce)</span>
+<span id="cb351-4"><a href="bottle-necks-in-local-big-data-analytics.html#cb351-4" aria-hidden="true" tabindex="-1"></a><span class="co"># allocate memory beforehand</span></span>
+<span id="cb351-5"><a href="bottle-necks-in-local-big-data-analytics.html#cb351-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Initiate the vector in the right size</span></span>
+<span id="cb351-6"><a href="bottle-necks-in-local-big-data-analytics.html#cb351-6" aria-hidden="true" tabindex="-1"></a>pce_real <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, n_obs)</span>
+<span id="cb351-7"><a href="bottle-necks-in-local-big-data-analytics.html#cb351-7" aria-hidden="true" tabindex="-1"></a><span class="co"># iterate through each observation</span></span>
+<span id="cb351-8"><a href="bottle-necks-in-local-big-data-analytics.html#cb351-8" aria-hidden="true" tabindex="-1"></a>time_elapsed <span class="ot">&lt;-</span></span>
+<span id="cb351-9"><a href="bottle-necks-in-local-big-data-analytics.html#cb351-9" aria-hidden="true" tabindex="-1"></a>     <span class="fu">system.time</span>(</span>
+<span id="cb351-10"><a href="bottle-necks-in-local-big-data-analytics.html#cb351-10" aria-hidden="true" tabindex="-1"></a>         <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_obs) {</span>
+<span id="cb351-11"><a href="bottle-necks-in-local-big-data-analytics.html#cb351-11" aria-hidden="true" tabindex="-1"></a>              pce_real[i] <span class="ot">&lt;-</span> economics<span class="sc">$</span>pce[i]<span class="sc">/</span>deflator</span>
+<span id="cb351-12"><a href="bottle-necks-in-local-big-data-analytics.html#cb351-12" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<p>Let’s see if this helped to make the code faster.</p>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb352-1" aria-hidden="true" tabindex="-1"></a>time_per_row <span class="ot">&lt;-</span> time_elapsed[<span class="dv">3</span>]<span class="sc">/</span>n_obs</span>
+<span id="cb352-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb352-2" aria-hidden="true" tabindex="-1"></a>time_per_row</span></code></pre></div>
+<pre><code>##   elapsed 
+## 1.524e-06</code></pre>
+<p>Again, we can extrapolate (approximately) the computation time, assuming the data set had millions of rows.</p>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb354-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in seconds</span></span>
+<span id="cb354-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb354-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>) </span></code></pre></div>
+<pre><code>## elapsed 
+##   152.4</code></pre>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb356-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in minutes</span></span>
+<span id="cb356-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb356-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>)<span class="sc">/</span><span class="dv">60</span> </span></code></pre></div>
+<pre><code>## elapsed 
+##   2.541</code></pre>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb358-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in hours</span></span>
+<span id="cb358-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb358-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>)<span class="sc">/</span><span class="dv">60</span><span class="sc">^</span><span class="dv">2</span> </span></code></pre></div>
+<pre><code>## elapsed 
+## 0.04234</code></pre>
+<p>This looks much better, but we can do even better.</p>
+</div>
+<div id="improvement-2-exploit-vectorization" class="section level3" number="10.1.4">
+<h3><span class="header-section-number">10.1.4</span> Improvement 2: Exploit vectorization</h3>
+<p>In this approach, we exploit the fact that in R ‘everything is a vector’ and that many of the basic R functions (such as math operators) are <em>vectorized</em>. In simple terms, this means that a vectorized operation is implemented in such a way that it can take advantage of the similarity of each of the vector’s elements. That is, R only has to figure out once how to apply a given function to a vector element in order to apply it to all elements of the vector. In a simple loop, R has to go through the same ‘preparatory’ steps again and again in each iteration, this is time-intensive.</p>
+<p>In this example, we specifically exploit that the division operator <code>/</code> is actually a vectorized function. Thus, the division by our <code>deflator</code> is applied to each element of <code>economics$pce</code>.</p>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb360-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Do it &#39;the R way&#39;</span></span>
+<span id="cb360-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb360-2" aria-hidden="true" tabindex="-1"></a>deflator <span class="ot">&lt;-</span> <span class="fl">1.05</span> <span class="co"># define deflator</span></span>
+<span id="cb360-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb360-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Exploit R&#39;s vectorization!</span></span>
+<span id="cb360-4"><a href="bottle-necks-in-local-big-data-analytics.html#cb360-4" aria-hidden="true" tabindex="-1"></a>time_elapsed <span class="ot">&lt;-</span> </span>
+<span id="cb360-5"><a href="bottle-necks-in-local-big-data-analytics.html#cb360-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">system.time</span>(</span>
+<span id="cb360-6"><a href="bottle-necks-in-local-big-data-analytics.html#cb360-6" aria-hidden="true" tabindex="-1"></a>     pce_real <span class="ot">&lt;-</span> economics<span class="sc">$</span>pce<span class="sc">/</span>deflator</span>
+<span id="cb360-7"><a href="bottle-necks-in-local-big-data-analytics.html#cb360-7" aria-hidden="true" tabindex="-1"></a>          )</span>
+<span id="cb360-8"><a href="bottle-necks-in-local-big-data-analytics.html#cb360-8" aria-hidden="true" tabindex="-1"></a><span class="co"># same result</span></span>
+<span id="cb360-9"><a href="bottle-necks-in-local-big-data-analytics.html#cb360-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pce_real, <span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## [1] 483.2 486.2</code></pre>
+<p>Now this is much faster. In fact, <code>system.time()</code> is not precise enough to capture the time elapsed…</p>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb362-1" aria-hidden="true" tabindex="-1"></a>time_per_row <span class="ot">&lt;-</span> time_elapsed[<span class="dv">3</span>]<span class="sc">/</span>n_obs</span>
+<span id="cb362-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb362-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb362-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb362-3" aria-hidden="true" tabindex="-1"></a><span class="co"># in seconds</span></span>
+<span id="cb362-4"><a href="bottle-necks-in-local-big-data-analytics.html#cb362-4" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>) </span></code></pre></div>
+<pre><code>## elapsed 
+##       0</code></pre>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb364-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in minutes</span></span>
+<span id="cb364-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb364-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>)<span class="sc">/</span><span class="dv">60</span> </span></code></pre></div>
+<pre><code>## elapsed 
+##       0</code></pre>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb366-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in hours</span></span>
+<span id="cb366-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb366-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>)<span class="sc">/</span><span class="dv">60</span><span class="sc">^</span><span class="dv">2</span> </span></code></pre></div>
+<pre><code>## elapsed 
+##       0</code></pre>
+<p>In order to measure the improvement, we use <code>microbenchmark::microbenchmark()</code> to measure the elapsed time in microseconds (millionth of a second).</p>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb368-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(microbenchmark)</span>
+<span id="cb368-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb368-2" aria-hidden="true" tabindex="-1"></a><span class="co"># measure elapsed time in microseconds (avg.)</span></span>
+<span id="cb368-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb368-3" aria-hidden="true" tabindex="-1"></a>time_elapsed <span class="ot">&lt;-</span> </span>
+<span id="cb368-4"><a href="bottle-necks-in-local-big-data-analytics.html#cb368-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>(<span class="fu">microbenchmark</span>(pce_real <span class="ot">&lt;-</span> economics<span class="sc">$</span>pce<span class="sc">/</span>deflator))<span class="sc">$</span>mean</span>
+<span id="cb368-5"><a href="bottle-necks-in-local-big-data-analytics.html#cb368-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb368-6"><a href="bottle-necks-in-local-big-data-analytics.html#cb368-6" aria-hidden="true" tabindex="-1"></a><span class="co"># per row (in sec)</span></span>
+<span id="cb368-7"><a href="bottle-necks-in-local-big-data-analytics.html#cb368-7" aria-hidden="true" tabindex="-1"></a>time_per_row <span class="ot">&lt;-</span> (time_elapsed<span class="sc">/</span>n_obs)<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span></span></code></pre></div>
+<p>Now we get a more precise picture regarding the improvement due to vectorization (again, assuming 100 million rows):</p>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb369-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in seconds</span></span>
+<span id="cb369-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb369-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>) </span></code></pre></div>
+<pre><code>## [1] 0.1472</code></pre>
+<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb371-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in minutes</span></span>
+<span id="cb371-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb371-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>)<span class="sc">/</span><span class="dv">60</span> </span></code></pre></div>
+<pre><code>## [1] 0.002453</code></pre>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb373-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in hours</span></span>
+<span id="cb373-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb373-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>)<span class="sc">/</span><span class="dv">60</span><span class="sc">^</span><span class="dv">2</span> </span></code></pre></div>
+<pre><code>## [1] 4.089e-05</code></pre>
+<div id="what-do-we-learn-from-this" class="section level4" number="10.1.4.1">
+<h4><span class="header-section-number">10.1.4.1</span> What do we learn from this?</h4>
+<ol style="list-style-type: decimal">
+<li>How R allocates and deallocates memory can have a substantial effect on computation time.
+<ul>
+<li>(Particularly, if we deal with a large data set!)</li>
+</ul></li>
+<li>In what way the computation is implemented can matter a lot for the time elapsed.
+<ul>
+<li>(For example, loops vs. vectorization/apply)</li>
+</ul></li>
+</ol>
+</div>
+</div>
+</div>
+<div id="case-study-parallel-processing" class="section level2" number="10.2">
+<h2><span class="header-section-number">10.2</span> Case study: Parallel processing</h2>
+<p>In this example, we estimate a simple regression model that aims to assess racial discrimination in the context of police stops.<a href="#fn27" class="footnote-ref" id="fnref27"><sup>27</sup></a> The example is based on the ‘Minneapolis Police Department 2017 Stop Dataset,’ containing data on nearly all stops made by the Minneapolis Police Department for the year 2017.</p>
+<p>We start with importing the data into R.</p>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb375-1" aria-hidden="true" tabindex="-1"></a>url <span class="ot">&lt;-</span> <span class="st">&quot;https://vincentarelbundock.github.io/Rdatasets/csv/carData/MplsStops.csv&quot;</span></span>
+<span id="cb375-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb375-2" aria-hidden="true" tabindex="-1"></a>stopdata <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(url) </span></code></pre></div>
+<p>We specify a simple linear probability model that aims to test whether a person identified as ‘white’ is less likely to have her vehicle searched when stopped by the police. In order to take into account level-differences between different police precincts, we add precinct-indicators to the regression specification</p>
+<p>First, let’s remove observations with missing entries (<code>NA</code>) and code our main explanatory variable and the dependent variable.</p>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb376-1" aria-hidden="true" tabindex="-1"></a><span class="co"># remove incomplete obs</span></span>
+<span id="cb376-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb376-2" aria-hidden="true" tabindex="-1"></a>stopdata <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(stopdata)</span>
+<span id="cb376-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb376-3" aria-hidden="true" tabindex="-1"></a><span class="co"># code dependent var</span></span>
+<span id="cb376-4"><a href="bottle-necks-in-local-big-data-analytics.html#cb376-4" aria-hidden="true" tabindex="-1"></a>stopdata<span class="sc">$</span>vsearch <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb376-5"><a href="bottle-necks-in-local-big-data-analytics.html#cb376-5" aria-hidden="true" tabindex="-1"></a>stopdata<span class="sc">$</span>vsearch[stopdata<span class="sc">$</span>vehicleSearch<span class="sc">==</span><span class="st">&quot;YES&quot;</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb376-6"><a href="bottle-necks-in-local-big-data-analytics.html#cb376-6" aria-hidden="true" tabindex="-1"></a><span class="co"># code explanatory var</span></span>
+<span id="cb376-7"><a href="bottle-necks-in-local-big-data-analytics.html#cb376-7" aria-hidden="true" tabindex="-1"></a>stopdata<span class="sc">$</span>white <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb376-8"><a href="bottle-necks-in-local-big-data-analytics.html#cb376-8" aria-hidden="true" tabindex="-1"></a>stopdata<span class="sc">$</span>white[stopdata<span class="sc">$</span>race<span class="sc">==</span><span class="st">&quot;White&quot;</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span></code></pre></div>
+<p>We specify our baseline model as follows.</p>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb377-1" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> vsearch <span class="sc">~</span> white <span class="sc">+</span> <span class="fu">factor</span>(policePrecinct)</span></code></pre></div>
+<p>And estimate the linear probability model via OLS (the <code>lm</code> function).</p>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb378-1" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(model, stopdata)</span>
+<span id="cb378-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb378-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = model, data = stopdata)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -0.1394 -0.0633 -0.0547 -0.0423  0.9773 
+## 
+## Coefficients:
+##                         Estimate Std. Error t value
+## (Intercept)              0.05473    0.00515   10.62
+## white                   -0.01955    0.00446   -4.38
+## factor(policePrecinct)2  0.00856    0.00676    1.27
+## factor(policePrecinct)3  0.00341    0.00648    0.53
+## factor(policePrecinct)4  0.08464    0.00623   13.58
+## factor(policePrecinct)5 -0.01246    0.00637   -1.96
+##                         Pr(&gt;|t|)    
+## (Intercept)              &lt; 2e-16 ***
+## white                    1.2e-05 ***
+## factor(policePrecinct)2     0.21    
+## factor(policePrecinct)3     0.60    
+## factor(policePrecinct)4  &lt; 2e-16 ***
+## factor(policePrecinct)5     0.05 .  
+## ---
+## Signif. codes:  
+## 0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.254 on 19078 degrees of freedom
+## Multiple R-squared:  0.025,  Adjusted R-squared:  0.0248 
+## F-statistic: 97.9 on 5 and 19078 DF,  p-value: &lt;2e-16</code></pre>
+<p>A potential problem with this approach (and there might be many more in this simple example) is that observations stemming from different police precincts might be correlated over time. If that is the case, we likely underestimate the coefficient’s standard errors. There is a standard approach to compute estimates for so-called <em>cluster-robust</em> standard errors which would take the problem of correlation over time within clusters into consideration (and deliver a more conservative estimate of the SEs). However, this approach only works well if the number of clusters in the data is roughly 50 or more. Here we only have 5.</p>
+<p>The alternative approach is to compute bootstrapped clustered standard errors. That is, we apply the <a href="https://en.wikipedia.org/wiki/Bootstrapping_(statistics)">bootstrap resampling procedure</a> at the cluster level. Specifically, we draw <span class="math inline">\(B\)</span> samples (with replacement), estimate and record for each bootstrap-sample the coefficient vector, and then estimate <span class="math inline">\(SE_{boot}\)</span> based on the standard deviation of all respective estimated coefficient values.</p>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb380-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb380-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb380-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb380-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb380-3" aria-hidden="true" tabindex="-1"></a><span class="co"># set the &#39;seed&#39; for random numbers (makes the example reproducible)</span></span>
+<span id="cb380-4"><a href="bottle-necks-in-local-big-data-analytics.html#cb380-4" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2</span>)</span>
+<span id="cb380-5"><a href="bottle-necks-in-local-big-data-analytics.html#cb380-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb380-6"><a href="bottle-necks-in-local-big-data-analytics.html#cb380-6" aria-hidden="true" tabindex="-1"></a><span class="co"># set number of bootstrap iterations</span></span>
+<span id="cb380-7"><a href="bottle-necks-in-local-big-data-analytics.html#cb380-7" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb380-8"><a href="bottle-necks-in-local-big-data-analytics.html#cb380-8" aria-hidden="true" tabindex="-1"></a><span class="co"># get selection of precincts</span></span>
+<span id="cb380-9"><a href="bottle-necks-in-local-big-data-analytics.html#cb380-9" aria-hidden="true" tabindex="-1"></a>precincts <span class="ot">&lt;-</span> <span class="fu">unique</span>(stopdata<span class="sc">$</span>policePrecinct)</span>
+<span id="cb380-10"><a href="bottle-necks-in-local-big-data-analytics.html#cb380-10" aria-hidden="true" tabindex="-1"></a><span class="co"># container for coefficients</span></span>
+<span id="cb380-11"><a href="bottle-necks-in-local-big-data-analytics.html#cb380-11" aria-hidden="true" tabindex="-1"></a>boot_coefs <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow =</span> B, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb380-12"><a href="bottle-necks-in-local-big-data-analytics.html#cb380-12" aria-hidden="true" tabindex="-1"></a><span class="co"># draw bootstrap samples, estimate model for each sample</span></span>
+<span id="cb380-13"><a href="bottle-necks-in-local-big-data-analytics.html#cb380-13" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>B) {</span>
+<span id="cb380-14"><a href="bottle-necks-in-local-big-data-analytics.html#cb380-14" aria-hidden="true" tabindex="-1"></a>     </span>
+<span id="cb380-15"><a href="bottle-necks-in-local-big-data-analytics.html#cb380-15" aria-hidden="true" tabindex="-1"></a>     <span class="co"># draw sample of precincts (cluster level)</span></span>
+<span id="cb380-16"><a href="bottle-necks-in-local-big-data-analytics.html#cb380-16" aria-hidden="true" tabindex="-1"></a>     precincts_i <span class="ot">&lt;-</span> <span class="fu">sample</span>(precincts, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb380-17"><a href="bottle-necks-in-local-big-data-analytics.html#cb380-17" aria-hidden="true" tabindex="-1"></a>     <span class="co"># get observations</span></span>
+<span id="cb380-18"><a href="bottle-necks-in-local-big-data-analytics.html#cb380-18" aria-hidden="true" tabindex="-1"></a>     bs_i <span class="ot">&lt;-</span> <span class="fu">lapply</span>(precincts_i, <span class="cf">function</span>(x) stopdata[stopdata<span class="sc">$</span>policePrecinct<span class="sc">==</span>x,])</span>
+<span id="cb380-19"><a href="bottle-necks-in-local-big-data-analytics.html#cb380-19" aria-hidden="true" tabindex="-1"></a>     bs_i <span class="ot">&lt;-</span> <span class="fu">rbindlist</span>(bs_i)</span>
+<span id="cb380-20"><a href="bottle-necks-in-local-big-data-analytics.html#cb380-20" aria-hidden="true" tabindex="-1"></a>     </span>
+<span id="cb380-21"><a href="bottle-necks-in-local-big-data-analytics.html#cb380-21" aria-hidden="true" tabindex="-1"></a>     <span class="co"># estimate model and record coefficients</span></span>
+<span id="cb380-22"><a href="bottle-necks-in-local-big-data-analytics.html#cb380-22" aria-hidden="true" tabindex="-1"></a>     boot_coefs[i,] <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">lm</span>(model, bs_i))[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>] <span class="co"># ignore FE-coefficients</span></span>
+<span id="cb380-23"><a href="bottle-necks-in-local-big-data-analytics.html#cb380-23" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Finally, let’s compute <span class="math inline">\(SE_{boot}\)</span>.</p>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb381-1" aria-hidden="true" tabindex="-1"></a>se_boot <span class="ot">&lt;-</span> <span class="fu">apply</span>(boot_coefs, </span>
+<span id="cb381-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb381-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">MARGIN =</span> <span class="dv">2</span>,</span>
+<span id="cb381-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb381-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">FUN =</span> sd)</span>
+<span id="cb381-4"><a href="bottle-necks-in-local-big-data-analytics.html#cb381-4" aria-hidden="true" tabindex="-1"></a>se_boot</span></code></pre></div>
+<pre><code>## [1] 0.004043 0.004690</code></pre>
+<p>Note that even with a very small <span class="math inline">\(B\)</span>, computing <span class="math inline">\(SE_{boot}\)</span> takes up some time to compute. When setting <span class="math inline">\(B\)</span> to over 500, computation time will be substantial. Also note that running this code does hardly use up more memory than the very simple approach without bootstrapping (after all, in each bootstrap iteration the data set used to estimate the model is approximately the same size as the original data set). There is little we can do to improve the script’s performance regarding memory. However we can tell R how to allocate CPU resources more efficiently to handle that many regression estimates.</p>
+<p>Particularly, we can make use of the fact that most modern computing environments (such as a laptop) have CPUs with several <em>cores</em>. We can exploit this fact by instructing the computer to run the computations <em>in parallel</em> (simultaneously computing on several cores). The following code is a parallel implementation of our bootstrap procedure which does exactly that.</p>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb383-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;doSNOW&quot;, &quot;parallel&quot;)</span></span>
+<span id="cb383-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb383-2" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages for parallel processing</span></span>
+<span id="cb383-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb383-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(doSNOW)</span>
+<span id="cb383-4"><a href="bottle-necks-in-local-big-data-analytics.html#cb383-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb383-5"><a href="bottle-necks-in-local-big-data-analytics.html#cb383-5" aria-hidden="true" tabindex="-1"></a><span class="co"># get the number of cores available</span></span>
+<span id="cb383-6"><a href="bottle-necks-in-local-big-data-analytics.html#cb383-6" aria-hidden="true" tabindex="-1"></a>ncores <span class="ot">&lt;-</span> parallel<span class="sc">::</span><span class="fu">detectCores</span>()</span>
+<span id="cb383-7"><a href="bottle-necks-in-local-big-data-analytics.html#cb383-7" aria-hidden="true" tabindex="-1"></a><span class="co"># set cores for parallel processing</span></span>
+<span id="cb383-8"><a href="bottle-necks-in-local-big-data-analytics.html#cb383-8" aria-hidden="true" tabindex="-1"></a>ctemp <span class="ot">&lt;-</span> <span class="fu">makeCluster</span>(ncores) <span class="co"># </span></span>
+<span id="cb383-9"><a href="bottle-necks-in-local-big-data-analytics.html#cb383-9" aria-hidden="true" tabindex="-1"></a><span class="fu">registerDoSNOW</span>(ctemp)</span>
+<span id="cb383-10"><a href="bottle-necks-in-local-big-data-analytics.html#cb383-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb383-11"><a href="bottle-necks-in-local-big-data-analytics.html#cb383-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb383-12"><a href="bottle-necks-in-local-big-data-analytics.html#cb383-12" aria-hidden="true" tabindex="-1"></a><span class="co"># set number of bootstrap iterations</span></span>
+<span id="cb383-13"><a href="bottle-necks-in-local-big-data-analytics.html#cb383-13" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb383-14"><a href="bottle-necks-in-local-big-data-analytics.html#cb383-14" aria-hidden="true" tabindex="-1"></a><span class="co"># get selection of precincts</span></span>
+<span id="cb383-15"><a href="bottle-necks-in-local-big-data-analytics.html#cb383-15" aria-hidden="true" tabindex="-1"></a>precincts <span class="ot">&lt;-</span> <span class="fu">unique</span>(stopdata<span class="sc">$</span>policePrecinct)</span>
+<span id="cb383-16"><a href="bottle-necks-in-local-big-data-analytics.html#cb383-16" aria-hidden="true" tabindex="-1"></a><span class="co"># container for coefficients</span></span>
+<span id="cb383-17"><a href="bottle-necks-in-local-big-data-analytics.html#cb383-17" aria-hidden="true" tabindex="-1"></a>boot_coefs <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow =</span> B, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb383-18"><a href="bottle-necks-in-local-big-data-analytics.html#cb383-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb383-19"><a href="bottle-necks-in-local-big-data-analytics.html#cb383-19" aria-hidden="true" tabindex="-1"></a><span class="co"># bootstrapping in parallel</span></span>
+<span id="cb383-20"><a href="bottle-necks-in-local-big-data-analytics.html#cb383-20" aria-hidden="true" tabindex="-1"></a>boot_coefs <span class="ot">&lt;-</span> </span>
+<span id="cb383-21"><a href="bottle-necks-in-local-big-data-analytics.html#cb383-21" aria-hidden="true" tabindex="-1"></a>     <span class="fu">foreach</span>(<span class="at">i =</span> <span class="dv">1</span><span class="sc">:</span>B, <span class="at">.combine =</span> rbind, <span class="at">.packages=</span><span class="st">&quot;data.table&quot;</span>) <span class="sc">%dopar%</span> {</span>
+<span id="cb383-22"><a href="bottle-necks-in-local-big-data-analytics.html#cb383-22" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb383-23"><a href="bottle-necks-in-local-big-data-analytics.html#cb383-23" aria-hidden="true" tabindex="-1"></a>          <span class="co"># draw sample of precincts (cluster level)</span></span>
+<span id="cb383-24"><a href="bottle-necks-in-local-big-data-analytics.html#cb383-24" aria-hidden="true" tabindex="-1"></a>          precincts_i <span class="ot">&lt;-</span> <span class="fu">sample</span>(precincts, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb383-25"><a href="bottle-necks-in-local-big-data-analytics.html#cb383-25" aria-hidden="true" tabindex="-1"></a>          <span class="co"># get observations</span></span>
+<span id="cb383-26"><a href="bottle-necks-in-local-big-data-analytics.html#cb383-26" aria-hidden="true" tabindex="-1"></a>          bs_i <span class="ot">&lt;-</span> <span class="fu">lapply</span>(precincts_i, <span class="cf">function</span>(x) stopdata[stopdata<span class="sc">$</span>policePrecinct<span class="sc">==</span>x,])</span>
+<span id="cb383-27"><a href="bottle-necks-in-local-big-data-analytics.html#cb383-27" aria-hidden="true" tabindex="-1"></a>          bs_i <span class="ot">&lt;-</span> <span class="fu">rbindlist</span>(bs_i)</span>
+<span id="cb383-28"><a href="bottle-necks-in-local-big-data-analytics.html#cb383-28" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb383-29"><a href="bottle-necks-in-local-big-data-analytics.html#cb383-29" aria-hidden="true" tabindex="-1"></a>          <span class="co"># estimate model and record coefficients</span></span>
+<span id="cb383-30"><a href="bottle-necks-in-local-big-data-analytics.html#cb383-30" aria-hidden="true" tabindex="-1"></a>          <span class="fu">coef</span>(<span class="fu">lm</span>(model, bs_i))[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>] <span class="co"># ignore FE-coefficients</span></span>
+<span id="cb383-31"><a href="bottle-necks-in-local-big-data-analytics.html#cb383-31" aria-hidden="true" tabindex="-1"></a>      </span>
+<span id="cb383-32"><a href="bottle-necks-in-local-big-data-analytics.html#cb383-32" aria-hidden="true" tabindex="-1"></a>     }</span>
+<span id="cb383-33"><a href="bottle-necks-in-local-big-data-analytics.html#cb383-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb383-34"><a href="bottle-necks-in-local-big-data-analytics.html#cb383-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb383-35"><a href="bottle-necks-in-local-big-data-analytics.html#cb383-35" aria-hidden="true" tabindex="-1"></a><span class="co"># be a good citizen and stop the snow clusters</span></span>
+<span id="cb383-36"><a href="bottle-necks-in-local-big-data-analytics.html#cb383-36" aria-hidden="true" tabindex="-1"></a><span class="fu">stopCluster</span>(<span class="at">cl =</span> ctemp)</span></code></pre></div>
+<p>As a last step, we compute again <span class="math inline">\(SE_{boot}\)</span>.</p>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb384-1" aria-hidden="true" tabindex="-1"></a>se_boot <span class="ot">&lt;-</span> <span class="fu">apply</span>(boot_coefs, </span>
+<span id="cb384-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb384-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">MARGIN =</span> <span class="dv">2</span>,</span>
+<span id="cb384-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb384-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">FUN =</span> sd)</span>
+<span id="cb384-4"><a href="bottle-necks-in-local-big-data-analytics.html#cb384-4" aria-hidden="true" tabindex="-1"></a>se_boot</span></code></pre></div>
+<pre><code>## (Intercept)       white 
+##    0.004998    0.005234</code></pre>
+<div id="parallelization-with-an-ec2-instance-1" class="section level3" number="10.2.1">
+<h3><span class="header-section-number">10.2.1</span> Parallelization with an EC2 instance</h3>
+<!-- This short tutorial illustrates how to scale the computation of clustered standard errors shown in Lecture 3 up by running it on an AWS EC2 instance. Below we use the same source code as in the original example (see [`03_computation_memory.Rmd`](https://github.com/umatter/BigData/blob/master/materials/notes/03_computation_memory.Rmd)). Note that there are a few things that we need to keep in mind in order to make the script run on an AWS EC2 instance in RStudio Server.  -->
+<!-- First, our EC2 instance is a Linux machine. Most of you are probably rather used to running R on a Mac or Windows PC. When running R on a Linux machine, there is an additional step to install R packages (at least for most of the packages): R packages need to be compiled before they can be installed. The command to install packages is exactly the same (`install.packages()`) and normally you only notice a slight difference in the output shown in the R console during installation (and the installation process takes a little longer than what you are used to). Apart from that, using R via RStudio Server in the cloud looks/feels very similar if not identical as when using R/RStudio locally. -->
+<p>Now, let’s go through the bootstrap example. First, let’s run the non-parallel implementation of the script. When executing the code below line-by-line, you will notice that essentially all parts of the script work exactly as on your local machine. This is one of the great advantages of running R/RStudio Server in the cloud. You can implement your entire data analysis locally (based on a small sample), test it locally, and then move it to the cloud and run it on a larger scale in exactly the same way (even with the same GUI).</p>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-1" aria-hidden="true" tabindex="-1"></a><span class="co"># CASE STUDY: PARALLEL ---------------------------</span></span>
+<span id="cb386-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb386-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install packages</span></span>
+<span id="cb386-4"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-4" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;data.table&quot;</span>)</span>
+<span id="cb386-5"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-5" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;doSNOW&quot;</span>)</span>
+<span id="cb386-6"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb386-7"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-7" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb386-8"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb386-9"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb386-10"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb386-11"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-11" aria-hidden="true" tabindex="-1"></a><span class="do">## ------------------------------------------------------------------------</span></span>
+<span id="cb386-12"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-12" aria-hidden="true" tabindex="-1"></a>stopdata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;https://vincentarelbundock.github.io/Rdatasets/csv/carData/MplsStops.csv&quot;</span>)</span>
+<span id="cb386-13"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb386-14"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-14" aria-hidden="true" tabindex="-1"></a><span class="do">## ------------------------------------------------------------------------</span></span>
+<span id="cb386-15"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-15" aria-hidden="true" tabindex="-1"></a><span class="co"># remove incomplete obs</span></span>
+<span id="cb386-16"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-16" aria-hidden="true" tabindex="-1"></a>stopdata <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(stopdata)</span>
+<span id="cb386-17"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-17" aria-hidden="true" tabindex="-1"></a><span class="co"># code dependent var</span></span>
+<span id="cb386-18"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-18" aria-hidden="true" tabindex="-1"></a>stopdata<span class="sc">$</span>vsearch <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb386-19"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-19" aria-hidden="true" tabindex="-1"></a>stopdata<span class="sc">$</span>vsearch[stopdata<span class="sc">$</span>vehicleSearch<span class="sc">==</span><span class="st">&quot;YES&quot;</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb386-20"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-20" aria-hidden="true" tabindex="-1"></a><span class="co"># code explanatory var</span></span>
+<span id="cb386-21"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-21" aria-hidden="true" tabindex="-1"></a>stopdata<span class="sc">$</span>white <span class="ot">&lt;-</span> <span class="dv">0</span></span>
+<span id="cb386-22"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-22" aria-hidden="true" tabindex="-1"></a>stopdata<span class="sc">$</span>white[stopdata<span class="sc">$</span>race<span class="sc">==</span><span class="st">&quot;White&quot;</span>] <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb386-23"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb386-24"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-24" aria-hidden="true" tabindex="-1"></a><span class="do">## ------------------------------------------------------------------------</span></span>
+<span id="cb386-25"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-25" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> vsearch <span class="sc">~</span> white <span class="sc">+</span> <span class="fu">factor</span>(policePrecinct)</span>
+<span id="cb386-26"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb386-27"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-27" aria-hidden="true" tabindex="-1"></a><span class="do">## ------------------------------------------------------------------------</span></span>
+<span id="cb386-28"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-28" aria-hidden="true" tabindex="-1"></a>fit <span class="ot">&lt;-</span> <span class="fu">lm</span>(model, stopdata)</span>
+<span id="cb386-29"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-29" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit)</span>
+<span id="cb386-30"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb386-31"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb386-32"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-32" aria-hidden="true" tabindex="-1"></a><span class="co"># bootstrapping: normal approach</span></span>
+<span id="cb386-33"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb386-34"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-34" aria-hidden="true" tabindex="-1"></a><span class="do">## ----message=FALSE-------------------------------------------------------</span></span>
+<span id="cb386-35"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb386-36"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-36" aria-hidden="true" tabindex="-1"></a><span class="co"># set the &#39;seed&#39; for random numbers (makes the example reproducible)</span></span>
+<span id="cb386-37"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-37" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2</span>)</span>
+<span id="cb386-38"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb386-39"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-39" aria-hidden="true" tabindex="-1"></a><span class="co"># set number of bootstrap iterations</span></span>
+<span id="cb386-40"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-40" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb386-41"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-41" aria-hidden="true" tabindex="-1"></a><span class="co"># get selection of precincts</span></span>
+<span id="cb386-42"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-42" aria-hidden="true" tabindex="-1"></a>precincts <span class="ot">&lt;-</span> <span class="fu">unique</span>(stopdata<span class="sc">$</span>policePrecinct)</span>
+<span id="cb386-43"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-43" aria-hidden="true" tabindex="-1"></a><span class="co"># container for coefficients</span></span>
+<span id="cb386-44"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-44" aria-hidden="true" tabindex="-1"></a>boot_coefs <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow =</span> B, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb386-45"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-45" aria-hidden="true" tabindex="-1"></a><span class="co"># draw bootstrap samples, estimate model for each sample</span></span>
+<span id="cb386-46"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-46" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>B) {</span>
+<span id="cb386-47"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-47" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb386-48"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-48" aria-hidden="true" tabindex="-1"></a>  <span class="co"># draw sample of precincts (cluster level)</span></span>
+<span id="cb386-49"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-49" aria-hidden="true" tabindex="-1"></a>  precincts_i <span class="ot">&lt;-</span> <span class="fu">sample</span>(precincts, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb386-50"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-50" aria-hidden="true" tabindex="-1"></a>  <span class="co"># get observations</span></span>
+<span id="cb386-51"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-51" aria-hidden="true" tabindex="-1"></a>  bs_i <span class="ot">&lt;-</span> <span class="fu">lapply</span>(precincts_i, <span class="cf">function</span>(x) stopdata[stopdata<span class="sc">$</span>policePrecinct<span class="sc">==</span>x,])</span>
+<span id="cb386-52"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-52" aria-hidden="true" tabindex="-1"></a>  bs_i <span class="ot">&lt;-</span> <span class="fu">rbindlist</span>(bs_i)</span>
+<span id="cb386-53"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-53" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb386-54"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-54" aria-hidden="true" tabindex="-1"></a>  <span class="co"># estimate model and record coefficients</span></span>
+<span id="cb386-55"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-55" aria-hidden="true" tabindex="-1"></a>  boot_coefs[i,] <span class="ot">&lt;-</span> <span class="fu">coef</span>(<span class="fu">lm</span>(model, bs_i))[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>] <span class="co"># ignore FE-coefficients</span></span>
+<span id="cb386-56"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-56" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb386-57"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-57" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb386-58"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-58" aria-hidden="true" tabindex="-1"></a><span class="do">## ------------------------------------------------------------------------</span></span>
+<span id="cb386-59"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-59" aria-hidden="true" tabindex="-1"></a>se_boot <span class="ot">&lt;-</span> <span class="fu">apply</span>(boot_coefs, </span>
+<span id="cb386-60"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-60" aria-hidden="true" tabindex="-1"></a>                 <span class="at">MARGIN =</span> <span class="dv">2</span>,</span>
+<span id="cb386-61"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-61" aria-hidden="true" tabindex="-1"></a>                 <span class="at">FUN =</span> sd)</span>
+<span id="cb386-62"><a href="bottle-necks-in-local-big-data-analytics.html#cb386-62" aria-hidden="true" tabindex="-1"></a>se_boot</span></code></pre></div>
+<p>So far, we have only demonstrated that the simple implementation (non-parallel) works both locally and in the cloud. The real purpose of using an EC2 instance in this example is to make use of the fact that we can scale up our instance to have more CPU cores available for the parallel implementation of our bootstrap procedure. Recall that running the script below on our local machine will employ all cores available to an compute the bootstrap resampling in parallel on all these cores. Exactly the same thing happens when running the code below on our simple <code>t2.micro</code> instance. However this type of EC2 instance only has one core. You can check this when running the following line of code in RStudio Server (assuming the <code>doSNOW</code> package is installed and loaded):</p>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb387-1" aria-hidden="true" tabindex="-1"></a>parallel<span class="sc">::</span><span class="fu">detectCores</span>()</span></code></pre></div>
+<p>When running the entire parallel implementation below, you will thus notice that it won’t compute the bootstrap SE any faster than with the non-parallel version above. However, by simply initiating another EC2 type with more cores, we can distribute the workload across many CPU cores, using exactly the same R-script.</p>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-1" aria-hidden="true" tabindex="-1"></a><span class="co"># bootstrapping: parallel approaach</span></span>
+<span id="cb388-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb388-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-3" aria-hidden="true" tabindex="-1"></a><span class="do">## ----message=FALSE-------------------------------------------------------</span></span>
+<span id="cb388-4"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-4" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;doSNOW&quot;, &quot;parallel&quot;)</span></span>
+<span id="cb388-5"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-5" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages for parallel processing</span></span>
+<span id="cb388-6"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(doSNOW)</span>
+<span id="cb388-7"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb388-8"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-8" aria-hidden="true" tabindex="-1"></a><span class="co"># get the number of cores available</span></span>
+<span id="cb388-9"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-9" aria-hidden="true" tabindex="-1"></a>ncores <span class="ot">&lt;-</span> parallel<span class="sc">::</span><span class="fu">detectCores</span>()</span>
+<span id="cb388-10"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-10" aria-hidden="true" tabindex="-1"></a><span class="co"># set cores for parallel processing</span></span>
+<span id="cb388-11"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-11" aria-hidden="true" tabindex="-1"></a>ctemp <span class="ot">&lt;-</span> <span class="fu">makeCluster</span>(ncores) <span class="co"># </span></span>
+<span id="cb388-12"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-12" aria-hidden="true" tabindex="-1"></a><span class="fu">registerDoSNOW</span>(ctemp)</span>
+<span id="cb388-13"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb388-14"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb388-15"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-15" aria-hidden="true" tabindex="-1"></a><span class="co"># set number of bootstrap iterations</span></span>
+<span id="cb388-16"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-16" aria-hidden="true" tabindex="-1"></a>B <span class="ot">&lt;-</span> <span class="dv">50</span></span>
+<span id="cb388-17"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-17" aria-hidden="true" tabindex="-1"></a><span class="co"># get selection of precincts</span></span>
+<span id="cb388-18"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-18" aria-hidden="true" tabindex="-1"></a>precincts <span class="ot">&lt;-</span> <span class="fu">unique</span>(stopdata<span class="sc">$</span>policePrecinct)</span>
+<span id="cb388-19"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-19" aria-hidden="true" tabindex="-1"></a><span class="co"># container for coefficients</span></span>
+<span id="cb388-20"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-20" aria-hidden="true" tabindex="-1"></a>boot_coefs <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow =</span> B, <span class="at">ncol =</span> <span class="dv">2</span>)</span>
+<span id="cb388-21"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb388-22"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-22" aria-hidden="true" tabindex="-1"></a><span class="co"># bootstrapping in parallel</span></span>
+<span id="cb388-23"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-23" aria-hidden="true" tabindex="-1"></a>boot_coefs <span class="ot">&lt;-</span> </span>
+<span id="cb388-24"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">foreach</span>(<span class="at">i =</span> <span class="dv">1</span><span class="sc">:</span>B, <span class="at">.combine =</span> rbind, <span class="at">.packages=</span><span class="st">&quot;data.table&quot;</span>) <span class="sc">%dopar%</span> {</span>
+<span id="cb388-25"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-25" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb388-26"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-26" aria-hidden="true" tabindex="-1"></a>    <span class="co"># draw sample of precincts (cluster level)</span></span>
+<span id="cb388-27"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-27" aria-hidden="true" tabindex="-1"></a>    precincts_i <span class="ot">&lt;-</span> <span class="fu">sample</span>(precincts, <span class="at">size =</span> <span class="dv">5</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb388-28"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-28" aria-hidden="true" tabindex="-1"></a>    <span class="co"># get observations</span></span>
+<span id="cb388-29"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-29" aria-hidden="true" tabindex="-1"></a>    bs_i <span class="ot">&lt;-</span> <span class="fu">lapply</span>(precincts_i, <span class="cf">function</span>(x) stopdata[stopdata<span class="sc">$</span>policePrecinct<span class="sc">==</span>x,])</span>
+<span id="cb388-30"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-30" aria-hidden="true" tabindex="-1"></a>    bs_i <span class="ot">&lt;-</span> <span class="fu">rbindlist</span>(bs_i)</span>
+<span id="cb388-31"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-31" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb388-32"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-32" aria-hidden="true" tabindex="-1"></a>    <span class="co"># estimate model and record coefficients</span></span>
+<span id="cb388-33"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">coef</span>(<span class="fu">lm</span>(model, bs_i))[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>] <span class="co"># ignore FE-coefficients</span></span>
+<span id="cb388-34"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-34" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb388-35"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-35" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb388-36"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb388-37"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb388-38"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-38" aria-hidden="true" tabindex="-1"></a><span class="co"># be a good citizen and stop the snow clusters</span></span>
+<span id="cb388-39"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-39" aria-hidden="true" tabindex="-1"></a><span class="fu">stopCluster</span>(<span class="at">cl =</span> ctemp)</span>
+<span id="cb388-40"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb388-41"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb388-42"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb388-43"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-43" aria-hidden="true" tabindex="-1"></a><span class="do">## ------------------------------------------------------------------------</span></span>
+<span id="cb388-44"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-44" aria-hidden="true" tabindex="-1"></a>se_boot <span class="ot">&lt;-</span> <span class="fu">apply</span>(boot_coefs, </span>
+<span id="cb388-45"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-45" aria-hidden="true" tabindex="-1"></a>                 <span class="at">MARGIN =</span> <span class="dv">2</span>,</span>
+<span id="cb388-46"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-46" aria-hidden="true" tabindex="-1"></a>                 <span class="at">FUN =</span> sd)</span>
+<span id="cb388-47"><a href="bottle-necks-in-local-big-data-analytics.html#cb388-47" aria-hidden="true" tabindex="-1"></a>se_boot</span></code></pre></div>
+</div>
+</div>
+<div id="case-study-memory-allocation" class="section level2" number="10.3">
+<h2><span class="header-section-number">10.3</span> Case study: Memory allocation</h2>
+<p>Consider the first steps of a data pipeline in R. The first part of our script to import and clean the data looks as follows.</p>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb389-1" aria-hidden="true" tabindex="-1"></a><span class="do">###########################################################</span></span>
+<span id="cb389-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb389-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Big Data Statistics: Flights data import and preparation</span></span>
+<span id="cb389-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb389-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb389-4"><a href="bottle-necks-in-local-big-data-analytics.html#cb389-4" aria-hidden="true" tabindex="-1"></a><span class="co"># U. Matter, January 2019</span></span>
+<span id="cb389-5"><a href="bottle-necks-in-local-big-data-analytics.html#cb389-5" aria-hidden="true" tabindex="-1"></a><span class="do">###########################################################</span></span>
+<span id="cb389-6"><a href="bottle-necks-in-local-big-data-analytics.html#cb389-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb389-7"><a href="bottle-necks-in-local-big-data-analytics.html#cb389-7" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP -----------------</span></span>
+<span id="cb389-8"><a href="bottle-necks-in-local-big-data-analytics.html#cb389-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb389-9"><a href="bottle-necks-in-local-big-data-analytics.html#cb389-9" aria-hidden="true" tabindex="-1"></a><span class="co"># fix variables</span></span>
+<span id="cb389-10"><a href="bottle-necks-in-local-big-data-analytics.html#cb389-10" aria-hidden="true" tabindex="-1"></a>DATA_PATH <span class="ot">&lt;-</span> <span class="st">&quot;materials/data/flights.csv&quot;</span></span>
+<span id="cb389-11"><a href="bottle-necks-in-local-big-data-analytics.html#cb389-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb389-12"><a href="bottle-necks-in-local-big-data-analytics.html#cb389-12" aria-hidden="true" tabindex="-1"></a><span class="co"># DATA IMPORT ----------------</span></span>
+<span id="cb389-13"><a href="bottle-necks-in-local-big-data-analytics.html#cb389-13" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(DATA_PATH)</span>
+<span id="cb389-14"><a href="bottle-necks-in-local-big-data-analytics.html#cb389-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb389-15"><a href="bottle-necks-in-local-big-data-analytics.html#cb389-15" aria-hidden="true" tabindex="-1"></a><span class="co"># DATA PREPARATION --------</span></span>
+<span id="cb389-16"><a href="bottle-necks-in-local-big-data-analytics.html#cb389-16" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> flights[,<span class="sc">-</span><span class="dv">1</span><span class="sc">:-</span><span class="dv">3</span>]</span></code></pre></div>
+<p>When running this script, we notice that some of the steps need a noticable amount of time to process. Moreover, while none of these steps obviously involves a lot of computation (such as a matrix inversion or numerical optimization), it quite likely involves memory allocation. We first read data into RAM (allocated to R by our operating system). It turns out that there are different ways to allocate RAM when reading data from a CSV file. Depending on the amount of data to be read in, one or the other approach might be faster. We first investigate the RAM allocation in R with <code>mem_change()</code> and <code>mem_used()</code>.</p>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb390-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP -----------------</span></span>
+<span id="cb390-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb390-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb390-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb390-3" aria-hidden="true" tabindex="-1"></a><span class="co"># fix variables</span></span>
+<span id="cb390-4"><a href="bottle-necks-in-local-big-data-analytics.html#cb390-4" aria-hidden="true" tabindex="-1"></a>DATA_PATH <span class="ot">&lt;-</span> <span class="st">&quot;data/flights.csv&quot;</span></span>
+<span id="cb390-5"><a href="bottle-necks-in-local-big-data-analytics.html#cb390-5" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb390-6"><a href="bottle-necks-in-local-big-data-analytics.html#cb390-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pryr) </span>
+<span id="cb390-7"><a href="bottle-necks-in-local-big-data-analytics.html#cb390-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb390-8"><a href="bottle-necks-in-local-big-data-analytics.html#cb390-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb390-9"><a href="bottle-necks-in-local-big-data-analytics.html#cb390-9" aria-hidden="true" tabindex="-1"></a><span class="co"># check how much memory is used by R (overall)</span></span>
+<span id="cb390-10"><a href="bottle-necks-in-local-big-data-analytics.html#cb390-10" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_used</span>()</span></code></pre></div>
+<pre><code>## 1,496,180,800 B</code></pre>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb392-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check the change in memory due to each step</span></span>
+<span id="cb392-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb392-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb392-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb392-3" aria-hidden="true" tabindex="-1"></a><span class="co"># DATA IMPORT ----------------</span></span>
+<span id="cb392-4"><a href="bottle-necks-in-local-big-data-analytics.html#cb392-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_change</span>(flights <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(DATA_PATH))</span></code></pre></div>
+<pre><code>## 33 MB</code></pre>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb394-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DATA PREPARATION --------</span></span>
+<span id="cb394-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb394-2" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> flights[,<span class="sc">-</span><span class="dv">1</span><span class="sc">:-</span><span class="dv">3</span>]</span>
+<span id="cb394-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb394-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb394-4"><a href="bottle-necks-in-local-big-data-analytics.html#cb394-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check how much memory is used by R now</span></span>
+<span id="cb394-5"><a href="bottle-necks-in-local-big-data-analytics.html#cb394-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_used</span>()</span></code></pre></div>
+<pre><code>## 1,524,025,464 B</code></pre>
+<p>The last result is kind of interesting. The object <code>flights</code> must have been larger right after importing it than at the end of the script. We have thrown out several variables, after all. Why does R still use that much memory? R does by default not ‘clean up’ memory unless it is really necessary (meaning no more memory is available). In this case, R has still way more memory available from the operating system, thus there is no need to ‘collect the garbage’ yet. However, we can force R to collect the garbage on the spot with <code>gc()</code>. This can be helpful to better keep track of the memory needed by an analytics script.</p>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb396-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span></code></pre></div>
+<pre><code>##             used   (Mb) gc trigger   (Mb)  max used
+## Ncells   6769144  361.6   11728998  626.4  10367126
+## Vcells 143117012 1091.9  272329730 2077.8 272329730
+##          (Mb)
+## Ncells  553.7
+## Vcells 2077.8</code></pre>
+<p>Now, let’s see how we can improve the performance of this script with regard to memory allocation. Most memory is allocated when importing the file. Obviously, any improvement of the script must still result in importing all the data. However, there are different ways to read data into RAM. <code>read.csv()</code> reads all lines of a csv file consecutively. In contrast, <code>data.table::fread()</code> first ‘maps’ the data file into memory and only then actually reads it in line by line. This involves an additional initial step, but the larger the file, the less relevant is this first step with regard to the total time needed to read all the data into memory. By switching on the <code>verbose</code> option, we can actually see what <code>fread</code> is doing.</p>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb398-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb398-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb398-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb398-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb398-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb398-4"><a href="bottle-necks-in-local-big-data-analytics.html#cb398-4" aria-hidden="true" tabindex="-1"></a><span class="co"># DATA IMPORT ----------------</span></span>
+<span id="cb398-5"><a href="bottle-necks-in-local-big-data-analytics.html#cb398-5" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> <span class="fu">fread</span>(DATA_PATH, <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>##   OpenMP version (_OPENMP)       201511
+##   omp_get_num_procs()            12
+##   R_DATATABLE_NUM_PROCS_PERCENT  unset (default 50)
+##   R_DATATABLE_NUM_THREADS        unset
+##   R_DATATABLE_THROTTLE           unset (default 1024)
+##   omp_get_thread_limit()         2147483647
+##   omp_get_max_threads()          12
+##   OMP_THREAD_LIMIT               unset
+##   OMP_NUM_THREADS                unset
+##   RestoreAfterFork               true
+##   data.table is using 6 threads with throttle==1024. See ?setDTthreads.
+## freadR.c has been passed a filename: data/flights.csv
+## [01] Check arguments
+##   Using 6 threads (omp_get_max_threads()=12, nth=6)
+##   NAstrings = [&lt;&lt;NA&gt;&gt;]
+##   None of the NAstrings look like numbers.
+##   show progress = 0
+##   0/1 column will be read as integer
+## [02] Opening the file
+##   Opening file data/flights.csv
+##   File opened, size = 29.53MB (30960660 bytes).
+##   Memory mapped ok
+## [03] Detect and skip BOM
+## [04] Arrange mmap to be \0 terminated
+##   \n has been found in the input and different lines can end with different line endings (e.g. mixed \n and \r\n in one file). This is common and ideal.
+## [05] Skipping initial rows if needed
+##   Positioned on line 1 starting: &lt;&lt;year,month,day,dep_time,sched_&gt;&gt;
+## [06] Detect separator, quoting rule, and ncolumns
+##   Detecting sep automatically ...
+##   sep=&#39;,&#39;  with 100 lines of 19 fields using quote rule 0
+##   Detected 19 columns on line 1. This line is either column names or first data row. Line starts as: &lt;&lt;year,month,day,dep_time,sched_&gt;&gt;
+##   Quote rule picked = 0
+##   fill=false and the most number of columns found is 19
+## [07] Detect column types, good nrow estimate and whether first row is column names
+##   Number of sampling jump points = 100 because (30960659 bytes from row 1 to eof) / (2 * 8882 jump0size) == 1742
+##   Type codes (jump 000)    : 555555555C5CCC5555B  Quote rule 0
+##   Type codes (jump 100)    : 555555555C5CCC5555B  Quote rule 0
+##   &#39;header&#39; determined to be true due to column 1 containing a string on row 1 and a lower type (int32) in the rest of the 10048 sample rows
+##   =====
+##   Sampled 10048 rows (handled \n inside quoted fields) at 101 jump points
+##   Bytes from first data row on line 2 to the end of last row: 30960501
+##   Line length: mean=92.03 sd=3.56 min=68 max=98
+##   Estimated number of rows: 30960501 / 92.03 = 336403
+##   Initial alloc = 370043 rows (336403 + 9%) using bytes/max(mean-2*sd,min) clamped between [1.1*estn, 2.0*estn]
+##   =====
+## [08] Assign column names
+## [09] Apply user overrides on column types
+##   After 0 type and 0 drop user overrides : 555555555C5CCC5555B
+## [10] Allocate memory for the datatable
+##   Allocating 19 column slots (19 - 0 dropped) with 370043 rows
+## [11] Read the data
+##   jumps=[0..30), chunk_size=1032016, total_size=30960501
+## Read 336776 rows x 19 columns from 29.53MB (30960660 bytes) file in 00:00.064 wall clock time
+## [12] Finalizing the datatable
+##   Type counts:
+##         14 : int32     &#39;5&#39;
+##          1 : float64   &#39;B&#39;
+##          4 : string    &#39;C&#39;
+## =============================
+##    0.000s (  0%) Memory map 0.029GB file
+##    0.003s (  4%) sep=&#39;,&#39; ncol=19 and header detection
+##    0.000s (  0%) Column type detection using 10048 sample rows
+##    0.001s (  1%) Allocation of 370043 rows x 19 cols (0.033GB) of which 336776 ( 91%) rows used
+##    0.060s ( 94%) Reading 30 chunks (0 swept) of 0.984MB (each chunk 11225 rows) using 6 threads
+##    +    0.013s ( 21%) Parse to row-major thread buffers (grown 0 times)
+##    +    0.028s ( 44%) Transpose
+##    +    0.019s ( 30%) Waiting
+##    0.000s (  0%) Rereading 0 columns due to out-of-sample type exceptions
+##    0.064s        Total</code></pre>
+<p>Let’s put it all together and look at the memory changes and usage. For a fair comparison, we first have to delete <code>flights</code> and collect the garbage with <code>gc()</code>.</p>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb400-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP -----------------</span></span>
+<span id="cb400-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb400-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb400-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb400-3" aria-hidden="true" tabindex="-1"></a><span class="co"># fix variables</span></span>
+<span id="cb400-4"><a href="bottle-necks-in-local-big-data-analytics.html#cb400-4" aria-hidden="true" tabindex="-1"></a>DATA_PATH <span class="ot">&lt;-</span> <span class="st">&quot;data/flights.csv&quot;</span></span>
+<span id="cb400-5"><a href="bottle-necks-in-local-big-data-analytics.html#cb400-5" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb400-6"><a href="bottle-necks-in-local-big-data-analytics.html#cb400-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pryr) </span>
+<span id="cb400-7"><a href="bottle-necks-in-local-big-data-analytics.html#cb400-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb400-8"><a href="bottle-necks-in-local-big-data-analytics.html#cb400-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb400-9"><a href="bottle-necks-in-local-big-data-analytics.html#cb400-9" aria-hidden="true" tabindex="-1"></a><span class="co"># housekeeping</span></span>
+<span id="cb400-10"><a href="bottle-necks-in-local-big-data-analytics.html#cb400-10" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb400-11"><a href="bottle-necks-in-local-big-data-analytics.html#cb400-11" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span></code></pre></div>
+<pre><code>##             used   (Mb) gc trigger   (Mb)  max used
+## Ncells   6761519  361.2   11728998  626.4  10367126
+## Vcells 139954606 1067.8  272329730 2077.8 272329730
+##          (Mb)
+## Ncells  553.7
+## Vcells 2077.8</code></pre>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb402-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check the change in memory due to each step</span></span>
+<span id="cb402-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb402-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb402-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb402-3" aria-hidden="true" tabindex="-1"></a><span class="co"># DATA IMPORT ----------------</span></span>
+<span id="cb402-4"><a href="bottle-necks-in-local-big-data-analytics.html#cb402-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_change</span>(flights <span class="ot">&lt;-</span> <span class="fu">fread</span>(DATA_PATH))</span></code></pre></div>
+<pre><code>## 35.6 MB</code></pre>
+</div>
+<div id="big-data-econometrics" class="section level2" number="10.4">
+<h2><span class="header-section-number">10.4</span> Big Data econometrics</h2>
+<!-- Finally, even if all of the techniques outlined above are taken into account in order to optimize the implementation of a statistical analysis of large data sets in R (or any other language), there might be room for improvement.  -->
+<p>When thinking about how to approach a data analytics task based on large amounts of data, it is helpful to consider two key aspects concerning the computational burden involved. <span class="math inline">\((i)\)</span> how is the statistic we have in mind computed. That is, what is the formal definition of the statistic (and how computationally demanding is it)? And <span class="math inline">\((ii)\)</span>, given a definition of the statistic, how does the program/software/language implement the computation thereof?</p>
+<p>Regarding the former, we might realize that there is an alternative statistical procedure that would provide essentially the same output but that happens to be more efficient (here: computationally efficient in contrast to statistically efficient). The latter point is a question of how to efficiently implement the given statistical procedure in your computing environment (taking into consideration the computer’s available resources: CPU, RAM, etc.).</p>
+<p>Below, we look at both of these two aspects by means of illustrative examples.</p>
+</div>
+<div id="example-fast-least-squares-regression" class="section level2" number="10.5">
+<h2><span class="header-section-number">10.5</span> Example: Fast least squares regression</h2>
+<p>As an illustration of how an alternative statistical procedure can speed up our analysis, we look at one such procedure that has recently been developed to estimate linear models when the classical OLS estimator is too computationally intense for very large samples: The <em>Uluru</em> algorithm <span class="citation">(<a href="references.html#ref-dhillon_2013" role="doc-biblioref">Dhillon et al. 2013</a>)</span>.</p>
+<div id="ols-as-a-point-of-reference" class="section level3" number="10.5.1">
+<h3><span class="header-section-number">10.5.1</span> OLS as a point of reference</h3>
+<p>Recall the OLS estimator in matrix notation, given the linear model <span class="math inline">\(\mathbf{y}=\mathbf{X}\beta + \epsilon\)</span>:</p>
+<p><span class="math inline">\(\hat{\beta}_{OLS} = (\mathbf{X}^\intercal\mathbf{X})^{-1}\mathbf{X}^{\intercal}\mathbf{y}\)</span>.</p>
+<p>In order to compute <span class="math inline">\(\hat{\beta}_{OLS}\)</span>, we have to compute <span class="math inline">\((\mathbf{X}^\intercal\mathbf{X})^{-1}\)</span>, which implies a computationally expensive matrix inversion.<a href="#fn28" class="footnote-ref" id="fnref28"><sup>28</sup></a> If our data set is large, <span class="math inline">\(\mathbf{X}\)</span> is large and the inversion can take up a lot of computation time. Moreover, the inversion and matrix multiplication to get <span class="math inline">\(\hat{\beta}_{OLS}\)</span> needs a lot of memory. In practice, it might well be that the estimation of a linear model via OLS with the standard approach in R (<code>lm()</code>) brings a computer to its knees, as there is not enough RAM available.</p>
+<p>To further illustrate the point, we implement the OLS estimator in R.</p>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb404-1" aria-hidden="true" tabindex="-1"></a>beta_ols <span class="ot">&lt;-</span> </span>
+<span id="cb404-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb404-2" aria-hidden="true" tabindex="-1"></a>     <span class="cf">function</span>(X, y) {</span>
+<span id="cb404-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb404-3" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb404-4"><a href="bottle-necks-in-local-big-data-analytics.html#cb404-4" aria-hidden="true" tabindex="-1"></a>          <span class="co"># compute cross products and inverse</span></span>
+<span id="cb404-5"><a href="bottle-necks-in-local-big-data-analytics.html#cb404-5" aria-hidden="true" tabindex="-1"></a>          XXi <span class="ot">&lt;-</span> <span class="fu">solve</span>(<span class="fu">crossprod</span>(X,X))</span>
+<span id="cb404-6"><a href="bottle-necks-in-local-big-data-analytics.html#cb404-6" aria-hidden="true" tabindex="-1"></a>          Xy <span class="ot">&lt;-</span> <span class="fu">crossprod</span>(X, y) </span>
+<span id="cb404-7"><a href="bottle-necks-in-local-big-data-analytics.html#cb404-7" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb404-8"><a href="bottle-necks-in-local-big-data-analytics.html#cb404-8" aria-hidden="true" tabindex="-1"></a>          <span class="fu">return</span>( XXi  <span class="sc">%*%</span> Xy )</span>
+<span id="cb404-9"><a href="bottle-necks-in-local-big-data-analytics.html#cb404-9" aria-hidden="true" tabindex="-1"></a>     }</span></code></pre></div>
+<p>Now, we will test our OLS estimator function with a few (pseudo) random numbers in a Monte Carlo study. First, we set the sample size parameters <code>n</code> (how many observations shall our pseudo sample have?) and <code>p</code> (how many variables shall describe these observations?) and initiate the data set <code>X</code>.</p>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb405-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set parameter values</span></span>
+<span id="cb405-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb405-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">10000000</span></span>
+<span id="cb405-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb405-3" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="dv">4</span> </span>
+<span id="cb405-4"><a href="bottle-necks-in-local-big-data-analytics.html#cb405-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb405-5"><a href="bottle-necks-in-local-big-data-analytics.html#cb405-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Generate sample based on Monte Carlo</span></span>
+<span id="cb405-6"><a href="bottle-necks-in-local-big-data-analytics.html#cb405-6" aria-hidden="true" tabindex="-1"></a><span class="co"># generate a design matrix (~ our &#39;dataset&#39;) with four variables and 10000 observations</span></span>
+<span id="cb405-7"><a href="bottle-necks-in-local-big-data-analytics.html#cb405-7" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(n<span class="sc">*</span>p, <span class="at">mean =</span> <span class="dv">10</span>), <span class="at">ncol =</span> p)</span>
+<span id="cb405-8"><a href="bottle-necks-in-local-big-data-analytics.html#cb405-8" aria-hidden="true" tabindex="-1"></a><span class="co"># add column for intercept</span></span>
+<span id="cb405-9"><a href="bottle-necks-in-local-big-data-analytics.html#cb405-9" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">cbind</span>(<span class="fu">rep</span>(<span class="dv">1</span>, n), X)</span></code></pre></div>
+<p>Now we define how the real linear model looks like that we have in mind and compute the output <code>y</code> of this model, given the input <code>X</code>.<a href="#fn29" class="footnote-ref" id="fnref29"><sup>29</sup></a></p>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb406-1" aria-hidden="true" tabindex="-1"></a><span class="co"># MC model</span></span>
+<span id="cb406-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb406-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">+</span> <span class="fl">1.5</span><span class="sc">*</span>X[,<span class="dv">2</span>] <span class="sc">+</span> <span class="dv">4</span><span class="sc">*</span>X[,<span class="dv">3</span>] <span class="sc">-</span> <span class="fl">3.5</span><span class="sc">*</span>X[,<span class="dv">4</span>] <span class="sc">+</span> <span class="fl">0.5</span><span class="sc">*</span>X[,<span class="dv">5</span>] <span class="sc">+</span> <span class="fu">rnorm</span>(n)</span></code></pre></div>
+<p>Finally, we test our <code>beta_ols</code> function.</p>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb407-1" aria-hidden="true" tabindex="-1"></a><span class="co"># apply the ols estimator</span></span>
+<span id="cb407-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb407-2" aria-hidden="true" tabindex="-1"></a><span class="fu">beta_ols</span>(X, y)</span></code></pre></div>
+<pre><code>##         [,1]
+## [1,]  2.0078
+## [2,]  1.4995
+## [3,]  3.9997
+## [4,] -3.4995
+## [5,]  0.4996</code></pre>
+</div>
+<div id="the-uluru-algorithm-as-an-alternative-to-ols" class="section level3" number="10.5.2">
+<h3><span class="header-section-number">10.5.2</span> The Uluru algorithm as an alternative to OLS</h3>
+<p>Following <span class="citation"><a href="references.html#ref-dhillon_2013" role="doc-biblioref">Dhillon et al.</a> (<a href="references.html#ref-dhillon_2013" role="doc-biblioref">2013</a>)</span>, we implement a procedure to compute <span class="math inline">\(\hat{\beta}_{Uluru}\)</span>:</p>
+<p><span class="math display">\[\hat{\beta}_{Uluru}=\hat{\beta}_{FS} + \hat{\beta}_{correct}\]</span>, where
+<span class="math display">\[\hat{\beta}_{FS} = (\mathbf{X}_{subs}^\intercal\mathbf{X}_{subs})^{-1}\mathbf{X}_{subs}^{\intercal}\mathbf{y}_{subs}\]</span>, and
+<span class="math display">\[\hat{\beta}_{correct}= \frac{n_{subs}}{n_{rem}} \cdot (\mathbf{X}_{subs}^\intercal\mathbf{X}_{subs})^{-1} \mathbf{X}_{rem}^{\intercal}\mathbf{R}_{rem}\]</span>, and
+<span class="math display">\[\mathbf{R}_{rem} = \mathbf{Y}_{rem} - \mathbf{X}_{rem}  \cdot \hat{\beta}_{FS}\]</span>.</p>
+<p>The key idea behind this is that the computational bottleneck of the OLS estimator, the cross product and matrix inversion,<span class="math inline">\((\mathbf{X}^\intercal\mathbf{X})^{-1}\)</span>, is only computed on a sub-sample (<span class="math inline">\(X_{subs}\)</span>, etc.), not the entire data set. However, the remainder of the data set is also taken into consideration (in order to correct a bias arising from the sub-sampling). Again, we implement the estimator in R to further illustrate this point.</p>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb409-1" aria-hidden="true" tabindex="-1"></a>beta_uluru <span class="ot">&lt;-</span></span>
+<span id="cb409-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb409-2" aria-hidden="true" tabindex="-1"></a>     <span class="cf">function</span>(X_subs, y_subs, X_rem, y_rem) {</span>
+<span id="cb409-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb409-3" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb409-4"><a href="bottle-necks-in-local-big-data-analytics.html#cb409-4" aria-hidden="true" tabindex="-1"></a>          <span class="co"># compute beta_fs (this is simply OLS applied to the subsample)</span></span>
+<span id="cb409-5"><a href="bottle-necks-in-local-big-data-analytics.html#cb409-5" aria-hidden="true" tabindex="-1"></a>          XXi_subs <span class="ot">&lt;-</span> <span class="fu">solve</span>(<span class="fu">crossprod</span>(X_subs, X_subs))</span>
+<span id="cb409-6"><a href="bottle-necks-in-local-big-data-analytics.html#cb409-6" aria-hidden="true" tabindex="-1"></a>          Xy_subs <span class="ot">&lt;-</span> <span class="fu">crossprod</span>(X_subs, y_subs)</span>
+<span id="cb409-7"><a href="bottle-necks-in-local-big-data-analytics.html#cb409-7" aria-hidden="true" tabindex="-1"></a>          b_fs <span class="ot">&lt;-</span> XXi_subs  <span class="sc">%*%</span> Xy_subs</span>
+<span id="cb409-8"><a href="bottle-necks-in-local-big-data-analytics.html#cb409-8" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb409-9"><a href="bottle-necks-in-local-big-data-analytics.html#cb409-9" aria-hidden="true" tabindex="-1"></a>          <span class="co"># compute \mathbf{R}_{rem}</span></span>
+<span id="cb409-10"><a href="bottle-necks-in-local-big-data-analytics.html#cb409-10" aria-hidden="true" tabindex="-1"></a>          R_rem <span class="ot">&lt;-</span> y_rem <span class="sc">-</span> X_rem <span class="sc">%*%</span> b_fs</span>
+<span id="cb409-11"><a href="bottle-necks-in-local-big-data-analytics.html#cb409-11" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb409-12"><a href="bottle-necks-in-local-big-data-analytics.html#cb409-12" aria-hidden="true" tabindex="-1"></a>          <span class="co"># compute \hat{\beta}_{correct}</span></span>
+<span id="cb409-13"><a href="bottle-necks-in-local-big-data-analytics.html#cb409-13" aria-hidden="true" tabindex="-1"></a>          b_correct <span class="ot">&lt;-</span> (<span class="fu">nrow</span>(X_subs)<span class="sc">/</span>(<span class="fu">nrow</span>(X_rem))) <span class="sc">*</span> XXi_subs <span class="sc">%*%</span> <span class="fu">crossprod</span>(X_rem, R_rem)</span>
+<span id="cb409-14"><a href="bottle-necks-in-local-big-data-analytics.html#cb409-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb409-15"><a href="bottle-necks-in-local-big-data-analytics.html#cb409-15" aria-hidden="true" tabindex="-1"></a>          <span class="co"># beta uluru       </span></span>
+<span id="cb409-16"><a href="bottle-necks-in-local-big-data-analytics.html#cb409-16" aria-hidden="true" tabindex="-1"></a>          <span class="fu">return</span>(b_fs <span class="sc">+</span> b_correct)</span>
+<span id="cb409-17"><a href="bottle-necks-in-local-big-data-analytics.html#cb409-17" aria-hidden="true" tabindex="-1"></a>     }</span></code></pre></div>
+<p>Test it with the same input as above:</p>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb410-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set size of subsample</span></span>
+<span id="cb410-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb410-2" aria-hidden="true" tabindex="-1"></a>n_subs <span class="ot">&lt;-</span> <span class="dv">1000</span></span>
+<span id="cb410-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb410-3" aria-hidden="true" tabindex="-1"></a><span class="co"># select subsample and remainder</span></span>
+<span id="cb410-4"><a href="bottle-necks-in-local-big-data-analytics.html#cb410-4" aria-hidden="true" tabindex="-1"></a>n_obs <span class="ot">&lt;-</span> <span class="fu">nrow</span>(X)</span>
+<span id="cb410-5"><a href="bottle-necks-in-local-big-data-analytics.html#cb410-5" aria-hidden="true" tabindex="-1"></a>X_subs <span class="ot">&lt;-</span> X[1L<span class="sc">:</span>n_subs,]</span>
+<span id="cb410-6"><a href="bottle-necks-in-local-big-data-analytics.html#cb410-6" aria-hidden="true" tabindex="-1"></a>y_subs <span class="ot">&lt;-</span> y[1L<span class="sc">:</span>n_subs]</span>
+<span id="cb410-7"><a href="bottle-necks-in-local-big-data-analytics.html#cb410-7" aria-hidden="true" tabindex="-1"></a>X_rem <span class="ot">&lt;-</span> X[(n_subs<span class="sc">+</span>1L)<span class="sc">:</span>n_obs,]</span>
+<span id="cb410-8"><a href="bottle-necks-in-local-big-data-analytics.html#cb410-8" aria-hidden="true" tabindex="-1"></a>y_rem <span class="ot">&lt;-</span> y[(n_subs<span class="sc">+</span>1L)<span class="sc">:</span>n_obs]</span>
+<span id="cb410-9"><a href="bottle-necks-in-local-big-data-analytics.html#cb410-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb410-10"><a href="bottle-necks-in-local-big-data-analytics.html#cb410-10" aria-hidden="true" tabindex="-1"></a><span class="co"># apply the uluru estimator</span></span>
+<span id="cb410-11"><a href="bottle-necks-in-local-big-data-analytics.html#cb410-11" aria-hidden="true" tabindex="-1"></a><span class="fu">beta_uluru</span>(X_subs, y_subs, X_rem, y_rem)</span></code></pre></div>
+<pre><code>##         [,1]
+## [1,]  2.0570
+## [2,]  1.4998
+## [3,]  3.9977
+## [4,] -3.5032
+## [5,]  0.4999</code></pre>
+<p>This looks quite good already. Let’s have a closer look with a little Monte Carlo study. The aim of the simulation study is to visualize the difference between the classical OLS approach and the <em>Uluru</em> algorithm with regard to bias and time complexity if we increase the sub-sample size in <em>Uluru</em>. For simplicity, we only look at the first estimated coefficient <span class="math inline">\(\beta_{1}\)</span>.</p>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb412-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define subsamples</span></span>
+<span id="cb412-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb412-2" aria-hidden="true" tabindex="-1"></a>n_subs_sizes <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1000</span>, <span class="at">to =</span> <span class="dv">500000</span>, <span class="at">by=</span><span class="dv">10000</span>)</span>
+<span id="cb412-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb412-3" aria-hidden="true" tabindex="-1"></a>n_runs <span class="ot">&lt;-</span> <span class="fu">length</span>(n_subs_sizes)</span>
+<span id="cb412-4"><a href="bottle-necks-in-local-big-data-analytics.html#cb412-4" aria-hidden="true" tabindex="-1"></a><span class="co"># compute uluru result, stop time</span></span>
+<span id="cb412-5"><a href="bottle-necks-in-local-big-data-analytics.html#cb412-5" aria-hidden="true" tabindex="-1"></a>mc_results <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, n_runs)</span>
+<span id="cb412-6"><a href="bottle-necks-in-local-big-data-analytics.html#cb412-6" aria-hidden="true" tabindex="-1"></a>mc_times <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, n_runs)</span>
+<span id="cb412-7"><a href="bottle-necks-in-local-big-data-analytics.html#cb412-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_runs) {</span>
+<span id="cb412-8"><a href="bottle-necks-in-local-big-data-analytics.html#cb412-8" aria-hidden="true" tabindex="-1"></a>     <span class="co"># set size of subsample</span></span>
+<span id="cb412-9"><a href="bottle-necks-in-local-big-data-analytics.html#cb412-9" aria-hidden="true" tabindex="-1"></a>     n_subs <span class="ot">&lt;-</span> n_subs_sizes[i]</span>
+<span id="cb412-10"><a href="bottle-necks-in-local-big-data-analytics.html#cb412-10" aria-hidden="true" tabindex="-1"></a>     <span class="co"># select subsample and remainder</span></span>
+<span id="cb412-11"><a href="bottle-necks-in-local-big-data-analytics.html#cb412-11" aria-hidden="true" tabindex="-1"></a>     n_obs <span class="ot">&lt;-</span> <span class="fu">nrow</span>(X)</span>
+<span id="cb412-12"><a href="bottle-necks-in-local-big-data-analytics.html#cb412-12" aria-hidden="true" tabindex="-1"></a>     X_subs <span class="ot">&lt;-</span> X[1L<span class="sc">:</span>n_subs,]</span>
+<span id="cb412-13"><a href="bottle-necks-in-local-big-data-analytics.html#cb412-13" aria-hidden="true" tabindex="-1"></a>     y_subs <span class="ot">&lt;-</span> y[1L<span class="sc">:</span>n_subs]</span>
+<span id="cb412-14"><a href="bottle-necks-in-local-big-data-analytics.html#cb412-14" aria-hidden="true" tabindex="-1"></a>     X_rem <span class="ot">&lt;-</span> X[(n_subs<span class="sc">+</span>1L)<span class="sc">:</span>n_obs,]</span>
+<span id="cb412-15"><a href="bottle-necks-in-local-big-data-analytics.html#cb412-15" aria-hidden="true" tabindex="-1"></a>     y_rem <span class="ot">&lt;-</span> y[(n_subs<span class="sc">+</span>1L)<span class="sc">:</span>n_obs]</span>
+<span id="cb412-16"><a href="bottle-necks-in-local-big-data-analytics.html#cb412-16" aria-hidden="true" tabindex="-1"></a>     </span>
+<span id="cb412-17"><a href="bottle-necks-in-local-big-data-analytics.html#cb412-17" aria-hidden="true" tabindex="-1"></a>     mc_results[i] <span class="ot">&lt;-</span> <span class="fu">beta_uluru</span>(X_subs, y_subs, X_rem, y_rem)[<span class="dv">2</span>] <span class="co"># the first element is the intercept</span></span>
+<span id="cb412-18"><a href="bottle-necks-in-local-big-data-analytics.html#cb412-18" aria-hidden="true" tabindex="-1"></a>     mc_times[i] <span class="ot">&lt;-</span> <span class="fu">system.time</span>(<span class="fu">beta_uluru</span>(X_subs, y_subs, X_rem, y_rem))[<span class="dv">3</span>]</span>
+<span id="cb412-19"><a href="bottle-necks-in-local-big-data-analytics.html#cb412-19" aria-hidden="true" tabindex="-1"></a>     </span>
+<span id="cb412-20"><a href="bottle-necks-in-local-big-data-analytics.html#cb412-20" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb412-21"><a href="bottle-necks-in-local-big-data-analytics.html#cb412-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb412-22"><a href="bottle-necks-in-local-big-data-analytics.html#cb412-22" aria-hidden="true" tabindex="-1"></a><span class="co"># compute ols results and ols time</span></span>
+<span id="cb412-23"><a href="bottle-necks-in-local-big-data-analytics.html#cb412-23" aria-hidden="true" tabindex="-1"></a>ols_time <span class="ot">&lt;-</span> <span class="fu">system.time</span>(<span class="fu">beta_ols</span>(X, y))</span>
+<span id="cb412-24"><a href="bottle-necks-in-local-big-data-analytics.html#cb412-24" aria-hidden="true" tabindex="-1"></a>ols_res <span class="ot">&lt;-</span> <span class="fu">beta_ols</span>(X, y)[<span class="dv">2</span>]</span></code></pre></div>
+<p>Let’s visualize the comparison with OLS.</p>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb413-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb413-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb413-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb413-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb413-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb413-4"><a href="bottle-necks-in-local-big-data-analytics.html#cb413-4" aria-hidden="true" tabindex="-1"></a><span class="co"># prepare data to plot</span></span>
+<span id="cb413-5"><a href="bottle-necks-in-local-big-data-analytics.html#cb413-5" aria-hidden="true" tabindex="-1"></a>plotdata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">beta1 =</span> mc_results,</span>
+<span id="cb413-6"><a href="bottle-necks-in-local-big-data-analytics.html#cb413-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">time_elapsed =</span> mc_times,</span>
+<span id="cb413-7"><a href="bottle-necks-in-local-big-data-analytics.html#cb413-7" aria-hidden="true" tabindex="-1"></a>                       <span class="at">subs_size =</span> n_subs_sizes)</span></code></pre></div>
+<p>First, let’s look at the time used estimate the linear model.</p>
+<div class="sourceCode" id="cb414"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb414-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb414-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plotdata, <span class="fu">aes</span>(<span class="at">x =</span> subs_size, <span class="at">y =</span> time_elapsed)) <span class="sc">+</span></span>
+<span id="cb414-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb414-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="at">color=</span><span class="st">&quot;darkgreen&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb414-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb414-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> ols_time[<span class="dv">3</span>],</span>
+<span id="cb414-4"><a href="bottle-necks-in-local-big-data-analytics.html#cb414-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, </span>
+<span id="cb414-5"><a href="bottle-necks-in-local-big-data-analytics.html#cb414-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb414-6"><a href="bottle-necks-in-local-big-data-analytics.html#cb414-6" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb414-7"><a href="bottle-necks-in-local-big-data-analytics.html#cb414-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">ylab</span>(<span class="st">&quot;Time elapsed&quot;</span>) <span class="sc">+</span></span>
+<span id="cb414-8"><a href="bottle-necks-in-local-big-data-analytics.html#cb414-8" aria-hidden="true" tabindex="-1"></a>     <span class="fu">xlab</span>(<span class="st">&quot;Subsample size&quot;</span>)</span></code></pre></div>
+<p><img src="bigdata_files/figure-html/unnamed-chunk-205-1.png" width="672" /></p>
+<p>The horizontal red line indicates the computation time for estimation via OLS, the green points indicate the computation time for the estimation via the Ulruru algorithm. Note that even for large sub-samples, the computation time is substantially lower than for OLS.</p>
+<p>Finally, let’s have a look at how close the results are to OLS.</p>
+<div class="sourceCode" id="cb415"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb415-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb415-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plotdata, <span class="fu">aes</span>(<span class="at">x =</span> subs_size, <span class="at">y =</span> beta1)) <span class="sc">+</span></span>
+<span id="cb415-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb415-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> ols_res,</span>
+<span id="cb415-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb415-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, </span>
+<span id="cb415-4"><a href="bottle-necks-in-local-big-data-analytics.html#cb415-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb415-5"><a href="bottle-necks-in-local-big-data-analytics.html#cb415-5" aria-hidden="true" tabindex="-1"></a>       <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="fl">1.5</span>,</span>
+<span id="cb415-6"><a href="bottle-necks-in-local-big-data-analytics.html#cb415-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">color =</span> <span class="st">&quot;green&quot;</span>,</span>
+<span id="cb415-7"><a href="bottle-necks-in-local-big-data-analytics.html#cb415-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">size =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb415-8"><a href="bottle-necks-in-local-big-data-analytics.html#cb415-8" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="at">color=</span><span class="st">&quot;darkgreen&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb415-9"><a href="bottle-necks-in-local-big-data-analytics.html#cb415-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb415-10"><a href="bottle-necks-in-local-big-data-analytics.html#cb415-10" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb415-11"><a href="bottle-necks-in-local-big-data-analytics.html#cb415-11" aria-hidden="true" tabindex="-1"></a>     <span class="fu">ylab</span>(<span class="st">&quot;Estimated coefficient&quot;</span>) <span class="sc">+</span></span>
+<span id="cb415-12"><a href="bottle-necks-in-local-big-data-analytics.html#cb415-12" aria-hidden="true" tabindex="-1"></a>     <span class="fu">xlab</span>(<span class="st">&quot;Subsample size&quot;</span>)</span></code></pre></div>
+<p><img src="bigdata_files/figure-html/unnamed-chunk-206-1.png" width="672" /></p>
+<p>The horizontal red line indicates the size of the estimated coefficient, when using OLS. The horizontal green line indicates the size of the actual coefficient. The green points indicate the size of the same coefficient estimated by the Uluru algorithm for different sub-sample sizes. Note that even relatively small sub-samples already deliver estimates very close to the OLS estimates.</p>
+
+<!-- ## Example II: Basic statistics (`Rth`) -->
+<!-- Install package  -->
+<!-- - needs cuda and thrust (in latest cuda versions included). -->
+<!-- - gcc version 8 or younger (use ` sudo update-alternatives --config gcc` to switch to version 8 if necessary). -->
+<!-- - point directly to thrust when installing -->
+<!--  STILL DOES NOT WORK -->
+<!-- ```{r} -->
+<!-- devtools::install_github("matloff/Rth", configure.args = "--with-thrust-home=/usr/lib/cuda-10.2/targets/x86_64-linux/include/thrust/ --with-backend=CUDA") -->
+<!-- ``` -->
+<!-- Load package -->
+<!-- ```{r} -->
+<!-- # load packages -->
+<!-- library(Rth) -->
+<!-- ``` -->
+<!-- Compute histogram and correlation of a 100 million row dataset. -->
+<!-- Create the dataset (based on pseudo random numbers) -->
+<!-- ```{r} -->
+<!-- # set fix vars -->
+<!-- N <- 100000000 # number of observations -->
+<!-- P <- 2 # number of variables -->
+<!-- # draw random dataset -->
+<!-- randat <- matrix(runif(N*P), ncol = P) -->
+<!-- ``` -->
+<!-- Compute histogram of first var -->
+<!-- ```{r} -->
+<!-- var1 <- randat[,1] -->
+<!-- rthhist("var1") -->
+<!-- Rth::rthhist("var1") -->
+<!-- ``` -->
+<!-- Micro benchmarking of correlation computation -->
+<!-- # Extended Example: OLS -->
+<!-- Here, the CPU is faster! -->
+<!-- ```{r} -->
+<!-- # Example taken from https://www.arc.vt.edu/wp-content/uploads/2017/04/GPU_R_Workshop_2017_slidy.html#13 -->
+<!-- set.seed(123456) -->
+<!-- np <- 40  #number of predictors -->
+<!-- nr <- 1e+05  #number of observations -->
+<!-- X <- cbind(5, 1:nr, matrix(rnorm((np - 1) * nr, 0, 0.01), nrow = nr, ncol = (np - -->
+<!--     1))) -->
+<!-- beta <- matrix(c(1, 3, runif(np - 1, 0, 0.2)), ncol = 1) -->
+<!-- y <- X %*% beta + matrix(rnorm(nr, 0, 1), nrow = nr, ncol = 1) -->
+<!-- # CPU bound version, slight optimize via crossprod but otherwise vanilla -->
+<!-- time2 <- system.time({ -->
+<!--     ms2 <- solve(crossprod(X), crossprod(X, y)) -->
+<!-- }) -->
+<!-- # GPU version, GPU pointer to CPU memory!! (gpuMatrix is simply a pointer) -->
+<!-- gpuX = gpuMatrix(X, type = "float")  #point GPU to matrix -->
+<!-- gpuy = gpuMatrix(y, type = "float") -->
+<!-- time4 <- system.time({ -->
+<!--     ms4 <- gpuR::solve(gpuR::crossprod(gpuX), gpuR::crossprod(gpuX, gpuy)) -->
+<!-- }) -->
+<!-- # GPU version, in GPU memory!! (vclMatrix formation is a memory transfer) -->
+<!-- vclX = vclMatrix(X, type = "float")  #push matrix to GPU -->
+<!-- vcly = vclMatrix(y, type = "float") -->
+<!-- time5 <- system.time({ -->
+<!--     ms5 <- gpuR::solve(gpuR::crossprod(vclX), gpuR::crossprod(vclX, vcly)) -->
+<!-- }) -->
+<!-- data.frame(CPU=time3[3], -->
+<!--            GPU_CPUmem=time4[3], -->
+<!--            GPU_GPUmem=time5[3]) -->
+<!-- ``` -->
+</div>
+</div>
+<div id="gpus-and-machine-learning" class="section level2" number="10.6">
+<h2><span class="header-section-number">10.6</span> GPUs and Machine Learning</h2>
+<p>A most common application of GPUs for scientific computing is machine learning, in particular deep learning (machine learning based on artificial neural networks). Training deep learning models can be very computationally intense and to an important part depends on tensor (matrix) multiplications. This is also an area where you might come across highly parallelized computing based on GPUs without even noticing it, as the now commonly used software to build and train deep neural nets (<a href="https://www.tensorflow.org/">tensorflow</a>, and the high-level <a href="https://keras.io/">Keras</a> API) can easily be run on a CPU or GPU without any further configuration/preparation (apart from the initial installation of these programs). The example below is a simple illustration of how such techniques can be used in an econometrics context.</p>
+<!-- ```{r warning=FALSE, message=FALSE} -->
+<!-- library(keras) -->
+<!-- mnist <- dataset_mnist() -->
+<!-- x_train <- mnist$train$x -->
+<!-- y_train <- mnist$train$y -->
+<!-- x_test <- mnist$test$x -->
+<!-- y_test <- mnist$test$y -->
+<!-- # reshape -->
+<!-- x_train <- array_reshape(x_train, c(nrow(x_train), 784)) -->
+<!-- x_test <- array_reshape(x_test, c(nrow(x_test), 784)) -->
+<!-- # rescale -->
+<!-- x_train <- x_train / 255 -->
+<!-- x_test <- x_test / 255 -->
+<!-- y_train <- to_categorical(y_train, 10) -->
+<!-- y_test <- to_categorical(y_test, 10) -->
+<!-- model <- keras_model_sequential() -->
+<!-- model %>% -->
+<!--   layer_dense(units = 256, activation = 'relu', input_shape = c(784)) %>% -->
+<!--   layer_dropout(rate = 0.4) %>% -->
+<!--   layer_dense(units = 128, activation = 'relu') %>% -->
+<!--   layer_dropout(rate = 0.3) %>% -->
+<!--   layer_dense(units = 10, activation = 'softmax') -->
+<!-- summary(model) -->
+<!-- model %>% compile( -->
+<!--   loss = 'categorical_crossentropy', -->
+<!--   optimizer = optimizer_rmsprop(), -->
+<!--   metrics = c('accuracy') -->
+<!-- ) -->
+<!-- history <- model %>% fit( -->
+<!--   x_train, y_train, -->
+<!--   epochs = 30, batch_size = 128, -->
+<!--   validation_split = 0.2 -->
+<!-- ) -->
+<!-- plot(history) -->
+<!-- ``` -->
+<div id="tensorflowkeras-example-predict-housing-prices" class="section level3" number="10.6.1">
+<h3><span class="header-section-number">10.6.1</span> Tensorflow/Keras example: predict housing prices</h3>
+<p>In this example we train a simple sequential model with two hidden layers in order to predict the median value of owner-occupied homes (in USD 1,000) in the Boston area (data are from the 1970s). The original data and a detailed description can be found <a href="https://www.cs.toronto.edu/~delve/data/boston/bostonDetail.html">here</a>. The example follows closely <a href="https://keras.rstudio.com/articles/tutorial_basic_regression.html#the-boston-housing-prices-dataset">this keras tutorial</a> published by RStudio. See <a href="https://keras.rstudio.com/index.html">RStudio’s keras installation guide</a> for how to install keras (and tensorflow) and the corresponding R package <code>keras</code>.<a href="#fn30" class="footnote-ref" id="fnref30"><sup>30</sup></a> While the purpose of the example here is to demonstrate a typical (but very simple!) usage case of GPUs in machine learning, the same code should also run on a normal machine (without using GPUs) with a default installation of keras.</p>
+<p>Apart from <code>keras</code>, we load packages to prepare the data and visualize the output. Via <code>dataset_boston_housing()</code>, we load the dataset (shipped with the keras installation) in the format preferred by the <code>keras</code> library.</p>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb416-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb416-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb416-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(keras)</span>
+<span id="cb416-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb416-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb416-4"><a href="bottle-necks-in-local-big-data-analytics.html#cb416-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb416-5"><a href="bottle-necks-in-local-big-data-analytics.html#cb416-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tfdatasets)</span>
+<span id="cb416-6"><a href="bottle-necks-in-local-big-data-analytics.html#cb416-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb416-7"><a href="bottle-necks-in-local-big-data-analytics.html#cb416-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb416-8"><a href="bottle-necks-in-local-big-data-analytics.html#cb416-8" aria-hidden="true" tabindex="-1"></a><span class="co"># load data</span></span>
+<span id="cb416-9"><a href="bottle-necks-in-local-big-data-analytics.html#cb416-9" aria-hidden="true" tabindex="-1"></a>boston_housing <span class="ot">&lt;-</span> <span class="fu">dataset_boston_housing</span>()</span>
+<span id="cb416-10"><a href="bottle-necks-in-local-big-data-analytics.html#cb416-10" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(boston_housing)</span></code></pre></div>
+<pre><code>## List of 2
+##  $ train:List of 2
+##   ..$ x: num [1:404, 1:13] 1.2325 0.0218 4.8982 0.0396 3.6931 ...
+##   ..$ y: num [1:404(1d)] 15.2 42.3 50 21.1 17.7 18.5 11.3 15.6 15.6 14.4 ...
+##  $ test :List of 2
+##   ..$ x: num [1:102, 1:13] 18.0846 0.1233 0.055 1.2735 0.0715 ...
+##   ..$ y: num [1:102(1d)] 7.2 18.8 19 27 22.2 24.5 31.2 22.9 20.5 23.2 ...</code></pre>
+<p>In a first step, we split the data into a training set and a test set. The latter is used to monitor the out-of-sample performance of the model fit. Testing the validity of an estimated model by looking at how it performs out-of-sample is of particular relevance when working with (deep) neural networks, as they can easily lead to over-fitting. Validity checks based on the test sample are, therefore, often an integral part of modelling with tensorflow/keras.</p>
+<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb418-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assign training and test data/labels</span></span>
+<span id="cb418-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb418-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(train_data, train_labels) <span class="sc">%&lt;-%</span> boston_housing<span class="sc">$</span>train</span>
+<span id="cb418-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb418-3" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(test_data, test_labels) <span class="sc">%&lt;-%</span> boston_housing<span class="sc">$</span>test</span></code></pre></div>
+<p>In order to better understand and interpret the dataset we add the original variable names, and convert it to a <code>tibble</code>.</p>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb419-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb419-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb419-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb419-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb419-3" aria-hidden="true" tabindex="-1"></a>column_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;CRIM&#39;</span>, <span class="st">&#39;ZN&#39;</span>, <span class="st">&#39;INDUS&#39;</span>, <span class="st">&#39;CHAS&#39;</span>, <span class="st">&#39;NOX&#39;</span>, <span class="st">&#39;RM&#39;</span>, <span class="st">&#39;AGE&#39;</span>, </span>
+<span id="cb419-4"><a href="bottle-necks-in-local-big-data-analytics.html#cb419-4" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&#39;DIS&#39;</span>, <span class="st">&#39;RAD&#39;</span>, <span class="st">&#39;TAX&#39;</span>, <span class="st">&#39;PTRATIO&#39;</span>, <span class="st">&#39;B&#39;</span>, <span class="st">&#39;LSTAT&#39;</span>)</span>
+<span id="cb419-5"><a href="bottle-necks-in-local-big-data-analytics.html#cb419-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb419-6"><a href="bottle-necks-in-local-big-data-analytics.html#cb419-6" aria-hidden="true" tabindex="-1"></a>train_df <span class="ot">&lt;-</span> train_data <span class="sc">%&gt;%</span> </span>
+<span id="cb419-7"><a href="bottle-necks-in-local-big-data-analytics.html#cb419-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>(<span class="at">.name_repair =</span> <span class="st">&quot;minimal&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb419-8"><a href="bottle-necks-in-local-big-data-analytics.html#cb419-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(column_names) <span class="sc">%&gt;%</span> </span>
+<span id="cb419-9"><a href="bottle-necks-in-local-big-data-analytics.html#cb419-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">label =</span> train_labels)</span>
+<span id="cb419-10"><a href="bottle-necks-in-local-big-data-analytics.html#cb419-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb419-11"><a href="bottle-necks-in-local-big-data-analytics.html#cb419-11" aria-hidden="true" tabindex="-1"></a>test_df <span class="ot">&lt;-</span> test_data <span class="sc">%&gt;%</span> </span>
+<span id="cb419-12"><a href="bottle-necks-in-local-big-data-analytics.html#cb419-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>(<span class="at">.name_repair =</span> <span class="st">&quot;minimal&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb419-13"><a href="bottle-necks-in-local-big-data-analytics.html#cb419-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(column_names) <span class="sc">%&gt;%</span> </span>
+<span id="cb419-14"><a href="bottle-necks-in-local-big-data-analytics.html#cb419-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">label =</span> test_labels)</span></code></pre></div>
+<p>Next, we have a close look at the data. Note the usage of the term ‘label’ for what is usually called the ‘dependent variable’ in econometrics.<a href="#fn31" class="footnote-ref" id="fnref31"><sup>31</sup></a> As the aim of the exercise is to predict median prices of homes, the output of the model will be a continuous value (‘labels’).</p>
+<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb420-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb420-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check example data dimensions and content</span></span>
+<span id="cb420-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb420-2" aria-hidden="true" tabindex="-1"></a><span class="fu">paste0</span>(<span class="st">&quot;Training entries: &quot;</span>, <span class="fu">length</span>(train_data), <span class="st">&quot;, labels: &quot;</span>, <span class="fu">length</span>(train_labels))</span></code></pre></div>
+<pre><code>## [1] &quot;Training entries: 5252, labels: 404&quot;</code></pre>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb422-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(train_data)</span></code></pre></div>
+<pre><code>##        V1              V2              V3       
+##  Min.   : 0.01   Min.   :  0.0   Min.   : 0.46  
+##  1st Qu.: 0.08   1st Qu.:  0.0   1st Qu.: 5.13  
+##  Median : 0.27   Median :  0.0   Median : 9.69  
+##  Mean   : 3.75   Mean   : 11.5   Mean   :11.10  
+##  3rd Qu.: 3.67   3rd Qu.: 12.5   3rd Qu.:18.10  
+##  Max.   :88.98   Max.   :100.0   Max.   :27.74  
+##        V4               V5              V6      
+##  Min.   :0.0000   Min.   :0.385   Min.   :3.56  
+##  1st Qu.:0.0000   1st Qu.:0.453   1st Qu.:5.88  
+##  Median :0.0000   Median :0.538   Median :6.20  
+##  Mean   :0.0619   Mean   :0.557   Mean   :6.27  
+##  3rd Qu.:0.0000   3rd Qu.:0.631   3rd Qu.:6.61  
+##  Max.   :1.0000   Max.   :0.871   Max.   :8.72  
+##        V7              V8              V9       
+##  Min.   :  2.9   Min.   : 1.13   Min.   : 1.00  
+##  1st Qu.: 45.5   1st Qu.: 2.08   1st Qu.: 4.00  
+##  Median : 78.5   Median : 3.14   Median : 5.00  
+##  Mean   : 69.0   Mean   : 3.74   Mean   : 9.44  
+##  3rd Qu.: 94.1   3rd Qu.: 5.12   3rd Qu.:24.00  
+##  Max.   :100.0   Max.   :10.71   Max.   :24.00  
+##       V10           V11            V12       
+##  Min.   :188   Min.   :12.6   Min.   :  0.3  
+##  1st Qu.:279   1st Qu.:17.2   1st Qu.:374.7  
+##  Median :330   Median :19.1   Median :391.2  
+##  Mean   :406   Mean   :18.5   Mean   :354.8  
+##  3rd Qu.:666   3rd Qu.:20.2   3rd Qu.:396.2  
+##  Max.   :711   Max.   :22.0   Max.   :396.9  
+##       V13       
+##  Min.   : 1.73  
+##  1st Qu.: 6.89  
+##  Median :11.39  
+##  Mean   :12.74  
+##  3rd Qu.:17.09  
+##  Max.   :37.97</code></pre>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb424-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(train_labels) <span class="co"># Display first 10 entries</span></span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##     5.0    16.7    20.8    22.4    24.8    50.0</code></pre>
+<p>As the dataset contains variables ranging from per capita crime rate to indicators for highway access, the variables are obviously measured in different units and hence displayed on different scales. This is not per se a problem for the fitting procedure. However, fitting is more efficient when all features (variables) are normalized.</p>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb426-1" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">feature_spec</span>(train_df, label <span class="sc">~</span> . ) <span class="sc">%&gt;%</span> </span>
+<span id="cb426-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb426-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_numeric_column</span>(<span class="fu">all_numeric</span>(), <span class="at">normalizer_fn =</span> <span class="fu">scaler_standard</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb426-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb426-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>()</span>
+<span id="cb426-4"><a href="bottle-necks-in-local-big-data-analytics.html#cb426-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb426-5"><a href="bottle-necks-in-local-big-data-analytics.html#cb426-5" aria-hidden="true" tabindex="-1"></a>layer <span class="ot">&lt;-</span> <span class="fu">layer_dense_features</span>(</span>
+<span id="cb426-6"><a href="bottle-necks-in-local-big-data-analytics.html#cb426-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">feature_columns =</span> <span class="fu">dense_features</span>(spec), </span>
+<span id="cb426-7"><a href="bottle-necks-in-local-big-data-analytics.html#cb426-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">dtype =</span> tf<span class="sc">$</span>float32</span>
+<span id="cb426-8"><a href="bottle-necks-in-local-big-data-analytics.html#cb426-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb426-9"><a href="bottle-necks-in-local-big-data-analytics.html#cb426-9" aria-hidden="true" tabindex="-1"></a><span class="fu">layer</span>(train_df)</span></code></pre></div>
+<pre><code>## tf.Tensor(
+## [[ 0.81205493  0.44752213 -0.2565147  ... -0.1762239  -0.59443307
+##   -0.48301655]
+##  [-1.9079947   0.43137115 -0.2565147  ...  1.8920003  -0.34800112
+##    2.9880793 ]
+##  [ 1.1091131   0.2203439  -0.2565147  ... -1.8274226   1.563349
+##   -0.48301655]
+##  ...
+##  [-1.6359899   0.07934052 -0.2565147  ... -0.3326088  -0.61246467
+##    0.9895695 ]
+##  [ 1.0554279  -0.98642045 -0.2565147  ... -0.7862657  -0.01742171
+##   -0.48301655]
+##  [-1.7970455   0.23288251 -0.2565147  ...  0.47467488 -0.84687555
+##    2.0414166 ]], shape=(404, 13), dtype=float32)</code></pre>
+<p>We specify the model as a linear stack of layers: The input (all 13 explanatory variables), two densely connected hidden layers (each with a 64-dimensional output space), and finally the one-dimensional output layer (the ‘dependent variable’).</p>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb428-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the model</span></span>
+<span id="cb428-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb428-2" aria-hidden="true" tabindex="-1"></a><span class="co"># model specification</span></span>
+<span id="cb428-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb428-3" aria-hidden="true" tabindex="-1"></a>input <span class="ot">&lt;-</span> <span class="fu">layer_input_from_dataset</span>(train_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>label))</span>
+<span id="cb428-4"><a href="bottle-necks-in-local-big-data-analytics.html#cb428-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb428-5"><a href="bottle-necks-in-local-big-data-analytics.html#cb428-5" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> input <span class="sc">%&gt;%</span> </span>
+<span id="cb428-6"><a href="bottle-necks-in-local-big-data-analytics.html#cb428-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_dense_features</span>(<span class="fu">dense_features</span>(spec)) <span class="sc">%&gt;%</span> </span>
+<span id="cb428-7"><a href="bottle-necks-in-local-big-data-analytics.html#cb428-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_dense</span>(<span class="at">units =</span> <span class="dv">64</span>, <span class="at">activation =</span> <span class="st">&quot;relu&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb428-8"><a href="bottle-necks-in-local-big-data-analytics.html#cb428-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_dense</span>(<span class="at">units =</span> <span class="dv">64</span>, <span class="at">activation =</span> <span class="st">&quot;relu&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb428-9"><a href="bottle-necks-in-local-big-data-analytics.html#cb428-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_dense</span>(<span class="at">units =</span> <span class="dv">1</span>) </span>
+<span id="cb428-10"><a href="bottle-necks-in-local-big-data-analytics.html#cb428-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb428-11"><a href="bottle-necks-in-local-big-data-analytics.html#cb428-11" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">keras_model</span>(input, output)</span></code></pre></div>
+<p>In order to fit the model, we first have to compile it (configure it for training). At this step we set the configuration parameters that will guide the training/optimization procedure. We use the mean squared errors loss function (<code>mse</code>) typically used for regressions. We chose the <a href="http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf">RMSProp</a> optimizer to find the minimum loss.</p>
+<div class="sourceCode" id="cb429"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb429-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb429-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compile the model  </span></span>
+<span id="cb429-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb429-2" aria-hidden="true" tabindex="-1"></a>model <span class="sc">%&gt;%</span> </span>
+<span id="cb429-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb429-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">compile</span>(</span>
+<span id="cb429-4"><a href="bottle-necks-in-local-big-data-analytics.html#cb429-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">loss =</span> <span class="st">&quot;mse&quot;</span>,</span>
+<span id="cb429-5"><a href="bottle-necks-in-local-big-data-analytics.html#cb429-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">optimizer =</span> <span class="fu">optimizer_rmsprop</span>(),</span>
+<span id="cb429-6"><a href="bottle-necks-in-local-big-data-analytics.html#cb429-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">metrics =</span> <span class="fu">list</span>(<span class="st">&quot;mean_absolute_error&quot;</span>)</span>
+<span id="cb429-7"><a href="bottle-necks-in-local-big-data-analytics.html#cb429-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<p>Now we can get a summary of the model we are about to fit to the data.</p>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb430-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get a summary of the model</span></span>
+<span id="cb430-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb430-2" aria-hidden="true" tabindex="-1"></a>model</span></code></pre></div>
+<pre><code>## Model
+## Model: &quot;model&quot;
+## _______________________________________________________
+## Layer (type)      Output Shap Param Connected to       
+## =======================================================
+## AGE (InputLayer)  [(None,)]   0                        
+## _______________________________________________________
+## B (InputLayer)    [(None,)]   0                        
+## _______________________________________________________
+## CHAS (InputLayer) [(None,)]   0                        
+## _______________________________________________________
+## CRIM (InputLayer) [(None,)]   0                        
+## _______________________________________________________
+## DIS (InputLayer)  [(None,)]   0                        
+## _______________________________________________________
+## INDUS (InputLayer [(None,)]   0                        
+## _______________________________________________________
+## LSTAT (InputLayer [(None,)]   0                        
+## _______________________________________________________
+## NOX (InputLayer)  [(None,)]   0                        
+## _______________________________________________________
+## PTRATIO (InputLay [(None,)]   0                        
+## _______________________________________________________
+## RAD (InputLayer)  [(None,)]   0                        
+## _______________________________________________________
+## RM (InputLayer)   [(None,)]   0                        
+## _______________________________________________________
+## TAX (InputLayer)  [(None,)]   0                        
+## _______________________________________________________
+## ZN (InputLayer)   [(None,)]   0                        
+## _______________________________________________________
+## dense_features_1  (None, 13)  0     AGE[0][0]          
+##                                     B[0][0]            
+##                                     CHAS[0][0]         
+##                                     CRIM[0][0]         
+##                                     DIS[0][0]          
+##                                     INDUS[0][0]        
+##                                     LSTAT[0][0]        
+##                                     NOX[0][0]          
+##                                     PTRATIO[0][0]      
+##                                     RAD[0][0]          
+##                                     RM[0][0]           
+##                                     TAX[0][0]          
+##                                     ZN[0][0]           
+## _______________________________________________________
+## dense_2 (Dense)   (None, 64)  896   dense_features_1[0]
+## _______________________________________________________
+## dense_1 (Dense)   (None, 64)  4160  dense_2[0][0]      
+## _______________________________________________________
+## dense (Dense)     (None, 1)   65    dense_1[0][0]      
+## =======================================================
+## Total params: 5,121
+## Trainable params: 5,121
+## Non-trainable params: 0
+## _______________________________________________________</code></pre>
+<p>Given the relatively simple model and small dataset, we set the maximum number of epochs to 500 and allow for early stopping in case the validation loss (based on test data) is not improving for a while.</p>
+<div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb432-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set max. number of epochs</span></span>
+<span id="cb432-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb432-2" aria-hidden="true" tabindex="-1"></a>epochs <span class="ot">&lt;-</span> <span class="dv">500</span></span></code></pre></div>
+<p>Finally, we fit the model while preserving the training history, and visualize the training progress.</p>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb433-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model and store training stats</span></span>
+<span id="cb433-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb433-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb433-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb433-3" aria-hidden="true" tabindex="-1"></a>history <span class="ot">&lt;-</span> model <span class="sc">%&gt;%</span> <span class="fu">fit</span>(</span>
+<span id="cb433-4"><a href="bottle-necks-in-local-big-data-analytics.html#cb433-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> train_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>label),</span>
+<span id="cb433-5"><a href="bottle-necks-in-local-big-data-analytics.html#cb433-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> train_df<span class="sc">$</span>label,</span>
+<span id="cb433-6"><a href="bottle-necks-in-local-big-data-analytics.html#cb433-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">epochs =</span> epochs,</span>
+<span id="cb433-7"><a href="bottle-necks-in-local-big-data-analytics.html#cb433-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">validation_split =</span> <span class="fl">0.2</span>,</span>
+<span id="cb433-8"><a href="bottle-necks-in-local-big-data-analytics.html#cb433-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="dv">0</span></span>
+<span id="cb433-9"><a href="bottle-necks-in-local-big-data-analytics.html#cb433-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb433-10"><a href="bottle-necks-in-local-big-data-analytics.html#cb433-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb433-11"><a href="bottle-necks-in-local-big-data-analytics.html#cb433-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb433-12"><a href="bottle-necks-in-local-big-data-analytics.html#cb433-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(history)</span></code></pre></div>
+<p><img src="bigdata_files/figure-html/unnamed-chunk-217-1.png" width="672" /></p>
+</div>
+</div>
+<div id="a-word-of-caution" class="section level2" number="10.7">
+<h2><span class="header-section-number">10.7</span> A word of caution</h2>
+<p>From just comparing the number of threads of a modern CPU with the number of threads of a modern GPU, one might get the impression that parallel tasks should always be implemented for GPU computing. However, whether one approach or the other is faster can depend a lot on the overall task and the data at hand. Moreover, the parallel implementation of tasks can be done more or less well on either system. Really efficient parallel implementation of tasks can take a lot of coding time (particularly when done for GPUs).<a href="#fn32" class="footnote-ref" id="fnref32"><sup>32</sup></a>.</p>
+
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="27">
+<li id="fn27"><p>Note that this example aims to illustrate a point about computation in an applied econometrics context. It does not make any argument about identification or the broader research question whatsoever.<a href="bottle-necks-in-local-big-data-analytics.html#fnref27" class="footnote-back">↩︎</a></p></li>
+<li id="fn28"><p>The computational complexity of this is larger than <span class="math inline">\(O(n^{2})\)</span>. That is, for an input of size <span class="math inline">\(n\)</span>, the time needed to compute (or the number of operations needed) is <span class="math inline">\(n^2\)</span>.<a href="bottle-necks-in-local-big-data-analytics.html#fnref28" class="footnote-back">↩︎</a></p></li>
+<li id="fn29"><p>In reality we would not know this, of course. Acting as if we knew the real model is exactly the point of Monte Carlo studies. It allows us to analyze the properties of estimators by simulation.<a href="bottle-necks-in-local-big-data-analytics.html#fnref29" class="footnote-back">↩︎</a></p></li>
+<li id="fn30"><p>This might involve the installation of additional packages and software outside the R environment.<a href="bottle-necks-in-local-big-data-analytics.html#fnref30" class="footnote-back">↩︎</a></p></li>
+<li id="fn31"><p>Typical textbook examples in machine learning deal with classification (e.g. a logit model), while in microeconometrics the typical example is usually a linear model (continuous dependent variable).<a href="bottle-necks-in-local-big-data-analytics.html#fnref31" class="footnote-back">↩︎</a></p></li>
+<li id="fn32"><p>For a more detailed discussion of the relevant factors for well done parallelization (either on CPUs or GPUs), see <span class="citation"><a href="references.html#ref-matloff_2015" role="doc-biblioref">Matloff</a> (<a href="references.html#ref-matloff_2015" role="doc-biblioref">2015</a>)</span><a href="bottle-necks-in-local-big-data-analytics.html#fnref32" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="big-data-visualization.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="applied-econometrics-with-apache-spark.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/lunr.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 1
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["bigdata.pdf", "bigdata.html", "bigdata.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

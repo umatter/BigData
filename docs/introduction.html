@@ -10,21 +10,21 @@
 
   <meta property="og:title" content="Chapter 1 Introduction | Big Data Analytics" />
   <meta property="og:type" content="book" />
-  
-  <meta property="og:image" content="img/cover.png" />
+  <meta property="og:url" content="https://umatter.github.io/BigData" />
+  <meta property="og:image" content="https://umatter.github.io/BigDataimg/cover.png" />
   <meta property="og:description" content="A guide to practical big data analytics in R." />
-  
+  <meta name="github-repo" content="umatter/BigData" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 1 Introduction | Big Data Analytics" />
   
   <meta name="twitter:description" content="A guide to practical big data analytics in R." />
-  <meta name="twitter:image" content="img/cover.png" />
+  <meta name="twitter:image" content="https://umatter.github.io/BigDataimg/cover.png" />
 
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-01-20" />
+<meta name="date" content="2022-02-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="index.html"/>
-<link rel="next" href="computing-resources.html"/>
+<link rel="next" href="software-programming-with-big-data.html"/>
 <script src="libs/header-attrs/header-attrs.js"></script>
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
@@ -51,6 +51,14 @@
 
 
 
+<script src="libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="libs/d3/d3.min.js"></script>
+<link href="libs/profvis/profvis.css" rel="stylesheet" />
+<script src="libs/profvis/profvis.js"></script>
+<script src="libs/profvis/scroll.js"></script>
+<link href="libs/highlight/textmate.css" rel="stylesheet" />
+<script src="libs/highlight/highlight.js"></script>
+<script src="libs/profvis-binding/profvis.js"></script>
 
 
 <style type="text/css">
@@ -137,136 +145,148 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#example-of-computation-time-and-memory-allocation"><i class="fa fa-check"></i><b>1.1</b> Example of Computation Time and Memory Allocation</a>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#what-is-big-in-big-data"><i class="fa fa-check"></i><b>1.1</b> What is <em>big</em> in “Big Data?”</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#approaches-to-analyzing-big-data"><i class="fa fa-check"></i><b>1.2</b> Approaches to analyzing Big Data</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#content-overview"><i class="fa fa-check"></i><b>1.3</b> Content overview</a></li>
+<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#prerequisits"><i class="fa fa-check"></i><b>1.4</b> Prerequisits</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html"><i class="fa fa-check"></i><b>2</b> Software: Programming with (Big) Data</a>
 <ul>
-<li class="chapter" data-level="1.1.1" data-path="introduction.html"><a href="introduction.html#preparation"><i class="fa fa-check"></i><b>1.1.1</b> Preparation</a></li>
-<li class="chapter" data-level="1.1.2" data-path="introduction.html"><a href="introduction.html#naïve-approach-ignorant-of-r"><i class="fa fa-check"></i><b>1.1.2</b> Naïve Approach (ignorant of R)</a></li>
-<li class="chapter" data-level="1.1.3" data-path="introduction.html"><a href="introduction.html#improvement-1-pre-allocation-of-memory"><i class="fa fa-check"></i><b>1.1.3</b> Improvement 1: Pre-allocation of memory</a></li>
-<li class="chapter" data-level="1.1.4" data-path="introduction.html"><a href="introduction.html#improvement-2-exploit-vectorization"><i class="fa fa-check"></i><b>1.1.4</b> Improvement 2: Exploit vectorization</a></li>
+<li class="chapter" data-level="2.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#building-blocks-for-programming-with-big-data"><i class="fa fa-check"></i><b>2.1</b> Building blocks for programming with big data</a></li>
+<li class="chapter" data-level="2.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#measuring-r-performance"><i class="fa fa-check"></i><b>2.2</b> Measuring R performance</a></li>
+<li class="chapter" data-level="2.3" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#writing-efficient-code"><i class="fa fa-check"></i><b>2.3</b> Writing efficient code</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#memory-allocation-and-growing-objects"><i class="fa fa-check"></i><b>2.3.1</b> Memory allocation and growing objects</a></li>
+<li class="chapter" data-level="2.3.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#vectorization-in-basic-r-functions"><i class="fa fa-check"></i><b>2.3.2</b> Vectorization in basic R functions</a></li>
+<li class="chapter" data-level="2.3.3" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#apply-type-functions-and-vectorization"><i class="fa fa-check"></i><b>2.3.3</b> <code>apply</code>-type functions and vectorization</a></li>
+<li class="chapter" data-level="2.3.4" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#avoid-unnecessary-copying"><i class="fa fa-check"></i><b>2.3.4</b> Avoid unnecessary copying</a></li>
+<li class="chapter" data-level="2.3.5" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#releasing-memory"><i class="fa fa-check"></i><b>2.3.5</b> Releasing memory</a></li>
+<li class="chapter" data-level="2.3.6" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#beyond-r"><i class="fa fa-check"></i><b>2.3.6</b> Beyond R</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#sql-basics"><i class="fa fa-check"></i><b>2.4</b> SQL basics</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#first-steps-in-sqlite"><i class="fa fa-check"></i><b>2.4.1</b> First steps in SQL(ite)</a></li>
+<li class="chapter" data-level="2.4.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#joins"><i class="fa fa-check"></i><b>2.4.2</b> Joins</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="computing-resources.html"><a href="computing-resources.html"><i class="fa fa-check"></i><b>2</b> Computing Resources</a>
+<li class="chapter" data-level="3" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html"><i class="fa fa-check"></i><b>3</b> Hardware: Computing Resources</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="computing-resources.html"><a href="computing-resources.html#components-of-a-standard-computing-environment"><i class="fa fa-check"></i><b>2.1</b> Components of a standard computing environment</a></li>
-<li class="chapter" data-level="2.2" data-path="computing-resources.html"><a href="computing-resources.html#units-of-informationdata-storage"><i class="fa fa-check"></i><b>2.2</b> Units of information/data storage</a>
+<li class="chapter" data-level="3.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#components-of-a-standard-computing-environment"><i class="fa fa-check"></i><b>3.1</b> Components of a standard computing environment</a></li>
+<li class="chapter" data-level="3.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#mass-storage-and-memory"><i class="fa fa-check"></i><b>3.2</b> Mass Storage and Memory</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="computing-resources.html"><a href="computing-resources.html#example-in-r-data-types-and-information-storage"><i class="fa fa-check"></i><b>2.2.1</b> Example in R: Data types and information storage</a></li>
+<li class="chapter" data-level="3.2.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#units-of-informationdata-storage"><i class="fa fa-check"></i><b>3.2.1</b> Units of information/data storage</a></li>
+<li class="chapter" data-level="3.2.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#combining-ram-and-hard-disk-virtual-memory"><i class="fa fa-check"></i><b>3.2.2</b> Combining RAM and hard-disk: virtual memory</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="computing-resources.html"><a href="computing-resources.html#big-data-econometrics"><i class="fa fa-check"></i><b>2.3</b> Big Data econometrics</a></li>
-<li class="chapter" data-level="2.4" data-path="computing-resources.html"><a href="computing-resources.html#example-fast-least-squares-regression"><i class="fa fa-check"></i><b>2.4</b> Example: Fast least squares regression</a>
+<li class="chapter" data-level="3.3" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#computation-cpu"><i class="fa fa-check"></i><b>3.3</b> Computation: CPU</a>
 <ul>
-<li class="chapter" data-level="2.4.1" data-path="computing-resources.html"><a href="computing-resources.html#ols-as-a-point-of-reference"><i class="fa fa-check"></i><b>2.4.1</b> OLS as a point of reference</a></li>
-<li class="chapter" data-level="2.4.2" data-path="computing-resources.html"><a href="computing-resources.html#the-uluru-algorithm-as-an-alternative-to-ols"><i class="fa fa-check"></i><b>2.4.2</b> The Uluru algorithm as an alternative to OLS</a></li>
+<li class="chapter" data-level="3.3.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#parallelization"><i class="fa fa-check"></i><b>3.3.1</b> Parallelization</a></li>
+<li class="chapter" data-level="3.3.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#gpus-for-scientific-computing"><i class="fa fa-check"></i><b>3.3.2</b> GPUs for Scientific Computing</a></li>
+<li class="chapter" data-level="3.3.3" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#gpus-in-r"><i class="fa fa-check"></i><b>3.3.3</b> GPUs in R</a></li>
 </ul></li>
+<li class="chapter" data-level="3.4" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#resource-allocation"><i class="fa fa-check"></i><b>3.4</b> Resource allocation</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="resource-allocation.html"><a href="resource-allocation.html"><i class="fa fa-check"></i><b>3</b> Resource allocation</a>
+<li class="chapter" data-level="4" data-path="distributed-systems.html"><a href="distributed-systems.html"><i class="fa fa-check"></i><b>4</b> Distributed Systems</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="resource-allocation.html"><a href="resource-allocation.html#case-study-parallel-processing"><i class="fa fa-check"></i><b>3.1</b> Case study: Parallel processing</a></li>
-<li class="chapter" data-level="3.2" data-path="resource-allocation.html"><a href="resource-allocation.html#case-study-memory-allocation"><i class="fa fa-check"></i><b>3.2</b> Case study: Memory allocation</a></li>
-<li class="chapter" data-level="3.3" data-path="resource-allocation.html"><a href="resource-allocation.html#beyond-memory"><i class="fa fa-check"></i><b>3.3</b> Beyond memory</a></li>
+<li class="chapter" data-level="4.1" data-path="distributed-systems.html"><a href="distributed-systems.html#mapreduce"><i class="fa fa-check"></i><b>4.1</b> MapReduce</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="distributed-systems.html"><a href="distributed-systems.html#mapreduce-concept-illustrated-in-r"><i class="fa fa-check"></i><b>4.1.1</b> Map/Reduce Concept Illustrated in R</a></li>
+<li class="chapter" data-level="4.1.2" data-path="distributed-systems.html"><a href="distributed-systems.html#mapper"><i class="fa fa-check"></i><b>4.1.2</b> Mapper</a></li>
+<li class="chapter" data-level="4.1.3" data-path="distributed-systems.html"><a href="distributed-systems.html#reducer"><i class="fa fa-check"></i><b>4.1.3</b> Reducer</a></li>
+<li class="chapter" data-level="4.1.4" data-path="distributed-systems.html"><a href="distributed-systems.html#simpler-example-compute-the-total-number-of-words"><i class="fa fa-check"></i><b>4.1.4</b> Simpler example: Compute the total number of words</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html"><i class="fa fa-check"></i><b>4</b> Advanced R Programming</a>
+<li class="chapter" data-level="4.2" data-path="distributed-systems.html"><a href="distributed-systems.html#hadoop"><i class="fa fa-check"></i><b>4.2</b> Hadoop</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#r-tools-to-investigate-performanceresource-allocation"><i class="fa fa-check"></i><b>4.1</b> R-tools to investigate performance/resource allocation</a></li>
-<li class="chapter" data-level="4.2" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#r-tools-to-investigate-structures-and-types"><i class="fa fa-check"></i><b>4.2</b> R-tools to investigate structures and types</a></li>
-<li class="chapter" data-level="4.3" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#data-types-and-memorystorage"><i class="fa fa-check"></i><b>4.3</b> Data types and memory/storage</a></li>
-<li class="chapter" data-level="4.4" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#data-structures"><i class="fa fa-check"></i><b>4.4</b> Data structures</a>
-<ul>
-<li class="chapter" data-level="4.4.1" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#vectors-vs-factors-in-r"><i class="fa fa-check"></i><b>4.4.1</b> Vectors vs Factors in R</a></li>
-<li class="chapter" data-level="4.4.2" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#matricesarrays"><i class="fa fa-check"></i><b>4.4.2</b> Matrices/Arrays</a></li>
-<li class="chapter" data-level="4.4.3" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#data-frames-tibbles-and-data-tables"><i class="fa fa-check"></i><b>4.4.3</b> Data frames, tibbles, and data tables</a></li>
-<li class="chapter" data-level="4.4.4" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#lists"><i class="fa fa-check"></i><b>4.4.4</b> Lists</a></li>
-</ul></li>
-<li class="chapter" data-level="4.5" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#programming-with-big-data-in-r"><i class="fa fa-check"></i><b>4.5</b> Programming with (Big) Data in R</a>
-<ul>
-<li class="chapter" data-level="4.5.1" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#typical-programming-tasks"><i class="fa fa-check"></i><b>4.5.1</b> Typical Programming Tasks</a></li>
-<li class="chapter" data-level="4.5.2" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#building-blocks-for-programming-with-big-data"><i class="fa fa-check"></i><b>4.5.2</b> Building blocks for programming with big data</a></li>
-<li class="chapter" data-level="4.5.3" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#writing-efficient-code"><i class="fa fa-check"></i><b>4.5.3</b> Writing efficient code</a></li>
-<li class="chapter" data-level="4.5.4" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#r-beyond-r"><i class="fa fa-check"></i><b>4.5.4</b> R, beyond R</a></li>
+<li class="chapter" data-level="4.2.1" data-path="distributed-systems.html"><a href="distributed-systems.html#hadoop-word-count"><i class="fa fa-check"></i><b>4.2.1</b> Hadoop Word Count</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html"><i class="fa fa-check"></i><b>5</b> Big Data Cleaning and Transformation</a>
+<li class="chapter" data-level="5" data-path="cloud-computing.html"><a href="cloud-computing.html"><i class="fa fa-check"></i><b>5</b> Cloud Computing</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#out-of-memory-strategies"><i class="fa fa-check"></i><b>5.1</b> ‘Out-of-memory’ strategies</a>
+<li class="chapter" data-level="5.1" data-path="cloud-computing.html"><a href="cloud-computing.html#scaling-up-parallel-computing"><i class="fa fa-check"></i><b>5.1</b> Scaling up: parallel computing</a>
 <ul>
-<li class="chapter" data-level="5.1.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#chunking-data-with-the-ff-package"><i class="fa fa-check"></i><b>5.1.1</b> Chunking data with the <code>ff</code>-package</a></li>
-<li class="chapter" data-level="5.1.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#memory-mapping-with-bigmemory"><i class="fa fa-check"></i><b>5.1.2</b> Memory mapping with <code>bigmemory</code></a></li>
-</ul></li>
-<li class="chapter" data-level="5.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#typical-cleaning-tasks"><i class="fa fa-check"></i><b>5.2</b> Typical cleaning tasks</a>
-<ul>
-<li class="chapter" data-level="5.2.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#data-preparation-with-ff"><i class="fa fa-check"></i><b>5.2.1</b> Data Preparation with <code>ff</code></a></li>
+<li class="chapter" data-level="5.1.1" data-path="cloud-computing.html"><a href="cloud-computing.html#setting-up-aws-ec2-with-rrstudio"><i class="fa fa-check"></i><b>5.1.1</b> Setting up AWS EC2 with R/RStudio</a></li>
+<li class="chapter" data-level="5.1.2" data-path="cloud-computing.html"><a href="cloud-computing.html#parallelization-with-an-ec2-instance"><i class="fa fa-check"></i><b>5.1.2</b> Parallelization with an EC2 instance</a></li>
+<li class="chapter" data-level="5.1.3" data-path="cloud-computing.html"><a href="cloud-computing.html#aws-emr-mapreduce-in-the-cloud"><i class="fa fa-check"></i><b>5.1.3</b> AWS EMR: MapReduce in the cloud</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="data-aggregation.html"><a href="data-aggregation.html"><i class="fa fa-check"></i><b>6</b> Data Aggregation</a>
+<li class="chapter" data-level="6" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html"><i class="fa fa-check"></i><b>6</b> Data Storage and Databases</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="data-aggregation.html"><a href="data-aggregation.html#data-aggregation-the-split-apply-combine-strategy"><i class="fa fa-check"></i><b>6.1</b> Data aggregation: The ‘split-apply-combine’ strategy</a></li>
-<li class="chapter" data-level="6.2" data-path="data-aggregation.html"><a href="data-aggregation.html#data-aggregation-tutorial"><i class="fa fa-check"></i><b>6.2</b> Data aggregation tutorial</a>
+<li class="chapter" data-level="6.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#big-data-storage"><i class="fa fa-check"></i><b>6.1</b> (Big) Data Storage</a></li>
+<li class="chapter" data-level="6.2" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#rdbms-basics"><i class="fa fa-check"></i><b>6.2</b> RDBMS basics</a></li>
+<li class="chapter" data-level="6.3" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#row-based-vs-column-based-databases"><i class="fa fa-check"></i><b>6.3</b> Row-based vs column-based databases</a></li>
+<li class="chapter" data-level="6.4" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#getting-started-with-rsqlite"><i class="fa fa-check"></i><b>6.4</b> Getting started with RSQLite</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="data-aggregation.html"><a href="data-aggregation.html#gathering-and-compilation-of-all-the-raw-data"><i class="fa fa-check"></i><b>6.2.1</b> Gathering and Compilation of all the raw data</a></li>
-<li class="chapter" data-level="6.2.2" data-path="data-aggregation.html"><a href="data-aggregation.html#data-aggregation-with-chunked-data-files"><i class="fa fa-check"></i><b>6.2.2</b> Data aggregation with chunked data files</a></li>
-<li class="chapter" data-level="6.2.3" data-path="data-aggregation.html"><a href="data-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>6.2.3</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
+<li class="chapter" data-level="6.4.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#warm-up-in-sqlite-indices-and-joins"><i class="fa fa-check"></i><b>6.4.1</b> Warm up in SQLite: indices and joins</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#sqlite-from-within-r"><i class="fa fa-check"></i><b>6.5</b> SQLite from within R</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#creating-a-new-database-with-rsqlite"><i class="fa fa-check"></i><b>6.5.1</b> Creating a new database with <code>RSQLite</code></a></li>
+<li class="chapter" data-level="6.5.2" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#importing-data"><i class="fa fa-check"></i><b>6.5.2</b> Importing data</a></li>
+<li class="chapter" data-level="6.5.3" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#issue-queries"><i class="fa fa-check"></i><b>6.5.3</b> Issue queries</a></li>
+<li class="chapter" data-level="6.5.4" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#mass-storage-mariadb-on-an-ec2-instance"><i class="fa fa-check"></i><b>6.5.4</b> Mass Storage: MariaDB on an EC2 instance</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html"><i class="fa fa-check"></i><b>7</b> Data Storage and Databases</a>
+<li class="chapter" data-level="7" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html"><i class="fa fa-check"></i><b>7</b> Big Data Cleaning and Transformation</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#big-data-storage"><i class="fa fa-check"></i><b>7.1</b> (Big) Data Storage</a></li>
-<li class="chapter" data-level="7.2" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#rdbms-basics"><i class="fa fa-check"></i><b>7.2</b> RDBMS basics</a></li>
-<li class="chapter" data-level="7.3" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#getting-started-with-rsqlite"><i class="fa fa-check"></i><b>7.3</b> Getting started with (R)SQLite</a>
+<li class="chapter" data-level="7.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#out-of-memory-strategies"><i class="fa fa-check"></i><b>7.1</b> ‘Out-of-memory’ strategies</a>
 <ul>
-<li class="chapter" data-level="7.3.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#first-steps-in-sqlite"><i class="fa fa-check"></i><b>7.3.1</b> First steps in SQLite</a></li>
-<li class="chapter" data-level="7.3.2" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#indices-and-joins"><i class="fa fa-check"></i><b>7.3.2</b> Indices and joins</a></li>
+<li class="chapter" data-level="7.1.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#chunking-data-with-the-ff-package"><i class="fa fa-check"></i><b>7.1.1</b> Chunking data with the <code>ff</code>-package</a></li>
+<li class="chapter" data-level="7.1.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#memory-mapping-with-bigmemory"><i class="fa fa-check"></i><b>7.1.2</b> Memory mapping with <code>bigmemory</code></a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#sqlite-from-within-r"><i class="fa fa-check"></i><b>7.4</b> SQLite from within R</a>
+<li class="chapter" data-level="7.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#typical-cleaning-tasks"><i class="fa fa-check"></i><b>7.2</b> Typical cleaning tasks</a>
 <ul>
-<li class="chapter" data-level="7.4.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#creating-a-new-database-with-rsqlite"><i class="fa fa-check"></i><b>7.4.1</b> Creating a new database with <code>RSQLite</code></a></li>
-<li class="chapter" data-level="7.4.2" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#importing-data"><i class="fa fa-check"></i><b>7.4.2</b> Importing data</a></li>
-<li class="chapter" data-level="7.4.3" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#issue-queries"><i class="fa fa-check"></i><b>7.4.3</b> Issue queries</a></li>
+<li class="chapter" data-level="7.2.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#data-preparation-with-ff"><i class="fa fa-check"></i><b>7.2.1</b> Data Preparation with <code>ff</code></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="big-data-visualization.html"><a href="big-data-visualization.html"><i class="fa fa-check"></i><b>8</b> (Big) Data Visualization</a>
+<li class="chapter" data-level="8" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html"><i class="fa fa-check"></i><b>8</b> Descriptive Statistics and Aggregation</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#data-set"><i class="fa fa-check"></i><b>8.1</b> Data Set</a></li>
-<li class="chapter" data-level="8.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-modify-and-create-themes"><i class="fa fa-check"></i><b>8.2</b> Excursus: modify and create themes</a>
+<li class="chapter" data-level="8.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-the-split-apply-combine-strategy"><i class="fa fa-check"></i><b>8.1</b> Data aggregation: The ‘split-apply-combine’ strategy</a></li>
+<li class="chapter" data-level="8.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-tutorial"><i class="fa fa-check"></i><b>8.2</b> Data aggregation tutorial</a>
 <ul>
-<li class="chapter" data-level="8.2.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#create-your-own-theme-simple-approach"><i class="fa fa-check"></i><b>8.2.1</b> Create your own theme: simple approach</a></li>
-<li class="chapter" data-level="8.2.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#implementing-actual-themes-as-functions."><i class="fa fa-check"></i><b>8.2.2</b> Implementing actual themes as functions.</a></li>
-</ul></li>
-<li class="chapter" data-level="8.3" data-path="big-data-visualization.html"><a href="big-data-visualization.html#visualize-time-and-space"><i class="fa fa-check"></i><b>8.3</b> Visualize Time and Space</a>
-<ul>
-<li class="chapter" data-level="8.3.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#preparations"><i class="fa fa-check"></i><b>8.3.1</b> Preparations</a></li>
-<li class="chapter" data-level="8.3.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#pick-up-and-drop-off-locations"><i class="fa fa-check"></i><b>8.3.2</b> Pick-up and drop-off locations</a></li>
-</ul></li>
-<li class="chapter" data-level="8.4" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-change-color-schemes"><i class="fa fa-check"></i><b>8.4</b> Excursus: change color schemes</a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html"><i class="fa fa-check"></i><b>9</b> Cloud Services for Big Data Analytics</a>
-<ul>
-<li class="chapter" data-level="9.1" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#scaling-up-in-the-cloud"><i class="fa fa-check"></i><b>9.1</b> Scaling up in the Cloud</a>
-<ul>
-<li class="chapter" data-level="9.1.1" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#parallelization-with-an-ec2-instance"><i class="fa fa-check"></i><b>9.1.1</b> Parallelization with an EC2 instance</a></li>
-<li class="chapter" data-level="9.1.2" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#mass-storage-mariadb-on-an-ec2-instance"><i class="fa fa-check"></i><b>9.1.2</b> Mass Storage: MariaDB on an EC2 instance</a></li>
-</ul></li>
-<li class="chapter" data-level="9.2" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#distributed-systemsmapreduce"><i class="fa fa-check"></i><b>9.2</b> Distributed Systems/MapReduce</a>
-<ul>
-<li class="chapter" data-level="9.2.1" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#mapreduce-concept-illustration-in-r"><i class="fa fa-check"></i><b>9.2.1</b> Map/Reduce Concept: Illustration in R</a></li>
-</ul></li>
-<li class="chapter" data-level="9.3" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#hadoop-word-count"><i class="fa fa-check"></i><b>9.3</b> Hadoop Word Count</a>
-<ul>
-<li class="chapter" data-level="9.3.1" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#install-hadoop-on-ubuntupop_os-linux"><i class="fa fa-check"></i><b>9.3.1</b> Install Hadoop (on Ubuntu/Pop!_OS Linux)</a></li>
-<li class="chapter" data-level="9.3.2" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#run-hadoop"><i class="fa fa-check"></i><b>9.3.2</b> Run Hadoop</a></li>
-<li class="chapter" data-level="9.3.3" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#run-example"><i class="fa fa-check"></i><b>9.3.3</b> Run example</a></li>
+<li class="chapter" data-level="8.2.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#gathering-and-compilation-of-all-the-raw-data"><i class="fa fa-check"></i><b>8.2.1</b> Gathering and Compilation of all the raw data</a></li>
+<li class="chapter" data-level="8.2.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-with-chunked-data-files"><i class="fa fa-check"></i><b>8.2.2</b> Data aggregation with chunked data files</a></li>
+<li class="chapter" data-level="8.2.3" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>8.2.3</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html"><i class="fa fa-check"></i><b>10</b> GPUs for Scientific Computing</a>
+<li class="chapter" data-level="9" data-path="big-data-visualization.html"><a href="big-data-visualization.html"><i class="fa fa-check"></i><b>9</b> (Big) Data Visualization</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#gpus-in-r"><i class="fa fa-check"></i><b>10.1</b> GPUs in R</a>
+<li class="chapter" data-level="9.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#data-set"><i class="fa fa-check"></i><b>9.1</b> Data Set</a></li>
+<li class="chapter" data-level="9.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-modify-and-create-themes"><i class="fa fa-check"></i><b>9.2</b> Excursus: modify and create themes</a>
 <ul>
-<li class="chapter" data-level="10.1.1" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#example-i-matrix-multiplication-comparison-gpur"><i class="fa fa-check"></i><b>10.1.1</b> Example I: Matrix multiplication comparison (<code>gpuR</code>)</a></li>
+<li class="chapter" data-level="9.2.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#create-your-own-theme-simple-approach"><i class="fa fa-check"></i><b>9.2.1</b> Create your own theme: simple approach</a></li>
+<li class="chapter" data-level="9.2.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#implementing-actual-themes-as-functions."><i class="fa fa-check"></i><b>9.2.2</b> Implementing actual themes as functions.</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#gpus-and-machine-learning"><i class="fa fa-check"></i><b>10.2</b> GPUs and Machine Learning</a>
+<li class="chapter" data-level="9.3" data-path="big-data-visualization.html"><a href="big-data-visualization.html#visualize-time-and-space"><i class="fa fa-check"></i><b>9.3</b> Visualize Time and Space</a>
 <ul>
-<li class="chapter" data-level="10.2.1" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#tensorflowkeras-example-predict-housing-prices"><i class="fa fa-check"></i><b>10.2.1</b> Tensorflow/Keras example: predict housing prices</a></li>
+<li class="chapter" data-level="9.3.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#preparations"><i class="fa fa-check"></i><b>9.3.1</b> Preparations</a></li>
+<li class="chapter" data-level="9.3.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#pick-up-and-drop-off-locations"><i class="fa fa-check"></i><b>9.3.2</b> Pick-up and drop-off locations</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#a-word-of-caution"><i class="fa fa-check"></i><b>10.3</b> A word of caution</a></li>
+<li class="chapter" data-level="9.4" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-change-color-schemes"><i class="fa fa-check"></i><b>9.4</b> Excursus: change color schemes</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html"><i class="fa fa-check"></i><b>10</b> Bottle Necks in Local Big Data Analytics</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#example-of-computation-time-and-memory-allocation"><i class="fa fa-check"></i><b>10.1</b> Example of Computation Time and Memory Allocation</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#preparation"><i class="fa fa-check"></i><b>10.1.1</b> Preparation</a></li>
+<li class="chapter" data-level="10.1.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#naïve-approach-ignorant-of-r"><i class="fa fa-check"></i><b>10.1.2</b> Naïve Approach (ignorant of R)</a></li>
+<li class="chapter" data-level="10.1.3" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#improvement-1-pre-allocation-of-memory"><i class="fa fa-check"></i><b>10.1.3</b> Improvement 1: Pre-allocation of memory</a></li>
+<li class="chapter" data-level="10.1.4" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#improvement-2-exploit-vectorization"><i class="fa fa-check"></i><b>10.1.4</b> Improvement 2: Exploit vectorization</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#case-study-parallel-processing"><i class="fa fa-check"></i><b>10.2</b> Case study: Parallel processing</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#parallelization-with-an-ec2-instance-1"><i class="fa fa-check"></i><b>10.2.1</b> Parallelization with an EC2 instance</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#case-study-memory-allocation"><i class="fa fa-check"></i><b>10.3</b> Case study: Memory allocation</a></li>
+<li class="chapter" data-level="10.4" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#big-data-econometrics"><i class="fa fa-check"></i><b>10.4</b> Big Data econometrics</a></li>
+<li class="chapter" data-level="10.5" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#example-fast-least-squares-regression"><i class="fa fa-check"></i><b>10.5</b> Example: Fast least squares regression</a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#ols-as-a-point-of-reference"><i class="fa fa-check"></i><b>10.5.1</b> OLS as a point of reference</a></li>
+<li class="chapter" data-level="10.5.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#the-uluru-algorithm-as-an-alternative-to-ols"><i class="fa fa-check"></i><b>10.5.2</b> The Uluru algorithm as an alternative to OLS</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#gpus-and-machine-learning"><i class="fa fa-check"></i><b>10.6</b> GPUs and Machine Learning</a>
+<ul>
+<li class="chapter" data-level="10.6.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#tensorflowkeras-example-predict-housing-prices"><i class="fa fa-check"></i><b>10.6.1</b> Tensorflow/Keras example: predict housing prices</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#a-word-of-caution"><i class="fa fa-check"></i><b>10.7</b> A word of caution</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html"><i class="fa fa-check"></i><b>11</b> Applied Econometrics with Apache Spark</a>
 <ul>
@@ -287,7 +307,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="A.1.3" data-path="appendix-a.html"><a href="appendix-a.html#fork-this-courses-repository"><i class="fa fa-check"></i><b>A.1.3</b> Fork this course’s repository</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="B" data-path="appendix-b.html"><a href="appendix-b.html"><i class="fa fa-check"></i><b>B</b> Appendix B</a></li>
+<li class="chapter" data-level="B" data-path="appendix-b.html"><a href="appendix-b.html"><i class="fa fa-check"></i><b>B</b> Appendix B</a>
+<ul>
+<li class="chapter" data-level="B.0.1" data-path="appendix-b.html"><a href="appendix-b.html#data-types-and-memorystorage"><i class="fa fa-check"></i><b>B.0.1</b> Data types and memory/storage</a></li>
+<li class="chapter" data-level="B.0.2" data-path="appendix-b.html"><a href="appendix-b.html#data-structures"><i class="fa fa-check"></i><b>B.0.2</b> Data structures</a></li>
+<li class="chapter" data-level="B.0.3" data-path="appendix-b.html"><a href="appendix-b.html#vectors-vs-factors-in-r"><i class="fa fa-check"></i><b>B.0.3</b> Vectors vs Factors in R</a></li>
+<li class="chapter" data-level="B.0.4" data-path="appendix-b.html"><a href="appendix-b.html#r-tools-to-investigate-structures-and-types"><i class="fa fa-check"></i><b>B.0.4</b> R-tools to investigate structures and types</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://umatter.github.io" target="blank">umatter.github.io</a></li>
@@ -311,174 +337,61 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="introduction" class="section level1" number="1">
 <h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
-<div id="example-of-computation-time-and-memory-allocation" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> Example of Computation Time and Memory Allocation</h2>
-<div id="preparation" class="section level3" number="1.1.1">
-<h3><span class="header-section-number">1.1.1</span> Preparation</h3>
-<p>We first read the <code>economics</code> data set into R and extend it by duplicating its rows in order to get a slightly larger data set (this step can easily be adapted to create a very large data set).</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="introduction.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read dataset into R</span></span>
-<span id="cb1-2"><a href="introduction.html#cb1-2" aria-hidden="true" tabindex="-1"></a>economics <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/economics.csv&quot;</span>)</span>
-<span id="cb1-3"><a href="introduction.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># have a look at the data</span></span>
-<span id="cb1-4"><a href="introduction.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(economics, <span class="dv">2</span>)</span></code></pre></div>
-<pre><code>##         date   pce    pop psavert uempmed unemploy
-## 1 1967-07-01 507.4 198712    12.5     4.5     2944
-## 2 1967-08-01 510.5 198911    12.5     4.7     2945</code></pre>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="introduction.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a &#39;large&#39; dataset out of this</span></span>
-<span id="cb3-2"><a href="introduction.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>) {</span>
-<span id="cb3-3"><a href="introduction.html#cb3-3" aria-hidden="true" tabindex="-1"></a>     economics <span class="ot">&lt;-</span> <span class="fu">rbind</span>(economics, economics)</span>
-<span id="cb3-4"><a href="introduction.html#cb3-4" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-5"><a href="introduction.html#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(economics)</span></code></pre></div>
-<pre><code>## [1] 4592    6</code></pre>
+<p>Over the last decade, ‘Big Data’ has often been discussed as the new ‘most valuable’
+resource in highly developed economies, driving the development of new
+products and services in various industries. Extracting knowledge from large data
+sets is increasingly seen as a strategic asset for firms, governments, and NGOs. In a similar vein, the increasing size of datasets in empirical economic research (both in number
+of observations and number of variables) offers new opportunities and poses new
+challenges for economists and business leaders.</p>
+<p>Successfully navigating the data-driven economy presupposes a certain
+understanding of the technologies and methods to gain insights from Big Data.
+This textbook introduces the reader to the basic concepts of Big Data Analytics to
+gain insights from large and complex data sets. Thereby, the focus of the book
+is on the practical application of econometrics/machine learning, given
+large/complex datasets, and all the steps involved before actually analyzing data (data storage, data import, data preparation).
+The book combines conceptual/theoretical material with the practical application of the
+concepts with the open source programming language R. Thereby, the reader will
+acquire the basic skill set to analyze large data sets both locally and in the
+cloud. Various code examples and tutorials, focused on empirical economic and business research, illustrate
+practical techniques to handle and analyze Big Data.</p>
+<div id="what-is-big-in-big-data" class="section level2" number="1.1">
+<h2><span class="header-section-number">1.1</span> What is <em>big</em> in “Big Data?”</h2>
+<p>Generally, we can think of Big Data as data that is (a) expensive to handle and (b) hard to get value from due to its size and complexity. The handling of Big Data is expensive as the data is gathered from a variety of unorthodox sources, often providing poorly structured data (e.g., raw text, web pages, images, etc.) and due to the infrastructure needed to store and load/process large amounts of data. Getting value/insights from Big Data is related to two distinct properties that render the analysis of large amounts of data difficult:</p>
+<ul>
+<li><p>The <em>big P</em> problem: a data set has more variables than observations, which renders the search for a good predictive model with traditional econometric techniques difficult or illusive. For example, suppose you run an e-commerce business that sells hundreds of thousands of products to tens of thousands of customers. You want to figure out from which product category a user is most likely to buy a product from next, based on her previous product page visits. That is you want to (in simple terms) regress an indicator of purchasing from a specific category on indicators for previous product page visits. Given this set up, you would potentially end up with hundreds of thousands of explanatory indicator variables (and potentially even linear combinations of those), while you “only” have tens of thousands of observations (one per user/customer) to estimate your model. These sort of problems are at the core of the domain of modern predictive econometrics, which shows how machine learning approaches like the LASSO can be applied in order to get reasonable estimates of such a predictive model.</p></li>
+<li><p>The <em>big N</em> problem: a data set has massive amounts of observations (rows) such that it cannot be handled with standard data analytics techniques and/or on a standard desktop computer. For example, suppose you want to segment your e-commerce customers based on the traces they leave on your website’s server. That is, you want to use the server log files (when does a customer log in from where, etc.) in combination with purchase records as well as written product reviews by the users. You focus on 50 variables that you measure on a daily basis over five years for all users. The resulting data set has <span class="math inline">\(50,000 \times 365 \times 5=91,250,000\)</span> rows and with 50 variables (50 columns) over 4.5 billion cells. Such a dataset can easily take up dozens of Gigabytes on the hard disk. Hence it will either not fit into the memory of a standard computer to begin with (import fails) , or the standard programs to process and analyze the data will likely be very inefficient and take ages to finish when used on such a large dataset. There are both econometric techniques as well as various specialized software and hardware tools to handle such a situation.</p></li>
+</ul>
+<p>While covering some aspects of both problem domains, this book primarily focuses on practical challenges and solutions related to the <em>big N</em> problem in Big Data Analytics.</p>
 </div>
-<div id="naïve-approach-ignorant-of-r" class="section level3" number="1.1.2">
-<h3><span class="header-section-number">1.1.2</span> Naïve Approach (ignorant of R)</h3>
-<p>The goal of this code example is to compute the real personal consumption expenditures, assuming that <code>pce</code> in the <code>economics</code> data set provides the nominal personal consumption expenditures. Thus, we divide each value in the vector <code>pce</code> by a deflator <code>1.05</code>.</p>
-<p>The first approach we take is based on a simple <code>for</code>-loop. In each iteration one element in <code>pce</code> is divided by the <code>deflator</code> and the resulting value is stored as a new element in the vector <code>pce_real</code>.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="introduction.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Naïve approach (ignorant of R)</span></span>
-<span id="cb5-2"><a href="introduction.html#cb5-2" aria-hidden="true" tabindex="-1"></a>deflator <span class="ot">&lt;-</span> <span class="fl">1.05</span> <span class="co"># define deflator</span></span>
-<span id="cb5-3"><a href="introduction.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># iterate through each observation</span></span>
-<span id="cb5-4"><a href="introduction.html#cb5-4" aria-hidden="true" tabindex="-1"></a>pce_real <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
-<span id="cb5-5"><a href="introduction.html#cb5-5" aria-hidden="true" tabindex="-1"></a>n_obs <span class="ot">&lt;-</span> <span class="fu">length</span>(economics<span class="sc">$</span>pce)</span>
-<span id="cb5-6"><a href="introduction.html#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_obs) {</span>
-<span id="cb5-7"><a href="introduction.html#cb5-7" aria-hidden="true" tabindex="-1"></a>  pce_real <span class="ot">&lt;-</span> <span class="fu">c</span>(pce_real, economics<span class="sc">$</span>pce[i]<span class="sc">/</span>deflator)</span>
-<span id="cb5-8"><a href="introduction.html#cb5-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb5-9"><a href="introduction.html#cb5-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-10"><a href="introduction.html#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co"># look at the result</span></span>
-<span id="cb5-11"><a href="introduction.html#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pce_real, <span class="dv">2</span>)</span></code></pre></div>
-<pre><code>## [1] 483.2 486.2</code></pre>
-<p>How long does it take?</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="introduction.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Naïve approach (ignorant of R)</span></span>
-<span id="cb7-2"><a href="introduction.html#cb7-2" aria-hidden="true" tabindex="-1"></a>deflator <span class="ot">&lt;-</span> <span class="fl">1.05</span> <span class="co"># define deflator</span></span>
-<span id="cb7-3"><a href="introduction.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co"># iterate through each observation</span></span>
-<span id="cb7-4"><a href="introduction.html#cb7-4" aria-hidden="true" tabindex="-1"></a>pce_real <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
-<span id="cb7-5"><a href="introduction.html#cb7-5" aria-hidden="true" tabindex="-1"></a>n_obs <span class="ot">&lt;-</span> <span class="fu">length</span>(economics<span class="sc">$</span>pce)</span>
-<span id="cb7-6"><a href="introduction.html#cb7-6" aria-hidden="true" tabindex="-1"></a>time_elapsed <span class="ot">&lt;-</span></span>
-<span id="cb7-7"><a href="introduction.html#cb7-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">system.time</span>(</span>
-<span id="cb7-8"><a href="introduction.html#cb7-8" aria-hidden="true" tabindex="-1"></a>         <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_obs) {</span>
-<span id="cb7-9"><a href="introduction.html#cb7-9" aria-hidden="true" tabindex="-1"></a>              pce_real <span class="ot">&lt;-</span> <span class="fu">c</span>(pce_real, economics<span class="sc">$</span>pce[i]<span class="sc">/</span>deflator)</span>
-<span id="cb7-10"><a href="introduction.html#cb7-10" aria-hidden="true" tabindex="-1"></a>})</span>
-<span id="cb7-11"><a href="introduction.html#cb7-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-12"><a href="introduction.html#cb7-12" aria-hidden="true" tabindex="-1"></a>time_elapsed</span></code></pre></div>
-<pre><code>##    user  system elapsed 
-##   0.070   0.020   0.091</code></pre>
-<p>Assuming a linear time algorithm (<span class="math inline">\(O(n)\)</span>), we need that much time for one additional row of data:</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="introduction.html#cb9-1" aria-hidden="true" tabindex="-1"></a>time_per_row <span class="ot">&lt;-</span> time_elapsed[<span class="dv">3</span>]<span class="sc">/</span>n_obs</span>
-<span id="cb9-2"><a href="introduction.html#cb9-2" aria-hidden="true" tabindex="-1"></a>time_per_row</span></code></pre></div>
-<pre><code>##   elapsed 
-## 1.982e-05</code></pre>
-<p>If we deal with big data, say 100 million rows, that is</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="introduction.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in seconds</span></span>
-<span id="cb11-2"><a href="introduction.html#cb11-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>) </span></code></pre></div>
-<pre><code>## elapsed 
-##    1982</code></pre>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="introduction.html#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in minutes</span></span>
-<span id="cb13-2"><a href="introduction.html#cb13-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>)<span class="sc">/</span><span class="dv">60</span> </span></code></pre></div>
-<pre><code>## elapsed 
-##   33.03</code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="introduction.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in hours</span></span>
-<span id="cb15-2"><a href="introduction.html#cb15-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>)<span class="sc">/</span><span class="dv">60</span><span class="sc">^</span><span class="dv">2</span> </span></code></pre></div>
-<pre><code>## elapsed 
-##  0.5505</code></pre>
-<p>Can we improve this?</p>
-</div>
-<div id="improvement-1-pre-allocation-of-memory" class="section level3" number="1.1.3">
-<h3><span class="header-section-number">1.1.3</span> Improvement 1: Pre-allocation of memory</h3>
-<p>In the naïve approach taken above, each iteration of the loop causes R to re-allocate memory because the number of elements in vector <code>pce_element</code> is changing. In simple terms, this means that R needs to execute more steps in each iteration. We can improve this with a simple trick by initiating the vector in the right size to begin with (filled with <code>NA</code> values).</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="introduction.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Improve memory allocation (still somewhat ignorant of R)</span></span>
-<span id="cb17-2"><a href="introduction.html#cb17-2" aria-hidden="true" tabindex="-1"></a>deflator <span class="ot">&lt;-</span> <span class="fl">1.05</span> <span class="co"># define deflator</span></span>
-<span id="cb17-3"><a href="introduction.html#cb17-3" aria-hidden="true" tabindex="-1"></a>n_obs <span class="ot">&lt;-</span> <span class="fu">length</span>(economics<span class="sc">$</span>pce)</span>
-<span id="cb17-4"><a href="introduction.html#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="co"># allocate memory beforehand</span></span>
-<span id="cb17-5"><a href="introduction.html#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Initiate the vector in the right size</span></span>
-<span id="cb17-6"><a href="introduction.html#cb17-6" aria-hidden="true" tabindex="-1"></a>pce_real <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, n_obs)</span>
-<span id="cb17-7"><a href="introduction.html#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="co"># iterate through each observation</span></span>
-<span id="cb17-8"><a href="introduction.html#cb17-8" aria-hidden="true" tabindex="-1"></a>time_elapsed <span class="ot">&lt;-</span></span>
-<span id="cb17-9"><a href="introduction.html#cb17-9" aria-hidden="true" tabindex="-1"></a>     <span class="fu">system.time</span>(</span>
-<span id="cb17-10"><a href="introduction.html#cb17-10" aria-hidden="true" tabindex="-1"></a>         <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_obs) {</span>
-<span id="cb17-11"><a href="introduction.html#cb17-11" aria-hidden="true" tabindex="-1"></a>              pce_real[i] <span class="ot">&lt;-</span> economics<span class="sc">$</span>pce[i]<span class="sc">/</span>deflator</span>
-<span id="cb17-12"><a href="introduction.html#cb17-12" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
-<p>Let’s see if this helped to make the code faster.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="introduction.html#cb18-1" aria-hidden="true" tabindex="-1"></a>time_per_row <span class="ot">&lt;-</span> time_elapsed[<span class="dv">3</span>]<span class="sc">/</span>n_obs</span>
-<span id="cb18-2"><a href="introduction.html#cb18-2" aria-hidden="true" tabindex="-1"></a>time_per_row</span></code></pre></div>
-<pre><code>##   elapsed 
-## 1.089e-06</code></pre>
-<p>Again, we can extrapolate (approximately) the computation time, assuming the data set had millions of rows.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="introduction.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in seconds</span></span>
-<span id="cb20-2"><a href="introduction.html#cb20-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>) </span></code></pre></div>
-<pre><code>## elapsed 
-##   108.9</code></pre>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="introduction.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in minutes</span></span>
-<span id="cb22-2"><a href="introduction.html#cb22-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>)<span class="sc">/</span><span class="dv">60</span> </span></code></pre></div>
-<pre><code>## elapsed 
-##   1.815</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="introduction.html#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in hours</span></span>
-<span id="cb24-2"><a href="introduction.html#cb24-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>)<span class="sc">/</span><span class="dv">60</span><span class="sc">^</span><span class="dv">2</span> </span></code></pre></div>
-<pre><code>## elapsed 
-## 0.03025</code></pre>
-<p>This looks much better, but we can do even better.</p>
-</div>
-<div id="improvement-2-exploit-vectorization" class="section level3" number="1.1.4">
-<h3><span class="header-section-number">1.1.4</span> Improvement 2: Exploit vectorization</h3>
-<p>In this approach, we exploit the fact that in R ‘everything is a vector’ and that many of the basic R functions (such as math operators) are <em>vectorized</em>. In simple terms, this means that a vectorized operation is implemented in such a way that it can take advantage of the similarity of each of the vector’s elements. That is, R only has to figure out once how to apply a given function to a vector element in order to apply it to all elements of the vector. In a simple loop, R has to go through the same ‘preparatory’ steps again and again in each iteration, this is time-intensive.</p>
-<p>In this example, we specifically exploit that the division operator <code>/</code> is actually a vectorized function. Thus, the division by our <code>deflator</code> is applied to each element of <code>economics$pce</code>.</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="introduction.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Do it &#39;the R way&#39;</span></span>
-<span id="cb26-2"><a href="introduction.html#cb26-2" aria-hidden="true" tabindex="-1"></a>deflator <span class="ot">&lt;-</span> <span class="fl">1.05</span> <span class="co"># define deflator</span></span>
-<span id="cb26-3"><a href="introduction.html#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Exploit R&#39;s vectorization!</span></span>
-<span id="cb26-4"><a href="introduction.html#cb26-4" aria-hidden="true" tabindex="-1"></a>time_elapsed <span class="ot">&lt;-</span> </span>
-<span id="cb26-5"><a href="introduction.html#cb26-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">system.time</span>(</span>
-<span id="cb26-6"><a href="introduction.html#cb26-6" aria-hidden="true" tabindex="-1"></a>     pce_real <span class="ot">&lt;-</span> economics<span class="sc">$</span>pce<span class="sc">/</span>deflator</span>
-<span id="cb26-7"><a href="introduction.html#cb26-7" aria-hidden="true" tabindex="-1"></a>          )</span>
-<span id="cb26-8"><a href="introduction.html#cb26-8" aria-hidden="true" tabindex="-1"></a><span class="co"># same result</span></span>
-<span id="cb26-9"><a href="introduction.html#cb26-9" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(pce_real, <span class="dv">2</span>)</span></code></pre></div>
-<pre><code>## [1] 483.2 486.2</code></pre>
-<p>Now this is much faster. In fact, <code>system.time()</code> is not precise enough to capture the time elapsed…</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="introduction.html#cb28-1" aria-hidden="true" tabindex="-1"></a>time_per_row <span class="ot">&lt;-</span> time_elapsed[<span class="dv">3</span>]<span class="sc">/</span>n_obs</span>
-<span id="cb28-2"><a href="introduction.html#cb28-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb28-3"><a href="introduction.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># in seconds</span></span>
-<span id="cb28-4"><a href="introduction.html#cb28-4" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>) </span></code></pre></div>
-<pre><code>## elapsed 
-##       0</code></pre>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="introduction.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in minutes</span></span>
-<span id="cb30-2"><a href="introduction.html#cb30-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>)<span class="sc">/</span><span class="dv">60</span> </span></code></pre></div>
-<pre><code>## elapsed 
-##       0</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="introduction.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in hours</span></span>
-<span id="cb32-2"><a href="introduction.html#cb32-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>)<span class="sc">/</span><span class="dv">60</span><span class="sc">^</span><span class="dv">2</span> </span></code></pre></div>
-<pre><code>## elapsed 
-##       0</code></pre>
-<p>In order to measure the improvement, we use <code>microbenchmark::microbenchmark()</code> to measure the elapsed time in microseconds (millionth of a second).</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="introduction.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(microbenchmark)</span>
-<span id="cb34-2"><a href="introduction.html#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="co"># measure elapsed time in microseconds (avg.)</span></span>
-<span id="cb34-3"><a href="introduction.html#cb34-3" aria-hidden="true" tabindex="-1"></a>time_elapsed <span class="ot">&lt;-</span> </span>
-<span id="cb34-4"><a href="introduction.html#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summary</span>(<span class="fu">microbenchmark</span>(pce_real <span class="ot">&lt;-</span> economics<span class="sc">$</span>pce<span class="sc">/</span>deflator))<span class="sc">$</span>mean</span>
-<span id="cb34-5"><a href="introduction.html#cb34-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb34-6"><a href="introduction.html#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="co"># per row (in sec)</span></span>
-<span id="cb34-7"><a href="introduction.html#cb34-7" aria-hidden="true" tabindex="-1"></a>time_per_row <span class="ot">&lt;-</span> (time_elapsed<span class="sc">/</span>n_obs)<span class="sc">/</span><span class="dv">10</span><span class="sc">^</span><span class="dv">6</span></span></code></pre></div>
-<p>Now we get a more precise picture regarding the improvement due to vectorization (again, assuming 100 million rows):</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="introduction.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in seconds</span></span>
-<span id="cb35-2"><a href="introduction.html#cb35-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>) </span></code></pre></div>
-<pre><code>## [1] 0.3258</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="introduction.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in minutes</span></span>
-<span id="cb37-2"><a href="introduction.html#cb37-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>)<span class="sc">/</span><span class="dv">60</span> </span></code></pre></div>
-<pre><code>## [1] 0.00543</code></pre>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="introduction.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in hours</span></span>
-<span id="cb39-2"><a href="introduction.html#cb39-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>)<span class="sc">/</span><span class="dv">60</span><span class="sc">^</span><span class="dv">2</span> </span></code></pre></div>
-<pre><code>## [1] 9.05e-05</code></pre>
-<div id="what-do-we-learn-from-this" class="section level4" number="1.1.4.1">
-<h4><span class="header-section-number">1.1.4.1</span> What do we learn from this?</h4>
+<div id="approaches-to-analyzing-big-data" class="section level2" number="1.2">
+<h2><span class="header-section-number">1.2</span> Approaches to analyzing Big Data</h2>
+<p>Throughout the book, we consider four approaches on how to solve challenges related to analyzing Big Data. Those approaches should not be understood as mutually exclusive categories for Big Data tools, rather they should help us to look at a specific problem from different angles in order to find the most efficient tool/approach to proceed.</p>
 <ol style="list-style-type: decimal">
-<li>How R allocates and deallocates memory can have a substantial effect on computation time.
-<ul>
-<li>(Particularly, if we deal with a large data set!)</li>
-</ul></li>
-<li>In what way the computation is implemented can matter a lot for the time elapsed.
-<ul>
-<li>(For example, loops vs. vectorization/apply)</li>
-</ul></li>
+<li><p><em>Statistics/Econometrics and machine learning</em>: During the initial hype surrounding Big Data/Data Science about a decade ago, statisticians prominently (and justifiably) pointed out that statistics has always been a very useful tool when analyzing “all the data” (the entire population) is too costly.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> In simple terms, when confronted with the challenge of answering an empirical question based on a <em>big N</em> dataset (which is too large to process on a normal computer), one might ask “why not simply take a random sample?” In some situations this might actually be a very reasonable question, and we should be sure to have a good answer for it before we rent a cluster computer with specialized software for distributed computing. Historically, statistical inference has helped us to answer empirical questions in situations where collecting data on the entire population would be practically impossible or simply way too costly. In today’s world, digital data is abundant in many domains and the collection is not so much the problem anymore but our standard data analytics tools are not made to analyze such amounts of data. Depending on the question and data at hand, it might thus make sense to just take a random sample from the large overall data set and use traditional econometrics in order to properly address the empirical question. Note, though, that there are also various situations in which this would not work well. For example, consider online advertising. If you want to figure out which user characteristics make a user significantly more likely to click on a specific type of ad, you likely need hundreds of millions of data points because the expected probability that a specific user clicks on an ad is likely generally very low. That is, in many practical big data analytics settings you might expect rather small effects. Consequently, you need to rely on a big-N dataset in order to get the statistical power to distinguish an actual effect from a zero effect. Even then, it might make sense to first look at newer statistical procedures that are specifically made for big-N data. Similarly, traditional statistical/econometric approaches might help to deal with big-p data, but they are usually rather inefficient or have rather problematic statistical properties in such a situation. But, there are new machine learning approaches to better address these problems. In sum, before focusing on code and hardware resources, make sure to use the adequate statistical tools for a big-data situation. This can save a lot of time and money. Once you have found the most efficient statistical procedure for the problem at hand, you can focus on how to compute it.</p></li>
+<li><p><em>Writing efficient code</em>: no matter how suitable a statistical procedure theoretically is to analyze a large dataset, there are always various ways of how this procedure can be implemented in software. Some ways will be less efficient than others. When working with small or moderately sized datasets you might not even notice whether your R script to run a specific data analytics task is actually written in an efficient way. However, you will notice substantial differences in execution time once you confront your script with a large dataset. Hence the question you would ask yourself when taking this perspective is, “can I write this script in a different way to make it faster (but achieve the same result)?” Before introducing you to specialized R-packages to work with large datasets, we thus look at a few important aspects of how to write efficient/fast code in R.</p></li>
+<li><p><em>Use limited local computing resources more efficiently</em>: there are several strategies to use the available local computing resources (your PC) more efficiently, beyond generally writing more efficient code. In simple terms, these strategies are based on the idea of more explicitly telling the computer how to allocate and use the available hardware resources as part of a data analytics task (something that is usually automatically taken care of by the PC’s operating system). We will touch upon several of these strategies, such as multi-core processing and the efficient use of virtual memory and will look at how to practically implement these strategies with the help of specialized R packages. Unlike writing more efficient R code, these packages/strategies usually come with an overhead. That is, they help you run an analytics script more efficiently only after a certain threshold. In other words, not using these approaches can be faster if the dataset is not “too big.” In addition, there can be trade-offs between using one vs the other hardware component more efficiently. Hence, using these strategies can be tricky and the best approach might well depend on the specific situation. The aim is thus to make you comfortable with answering the question “can I use my local computing environment more efficiently to further speed up this specific analytics task?”</p></li>
+<li><p><em>Scale up and scale out</em>: once you have properly considered all of the above, but the task still cannot be done in a reasonable timeframe, you will need to either <em>scale up</em> or <em>scale out</em> the available computing resources. Scaling up refers to enlarging your machine (e.g., add more random access memory) or using a more powerful machine. While this technically might mean to build an additional hardware-device into your PC, today it usually means renting a virtual server in the cloud for a couple of minutes or hours. Instead of using a “bigger machine,” scaling out means using several machine in concert (cluster computer, distributed systems). While this also was often done locally (connecting several PCs to a cluster of PCs in order to combine all their computing power), today this too is usually done in the cloud (due to the much easier set up and maintenance). Practically, a key difference between scaling out and scaling up is that by-and-large scaling up does not require you to learn additional software, you can simply run the exact same script you tested locally on a larger machine in the cloud. Although most of the tools and services available to scale out your analyses are by now quite easy to use, you will have to get familiar with some additional software components and programming paradigms to really make use of the latter. In addition, in some situations, scaling up might be perfectly sufficient while in others only scaling out makes sense (particularly if you need massive amounts of memory). In any event, you should be compfortable dealing with the question “does it make sense to scale up or scale out?” in a given situation.</p></li>
 </ol>
+</div>
+<div id="content-overview" class="section level2" number="1.3">
+<h2><span class="header-section-number">1.3</span> Content overview</h2>
+<p>The book is organized in three main parts. The first part introduces the reader to the set of software tools primarily used throughout the book: (advanced) R and SQL.
+It then covers the conceptual basics of modern computing environments and discusses how different hardware components matter in practical local Big Data Analytics as well as how virtual servers in the cloud help to scale up and scale out analyses when the local hardware does not have enough computing resources.</p>
+<p>The second part focuses on all the steps in a data pipeline that precede the actual analysis of the data: data storage, data import/ingestion, data cleaning/transformation, and data aggregation. The chapters in this part of the book discuss basic concepts such as the split-apply-combine approach and demonstrate the practical application of these concepts when working with large datasets in R.</p>
+<p>Finally, the third part of this book focuses on explorative visualization of big data (with a particular focus on GIS) and the application of modern econometrics to large datasets (both locally and in the cloud).</p>
+<p>The code examples, illustrations, and tutorials provided throughout the book primarily focus on data analytics contexts in empirical economics as well as business data science/business analytics. However, the basic concepts and tools covered in the book are not domain-specific and could easily be transferred to other fields of modern data analytics/data science.</p>
+</div>
+<div id="prerequisits" class="section level2" number="1.4">
+<h2><span class="header-section-number">1.4</span> Prerequisits</h2>
+<p>This book builds extensively on programming in R. The reader is expected to already be familiar with R and basic programming concepts such as loops, control statements and functions. In addition, the book presupposes some familiarity with undergraduate and basic graduate statistics/econometrics.</p>
 
 </div>
 </div>
-</div>
+<div class="footnotes">
+<hr />
+<ol start="1">
+<li id="fn1"><p>David Donoho has nicely summarized this critique in a paper titled “50 Years of Data Science” (<span class="citation">(<a href="#ref-donoho_2015" role="doc-biblioref"><strong>donoho_2015?</strong></a>)</span>), which I warmly recommend.<a href="introduction.html#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
@@ -486,7 +399,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="computing-resources.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="software-programming-with-big-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>

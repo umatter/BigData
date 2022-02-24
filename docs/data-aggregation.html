@@ -10,21 +10,21 @@
 
   <meta property="og:title" content="Chapter 6 Data Aggregation | Big Data Analytics" />
   <meta property="og:type" content="book" />
-  
-  <meta property="og:image" content="img/cover.png" />
+  <meta property="og:url" content="https://umatter.github.io/BigData" />
+  <meta property="og:image" content="https://umatter.github.io/BigDataimg/cover.png" />
   <meta property="og:description" content="A guide to practical big data analytics in R." />
-  
+  <meta name="github-repo" content="umatter/BigData" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 6 Data Aggregation | Big Data Analytics" />
   
   <meta name="twitter:description" content="A guide to practical big data analytics in R." />
-  <meta name="twitter:image" content="img/cover.png" />
+  <meta name="twitter:image" content="https://umatter.github.io/BigDataimg/cover.png" />
 
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-01-20" />
+<meta name="date" content="2022-01-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -475,14 +475,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb241-10"><a href="data-aggregation.html#cb241-10" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">data =</span> x,</span>
 <span id="cb241-11"><a href="data-aggregation.html#cb241-11" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">FUN =</span> mean,</span>
 <span id="cb241-12"><a href="data-aggregation.html#cb241-12" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">na.rm =</span> <span class="cn">TRUE</span>)})</span></code></pre></div>
-<pre><code>## 2022-01-20 15:51:28, calculating split sizes</code></pre>
-<pre><code>## 2022-01-20 15:51:28, building up split locations</code></pre>
-<pre><code>## 2022-01-20 15:51:29, working on split 1/2, extracting data in RAM of 1 split elements, totalling, 0.0815 GB, while max specified data specified using BATCHBYTES is 0.09313 GB</code></pre>
-<pre><code>## 2022-01-20 15:51:29, ... applying FUN to selected data</code></pre>
-<pre><code>## 2022-01-20 15:51:29, ... appending result to the output ffdf</code></pre>
-<pre><code>## 2022-01-20 15:51:29, working on split 2/2, extracting data in RAM of 3 split elements, totalling, 0.02281 GB, while max specified data specified using BATCHBYTES is 0.09313 GB</code></pre>
-<pre><code>## 2022-01-20 15:51:29, ... applying FUN to selected data</code></pre>
-<pre><code>## 2022-01-20 15:51:29, ... appending result to the output ffdf</code></pre>
+<pre><code>## 2022-01-21 10:43:10, calculating split sizes</code></pre>
+<pre><code>## 2022-01-21 10:43:10, building up split locations</code></pre>
+<pre><code>## 2022-01-21 10:43:11, working on split 1/2, extracting data in RAM of 1 split elements, totalling, 0.0815 GB, while max specified data specified using BATCHBYTES is 0.09313 GB</code></pre>
+<pre><code>## 2022-01-21 10:43:11, ... applying FUN to selected data</code></pre>
+<pre><code>## 2022-01-21 10:43:11, ... appending result to the output ffdf</code></pre>
+<pre><code>## 2022-01-21 10:43:11, working on split 2/2, extracting data in RAM of 3 split elements, totalling, 0.02281 GB, while max specified data specified using BATCHBYTES is 0.09313 GB</code></pre>
+<pre><code>## 2022-01-21 10:43:12, ... applying FUN to selected data</code></pre>
+<pre><code>## 2022-01-21 10:43:12, ... appending result to the output ffdf</code></pre>
 <p>Note how the output describes the procedure step by step. Now we can have a look at the resulting summary statistic in the form of a <code>data.frame()</code>.</p>
 <div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="data-aggregation.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(tip_pcategory)</span></code></pre></div>
 <pre><code>##   payment_type tip_amount.mean
@@ -504,14 +504,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb252-10"><a href="data-aggregation.html#cb252-10" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">data =</span> x,</span>
 <span id="cb252-11"><a href="data-aggregation.html#cb252-11" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">FUN =</span> mean,</span>
 <span id="cb252-12"><a href="data-aggregation.html#cb252-12" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">na.rm =</span> <span class="cn">TRUE</span>)})</span></code></pre></div>
-<pre><code>## 2022-01-20 15:51:29, calculating split sizes</code></pre>
-<pre><code>## 2022-01-20 15:51:29, building up split locations</code></pre>
-<pre><code>## 2022-01-20 15:51:30, working on split 1/2, extracting data in RAM of 1 split elements, totalling, 0.08732 GB, while max specified data specified using BATCHBYTES is 0.09313 GB</code></pre>
-<pre><code>## 2022-01-20 15:51:30, ... applying FUN to selected data</code></pre>
-<pre><code>## 2022-01-20 15:51:30, ... appending result to the output ffdf</code></pre>
-<pre><code>## 2022-01-20 15:51:30, working on split 2/2, extracting data in RAM of 3 split elements, totalling, 0.02444 GB, while max specified data specified using BATCHBYTES is 0.09313 GB</code></pre>
-<pre><code>## 2022-01-20 15:51:30, ... applying FUN to selected data</code></pre>
-<pre><code>## 2022-01-20 15:51:30, ... appending result to the output ffdf</code></pre>
+<pre><code>## 2022-01-21 10:43:12, calculating split sizes</code></pre>
+<pre><code>## 2022-01-21 10:43:12, building up split locations</code></pre>
+<pre><code>## 2022-01-21 10:43:12, working on split 1/2, extracting data in RAM of 1 split elements, totalling, 0.08732 GB, while max specified data specified using BATCHBYTES is 0.09313 GB</code></pre>
+<pre><code>## 2022-01-21 10:43:13, ... applying FUN to selected data</code></pre>
+<pre><code>## 2022-01-21 10:43:13, ... appending result to the output ffdf</code></pre>
+<pre><code>## 2022-01-21 10:43:13, working on split 2/2, extracting data in RAM of 3 split elements, totalling, 0.02444 GB, while max specified data specified using BATCHBYTES is 0.09313 GB</code></pre>
+<pre><code>## 2022-01-21 10:43:13, ... applying FUN to selected data</code></pre>
+<pre><code>## 2022-01-21 10:43:13, ... appending result to the output ffdf</code></pre>
 <div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="data-aggregation.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="co"># show result as data frame</span></span>
 <span id="cb261-2"><a href="data-aggregation.html#cb261-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(tip_pcategory)</span></code></pre></div>
 <pre><code>##   payment_type percent_tip.mean

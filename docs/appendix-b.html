@@ -10,21 +10,21 @@
 
   <meta property="og:title" content="B Appendix B | Big Data Analytics" />
   <meta property="og:type" content="book" />
-  
-  <meta property="og:image" content="img/cover.png" />
+  <meta property="og:url" content="https://umatter.github.io/BigData" />
+  <meta property="og:image" content="https://umatter.github.io/BigDataimg/cover.png" />
   <meta property="og:description" content="A guide to practical big data analytics in R." />
-  
+  <meta name="github-repo" content="umatter/BigData" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="B Appendix B | Big Data Analytics" />
   
   <meta name="twitter:description" content="A guide to practical big data analytics in R." />
-  <meta name="twitter:image" content="img/cover.png" />
+  <meta name="twitter:image" content="https://umatter.github.io/BigDataimg/cover.png" />
 
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-01-20" />
+<meta name="date" content="2022-02-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -51,6 +51,14 @@
 
 
 
+<script src="libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="libs/d3/d3.min.js"></script>
+<link href="libs/profvis/profvis.css" rel="stylesheet" />
+<script src="libs/profvis/profvis.js"></script>
+<script src="libs/profvis/scroll.js"></script>
+<link href="libs/highlight/textmate.css" rel="stylesheet" />
+<script src="libs/highlight/highlight.js"></script>
+<script src="libs/profvis-binding/profvis.js"></script>
 
 
 <style type="text/css">
@@ -137,136 +145,148 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#example-of-computation-time-and-memory-allocation"><i class="fa fa-check"></i><b>1.1</b> Example of Computation Time and Memory Allocation</a>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#what-is-big-in-big-data"><i class="fa fa-check"></i><b>1.1</b> What is <em>big</em> in “Big Data?”</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#approaches-to-analyzing-big-data"><i class="fa fa-check"></i><b>1.2</b> Approaches to analyzing Big Data</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#content-overview"><i class="fa fa-check"></i><b>1.3</b> Content overview</a></li>
+<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#prerequisits"><i class="fa fa-check"></i><b>1.4</b> Prerequisits</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html"><i class="fa fa-check"></i><b>2</b> Software: Programming with (Big) Data</a>
 <ul>
-<li class="chapter" data-level="1.1.1" data-path="introduction.html"><a href="introduction.html#preparation"><i class="fa fa-check"></i><b>1.1.1</b> Preparation</a></li>
-<li class="chapter" data-level="1.1.2" data-path="introduction.html"><a href="introduction.html#naïve-approach-ignorant-of-r"><i class="fa fa-check"></i><b>1.1.2</b> Naïve Approach (ignorant of R)</a></li>
-<li class="chapter" data-level="1.1.3" data-path="introduction.html"><a href="introduction.html#improvement-1-pre-allocation-of-memory"><i class="fa fa-check"></i><b>1.1.3</b> Improvement 1: Pre-allocation of memory</a></li>
-<li class="chapter" data-level="1.1.4" data-path="introduction.html"><a href="introduction.html#improvement-2-exploit-vectorization"><i class="fa fa-check"></i><b>1.1.4</b> Improvement 2: Exploit vectorization</a></li>
+<li class="chapter" data-level="2.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#building-blocks-for-programming-with-big-data"><i class="fa fa-check"></i><b>2.1</b> Building blocks for programming with big data</a></li>
+<li class="chapter" data-level="2.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#measuring-r-performance"><i class="fa fa-check"></i><b>2.2</b> Measuring R performance</a></li>
+<li class="chapter" data-level="2.3" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#writing-efficient-code"><i class="fa fa-check"></i><b>2.3</b> Writing efficient code</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#memory-allocation-and-growing-objects"><i class="fa fa-check"></i><b>2.3.1</b> Memory allocation and growing objects</a></li>
+<li class="chapter" data-level="2.3.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#vectorization-in-basic-r-functions"><i class="fa fa-check"></i><b>2.3.2</b> Vectorization in basic R functions</a></li>
+<li class="chapter" data-level="2.3.3" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#apply-type-functions-and-vectorization"><i class="fa fa-check"></i><b>2.3.3</b> <code>apply</code>-type functions and vectorization</a></li>
+<li class="chapter" data-level="2.3.4" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#avoid-unnecessary-copying"><i class="fa fa-check"></i><b>2.3.4</b> Avoid unnecessary copying</a></li>
+<li class="chapter" data-level="2.3.5" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#releasing-memory"><i class="fa fa-check"></i><b>2.3.5</b> Releasing memory</a></li>
+<li class="chapter" data-level="2.3.6" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#beyond-r"><i class="fa fa-check"></i><b>2.3.6</b> Beyond R</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#sql-basics"><i class="fa fa-check"></i><b>2.4</b> SQL basics</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#first-steps-in-sqlite"><i class="fa fa-check"></i><b>2.4.1</b> First steps in SQL(ite)</a></li>
+<li class="chapter" data-level="2.4.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#joins"><i class="fa fa-check"></i><b>2.4.2</b> Joins</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="computing-resources.html"><a href="computing-resources.html"><i class="fa fa-check"></i><b>2</b> Computing Resources</a>
+<li class="chapter" data-level="3" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html"><i class="fa fa-check"></i><b>3</b> Hardware: Computing Resources</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="computing-resources.html"><a href="computing-resources.html#components-of-a-standard-computing-environment"><i class="fa fa-check"></i><b>2.1</b> Components of a standard computing environment</a></li>
-<li class="chapter" data-level="2.2" data-path="computing-resources.html"><a href="computing-resources.html#units-of-informationdata-storage"><i class="fa fa-check"></i><b>2.2</b> Units of information/data storage</a>
+<li class="chapter" data-level="3.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#components-of-a-standard-computing-environment"><i class="fa fa-check"></i><b>3.1</b> Components of a standard computing environment</a></li>
+<li class="chapter" data-level="3.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#mass-storage-and-memory"><i class="fa fa-check"></i><b>3.2</b> Mass Storage and Memory</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="computing-resources.html"><a href="computing-resources.html#example-in-r-data-types-and-information-storage"><i class="fa fa-check"></i><b>2.2.1</b> Example in R: Data types and information storage</a></li>
+<li class="chapter" data-level="3.2.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#units-of-informationdata-storage"><i class="fa fa-check"></i><b>3.2.1</b> Units of information/data storage</a></li>
+<li class="chapter" data-level="3.2.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#combining-ram-and-hard-disk-virtual-memory"><i class="fa fa-check"></i><b>3.2.2</b> Combining RAM and hard-disk: virtual memory</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="computing-resources.html"><a href="computing-resources.html#big-data-econometrics"><i class="fa fa-check"></i><b>2.3</b> Big Data econometrics</a></li>
-<li class="chapter" data-level="2.4" data-path="computing-resources.html"><a href="computing-resources.html#example-fast-least-squares-regression"><i class="fa fa-check"></i><b>2.4</b> Example: Fast least squares regression</a>
+<li class="chapter" data-level="3.3" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#computation-cpu"><i class="fa fa-check"></i><b>3.3</b> Computation: CPU</a>
 <ul>
-<li class="chapter" data-level="2.4.1" data-path="computing-resources.html"><a href="computing-resources.html#ols-as-a-point-of-reference"><i class="fa fa-check"></i><b>2.4.1</b> OLS as a point of reference</a></li>
-<li class="chapter" data-level="2.4.2" data-path="computing-resources.html"><a href="computing-resources.html#the-uluru-algorithm-as-an-alternative-to-ols"><i class="fa fa-check"></i><b>2.4.2</b> The Uluru algorithm as an alternative to OLS</a></li>
+<li class="chapter" data-level="3.3.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#parallelization"><i class="fa fa-check"></i><b>3.3.1</b> Parallelization</a></li>
+<li class="chapter" data-level="3.3.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#gpus-for-scientific-computing"><i class="fa fa-check"></i><b>3.3.2</b> GPUs for Scientific Computing</a></li>
+<li class="chapter" data-level="3.3.3" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#gpus-in-r"><i class="fa fa-check"></i><b>3.3.3</b> GPUs in R</a></li>
 </ul></li>
+<li class="chapter" data-level="3.4" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#resource-allocation"><i class="fa fa-check"></i><b>3.4</b> Resource allocation</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="resource-allocation.html"><a href="resource-allocation.html"><i class="fa fa-check"></i><b>3</b> Resource allocation</a>
+<li class="chapter" data-level="4" data-path="distributed-systems.html"><a href="distributed-systems.html"><i class="fa fa-check"></i><b>4</b> Distributed Systems</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="resource-allocation.html"><a href="resource-allocation.html#case-study-parallel-processing"><i class="fa fa-check"></i><b>3.1</b> Case study: Parallel processing</a></li>
-<li class="chapter" data-level="3.2" data-path="resource-allocation.html"><a href="resource-allocation.html#case-study-memory-allocation"><i class="fa fa-check"></i><b>3.2</b> Case study: Memory allocation</a></li>
-<li class="chapter" data-level="3.3" data-path="resource-allocation.html"><a href="resource-allocation.html#beyond-memory"><i class="fa fa-check"></i><b>3.3</b> Beyond memory</a></li>
+<li class="chapter" data-level="4.1" data-path="distributed-systems.html"><a href="distributed-systems.html#mapreduce"><i class="fa fa-check"></i><b>4.1</b> MapReduce</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="distributed-systems.html"><a href="distributed-systems.html#mapreduce-concept-illustrated-in-r"><i class="fa fa-check"></i><b>4.1.1</b> Map/Reduce Concept Illustrated in R</a></li>
+<li class="chapter" data-level="4.1.2" data-path="distributed-systems.html"><a href="distributed-systems.html#mapper"><i class="fa fa-check"></i><b>4.1.2</b> Mapper</a></li>
+<li class="chapter" data-level="4.1.3" data-path="distributed-systems.html"><a href="distributed-systems.html#reducer"><i class="fa fa-check"></i><b>4.1.3</b> Reducer</a></li>
+<li class="chapter" data-level="4.1.4" data-path="distributed-systems.html"><a href="distributed-systems.html#simpler-example-compute-the-total-number-of-words"><i class="fa fa-check"></i><b>4.1.4</b> Simpler example: Compute the total number of words</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html"><i class="fa fa-check"></i><b>4</b> Advanced R Programming</a>
+<li class="chapter" data-level="4.2" data-path="distributed-systems.html"><a href="distributed-systems.html#hadoop"><i class="fa fa-check"></i><b>4.2</b> Hadoop</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#r-tools-to-investigate-performanceresource-allocation"><i class="fa fa-check"></i><b>4.1</b> R-tools to investigate performance/resource allocation</a></li>
-<li class="chapter" data-level="4.2" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#r-tools-to-investigate-structures-and-types"><i class="fa fa-check"></i><b>4.2</b> R-tools to investigate structures and types</a></li>
-<li class="chapter" data-level="4.3" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#data-types-and-memorystorage"><i class="fa fa-check"></i><b>4.3</b> Data types and memory/storage</a></li>
-<li class="chapter" data-level="4.4" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#data-structures"><i class="fa fa-check"></i><b>4.4</b> Data structures</a>
-<ul>
-<li class="chapter" data-level="4.4.1" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#vectors-vs-factors-in-r"><i class="fa fa-check"></i><b>4.4.1</b> Vectors vs Factors in R</a></li>
-<li class="chapter" data-level="4.4.2" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#matricesarrays"><i class="fa fa-check"></i><b>4.4.2</b> Matrices/Arrays</a></li>
-<li class="chapter" data-level="4.4.3" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#data-frames-tibbles-and-data-tables"><i class="fa fa-check"></i><b>4.4.3</b> Data frames, tibbles, and data tables</a></li>
-<li class="chapter" data-level="4.4.4" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#lists"><i class="fa fa-check"></i><b>4.4.4</b> Lists</a></li>
-</ul></li>
-<li class="chapter" data-level="4.5" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#programming-with-big-data-in-r"><i class="fa fa-check"></i><b>4.5</b> Programming with (Big) Data in R</a>
-<ul>
-<li class="chapter" data-level="4.5.1" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#typical-programming-tasks"><i class="fa fa-check"></i><b>4.5.1</b> Typical Programming Tasks</a></li>
-<li class="chapter" data-level="4.5.2" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#building-blocks-for-programming-with-big-data"><i class="fa fa-check"></i><b>4.5.2</b> Building blocks for programming with big data</a></li>
-<li class="chapter" data-level="4.5.3" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#writing-efficient-code"><i class="fa fa-check"></i><b>4.5.3</b> Writing efficient code</a></li>
-<li class="chapter" data-level="4.5.4" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#r-beyond-r"><i class="fa fa-check"></i><b>4.5.4</b> R, beyond R</a></li>
+<li class="chapter" data-level="4.2.1" data-path="distributed-systems.html"><a href="distributed-systems.html#hadoop-word-count"><i class="fa fa-check"></i><b>4.2.1</b> Hadoop Word Count</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html"><i class="fa fa-check"></i><b>5</b> Big Data Cleaning and Transformation</a>
+<li class="chapter" data-level="5" data-path="cloud-computing.html"><a href="cloud-computing.html"><i class="fa fa-check"></i><b>5</b> Cloud Computing</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#out-of-memory-strategies"><i class="fa fa-check"></i><b>5.1</b> ‘Out-of-memory’ strategies</a>
+<li class="chapter" data-level="5.1" data-path="cloud-computing.html"><a href="cloud-computing.html#scaling-up-parallel-computing"><i class="fa fa-check"></i><b>5.1</b> Scaling up: parallel computing</a>
 <ul>
-<li class="chapter" data-level="5.1.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#chunking-data-with-the-ff-package"><i class="fa fa-check"></i><b>5.1.1</b> Chunking data with the <code>ff</code>-package</a></li>
-<li class="chapter" data-level="5.1.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#memory-mapping-with-bigmemory"><i class="fa fa-check"></i><b>5.1.2</b> Memory mapping with <code>bigmemory</code></a></li>
-</ul></li>
-<li class="chapter" data-level="5.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#typical-cleaning-tasks"><i class="fa fa-check"></i><b>5.2</b> Typical cleaning tasks</a>
-<ul>
-<li class="chapter" data-level="5.2.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#data-preparation-with-ff"><i class="fa fa-check"></i><b>5.2.1</b> Data Preparation with <code>ff</code></a></li>
+<li class="chapter" data-level="5.1.1" data-path="cloud-computing.html"><a href="cloud-computing.html#setting-up-aws-ec2-with-rrstudio"><i class="fa fa-check"></i><b>5.1.1</b> Setting up AWS EC2 with R/RStudio</a></li>
+<li class="chapter" data-level="5.1.2" data-path="cloud-computing.html"><a href="cloud-computing.html#parallelization-with-an-ec2-instance"><i class="fa fa-check"></i><b>5.1.2</b> Parallelization with an EC2 instance</a></li>
+<li class="chapter" data-level="5.1.3" data-path="cloud-computing.html"><a href="cloud-computing.html#aws-emr-mapreduce-in-the-cloud"><i class="fa fa-check"></i><b>5.1.3</b> AWS EMR: MapReduce in the cloud</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="data-aggregation.html"><a href="data-aggregation.html"><i class="fa fa-check"></i><b>6</b> Data Aggregation</a>
+<li class="chapter" data-level="6" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html"><i class="fa fa-check"></i><b>6</b> Data Storage and Databases</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="data-aggregation.html"><a href="data-aggregation.html#data-aggregation-the-split-apply-combine-strategy"><i class="fa fa-check"></i><b>6.1</b> Data aggregation: The ‘split-apply-combine’ strategy</a></li>
-<li class="chapter" data-level="6.2" data-path="data-aggregation.html"><a href="data-aggregation.html#data-aggregation-tutorial"><i class="fa fa-check"></i><b>6.2</b> Data aggregation tutorial</a>
+<li class="chapter" data-level="6.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#big-data-storage"><i class="fa fa-check"></i><b>6.1</b> (Big) Data Storage</a></li>
+<li class="chapter" data-level="6.2" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#rdbms-basics"><i class="fa fa-check"></i><b>6.2</b> RDBMS basics</a></li>
+<li class="chapter" data-level="6.3" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#row-based-vs-column-based-databases"><i class="fa fa-check"></i><b>6.3</b> Row-based vs column-based databases</a></li>
+<li class="chapter" data-level="6.4" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#getting-started-with-rsqlite"><i class="fa fa-check"></i><b>6.4</b> Getting started with RSQLite</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="data-aggregation.html"><a href="data-aggregation.html#gathering-and-compilation-of-all-the-raw-data"><i class="fa fa-check"></i><b>6.2.1</b> Gathering and Compilation of all the raw data</a></li>
-<li class="chapter" data-level="6.2.2" data-path="data-aggregation.html"><a href="data-aggregation.html#data-aggregation-with-chunked-data-files"><i class="fa fa-check"></i><b>6.2.2</b> Data aggregation with chunked data files</a></li>
-<li class="chapter" data-level="6.2.3" data-path="data-aggregation.html"><a href="data-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>6.2.3</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
+<li class="chapter" data-level="6.4.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#warm-up-in-sqlite-indices-and-joins"><i class="fa fa-check"></i><b>6.4.1</b> Warm up in SQLite: indices and joins</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#sqlite-from-within-r"><i class="fa fa-check"></i><b>6.5</b> SQLite from within R</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#creating-a-new-database-with-rsqlite"><i class="fa fa-check"></i><b>6.5.1</b> Creating a new database with <code>RSQLite</code></a></li>
+<li class="chapter" data-level="6.5.2" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#importing-data"><i class="fa fa-check"></i><b>6.5.2</b> Importing data</a></li>
+<li class="chapter" data-level="6.5.3" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#issue-queries"><i class="fa fa-check"></i><b>6.5.3</b> Issue queries</a></li>
+<li class="chapter" data-level="6.5.4" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#mass-storage-mariadb-on-an-ec2-instance"><i class="fa fa-check"></i><b>6.5.4</b> Mass Storage: MariaDB on an EC2 instance</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html"><i class="fa fa-check"></i><b>7</b> Data Storage and Databases</a>
+<li class="chapter" data-level="7" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html"><i class="fa fa-check"></i><b>7</b> Big Data Cleaning and Transformation</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#big-data-storage"><i class="fa fa-check"></i><b>7.1</b> (Big) Data Storage</a></li>
-<li class="chapter" data-level="7.2" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#rdbms-basics"><i class="fa fa-check"></i><b>7.2</b> RDBMS basics</a></li>
-<li class="chapter" data-level="7.3" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#getting-started-with-rsqlite"><i class="fa fa-check"></i><b>7.3</b> Getting started with (R)SQLite</a>
+<li class="chapter" data-level="7.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#out-of-memory-strategies"><i class="fa fa-check"></i><b>7.1</b> ‘Out-of-memory’ strategies</a>
 <ul>
-<li class="chapter" data-level="7.3.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#first-steps-in-sqlite"><i class="fa fa-check"></i><b>7.3.1</b> First steps in SQLite</a></li>
-<li class="chapter" data-level="7.3.2" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#indices-and-joins"><i class="fa fa-check"></i><b>7.3.2</b> Indices and joins</a></li>
+<li class="chapter" data-level="7.1.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#chunking-data-with-the-ff-package"><i class="fa fa-check"></i><b>7.1.1</b> Chunking data with the <code>ff</code>-package</a></li>
+<li class="chapter" data-level="7.1.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#memory-mapping-with-bigmemory"><i class="fa fa-check"></i><b>7.1.2</b> Memory mapping with <code>bigmemory</code></a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#sqlite-from-within-r"><i class="fa fa-check"></i><b>7.4</b> SQLite from within R</a>
+<li class="chapter" data-level="7.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#typical-cleaning-tasks"><i class="fa fa-check"></i><b>7.2</b> Typical cleaning tasks</a>
 <ul>
-<li class="chapter" data-level="7.4.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#creating-a-new-database-with-rsqlite"><i class="fa fa-check"></i><b>7.4.1</b> Creating a new database with <code>RSQLite</code></a></li>
-<li class="chapter" data-level="7.4.2" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#importing-data"><i class="fa fa-check"></i><b>7.4.2</b> Importing data</a></li>
-<li class="chapter" data-level="7.4.3" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#issue-queries"><i class="fa fa-check"></i><b>7.4.3</b> Issue queries</a></li>
+<li class="chapter" data-level="7.2.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#data-preparation-with-ff"><i class="fa fa-check"></i><b>7.2.1</b> Data Preparation with <code>ff</code></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="big-data-visualization.html"><a href="big-data-visualization.html"><i class="fa fa-check"></i><b>8</b> (Big) Data Visualization</a>
+<li class="chapter" data-level="8" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html"><i class="fa fa-check"></i><b>8</b> Descriptive Statistics and Aggregation</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#data-set"><i class="fa fa-check"></i><b>8.1</b> Data Set</a></li>
-<li class="chapter" data-level="8.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-modify-and-create-themes"><i class="fa fa-check"></i><b>8.2</b> Excursus: modify and create themes</a>
+<li class="chapter" data-level="8.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-the-split-apply-combine-strategy"><i class="fa fa-check"></i><b>8.1</b> Data aggregation: The ‘split-apply-combine’ strategy</a></li>
+<li class="chapter" data-level="8.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-tutorial"><i class="fa fa-check"></i><b>8.2</b> Data aggregation tutorial</a>
 <ul>
-<li class="chapter" data-level="8.2.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#create-your-own-theme-simple-approach"><i class="fa fa-check"></i><b>8.2.1</b> Create your own theme: simple approach</a></li>
-<li class="chapter" data-level="8.2.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#implementing-actual-themes-as-functions."><i class="fa fa-check"></i><b>8.2.2</b> Implementing actual themes as functions.</a></li>
-</ul></li>
-<li class="chapter" data-level="8.3" data-path="big-data-visualization.html"><a href="big-data-visualization.html#visualize-time-and-space"><i class="fa fa-check"></i><b>8.3</b> Visualize Time and Space</a>
-<ul>
-<li class="chapter" data-level="8.3.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#preparations"><i class="fa fa-check"></i><b>8.3.1</b> Preparations</a></li>
-<li class="chapter" data-level="8.3.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#pick-up-and-drop-off-locations"><i class="fa fa-check"></i><b>8.3.2</b> Pick-up and drop-off locations</a></li>
-</ul></li>
-<li class="chapter" data-level="8.4" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-change-color-schemes"><i class="fa fa-check"></i><b>8.4</b> Excursus: change color schemes</a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html"><i class="fa fa-check"></i><b>9</b> Cloud Services for Big Data Analytics</a>
-<ul>
-<li class="chapter" data-level="9.1" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#scaling-up-in-the-cloud"><i class="fa fa-check"></i><b>9.1</b> Scaling up in the Cloud</a>
-<ul>
-<li class="chapter" data-level="9.1.1" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#parallelization-with-an-ec2-instance"><i class="fa fa-check"></i><b>9.1.1</b> Parallelization with an EC2 instance</a></li>
-<li class="chapter" data-level="9.1.2" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#mass-storage-mariadb-on-an-ec2-instance"><i class="fa fa-check"></i><b>9.1.2</b> Mass Storage: MariaDB on an EC2 instance</a></li>
-</ul></li>
-<li class="chapter" data-level="9.2" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#distributed-systemsmapreduce"><i class="fa fa-check"></i><b>9.2</b> Distributed Systems/MapReduce</a>
-<ul>
-<li class="chapter" data-level="9.2.1" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#mapreduce-concept-illustration-in-r"><i class="fa fa-check"></i><b>9.2.1</b> Map/Reduce Concept: Illustration in R</a></li>
-</ul></li>
-<li class="chapter" data-level="9.3" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#hadoop-word-count"><i class="fa fa-check"></i><b>9.3</b> Hadoop Word Count</a>
-<ul>
-<li class="chapter" data-level="9.3.1" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#install-hadoop-on-ubuntupop_os-linux"><i class="fa fa-check"></i><b>9.3.1</b> Install Hadoop (on Ubuntu/Pop!_OS Linux)</a></li>
-<li class="chapter" data-level="9.3.2" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#run-hadoop"><i class="fa fa-check"></i><b>9.3.2</b> Run Hadoop</a></li>
-<li class="chapter" data-level="9.3.3" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#run-example"><i class="fa fa-check"></i><b>9.3.3</b> Run example</a></li>
+<li class="chapter" data-level="8.2.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#gathering-and-compilation-of-all-the-raw-data"><i class="fa fa-check"></i><b>8.2.1</b> Gathering and Compilation of all the raw data</a></li>
+<li class="chapter" data-level="8.2.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-with-chunked-data-files"><i class="fa fa-check"></i><b>8.2.2</b> Data aggregation with chunked data files</a></li>
+<li class="chapter" data-level="8.2.3" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>8.2.3</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html"><i class="fa fa-check"></i><b>10</b> GPUs for Scientific Computing</a>
+<li class="chapter" data-level="9" data-path="big-data-visualization.html"><a href="big-data-visualization.html"><i class="fa fa-check"></i><b>9</b> (Big) Data Visualization</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#gpus-in-r"><i class="fa fa-check"></i><b>10.1</b> GPUs in R</a>
+<li class="chapter" data-level="9.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#data-set"><i class="fa fa-check"></i><b>9.1</b> Data Set</a></li>
+<li class="chapter" data-level="9.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-modify-and-create-themes"><i class="fa fa-check"></i><b>9.2</b> Excursus: modify and create themes</a>
 <ul>
-<li class="chapter" data-level="10.1.1" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#example-i-matrix-multiplication-comparison-gpur"><i class="fa fa-check"></i><b>10.1.1</b> Example I: Matrix multiplication comparison (<code>gpuR</code>)</a></li>
+<li class="chapter" data-level="9.2.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#create-your-own-theme-simple-approach"><i class="fa fa-check"></i><b>9.2.1</b> Create your own theme: simple approach</a></li>
+<li class="chapter" data-level="9.2.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#implementing-actual-themes-as-functions."><i class="fa fa-check"></i><b>9.2.2</b> Implementing actual themes as functions.</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#gpus-and-machine-learning"><i class="fa fa-check"></i><b>10.2</b> GPUs and Machine Learning</a>
+<li class="chapter" data-level="9.3" data-path="big-data-visualization.html"><a href="big-data-visualization.html#visualize-time-and-space"><i class="fa fa-check"></i><b>9.3</b> Visualize Time and Space</a>
 <ul>
-<li class="chapter" data-level="10.2.1" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#tensorflowkeras-example-predict-housing-prices"><i class="fa fa-check"></i><b>10.2.1</b> Tensorflow/Keras example: predict housing prices</a></li>
+<li class="chapter" data-level="9.3.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#preparations"><i class="fa fa-check"></i><b>9.3.1</b> Preparations</a></li>
+<li class="chapter" data-level="9.3.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#pick-up-and-drop-off-locations"><i class="fa fa-check"></i><b>9.3.2</b> Pick-up and drop-off locations</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#a-word-of-caution"><i class="fa fa-check"></i><b>10.3</b> A word of caution</a></li>
+<li class="chapter" data-level="9.4" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-change-color-schemes"><i class="fa fa-check"></i><b>9.4</b> Excursus: change color schemes</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html"><i class="fa fa-check"></i><b>10</b> Bottle Necks in Local Big Data Analytics</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#example-of-computation-time-and-memory-allocation"><i class="fa fa-check"></i><b>10.1</b> Example of Computation Time and Memory Allocation</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#preparation"><i class="fa fa-check"></i><b>10.1.1</b> Preparation</a></li>
+<li class="chapter" data-level="10.1.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#naïve-approach-ignorant-of-r"><i class="fa fa-check"></i><b>10.1.2</b> Naïve Approach (ignorant of R)</a></li>
+<li class="chapter" data-level="10.1.3" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#improvement-1-pre-allocation-of-memory"><i class="fa fa-check"></i><b>10.1.3</b> Improvement 1: Pre-allocation of memory</a></li>
+<li class="chapter" data-level="10.1.4" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#improvement-2-exploit-vectorization"><i class="fa fa-check"></i><b>10.1.4</b> Improvement 2: Exploit vectorization</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#case-study-parallel-processing"><i class="fa fa-check"></i><b>10.2</b> Case study: Parallel processing</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#parallelization-with-an-ec2-instance-1"><i class="fa fa-check"></i><b>10.2.1</b> Parallelization with an EC2 instance</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#case-study-memory-allocation"><i class="fa fa-check"></i><b>10.3</b> Case study: Memory allocation</a></li>
+<li class="chapter" data-level="10.4" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#big-data-econometrics"><i class="fa fa-check"></i><b>10.4</b> Big Data econometrics</a></li>
+<li class="chapter" data-level="10.5" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#example-fast-least-squares-regression"><i class="fa fa-check"></i><b>10.5</b> Example: Fast least squares regression</a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#ols-as-a-point-of-reference"><i class="fa fa-check"></i><b>10.5.1</b> OLS as a point of reference</a></li>
+<li class="chapter" data-level="10.5.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#the-uluru-algorithm-as-an-alternative-to-ols"><i class="fa fa-check"></i><b>10.5.2</b> The Uluru algorithm as an alternative to OLS</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#gpus-and-machine-learning"><i class="fa fa-check"></i><b>10.6</b> GPUs and Machine Learning</a>
+<ul>
+<li class="chapter" data-level="10.6.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#tensorflowkeras-example-predict-housing-prices"><i class="fa fa-check"></i><b>10.6.1</b> Tensorflow/Keras example: predict housing prices</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#a-word-of-caution"><i class="fa fa-check"></i><b>10.7</b> A word of caution</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html"><i class="fa fa-check"></i><b>11</b> Applied Econometrics with Apache Spark</a>
 <ul>
@@ -287,7 +307,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="A.1.3" data-path="appendix-a.html"><a href="appendix-a.html#fork-this-courses-repository"><i class="fa fa-check"></i><b>A.1.3</b> Fork this course’s repository</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="B" data-path="appendix-b.html"><a href="appendix-b.html"><i class="fa fa-check"></i><b>B</b> Appendix B</a></li>
+<li class="chapter" data-level="B" data-path="appendix-b.html"><a href="appendix-b.html"><i class="fa fa-check"></i><b>B</b> Appendix B</a>
+<ul>
+<li class="chapter" data-level="B.0.1" data-path="appendix-b.html"><a href="appendix-b.html#data-types-and-memorystorage"><i class="fa fa-check"></i><b>B.0.1</b> Data types and memory/storage</a></li>
+<li class="chapter" data-level="B.0.2" data-path="appendix-b.html"><a href="appendix-b.html#data-structures"><i class="fa fa-check"></i><b>B.0.2</b> Data structures</a></li>
+<li class="chapter" data-level="B.0.3" data-path="appendix-b.html"><a href="appendix-b.html#vectors-vs-factors-in-r"><i class="fa fa-check"></i><b>B.0.3</b> Vectors vs Factors in R</a></li>
+<li class="chapter" data-level="B.0.4" data-path="appendix-b.html"><a href="appendix-b.html#r-tools-to-investigate-structures-and-types"><i class="fa fa-check"></i><b>B.0.4</b> R-tools to investigate structures and types</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://umatter.github.io" target="blank">umatter.github.io</a></li>
@@ -311,6 +337,211 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="appendix-b" class="section level1" number="13">
 <h1><span class="header-section-number">B</span> Appendix B</h1>
+<div id="data-types-and-memorystorage" class="section level3" number="13.0.1">
+<h3><span class="header-section-number">B.0.1</span> Data types and memory/storage</h3>
+<p>Data loaded into RAM can be interpreted differently by R depending on the data <em>type</em>. Some operators or functions in R only accept data of a specific type as arguments. For example, we can store the numeric values <code>1.5</code> and <code>3</code> in the variables <code>a</code> and <code>b</code>, respectively.</p>
+<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="appendix-b.html#cb469-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fl">1.5</span></span>
+<span id="cb469-2"><a href="appendix-b.html#cb469-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb469-3"><a href="appendix-b.html#cb469-3" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> b</span></code></pre></div>
+<pre><code>## [1] 4.5</code></pre>
+<p>R interprets this data as type <code>double</code> (class ‘numeric’):</p>
+<div class="sourceCode" id="cb471"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb471-1"><a href="appendix-b.html#cb471-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(a)</span></code></pre></div>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="appendix-b.html#cb473-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(a)</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb475"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb475-1"><a href="appendix-b.html#cb475-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(a)</span></code></pre></div>
+<pre><code>## 56 bytes</code></pre>
+<p>If, however, we define <code>a</code> and <code>b</code> as follows, R will interpret the values stored in <code>a</code> and <code>b</code> as text (<code>character</code>).</p>
+<div class="sourceCode" id="cb477"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb477-1"><a href="appendix-b.html#cb477-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="st">&quot;1.5&quot;</span></span>
+<span id="cb477-2"><a href="appendix-b.html#cb477-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="st">&quot;3&quot;</span></span>
+<span id="cb477-3"><a href="appendix-b.html#cb477-3" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> b</span></code></pre></div>
+<div class="sourceCode" id="cb478"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb478-1"><a href="appendix-b.html#cb478-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(a)</span></code></pre></div>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="appendix-b.html#cb480-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(a)</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb482"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb482-1"><a href="appendix-b.html#cb482-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(a)</span></code></pre></div>
+<pre><code>## 56 bytes</code></pre>
+<p>Note that the symbols <code>1.5</code> take up more or less memory depending on the data-type they are stored in. This directly links to how data/information is stored/represented in binary code, which in turn is reflected in how much memory is used to store these symbols in an object as well as what we can do with it.</p>
+<div id="example-in-r-data-types-and-information-storage" class="section level4" number="13.0.1.1">
+<h4><span class="header-section-number">B.0.1.1</span> Example in R: Data types and information storage</h4>
+<p>Given the fact that computers only understand <code>0</code>s and <code>1</code>s, different approaches are taken to map these digital values to other symbols or images (text, decimal numbers, pictures, etc.) that we humans can more easily make sense of. Regarding text and numbers, these mappings involve <em>character encodings</em> (in which combinations of <code>0</code>s and <code>1</code>s represent a character in a specific alphabet) and <em>data types</em>.</p>
+<p>Let’s illustrate the main concepts with the simple numerical example from above. When we see the decimal number <code>139</code> written somewhere, we know that it means ‘one-hundred-and-thirty-nine.’ The fact that our computer is able to print <code>139</code> on the screen means that our computer can somehow map a sequence of <code>0</code>s and <code>1</code>s to the symbols <code>1</code>, <code>3</code>, and <code>9</code>. Depending on what we want to do with the data value <code>139</code> on our computer, there are different ways of how the computer can represent this value internally. Inter alia, we could load it into RAM as a <em>string</em> (‘text’/‘character’) or as an <em>integer</em> (‘natural number’) or <em>double</em> (numeric, floating point number). All of them can be printed on screen but only the latter two can be used for arithmetic computations. This concept can easily be illustrated in R.</p>
+<p>We initiate a new variable with the value <code>139</code>. By using this syntax, R by default initiates the variable as an object of type <code>double</code>. We then can use this variable in arithmetic operations.</p>
+<div class="sourceCode" id="cb484"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb484-1"><a href="appendix-b.html#cb484-1" aria-hidden="true" tabindex="-1"></a>my_number <span class="ot">&lt;-</span> <span class="dv">139</span></span>
+<span id="cb484-2"><a href="appendix-b.html#cb484-2" aria-hidden="true" tabindex="-1"></a><span class="co"># check the class</span></span>
+<span id="cb484-3"><a href="appendix-b.html#cb484-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(my_number)</span></code></pre></div>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="appendix-b.html#cb486-1" aria-hidden="true" tabindex="-1"></a><span class="co"># arithmetic</span></span>
+<span id="cb486-2"><a href="appendix-b.html#cb486-2" aria-hidden="true" tabindex="-1"></a>my_number<span class="sc">*</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 278</code></pre>
+<p>When we change the <em>data type</em> to ‘character’ (string) such operations are not possible.</p>
+<div class="sourceCode" id="cb488"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb488-1"><a href="appendix-b.html#cb488-1" aria-hidden="true" tabindex="-1"></a><span class="co"># change and check type/class</span></span>
+<span id="cb488-2"><a href="appendix-b.html#cb488-2" aria-hidden="true" tabindex="-1"></a>my_number_string <span class="ot">&lt;-</span> <span class="fu">as.character</span>(my_number)</span>
+<span id="cb488-3"><a href="appendix-b.html#cb488-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(my_number_string)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb490"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb490-1"><a href="appendix-b.html#cb490-1" aria-hidden="true" tabindex="-1"></a><span class="co"># try to multiply</span></span>
+<span id="cb490-2"><a href="appendix-b.html#cb490-2" aria-hidden="true" tabindex="-1"></a>my_number_string<span class="sc">*</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## Error in my_number_string * 2: non-numeric argument to binary operator</code></pre>
+<p>If we change the variable to type <code>integer</code>, we can still use math operators.</p>
+<div class="sourceCode" id="cb492"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb492-1"><a href="appendix-b.html#cb492-1" aria-hidden="true" tabindex="-1"></a><span class="co"># change and check type/class</span></span>
+<span id="cb492-2"><a href="appendix-b.html#cb492-2" aria-hidden="true" tabindex="-1"></a>my_number_int <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(my_number)</span>
+<span id="cb492-3"><a href="appendix-b.html#cb492-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(my_number_int)</span></code></pre></div>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb494-1"><a href="appendix-b.html#cb494-1" aria-hidden="true" tabindex="-1"></a><span class="co"># arithmetics</span></span>
+<span id="cb494-2"><a href="appendix-b.html#cb494-2" aria-hidden="true" tabindex="-1"></a>my_number_int<span class="sc">*</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 278</code></pre>
+<p>Having all variables in the right type is relevant for data analytics with all kind of sample sizes. However, given the fact that different data types have to be represented differently internally, different types might take up more or less memory and therefore substantially affect the performance when dealing with massive amounts of data.</p>
+<p>We can illustrate this point with <code>object.size()</code>:</p>
+<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb496-1"><a href="appendix-b.html#cb496-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(<span class="st">&quot;139&quot;</span>)</span></code></pre></div>
+<pre><code>## 112 bytes</code></pre>
+<div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb498-1"><a href="appendix-b.html#cb498-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(<span class="dv">139</span>)</span></code></pre></div>
+<pre><code>## 56 bytes</code></pre>
+</div>
+</div>
+<div id="data-structures" class="section level3" number="13.0.2">
+<h3><span class="header-section-number">B.0.2</span> Data structures</h3>
+<p>For now, we have only looked at individual bytes of data. An entire data set can consist of gigabytes of data and contain both text and numeric values. R provides several classes of objects providing different data structures. Both the choice of data types and data structures to store data in can affect how much memory is needed to contain a dataset in RAM.</p>
+</div>
+<div id="vectors-vs-factors-in-r" class="section level3" number="13.0.3">
+<h3><span class="header-section-number">B.0.3</span> Vectors vs Factors in R</h3>
+<p>Vectors are collections of values of the same type. They can contain either all numeric values or all character values.</p>
+<!-- ```{r numvec, echo=FALSE, out.width = "5%", fig.align='center', fig.cap= "(ref:capnumvec)", purl=FALSE} -->
+<!-- include_graphics("img/02_numvec.png") -->
+<!-- ``` -->
+<!-- (ref:capnumvec) Illustration of a numeric vector (symbolic). Figure by @murrell_2009 (licensed under CC BY-NC-SA 3.0 NZ). -->
+<p>For example, we can initiate a character vector containing information on the home towns of persons participating in a survey.</p>
+<div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb500-1"><a href="appendix-b.html#cb500-1" aria-hidden="true" tabindex="-1"></a>hometown <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;St.Gallen&quot;</span>, <span class="st">&quot;Basel&quot;</span>, <span class="st">&quot;St.Gallen&quot;</span>)</span>
+<span id="cb500-2"><a href="appendix-b.html#cb500-2" aria-hidden="true" tabindex="-1"></a>hometown</span></code></pre></div>
+<pre><code>## [1] &quot;St.Gallen&quot; &quot;Basel&quot;     &quot;St.Gallen&quot;</code></pre>
+<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="appendix-b.html#cb502-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(hometown)</span></code></pre></div>
+<pre><code>## 200 bytes</code></pre>
+<p>Unlike in the data types example above, it would likely be not that practical to store these values as type <code>numeric</code> to save memory. R would not know how to translate these strings into floating point numbers. Alternatively, we could think of a correspondence table that assigns a numeric (id) code to each unique town name in the data set. This way we would save memory but it would mean additional effort to work with the data. Fortunately, basic R already implements exactly this idea in a user-friendly way in a data-structure called <code>factor</code>.</p>
+<p>Factors are sets of categories. Thus, the values come from a fixed set of possible values.</p>
+<!-- ```{r factor, echo=FALSE, out.width = "5%", fig.align='center', fig.cap= "(ref:capfactor)", purl=FALSE} -->
+<!-- include_graphics("img/02_factor.png") -->
+<!-- ``` -->
+<!-- (ref:capfactor) Illustration of a factor (symbolic). Figure by @murrell_2009 (licensed under CC BY-NC-SA 3.0 NZ). -->
+<p>Considering the same example as above, we can store the same information in an object of type class <code>factor</code>.</p>
+<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb504-1"><a href="appendix-b.html#cb504-1" aria-hidden="true" tabindex="-1"></a>hometown_f <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;St.Gallen&quot;</span>, <span class="st">&quot;Basel&quot;</span>, <span class="st">&quot;St.Gallen&quot;</span>))</span>
+<span id="cb504-2"><a href="appendix-b.html#cb504-2" aria-hidden="true" tabindex="-1"></a>hometown_f</span></code></pre></div>
+<pre><code>## [1] St.Gallen Basel     St.Gallen
+## Levels: Basel St.Gallen</code></pre>
+<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb506-1"><a href="appendix-b.html#cb506-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(hometown_f)</span></code></pre></div>
+<pre><code>## 584 bytes</code></pre>
+<p>At first sight, the fact that <code>hometown_f</code> takes up more memory than its character vector sibling seems odd. But, we have encountered this kind of ‘paradox’ before. Again, the more sophisticated approach involves an ‘overhead’ (here not in terms of computing time but in terms of structure encoded in an object). <code>hometown_f</code> has more ‘structure’ (i.e., a mapping of numbers to ‘factor levels’/category labels). This additional structure is also information that needs to be stored somewhere. As in previous examples of this ‘overhead costs,’ this disadvantage is diminishing with larger data sets:</p>
+<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb508-1"><a href="appendix-b.html#cb508-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a large character vector</span></span>
+<span id="cb508-2"><a href="appendix-b.html#cb508-2" aria-hidden="true" tabindex="-1"></a>hometown_large <span class="ot">&lt;-</span> <span class="fu">rep</span>(hometown, <span class="at">times =</span> <span class="dv">1000</span>)</span>
+<span id="cb508-3"><a href="appendix-b.html#cb508-3" aria-hidden="true" tabindex="-1"></a><span class="co"># and the same content as factor</span></span>
+<span id="cb508-4"><a href="appendix-b.html#cb508-4" aria-hidden="true" tabindex="-1"></a>hometown_large_f <span class="ot">&lt;-</span> <span class="fu">factor</span>(hometown_large)</span>
+<span id="cb508-5"><a href="appendix-b.html#cb508-5" aria-hidden="true" tabindex="-1"></a><span class="co"># compare size</span></span>
+<span id="cb508-6"><a href="appendix-b.html#cb508-6" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(hometown_large)</span></code></pre></div>
+<pre><code>## 24168 bytes</code></pre>
+<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb510-1"><a href="appendix-b.html#cb510-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(hometown_large_f)</span></code></pre></div>
+<pre><code>## 12568 bytes</code></pre>
+<div id="matricesarrays" class="section level4" number="13.0.3.1">
+<h4><span class="header-section-number">B.0.3.1</span> Matrices/Arrays</h4>
+<p>Matrices are two-dimensional collections of values, arrays higher-dimensional collections of values, of the same type.</p>
+<!-- ```{r matrix, echo=FALSE, out.width = "10%", fig.align='center', fig.cap= "(ref:capmatrix)", purl=FALSE} -->
+<!-- include_graphics("img/02_matrix.png") -->
+<!-- ``` -->
+<!-- (ref:capmatrix) Illustration of a numeric matrix (symbolic). Figure by @murrell_2009 (licensed under CC BY-NC-SA 3.0 NZ). -->
+<p>For example, we can initiate a three-row/two-column numeric matrix as follows.</p>
+<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb512-1"><a href="appendix-b.html#cb512-1" aria-hidden="true" tabindex="-1"></a>my_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>), <span class="at">nrow =</span> <span class="dv">3</span>)</span>
+<span id="cb512-2"><a href="appendix-b.html#cb512-2" aria-hidden="true" tabindex="-1"></a>my_matrix</span></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]    1    4
+## [2,]    2    5
+## [3,]    3    6</code></pre>
+<p>And a three-dimensional numeric array as follows.</p>
+<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb514-1"><a href="appendix-b.html#cb514-1" aria-hidden="true" tabindex="-1"></a>my_array <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>), <span class="at">dim =</span> <span class="dv">3</span>)</span>
+<span id="cb514-2"><a href="appendix-b.html#cb514-2" aria-hidden="true" tabindex="-1"></a>my_array</span></code></pre></div>
+<pre><code>## [1] 1 2 3</code></pre>
+</div>
+<div id="data-frames-tibbles-and-data-tables" class="section level4" number="13.0.3.2">
+<h4><span class="header-section-number">B.0.3.2</span> Data frames, tibbles, and data tables</h4>
+<p>Recall that data frames are the typical representation of a (table-like) data set in R. Each column can contain a vector of a given data type (or a factor), but all columns need to be of identical length. Thus in the context of data analysis, we would say that each row of a data frame contains an observation, and each column contains a characteristic of this observation.</p>
+<!-- ```{r df, echo=FALSE, out.width = "10%", fig.align='center', fig.cap= "(ref:capdf)", purl=FALSE} -->
+<!-- include_graphics("img/02_df.png") -->
+<!-- ``` -->
+<!-- (ref:capdf) Illustration of a data frame (symbolic). Figure by @murrell_2009 (licensed under CC BY-NC-SA 3.0 NZ). -->
+<p>The historical implementation of data frames in R is not very comfortable to work with large data sets.<a href="#fn37" class="footnote-ref" id="fnref37"><sup>37</sup></a> Several newer implementations of the data-frame concept in R aim to make data processing faster. One is called <code>tibbles</code>, implemented and used in the <code>tidyverse</code> packages. The other is called <code>data table</code>, implemented in the <code>data.table</code>-package. In this course we will focus on the <code>data.table</code>-package.</p>
+<p>Here is how we define a <code>data.table</code> in R:</p>
+<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb516-1"><a href="appendix-b.html#cb516-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load package</span></span>
+<span id="cb516-2"><a href="appendix-b.html#cb516-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb516-3"><a href="appendix-b.html#cb516-3" aria-hidden="true" tabindex="-1"></a><span class="co"># initiate a data.table</span></span>
+<span id="cb516-4"><a href="appendix-b.html#cb516-4" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">data.table</span>(<span class="at">person =</span> <span class="fu">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Ben&quot;</span>),</span>
+<span id="cb516-5"><a href="appendix-b.html#cb516-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">30</span>),</span>
+<span id="cb516-6"><a href="appendix-b.html#cb516-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">gender =</span> <span class="fu">c</span>(<span class="st">&quot;f&quot;</span>, <span class="st">&quot;m&quot;</span>))</span>
+<span id="cb516-7"><a href="appendix-b.html#cb516-7" aria-hidden="true" tabindex="-1"></a>dt</span></code></pre></div>
+<pre><code>##    person age gender
+## 1:  Alice  50      f
+## 2:    Ben  30      m</code></pre>
+</div>
+<div id="lists" class="section level4" number="13.0.3.3">
+<h4><span class="header-section-number">B.0.3.3</span> Lists</h4>
+<p>Similar to data frames and data tables, lists can contain different types of data in each element. For example, a list could contain different other lists, data frames, and vectors with differing numbers of elements.</p>
+<!-- ```{r list, echo=FALSE, out.width = "10%", fig.align='center', fig.cap= "(ref:caplist)", purl=FALSE} -->
+<!-- include_graphics("img/02_list.png") -->
+<!-- ``` -->
+<!-- (ref:caplist) Illustration of a data frame (symbolic). Figure by @murrell_2009 (licensed under CC BY-NC-SA 3.0 NZ). -->
+<p>This flexibility can easily be demonstrated by combining some of the data structures created in the examples above:</p>
+<div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb518-1"><a href="appendix-b.html#cb518-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(my_array, my_matrix, dt)</span>
+<span id="cb518-2"><a href="appendix-b.html#cb518-2" aria-hidden="true" tabindex="-1"></a>my_list</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 1 2 3
+## 
+## [[2]]
+##      [,1] [,2]
+## [1,]    1    4
+## [2,]    2    5
+## [3,]    3    6
+## 
+## [[3]]
+##    person age gender
+## 1:  Alice  50      f
+## 2:    Ben  30      m</code></pre>
+</div>
+</div>
+<div id="r-tools-to-investigate-structures-and-types" class="section level3" number="13.0.4">
+<h3><span class="header-section-number">B.0.4</span> R-tools to investigate structures and types</h3>
+<table>
+<colgroup>
+<col width="12%" />
+<col width="15%" />
+<col width="71%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>package</th>
+<th>function</th>
+<th>purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>utils</code></td>
+<td><code>str()</code></td>
+<td>Compactly display the structure of an arbitrary R object.</td>
+</tr>
+<tr class="even">
+<td><code>base</code></td>
+<td><code>class()</code></td>
+<td>Prints the class(es) of an R object.</td>
+</tr>
+<tr class="odd">
+<td><code>base</code></td>
+<td><code>typeof()</code></td>
+<td>Determines the (R-internal) type or storage mode of an object.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="37">
+<li id="fn37"><p>In the early days of R this was not really an issue because data sets that are rather large by today’s standards (in the Gigabytes) could not have been handled properly by normal computers anyhow (due to a lack of RAM).<a href="appendix-b.html#fnref37" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 

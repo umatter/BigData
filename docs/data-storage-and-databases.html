@@ -4,35 +4,35 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 7 Data Storage and Databases | Big Data Analytics</title>
+  <title>Chapter 6 Data Storage and Databases | Big Data Analytics</title>
   <meta name="description" content="A guide to practical big data analytics in R." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 7 Data Storage and Databases | Big Data Analytics" />
+  <meta property="og:title" content="Chapter 6 Data Storage and Databases | Big Data Analytics" />
   <meta property="og:type" content="book" />
-  
-  <meta property="og:image" content="img/cover.png" />
+  <meta property="og:url" content="https://umatter.github.io/BigData" />
+  <meta property="og:image" content="https://umatter.github.io/BigDataimg/cover.png" />
   <meta property="og:description" content="A guide to practical big data analytics in R." />
-  
+  <meta name="github-repo" content="umatter/BigData" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 7 Data Storage and Databases | Big Data Analytics" />
+  <meta name="twitter:title" content="Chapter 6 Data Storage and Databases | Big Data Analytics" />
   
   <meta name="twitter:description" content="A guide to practical big data analytics in R." />
-  <meta name="twitter:image" content="img/cover.png" />
+  <meta name="twitter:image" content="https://umatter.github.io/BigDataimg/cover.png" />
 
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-01-20" />
+<meta name="date" content="2022-02-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="data-aggregation.html"/>
-<link rel="next" href="big-data-visualization.html"/>
+<link rel="prev" href="cloud-computing.html"/>
+<link rel="next" href="big-data-cleaning-and-transformation.html"/>
 <script src="libs/header-attrs/header-attrs.js"></script>
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
@@ -51,6 +51,14 @@
 
 
 
+<script src="libs/htmlwidgets/htmlwidgets.js"></script>
+<script src="libs/d3/d3.min.js"></script>
+<link href="libs/profvis/profvis.css" rel="stylesheet" />
+<script src="libs/profvis/profvis.js"></script>
+<script src="libs/profvis/scroll.js"></script>
+<link href="libs/highlight/textmate.css" rel="stylesheet" />
+<script src="libs/highlight/highlight.js"></script>
+<script src="libs/profvis-binding/profvis.js"></script>
 
 
 <style type="text/css">
@@ -137,136 +145,148 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
 <li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#example-of-computation-time-and-memory-allocation"><i class="fa fa-check"></i><b>1.1</b> Example of Computation Time and Memory Allocation</a>
+<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#what-is-big-in-big-data"><i class="fa fa-check"></i><b>1.1</b> What is <em>big</em> in “Big Data?”</a></li>
+<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#approaches-to-analyzing-big-data"><i class="fa fa-check"></i><b>1.2</b> Approaches to analyzing Big Data</a></li>
+<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#content-overview"><i class="fa fa-check"></i><b>1.3</b> Content overview</a></li>
+<li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#prerequisits"><i class="fa fa-check"></i><b>1.4</b> Prerequisits</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html"><i class="fa fa-check"></i><b>2</b> Software: Programming with (Big) Data</a>
 <ul>
-<li class="chapter" data-level="1.1.1" data-path="introduction.html"><a href="introduction.html#preparation"><i class="fa fa-check"></i><b>1.1.1</b> Preparation</a></li>
-<li class="chapter" data-level="1.1.2" data-path="introduction.html"><a href="introduction.html#naïve-approach-ignorant-of-r"><i class="fa fa-check"></i><b>1.1.2</b> Naïve Approach (ignorant of R)</a></li>
-<li class="chapter" data-level="1.1.3" data-path="introduction.html"><a href="introduction.html#improvement-1-pre-allocation-of-memory"><i class="fa fa-check"></i><b>1.1.3</b> Improvement 1: Pre-allocation of memory</a></li>
-<li class="chapter" data-level="1.1.4" data-path="introduction.html"><a href="introduction.html#improvement-2-exploit-vectorization"><i class="fa fa-check"></i><b>1.1.4</b> Improvement 2: Exploit vectorization</a></li>
+<li class="chapter" data-level="2.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#building-blocks-for-programming-with-big-data"><i class="fa fa-check"></i><b>2.1</b> Building blocks for programming with big data</a></li>
+<li class="chapter" data-level="2.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#measuring-r-performance"><i class="fa fa-check"></i><b>2.2</b> Measuring R performance</a></li>
+<li class="chapter" data-level="2.3" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#writing-efficient-code"><i class="fa fa-check"></i><b>2.3</b> Writing efficient code</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#memory-allocation-and-growing-objects"><i class="fa fa-check"></i><b>2.3.1</b> Memory allocation and growing objects</a></li>
+<li class="chapter" data-level="2.3.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#vectorization-in-basic-r-functions"><i class="fa fa-check"></i><b>2.3.2</b> Vectorization in basic R functions</a></li>
+<li class="chapter" data-level="2.3.3" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#apply-type-functions-and-vectorization"><i class="fa fa-check"></i><b>2.3.3</b> <code>apply</code>-type functions and vectorization</a></li>
+<li class="chapter" data-level="2.3.4" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#avoid-unnecessary-copying"><i class="fa fa-check"></i><b>2.3.4</b> Avoid unnecessary copying</a></li>
+<li class="chapter" data-level="2.3.5" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#releasing-memory"><i class="fa fa-check"></i><b>2.3.5</b> Releasing memory</a></li>
+<li class="chapter" data-level="2.3.6" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#beyond-r"><i class="fa fa-check"></i><b>2.3.6</b> Beyond R</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#sql-basics"><i class="fa fa-check"></i><b>2.4</b> SQL basics</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#first-steps-in-sqlite"><i class="fa fa-check"></i><b>2.4.1</b> First steps in SQL(ite)</a></li>
+<li class="chapter" data-level="2.4.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#joins"><i class="fa fa-check"></i><b>2.4.2</b> Joins</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="computing-resources.html"><a href="computing-resources.html"><i class="fa fa-check"></i><b>2</b> Computing Resources</a>
+<li class="chapter" data-level="3" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html"><i class="fa fa-check"></i><b>3</b> Hardware: Computing Resources</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="computing-resources.html"><a href="computing-resources.html#components-of-a-standard-computing-environment"><i class="fa fa-check"></i><b>2.1</b> Components of a standard computing environment</a></li>
-<li class="chapter" data-level="2.2" data-path="computing-resources.html"><a href="computing-resources.html#units-of-informationdata-storage"><i class="fa fa-check"></i><b>2.2</b> Units of information/data storage</a>
+<li class="chapter" data-level="3.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#components-of-a-standard-computing-environment"><i class="fa fa-check"></i><b>3.1</b> Components of a standard computing environment</a></li>
+<li class="chapter" data-level="3.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#mass-storage-and-memory"><i class="fa fa-check"></i><b>3.2</b> Mass Storage and Memory</a>
 <ul>
-<li class="chapter" data-level="2.2.1" data-path="computing-resources.html"><a href="computing-resources.html#example-in-r-data-types-and-information-storage"><i class="fa fa-check"></i><b>2.2.1</b> Example in R: Data types and information storage</a></li>
+<li class="chapter" data-level="3.2.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#units-of-informationdata-storage"><i class="fa fa-check"></i><b>3.2.1</b> Units of information/data storage</a></li>
+<li class="chapter" data-level="3.2.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#combining-ram-and-hard-disk-virtual-memory"><i class="fa fa-check"></i><b>3.2.2</b> Combining RAM and hard-disk: virtual memory</a></li>
 </ul></li>
-<li class="chapter" data-level="2.3" data-path="computing-resources.html"><a href="computing-resources.html#big-data-econometrics"><i class="fa fa-check"></i><b>2.3</b> Big Data econometrics</a></li>
-<li class="chapter" data-level="2.4" data-path="computing-resources.html"><a href="computing-resources.html#example-fast-least-squares-regression"><i class="fa fa-check"></i><b>2.4</b> Example: Fast least squares regression</a>
+<li class="chapter" data-level="3.3" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#computation-cpu"><i class="fa fa-check"></i><b>3.3</b> Computation: CPU</a>
 <ul>
-<li class="chapter" data-level="2.4.1" data-path="computing-resources.html"><a href="computing-resources.html#ols-as-a-point-of-reference"><i class="fa fa-check"></i><b>2.4.1</b> OLS as a point of reference</a></li>
-<li class="chapter" data-level="2.4.2" data-path="computing-resources.html"><a href="computing-resources.html#the-uluru-algorithm-as-an-alternative-to-ols"><i class="fa fa-check"></i><b>2.4.2</b> The Uluru algorithm as an alternative to OLS</a></li>
+<li class="chapter" data-level="3.3.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#parallelization"><i class="fa fa-check"></i><b>3.3.1</b> Parallelization</a></li>
+<li class="chapter" data-level="3.3.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#gpus-for-scientific-computing"><i class="fa fa-check"></i><b>3.3.2</b> GPUs for Scientific Computing</a></li>
+<li class="chapter" data-level="3.3.3" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#gpus-in-r"><i class="fa fa-check"></i><b>3.3.3</b> GPUs in R</a></li>
 </ul></li>
+<li class="chapter" data-level="3.4" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#resource-allocation"><i class="fa fa-check"></i><b>3.4</b> Resource allocation</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="resource-allocation.html"><a href="resource-allocation.html"><i class="fa fa-check"></i><b>3</b> Resource allocation</a>
+<li class="chapter" data-level="4" data-path="distributed-systems.html"><a href="distributed-systems.html"><i class="fa fa-check"></i><b>4</b> Distributed Systems</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="resource-allocation.html"><a href="resource-allocation.html#case-study-parallel-processing"><i class="fa fa-check"></i><b>3.1</b> Case study: Parallel processing</a></li>
-<li class="chapter" data-level="3.2" data-path="resource-allocation.html"><a href="resource-allocation.html#case-study-memory-allocation"><i class="fa fa-check"></i><b>3.2</b> Case study: Memory allocation</a></li>
-<li class="chapter" data-level="3.3" data-path="resource-allocation.html"><a href="resource-allocation.html#beyond-memory"><i class="fa fa-check"></i><b>3.3</b> Beyond memory</a></li>
+<li class="chapter" data-level="4.1" data-path="distributed-systems.html"><a href="distributed-systems.html#mapreduce"><i class="fa fa-check"></i><b>4.1</b> MapReduce</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="distributed-systems.html"><a href="distributed-systems.html#mapreduce-concept-illustrated-in-r"><i class="fa fa-check"></i><b>4.1.1</b> Map/Reduce Concept Illustrated in R</a></li>
+<li class="chapter" data-level="4.1.2" data-path="distributed-systems.html"><a href="distributed-systems.html#mapper"><i class="fa fa-check"></i><b>4.1.2</b> Mapper</a></li>
+<li class="chapter" data-level="4.1.3" data-path="distributed-systems.html"><a href="distributed-systems.html#reducer"><i class="fa fa-check"></i><b>4.1.3</b> Reducer</a></li>
+<li class="chapter" data-level="4.1.4" data-path="distributed-systems.html"><a href="distributed-systems.html#simpler-example-compute-the-total-number-of-words"><i class="fa fa-check"></i><b>4.1.4</b> Simpler example: Compute the total number of words</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html"><i class="fa fa-check"></i><b>4</b> Advanced R Programming</a>
+<li class="chapter" data-level="4.2" data-path="distributed-systems.html"><a href="distributed-systems.html#hadoop"><i class="fa fa-check"></i><b>4.2</b> Hadoop</a>
 <ul>
-<li class="chapter" data-level="4.1" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#r-tools-to-investigate-performanceresource-allocation"><i class="fa fa-check"></i><b>4.1</b> R-tools to investigate performance/resource allocation</a></li>
-<li class="chapter" data-level="4.2" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#r-tools-to-investigate-structures-and-types"><i class="fa fa-check"></i><b>4.2</b> R-tools to investigate structures and types</a></li>
-<li class="chapter" data-level="4.3" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#data-types-and-memorystorage"><i class="fa fa-check"></i><b>4.3</b> Data types and memory/storage</a></li>
-<li class="chapter" data-level="4.4" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#data-structures"><i class="fa fa-check"></i><b>4.4</b> Data structures</a>
-<ul>
-<li class="chapter" data-level="4.4.1" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#vectors-vs-factors-in-r"><i class="fa fa-check"></i><b>4.4.1</b> Vectors vs Factors in R</a></li>
-<li class="chapter" data-level="4.4.2" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#matricesarrays"><i class="fa fa-check"></i><b>4.4.2</b> Matrices/Arrays</a></li>
-<li class="chapter" data-level="4.4.3" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#data-frames-tibbles-and-data-tables"><i class="fa fa-check"></i><b>4.4.3</b> Data frames, tibbles, and data tables</a></li>
-<li class="chapter" data-level="4.4.4" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#lists"><i class="fa fa-check"></i><b>4.4.4</b> Lists</a></li>
-</ul></li>
-<li class="chapter" data-level="4.5" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#programming-with-big-data-in-r"><i class="fa fa-check"></i><b>4.5</b> Programming with (Big) Data in R</a>
-<ul>
-<li class="chapter" data-level="4.5.1" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#typical-programming-tasks"><i class="fa fa-check"></i><b>4.5.1</b> Typical Programming Tasks</a></li>
-<li class="chapter" data-level="4.5.2" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#building-blocks-for-programming-with-big-data"><i class="fa fa-check"></i><b>4.5.2</b> Building blocks for programming with big data</a></li>
-<li class="chapter" data-level="4.5.3" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#writing-efficient-code"><i class="fa fa-check"></i><b>4.5.3</b> Writing efficient code</a></li>
-<li class="chapter" data-level="4.5.4" data-path="advanced-r-programming.html"><a href="advanced-r-programming.html#r-beyond-r"><i class="fa fa-check"></i><b>4.5.4</b> R, beyond R</a></li>
+<li class="chapter" data-level="4.2.1" data-path="distributed-systems.html"><a href="distributed-systems.html#hadoop-word-count"><i class="fa fa-check"></i><b>4.2.1</b> Hadoop Word Count</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html"><i class="fa fa-check"></i><b>5</b> Big Data Cleaning and Transformation</a>
+<li class="chapter" data-level="5" data-path="cloud-computing.html"><a href="cloud-computing.html"><i class="fa fa-check"></i><b>5</b> Cloud Computing</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#out-of-memory-strategies"><i class="fa fa-check"></i><b>5.1</b> ‘Out-of-memory’ strategies</a>
+<li class="chapter" data-level="5.1" data-path="cloud-computing.html"><a href="cloud-computing.html#scaling-up-parallel-computing"><i class="fa fa-check"></i><b>5.1</b> Scaling up: parallel computing</a>
 <ul>
-<li class="chapter" data-level="5.1.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#chunking-data-with-the-ff-package"><i class="fa fa-check"></i><b>5.1.1</b> Chunking data with the <code>ff</code>-package</a></li>
-<li class="chapter" data-level="5.1.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#memory-mapping-with-bigmemory"><i class="fa fa-check"></i><b>5.1.2</b> Memory mapping with <code>bigmemory</code></a></li>
-</ul></li>
-<li class="chapter" data-level="5.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#typical-cleaning-tasks"><i class="fa fa-check"></i><b>5.2</b> Typical cleaning tasks</a>
-<ul>
-<li class="chapter" data-level="5.2.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#data-preparation-with-ff"><i class="fa fa-check"></i><b>5.2.1</b> Data Preparation with <code>ff</code></a></li>
+<li class="chapter" data-level="5.1.1" data-path="cloud-computing.html"><a href="cloud-computing.html#setting-up-aws-ec2-with-rrstudio"><i class="fa fa-check"></i><b>5.1.1</b> Setting up AWS EC2 with R/RStudio</a></li>
+<li class="chapter" data-level="5.1.2" data-path="cloud-computing.html"><a href="cloud-computing.html#parallelization-with-an-ec2-instance"><i class="fa fa-check"></i><b>5.1.2</b> Parallelization with an EC2 instance</a></li>
+<li class="chapter" data-level="5.1.3" data-path="cloud-computing.html"><a href="cloud-computing.html#aws-emr-mapreduce-in-the-cloud"><i class="fa fa-check"></i><b>5.1.3</b> AWS EMR: MapReduce in the cloud</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="data-aggregation.html"><a href="data-aggregation.html"><i class="fa fa-check"></i><b>6</b> Data Aggregation</a>
+<li class="chapter" data-level="6" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html"><i class="fa fa-check"></i><b>6</b> Data Storage and Databases</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="data-aggregation.html"><a href="data-aggregation.html#data-aggregation-the-split-apply-combine-strategy"><i class="fa fa-check"></i><b>6.1</b> Data aggregation: The ‘split-apply-combine’ strategy</a></li>
-<li class="chapter" data-level="6.2" data-path="data-aggregation.html"><a href="data-aggregation.html#data-aggregation-tutorial"><i class="fa fa-check"></i><b>6.2</b> Data aggregation tutorial</a>
+<li class="chapter" data-level="6.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#big-data-storage"><i class="fa fa-check"></i><b>6.1</b> (Big) Data Storage</a></li>
+<li class="chapter" data-level="6.2" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#rdbms-basics"><i class="fa fa-check"></i><b>6.2</b> RDBMS basics</a></li>
+<li class="chapter" data-level="6.3" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#row-based-vs-column-based-databases"><i class="fa fa-check"></i><b>6.3</b> Row-based vs column-based databases</a></li>
+<li class="chapter" data-level="6.4" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#getting-started-with-rsqlite"><i class="fa fa-check"></i><b>6.4</b> Getting started with RSQLite</a>
 <ul>
-<li class="chapter" data-level="6.2.1" data-path="data-aggregation.html"><a href="data-aggregation.html#gathering-and-compilation-of-all-the-raw-data"><i class="fa fa-check"></i><b>6.2.1</b> Gathering and Compilation of all the raw data</a></li>
-<li class="chapter" data-level="6.2.2" data-path="data-aggregation.html"><a href="data-aggregation.html#data-aggregation-with-chunked-data-files"><i class="fa fa-check"></i><b>6.2.2</b> Data aggregation with chunked data files</a></li>
-<li class="chapter" data-level="6.2.3" data-path="data-aggregation.html"><a href="data-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>6.2.3</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
+<li class="chapter" data-level="6.4.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#warm-up-in-sqlite-indices-and-joins"><i class="fa fa-check"></i><b>6.4.1</b> Warm up in SQLite: indices and joins</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#sqlite-from-within-r"><i class="fa fa-check"></i><b>6.5</b> SQLite from within R</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#creating-a-new-database-with-rsqlite"><i class="fa fa-check"></i><b>6.5.1</b> Creating a new database with <code>RSQLite</code></a></li>
+<li class="chapter" data-level="6.5.2" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#importing-data"><i class="fa fa-check"></i><b>6.5.2</b> Importing data</a></li>
+<li class="chapter" data-level="6.5.3" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#issue-queries"><i class="fa fa-check"></i><b>6.5.3</b> Issue queries</a></li>
+<li class="chapter" data-level="6.5.4" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#mass-storage-mariadb-on-an-ec2-instance"><i class="fa fa-check"></i><b>6.5.4</b> Mass Storage: MariaDB on an EC2 instance</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html"><i class="fa fa-check"></i><b>7</b> Data Storage and Databases</a>
+<li class="chapter" data-level="7" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html"><i class="fa fa-check"></i><b>7</b> Big Data Cleaning and Transformation</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#big-data-storage"><i class="fa fa-check"></i><b>7.1</b> (Big) Data Storage</a></li>
-<li class="chapter" data-level="7.2" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#rdbms-basics"><i class="fa fa-check"></i><b>7.2</b> RDBMS basics</a></li>
-<li class="chapter" data-level="7.3" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#getting-started-with-rsqlite"><i class="fa fa-check"></i><b>7.3</b> Getting started with (R)SQLite</a>
+<li class="chapter" data-level="7.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#out-of-memory-strategies"><i class="fa fa-check"></i><b>7.1</b> ‘Out-of-memory’ strategies</a>
 <ul>
-<li class="chapter" data-level="7.3.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#first-steps-in-sqlite"><i class="fa fa-check"></i><b>7.3.1</b> First steps in SQLite</a></li>
-<li class="chapter" data-level="7.3.2" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#indices-and-joins"><i class="fa fa-check"></i><b>7.3.2</b> Indices and joins</a></li>
+<li class="chapter" data-level="7.1.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#chunking-data-with-the-ff-package"><i class="fa fa-check"></i><b>7.1.1</b> Chunking data with the <code>ff</code>-package</a></li>
+<li class="chapter" data-level="7.1.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#memory-mapping-with-bigmemory"><i class="fa fa-check"></i><b>7.1.2</b> Memory mapping with <code>bigmemory</code></a></li>
 </ul></li>
-<li class="chapter" data-level="7.4" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#sqlite-from-within-r"><i class="fa fa-check"></i><b>7.4</b> SQLite from within R</a>
+<li class="chapter" data-level="7.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#typical-cleaning-tasks"><i class="fa fa-check"></i><b>7.2</b> Typical cleaning tasks</a>
 <ul>
-<li class="chapter" data-level="7.4.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#creating-a-new-database-with-rsqlite"><i class="fa fa-check"></i><b>7.4.1</b> Creating a new database with <code>RSQLite</code></a></li>
-<li class="chapter" data-level="7.4.2" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#importing-data"><i class="fa fa-check"></i><b>7.4.2</b> Importing data</a></li>
-<li class="chapter" data-level="7.4.3" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#issue-queries"><i class="fa fa-check"></i><b>7.4.3</b> Issue queries</a></li>
+<li class="chapter" data-level="7.2.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#data-preparation-with-ff"><i class="fa fa-check"></i><b>7.2.1</b> Data Preparation with <code>ff</code></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="big-data-visualization.html"><a href="big-data-visualization.html"><i class="fa fa-check"></i><b>8</b> (Big) Data Visualization</a>
+<li class="chapter" data-level="8" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html"><i class="fa fa-check"></i><b>8</b> Descriptive Statistics and Aggregation</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#data-set"><i class="fa fa-check"></i><b>8.1</b> Data Set</a></li>
-<li class="chapter" data-level="8.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-modify-and-create-themes"><i class="fa fa-check"></i><b>8.2</b> Excursus: modify and create themes</a>
+<li class="chapter" data-level="8.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-the-split-apply-combine-strategy"><i class="fa fa-check"></i><b>8.1</b> Data aggregation: The ‘split-apply-combine’ strategy</a></li>
+<li class="chapter" data-level="8.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-tutorial"><i class="fa fa-check"></i><b>8.2</b> Data aggregation tutorial</a>
 <ul>
-<li class="chapter" data-level="8.2.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#create-your-own-theme-simple-approach"><i class="fa fa-check"></i><b>8.2.1</b> Create your own theme: simple approach</a></li>
-<li class="chapter" data-level="8.2.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#implementing-actual-themes-as-functions."><i class="fa fa-check"></i><b>8.2.2</b> Implementing actual themes as functions.</a></li>
-</ul></li>
-<li class="chapter" data-level="8.3" data-path="big-data-visualization.html"><a href="big-data-visualization.html#visualize-time-and-space"><i class="fa fa-check"></i><b>8.3</b> Visualize Time and Space</a>
-<ul>
-<li class="chapter" data-level="8.3.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#preparations"><i class="fa fa-check"></i><b>8.3.1</b> Preparations</a></li>
-<li class="chapter" data-level="8.3.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#pick-up-and-drop-off-locations"><i class="fa fa-check"></i><b>8.3.2</b> Pick-up and drop-off locations</a></li>
-</ul></li>
-<li class="chapter" data-level="8.4" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-change-color-schemes"><i class="fa fa-check"></i><b>8.4</b> Excursus: change color schemes</a></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html"><i class="fa fa-check"></i><b>9</b> Cloud Services for Big Data Analytics</a>
-<ul>
-<li class="chapter" data-level="9.1" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#scaling-up-in-the-cloud"><i class="fa fa-check"></i><b>9.1</b> Scaling up in the Cloud</a>
-<ul>
-<li class="chapter" data-level="9.1.1" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#parallelization-with-an-ec2-instance"><i class="fa fa-check"></i><b>9.1.1</b> Parallelization with an EC2 instance</a></li>
-<li class="chapter" data-level="9.1.2" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#mass-storage-mariadb-on-an-ec2-instance"><i class="fa fa-check"></i><b>9.1.2</b> Mass Storage: MariaDB on an EC2 instance</a></li>
-</ul></li>
-<li class="chapter" data-level="9.2" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#distributed-systemsmapreduce"><i class="fa fa-check"></i><b>9.2</b> Distributed Systems/MapReduce</a>
-<ul>
-<li class="chapter" data-level="9.2.1" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#mapreduce-concept-illustration-in-r"><i class="fa fa-check"></i><b>9.2.1</b> Map/Reduce Concept: Illustration in R</a></li>
-</ul></li>
-<li class="chapter" data-level="9.3" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#hadoop-word-count"><i class="fa fa-check"></i><b>9.3</b> Hadoop Word Count</a>
-<ul>
-<li class="chapter" data-level="9.3.1" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#install-hadoop-on-ubuntupop_os-linux"><i class="fa fa-check"></i><b>9.3.1</b> Install Hadoop (on Ubuntu/Pop!_OS Linux)</a></li>
-<li class="chapter" data-level="9.3.2" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#run-hadoop"><i class="fa fa-check"></i><b>9.3.2</b> Run Hadoop</a></li>
-<li class="chapter" data-level="9.3.3" data-path="cloud-services-for-big-data-analytics.html"><a href="cloud-services-for-big-data-analytics.html#run-example"><i class="fa fa-check"></i><b>9.3.3</b> Run example</a></li>
+<li class="chapter" data-level="8.2.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#gathering-and-compilation-of-all-the-raw-data"><i class="fa fa-check"></i><b>8.2.1</b> Gathering and Compilation of all the raw data</a></li>
+<li class="chapter" data-level="8.2.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-with-chunked-data-files"><i class="fa fa-check"></i><b>8.2.2</b> Data aggregation with chunked data files</a></li>
+<li class="chapter" data-level="8.2.3" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>8.2.3</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html"><i class="fa fa-check"></i><b>10</b> GPUs for Scientific Computing</a>
+<li class="chapter" data-level="9" data-path="big-data-visualization.html"><a href="big-data-visualization.html"><i class="fa fa-check"></i><b>9</b> (Big) Data Visualization</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#gpus-in-r"><i class="fa fa-check"></i><b>10.1</b> GPUs in R</a>
+<li class="chapter" data-level="9.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#data-set"><i class="fa fa-check"></i><b>9.1</b> Data Set</a></li>
+<li class="chapter" data-level="9.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-modify-and-create-themes"><i class="fa fa-check"></i><b>9.2</b> Excursus: modify and create themes</a>
 <ul>
-<li class="chapter" data-level="10.1.1" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#example-i-matrix-multiplication-comparison-gpur"><i class="fa fa-check"></i><b>10.1.1</b> Example I: Matrix multiplication comparison (<code>gpuR</code>)</a></li>
+<li class="chapter" data-level="9.2.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#create-your-own-theme-simple-approach"><i class="fa fa-check"></i><b>9.2.1</b> Create your own theme: simple approach</a></li>
+<li class="chapter" data-level="9.2.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#implementing-actual-themes-as-functions."><i class="fa fa-check"></i><b>9.2.2</b> Implementing actual themes as functions.</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#gpus-and-machine-learning"><i class="fa fa-check"></i><b>10.2</b> GPUs and Machine Learning</a>
+<li class="chapter" data-level="9.3" data-path="big-data-visualization.html"><a href="big-data-visualization.html#visualize-time-and-space"><i class="fa fa-check"></i><b>9.3</b> Visualize Time and Space</a>
 <ul>
-<li class="chapter" data-level="10.2.1" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#tensorflowkeras-example-predict-housing-prices"><i class="fa fa-check"></i><b>10.2.1</b> Tensorflow/Keras example: predict housing prices</a></li>
+<li class="chapter" data-level="9.3.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#preparations"><i class="fa fa-check"></i><b>9.3.1</b> Preparations</a></li>
+<li class="chapter" data-level="9.3.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#pick-up-and-drop-off-locations"><i class="fa fa-check"></i><b>9.3.2</b> Pick-up and drop-off locations</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="gpus-for-scientific-computing.html"><a href="gpus-for-scientific-computing.html#a-word-of-caution"><i class="fa fa-check"></i><b>10.3</b> A word of caution</a></li>
+<li class="chapter" data-level="9.4" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-change-color-schemes"><i class="fa fa-check"></i><b>9.4</b> Excursus: change color schemes</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html"><i class="fa fa-check"></i><b>10</b> Bottle Necks in Local Big Data Analytics</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#example-of-computation-time-and-memory-allocation"><i class="fa fa-check"></i><b>10.1</b> Example of Computation Time and Memory Allocation</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#preparation"><i class="fa fa-check"></i><b>10.1.1</b> Preparation</a></li>
+<li class="chapter" data-level="10.1.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#naïve-approach-ignorant-of-r"><i class="fa fa-check"></i><b>10.1.2</b> Naïve Approach (ignorant of R)</a></li>
+<li class="chapter" data-level="10.1.3" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#improvement-1-pre-allocation-of-memory"><i class="fa fa-check"></i><b>10.1.3</b> Improvement 1: Pre-allocation of memory</a></li>
+<li class="chapter" data-level="10.1.4" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#improvement-2-exploit-vectorization"><i class="fa fa-check"></i><b>10.1.4</b> Improvement 2: Exploit vectorization</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#case-study-parallel-processing"><i class="fa fa-check"></i><b>10.2</b> Case study: Parallel processing</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#parallelization-with-an-ec2-instance-1"><i class="fa fa-check"></i><b>10.2.1</b> Parallelization with an EC2 instance</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#case-study-memory-allocation"><i class="fa fa-check"></i><b>10.3</b> Case study: Memory allocation</a></li>
+<li class="chapter" data-level="10.4" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#big-data-econometrics"><i class="fa fa-check"></i><b>10.4</b> Big Data econometrics</a></li>
+<li class="chapter" data-level="10.5" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#example-fast-least-squares-regression"><i class="fa fa-check"></i><b>10.5</b> Example: Fast least squares regression</a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#ols-as-a-point-of-reference"><i class="fa fa-check"></i><b>10.5.1</b> OLS as a point of reference</a></li>
+<li class="chapter" data-level="10.5.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#the-uluru-algorithm-as-an-alternative-to-ols"><i class="fa fa-check"></i><b>10.5.2</b> The Uluru algorithm as an alternative to OLS</a></li>
+</ul></li>
+<li class="chapter" data-level="10.6" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#gpus-and-machine-learning"><i class="fa fa-check"></i><b>10.6</b> GPUs and Machine Learning</a>
+<ul>
+<li class="chapter" data-level="10.6.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#tensorflowkeras-example-predict-housing-prices"><i class="fa fa-check"></i><b>10.6.1</b> Tensorflow/Keras example: predict housing prices</a></li>
+</ul></li>
+<li class="chapter" data-level="10.7" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#a-word-of-caution"><i class="fa fa-check"></i><b>10.7</b> A word of caution</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html"><i class="fa fa-check"></i><b>11</b> Applied Econometrics with Apache Spark</a>
 <ul>
@@ -287,7 +307,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="A.1.3" data-path="appendix-a.html"><a href="appendix-a.html#fork-this-courses-repository"><i class="fa fa-check"></i><b>A.1.3</b> Fork this course’s repository</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="B" data-path="appendix-b.html"><a href="appendix-b.html"><i class="fa fa-check"></i><b>B</b> Appendix B</a></li>
+<li class="chapter" data-level="B" data-path="appendix-b.html"><a href="appendix-b.html"><i class="fa fa-check"></i><b>B</b> Appendix B</a>
+<ul>
+<li class="chapter" data-level="B.0.1" data-path="appendix-b.html"><a href="appendix-b.html#data-types-and-memorystorage"><i class="fa fa-check"></i><b>B.0.1</b> Data types and memory/storage</a></li>
+<li class="chapter" data-level="B.0.2" data-path="appendix-b.html"><a href="appendix-b.html#data-structures"><i class="fa fa-check"></i><b>B.0.2</b> Data structures</a></li>
+<li class="chapter" data-level="B.0.3" data-path="appendix-b.html"><a href="appendix-b.html#vectors-vs-factors-in-r"><i class="fa fa-check"></i><b>B.0.3</b> Vectors vs Factors in R</a></li>
+<li class="chapter" data-level="B.0.4" data-path="appendix-b.html"><a href="appendix-b.html#r-tools-to-investigate-structures-and-types"><i class="fa fa-check"></i><b>B.0.4</b> R-tools to investigate structures and types</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://umatter.github.io" target="blank">umatter.github.io</a></li>
@@ -309,10 +335,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="data-storage-and-databases" class="section level1" number="7">
-<h1><span class="header-section-number">Chapter 7</span> Data Storage and Databases</h1>
-<div id="big-data-storage" class="section level2" number="7.1">
-<h2><span class="header-section-number">7.1</span> (Big) Data Storage</h2>
+<div id="data-storage-and-databases" class="section level1" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Data Storage and Databases</h1>
+<div id="big-data-storage" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> (Big) Data Storage</h2>
 <p>So far, we have primarily been concerned with situations in which a data set is too large to fit into RAM, making an analysis of these data either impossible or very slow (inefficient) when using standard tools. Thus, we have explored concepts and tools that help us use the available RAM (and virtual memory) most efficiently for data analysis tasks.</p>
 <p>In this lecture, we are concerned with <span class="math inline">\((I)\)</span> how we can store large data sets permanently on a mass storage device in an efficient way (here, efficient can be understood as ‘not taking up too much space’) and <span class="math inline">\((II)\)</span> how we can load (parts of) this data set in an efficient way (here, efficient~fast) for analysis.</p>
 <p>We look at this problem in two situations:</p>
@@ -322,8 +348,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>Various tools have been developed over the last few years to improve the efficiency of storing and accessing large amounts of data (see <span class="citation"><a href="references.html#ref-walkowiak_2016" role="doc-biblioref">Walkowiak</a> (<a href="references.html#ref-walkowiak_2016" role="doc-biblioref">2016</a>)</span>, chapters 5 and 6 for an overview). Here, we focus on the basic concept of Relational Database Systems (RDBMS) and a well-known tool based on this concept, the Structured Query Language (SQL; more specifically, SQLite)</p>
 </div>
-<div id="rdbms-basics" class="section level2" number="7.2">
-<h2><span class="header-section-number">7.2</span> RDBMS basics</h2>
+<div id="rdbms-basics" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> RDBMS basics</h2>
 <p>RDBMSs have two key features that tackle the two efficiency concerns mentioned above:</p>
 <ul>
 <li><p>The <em>relational data model</em>: The overall data set is split by columns (covariates) into tables in order to reduce the storage of redundant variable-value repetitions. The resulting database tables are then linked via key-variables (unique identifiers). Thus (simply put), each type of entity on which observations exist resides in its own database table. Within this table, each observation has it’s unique id. Keeping the data in such a structure is very efficient in terms of storage space used.</p></li>
@@ -331,134 +357,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>The loading/querying of data from an RDBMS typically involves the selection of specific observations (rows) and covariates (columns) from different tables. Due to the indexing, observations are selected efficiently, and the defined relations between tables (via keys) facilitate the joining of columns to a new table (the queried data).</p>
 </div>
-<div id="getting-started-with-rsqlite" class="section level2" number="7.3">
-<h2><span class="header-section-number">7.3</span> Getting started with (R)SQLite</h2>
-<p><a href="https://sqlite.org/index.html">SQLite</a> is a free full-featured SQL database engine and widely used across platforms and is typically pre-installed with Windows and OSX distributions. It is perfect to learn how to use RDBMSs/SQL. The R-package <code>RSQLite</code> embeds SQLite in R. That is, it provides functions that allow us to us SQLite directly from within R.</p>
-<div id="first-steps-in-sqlite" class="section level3" number="7.3.1">
-<h3><span class="header-section-number">7.3.1</span> First steps in SQLite</h3>
-<p>In the terminal, we can directly call SQLite as a command-line tool (on most modern computers this is now <code>sqlite3</code>). In this short example, we set up our first SQLite database, using the command line. In the file structure of the course repository, we first switch to the data directory.</p>
-<div class="sourceCode" id="cb278"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb278-1"><a href="data-storage-and-databases.html#cb278-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> materials/data </span></code></pre></div>
-<p>With one simple command, we both create a new SQLite database called <code>mydb.sqlite</code> and connect/run SQLite.</p>
-<div class="sourceCode" id="cb279"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb279-1"><a href="data-storage-and-databases.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sqlite3</span> mydb.sqlite</span></code></pre></div>
-<p>This created a new file <code>mydb.sqlite</code> in our <code>data</code> directory. And we are now running <code>sqlite</code> in our terminal. But, the database is still empty. There are no tables in it. We can check the tables of a database with the following SQL command <code>.tables</code>.</p>
-<div class="sourceCode" id="cb280"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb280-1"><a href="data-storage-and-databases.html#cb280-1" aria-hidden="true" tabindex="-1"></a>.<span class="kw">tables</span></span></code></pre></div>
-<p>As expected, nothing is returned. Now, let’s create our first table and import the <code>economics.csv</code> data set to it. In SQLite, it makes sense to first set up an empty table in which all column data types are defined before importing data from a CSV-file to it. If a CSV is directly imported to a new table (without type definitions), all columns will be set to <code>TEXT</code> by default.</p>
-<div class="sourceCode" id="cb281"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb281-1"><a href="data-storage-and-databases.html#cb281-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Create the new table</span></span>
-<span id="cb281-2"><a href="data-storage-and-databases.html#cb281-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> econ(</span>
-<span id="cb281-3"><a href="data-storage-and-databases.html#cb281-3" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;date&quot;</span> <span class="dt">DATE</span>,</span>
-<span id="cb281-4"><a href="data-storage-and-databases.html#cb281-4" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;pce&quot;</span> <span class="dt">REAL</span>,</span>
-<span id="cb281-5"><a href="data-storage-and-databases.html#cb281-5" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;pop&quot;</span> <span class="dt">INTEGER</span>,</span>
-<span id="cb281-6"><a href="data-storage-and-databases.html#cb281-6" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;psavert&quot;</span> <span class="dt">REAL</span>,</span>
-<span id="cb281-7"><a href="data-storage-and-databases.html#cb281-7" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;uempmed&quot;</span> <span class="dt">REAL</span>,</span>
-<span id="cb281-8"><a href="data-storage-and-databases.html#cb281-8" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;unemploy&quot;</span> <span class="dt">INTEGER</span></span>
-<span id="cb281-9"><a href="data-storage-and-databases.html#cb281-9" aria-hidden="true" tabindex="-1"></a>);</span>
-<span id="cb281-10"><a href="data-storage-and-databases.html#cb281-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb281-11"><a href="data-storage-and-databases.html#cb281-11" aria-hidden="true" tabindex="-1"></a><span class="co">-- prepare import</span></span>
-<span id="cb281-12"><a href="data-storage-and-databases.html#cb281-12" aria-hidden="true" tabindex="-1"></a>.<span class="kw">mode</span> csv</span>
-<span id="cb281-13"><a href="data-storage-and-databases.html#cb281-13" aria-hidden="true" tabindex="-1"></a><span class="co">-- import data from csv</span></span>
-<span id="cb281-14"><a href="data-storage-and-databases.html#cb281-14" aria-hidden="true" tabindex="-1"></a>.import economics.csv econ</span></code></pre></div>
-<p>Now we can have a look at the new database table in SQLite. <code>.tables</code> shows that we now hove one table called <code>econ</code> in our database and <code>.schema</code> displays the structure of the new <code>econ</code> table.</p>
-<pre purl="FALSE"><code>.tables</code></pre>
-<pre purl="FALSE"><code># econ</code></pre>
-<pre purl="FALSE"><code>.schema econ</code></pre>
-<pre purl="FALSE"><code># CREATE TABLE econ(
-# &quot;date&quot; DATE,
-# &quot;pce&quot; REAL,
-# &quot;pop&quot; INTEGER,
-# &quot;psavert&quot; REAL,
-# &quot;uempmed&quot; REAL,
-# &quot;unemploy&quot; INTEGER
-# );</code></pre>
-<p>With this, we can actually start querying data with SQLite. In order to make the query results easier to read, we first set two options regarding how query results are displayed in the terminal. <code>.header on</code> enables the display of the column names in the returned query results. And <code>.mode columns</code> arranges the query results in columns.</p>
-<div class="sourceCode" id="cb286"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb286-1"><a href="data-storage-and-databases.html#cb286-1" aria-hidden="true" tabindex="-1"></a>.<span class="kw">header</span> <span class="kw">on</span></span></code></pre></div>
-<div class="sourceCode" id="cb287"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb287-1"><a href="data-storage-and-databases.html#cb287-1" aria-hidden="true" tabindex="-1"></a>.<span class="kw">mode</span> <span class="kw">columns</span></span></code></pre></div>
-<p>In our first query, we select all (<code>*</code>) variable values of the observation of January 1968.</p>
-<div class="sourceCode" id="cb288"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb288-1"><a href="data-storage-and-databases.html#cb288-1" aria-hidden="true" tabindex="-1"></a><span class="kw">select</span> <span class="op">*</span> <span class="kw">from</span> econ <span class="kw">where</span> <span class="dt">date</span> <span class="op">=</span> <span class="st">&#39;1968-01-01&#39;</span>;</span></code></pre></div>
-<div class="knitsql-table">
-<table>
-<caption><span id="tab:unnamed-chunk-109">Table 7.1: </span>1 records</caption>
-<thead>
-<tr class="header">
-<th align="left">date</th>
-<th align="right">pce</th>
-<th align="right">pop</th>
-<th align="right">psavert</th>
-<th align="right">uempmed</th>
-<th align="right">unemploy</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">1968-01-01</td>
-<td align="right">531.5</td>
-<td align="right">199808</td>
-<td align="right">11.7</td>
-<td align="right">5.1</td>
-<td align="right">2878</td>
-</tr>
-</tbody>
-</table>
+<div id="row-based-vs-column-based-databases" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> Row-based vs column-based databases</h2>
 </div>
-<p>Now let’s select all year/months in which there were more than 15 million unemployed, ordered by date.</p>
-<div class="sourceCode" id="cb289"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb289-1"><a href="data-storage-and-databases.html#cb289-1" aria-hidden="true" tabindex="-1"></a><span class="kw">select</span> <span class="dt">date</span> <span class="kw">from</span> econ </span>
-<span id="cb289-2"><a href="data-storage-and-databases.html#cb289-2" aria-hidden="true" tabindex="-1"></a><span class="kw">where</span> unemploy <span class="op">&gt;</span> <span class="dv">15000</span></span>
-<span id="cb289-3"><a href="data-storage-and-databases.html#cb289-3" aria-hidden="true" tabindex="-1"></a><span class="kw">order</span> <span class="kw">by</span> <span class="dt">date</span>;</span></code></pre></div>
-<div class="knitsql-table">
-<table>
-<caption><span id="tab:unnamed-chunk-110">Table 7.2: </span>Displaying records 1 - 10</caption>
-<thead>
-<tr class="header">
-<th align="left">date</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">2009-09-01</td>
-</tr>
-<tr class="even">
-<td align="left">2009-10-01</td>
-</tr>
-<tr class="odd">
-<td align="left">2009-11-01</td>
-</tr>
-<tr class="even">
-<td align="left">2009-12-01</td>
-</tr>
-<tr class="odd">
-<td align="left">2010-01-01</td>
-</tr>
-<tr class="even">
-<td align="left">2010-02-01</td>
-</tr>
-<tr class="odd">
-<td align="left">2010-03-01</td>
-</tr>
-<tr class="even">
-<td align="left">2010-04-01</td>
-</tr>
-<tr class="odd">
-<td align="left">2010-11-01</td>
-</tr>
-<tr class="even">
-<td align="left">date</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>When done working with the database, we can exit SQLite with the <code>.quit</code> command.</p>
-</div>
-<div id="indices-and-joins" class="section level3" number="7.3.2">
-<h3><span class="header-section-number">7.3.2</span> Indices and joins</h3>
+<div id="getting-started-with-rsqlite" class="section level2" number="6.4">
+<h2><span class="header-section-number">6.4</span> Getting started with RSQLite</h2>
+<p>The R-package <code>RSQLite</code> embeds SQLite in R. That is, it provides functions that allow us to us SQLite directly from within R.</p>
+<div id="warm-up-in-sqlite-indices-and-joins" class="section level3" number="6.4.1">
+<h3><span class="header-section-number">6.4.1</span> Warm up in SQLite: indices and joins</h3>
 <p>So far we have only had a look at the basic functionality of SQLite. But we have not really looked at the key features of an RDBMS (indexing and relations between tables).</p>
 <p>We set up a new database called <code>air.sqlite</code> and import the csv-file <code>flights.csv</code> (used in previous lectures) as a first table.</p>
-<div class="sourceCode" id="cb290"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb290-1"><a href="data-storage-and-databases.html#cb290-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create database and run sqlite</span></span>
-<span id="cb290-2"><a href="data-storage-and-databases.html#cb290-2" aria-hidden="true" tabindex="-1"></a><span class="ex">sqlite3</span> air.sqlite</span></code></pre></div>
-<div class="sourceCode" id="cb291"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb291-1"><a href="data-storage-and-databases.html#cb291-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- import csvs</span></span>
-<span id="cb291-2"><a href="data-storage-and-databases.html#cb291-2" aria-hidden="true" tabindex="-1"></a>.<span class="kw">mode</span> csv</span>
-<span id="cb291-3"><a href="data-storage-and-databases.html#cb291-3" aria-hidden="true" tabindex="-1"></a>.import flights.csv flights</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb146-1"><a href="data-storage-and-databases.html#cb146-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create database and run sqlite</span></span>
+<span id="cb146-2"><a href="data-storage-and-databases.html#cb146-2" aria-hidden="true" tabindex="-1"></a><span class="ex">sqlite3</span> air.sqlite</span></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb147-1"><a href="data-storage-and-databases.html#cb147-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- import csvs</span></span>
+<span id="cb147-2"><a href="data-storage-and-databases.html#cb147-2" aria-hidden="true" tabindex="-1"></a>.<span class="kw">mode</span> csv</span>
+<span id="cb147-3"><a href="data-storage-and-databases.html#cb147-3" aria-hidden="true" tabindex="-1"></a>.import flights.csv flights</span></code></pre></div>
 <p>Again, we can check if everything worked out well with <code>.tables</code> and <code>.schema</code>.</p>
-<div class="sourceCode" id="cb292"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb292-1"><a href="data-storage-and-databases.html#cb292-1" aria-hidden="true" tabindex="-1"></a>.<span class="kw">tables</span></span>
-<span id="cb292-2"><a href="data-storage-and-databases.html#cb292-2" aria-hidden="true" tabindex="-1"></a>.<span class="kw">schema</span> flights</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb148-1"><a href="data-storage-and-databases.html#cb148-1" aria-hidden="true" tabindex="-1"></a>.<span class="kw">tables</span></span>
+<span id="cb148-2"><a href="data-storage-and-databases.html#cb148-2" aria-hidden="true" tabindex="-1"></a>.<span class="kw">schema</span> flights</span></code></pre></div>
 <p>In <code>flights</code>, each row describes a flight (the day it took place, its origin, its destination etc.). It contains a covariate <code>carrier</code> containing the unique ID of the respective airline/carrier carrying out the flight as well as the covariates <code>origin</code> and <code>dest</code>. The latter two variables contain the unique IATA-codes of the airports from which the flights departed and where they arrived, respectively. In <code>flights</code> we thus have observations at the level of individual flights.</p>
 <p>Now we extend our database in a meaningful way, following the relational data model idea. From the [ASA’s website], we download two additional csv files containing data that relate to the flights table:</p>
 <ul>
@@ -466,31 +382,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="http://stat-computing.org/dataexpo/2009/carriers.csv"><code>carriers.csv</code></a>: A listing of carrier codes with full names (relates to the <code>carrier</code>-column in <code>flights</code>.</li>
 </ul>
 <p>In this code example, the two csvs have already been downloaded to the <code>materials/data</code>-folder.</p>
-<div class="sourceCode" id="cb293"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb293-1"><a href="data-storage-and-databases.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- import airport data</span></span>
-<span id="cb293-2"><a href="data-storage-and-databases.html#cb293-2" aria-hidden="true" tabindex="-1"></a>.<span class="kw">mode</span> csv</span>
-<span id="cb293-3"><a href="data-storage-and-databases.html#cb293-3" aria-hidden="true" tabindex="-1"></a>.import airports.csv airports</span>
-<span id="cb293-4"><a href="data-storage-and-databases.html#cb293-4" aria-hidden="true" tabindex="-1"></a>.import carriers.csv carriers</span>
-<span id="cb293-5"><a href="data-storage-and-databases.html#cb293-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb293-6"><a href="data-storage-and-databases.html#cb293-6" aria-hidden="true" tabindex="-1"></a><span class="co">-- inspect the result</span></span>
-<span id="cb293-7"><a href="data-storage-and-databases.html#cb293-7" aria-hidden="true" tabindex="-1"></a>.<span class="kw">tables</span></span>
-<span id="cb293-8"><a href="data-storage-and-databases.html#cb293-8" aria-hidden="true" tabindex="-1"></a>.<span class="kw">schema</span> airports</span>
-<span id="cb293-9"><a href="data-storage-and-databases.html#cb293-9" aria-hidden="true" tabindex="-1"></a>.<span class="kw">schema</span> carriers</span></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb149-1"><a href="data-storage-and-databases.html#cb149-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- import airport data</span></span>
+<span id="cb149-2"><a href="data-storage-and-databases.html#cb149-2" aria-hidden="true" tabindex="-1"></a>.<span class="kw">mode</span> csv</span>
+<span id="cb149-3"><a href="data-storage-and-databases.html#cb149-3" aria-hidden="true" tabindex="-1"></a>.import airports.csv airports</span>
+<span id="cb149-4"><a href="data-storage-and-databases.html#cb149-4" aria-hidden="true" tabindex="-1"></a>.import carriers.csv carriers</span>
+<span id="cb149-5"><a href="data-storage-and-databases.html#cb149-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb149-6"><a href="data-storage-and-databases.html#cb149-6" aria-hidden="true" tabindex="-1"></a><span class="co">-- inspect the result</span></span>
+<span id="cb149-7"><a href="data-storage-and-databases.html#cb149-7" aria-hidden="true" tabindex="-1"></a>.<span class="kw">tables</span></span>
+<span id="cb149-8"><a href="data-storage-and-databases.html#cb149-8" aria-hidden="true" tabindex="-1"></a>.<span class="kw">schema</span> airports</span>
+<span id="cb149-9"><a href="data-storage-and-databases.html#cb149-9" aria-hidden="true" tabindex="-1"></a>.<span class="kw">schema</span> carriers</span></code></pre></div>
 <p>Now we can run our first query involving the relation between tables. The aim of the exercise is to query flights data (information on departure delays per flight number and date; from the <code>flights</code>-table) for all <code>United Air Lines Inc.</code>-flights (information from the <code>carriers</code> table ) departing from <code>Newark Intl</code> airport (information from the <code>airports</code>-table). In addition, we want the resulting table ordered by flight number. For the sake of the exercise, we only show the first 10 results of this query (<code>LIMIT 10</code>).</p>
-<div class="sourceCode" id="cb294"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb294-1"><a href="data-storage-and-databases.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> </span>
-<span id="cb294-2"><a href="data-storage-and-databases.html#cb294-2" aria-hidden="true" tabindex="-1"></a><span class="dt">year</span>,</span>
-<span id="cb294-3"><a href="data-storage-and-databases.html#cb294-3" aria-hidden="true" tabindex="-1"></a><span class="dt">month</span>, </span>
-<span id="cb294-4"><a href="data-storage-and-databases.html#cb294-4" aria-hidden="true" tabindex="-1"></a><span class="dt">day</span>,</span>
-<span id="cb294-5"><a href="data-storage-and-databases.html#cb294-5" aria-hidden="true" tabindex="-1"></a>dep_delay,</span>
-<span id="cb294-6"><a href="data-storage-and-databases.html#cb294-6" aria-hidden="true" tabindex="-1"></a>flight</span>
-<span id="cb294-7"><a href="data-storage-and-databases.html#cb294-7" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> (flights <span class="kw">INNER</span> <span class="kw">JOIN</span> airports <span class="kw">ON</span> flights.origin<span class="op">=</span>airports.iata) </span>
-<span id="cb294-8"><a href="data-storage-and-databases.html#cb294-8" aria-hidden="true" tabindex="-1"></a><span class="kw">INNER</span> <span class="kw">JOIN</span> carriers <span class="kw">ON</span> flights.carrier <span class="op">=</span> carriers.Code</span>
-<span id="cb294-9"><a href="data-storage-and-databases.html#cb294-9" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> carriers.Description <span class="op">=</span> <span class="st">&#39;United Air Lines Inc.&#39;</span></span>
-<span id="cb294-10"><a href="data-storage-and-databases.html#cb294-10" aria-hidden="true" tabindex="-1"></a><span class="kw">AND</span> airports.airport <span class="op">=</span> <span class="st">&#39;Newark Intl&#39;</span></span>
-<span id="cb294-11"><a href="data-storage-and-databases.html#cb294-11" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> flight</span>
-<span id="cb294-12"><a href="data-storage-and-databases.html#cb294-12" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> <span class="dv">10</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb150-1"><a href="data-storage-and-databases.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> </span>
+<span id="cb150-2"><a href="data-storage-and-databases.html#cb150-2" aria-hidden="true" tabindex="-1"></a><span class="dt">year</span>,</span>
+<span id="cb150-3"><a href="data-storage-and-databases.html#cb150-3" aria-hidden="true" tabindex="-1"></a><span class="dt">month</span>, </span>
+<span id="cb150-4"><a href="data-storage-and-databases.html#cb150-4" aria-hidden="true" tabindex="-1"></a><span class="dt">day</span>,</span>
+<span id="cb150-5"><a href="data-storage-and-databases.html#cb150-5" aria-hidden="true" tabindex="-1"></a>dep_delay,</span>
+<span id="cb150-6"><a href="data-storage-and-databases.html#cb150-6" aria-hidden="true" tabindex="-1"></a>flight</span>
+<span id="cb150-7"><a href="data-storage-and-databases.html#cb150-7" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> (flights <span class="kw">INNER</span> <span class="kw">JOIN</span> airports <span class="kw">ON</span> flights.origin<span class="op">=</span>airports.iata) </span>
+<span id="cb150-8"><a href="data-storage-and-databases.html#cb150-8" aria-hidden="true" tabindex="-1"></a><span class="kw">INNER</span> <span class="kw">JOIN</span> carriers <span class="kw">ON</span> flights.carrier <span class="op">=</span> carriers.Code</span>
+<span id="cb150-9"><a href="data-storage-and-databases.html#cb150-9" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> carriers.Description <span class="op">=</span> <span class="st">&#39;United Air Lines Inc.&#39;</span></span>
+<span id="cb150-10"><a href="data-storage-and-databases.html#cb150-10" aria-hidden="true" tabindex="-1"></a><span class="kw">AND</span> airports.airport <span class="op">=</span> <span class="st">&#39;Newark Intl&#39;</span></span>
+<span id="cb150-11"><a href="data-storage-and-databases.html#cb150-11" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> flight</span>
+<span id="cb150-12"><a href="data-storage-and-databases.html#cb150-12" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> <span class="dv">10</span>;</span></code></pre></div>
 <div class="knitsql-table">
 <table>
-<caption><span id="tab:unnamed-chunk-117">Table 7.3: </span>Displaying records 1 - 10</caption>
+<caption><span id="tab:unnamed-chunk-79">Table 6.1: </span>Displaying records 1 - 10</caption>
 <thead>
 <tr class="header">
 <th align="right">year</th>
@@ -575,26 +491,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 </div>
 <p>Note that this query has been executed without indexing any of the tables first. Thus SQLite could not take any ‘shortcuts’ when matching the ID columns in order to join the tables for the query output. That is, SQLite had to scan the entire columns to find the matches. Now we index the respective id columns and re-run the query</p>
-<div class="sourceCode" id="cb295"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb295-1"><a href="data-storage-and-databases.html#cb295-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">INDEX</span> iata_airports <span class="kw">ON</span> airports (iata);</span>
-<span id="cb295-2"><a href="data-storage-and-databases.html#cb295-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">INDEX</span> origin_flights <span class="kw">ON</span> flights (origin);</span>
-<span id="cb295-3"><a href="data-storage-and-databases.html#cb295-3" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">INDEX</span> carrier_flights <span class="kw">ON</span> flights (carrier);</span>
-<span id="cb295-4"><a href="data-storage-and-databases.html#cb295-4" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">INDEX</span> code_carriers <span class="kw">ON</span> carriers (code);</span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb151-1"><a href="data-storage-and-databases.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">INDEX</span> iata_airports <span class="kw">ON</span> airports (iata);</span>
+<span id="cb151-2"><a href="data-storage-and-databases.html#cb151-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">INDEX</span> origin_flights <span class="kw">ON</span> flights (origin);</span>
+<span id="cb151-3"><a href="data-storage-and-databases.html#cb151-3" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">INDEX</span> carrier_flights <span class="kw">ON</span> flights (carrier);</span>
+<span id="cb151-4"><a href="data-storage-and-databases.html#cb151-4" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">INDEX</span> code_carriers <span class="kw">ON</span> carriers (code);</span></code></pre></div>
 <p>Now we can re-run the query from above. Note that SQLite optimizes the efficiency of the query without our explicit instructions. If there are indices it can use to speed up the query, it will do so.</p>
-<div class="sourceCode" id="cb296"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb296-1"><a href="data-storage-and-databases.html#cb296-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> </span>
-<span id="cb296-2"><a href="data-storage-and-databases.html#cb296-2" aria-hidden="true" tabindex="-1"></a><span class="dt">year</span>,</span>
-<span id="cb296-3"><a href="data-storage-and-databases.html#cb296-3" aria-hidden="true" tabindex="-1"></a><span class="dt">month</span>, </span>
-<span id="cb296-4"><a href="data-storage-and-databases.html#cb296-4" aria-hidden="true" tabindex="-1"></a><span class="dt">day</span>,</span>
-<span id="cb296-5"><a href="data-storage-and-databases.html#cb296-5" aria-hidden="true" tabindex="-1"></a>dep_delay,</span>
-<span id="cb296-6"><a href="data-storage-and-databases.html#cb296-6" aria-hidden="true" tabindex="-1"></a>flight</span>
-<span id="cb296-7"><a href="data-storage-and-databases.html#cb296-7" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> (flights <span class="kw">INNER</span> <span class="kw">JOIN</span> airports <span class="kw">ON</span> flights.origin<span class="op">=</span>airports.iata) </span>
-<span id="cb296-8"><a href="data-storage-and-databases.html#cb296-8" aria-hidden="true" tabindex="-1"></a><span class="kw">INNER</span> <span class="kw">JOIN</span> carriers <span class="kw">ON</span> flights.carrier <span class="op">=</span> carriers.Code</span>
-<span id="cb296-9"><a href="data-storage-and-databases.html#cb296-9" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> carriers.Description <span class="op">=</span> <span class="st">&#39;United Air Lines Inc.&#39;</span></span>
-<span id="cb296-10"><a href="data-storage-and-databases.html#cb296-10" aria-hidden="true" tabindex="-1"></a><span class="kw">AND</span> airports.airport <span class="op">=</span> <span class="st">&#39;Newark Intl&#39;</span></span>
-<span id="cb296-11"><a href="data-storage-and-databases.html#cb296-11" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> flight</span>
-<span id="cb296-12"><a href="data-storage-and-databases.html#cb296-12" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> <span class="dv">10</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb152-1"><a href="data-storage-and-databases.html#cb152-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> </span>
+<span id="cb152-2"><a href="data-storage-and-databases.html#cb152-2" aria-hidden="true" tabindex="-1"></a><span class="dt">year</span>,</span>
+<span id="cb152-3"><a href="data-storage-and-databases.html#cb152-3" aria-hidden="true" tabindex="-1"></a><span class="dt">month</span>, </span>
+<span id="cb152-4"><a href="data-storage-and-databases.html#cb152-4" aria-hidden="true" tabindex="-1"></a><span class="dt">day</span>,</span>
+<span id="cb152-5"><a href="data-storage-and-databases.html#cb152-5" aria-hidden="true" tabindex="-1"></a>dep_delay,</span>
+<span id="cb152-6"><a href="data-storage-and-databases.html#cb152-6" aria-hidden="true" tabindex="-1"></a>flight</span>
+<span id="cb152-7"><a href="data-storage-and-databases.html#cb152-7" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> (flights <span class="kw">INNER</span> <span class="kw">JOIN</span> airports <span class="kw">ON</span> flights.origin<span class="op">=</span>airports.iata) </span>
+<span id="cb152-8"><a href="data-storage-and-databases.html#cb152-8" aria-hidden="true" tabindex="-1"></a><span class="kw">INNER</span> <span class="kw">JOIN</span> carriers <span class="kw">ON</span> flights.carrier <span class="op">=</span> carriers.Code</span>
+<span id="cb152-9"><a href="data-storage-and-databases.html#cb152-9" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> carriers.Description <span class="op">=</span> <span class="st">&#39;United Air Lines Inc.&#39;</span></span>
+<span id="cb152-10"><a href="data-storage-and-databases.html#cb152-10" aria-hidden="true" tabindex="-1"></a><span class="kw">AND</span> airports.airport <span class="op">=</span> <span class="st">&#39;Newark Intl&#39;</span></span>
+<span id="cb152-11"><a href="data-storage-and-databases.html#cb152-11" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> flight</span>
+<span id="cb152-12"><a href="data-storage-and-databases.html#cb152-12" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> <span class="dv">10</span>;</span></code></pre></div>
 <div class="knitsql-table">
 <table>
-<caption><span id="tab:unnamed-chunk-119">Table 7.4: </span>Displaying records 1 - 10</caption>
+<caption><span id="tab:unnamed-chunk-81">Table 6.2: </span>Displaying records 1 - 10</caption>
 <thead>
 <tr class="header">
 <th align="right">year</th>
@@ -681,53 +597,53 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>You find the final <code>air.sqlite</code>, including all the indices and tables as <code>materials/data/air_final.sqlite</code> in the course’s code repository.</p>
 </div>
 </div>
-<div id="sqlite-from-within-r" class="section level2" number="7.4">
-<h2><span class="header-section-number">7.4</span> SQLite from within R</h2>
+<div id="sqlite-from-within-r" class="section level2" number="6.5">
+<h2><span class="header-section-number">6.5</span> SQLite from within R</h2>
 <p>The <code>RSQLite</code>-package provides various R functions to control basically all of SQLite’s functionalities from within R. In the following example, we explore how <code>RSQLite</code> can be used to set up and query the <code>air.sqlite</code> shown in the example above.</p>
-<div id="creating-a-new-database-with-rsqlite" class="section level3" number="7.4.1">
-<h3><span class="header-section-number">7.4.1</span> Creating a new database with <code>RSQLite</code></h3>
+<div id="creating-a-new-database-with-rsqlite" class="section level3" number="6.5.1">
+<h3><span class="header-section-number">6.5.1</span> Creating a new database with <code>RSQLite</code></h3>
 <p>Similarly to the raw SQLite-syntax, connecting to a database that does not exist yet, actually creates this (empty database). Note that for all interactions with the database from within R, we need to refer to the connection (here: <code>con_air</code>).</p>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="data-storage-and-databases.html#cb297-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb297-2"><a href="data-storage-and-databases.html#cb297-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RSQLite)</span>
-<span id="cb297-3"><a href="data-storage-and-databases.html#cb297-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb297-4"><a href="data-storage-and-databases.html#cb297-4" aria-hidden="true" tabindex="-1"></a><span class="co"># initiate the database</span></span>
-<span id="cb297-5"><a href="data-storage-and-databases.html#cb297-5" aria-hidden="true" tabindex="-1"></a>con_air <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(<span class="fu">SQLite</span>(), <span class="st">&quot;data/air.sqlite&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="data-storage-and-databases.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb153-2"><a href="data-storage-and-databases.html#cb153-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RSQLite)</span>
+<span id="cb153-3"><a href="data-storage-and-databases.html#cb153-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb153-4"><a href="data-storage-and-databases.html#cb153-4" aria-hidden="true" tabindex="-1"></a><span class="co"># initiate the database</span></span>
+<span id="cb153-5"><a href="data-storage-and-databases.html#cb153-5" aria-hidden="true" tabindex="-1"></a>con_air <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(<span class="fu">SQLite</span>(), <span class="st">&quot;data/air.sqlite&quot;</span>)</span></code></pre></div>
 </div>
-<div id="importing-data" class="section level3" number="7.4.2">
-<h3><span class="header-section-number">7.4.2</span> Importing data</h3>
+<div id="importing-data" class="section level3" number="6.5.2">
+<h3><span class="header-section-number">6.5.2</span> Importing data</h3>
 <p>With <code>RSQLite</code> we can easily add <code>data.frame</code>s as SQLite tables to the database.</p>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="data-storage-and-databases.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import data into current R sesssion</span></span>
-<span id="cb298-2"><a href="data-storage-and-databases.html#cb298-2" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;data/flights.csv&quot;</span>)</span>
-<span id="cb298-3"><a href="data-storage-and-databases.html#cb298-3" aria-hidden="true" tabindex="-1"></a>airports <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;data/airports.csv&quot;</span>)</span>
-<span id="cb298-4"><a href="data-storage-and-databases.html#cb298-4" aria-hidden="true" tabindex="-1"></a>carriers <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;data/carriers.csv&quot;</span>)</span>
-<span id="cb298-5"><a href="data-storage-and-databases.html#cb298-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb298-6"><a href="data-storage-and-databases.html#cb298-6" aria-hidden="true" tabindex="-1"></a><span class="co"># add tables to database</span></span>
-<span id="cb298-7"><a href="data-storage-and-databases.html#cb298-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con_air, <span class="st">&quot;flights&quot;</span>, flights)</span>
-<span id="cb298-8"><a href="data-storage-and-databases.html#cb298-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con_air, <span class="st">&quot;airports&quot;</span>, airports)</span>
-<span id="cb298-9"><a href="data-storage-and-databases.html#cb298-9" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con_air, <span class="st">&quot;carriers&quot;</span>, carriers)</span></code></pre></div>
+<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="data-storage-and-databases.html#cb154-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import data into current R sesssion</span></span>
+<span id="cb154-2"><a href="data-storage-and-databases.html#cb154-2" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;data/flights.csv&quot;</span>)</span>
+<span id="cb154-3"><a href="data-storage-and-databases.html#cb154-3" aria-hidden="true" tabindex="-1"></a>airports <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;data/airports.csv&quot;</span>)</span>
+<span id="cb154-4"><a href="data-storage-and-databases.html#cb154-4" aria-hidden="true" tabindex="-1"></a>carriers <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;data/carriers.csv&quot;</span>)</span>
+<span id="cb154-5"><a href="data-storage-and-databases.html#cb154-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb154-6"><a href="data-storage-and-databases.html#cb154-6" aria-hidden="true" tabindex="-1"></a><span class="co"># add tables to database</span></span>
+<span id="cb154-7"><a href="data-storage-and-databases.html#cb154-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con_air, <span class="st">&quot;flights&quot;</span>, flights)</span>
+<span id="cb154-8"><a href="data-storage-and-databases.html#cb154-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con_air, <span class="st">&quot;airports&quot;</span>, airports)</span>
+<span id="cb154-9"><a href="data-storage-and-databases.html#cb154-9" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con_air, <span class="st">&quot;carriers&quot;</span>, carriers)</span></code></pre></div>
 </div>
-<div id="issue-queries" class="section level3" number="7.4.3">
-<h3><span class="header-section-number">7.4.3</span> Issue queries</h3>
+<div id="issue-queries" class="section level3" number="6.5.3">
+<h3><span class="header-section-number">6.5.3</span> Issue queries</h3>
 <p>Now we can query the database from within R. By default, <code>RSQLite</code> returns the query results as <code>data.frame</code>s. Queries are simply character strings written in SQLite.</p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="data-storage-and-databases.html#cb299-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define query</span></span>
-<span id="cb299-2"><a href="data-storage-and-databases.html#cb299-2" aria-hidden="true" tabindex="-1"></a>delay_query <span class="ot">&lt;-</span></span>
-<span id="cb299-3"><a href="data-storage-and-databases.html#cb299-3" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;SELECT </span></span>
-<span id="cb299-4"><a href="data-storage-and-databases.html#cb299-4" aria-hidden="true" tabindex="-1"></a><span class="st">year,</span></span>
-<span id="cb299-5"><a href="data-storage-and-databases.html#cb299-5" aria-hidden="true" tabindex="-1"></a><span class="st">month, </span></span>
-<span id="cb299-6"><a href="data-storage-and-databases.html#cb299-6" aria-hidden="true" tabindex="-1"></a><span class="st">day,</span></span>
-<span id="cb299-7"><a href="data-storage-and-databases.html#cb299-7" aria-hidden="true" tabindex="-1"></a><span class="st">dep_delay,</span></span>
-<span id="cb299-8"><a href="data-storage-and-databases.html#cb299-8" aria-hidden="true" tabindex="-1"></a><span class="st">flight</span></span>
-<span id="cb299-9"><a href="data-storage-and-databases.html#cb299-9" aria-hidden="true" tabindex="-1"></a><span class="st">FROM (flights INNER JOIN airports ON flights.origin=airports.iata) </span></span>
-<span id="cb299-10"><a href="data-storage-and-databases.html#cb299-10" aria-hidden="true" tabindex="-1"></a><span class="st">INNER JOIN carriers ON flights.carrier = carriers.Code</span></span>
-<span id="cb299-11"><a href="data-storage-and-databases.html#cb299-11" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE carriers.Description = &#39;United Air Lines Inc.&#39;</span></span>
-<span id="cb299-12"><a href="data-storage-and-databases.html#cb299-12" aria-hidden="true" tabindex="-1"></a><span class="st">AND airports.airport = &#39;Newark Intl&#39;</span></span>
-<span id="cb299-13"><a href="data-storage-and-databases.html#cb299-13" aria-hidden="true" tabindex="-1"></a><span class="st">ORDER BY flight</span></span>
-<span id="cb299-14"><a href="data-storage-and-databases.html#cb299-14" aria-hidden="true" tabindex="-1"></a><span class="st">LIMIT 10;</span></span>
-<span id="cb299-15"><a href="data-storage-and-databases.html#cb299-15" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
-<span id="cb299-16"><a href="data-storage-and-databases.html#cb299-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb299-17"><a href="data-storage-and-databases.html#cb299-17" aria-hidden="true" tabindex="-1"></a><span class="co"># issue query</span></span>
-<span id="cb299-18"><a href="data-storage-and-databases.html#cb299-18" aria-hidden="true" tabindex="-1"></a>delays_df <span class="ot">&lt;-</span> <span class="fu">dbGetQuery</span>(con_air, delay_query)</span>
-<span id="cb299-19"><a href="data-storage-and-databases.html#cb299-19" aria-hidden="true" tabindex="-1"></a>delays_df</span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="data-storage-and-databases.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define query</span></span>
+<span id="cb155-2"><a href="data-storage-and-databases.html#cb155-2" aria-hidden="true" tabindex="-1"></a>delay_query <span class="ot">&lt;-</span></span>
+<span id="cb155-3"><a href="data-storage-and-databases.html#cb155-3" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;SELECT </span></span>
+<span id="cb155-4"><a href="data-storage-and-databases.html#cb155-4" aria-hidden="true" tabindex="-1"></a><span class="st">year,</span></span>
+<span id="cb155-5"><a href="data-storage-and-databases.html#cb155-5" aria-hidden="true" tabindex="-1"></a><span class="st">month, </span></span>
+<span id="cb155-6"><a href="data-storage-and-databases.html#cb155-6" aria-hidden="true" tabindex="-1"></a><span class="st">day,</span></span>
+<span id="cb155-7"><a href="data-storage-and-databases.html#cb155-7" aria-hidden="true" tabindex="-1"></a><span class="st">dep_delay,</span></span>
+<span id="cb155-8"><a href="data-storage-and-databases.html#cb155-8" aria-hidden="true" tabindex="-1"></a><span class="st">flight</span></span>
+<span id="cb155-9"><a href="data-storage-and-databases.html#cb155-9" aria-hidden="true" tabindex="-1"></a><span class="st">FROM (flights INNER JOIN airports ON flights.origin=airports.iata) </span></span>
+<span id="cb155-10"><a href="data-storage-and-databases.html#cb155-10" aria-hidden="true" tabindex="-1"></a><span class="st">INNER JOIN carriers ON flights.carrier = carriers.Code</span></span>
+<span id="cb155-11"><a href="data-storage-and-databases.html#cb155-11" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE carriers.Description = &#39;United Air Lines Inc.&#39;</span></span>
+<span id="cb155-12"><a href="data-storage-and-databases.html#cb155-12" aria-hidden="true" tabindex="-1"></a><span class="st">AND airports.airport = &#39;Newark Intl&#39;</span></span>
+<span id="cb155-13"><a href="data-storage-and-databases.html#cb155-13" aria-hidden="true" tabindex="-1"></a><span class="st">ORDER BY flight</span></span>
+<span id="cb155-14"><a href="data-storage-and-databases.html#cb155-14" aria-hidden="true" tabindex="-1"></a><span class="st">LIMIT 10;</span></span>
+<span id="cb155-15"><a href="data-storage-and-databases.html#cb155-15" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
+<span id="cb155-16"><a href="data-storage-and-databases.html#cb155-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb155-17"><a href="data-storage-and-databases.html#cb155-17" aria-hidden="true" tabindex="-1"></a><span class="co"># issue query</span></span>
+<span id="cb155-18"><a href="data-storage-and-databases.html#cb155-18" aria-hidden="true" tabindex="-1"></a>delays_df <span class="ot">&lt;-</span> <span class="fu">dbGetQuery</span>(con_air, delay_query)</span>
+<span id="cb155-19"><a href="data-storage-and-databases.html#cb155-19" aria-hidden="true" tabindex="-1"></a>delays_df</span></code></pre></div>
 <pre><code>##    year month day dep_delay flight
 ## 1  2013     1   4         0      1
 ## 2  2013     1   5        -2      1
@@ -739,17 +655,138 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 8  2013     2  26        24      3
 ## 9  2013     2  27        10      3
 ## 10 2013     1   5         3     10</code></pre>
+</div>
+<div id="mass-storage-mariadb-on-an-ec2-instance" class="section level3" number="6.5.4">
+<h3><span class="header-section-number">6.5.4</span> Mass Storage: MariaDB on an EC2 instance</h3>
+<p>Once we have set up RStudio Server on an EC2 instance, we can run the SQLite examples demonstrated locally in Lecture 7 on it. There are no additional steps needed to install SQLite. However, when using RDBMSs in the cloud, we typically have a more sophisticated implementation than SQLite in mind. Particularly, we want to set up an actual RDBMS-server running in the cloud to which several clients can connect (via RStudio Server). The following example, based on <span class="citation"><a href="references.html#ref-walkowiak_2016" role="doc-biblioref">Walkowiak</a> (<a href="references.html#ref-walkowiak_2016" role="doc-biblioref">2016</a>)</span>, guides you through the first step to set up such a database in the cloud. To keep things simple, the example sets up a database of the same data set as shown in the first SQLite example in Lecture 7, but this time with MariaDB on an EC2 instance in the cloud. For most of the installation steps you are referred to the respective pages in <span class="citation"><a href="references.html#ref-walkowiak_2016" role="doc-biblioref">Walkowiak</a> (<a href="references.html#ref-walkowiak_2016" role="doc-biblioref">2016</a>)</span> (Chapter 5: ’MariaDB with R on a Amazon EC2 instance, pages 255ff). However, since some of the steps shown in the book are outdated, the example below hints to some alternative/additional steps needed to make the database run on an Ubuntu 18.04 machine.</p>
+<p>After launching the EC2 instance on AWS, use the following terminal commands to install R:</p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb157-1"><a href="data-storage-and-databases.html#cb157-1" aria-hidden="true" tabindex="-1"></a><span class="co"># update ubuntu packages</span></span>
+<span id="cb157-2"><a href="data-storage-and-databases.html#cb157-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">sudo</span> apt-get update</span>
+<span id="cb157-3"><a href="data-storage-and-databases.html#cb157-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">sudo</span> apt-get upgrade</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb158-1"><a href="data-storage-and-databases.html#cb158-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install r-base</span></code></pre></div>
+<p>and to install RStudio Server (on Ubuntu 18.04, as of April 2020):</p>
+<div class="sourceCode" id="cb159"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb159-1"><a href="data-storage-and-databases.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install gdebi-core</span>
+<span id="cb159-2"><a href="data-storage-and-databases.html#cb159-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.2.5033-amd64.deb</span>
+<span id="cb159-3"><a href="data-storage-and-databases.html#cb159-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> gdebi rstudio-server-1.2.5033-amd64.deb</span></code></pre></div>
+<p>Following <span class="citation"><a href="references.html#ref-walkowiak_2016" role="doc-biblioref">Walkowiak</a> (<a href="references.html#ref-walkowiak_2016" role="doc-biblioref">2016</a>)</span> (pages 257f), we first set up a new user and give it permissions to <code>ssh</code> directly to the EC2 instance (this way we can then more easily upload data ‘for this user’).</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb160-1"><a href="data-storage-and-databases.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create user</span></span>
+<span id="cb160-2"><a href="data-storage-and-databases.html#cb160-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> adduser umatter </span></code></pre></div>
+<p>When prompted for additional information just hit enter (for default). Now we can grant the user the permissions</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb161-1"><a href="data-storage-and-databases.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> cp <span class="at">-r</span> /home/ubuntu/.ssh /home/umatter/</span>
+<span id="cb161-2"><a href="data-storage-and-databases.html#cb161-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /home/umatter/</span>
+<span id="cb161-3"><a href="data-storage-and-databases.html#cb161-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chown <span class="at">-R</span> umatter:umatter .ssh</span></code></pre></div>
+<p>Then install MariaDB as follows.</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb162-1"><a href="data-storage-and-databases.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb162-2"><a href="data-storage-and-databases.html#cb162-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install mariadb-server</span>
+<span id="cb162-3"><a href="data-storage-and-databases.html#cb162-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install libmariadbclient-dev</span>
+<span id="cb162-4"><a href="data-storage-and-databases.html#cb162-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install libxml2-dev <span class="co"># needed later (dependency for some R packages)</span></span></code></pre></div>
+<p>If prompted to set a password for the root database user (user with all database priviledges), type in and confirm the chosen password.<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a></p>
+<div id="data-import" class="section level4" number="6.5.4.1">
+<h4><span class="header-section-number">6.5.4.1</span> Data import</h4>
+<p>With the permissions set above, we can send data from the local machine directly to the instance via <code>ssh</code>. We use this to first transfer the raw data to the instance and then import it to the database.</p>
+<p>The aim is to import the same simple data set <code>economics.csv</code> used in the local SQLite examples of Lecture 7. Following the instructions of <span class="citation"><a href="references.html#ref-walkowiak_2016" role="doc-biblioref">Walkowiak</a> (<a href="references.html#ref-walkowiak_2016" role="doc-biblioref">2016</a>)</span>, pages 252 to 254, we upload the <code>economics.csv</code> file (instead of the example data used in <span class="citation"><a href="references.html#ref-walkowiak_2016" role="doc-biblioref">Walkowiak</a> (<a href="references.html#ref-walkowiak_2016" role="doc-biblioref">2016</a>)</span>). Note that in all the code examples below, the username is <code>umatter</code>, and the IP-address will have to be replaced with the public IP-address of your EC2 instance.</p>
+<p>Open a new terminal window and send the <code>economics.csv</code> data as follows to the instance.</p>
+<div class="sourceCode" id="cb163"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb163-1"><a href="data-storage-and-databases.html#cb163-1" aria-hidden="true" tabindex="-1"></a><span class="co"># from the directory where the key-file is stored...</span></span>
+<span id="cb163-2"><a href="data-storage-and-databases.html#cb163-2" aria-hidden="true" tabindex="-1"></a><span class="fu">scp</span> <span class="at">-r</span> <span class="at">-i</span> <span class="st">&quot;mariadb_ec2.pem&quot;</span> ~/Desktop/economics.csv umatter@ec2-184-72-202-166.compute-1.amazonaws.com:~/</span></code></pre></div>
+<p>Then switch back to the terminal connected to the instance and start the MariaDB server.</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb164-1"><a href="data-storage-and-databases.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="co"># start the MariaDB server</span></span>
+<span id="cb164-2"><a href="data-storage-and-databases.html#cb164-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> service mysql start</span>
+<span id="cb164-3"><a href="data-storage-and-databases.html#cb164-3" aria-hidden="true" tabindex="-1"></a><span class="co"># log into the MariaDB client as root </span></span>
+<span id="cb164-4"><a href="data-storage-and-databases.html#cb164-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mysql <span class="at">-uroot</span> </span></code></pre></div>
+<p>If not prompted to do so when installing MariaDB (see above), add a new root user in order to login to MariaDB without the <code>sudo</code> (here we simply set the password to ‘Password1’).</p>
+<div class="sourceCode" id="cb165"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb165-1"><a href="data-storage-and-databases.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">on</span> <span class="op">*</span>.<span class="op">*</span> <span class="kw">to</span> <span class="st">&#39;root&#39;</span>@<span class="st">&#39;localhost&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;Password1&#39;</span>;</span>
+<span id="cb165-2"><a href="data-storage-and-databases.html#cb165-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FLUSH</span> <span class="kw">PRIVILEGES</span>;</span></code></pre></div>
+<p>Restart the mysql server and log in with the database root user.</p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb166-1"><a href="data-storage-and-databases.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="co"># start the MariaDB server</span></span>
+<span id="cb166-2"><a href="data-storage-and-databases.html#cb166-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> service mysql restart</span>
+<span id="cb166-3"><a href="data-storage-and-databases.html#cb166-3" aria-hidden="true" tabindex="-1"></a><span class="co"># log into the MariaDB client as root </span></span>
+<span id="cb166-4"><a href="data-storage-and-databases.html#cb166-4" aria-hidden="true" tabindex="-1"></a><span class="ex">mysql</span> <span class="at">-uroot</span> <span class="at">-p</span></span></code></pre></div>
+<p>Now we can initiate a new database called <code>data1</code>.</p>
+<div class="sourceCode" id="cb167"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb167-1"><a href="data-storage-and-databases.html#cb167-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">database</span> data1;</span></code></pre></div>
+<p>To work with the newly created database, we have to ‘select’ it.</p>
+<div class="sourceCode" id="cb168"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb168-1"><a href="data-storage-and-databases.html#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="kw">USE</span> data1;</span></code></pre></div>
+<p>Then, we create the first table of our database and import data into it. Note that we only have to slightly adjust the former SQLite syntax to make this work (remove double quotes for field names). In addition, note that we can use the same field types as in the SQLite DB.<a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a></p>
+<div class="sourceCode" id="cb169"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb169-1"><a href="data-storage-and-databases.html#cb169-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Create the new table</span></span>
+<span id="cb169-2"><a href="data-storage-and-databases.html#cb169-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> econ(</span>
+<span id="cb169-3"><a href="data-storage-and-databases.html#cb169-3" aria-hidden="true" tabindex="-1"></a><span class="dt">date</span> <span class="dt">DATE</span>,</span>
+<span id="cb169-4"><a href="data-storage-and-databases.html#cb169-4" aria-hidden="true" tabindex="-1"></a>pce <span class="dt">REAL</span>,</span>
+<span id="cb169-5"><a href="data-storage-and-databases.html#cb169-5" aria-hidden="true" tabindex="-1"></a>pop <span class="dt">INTEGER</span>,</span>
+<span id="cb169-6"><a href="data-storage-and-databases.html#cb169-6" aria-hidden="true" tabindex="-1"></a>psavert <span class="dt">REAL</span>,</span>
+<span id="cb169-7"><a href="data-storage-and-databases.html#cb169-7" aria-hidden="true" tabindex="-1"></a>uempmed <span class="dt">REAL</span>,</span>
+<span id="cb169-8"><a href="data-storage-and-databases.html#cb169-8" aria-hidden="true" tabindex="-1"></a>unemploy <span class="dt">INTEGER</span></span>
+<span id="cb169-9"><a href="data-storage-and-databases.html#cb169-9" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
+<p>After following the steps in <span class="citation"><a href="references.html#ref-walkowiak_2016" role="doc-biblioref">Walkowiak</a> (<a href="references.html#ref-walkowiak_2016" role="doc-biblioref">2016</a>)</span>, pages 259-262, we can import the <code>economics.csv</code>-file to the <code>econ</code> table in MariaDB (again, assuming the username is <code>umatter</code>). Note that the syntax to import data to a table is quite different from the SQLite example in Lecture 7.</p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb170-1"><a href="data-storage-and-databases.html#cb170-1" aria-hidden="true" tabindex="-1"></a>LOAD <span class="kw">DATA</span> <span class="kw">LOCAL</span> INFILE</span>
+<span id="cb170-2"><a href="data-storage-and-databases.html#cb170-2" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;/home/umatter/economics.csv&#39;</span> </span>
+<span id="cb170-3"><a href="data-storage-and-databases.html#cb170-3" aria-hidden="true" tabindex="-1"></a><span class="kw">INTO</span> <span class="kw">TABLE</span> econ</span>
+<span id="cb170-4"><a href="data-storage-and-databases.html#cb170-4" aria-hidden="true" tabindex="-1"></a>FIELDS TERMINATED <span class="kw">BY</span> <span class="st">&#39;,&#39;</span></span>
+<span id="cb170-5"><a href="data-storage-and-databases.html#cb170-5" aria-hidden="true" tabindex="-1"></a>LINES TERMINATED <span class="kw">BY</span> <span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span></span>
+<span id="cb170-6"><a href="data-storage-and-databases.html#cb170-6" aria-hidden="true" tabindex="-1"></a>IGNORE <span class="dv">1</span> <span class="kw">ROWS</span>;</span></code></pre></div>
+<p>Now we can start using the newly created database from within RStudio Server running on our EC2 instance (following <span class="citation"><a href="references.html#ref-walkowiak_2016" role="doc-biblioref">Walkowiak</a> (<a href="references.html#ref-walkowiak_2016" role="doc-biblioref">2016</a>)</span>, pages 263ff).</p>
+<p>As in the SQLite examples in Lecture 7, we can now query the database from within the R console (this time using <code>RMySQL</code> instead of <code>RSQLite</code>, and using R from within RStudio Server in the cloud!).</p>
+<p>First, we need to connect to the newly created MariaDB database.</p>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="data-storage-and-databases.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install package</span></span>
+<span id="cb171-2"><a href="data-storage-and-databases.html#cb171-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;RMySQL&quot;)</span></span>
+<span id="cb171-3"><a href="data-storage-and-databases.html#cb171-3" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb171-4"><a href="data-storage-and-databases.html#cb171-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RMySQL)</span>
+<span id="cb171-5"><a href="data-storage-and-databases.html#cb171-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb171-6"><a href="data-storage-and-databases.html#cb171-6" aria-hidden="true" tabindex="-1"></a><span class="co"># connect to the db</span></span>
+<span id="cb171-7"><a href="data-storage-and-databases.html#cb171-7" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(RMySQL<span class="sc">::</span><span class="fu">MySQL</span>(), </span>
+<span id="cb171-8"><a href="data-storage-and-databases.html#cb171-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">user =</span> <span class="st">&quot;root&quot;</span>,</span>
+<span id="cb171-9"><a href="data-storage-and-databases.html#cb171-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">password =</span> <span class="st">&quot;Password1&quot;</span>,</span>
+<span id="cb171-10"><a href="data-storage-and-databases.html#cb171-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">host =</span> <span class="st">&quot;localhost&quot;</span>,</span>
+<span id="cb171-11"><a href="data-storage-and-databases.html#cb171-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">dbname =</span> <span class="st">&quot;data1&quot;</span>)</span></code></pre></div>
+<p>In our first query, we select all (<code>*</code>) variable values of the observation of January 1968.</p>
+<div class="sourceCode" id="cb172"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb172-1"><a href="data-storage-and-databases.html#cb172-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the query</span></span>
+<span id="cb172-2"><a href="data-storage-and-databases.html#cb172-2" aria-hidden="true" tabindex="-1"></a>query1 <span class="ot">&lt;-</span> </span>
+<span id="cb172-3"><a href="data-storage-and-databases.html#cb172-3" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
+<span id="cb172-4"><a href="data-storage-and-databases.html#cb172-4" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT * FROM econ</span></span>
+<span id="cb172-5"><a href="data-storage-and-databases.html#cb172-5" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE date = &#39;1968-01-01&#39;;</span></span>
+<span id="cb172-6"><a href="data-storage-and-databases.html#cb172-6" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
+<span id="cb172-7"><a href="data-storage-and-databases.html#cb172-7" aria-hidden="true" tabindex="-1"></a><span class="co"># send the query to the db and get the result</span></span>
+<span id="cb172-8"><a href="data-storage-and-databases.html#cb172-8" aria-hidden="true" tabindex="-1"></a>jan <span class="ot">&lt;-</span> <span class="fu">dbGetQuery</span>(con, query1)</span>
+<span id="cb172-9"><a href="data-storage-and-databases.html#cb172-9" aria-hidden="true" tabindex="-1"></a>jan</span></code></pre></div>
+<pre><code>#        date   pce    pop psavert uempmed unemploy
+# 1 1968-01-01 531.5 199808    11.7     5.1     2878</code></pre>
+<p>Now let’s select all year/months in which there were more than 15 million unemployed, ordered by date.</p>
+<div class="sourceCode" id="cb174"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb174-1"><a href="data-storage-and-databases.html#cb174-1" aria-hidden="true" tabindex="-1"></a>query2 <span class="ot">&lt;-</span></span>
+<span id="cb174-2"><a href="data-storage-and-databases.html#cb174-2" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
+<span id="cb174-3"><a href="data-storage-and-databases.html#cb174-3" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT date FROM econ </span></span>
+<span id="cb174-4"><a href="data-storage-and-databases.html#cb174-4" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE unemploy &gt; 15000</span></span>
+<span id="cb174-5"><a href="data-storage-and-databases.html#cb174-5" aria-hidden="true" tabindex="-1"></a><span class="st">ORDER BY date;</span></span>
+<span id="cb174-6"><a href="data-storage-and-databases.html#cb174-6" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
+<span id="cb174-7"><a href="data-storage-and-databases.html#cb174-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb174-8"><a href="data-storage-and-databases.html#cb174-8" aria-hidden="true" tabindex="-1"></a><span class="co"># send the query to the db and get the result</span></span>
+<span id="cb174-9"><a href="data-storage-and-databases.html#cb174-9" aria-hidden="true" tabindex="-1"></a>unemp <span class="ot">&lt;-</span> <span class="fu">dbGetQuery</span>(con, query2)</span>
+<span id="cb174-10"><a href="data-storage-and-databases.html#cb174-10" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(unemp)</span></code></pre></div>
+<pre><code>#         date
+# 1 2009-09-01
+# 2 2009-10-01
+# 3 2009-11-01
+# 4 2009-12-01
+# 5 2010-01-01
+# 6 2010-02-01
+</code></pre>
+<p>When done working with the database, we close the connection to the MariaDB database with <code>dbDisconnect(con)</code>.</p>
 
 </div>
 </div>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="18">
+<li id="fn18"><p>Below it is shown how to do this ‘manually,’ if not promted at this step.<a href="data-storage-and-databases.html#fnref18" class="footnote-back">↩︎</a></p></li>
+<li id="fn19"><p>However, MariaDB is a much more sophisticated RDBMS than SQLite and comes with many more field types, see the official <a href="https://mariadb.com/kb/en/library/data-types/">list of supported data types</a>.<a href="data-storage-and-databases.html#fnref19" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="data-aggregation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="big-data-visualization.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="cloud-computing.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="big-data-cleaning-and-transformation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>

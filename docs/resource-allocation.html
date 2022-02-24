@@ -10,21 +10,21 @@
 
   <meta property="og:title" content="Chapter 3 Resource allocation | Big Data Analytics" />
   <meta property="og:type" content="book" />
-  
-  <meta property="og:image" content="img/cover.png" />
+  <meta property="og:url" content="https://umatter.github.io/BigData" />
+  <meta property="og:image" content="https://umatter.github.io/BigDataimg/cover.png" />
   <meta property="og:description" content="A guide to practical big data analytics in R." />
-  
+  <meta name="github-repo" content="umatter/BigData" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 3 Resource allocation | Big Data Analytics" />
   
   <meta name="twitter:description" content="A guide to practical big data analytics in R." />
-  <meta name="twitter:image" content="img/cover.png" />
+  <meta name="twitter:image" content="https://umatter.github.io/BigDataimg/cover.png" />
 
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-01-20" />
+<meta name="date" content="2022-01-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -438,7 +438,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb78-3"><a href="resource-allocation.html#cb78-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">FUN =</span> sd)</span>
 <span id="cb78-4"><a href="resource-allocation.html#cb78-4" aria-hidden="true" tabindex="-1"></a>se_boot</span></code></pre></div>
 <pre><code>## (Intercept)       white 
-##    0.003694    0.004910</code></pre>
+##    0.004276    0.005289</code></pre>
 </div>
 <div id="case-study-memory-allocation" class="section level2" number="3.2">
 <h2><span class="header-section-number">3.2</span> Case study: Memory allocation</h2>
@@ -491,8 +491,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The last result is kind of interesting. The object <code>flights</code> must have been larger right after importing it than at the end of the script. We have thrown out several variables, after all. Why does R still use that much memory? R does by default not ‘clean up’ memory unless it is really necessary (meaning no more memory is available). In this case, R has still way more memory available from the operating system, thus there is no need to ‘collect the garbage’ yet. However, we can force R to collect the garbage on the spot with <code>gc()</code>. This can be helpful to better keep track of the memory needed by an analytics script.</p>
 <div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="resource-allocation.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span></code></pre></div>
 <pre><code>##             used  (Mb) gc trigger   (Mb)  max used
-## Ncells   1081051  57.8    2027135  108.3   2027135
-## Vcells 126631861 966.2  213478480 1628.8 211150457
+## Ncells   1081058  57.8    2027342  108.3   2027342
+## Vcells 126631919 966.2  213478554 1628.8 211150519
 ##          (Mb)
 ## Ncells  108.3
 ## Vcells 1611.0</code></pre>
@@ -565,10 +565,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##    0.003s (  5%) sep=&#39;,&#39; ncol=19 and header detection
 ##    0.000s (  0%) Column type detection using 10048 sample rows
 ##    0.001s (  2%) Allocation of 370043 rows x 19 cols (0.033GB) of which 336776 ( 91%) rows used
-##    0.055s ( 94%) Reading 30 chunks (0 swept) of 0.984MB (each chunk 11225 rows) using 6 threads
-##    +    0.014s ( 24%) Parse to row-major thread buffers (grown 0 times)
-##    +    0.025s ( 43%) Transpose
-##    +    0.016s ( 27%) Waiting
+##    0.055s ( 93%) Reading 30 chunks (0 swept) of 0.984MB (each chunk 11225 rows) using 6 threads
+##    +    0.016s ( 27%) Parse to row-major thread buffers (grown 0 times)
+##    +    0.027s ( 46%) Transpose
+##    +    0.012s ( 21%) Waiting
 ##    0.000s (  0%) Rereading 0 columns due to out-of-sample type exceptions
 ##    0.059s        Total</code></pre>
 <p>Let’s put it all together and look at the memory changes and usage. For a fair comparison, we first have to delete <code>flights</code> and collect the garbage with <code>gc()</code>.</p>
@@ -584,8 +584,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb95-10"><a href="resource-allocation.html#cb95-10" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
 <span id="cb95-11"><a href="resource-allocation.html#cb95-11" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span></code></pre></div>
 <pre><code>##             used  (Mb) gc trigger   (Mb)  max used
-## Ncells   1070086  57.2    2027135  108.3   2027135
-## Vcells 123466116 942.0  213478480 1628.8 211150457
+## Ncells   1070093  57.2    2027342  108.3   2027342
+## Vcells 123466174 942.0  213478554 1628.8 211150519
 ##          (Mb)
 ## Ncells  108.3
 ## Vcells 1611.0</code></pre>

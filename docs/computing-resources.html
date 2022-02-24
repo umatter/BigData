@@ -10,21 +10,21 @@
 
   <meta property="og:title" content="Chapter 2 Computing Resources | Big Data Analytics" />
   <meta property="og:type" content="book" />
-  
-  <meta property="og:image" content="img/cover.png" />
+  <meta property="og:url" content="https://umatter.github.io/BigData" />
+  <meta property="og:image" content="https://umatter.github.io/BigDataimg/cover.png" />
   <meta property="og:description" content="A guide to practical big data analytics in R." />
-  
+  <meta name="github-repo" content="umatter/BigData" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 2 Computing Resources | Big Data Analytics" />
   
   <meta name="twitter:description" content="A guide to practical big data analytics in R." />
-  <meta name="twitter:image" content="img/cover.png" />
+  <meta name="twitter:image" content="https://umatter.github.io/BigDataimg/cover.png" />
 
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-01-20" />
+<meta name="date" content="2022-01-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -438,11 +438,11 @@ Figure 2.2: Writing data stored in RAM to a Mass Storage device (hard drive). Fi
 <div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="computing-resources.html#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="co"># apply the ols estimator</span></span>
 <span id="cb60-2"><a href="computing-resources.html#cb60-2" aria-hidden="true" tabindex="-1"></a><span class="fu">beta_ols</span>(X, y)</span></code></pre></div>
 <pre><code>##         [,1]
-## [1,]  2.0023
-## [2,]  1.4996
-## [3,]  4.0003
-## [4,] -3.4999
-## [5,]  0.4998</code></pre>
+## [1,]  1.9938
+## [2,]  1.5001
+## [3,]  4.0002
+## [4,] -3.5001
+## [5,]  0.5004</code></pre>
 </div>
 <div id="the-uluru-algorithm-as-an-alternative-to-ols" class="section level3" number="2.4.2">
 <h3><span class="header-section-number">2.4.2</span> The Uluru algorithm as an alternative to OLS</h3>
@@ -482,11 +482,11 @@ Figure 2.2: Writing data stored in RAM to a Mass Storage device (hard drive). Fi
 <span id="cb63-10"><a href="computing-resources.html#cb63-10" aria-hidden="true" tabindex="-1"></a><span class="co"># apply the uluru estimator</span></span>
 <span id="cb63-11"><a href="computing-resources.html#cb63-11" aria-hidden="true" tabindex="-1"></a><span class="fu">beta_uluru</span>(X_subs, y_subs, X_rem, y_rem)</span></code></pre></div>
 <pre><code>##         [,1]
-## [1,]  1.9396
-## [2,]  1.5001
-## [3,]  4.0030
-## [4,] -3.4973
-## [5,]  0.5001</code></pre>
+## [1,]  2.0282
+## [2,]  1.4975
+## [3,]  3.9998
+## [4,] -3.5009
+## [5,]  0.5006</code></pre>
 <p>This looks quite good already. Let’s have a closer look with a little Monte Carlo study. The aim of the simulation study is to visualize the difference between the classical OLS approach and the <em>Uluru</em> algorithm with regard to bias and time complexity if we increase the sub-sample size in <em>Uluru</em>. For simplicity, we only look at the first estimated coefficient <span class="math inline">\(\beta_{1}\)</span>.</p>
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="computing-resources.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define subsamples</span></span>
 <span id="cb65-2"><a href="computing-resources.html#cb65-2" aria-hidden="true" tabindex="-1"></a>n_subs_sizes <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1000</span>, <span class="at">to =</span> <span class="dv">500000</span>, <span class="at">by=</span><span class="dv">10000</span>)</span>

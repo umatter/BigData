@@ -10,21 +10,21 @@
 
   <meta property="og:title" content="Chapter 4 Advanced R Programming | Big Data Analytics" />
   <meta property="og:type" content="book" />
-  
-  <meta property="og:image" content="img/cover.png" />
+  <meta property="og:url" content="https://umatter.github.io/BigData" />
+  <meta property="og:image" content="https://umatter.github.io/BigDataimg/cover.png" />
   <meta property="og:description" content="A guide to practical big data analytics in R." />
-  
+  <meta name="github-repo" content="umatter/BigData" />
 
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:title" content="Chapter 4 Advanced R Programming | Big Data Analytics" />
   
   <meta name="twitter:description" content="A guide to practical big data analytics in R." />
-  <meta name="twitter:image" content="img/cover.png" />
+  <meta name="twitter:image" content="https://umatter.github.io/BigDataimg/cover.png" />
 
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-01-20" />
+<meta name="date" content="2022-01-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -587,10 +587,10 @@ Figure 4.5: Illustration of a data frame (symbolic). Figure by <span class="cita
 <p>However, the latter approach is usually much faster (see above for why this is the case in this example).</p>
 <div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="advanced-r-programming.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(flights <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/flights.csv&quot;</span>))</span></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   1.159   0.000   1.160</code></pre>
+##   1.238   0.001   1.238</code></pre>
 <div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="advanced-r-programming.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(flights <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;data/flights.csv&quot;</span>))</span></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.258   0.011   0.050</code></pre>
+##   0.286   0.000   0.053</code></pre>
 </div>
 <div id="writing-efficient-code" class="section level3" number="4.5.3">
 <h3><span class="header-section-number">4.5.3</span> Writing efficient code</h3>
@@ -759,7 +759,7 @@ Figure 4.5: Illustration of a data frame (symbolic). Figure by <span class="cita
 ##           parsed_x &lt;- fread(x)
 ##           return(parsed_x)
 ##      }
-## &lt;bytecode: 0x55bebee389f8&gt;</code></pre>
+## &lt;bytecode: 0x55dfebf891c8&gt;</code></pre>
 <p>However, if we do the same for function <code>sum</code>, we don’t see any actual source code.</p>
 <div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="advanced-r-programming.html#cb157-1" aria-hidden="true" tabindex="-1"></a>sum</span></code></pre></div>
 <pre><code>## function (..., na.rm = FALSE)  .Primitive(&quot;sum&quot;)</code></pre>
