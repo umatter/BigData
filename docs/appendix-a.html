@@ -24,14 +24,14 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-02-16" />
+<meta name="date" content="2022-02-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="applied-econometrics-with-apache-spark.html"/>
+<link rel="prev" href="applied-econometrics-with-spark.html"/>
 <link rel="next" href="appendix-b.html"/>
 <script src="libs/header-attrs/header-attrs.js"></script>
 <script src="libs/jquery/jquery.min.js"></script>
@@ -150,152 +150,163 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#content-overview"><i class="fa fa-check"></i><b>1.3</b> Content overview</a></li>
 <li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#prerequisits"><i class="fa fa-check"></i><b>1.4</b> Prerequisits</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html"><i class="fa fa-check"></i><b>2</b> Software: Programming with (Big) Data</a>
+<li class="chapter" data-level="2" data-path="big-data-econometrics.html"><a href="big-data-econometrics.html"><i class="fa fa-check"></i><b>2</b> Big Data Econometrics</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#building-blocks-for-programming-with-big-data"><i class="fa fa-check"></i><b>2.1</b> Building blocks for programming with big data</a></li>
-<li class="chapter" data-level="2.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#measuring-r-performance"><i class="fa fa-check"></i><b>2.2</b> Measuring R performance</a></li>
-<li class="chapter" data-level="2.3" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#writing-efficient-code"><i class="fa fa-check"></i><b>2.3</b> Writing efficient code</a>
+<li class="chapter" data-level="2.1" data-path="big-data-econometrics.html"><a href="big-data-econometrics.html#a-practical-big-p-problem"><i class="fa fa-check"></i><b>2.1</b> A practical <em>big P</em> problem</a></li>
+<li class="chapter" data-level="2.2" data-path="big-data-econometrics.html"><a href="big-data-econometrics.html#a-practical-big-n-problem"><i class="fa fa-check"></i><b>2.2</b> A practical <em>big N</em> problem</a>
 <ul>
-<li class="chapter" data-level="2.3.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#memory-allocation-and-growing-objects"><i class="fa fa-check"></i><b>2.3.1</b> Memory allocation and growing objects</a></li>
-<li class="chapter" data-level="2.3.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#vectorization-in-basic-r-functions"><i class="fa fa-check"></i><b>2.3.2</b> Vectorization in basic R functions</a></li>
-<li class="chapter" data-level="2.3.3" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#apply-type-functions-and-vectorization"><i class="fa fa-check"></i><b>2.3.3</b> <code>apply</code>-type functions and vectorization</a></li>
-<li class="chapter" data-level="2.3.4" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#avoid-unnecessary-copying"><i class="fa fa-check"></i><b>2.3.4</b> Avoid unnecessary copying</a></li>
-<li class="chapter" data-level="2.3.5" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#releasing-memory"><i class="fa fa-check"></i><b>2.3.5</b> Releasing memory</a></li>
-<li class="chapter" data-level="2.3.6" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#beyond-r"><i class="fa fa-check"></i><b>2.3.6</b> Beyond R</a></li>
-</ul></li>
-<li class="chapter" data-level="2.4" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#sql-basics"><i class="fa fa-check"></i><b>2.4</b> SQL basics</a>
-<ul>
-<li class="chapter" data-level="2.4.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#first-steps-in-sqlite"><i class="fa fa-check"></i><b>2.4.1</b> First steps in SQL(ite)</a></li>
-<li class="chapter" data-level="2.4.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#joins"><i class="fa fa-check"></i><b>2.4.2</b> Joins</a></li>
+<li class="chapter" data-level="2.2.1" data-path="big-data-econometrics.html"><a href="big-data-econometrics.html#ols-as-a-point-of-reference"><i class="fa fa-check"></i><b>2.2.1</b> OLS as a point of reference</a></li>
+<li class="chapter" data-level="2.2.2" data-path="big-data-econometrics.html"><a href="big-data-econometrics.html#the-uluru-algorithm-as-an-alternative-to-ols"><i class="fa fa-check"></i><b>2.2.2</b> The Uluru algorithm as an alternative to OLS</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html"><i class="fa fa-check"></i><b>3</b> Hardware: Computing Resources</a>
+<li class="chapter" data-level="3" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html"><i class="fa fa-check"></i><b>3</b> Software: Programming with (Big) Data</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#components-of-a-standard-computing-environment"><i class="fa fa-check"></i><b>3.1</b> Components of a standard computing environment</a></li>
-<li class="chapter" data-level="3.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#mass-storage-and-memory"><i class="fa fa-check"></i><b>3.2</b> Mass Storage and Memory</a>
+<li class="chapter" data-level="3.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#domains-of-programming-with-big-data"><i class="fa fa-check"></i><b>3.1</b> Domains of programming with (big) data</a></li>
+<li class="chapter" data-level="3.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#measuring-r-performance"><i class="fa fa-check"></i><b>3.2</b> Measuring R performance</a></li>
+<li class="chapter" data-level="3.3" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#writing-efficient-r-code"><i class="fa fa-check"></i><b>3.3</b> Writing efficient R code</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#units-of-informationdata-storage"><i class="fa fa-check"></i><b>3.2.1</b> Units of information/data storage</a></li>
-<li class="chapter" data-level="3.2.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#combining-ram-and-hard-disk-virtual-memory"><i class="fa fa-check"></i><b>3.2.2</b> Combining RAM and hard-disk: virtual memory</a></li>
+<li class="chapter" data-level="3.3.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#memory-allocation-and-growing-objects"><i class="fa fa-check"></i><b>3.3.1</b> Memory allocation and growing objects</a></li>
+<li class="chapter" data-level="3.3.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#vectorization-in-basic-r-functions"><i class="fa fa-check"></i><b>3.3.2</b> Vectorization in basic R functions</a></li>
+<li class="chapter" data-level="3.3.3" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#apply-type-functions-and-vectorization"><i class="fa fa-check"></i><b>3.3.3</b> <code>apply</code>-type functions and vectorization</a></li>
+<li class="chapter" data-level="3.3.4" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#avoid-unnecessary-copying"><i class="fa fa-check"></i><b>3.3.4</b> Avoid unnecessary copying</a></li>
+<li class="chapter" data-level="3.3.5" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#releasing-memory"><i class="fa fa-check"></i><b>3.3.5</b> Releasing memory</a></li>
+<li class="chapter" data-level="3.3.6" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#beyond-r"><i class="fa fa-check"></i><b>3.3.6</b> Beyond R</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#computation-cpu"><i class="fa fa-check"></i><b>3.3</b> Computation: CPU</a>
+<li class="chapter" data-level="3.4" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#sql-basics"><i class="fa fa-check"></i><b>3.4</b> SQL basics</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#parallelization"><i class="fa fa-check"></i><b>3.3.1</b> Parallelization</a></li>
-<li class="chapter" data-level="3.3.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#gpus-for-scientific-computing"><i class="fa fa-check"></i><b>3.3.2</b> GPUs for Scientific Computing</a></li>
-<li class="chapter" data-level="3.3.3" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#gpus-in-r"><i class="fa fa-check"></i><b>3.3.3</b> GPUs in R</a></li>
-</ul></li>
-<li class="chapter" data-level="3.4" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#resource-allocation"><i class="fa fa-check"></i><b>3.4</b> Resource allocation</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="distributed-systems.html"><a href="distributed-systems.html"><i class="fa fa-check"></i><b>4</b> Distributed Systems</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="distributed-systems.html"><a href="distributed-systems.html#mapreduce"><i class="fa fa-check"></i><b>4.1</b> MapReduce</a>
-<ul>
-<li class="chapter" data-level="4.1.1" data-path="distributed-systems.html"><a href="distributed-systems.html#mapreduce-concept-illustrated-in-r"><i class="fa fa-check"></i><b>4.1.1</b> Map/Reduce Concept Illustrated in R</a></li>
-<li class="chapter" data-level="4.1.2" data-path="distributed-systems.html"><a href="distributed-systems.html#mapper"><i class="fa fa-check"></i><b>4.1.2</b> Mapper</a></li>
-<li class="chapter" data-level="4.1.3" data-path="distributed-systems.html"><a href="distributed-systems.html#reducer"><i class="fa fa-check"></i><b>4.1.3</b> Reducer</a></li>
-<li class="chapter" data-level="4.1.4" data-path="distributed-systems.html"><a href="distributed-systems.html#simpler-example-compute-the-total-number-of-words"><i class="fa fa-check"></i><b>4.1.4</b> Simpler example: Compute the total number of words</a></li>
-</ul></li>
-<li class="chapter" data-level="4.2" data-path="distributed-systems.html"><a href="distributed-systems.html#hadoop"><i class="fa fa-check"></i><b>4.2</b> Hadoop</a>
-<ul>
-<li class="chapter" data-level="4.2.1" data-path="distributed-systems.html"><a href="distributed-systems.html#hadoop-word-count"><i class="fa fa-check"></i><b>4.2.1</b> Hadoop Word Count</a></li>
+<li class="chapter" data-level="3.4.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#first-steps-in-sqlite"><i class="fa fa-check"></i><b>3.4.1</b> First steps in SQL(ite)</a></li>
+<li class="chapter" data-level="3.4.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#joins"><i class="fa fa-check"></i><b>3.4.2</b> Joins</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="cloud-computing.html"><a href="cloud-computing.html"><i class="fa fa-check"></i><b>5</b> Cloud Computing</a>
+<li class="chapter" data-level="4" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html"><i class="fa fa-check"></i><b>4</b> Hardware: Computing Resources</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="cloud-computing.html"><a href="cloud-computing.html#scaling-up-parallel-computing"><i class="fa fa-check"></i><b>5.1</b> Scaling up: parallel computing</a>
+<li class="chapter" data-level="4.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#components-of-a-standard-computing-environment"><i class="fa fa-check"></i><b>4.1</b> Components of a standard computing environment</a></li>
+<li class="chapter" data-level="4.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#mass-storage"><i class="fa fa-check"></i><b>4.2</b> Mass storage</a>
 <ul>
-<li class="chapter" data-level="5.1.1" data-path="cloud-computing.html"><a href="cloud-computing.html#setting-up-aws-ec2-with-rrstudio"><i class="fa fa-check"></i><b>5.1.1</b> Setting up AWS EC2 with R/RStudio</a></li>
-<li class="chapter" data-level="5.1.2" data-path="cloud-computing.html"><a href="cloud-computing.html#parallelization-with-an-ec2-instance"><i class="fa fa-check"></i><b>5.1.2</b> Parallelization with an EC2 instance</a></li>
-<li class="chapter" data-level="5.1.3" data-path="cloud-computing.html"><a href="cloud-computing.html#aws-emr-mapreduce-in-the-cloud"><i class="fa fa-check"></i><b>5.1.3</b> AWS EMR: MapReduce in the cloud</a></li>
+<li class="chapter" data-level="4.2.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#avoid-redundancies"><i class="fa fa-check"></i><b>4.2.1</b> Avoid redundancies</a></li>
+<li class="chapter" data-level="4.2.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#data-compression"><i class="fa fa-check"></i><b>4.2.2</b> Data compression</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#random-access-memory-ram"><i class="fa fa-check"></i><b>4.3</b> Random access memory (RAM)</a></li>
+<li class="chapter" data-level="4.4" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#combining-ram-and-hard-disk-virtual-memory"><i class="fa fa-check"></i><b>4.4</b> Combining RAM and hard-disk: virtual memory</a></li>
+<li class="chapter" data-level="4.5" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#cpu-and-parallelization"><i class="fa fa-check"></i><b>4.5</b> CPU and parallelization</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#naive-multi-session-approach"><i class="fa fa-check"></i><b>4.5.1</b> Naive multi-session approach</a></li>
+<li class="chapter" data-level="4.5.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#multi-core-and-multi-node-approach"><i class="fa fa-check"></i><b>4.5.2</b> Multi-core and multi-node approach</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#gpus-for-scientific-computing"><i class="fa fa-check"></i><b>4.6</b> GPUs for scientific computing</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#gpus-in-r"><i class="fa fa-check"></i><b>4.6.1</b> GPUs in R</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html"><i class="fa fa-check"></i><b>6</b> Data Storage and Databases</a>
+<li class="chapter" data-level="5" data-path="distributed-systems.html"><a href="distributed-systems.html"><i class="fa fa-check"></i><b>5</b> Distributed Systems</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#big-data-storage"><i class="fa fa-check"></i><b>6.1</b> (Big) Data Storage</a></li>
-<li class="chapter" data-level="6.2" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#rdbms-basics"><i class="fa fa-check"></i><b>6.2</b> RDBMS basics</a></li>
-<li class="chapter" data-level="6.3" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#row-based-vs-column-based-databases"><i class="fa fa-check"></i><b>6.3</b> Row-based vs column-based databases</a></li>
-<li class="chapter" data-level="6.4" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#getting-started-with-rsqlite"><i class="fa fa-check"></i><b>6.4</b> Getting started with RSQLite</a>
+<li class="chapter" data-level="5.1" data-path="distributed-systems.html"><a href="distributed-systems.html#mapreduce"><i class="fa fa-check"></i><b>5.1</b> MapReduce</a>
 <ul>
-<li class="chapter" data-level="6.4.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#warm-up-in-sqlite-indices-and-joins"><i class="fa fa-check"></i><b>6.4.1</b> Warm up in SQLite: indices and joins</a></li>
+<li class="chapter" data-level="5.1.1" data-path="distributed-systems.html"><a href="distributed-systems.html#mapreduce-concept-illustrated-in-r"><i class="fa fa-check"></i><b>5.1.1</b> Map/Reduce Concept Illustrated in R</a></li>
+<li class="chapter" data-level="5.1.2" data-path="distributed-systems.html"><a href="distributed-systems.html#mapper"><i class="fa fa-check"></i><b>5.1.2</b> Mapper</a></li>
+<li class="chapter" data-level="5.1.3" data-path="distributed-systems.html"><a href="distributed-systems.html#reducer"><i class="fa fa-check"></i><b>5.1.3</b> Reducer</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#sqlite-from-within-r"><i class="fa fa-check"></i><b>6.5</b> SQLite from within R</a>
+<li class="chapter" data-level="5.2" data-path="distributed-systems.html"><a href="distributed-systems.html#hadoop"><i class="fa fa-check"></i><b>5.2</b> Hadoop</a>
 <ul>
-<li class="chapter" data-level="6.5.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#creating-a-new-database-with-rsqlite"><i class="fa fa-check"></i><b>6.5.1</b> Creating a new database with <code>RSQLite</code></a></li>
-<li class="chapter" data-level="6.5.2" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#importing-data"><i class="fa fa-check"></i><b>6.5.2</b> Importing data</a></li>
-<li class="chapter" data-level="6.5.3" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#issue-queries"><i class="fa fa-check"></i><b>6.5.3</b> Issue queries</a></li>
-<li class="chapter" data-level="6.5.4" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#mass-storage-mariadb-on-an-ec2-instance"><i class="fa fa-check"></i><b>6.5.4</b> Mass Storage: MariaDB on an EC2 instance</a></li>
+<li class="chapter" data-level="5.2.1" data-path="distributed-systems.html"><a href="distributed-systems.html#hadoop-word-count-example"><i class="fa fa-check"></i><b>5.2.1</b> Hadoop word count example</a></li>
 </ul></li>
+<li class="chapter" data-level="5.3" data-path="distributed-systems.html"><a href="distributed-systems.html#spark"><i class="fa fa-check"></i><b>5.3</b> Spark</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-r"><i class="fa fa-check"></i><b>5.3.1</b> Spark with R</a></li>
+<li class="chapter" data-level="5.3.2" data-path="distributed-systems.html"><a href="distributed-systems.html#data-import-and-summary-statistics"><i class="fa fa-check"></i><b>5.3.2</b> Data import and summary statistics</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html"><i class="fa fa-check"></i><b>7</b> Big Data Cleaning and Transformation</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#out-of-memory-strategies"><i class="fa fa-check"></i><b>7.1</b> ‘Out-of-memory’ strategies</a>
-<ul>
-<li class="chapter" data-level="7.1.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#chunking-data-with-the-ff-package"><i class="fa fa-check"></i><b>7.1.1</b> Chunking data with the <code>ff</code>-package</a></li>
-<li class="chapter" data-level="7.1.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#memory-mapping-with-bigmemory"><i class="fa fa-check"></i><b>7.1.2</b> Memory mapping with <code>bigmemory</code></a></li>
+<li class="chapter" data-level="5.4" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-sql"><i class="fa fa-check"></i><b>5.4</b> Spark with SQL</a></li>
+<li class="chapter" data-level="5.5" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-r-sql"><i class="fa fa-check"></i><b>5.5</b> Spark with R + SQL</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#typical-cleaning-tasks"><i class="fa fa-check"></i><b>7.2</b> Typical cleaning tasks</a>
+<li class="chapter" data-level="6" data-path="cloud-computing.html"><a href="cloud-computing.html"><i class="fa fa-check"></i><b>6</b> Cloud Computing</a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#data-preparation-with-ff"><i class="fa fa-check"></i><b>7.2.1</b> Data Preparation with <code>ff</code></a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html"><i class="fa fa-check"></i><b>8</b> Descriptive Statistics and Aggregation</a>
+<li class="chapter" data-level="6.1" data-path="cloud-computing.html"><a href="cloud-computing.html#scaling-up-with-aws-ec2-and-rrstudio"><i class="fa fa-check"></i><b>6.1</b> Scaling up with AWS EC2 and R/RStudio</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-the-split-apply-combine-strategy"><i class="fa fa-check"></i><b>8.1</b> Data aggregation: The ‘split-apply-combine’ strategy</a></li>
-<li class="chapter" data-level="8.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-tutorial"><i class="fa fa-check"></i><b>8.2</b> Data aggregation tutorial</a>
-<ul>
-<li class="chapter" data-level="8.2.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#gathering-and-compilation-of-all-the-raw-data"><i class="fa fa-check"></i><b>8.2.1</b> Gathering and Compilation of all the raw data</a></li>
-<li class="chapter" data-level="8.2.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-with-chunked-data-files"><i class="fa fa-check"></i><b>8.2.2</b> Data aggregation with chunked data files</a></li>
-<li class="chapter" data-level="8.2.3" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>8.2.3</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
+<li class="chapter" data-level="6.1.1" data-path="cloud-computing.html"><a href="cloud-computing.html#parallelization-with-an-ec2-instance"><i class="fa fa-check"></i><b>6.1.1</b> Parallelization with an EC2 instance</a></li>
+<li class="chapter" data-level="6.1.2" data-path="cloud-computing.html"><a href="cloud-computing.html#gpus-on-google-colab"><i class="fa fa-check"></i><b>6.1.2</b> GPUs on Google Colab</a></li>
+<li class="chapter" data-level="6.1.3" data-path="cloud-computing.html"><a href="cloud-computing.html#aws-emr-mapreduce-in-the-cloud"><i class="fa fa-check"></i><b>6.1.3</b> AWS EMR: MapReduce in the cloud</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="big-data-visualization.html"><a href="big-data-visualization.html"><i class="fa fa-check"></i><b>9</b> (Big) Data Visualization</a>
+<li class="chapter" data-level="7" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html"><i class="fa fa-check"></i><b>7</b> Data Collection and Data Storage</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#data-set"><i class="fa fa-check"></i><b>9.1</b> Data Set</a></li>
-<li class="chapter" data-level="9.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-modify-and-create-themes"><i class="fa fa-check"></i><b>9.2</b> Excursus: modify and create themes</a>
+<li class="chapter" data-level="7.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#gathering-and-compilation-of-raw-data"><i class="fa fa-check"></i><b>7.1</b> Gathering and compilation of raw data</a>
 <ul>
-<li class="chapter" data-level="9.2.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#create-your-own-theme-simple-approach"><i class="fa fa-check"></i><b>9.2.1</b> Create your own theme: simple approach</a></li>
-<li class="chapter" data-level="9.2.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#implementing-actual-themes-as-functions."><i class="fa fa-check"></i><b>9.2.2</b> Implementing actual themes as functions.</a></li>
+<li class="chapter" data-level="7.1.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#nyc-taxi-data"><i class="fa fa-check"></i><b>7.1.1</b> NYC taxi data</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="big-data-visualization.html"><a href="big-data-visualization.html#visualize-time-and-space"><i class="fa fa-check"></i><b>9.3</b> Visualize Time and Space</a>
+<li class="chapter" data-level="7.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#data-import-and-memory-allocation"><i class="fa fa-check"></i><b>7.2</b> Data import and memory allocation</a></li>
+<li class="chapter" data-level="7.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#big-data-storage"><i class="fa fa-check"></i><b>7.3</b> (Big) Data Storage</a></li>
+<li class="chapter" data-level="7.4" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#rdbms-basics"><i class="fa fa-check"></i><b>7.4</b> RDBMS basics</a></li>
+<li class="chapter" data-level="7.5" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#row-based-vs-column-based-databases"><i class="fa fa-check"></i><b>7.5</b> Row-based vs column-based databases</a></li>
+<li class="chapter" data-level="7.6" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#getting-started-with-rsqlite"><i class="fa fa-check"></i><b>7.6</b> Getting started with RSQLite</a>
 <ul>
-<li class="chapter" data-level="9.3.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#preparations"><i class="fa fa-check"></i><b>9.3.1</b> Preparations</a></li>
-<li class="chapter" data-level="9.3.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#pick-up-and-drop-off-locations"><i class="fa fa-check"></i><b>9.3.2</b> Pick-up and drop-off locations</a></li>
+<li class="chapter" data-level="7.6.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#warm-up-in-sqlite-indices-and-joins"><i class="fa fa-check"></i><b>7.6.1</b> Warm up in SQLite: indices and joins</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-change-color-schemes"><i class="fa fa-check"></i><b>9.4</b> Excursus: change color schemes</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html"><i class="fa fa-check"></i><b>10</b> Bottle Necks in Local Big Data Analytics</a>
+<li class="chapter" data-level="7.7" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#sqlite-from-within-r"><i class="fa fa-check"></i><b>7.7</b> SQLite from within R</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#example-of-computation-time-and-memory-allocation"><i class="fa fa-check"></i><b>10.1</b> Example of Computation Time and Memory Allocation</a>
-<ul>
-<li class="chapter" data-level="10.1.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#preparation"><i class="fa fa-check"></i><b>10.1.1</b> Preparation</a></li>
-<li class="chapter" data-level="10.1.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#naïve-approach-ignorant-of-r"><i class="fa fa-check"></i><b>10.1.2</b> Naïve Approach (ignorant of R)</a></li>
-<li class="chapter" data-level="10.1.3" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#improvement-1-pre-allocation-of-memory"><i class="fa fa-check"></i><b>10.1.3</b> Improvement 1: Pre-allocation of memory</a></li>
-<li class="chapter" data-level="10.1.4" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#improvement-2-exploit-vectorization"><i class="fa fa-check"></i><b>10.1.4</b> Improvement 2: Exploit vectorization</a></li>
+<li class="chapter" data-level="7.7.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#creating-a-new-database-with-rsqlite"><i class="fa fa-check"></i><b>7.7.1</b> Creating a new database with <code>RSQLite</code></a></li>
+<li class="chapter" data-level="7.7.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#importing-data"><i class="fa fa-check"></i><b>7.7.2</b> Importing data</a></li>
+<li class="chapter" data-level="7.7.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#issue-queries"><i class="fa fa-check"></i><b>7.7.3</b> Issue queries</a></li>
+<li class="chapter" data-level="7.7.4" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#mass-storage-mariadb-on-an-ec2-instance"><i class="fa fa-check"></i><b>7.7.4</b> Mass Storage: MariaDB on an EC2 instance</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#case-study-parallel-processing"><i class="fa fa-check"></i><b>10.2</b> Case study: Parallel processing</a>
-<ul>
-<li class="chapter" data-level="10.2.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#parallelization-with-an-ec2-instance-1"><i class="fa fa-check"></i><b>10.2.1</b> Parallelization with an EC2 instance</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#case-study-memory-allocation"><i class="fa fa-check"></i><b>10.3</b> Case study: Memory allocation</a></li>
-<li class="chapter" data-level="10.4" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#big-data-econometrics"><i class="fa fa-check"></i><b>10.4</b> Big Data econometrics</a></li>
-<li class="chapter" data-level="10.5" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#example-fast-least-squares-regression"><i class="fa fa-check"></i><b>10.5</b> Example: Fast least squares regression</a>
+<li class="chapter" data-level="8" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html"><i class="fa fa-check"></i><b>8</b> Big Data Cleaning and Transformation</a>
 <ul>
-<li class="chapter" data-level="10.5.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#ols-as-a-point-of-reference"><i class="fa fa-check"></i><b>10.5.1</b> OLS as a point of reference</a></li>
-<li class="chapter" data-level="10.5.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#the-uluru-algorithm-as-an-alternative-to-ols"><i class="fa fa-check"></i><b>10.5.2</b> The Uluru algorithm as an alternative to OLS</a></li>
-</ul></li>
-<li class="chapter" data-level="10.6" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#gpus-and-machine-learning"><i class="fa fa-check"></i><b>10.6</b> GPUs and Machine Learning</a>
+<li class="chapter" data-level="8.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#out-of-memory-strategies"><i class="fa fa-check"></i><b>8.1</b> ‘Out-of-memory’ strategies</a>
 <ul>
-<li class="chapter" data-level="10.6.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#tensorflowkeras-example-predict-housing-prices"><i class="fa fa-check"></i><b>10.6.1</b> Tensorflow/Keras example: predict housing prices</a></li>
+<li class="chapter" data-level="8.1.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#chunking-data-with-the-ff-package"><i class="fa fa-check"></i><b>8.1.1</b> Chunking data with the <code>ff</code>-package</a></li>
+<li class="chapter" data-level="8.1.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#memory-mapping-with-bigmemory"><i class="fa fa-check"></i><b>8.1.2</b> Memory mapping with <code>bigmemory</code></a></li>
 </ul></li>
-<li class="chapter" data-level="10.7" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#a-word-of-caution"><i class="fa fa-check"></i><b>10.7</b> A word of caution</a></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html"><i class="fa fa-check"></i><b>11</b> Applied Econometrics with Apache Spark</a>
+<li class="chapter" data-level="8.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#typical-cleaning-tasks"><i class="fa fa-check"></i><b>8.2</b> Typical cleaning tasks</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html#spark-basics"><i class="fa fa-check"></i><b>11.1</b> Spark basics</a></li>
-<li class="chapter" data-level="11.2" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html#spark-in-r"><i class="fa fa-check"></i><b>11.2</b> Spark in R</a>
-<ul>
-<li class="chapter" data-level="11.2.1" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html#data-import-and-summary-statistics"><i class="fa fa-check"></i><b>11.2.1</b> Data import and summary statistics</a></li>
-<li class="chapter" data-level="11.2.2" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html#regression-analysis-with-sparklyr"><i class="fa fa-check"></i><b>11.2.2</b> Regression analysis with <code>sparklyr</code></a></li>
+<li class="chapter" data-level="8.2.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#data-preparation-with-ff"><i class="fa fa-check"></i><b>8.2.1</b> Data Preparation with <code>ff</code></a></li>
 </ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html"><i class="fa fa-check"></i><b>9</b> Descriptive Statistics and Aggregation</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-the-split-apply-combine-strategy"><i class="fa fa-check"></i><b>9.1</b> Data aggregation: The ‘split-apply-combine’ strategy</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-with-chunked-data-files"><i class="fa fa-check"></i><b>9.1.1</b> Data aggregation with chunked data files</a></li>
+<li class="chapter" data-level="9.1.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>9.1.2</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="big-data-visualization.html"><a href="big-data-visualization.html"><i class="fa fa-check"></i><b>10</b> (Big) Data Visualization</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#data-set"><i class="fa fa-check"></i><b>10.1</b> Data Set</a></li>
+<li class="chapter" data-level="10.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-modify-and-create-themes"><i class="fa fa-check"></i><b>10.2</b> Excursus: modify and create themes</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#create-your-own-theme-simple-approach"><i class="fa fa-check"></i><b>10.2.1</b> Create your own theme: simple approach</a></li>
+<li class="chapter" data-level="10.2.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#implementing-actual-themes-as-functions."><i class="fa fa-check"></i><b>10.2.2</b> Implementing actual themes as functions.</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="big-data-visualization.html"><a href="big-data-visualization.html#visualize-time-and-space"><i class="fa fa-check"></i><b>10.3</b> Visualize Time and Space</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#preparations"><i class="fa fa-check"></i><b>10.3.1</b> Preparations</a></li>
+<li class="chapter" data-level="10.3.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#pick-up-and-drop-off-locations"><i class="fa fa-check"></i><b>10.3.2</b> Pick-up and drop-off locations</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-change-color-schemes"><i class="fa fa-check"></i><b>10.4</b> Excursus: change color schemes</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html"><i class="fa fa-check"></i><b>11</b> Bottle Necks in Local Big Data Analytics</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#example-of-computation-time-and-memory-allocation"><i class="fa fa-check"></i><b>11.1</b> Example of Computation Time and Memory Allocation</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#preparation"><i class="fa fa-check"></i><b>11.1.1</b> Preparation</a></li>
+<li class="chapter" data-level="11.1.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#naïve-approach-ignorant-of-r"><i class="fa fa-check"></i><b>11.1.2</b> Naïve Approach (ignorant of R)</a></li>
+<li class="chapter" data-level="11.1.3" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#improvement-1-pre-allocation-of-memory"><i class="fa fa-check"></i><b>11.1.3</b> Improvement 1: Pre-allocation of memory</a></li>
+<li class="chapter" data-level="11.1.4" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#improvement-2-exploit-vectorization"><i class="fa fa-check"></i><b>11.1.4</b> Improvement 2: Exploit vectorization</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#case-study-parallel-processing"><i class="fa fa-check"></i><b>11.2</b> Case study: Parallel processing</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#parallelization-with-an-ec2-instance-1"><i class="fa fa-check"></i><b>11.2.1</b> Parallelization with an EC2 instance</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#case-study-memory-allocation"><i class="fa fa-check"></i><b>11.3</b> Case study: Memory allocation</a></li>
+<li class="chapter" data-level="11.4" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#gpus-and-machine-learning"><i class="fa fa-check"></i><b>11.4</b> GPUs and Machine Learning</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#tensorflowkeras-example-predict-housing-prices"><i class="fa fa-check"></i><b>11.4.1</b> Tensorflow/Keras example: predict housing prices</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#a-word-of-caution"><i class="fa fa-check"></i><b>11.5</b> A word of caution</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html"><i class="fa fa-check"></i><b>12</b> Applied Econometrics with Spark</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#regression-analysis-with-sparklyr"><i class="fa fa-check"></i><b>12.1</b> Regression analysis with <code>sparklyr</code></a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="appendix-a.html"><a href="appendix-a.html"><i class="fa fa-check"></i><b>A</b> Appendix A</a>
@@ -314,6 +325,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="B.0.3" data-path="appendix-b.html"><a href="appendix-b.html#vectors-vs-factors-in-r"><i class="fa fa-check"></i><b>B.0.3</b> Vectors vs Factors in R</a></li>
 <li class="chapter" data-level="B.0.4" data-path="appendix-b.html"><a href="appendix-b.html#r-tools-to-investigate-structures-and-types"><i class="fa fa-check"></i><b>B.0.4</b> R-tools to investigate structures and types</a></li>
 </ul></li>
+<li class="chapter" data-level="C" data-path="appendix-c.html"><a href="appendix-c.html"><i class="fa fa-check"></i><b>C</b> Appendix C</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://umatter.github.io" target="blank">umatter.github.io</a></li>
@@ -335,11 +347,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="appendix-a" class="section level1" number="12">
+<div id="appendix-a" class="section level1" number="13">
 <h1><span class="header-section-number">A</span> Appendix A</h1>
-<div id="github" class="section level2" number="12.1">
+<div id="github" class="section level2" number="13.1">
 <h2><span class="header-section-number">A.1</span> GitHub</h2>
-<div id="initiate-a-new-repository" class="section level3" number="12.1.1">
+<div id="initiate-a-new-repository" class="section level3" number="13.1.1">
 <h3><span class="header-section-number">A.1.1</span> Initiate a new repository</h3>
 <ol style="list-style-type: decimal">
 <li>Log in to your GitHub account and click on the plus-sign in the upper right corner. From the drop-down-menu select <code>New repository</code>.</li>
@@ -347,18 +359,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Open Rstudio and and navigate to a place on your hard-disk where you want to have the local copy of your repository.</li>
 <li>Then create the local repository as suggested by GitHub (see the page shown right after you have clicked on <code>Create repository</code>: “…or create a new repository on the command line”). In order to do so, you have to switch to the Terminal window in RStudio and type (or copy paste) the commands as given by GitHub. This should look similar to</li>
 </ol>
-<div class="sourceCode" id="cb455"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb455-1"><a href="appendix-a.html#cb455-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;# bigdatastat&quot;</span> <span class="op">&gt;&gt;</span> README.md</span>
-<span id="cb455-2"><a href="appendix-a.html#cb455-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span>
-<span id="cb455-3"><a href="appendix-a.html#cb455-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
-<span id="cb455-4"><a href="appendix-a.html#cb455-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;first commit&quot;</span></span>
-<span id="cb455-5"><a href="appendix-a.html#cb455-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin https://github.com/umatter/bigdatastat.git</span>
-<span id="cb455-6"><a href="appendix-a.html#cb455-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin master</span></code></pre></div>
+<div class="sourceCode" id="cb496"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb496-1"><a href="appendix-a.html#cb496-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;# bigdatastat&quot;</span> <span class="op">&gt;&gt;</span> README.md</span>
+<span id="cb496-2"><a href="appendix-a.html#cb496-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span>
+<span id="cb496-3"><a href="appendix-a.html#cb496-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
+<span id="cb496-4"><a href="appendix-a.html#cb496-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;first commit&quot;</span></span>
+<span id="cb496-5"><a href="appendix-a.html#cb496-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin https://github.com/umatter/bigdatastat.git</span>
+<span id="cb496-6"><a href="appendix-a.html#cb496-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin master</span></code></pre></div>
 <ol start="5" style="list-style-type: decimal">
 <li>Refresh the page of your newly created GitHub repository. You should now see the result of your first commit.</li>
 <li>Open <code>README.md</code> in RStudio and add a few words describing what this repository is all about.</li>
 </ol>
 </div>
-<div id="clone-this-courses-repository" class="section level3" number="12.1.2">
+<div id="clone-this-courses-repository" class="section level3" number="13.1.2">
 <h3><span class="header-section-number">A.1.2</span> Clone this course’s repository</h3>
 <ol style="list-style-type: decimal">
 <li>In RStudio, navigate to a folder on your hard-disk where you want to have a local copy of this course’s GitHub repository.</li>
@@ -366,14 +378,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Click on <code>Clone or download</code> and copy the link.</li>
 <li>In RStudio, switch to the Terminal, and type the following command (pasting the copied link).</li>
 </ol>
-<div class="sourceCode" id="cb456"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb456-1"><a href="appendix-a.html#cb456-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/umatter/BigData.git</span></code></pre></div>
+<div class="sourceCode" id="cb497"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb497-1"><a href="appendix-a.html#cb497-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/umatter/BigData.git</span></code></pre></div>
 <p>You have now a local copy of the repository which is linked to the one on GitHub. You can see this by changing to the newly created directory, containing the local copy of the repository:</p>
-<div class="sourceCode" id="cb457"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb457-1"><a href="appendix-a.html#cb457-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> BigData</span></code></pre></div>
+<div class="sourceCode" id="cb498"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb498-1"><a href="appendix-a.html#cb498-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> BigData</span></code></pre></div>
 <p>Whenever there are some updates to the course’s repository on GitHub, you can update your local copy with:</p>
-<div class="sourceCode" id="cb458"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb458-1"><a href="appendix-a.html#cb458-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull</span></code></pre></div>
+<div class="sourceCode" id="cb499"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb499-1"><a href="appendix-a.html#cb499-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull</span></code></pre></div>
 <p>(Make sure you are in the <code>BigData</code> folder when running <code>git pull</code>.)</p>
 </div>
-<div id="fork-this-courses-repository" class="section level3" number="12.1.3">
+<div id="fork-this-courses-repository" class="section level3" number="13.1.3">
 <h3><span class="header-section-number">A.1.3</span> Fork this course’s repository</h3>
 <ol style="list-style-type: decimal">
 <li><p>Go to <a href="https://github.com/umatter/BigData"><code>https://github.com/umatter/BigData</code></a>, click on the ‘Fork’ button in the upper-right corner (follow the instructions).</p></li>
@@ -423,7 +435,7 @@ git push</code></pre>
           </div>
         </div>
       </div>
-<a href="applied-econometrics-with-apache-spark.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="applied-econometrics-with-spark.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="appendix-b.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Distributed Systems | Big Data Analytics</title>
+  <title>Chapter 5 Distributed Systems | Big Data Analytics</title>
   <meta name="description" content="A guide to practical big data analytics in R." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Distributed Systems | Big Data Analytics" />
+  <meta property="og:title" content="Chapter 5 Distributed Systems | Big Data Analytics" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://umatter.github.io/BigData" />
   <meta property="og:image" content="https://umatter.github.io/BigDataimg/cover.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="umatter/BigData" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Distributed Systems | Big Data Analytics" />
+  <meta name="twitter:title" content="Chapter 5 Distributed Systems | Big Data Analytics" />
   
   <meta name="twitter:description" content="A guide to practical big data analytics in R." />
   <meta name="twitter:image" content="https://umatter.github.io/BigDataimg/cover.png" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-02-16" />
+<meta name="date" content="2022-02-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -150,152 +150,163 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#content-overview"><i class="fa fa-check"></i><b>1.3</b> Content overview</a></li>
 <li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#prerequisits"><i class="fa fa-check"></i><b>1.4</b> Prerequisits</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html"><i class="fa fa-check"></i><b>2</b> Software: Programming with (Big) Data</a>
+<li class="chapter" data-level="2" data-path="big-data-econometrics.html"><a href="big-data-econometrics.html"><i class="fa fa-check"></i><b>2</b> Big Data Econometrics</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#building-blocks-for-programming-with-big-data"><i class="fa fa-check"></i><b>2.1</b> Building blocks for programming with big data</a></li>
-<li class="chapter" data-level="2.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#measuring-r-performance"><i class="fa fa-check"></i><b>2.2</b> Measuring R performance</a></li>
-<li class="chapter" data-level="2.3" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#writing-efficient-code"><i class="fa fa-check"></i><b>2.3</b> Writing efficient code</a>
+<li class="chapter" data-level="2.1" data-path="big-data-econometrics.html"><a href="big-data-econometrics.html#a-practical-big-p-problem"><i class="fa fa-check"></i><b>2.1</b> A practical <em>big P</em> problem</a></li>
+<li class="chapter" data-level="2.2" data-path="big-data-econometrics.html"><a href="big-data-econometrics.html#a-practical-big-n-problem"><i class="fa fa-check"></i><b>2.2</b> A practical <em>big N</em> problem</a>
 <ul>
-<li class="chapter" data-level="2.3.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#memory-allocation-and-growing-objects"><i class="fa fa-check"></i><b>2.3.1</b> Memory allocation and growing objects</a></li>
-<li class="chapter" data-level="2.3.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#vectorization-in-basic-r-functions"><i class="fa fa-check"></i><b>2.3.2</b> Vectorization in basic R functions</a></li>
-<li class="chapter" data-level="2.3.3" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#apply-type-functions-and-vectorization"><i class="fa fa-check"></i><b>2.3.3</b> <code>apply</code>-type functions and vectorization</a></li>
-<li class="chapter" data-level="2.3.4" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#avoid-unnecessary-copying"><i class="fa fa-check"></i><b>2.3.4</b> Avoid unnecessary copying</a></li>
-<li class="chapter" data-level="2.3.5" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#releasing-memory"><i class="fa fa-check"></i><b>2.3.5</b> Releasing memory</a></li>
-<li class="chapter" data-level="2.3.6" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#beyond-r"><i class="fa fa-check"></i><b>2.3.6</b> Beyond R</a></li>
-</ul></li>
-<li class="chapter" data-level="2.4" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#sql-basics"><i class="fa fa-check"></i><b>2.4</b> SQL basics</a>
-<ul>
-<li class="chapter" data-level="2.4.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#first-steps-in-sqlite"><i class="fa fa-check"></i><b>2.4.1</b> First steps in SQL(ite)</a></li>
-<li class="chapter" data-level="2.4.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#joins"><i class="fa fa-check"></i><b>2.4.2</b> Joins</a></li>
+<li class="chapter" data-level="2.2.1" data-path="big-data-econometrics.html"><a href="big-data-econometrics.html#ols-as-a-point-of-reference"><i class="fa fa-check"></i><b>2.2.1</b> OLS as a point of reference</a></li>
+<li class="chapter" data-level="2.2.2" data-path="big-data-econometrics.html"><a href="big-data-econometrics.html#the-uluru-algorithm-as-an-alternative-to-ols"><i class="fa fa-check"></i><b>2.2.2</b> The Uluru algorithm as an alternative to OLS</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html"><i class="fa fa-check"></i><b>3</b> Hardware: Computing Resources</a>
+<li class="chapter" data-level="3" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html"><i class="fa fa-check"></i><b>3</b> Software: Programming with (Big) Data</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#components-of-a-standard-computing-environment"><i class="fa fa-check"></i><b>3.1</b> Components of a standard computing environment</a></li>
-<li class="chapter" data-level="3.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#mass-storage-and-memory"><i class="fa fa-check"></i><b>3.2</b> Mass Storage and Memory</a>
+<li class="chapter" data-level="3.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#domains-of-programming-with-big-data"><i class="fa fa-check"></i><b>3.1</b> Domains of programming with (big) data</a></li>
+<li class="chapter" data-level="3.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#measuring-r-performance"><i class="fa fa-check"></i><b>3.2</b> Measuring R performance</a></li>
+<li class="chapter" data-level="3.3" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#writing-efficient-r-code"><i class="fa fa-check"></i><b>3.3</b> Writing efficient R code</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#units-of-informationdata-storage"><i class="fa fa-check"></i><b>3.2.1</b> Units of information/data storage</a></li>
-<li class="chapter" data-level="3.2.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#combining-ram-and-hard-disk-virtual-memory"><i class="fa fa-check"></i><b>3.2.2</b> Combining RAM and hard-disk: virtual memory</a></li>
+<li class="chapter" data-level="3.3.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#memory-allocation-and-growing-objects"><i class="fa fa-check"></i><b>3.3.1</b> Memory allocation and growing objects</a></li>
+<li class="chapter" data-level="3.3.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#vectorization-in-basic-r-functions"><i class="fa fa-check"></i><b>3.3.2</b> Vectorization in basic R functions</a></li>
+<li class="chapter" data-level="3.3.3" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#apply-type-functions-and-vectorization"><i class="fa fa-check"></i><b>3.3.3</b> <code>apply</code>-type functions and vectorization</a></li>
+<li class="chapter" data-level="3.3.4" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#avoid-unnecessary-copying"><i class="fa fa-check"></i><b>3.3.4</b> Avoid unnecessary copying</a></li>
+<li class="chapter" data-level="3.3.5" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#releasing-memory"><i class="fa fa-check"></i><b>3.3.5</b> Releasing memory</a></li>
+<li class="chapter" data-level="3.3.6" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#beyond-r"><i class="fa fa-check"></i><b>3.3.6</b> Beyond R</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#computation-cpu"><i class="fa fa-check"></i><b>3.3</b> Computation: CPU</a>
+<li class="chapter" data-level="3.4" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#sql-basics"><i class="fa fa-check"></i><b>3.4</b> SQL basics</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#parallelization"><i class="fa fa-check"></i><b>3.3.1</b> Parallelization</a></li>
-<li class="chapter" data-level="3.3.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#gpus-for-scientific-computing"><i class="fa fa-check"></i><b>3.3.2</b> GPUs for Scientific Computing</a></li>
-<li class="chapter" data-level="3.3.3" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#gpus-in-r"><i class="fa fa-check"></i><b>3.3.3</b> GPUs in R</a></li>
-</ul></li>
-<li class="chapter" data-level="3.4" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#resource-allocation"><i class="fa fa-check"></i><b>3.4</b> Resource allocation</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="distributed-systems.html"><a href="distributed-systems.html"><i class="fa fa-check"></i><b>4</b> Distributed Systems</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="distributed-systems.html"><a href="distributed-systems.html#mapreduce"><i class="fa fa-check"></i><b>4.1</b> MapReduce</a>
-<ul>
-<li class="chapter" data-level="4.1.1" data-path="distributed-systems.html"><a href="distributed-systems.html#mapreduce-concept-illustrated-in-r"><i class="fa fa-check"></i><b>4.1.1</b> Map/Reduce Concept Illustrated in R</a></li>
-<li class="chapter" data-level="4.1.2" data-path="distributed-systems.html"><a href="distributed-systems.html#mapper"><i class="fa fa-check"></i><b>4.1.2</b> Mapper</a></li>
-<li class="chapter" data-level="4.1.3" data-path="distributed-systems.html"><a href="distributed-systems.html#reducer"><i class="fa fa-check"></i><b>4.1.3</b> Reducer</a></li>
-<li class="chapter" data-level="4.1.4" data-path="distributed-systems.html"><a href="distributed-systems.html#simpler-example-compute-the-total-number-of-words"><i class="fa fa-check"></i><b>4.1.4</b> Simpler example: Compute the total number of words</a></li>
-</ul></li>
-<li class="chapter" data-level="4.2" data-path="distributed-systems.html"><a href="distributed-systems.html#hadoop"><i class="fa fa-check"></i><b>4.2</b> Hadoop</a>
-<ul>
-<li class="chapter" data-level="4.2.1" data-path="distributed-systems.html"><a href="distributed-systems.html#hadoop-word-count"><i class="fa fa-check"></i><b>4.2.1</b> Hadoop Word Count</a></li>
+<li class="chapter" data-level="3.4.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#first-steps-in-sqlite"><i class="fa fa-check"></i><b>3.4.1</b> First steps in SQL(ite)</a></li>
+<li class="chapter" data-level="3.4.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#joins"><i class="fa fa-check"></i><b>3.4.2</b> Joins</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="cloud-computing.html"><a href="cloud-computing.html"><i class="fa fa-check"></i><b>5</b> Cloud Computing</a>
+<li class="chapter" data-level="4" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html"><i class="fa fa-check"></i><b>4</b> Hardware: Computing Resources</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="cloud-computing.html"><a href="cloud-computing.html#scaling-up-parallel-computing"><i class="fa fa-check"></i><b>5.1</b> Scaling up: parallel computing</a>
+<li class="chapter" data-level="4.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#components-of-a-standard-computing-environment"><i class="fa fa-check"></i><b>4.1</b> Components of a standard computing environment</a></li>
+<li class="chapter" data-level="4.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#mass-storage"><i class="fa fa-check"></i><b>4.2</b> Mass storage</a>
 <ul>
-<li class="chapter" data-level="5.1.1" data-path="cloud-computing.html"><a href="cloud-computing.html#setting-up-aws-ec2-with-rrstudio"><i class="fa fa-check"></i><b>5.1.1</b> Setting up AWS EC2 with R/RStudio</a></li>
-<li class="chapter" data-level="5.1.2" data-path="cloud-computing.html"><a href="cloud-computing.html#parallelization-with-an-ec2-instance"><i class="fa fa-check"></i><b>5.1.2</b> Parallelization with an EC2 instance</a></li>
-<li class="chapter" data-level="5.1.3" data-path="cloud-computing.html"><a href="cloud-computing.html#aws-emr-mapreduce-in-the-cloud"><i class="fa fa-check"></i><b>5.1.3</b> AWS EMR: MapReduce in the cloud</a></li>
+<li class="chapter" data-level="4.2.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#avoid-redundancies"><i class="fa fa-check"></i><b>4.2.1</b> Avoid redundancies</a></li>
+<li class="chapter" data-level="4.2.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#data-compression"><i class="fa fa-check"></i><b>4.2.2</b> Data compression</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#random-access-memory-ram"><i class="fa fa-check"></i><b>4.3</b> Random access memory (RAM)</a></li>
+<li class="chapter" data-level="4.4" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#combining-ram-and-hard-disk-virtual-memory"><i class="fa fa-check"></i><b>4.4</b> Combining RAM and hard-disk: virtual memory</a></li>
+<li class="chapter" data-level="4.5" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#cpu-and-parallelization"><i class="fa fa-check"></i><b>4.5</b> CPU and parallelization</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#naive-multi-session-approach"><i class="fa fa-check"></i><b>4.5.1</b> Naive multi-session approach</a></li>
+<li class="chapter" data-level="4.5.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#multi-core-and-multi-node-approach"><i class="fa fa-check"></i><b>4.5.2</b> Multi-core and multi-node approach</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#gpus-for-scientific-computing"><i class="fa fa-check"></i><b>4.6</b> GPUs for scientific computing</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#gpus-in-r"><i class="fa fa-check"></i><b>4.6.1</b> GPUs in R</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html"><i class="fa fa-check"></i><b>6</b> Data Storage and Databases</a>
+<li class="chapter" data-level="5" data-path="distributed-systems.html"><a href="distributed-systems.html"><i class="fa fa-check"></i><b>5</b> Distributed Systems</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#big-data-storage"><i class="fa fa-check"></i><b>6.1</b> (Big) Data Storage</a></li>
-<li class="chapter" data-level="6.2" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#rdbms-basics"><i class="fa fa-check"></i><b>6.2</b> RDBMS basics</a></li>
-<li class="chapter" data-level="6.3" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#row-based-vs-column-based-databases"><i class="fa fa-check"></i><b>6.3</b> Row-based vs column-based databases</a></li>
-<li class="chapter" data-level="6.4" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#getting-started-with-rsqlite"><i class="fa fa-check"></i><b>6.4</b> Getting started with RSQLite</a>
+<li class="chapter" data-level="5.1" data-path="distributed-systems.html"><a href="distributed-systems.html#mapreduce"><i class="fa fa-check"></i><b>5.1</b> MapReduce</a>
 <ul>
-<li class="chapter" data-level="6.4.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#warm-up-in-sqlite-indices-and-joins"><i class="fa fa-check"></i><b>6.4.1</b> Warm up in SQLite: indices and joins</a></li>
+<li class="chapter" data-level="5.1.1" data-path="distributed-systems.html"><a href="distributed-systems.html#mapreduce-concept-illustrated-in-r"><i class="fa fa-check"></i><b>5.1.1</b> Map/Reduce Concept Illustrated in R</a></li>
+<li class="chapter" data-level="5.1.2" data-path="distributed-systems.html"><a href="distributed-systems.html#mapper"><i class="fa fa-check"></i><b>5.1.2</b> Mapper</a></li>
+<li class="chapter" data-level="5.1.3" data-path="distributed-systems.html"><a href="distributed-systems.html#reducer"><i class="fa fa-check"></i><b>5.1.3</b> Reducer</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#sqlite-from-within-r"><i class="fa fa-check"></i><b>6.5</b> SQLite from within R</a>
+<li class="chapter" data-level="5.2" data-path="distributed-systems.html"><a href="distributed-systems.html#hadoop"><i class="fa fa-check"></i><b>5.2</b> Hadoop</a>
 <ul>
-<li class="chapter" data-level="6.5.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#creating-a-new-database-with-rsqlite"><i class="fa fa-check"></i><b>6.5.1</b> Creating a new database with <code>RSQLite</code></a></li>
-<li class="chapter" data-level="6.5.2" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#importing-data"><i class="fa fa-check"></i><b>6.5.2</b> Importing data</a></li>
-<li class="chapter" data-level="6.5.3" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#issue-queries"><i class="fa fa-check"></i><b>6.5.3</b> Issue queries</a></li>
-<li class="chapter" data-level="6.5.4" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#mass-storage-mariadb-on-an-ec2-instance"><i class="fa fa-check"></i><b>6.5.4</b> Mass Storage: MariaDB on an EC2 instance</a></li>
+<li class="chapter" data-level="5.2.1" data-path="distributed-systems.html"><a href="distributed-systems.html#hadoop-word-count-example"><i class="fa fa-check"></i><b>5.2.1</b> Hadoop word count example</a></li>
 </ul></li>
+<li class="chapter" data-level="5.3" data-path="distributed-systems.html"><a href="distributed-systems.html#spark"><i class="fa fa-check"></i><b>5.3</b> Spark</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-r"><i class="fa fa-check"></i><b>5.3.1</b> Spark with R</a></li>
+<li class="chapter" data-level="5.3.2" data-path="distributed-systems.html"><a href="distributed-systems.html#data-import-and-summary-statistics"><i class="fa fa-check"></i><b>5.3.2</b> Data import and summary statistics</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html"><i class="fa fa-check"></i><b>7</b> Big Data Cleaning and Transformation</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#out-of-memory-strategies"><i class="fa fa-check"></i><b>7.1</b> ‘Out-of-memory’ strategies</a>
-<ul>
-<li class="chapter" data-level="7.1.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#chunking-data-with-the-ff-package"><i class="fa fa-check"></i><b>7.1.1</b> Chunking data with the <code>ff</code>-package</a></li>
-<li class="chapter" data-level="7.1.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#memory-mapping-with-bigmemory"><i class="fa fa-check"></i><b>7.1.2</b> Memory mapping with <code>bigmemory</code></a></li>
+<li class="chapter" data-level="5.4" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-sql"><i class="fa fa-check"></i><b>5.4</b> Spark with SQL</a></li>
+<li class="chapter" data-level="5.5" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-r-sql"><i class="fa fa-check"></i><b>5.5</b> Spark with R + SQL</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#typical-cleaning-tasks"><i class="fa fa-check"></i><b>7.2</b> Typical cleaning tasks</a>
+<li class="chapter" data-level="6" data-path="cloud-computing.html"><a href="cloud-computing.html"><i class="fa fa-check"></i><b>6</b> Cloud Computing</a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#data-preparation-with-ff"><i class="fa fa-check"></i><b>7.2.1</b> Data Preparation with <code>ff</code></a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html"><i class="fa fa-check"></i><b>8</b> Descriptive Statistics and Aggregation</a>
+<li class="chapter" data-level="6.1" data-path="cloud-computing.html"><a href="cloud-computing.html#scaling-up-with-aws-ec2-and-rrstudio"><i class="fa fa-check"></i><b>6.1</b> Scaling up with AWS EC2 and R/RStudio</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-the-split-apply-combine-strategy"><i class="fa fa-check"></i><b>8.1</b> Data aggregation: The ‘split-apply-combine’ strategy</a></li>
-<li class="chapter" data-level="8.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-tutorial"><i class="fa fa-check"></i><b>8.2</b> Data aggregation tutorial</a>
-<ul>
-<li class="chapter" data-level="8.2.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#gathering-and-compilation-of-all-the-raw-data"><i class="fa fa-check"></i><b>8.2.1</b> Gathering and Compilation of all the raw data</a></li>
-<li class="chapter" data-level="8.2.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-with-chunked-data-files"><i class="fa fa-check"></i><b>8.2.2</b> Data aggregation with chunked data files</a></li>
-<li class="chapter" data-level="8.2.3" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>8.2.3</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
+<li class="chapter" data-level="6.1.1" data-path="cloud-computing.html"><a href="cloud-computing.html#parallelization-with-an-ec2-instance"><i class="fa fa-check"></i><b>6.1.1</b> Parallelization with an EC2 instance</a></li>
+<li class="chapter" data-level="6.1.2" data-path="cloud-computing.html"><a href="cloud-computing.html#gpus-on-google-colab"><i class="fa fa-check"></i><b>6.1.2</b> GPUs on Google Colab</a></li>
+<li class="chapter" data-level="6.1.3" data-path="cloud-computing.html"><a href="cloud-computing.html#aws-emr-mapreduce-in-the-cloud"><i class="fa fa-check"></i><b>6.1.3</b> AWS EMR: MapReduce in the cloud</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="big-data-visualization.html"><a href="big-data-visualization.html"><i class="fa fa-check"></i><b>9</b> (Big) Data Visualization</a>
+<li class="chapter" data-level="7" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html"><i class="fa fa-check"></i><b>7</b> Data Collection and Data Storage</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#data-set"><i class="fa fa-check"></i><b>9.1</b> Data Set</a></li>
-<li class="chapter" data-level="9.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-modify-and-create-themes"><i class="fa fa-check"></i><b>9.2</b> Excursus: modify and create themes</a>
+<li class="chapter" data-level="7.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#gathering-and-compilation-of-raw-data"><i class="fa fa-check"></i><b>7.1</b> Gathering and compilation of raw data</a>
 <ul>
-<li class="chapter" data-level="9.2.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#create-your-own-theme-simple-approach"><i class="fa fa-check"></i><b>9.2.1</b> Create your own theme: simple approach</a></li>
-<li class="chapter" data-level="9.2.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#implementing-actual-themes-as-functions."><i class="fa fa-check"></i><b>9.2.2</b> Implementing actual themes as functions.</a></li>
+<li class="chapter" data-level="7.1.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#nyc-taxi-data"><i class="fa fa-check"></i><b>7.1.1</b> NYC taxi data</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="big-data-visualization.html"><a href="big-data-visualization.html#visualize-time-and-space"><i class="fa fa-check"></i><b>9.3</b> Visualize Time and Space</a>
+<li class="chapter" data-level="7.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#data-import-and-memory-allocation"><i class="fa fa-check"></i><b>7.2</b> Data import and memory allocation</a></li>
+<li class="chapter" data-level="7.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#big-data-storage"><i class="fa fa-check"></i><b>7.3</b> (Big) Data Storage</a></li>
+<li class="chapter" data-level="7.4" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#rdbms-basics"><i class="fa fa-check"></i><b>7.4</b> RDBMS basics</a></li>
+<li class="chapter" data-level="7.5" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#row-based-vs-column-based-databases"><i class="fa fa-check"></i><b>7.5</b> Row-based vs column-based databases</a></li>
+<li class="chapter" data-level="7.6" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#getting-started-with-rsqlite"><i class="fa fa-check"></i><b>7.6</b> Getting started with RSQLite</a>
 <ul>
-<li class="chapter" data-level="9.3.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#preparations"><i class="fa fa-check"></i><b>9.3.1</b> Preparations</a></li>
-<li class="chapter" data-level="9.3.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#pick-up-and-drop-off-locations"><i class="fa fa-check"></i><b>9.3.2</b> Pick-up and drop-off locations</a></li>
+<li class="chapter" data-level="7.6.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#warm-up-in-sqlite-indices-and-joins"><i class="fa fa-check"></i><b>7.6.1</b> Warm up in SQLite: indices and joins</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-change-color-schemes"><i class="fa fa-check"></i><b>9.4</b> Excursus: change color schemes</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html"><i class="fa fa-check"></i><b>10</b> Bottle Necks in Local Big Data Analytics</a>
+<li class="chapter" data-level="7.7" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#sqlite-from-within-r"><i class="fa fa-check"></i><b>7.7</b> SQLite from within R</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#example-of-computation-time-and-memory-allocation"><i class="fa fa-check"></i><b>10.1</b> Example of Computation Time and Memory Allocation</a>
-<ul>
-<li class="chapter" data-level="10.1.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#preparation"><i class="fa fa-check"></i><b>10.1.1</b> Preparation</a></li>
-<li class="chapter" data-level="10.1.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#naïve-approach-ignorant-of-r"><i class="fa fa-check"></i><b>10.1.2</b> Naïve Approach (ignorant of R)</a></li>
-<li class="chapter" data-level="10.1.3" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#improvement-1-pre-allocation-of-memory"><i class="fa fa-check"></i><b>10.1.3</b> Improvement 1: Pre-allocation of memory</a></li>
-<li class="chapter" data-level="10.1.4" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#improvement-2-exploit-vectorization"><i class="fa fa-check"></i><b>10.1.4</b> Improvement 2: Exploit vectorization</a></li>
+<li class="chapter" data-level="7.7.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#creating-a-new-database-with-rsqlite"><i class="fa fa-check"></i><b>7.7.1</b> Creating a new database with <code>RSQLite</code></a></li>
+<li class="chapter" data-level="7.7.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#importing-data"><i class="fa fa-check"></i><b>7.7.2</b> Importing data</a></li>
+<li class="chapter" data-level="7.7.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#issue-queries"><i class="fa fa-check"></i><b>7.7.3</b> Issue queries</a></li>
+<li class="chapter" data-level="7.7.4" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#mass-storage-mariadb-on-an-ec2-instance"><i class="fa fa-check"></i><b>7.7.4</b> Mass Storage: MariaDB on an EC2 instance</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#case-study-parallel-processing"><i class="fa fa-check"></i><b>10.2</b> Case study: Parallel processing</a>
-<ul>
-<li class="chapter" data-level="10.2.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#parallelization-with-an-ec2-instance-1"><i class="fa fa-check"></i><b>10.2.1</b> Parallelization with an EC2 instance</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#case-study-memory-allocation"><i class="fa fa-check"></i><b>10.3</b> Case study: Memory allocation</a></li>
-<li class="chapter" data-level="10.4" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#big-data-econometrics"><i class="fa fa-check"></i><b>10.4</b> Big Data econometrics</a></li>
-<li class="chapter" data-level="10.5" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#example-fast-least-squares-regression"><i class="fa fa-check"></i><b>10.5</b> Example: Fast least squares regression</a>
+<li class="chapter" data-level="8" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html"><i class="fa fa-check"></i><b>8</b> Big Data Cleaning and Transformation</a>
 <ul>
-<li class="chapter" data-level="10.5.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#ols-as-a-point-of-reference"><i class="fa fa-check"></i><b>10.5.1</b> OLS as a point of reference</a></li>
-<li class="chapter" data-level="10.5.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#the-uluru-algorithm-as-an-alternative-to-ols"><i class="fa fa-check"></i><b>10.5.2</b> The Uluru algorithm as an alternative to OLS</a></li>
-</ul></li>
-<li class="chapter" data-level="10.6" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#gpus-and-machine-learning"><i class="fa fa-check"></i><b>10.6</b> GPUs and Machine Learning</a>
+<li class="chapter" data-level="8.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#out-of-memory-strategies"><i class="fa fa-check"></i><b>8.1</b> ‘Out-of-memory’ strategies</a>
 <ul>
-<li class="chapter" data-level="10.6.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#tensorflowkeras-example-predict-housing-prices"><i class="fa fa-check"></i><b>10.6.1</b> Tensorflow/Keras example: predict housing prices</a></li>
+<li class="chapter" data-level="8.1.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#chunking-data-with-the-ff-package"><i class="fa fa-check"></i><b>8.1.1</b> Chunking data with the <code>ff</code>-package</a></li>
+<li class="chapter" data-level="8.1.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#memory-mapping-with-bigmemory"><i class="fa fa-check"></i><b>8.1.2</b> Memory mapping with <code>bigmemory</code></a></li>
 </ul></li>
-<li class="chapter" data-level="10.7" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#a-word-of-caution"><i class="fa fa-check"></i><b>10.7</b> A word of caution</a></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html"><i class="fa fa-check"></i><b>11</b> Applied Econometrics with Apache Spark</a>
+<li class="chapter" data-level="8.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#typical-cleaning-tasks"><i class="fa fa-check"></i><b>8.2</b> Typical cleaning tasks</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html#spark-basics"><i class="fa fa-check"></i><b>11.1</b> Spark basics</a></li>
-<li class="chapter" data-level="11.2" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html#spark-in-r"><i class="fa fa-check"></i><b>11.2</b> Spark in R</a>
-<ul>
-<li class="chapter" data-level="11.2.1" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html#data-import-and-summary-statistics"><i class="fa fa-check"></i><b>11.2.1</b> Data import and summary statistics</a></li>
-<li class="chapter" data-level="11.2.2" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html#regression-analysis-with-sparklyr"><i class="fa fa-check"></i><b>11.2.2</b> Regression analysis with <code>sparklyr</code></a></li>
+<li class="chapter" data-level="8.2.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#data-preparation-with-ff"><i class="fa fa-check"></i><b>8.2.1</b> Data Preparation with <code>ff</code></a></li>
 </ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html"><i class="fa fa-check"></i><b>9</b> Descriptive Statistics and Aggregation</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-the-split-apply-combine-strategy"><i class="fa fa-check"></i><b>9.1</b> Data aggregation: The ‘split-apply-combine’ strategy</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-with-chunked-data-files"><i class="fa fa-check"></i><b>9.1.1</b> Data aggregation with chunked data files</a></li>
+<li class="chapter" data-level="9.1.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>9.1.2</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="big-data-visualization.html"><a href="big-data-visualization.html"><i class="fa fa-check"></i><b>10</b> (Big) Data Visualization</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#data-set"><i class="fa fa-check"></i><b>10.1</b> Data Set</a></li>
+<li class="chapter" data-level="10.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-modify-and-create-themes"><i class="fa fa-check"></i><b>10.2</b> Excursus: modify and create themes</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#create-your-own-theme-simple-approach"><i class="fa fa-check"></i><b>10.2.1</b> Create your own theme: simple approach</a></li>
+<li class="chapter" data-level="10.2.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#implementing-actual-themes-as-functions."><i class="fa fa-check"></i><b>10.2.2</b> Implementing actual themes as functions.</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="big-data-visualization.html"><a href="big-data-visualization.html#visualize-time-and-space"><i class="fa fa-check"></i><b>10.3</b> Visualize Time and Space</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#preparations"><i class="fa fa-check"></i><b>10.3.1</b> Preparations</a></li>
+<li class="chapter" data-level="10.3.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#pick-up-and-drop-off-locations"><i class="fa fa-check"></i><b>10.3.2</b> Pick-up and drop-off locations</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-change-color-schemes"><i class="fa fa-check"></i><b>10.4</b> Excursus: change color schemes</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html"><i class="fa fa-check"></i><b>11</b> Bottle Necks in Local Big Data Analytics</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#example-of-computation-time-and-memory-allocation"><i class="fa fa-check"></i><b>11.1</b> Example of Computation Time and Memory Allocation</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#preparation"><i class="fa fa-check"></i><b>11.1.1</b> Preparation</a></li>
+<li class="chapter" data-level="11.1.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#naïve-approach-ignorant-of-r"><i class="fa fa-check"></i><b>11.1.2</b> Naïve Approach (ignorant of R)</a></li>
+<li class="chapter" data-level="11.1.3" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#improvement-1-pre-allocation-of-memory"><i class="fa fa-check"></i><b>11.1.3</b> Improvement 1: Pre-allocation of memory</a></li>
+<li class="chapter" data-level="11.1.4" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#improvement-2-exploit-vectorization"><i class="fa fa-check"></i><b>11.1.4</b> Improvement 2: Exploit vectorization</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#case-study-parallel-processing"><i class="fa fa-check"></i><b>11.2</b> Case study: Parallel processing</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#parallelization-with-an-ec2-instance-1"><i class="fa fa-check"></i><b>11.2.1</b> Parallelization with an EC2 instance</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#case-study-memory-allocation"><i class="fa fa-check"></i><b>11.3</b> Case study: Memory allocation</a></li>
+<li class="chapter" data-level="11.4" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#gpus-and-machine-learning"><i class="fa fa-check"></i><b>11.4</b> GPUs and Machine Learning</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#tensorflowkeras-example-predict-housing-prices"><i class="fa fa-check"></i><b>11.4.1</b> Tensorflow/Keras example: predict housing prices</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#a-word-of-caution"><i class="fa fa-check"></i><b>11.5</b> A word of caution</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html"><i class="fa fa-check"></i><b>12</b> Applied Econometrics with Spark</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#regression-analysis-with-sparklyr"><i class="fa fa-check"></i><b>12.1</b> Regression analysis with <code>sparklyr</code></a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="appendix-a.html"><a href="appendix-a.html"><i class="fa fa-check"></i><b>A</b> Appendix A</a>
@@ -314,6 +325,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="B.0.3" data-path="appendix-b.html"><a href="appendix-b.html#vectors-vs-factors-in-r"><i class="fa fa-check"></i><b>B.0.3</b> Vectors vs Factors in R</a></li>
 <li class="chapter" data-level="B.0.4" data-path="appendix-b.html"><a href="appendix-b.html#r-tools-to-investigate-structures-and-types"><i class="fa fa-check"></i><b>B.0.4</b> R-tools to investigate structures and types</a></li>
 </ul></li>
+<li class="chapter" data-level="C" data-path="appendix-c.html"><a href="appendix-c.html"><i class="fa fa-check"></i><b>C</b> Appendix C</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://umatter.github.io" target="blank">umatter.github.io</a></li>
@@ -335,22 +347,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="distributed-systems" class="section level1" number="4">
-<h1><span class="header-section-number">Chapter 4</span> Distributed Systems</h1>
-<p>When working with very large datasets (i.e., Terabytes of data), simply scaling up might not be a reasonable solution. In practice, there is a limited amount of RAM and a limited number of CPU cores that can work on one machine. In simple terms, the solution then is to connect several computers (each with their own RAM, CPU, mass storage) in a network, distribute the dataset across all computers (“nodes”) in this network, and work on the data simultaneously across all nodes. Such a computing system is commonly referred to as a “distributed system.” From a technical standpoint the key difference between a distributed system and the more familiar parallel system (e.g. our desktop computer with its multicore CPU) is that in distributed systems the different components do not share the same memory (and storage). Figure <a href="distributed-systems.html#fig:distributedsystems">4.1</a> illustrates this point.</p>
+<div id="distributed-systems" class="section level1" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Distributed Systems</h1>
+<p>When working with very large data sets (i.e., terabytes of data), processing the data on one common computer might not work due to a lack of memory or would be way too slow due to a lack of computing power (CPU cores). The architecture or basic hardware set up of a common computer is subject to a limited amount of RAM and a limited number of CPUs/CPU cores. Hence simply scaling up might not be sufficient. Instead we need to scale out. In simple terms, this means to connect several computers (each with their own RAM, CPU, mass storage) in a network, distribute the data set across all computers (“nodes”) in this network, and work on the data simultaneously across all nodes. Such a computing system is commonly referred to as a “distributed system.” From a technical standpoint the key difference between a distributed system and the more familiar parallel system (e.g. our desktop computer with its multicore CPU) is that in distributed systems the different components do not share the same memory (and storage). Figure <a href="distributed-systems.html#fig:distributedsystems">5.1</a> illustrates this point.</p>
 <div class="figure" style="text-align: center"><span id="fig:distributedsystems"></span>
 <img src="img/distributed_systems.png" alt="(a), (b): a distributed system. (c): a parallel system.I llustration by Miym (CC BY-SA 3.0)." width="30%" />
 <p class="caption">
-Figure 4.1: (a), (b): a distributed system. (c): a parallel system.I llustration by Miym (CC BY-SA 3.0).
+Figure 5.1: (a), (b): a distributed system. (c): a parallel system.I llustration by Miym (CC BY-SA 3.0).
 </p>
 </div>
 
-<p>In a distributed system, the dataset is literally split up into pieces that then reside separately on different nodes. This requires an additional “layer” of software (that coordinates the distribution/loading of data as well as the simultaneous processing) and a different approach (a different “programming model”) to defining computing/data analytics tasks. Below, we will look at both of these aspects in turn.</p>
-<div id="mapreduce" class="section level2" number="4.1">
-<h2><span class="header-section-number">4.1</span> MapReduce</h2>
-<p>The most broadly used programming model and its implementation for processing big data on distributed systems is called MapReduce. It essentially consists of two procedures and is conceptually very close to the “split-apply-combine” strategy in data analysis. First, the Map function sorts/filters the data (on each node) and a Reduce function that aggregates the sorted/filtered data. In the background, the MapReduce “framework” orchestrates these processes across all nodes, collects the results, and returns them to the user.</p>
-<p>Let us illustrate the basic idea behind MapReduce with a simple example. Suppose you are working on a text mining task in which all the raw text in thousands of digitized books (stored as text files) need to be processed. In a first step, you want to compute word frequencies, that is a count of the number of occurrences of specific words in all books combined.</p>
-<p>For simplicity, let us only focus on the following excerpts from two books:</p>
+<p>In a distributed system, the data set is literally split up into pieces that then reside separately on different nodes. This requires an additional “layer” of software (that coordinates the distribution/loading of data as well as the simultaneous processing) and a different approach (a different “programming model”) to defining computing/data analytics tasks. Below, we will look at both of these aspects in turn.</p>
+<div id="mapreduce" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> MapReduce</h2>
+<p>The most broadly used programming model and its implementation for processing big data on distributed systems is called MapReduce. It essentially consists of two procedures and is conceptually very close to the “split-apply-combine” strategy in data analysis. First, the Map function sorts/filters the data (on each node). Then, a Reduce function aggregates the sorted/filtered data. In the background, the MapReduce “framework” orchestrates these processes across all nodes, collects the results, and returns them to the user.</p>
+<p>Let us illustrate the basic idea behind MapReduce with a simple example. Suppose you are working on a text mining task in which all the raw text in thousands of digitized books (stored as text files) need to be processed. In a first step, you want to compute word frequencies (countthe number of occurrences of specific words in all books combined).</p>
+<p>For simplicity, let us only focus on the following excerpts from two exemplary (and rather cryptic) books on botany:</p>
 <center>
 <p>Text in book 1:</p>
 <p><em>Apple Orange Mango</em>
@@ -365,217 +377,397 @@ Figure 4.1: (a), (b): a distributed system. (c): a parallel system.I llustration
 <p><em>Apple Apple Plum</em>
  </p>
 </center>
+<p>The figure below illustrates the MapReduce process. First, the data is loaded from the original text files. Each line of text is then passed to individual mapper instances which separately split the lines of text into key-value pairs. Then the system sorts and shuffles all key-value pairs across all instances and finally. The reducer aggregates the sorted/shuffled key-value pairs (here: counts the number of word occurrences) and, finally, the master instance collects all the results and returns the final output. From this simple example, a key aspect of MapReduce should become clear: for the key tasks of mapping and reducing the data processing on one node/instance can happen completely independent from the processing on the other instances. Note that not for every data anlytics task this is so easily conceivable as for computing word frequencies.</p>
 <div class="figure" style="text-align: center"><span id="fig:mapreduce"></span>
 <img src="img/mapreduce_wordcount.jpg" alt="Illustration of the MapReduce programming model." width="30%" />
 <p class="caption">
-Figure 4.2: Illustration of the MapReduce programming model.
+Figure 5.2: Illustration of the MapReduce programming model.
 </p>
 </div>
 
-<div id="mapreduce-concept-illustrated-in-r" class="section level3" number="4.1.1">
-<h3><span class="header-section-number">4.1.1</span> Map/Reduce Concept Illustrated in R</h3>
-<p>In order to better understand the basic concept behind the MapReduce-Framework on a distributed system, let’s look at how we can combine the basic functions <code>map()</code> and <code>reduce()</code> in R to implement the basic MapReduce example shown in <span class="citation"><a href="references.html#ref-walkowiak_2016" role="doc-biblioref">Walkowiak</a> (<a href="references.html#ref-walkowiak_2016" role="doc-biblioref">2016</a>)</span>, Chapter 4, pages 132-134 (this is just to illustrate the underlying idea, <em>not</em> to suggest that MapReduce actually is simply an application of the classical <code>map</code> and <code>reduce (fold)</code> functions in functional programming).<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a> The overall aim of the program is to count the number of times each word is repeated in a given text. The input to the program is thus a text, the output is a list of key-value pairs with the unique words occurring in the text as keys and their respective number of occurrences as values.</p>
+<div id="mapreduce-concept-illustrated-in-r" class="section level3" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Map/Reduce Concept Illustrated in R</h3>
+<p>In order to better understand the basic concept behind the MapReduce-Framework on a distributed system, let’s look at how we can combine the functions <code>map()</code> and <code>reduce()</code> in R to implement the basic MapReduce example shown above (this is just to illustrate the underlying idea, <em>not</em> to suggest that MapReduce actually is simply an application of the classical <code>map</code> and <code>reduce (fold)</code> functions in functional programming).<a href="#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a> The overall aim of the program is to count the number of times each word is repeated in a given text. The input to the program is thus a text, the output is a list of key-value pairs with the unique words occurring in the text as keys and their respective number of occurrences as values.</p>
 <p>In the code example, we will use the following text as input.</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb125-1"><a href="distributed-systems.html#cb125-1" aria-hidden="true" tabindex="-1"></a>input_text <span class="ot">&lt;-</span></span>
-<span id="cb125-2"><a href="distributed-systems.html#cb125-2" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;Simon is a friend of Becky.</span></span>
-<span id="cb125-3"><a href="distributed-systems.html#cb125-3" aria-hidden="true" tabindex="-1"></a><span class="st">Becky is a friend of Ann.</span></span>
-<span id="cb125-4"><a href="distributed-systems.html#cb125-4" aria-hidden="true" tabindex="-1"></a><span class="st">Ann is not a friend of Simon.&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="distributed-systems.html#cb150-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initiate the input text (for simplicity as one text string)</span></span>
+<span id="cb150-2"><a href="distributed-systems.html#cb150-2" aria-hidden="true" tabindex="-1"></a>input_text <span class="ot">&lt;-</span></span>
+<span id="cb150-3"><a href="distributed-systems.html#cb150-3" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;Apple Orange Mango</span></span>
+<span id="cb150-4"><a href="distributed-systems.html#cb150-4" aria-hidden="true" tabindex="-1"></a><span class="st">Orange Grapes Plum</span></span>
+<span id="cb150-5"><a href="distributed-systems.html#cb150-5" aria-hidden="true" tabindex="-1"></a><span class="st">Apple Plum Mango</span></span>
+<span id="cb150-6"><a href="distributed-systems.html#cb150-6" aria-hidden="true" tabindex="-1"></a><span class="st">Apple Apple Plum&quot;</span></span></code></pre></div>
 </div>
-<div id="mapper" class="section level3" number="4.1.2">
-<h3><span class="header-section-number">4.1.2</span> Mapper</h3>
+<div id="mapper" class="section level3" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> Mapper</h3>
 <p>The Mapper first splits the text into lines, and then splits the lines into key-value pairs, assigning to each key the value <code>1</code>. For the first step we use <code>strsplit()</code> that takes a character string as input and splits it into a list of substrings according to the matches of a substring (here <code>"\n"</code>, indicating the end of a line).</p>
-<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="distributed-systems.html#cb126-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mapper splits input into lines</span></span>
-<span id="cb126-2"><a href="distributed-systems.html#cb126-2" aria-hidden="true" tabindex="-1"></a>lines <span class="ot">&lt;-</span> <span class="fu">as.list</span>(<span class="fu">strsplit</span>(input_text, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)[[<span class="dv">1</span>]])</span>
-<span id="cb126-3"><a href="distributed-systems.html#cb126-3" aria-hidden="true" tabindex="-1"></a>lines</span></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="distributed-systems.html#cb151-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mapper splits input into lines</span></span>
+<span id="cb151-2"><a href="distributed-systems.html#cb151-2" aria-hidden="true" tabindex="-1"></a>lines <span class="ot">&lt;-</span> <span class="fu">as.list</span>(<span class="fu">strsplit</span>(input_text, <span class="st">&quot;</span><span class="sc">\n</span><span class="st">&quot;</span>)[[<span class="dv">1</span>]])</span>
+<span id="cb151-3"><a href="distributed-systems.html#cb151-3" aria-hidden="true" tabindex="-1"></a>lines</span></code></pre></div>
 <pre><code>## [[1]]
-## [1] &quot;Simon is a friend of Becky.&quot;
+## [1] &quot;Apple Orange Mango&quot;
 ## 
 ## [[2]]
-## [1] &quot;Becky is a friend of Ann.&quot;
+## [1] &quot;Orange Grapes Plum&quot;
 ## 
 ## [[3]]
-## [1] &quot;Ann is not a friend of Simon.&quot;</code></pre>
+## [1] &quot;Apple Plum Mango&quot;
+## 
+## [[4]]
+## [1] &quot;Apple Apple Plum&quot;</code></pre>
 <p>In a second step, we apply our own function (<code>map_fun()</code>) to each line of text via <code>Map()</code>. <code>map_fun()</code> splits each line into words (keys) and assigns a value of <code>1</code> to each key.</p>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="distributed-systems.html#cb128-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mapper splits lines into Key-Value pairs</span></span>
-<span id="cb128-2"><a href="distributed-systems.html#cb128-2" aria-hidden="true" tabindex="-1"></a>map_fun <span class="ot">&lt;-</span></span>
-<span id="cb128-3"><a href="distributed-systems.html#cb128-3" aria-hidden="true" tabindex="-1"></a>     <span class="cf">function</span>(x){</span>
-<span id="cb128-4"><a href="distributed-systems.html#cb128-4" aria-hidden="true" tabindex="-1"></a>          </span>
-<span id="cb128-5"><a href="distributed-systems.html#cb128-5" aria-hidden="true" tabindex="-1"></a>          <span class="co"># remove special characters</span></span>
-<span id="cb128-6"><a href="distributed-systems.html#cb128-6" aria-hidden="true" tabindex="-1"></a>          x_clean <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;[[:punct:]]&quot;</span>, <span class="st">&quot;&quot;</span>, x)</span>
-<span id="cb128-7"><a href="distributed-systems.html#cb128-7" aria-hidden="true" tabindex="-1"></a>          <span class="co"># split line into words</span></span>
-<span id="cb128-8"><a href="distributed-systems.html#cb128-8" aria-hidden="true" tabindex="-1"></a>          keys <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">strsplit</span>(x_clean, <span class="st">&quot; &quot;</span>))</span>
-<span id="cb128-9"><a href="distributed-systems.html#cb128-9" aria-hidden="true" tabindex="-1"></a>          <span class="co"># initiate key-value pairs</span></span>
-<span id="cb128-10"><a href="distributed-systems.html#cb128-10" aria-hidden="true" tabindex="-1"></a>          key_values <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span>, <span class="fu">length</span>(keys))</span>
-<span id="cb128-11"><a href="distributed-systems.html#cb128-11" aria-hidden="true" tabindex="-1"></a>          <span class="fu">names</span>(key_values) <span class="ot">&lt;-</span> keys</span>
-<span id="cb128-12"><a href="distributed-systems.html#cb128-12" aria-hidden="true" tabindex="-1"></a>          </span>
-<span id="cb128-13"><a href="distributed-systems.html#cb128-13" aria-hidden="true" tabindex="-1"></a>          <span class="fu">return</span>(key_values)</span>
-<span id="cb128-14"><a href="distributed-systems.html#cb128-14" aria-hidden="true" tabindex="-1"></a>     }</span>
-<span id="cb128-15"><a href="distributed-systems.html#cb128-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb128-16"><a href="distributed-systems.html#cb128-16" aria-hidden="true" tabindex="-1"></a>kv_pairs <span class="ot">&lt;-</span> <span class="fu">Map</span>(map_fun, lines)</span>
-<span id="cb128-17"><a href="distributed-systems.html#cb128-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb128-18"><a href="distributed-systems.html#cb128-18" aria-hidden="true" tabindex="-1"></a><span class="co"># look at the result</span></span>
-<span id="cb128-19"><a href="distributed-systems.html#cb128-19" aria-hidden="true" tabindex="-1"></a>kv_pairs</span></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="distributed-systems.html#cb153-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mapper splits lines into Key-Value pairs</span></span>
+<span id="cb153-2"><a href="distributed-systems.html#cb153-2" aria-hidden="true" tabindex="-1"></a>map_fun <span class="ot">&lt;-</span></span>
+<span id="cb153-3"><a href="distributed-systems.html#cb153-3" aria-hidden="true" tabindex="-1"></a>     <span class="cf">function</span>(x){</span>
+<span id="cb153-4"><a href="distributed-systems.html#cb153-4" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb153-5"><a href="distributed-systems.html#cb153-5" aria-hidden="true" tabindex="-1"></a>          <span class="co"># remove special characters</span></span>
+<span id="cb153-6"><a href="distributed-systems.html#cb153-6" aria-hidden="true" tabindex="-1"></a>          x_clean <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;[[:punct:]]&quot;</span>, <span class="st">&quot;&quot;</span>, x)</span>
+<span id="cb153-7"><a href="distributed-systems.html#cb153-7" aria-hidden="true" tabindex="-1"></a>          <span class="co"># split line into words</span></span>
+<span id="cb153-8"><a href="distributed-systems.html#cb153-8" aria-hidden="true" tabindex="-1"></a>          keys <span class="ot">&lt;-</span> <span class="fu">unlist</span>(<span class="fu">strsplit</span>(x_clean, <span class="st">&quot; &quot;</span>))</span>
+<span id="cb153-9"><a href="distributed-systems.html#cb153-9" aria-hidden="true" tabindex="-1"></a>          <span class="co"># initiate key-value pairs</span></span>
+<span id="cb153-10"><a href="distributed-systems.html#cb153-10" aria-hidden="true" tabindex="-1"></a>          key_values <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">1</span>, <span class="fu">length</span>(keys))</span>
+<span id="cb153-11"><a href="distributed-systems.html#cb153-11" aria-hidden="true" tabindex="-1"></a>          <span class="fu">names</span>(key_values) <span class="ot">&lt;-</span> keys</span>
+<span id="cb153-12"><a href="distributed-systems.html#cb153-12" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb153-13"><a href="distributed-systems.html#cb153-13" aria-hidden="true" tabindex="-1"></a>          <span class="fu">return</span>(key_values)</span>
+<span id="cb153-14"><a href="distributed-systems.html#cb153-14" aria-hidden="true" tabindex="-1"></a>     }</span>
+<span id="cb153-15"><a href="distributed-systems.html#cb153-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb153-16"><a href="distributed-systems.html#cb153-16" aria-hidden="true" tabindex="-1"></a>kv_pairs <span class="ot">&lt;-</span> <span class="fu">Map</span>(map_fun, lines)</span>
+<span id="cb153-17"><a href="distributed-systems.html#cb153-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb153-18"><a href="distributed-systems.html#cb153-18" aria-hidden="true" tabindex="-1"></a><span class="co"># look at the result</span></span>
+<span id="cb153-19"><a href="distributed-systems.html#cb153-19" aria-hidden="true" tabindex="-1"></a>kv_pairs</span></code></pre></div>
 <pre><code>## [[1]]
-##  Simon     is      a friend     of  Becky 
-##      1      1      1      1      1      1 
+##  Apple Orange  Mango 
+##      1      1      1 
 ## 
 ## [[2]]
-##  Becky     is      a friend     of    Ann 
-##      1      1      1      1      1      1 
+## Orange Grapes   Plum 
+##      1      1      1 
 ## 
 ## [[3]]
-##    Ann     is    not      a friend     of  Simon 
-##      1      1      1      1      1      1      1</code></pre>
+## Apple  Plum Mango 
+##     1     1     1 
+## 
+## [[4]]
+## Apple Apple  Plum 
+##     1     1     1</code></pre>
 </div>
-<div id="reducer" class="section level3" number="4.1.3">
-<h3><span class="header-section-number">4.1.3</span> Reducer</h3>
+<div id="reducer" class="section level3" number="5.1.3">
+<h3><span class="header-section-number">5.1.3</span> Reducer</h3>
 <p>The Reducer first sorts and shuffles the input from the Mapper and then reduces the key-value pairs by summing up the values for each key.</p>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="distributed-systems.html#cb130-1" aria-hidden="true" tabindex="-1"></a><span class="co"># order and shuffle</span></span>
-<span id="cb130-2"><a href="distributed-systems.html#cb130-2" aria-hidden="true" tabindex="-1"></a>kv_pairs <span class="ot">&lt;-</span> <span class="fu">unlist</span>(kv_pairs)</span>
-<span id="cb130-3"><a href="distributed-systems.html#cb130-3" aria-hidden="true" tabindex="-1"></a>keys <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">names</span>(kv_pairs))</span>
-<span id="cb130-4"><a href="distributed-systems.html#cb130-4" aria-hidden="true" tabindex="-1"></a>keys <span class="ot">&lt;-</span> keys[<span class="fu">order</span>(keys)]</span>
-<span id="cb130-5"><a href="distributed-systems.html#cb130-5" aria-hidden="true" tabindex="-1"></a>shuffled <span class="ot">&lt;-</span> <span class="fu">lapply</span>(keys,</span>
-<span id="cb130-6"><a href="distributed-systems.html#cb130-6" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">function</span>(x) kv_pairs[x <span class="sc">==</span> <span class="fu">names</span>(kv_pairs)])</span>
-<span id="cb130-7"><a href="distributed-systems.html#cb130-7" aria-hidden="true" tabindex="-1"></a>shuffled</span></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="distributed-systems.html#cb155-1" aria-hidden="true" tabindex="-1"></a><span class="co"># order and shuffle</span></span>
+<span id="cb155-2"><a href="distributed-systems.html#cb155-2" aria-hidden="true" tabindex="-1"></a>kv_pairs <span class="ot">&lt;-</span> <span class="fu">unlist</span>(kv_pairs)</span>
+<span id="cb155-3"><a href="distributed-systems.html#cb155-3" aria-hidden="true" tabindex="-1"></a>keys <span class="ot">&lt;-</span> <span class="fu">unique</span>(<span class="fu">names</span>(kv_pairs))</span>
+<span id="cb155-4"><a href="distributed-systems.html#cb155-4" aria-hidden="true" tabindex="-1"></a>keys <span class="ot">&lt;-</span> keys[<span class="fu">order</span>(keys)]</span>
+<span id="cb155-5"><a href="distributed-systems.html#cb155-5" aria-hidden="true" tabindex="-1"></a>shuffled <span class="ot">&lt;-</span> <span class="fu">lapply</span>(keys,</span>
+<span id="cb155-6"><a href="distributed-systems.html#cb155-6" aria-hidden="true" tabindex="-1"></a>                    <span class="cf">function</span>(x) kv_pairs[x <span class="sc">==</span> <span class="fu">names</span>(kv_pairs)])</span>
+<span id="cb155-7"><a href="distributed-systems.html#cb155-7" aria-hidden="true" tabindex="-1"></a>shuffled</span></code></pre></div>
 <pre><code>## [[1]]
-## a a a 
-## 1 1 1 
+## Apple Apple Apple Apple 
+##     1     1     1     1 
 ## 
 ## [[2]]
-## Ann Ann 
-##   1   1 
+## Grapes 
+##      1 
 ## 
 ## [[3]]
-## Becky Becky 
+## Mango Mango 
 ##     1     1 
 ## 
 ## [[4]]
-## friend friend friend 
-##      1      1      1 
+## Orange Orange 
+##      1      1 
 ## 
 ## [[5]]
-## is is is 
-##  1  1  1 
-## 
-## [[6]]
-## not 
-##   1 
-## 
-## [[7]]
-## of of of 
-##  1  1  1 
-## 
-## [[8]]
-## Simon Simon 
-##     1     1</code></pre>
+## Plum Plum Plum 
+##    1    1    1</code></pre>
 <p>Now we can sum up the keys in order to get the word count for the entire input.</p>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="distributed-systems.html#cb132-1" aria-hidden="true" tabindex="-1"></a>sums <span class="ot">&lt;-</span> <span class="fu">sapply</span>(shuffled, sum)</span>
-<span id="cb132-2"><a href="distributed-systems.html#cb132-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(sums) <span class="ot">&lt;-</span> keys</span>
-<span id="cb132-3"><a href="distributed-systems.html#cb132-3" aria-hidden="true" tabindex="-1"></a>sums</span></code></pre></div>
-<pre><code>##      a    Ann  Becky friend     is    not     of 
-##      3      2      2      3      3      1      3 
-##  Simon 
-##      2</code></pre>
-</div>
-<div id="simpler-example-compute-the-total-number-of-words" class="section level3" number="4.1.4">
-<h3><span class="header-section-number">4.1.4</span> Simpler example: Compute the total number of words</h3>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="distributed-systems.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assigns the number of words per line as value</span></span>
-<span id="cb134-2"><a href="distributed-systems.html#cb134-2" aria-hidden="true" tabindex="-1"></a>map_fun2 <span class="ot">&lt;-</span> </span>
-<span id="cb134-3"><a href="distributed-systems.html#cb134-3" aria-hidden="true" tabindex="-1"></a>     <span class="cf">function</span>(x){</span>
-<span id="cb134-4"><a href="distributed-systems.html#cb134-4" aria-hidden="true" tabindex="-1"></a>          <span class="co"># remove special characters</span></span>
-<span id="cb134-5"><a href="distributed-systems.html#cb134-5" aria-hidden="true" tabindex="-1"></a>          x_clean <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;[[:punct:]]&quot;</span>, <span class="st">&quot;&quot;</span>, x)</span>
-<span id="cb134-6"><a href="distributed-systems.html#cb134-6" aria-hidden="true" tabindex="-1"></a>          <span class="co"># split line into words, count no. of words per line</span></span>
-<span id="cb134-7"><a href="distributed-systems.html#cb134-7" aria-hidden="true" tabindex="-1"></a>          values <span class="ot">&lt;-</span> <span class="fu">length</span>(<span class="fu">unlist</span>(<span class="fu">strsplit</span>(x_clean, <span class="st">&quot; &quot;</span>)))</span>
-<span id="cb134-8"><a href="distributed-systems.html#cb134-8" aria-hidden="true" tabindex="-1"></a>          <span class="fu">return</span>(values)</span>
-<span id="cb134-9"><a href="distributed-systems.html#cb134-9" aria-hidden="true" tabindex="-1"></a>     }</span>
-<span id="cb134-10"><a href="distributed-systems.html#cb134-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Mapper</span></span>
-<span id="cb134-11"><a href="distributed-systems.html#cb134-11" aria-hidden="true" tabindex="-1"></a>mapped <span class="ot">&lt;-</span> <span class="fu">Map</span>(map_fun2, lines)</span>
-<span id="cb134-12"><a href="distributed-systems.html#cb134-12" aria-hidden="true" tabindex="-1"></a>mapped</span></code></pre></div>
-<pre><code>## [[1]]
-## [1] 6
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="distributed-systems.html#cb157-1" aria-hidden="true" tabindex="-1"></a>sums <span class="ot">&lt;-</span> <span class="fu">lapply</span>(shuffled, Reduce, <span class="at">f=</span>sum)</span>
+<span id="cb157-2"><a href="distributed-systems.html#cb157-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(sums) <span class="ot">&lt;-</span> keys</span>
+<span id="cb157-3"><a href="distributed-systems.html#cb157-3" aria-hidden="true" tabindex="-1"></a>sums</span></code></pre></div>
+<pre><code>## $Apple
+## [1] 4
 ## 
-## [[2]]
-## [1] 6
+## $Grapes
+## [1] 1
 ## 
-## [[3]]
-## [1] 7</code></pre>
-<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="distributed-systems.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Reducer</span></span>
-<span id="cb136-2"><a href="distributed-systems.html#cb136-2" aria-hidden="true" tabindex="-1"></a>reduced <span class="ot">&lt;-</span> <span class="fu">Reduce</span>(sum, mapped)</span>
-<span id="cb136-3"><a href="distributed-systems.html#cb136-3" aria-hidden="true" tabindex="-1"></a>reduced</span></code></pre></div>
-<pre><code>## [1] 19</code></pre>
+## $Mango
+## [1] 2
+## 
+## $Orange
+## [1] 2
+## 
+## $Plum
+## [1] 3</code></pre>
+<!-- ### Simpler example: Compute the total number of words -->
+<!-- ```{r} -->
+<!-- # assigns the number of words per line as value -->
+<!-- map_fun2 <-  -->
+<!--      function(x){ -->
+<!--           # remove special characters -->
+<!--           x_clean <- gsub("[[:punct:]]", "", x) -->
+<!--           # split line into words, count no. of words per line -->
+<!--           values <- length(unlist(strsplit(x_clean, " "))) -->
+<!--           return(values) -->
+<!--      } -->
+<!-- # Mapper -->
+<!-- mapped <- Map(map_fun2, lines) -->
+<!-- mapped -->
+<!-- # Reducer -->
+<!-- reduced <- Reduce(sum, mapped) -->
+<!-- reduced -->
+<!-- ``` -->
 </div>
 </div>
-<div id="hadoop" class="section level2" number="4.2">
-<h2><span class="header-section-number">4.2</span> Hadoop</h2>
+<div id="hadoop" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> Hadoop</h2>
+<p>Hadoop is probably the most broadly known and used system to implement the MapReduce framework. A decade ago big data analytics with really large data sets often involved directly interacting with/ working in Hadoop to run MapReduce jobs. However, over the last few years various higher-level interfaces have been developed that make the usage of MapReduce/Hadoop for data analysts much more easily accessible. The purpose of this section is thus to give a lightweight introduction to the underlying basics that power some of the code examples and tutorials discussed in the data analytics chapters towards the end of this book.</p>
 <p><img src="img/hadoop.png" width="90%" style="display: block; margin: auto;" /></p>
-<div id="hadoop-word-count" class="section level3" number="4.2.1">
-<h3><span class="header-section-number">4.2.1</span> Hadoop Word Count</h3>
-<p>Example adapted from <a href="https://www.digitalocean.com/community/tutorials/how-to-install-hadoop-in-stand-alone-mode-on-ubuntu-18-04#step-2-%E2%80%94-installing-hadoop">this tutorial</a> by Melissa Anderson and Hanif Jetha.</p>
-<div id="install-hadoop-on-ubuntupop_os-linux" class="section level4" number="4.2.1.1">
-<h4><span class="header-section-number">4.2.1.1</span> Install Hadoop (on Ubuntu/Pop!_OS Linux)</h4>
-<div class="sourceCode" id="cb138"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb138-1"><a href="distributed-systems.html#cb138-1" aria-hidden="true" tabindex="-1"></a><span class="co"># download binary</span></span>
-<span id="cb138-2"><a href="distributed-systems.html#cb138-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://downloads.apache.org/hadoop/common/hadoop-2.10.0/hadoop-2.10.0.tar.gz</span>
-<span id="cb138-3"><a href="distributed-systems.html#cb138-3" aria-hidden="true" tabindex="-1"></a><span class="co"># download checksum</span></span>
-<span id="cb138-4"><a href="distributed-systems.html#cb138-4" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://www.apache.org/dist/hadoop/common/hadoop-2.10.0/hadoop-2.10.0.tar.gz.sha512</span>
-<span id="cb138-5"><a href="distributed-systems.html#cb138-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb138-6"><a href="distributed-systems.html#cb138-6" aria-hidden="true" tabindex="-1"></a><span class="co"># run the verification</span></span>
-<span id="cb138-7"><a href="distributed-systems.html#cb138-7" aria-hidden="true" tabindex="-1"></a><span class="ex">shasum</span> <span class="at">-a</span> 512 hadoop-2.10.0.tar.gz</span>
-<span id="cb138-8"><a href="distributed-systems.html#cb138-8" aria-hidden="true" tabindex="-1"></a><span class="co"># compare with value in mds file</span></span>
-<span id="cb138-9"><a href="distributed-systems.html#cb138-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> hadoop-2.10.0.tar.gz.sha512</span>
-<span id="cb138-10"><a href="distributed-systems.html#cb138-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb138-11"><a href="distributed-systems.html#cb138-11" aria-hidden="true" tabindex="-1"></a><span class="co"># if all is fine, unpack</span></span>
-<span id="cb138-12"><a href="distributed-systems.html#cb138-12" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzvf</span> hadoop-2.10.0.tar.gz</span>
-<span id="cb138-13"><a href="distributed-systems.html#cb138-13" aria-hidden="true" tabindex="-1"></a><span class="co"># move to proper place</span></span>
-<span id="cb138-14"><a href="distributed-systems.html#cb138-14" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mv hadoop-2.10.0 /usr/local/hadoop</span>
-<span id="cb138-15"><a href="distributed-systems.html#cb138-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb138-16"><a href="distributed-systems.html#cb138-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb138-17"><a href="distributed-systems.html#cb138-17" aria-hidden="true" tabindex="-1"></a><span class="co"># then point to this version from hadoop</span></span>
-<span id="cb138-18"><a href="distributed-systems.html#cb138-18" aria-hidden="true" tabindex="-1"></a><span class="co"># open the file /usr/local/hadoop/etc/hadoop/hadoop-env.sh</span></span>
-<span id="cb138-19"><a href="distributed-systems.html#cb138-19" aria-hidden="true" tabindex="-1"></a><span class="co"># in a text editor and add (where export JAVA_HOME=...)</span></span>
-<span id="cb138-20"><a href="distributed-systems.html#cb138-20" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">JAVA_HOME=$(</span><span class="fu">readlink</span> <span class="at">-f</span> /usr/bin/java <span class="kw">|</span> <span class="fu">sed</span> <span class="st">&quot;s:bin/java::&quot;</span><span class="va">)</span></span>
-<span id="cb138-21"><a href="distributed-systems.html#cb138-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb138-22"><a href="distributed-systems.html#cb138-22" aria-hidden="true" tabindex="-1"></a><span class="co"># clean up</span></span>
-<span id="cb138-23"><a href="distributed-systems.html#cb138-23" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> hadoop-2.10.0.tar.gz</span>
-<span id="cb138-24"><a href="distributed-systems.html#cb138-24" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> hadoop-2.10.0.tar.gz.sha512</span></code></pre></div>
-</div>
-<div id="run-hadoop" class="section level4" number="4.2.1.2">
-<h4><span class="header-section-number">4.2.1.2</span> Run Hadoop</h4>
-<div class="sourceCode" id="cb139"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb139-1"><a href="distributed-systems.html#cb139-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check installation</span></span>
-<span id="cb139-2"><a href="distributed-systems.html#cb139-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/usr/local/hadoop/bin/hadoop</span></span></code></pre></div>
-</div>
-<div id="run-example" class="section level4" number="4.2.1.3">
-<h4><span class="header-section-number">4.2.1.3</span> Run example</h4>
-<p>The basic Hadoop installation comes with a few examples for very typical map/reduce programs.<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a> Below we replicate the same word-count example as shown in simple R code above.</p>
+<div id="hadoop-word-count-example" class="section level3" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> Hadoop word count example</h3>
+<p>To get an idea of how running a Hadoop job looks like, we run the same simple word count example introduced above on a local Hadoop installation. The example presupposes a local installation of Hadoop version 2.10.1 (see Appendix C for details) and can easily be run on a completely normal desktop/laptop computer running Ubuntu Linux. As a side remark, this actually illustrates an important aspect of developing MapReduce scripts in Hadoop (and many of the software packages building on it): the code can be easily developed tested locally on a small machine and only later transferred to the actual Hadoop cluster to be run on the full data set.</p>
+<p>The basic Hadoop installation comes with a few templates for very typical map/reduce programs.<a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a> Below we replicate the same word-count example as shown in simple R code above.</p>
 <p>In a first step, we create an input directory where we store the input file(s) to feed to Hadoop.</p>
-<div class="sourceCode" id="cb140"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb140-1"><a href="distributed-systems.html#cb140-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create directory for input files (typically text files)</span></span>
-<span id="cb140-2"><a href="distributed-systems.html#cb140-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> ~/input</span></code></pre></div>
-<p>Then we add a textfile containing the same text as in the example as above (to make things simpler, we already remove special characters).</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb141-1"><a href="distributed-systems.html#cb141-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;Simon is a friend of Becky</span></span>
-<span id="cb141-2"><a href="distributed-systems.html#cb141-2" aria-hidden="true" tabindex="-1"></a><span class="st">Becky is a friend of Ann</span></span>
-<span id="cb141-3"><a href="distributed-systems.html#cb141-3" aria-hidden="true" tabindex="-1"></a><span class="st">Ann is not a friend of Simon&quot;</span> <span class="op">&gt;&gt;</span>  ~/input/text.txt</span></code></pre></div>
-<p>Now we can run the MapReduce/Hadoop word count as follows, storing the results in a new directory called <code>wordcount_example</code>.</p>
-<div class="sourceCode" id="cb142"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb142-1"><a href="distributed-systems.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run mapreduce word count</span></span>
-<span id="cb142-2"><a href="distributed-systems.html#cb142-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/usr/local/hadoop/bin/hadoop</span> jar /usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.10.0.jar wordcount ~/input ~/wc_example</span></code></pre></div>
-<p>Show the output:</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb143-1"><a href="distributed-systems.html#cb143-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> ~/wc_example/<span class="pp">*</span></span></code></pre></div>
-<pre><code>## Ann  2
-## Becky    2
-## Simon    2
-## a    3
-## friend   3
-## is   3
-## not  1
-## of   3</code></pre>
+<div class="sourceCode" id="cb159"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb159-1"><a href="distributed-systems.html#cb159-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create directory for input files (typically text files)</span></span>
+<span id="cb159-2"><a href="distributed-systems.html#cb159-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mkdir</span> ~/input</span></code></pre></div>
+<p>Then we add a text file containing the same text as in the example above.</p>
+<div class="sourceCode" id="cb160"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb160-1"><a href="distributed-systems.html#cb160-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;Apple Orange Mango</span></span>
+<span id="cb160-2"><a href="distributed-systems.html#cb160-2" aria-hidden="true" tabindex="-1"></a><span class="st">Orange Grapes Plum</span></span>
+<span id="cb160-3"><a href="distributed-systems.html#cb160-3" aria-hidden="true" tabindex="-1"></a><span class="st">Apple Plum Mango</span></span>
+<span id="cb160-4"><a href="distributed-systems.html#cb160-4" aria-hidden="true" tabindex="-1"></a><span class="st">Apple Apple Plum&quot;</span> <span class="op">&gt;&gt;</span>  ~/input/text.txt</span></code></pre></div>
+<p>Now we can run the MapReduce/Hadoop word count as follows, storing the results in a new directory called <code>wordcount_example</code>. This is where we use the already implemented Hadoop script to run a word count job Map/Reduce style. This is where we rely on the already implemented wordcount example provided with the Hadoop installation (located in <code>/usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.10.1.jar</code>)</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb161-1"><a href="distributed-systems.html#cb161-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run mapreduce word count</span></span>
+<span id="cb161-2"><a href="distributed-systems.html#cb161-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/usr/local/hadoop/bin/hadoop</span> jar /usr/local/hadoop/share/hadoop/mapreduce/hadoop-mapreduce-examples-2.10.1.jar wordcount ~/input ~/wc_example</span></code></pre></div>
+<p>What this line says is: run the Hadoop program called <code>wordcount</code> implemented in the jar-file <code>hadoop-mapreduce-examples-2.10.1.jar</code>, use the files in directory <code>~/input</code> containing the raw text as input and store the final output in directory <code>~/wc_example</code>.</p>
+<div class="sourceCode" id="cb162"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb162-1"><a href="distributed-systems.html#cb162-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> ~/wc_example/<span class="pp">*</span></span></code></pre></div>
+<pre><code>## Apple    4
+## Grapes   1
+## Mango    2
+## Orange   2
+## Plum 3</code></pre>
+<p>What looks rather simple in this example can get very complex once you want to write an entire data analysis script with all kind of analysis for Hadoop. Also, Hadoop was designed for batch processing and does not offer a simple interface for interactive sessions. All of this makes it rather impractical for a usual analytics workflow as we know it from working with R. This is where <a href="https://spark.apache.org/">Apache Spark</a> comes to the rescue.</p>
+</div>
+</div>
+<div id="spark" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> Spark</h2>
+<p>Also building on the MapReduce model, Spark is a cluster computing platform particularly made for data analytics. It partially relies on Hadoop for handling storage and resource management, but offers way more easy-to-use high-level interfaces for typical analytics tasks. From the technical perspective (in very simple terms), Spark also addresses some shortcomings of the Hadoop platform, further improving efficiency/speed for many data analysis tasks. More importantly for our purposes, in contrast to Hadoop, Spark is specifically made for interactively developing and runnin data analytics scripts and therefore more easily accessible for people with an applied econometrics background but no substantial knowledge in MapReduce cluster computing. In particular, it comes with several high-level operators that make it rather easy to implement analytics tasks. Moreover, as we will see in later chapters, it is very easy to use interactively from within R (and other languages like Python, SQL, and Scala). This makes the platform much more accessible and worth the while for empirical economic research, even for relatively simple econometric analyses.</p>
+<p>The following figure illustrates the basic components of Spark. The main functionality, including memory management, task scheduling, and the implementation of Spark’s capabilities to handle and manipulate data distributed across many nodes in parallel. Several built-in libraries extend the core implementation, covering specific domains of practical data analytics tasks (querying structured data via SQL, processing streams of data, machine learning, and network/graph analysis). The latter two provide various common functions/algorithms frequently used in data analytics/applied econometrics, such as generalized linear regression, summary statistics, and principal component analysis.</p>
+<div class="figure" style="text-align: center"><span id="fig:sparkstack"></span>
+<img src="img/spark-stack.png" alt="Basic Spark stack (source: https://spark.apache.org/images/spark-stack.png)" width="60%" />
+<p class="caption">
+Figure 5.3: Basic Spark stack (source: <a href="https://spark.apache.org/images/spark-stack.png" class="uri">https://spark.apache.org/images/spark-stack.png</a>)
+</p>
+</div>
 
+<p>At the heart of big data analytics with Spark is the fundamental data structure called ‘resilient distributed data set’ (RDD). When loading/importing data into Spark, the data is automatically distributed across the cluster in RDDs (~ as distributed collections of elements) and manipulations are then executed in parallel in these RDDs. However, the entire Spark framework also works locally on a simple laptop or desktop computer. This is of great advantage when learning Spark and testing/debugging an analytics script on a small sample of the real data set.</p>
+<div id="spark-with-r" class="section level3" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> Spark with R</h3>
+<p>There are two prominent packages to use Spark in connection to R: <code>SparkR</code> and RStudio’s <code>sparklyr</code>, the former is in some ways closer to Spark’s Python API, the latter is closer to the <code>dplyr</code>-type of data handling (and is ‘compatible’ with the ‘<code>tidyverse</code>’).<a href="#fn27" class="footnote-ref" id="fnref27"><sup>27</sup></a> For the very simple introductory examples below, either package could have been used equally well. For the general introduction we focus on <code>SparkR</code> and later have a look at a simple regression example based on <code>sparklyr</code>.</p>
+<p>To install and use Spark from the R shell, only a few preparatory steps are needed. The following examples are based on installing/running Spark on a Linux machine with the <code>SparkR</code> package. <code>SparkR</code> depends on Java (version 8). Thus, we first should make sure the right Java version is installed. If several Java versions are installed, we might have to select version 8 manually via the following terminal command (Linux).</p>
+<!-- <!-- in Mac OS (after doing this: https://stackoverflow.com/questions/21964709/how-to-set-or-change-the-default-java-jdk-version-on-os-x) -->
+<!-- ```{bash eval = FALSE} -->
+<!-- cd  -->
+<!-- source .bash_profile -->
+<!-- j8 -->
+<!-- ``` -->
+<!-- ```{r} -->
+<!-- system("cd -->
+<!--        source .bash_profile -->
+<!--        j8") -->
+<!-- ``` -->
+<p>With the right version of Java running, we can install <code>SparkR</code> from GitHub (needs the <code>devtools</code>-package) <code>devtools::install_github("cran/SparkR")</code>. After installing <code>SparkR</code>, the call <code>SparkR::install.spark()</code> will download and install Apache Spark to a local directory.<a href="#fn28" class="footnote-ref" id="fnref28"><sup>28</sup></a> Now we can start an interactive SparkR session from the terminal with</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb164-1"><a href="distributed-systems.html#cb164-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> SPARK-HOME/bin/sparkR</span></code></pre></div>
+<p>where <code>SPARK-HOME</code> is a placeholder for the path to your local Spark installation (printed to the console after running <code>SparkR::install.spark()</code>). Or simply run SparkR from within RStudio by loading <code>SparkR</code> and initiating Spark with <code>sparkR.session()</code>.</p>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="distributed-systems.html#cb165-1" aria-hidden="true" tabindex="-1"></a><span class="co"># to install use</span></span>
+<span id="cb165-2"><a href="distributed-systems.html#cb165-2" aria-hidden="true" tabindex="-1"></a><span class="co"># devtools::install_github(&quot;cran/SparkR&quot;)</span></span>
+<span id="cb165-3"><a href="distributed-systems.html#cb165-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb165-4"><a href="distributed-systems.html#cb165-4" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb165-5"><a href="distributed-systems.html#cb165-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SparkR)</span>
+<span id="cb165-6"><a href="distributed-systems.html#cb165-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb165-7"><a href="distributed-systems.html#cb165-7" aria-hidden="true" tabindex="-1"></a><span class="co"># start session</span></span>
+<span id="cb165-8"><a href="distributed-systems.html#cb165-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sparkR.session</span>()</span></code></pre></div>
+<p>By default this starts a local standalone session (no connection to a cluster computer needed). While the examples below are all intended to run on a local machine, it is straightforward to connect to a remote Spark cluster and run the same examples there.<a href="#fn29" class="footnote-ref" id="fnref29"><sup>29</sup></a></p>
+</div>
+<div id="data-import-and-summary-statistics" class="section level3" number="5.3.2">
+<h3><span class="header-section-number">5.3.2</span> Data import and summary statistics</h3>
+<p>First, we want to have a brief look at how to perform the first few steps of a typical econometric analysis: import data and compute summary statistics. We analyze the already familiar <code>flights.csv</code> data set. The basic Spark installation provides direct support to import common data formats such as CSV and JSON via the <code>read.df()</code> function (for many additional formats, specific Spark libraries are available). To import<code>flights.csv</code>, we set the <code>source</code>-argument to <code>"csv"</code>.</p>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="distributed-systems.html#cb166-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Import data and create a SparkDataFrame (a distributed collection of data, RDD)</span></span>
+<span id="cb166-2"><a href="distributed-systems.html#cb166-2" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> <span class="fu">read.df</span>(<span class="st">&quot;data/flights.csv&quot;</span>, <span class="at">source =</span> <span class="st">&quot;csv&quot;</span>, <span class="at">header=</span><span class="st">&quot;true&quot;</span>)</span>
+<span id="cb166-3"><a href="distributed-systems.html#cb166-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb166-4"><a href="distributed-systems.html#cb166-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb166-5"><a href="distributed-systems.html#cb166-5" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect the object</span></span>
+<span id="cb166-6"><a href="distributed-systems.html#cb166-6" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(flights)</span></code></pre></div>
+<pre><code>## [1] &quot;SparkDataFrame&quot;
+## attr(,&quot;package&quot;)
+## [1] &quot;SparkR&quot;</code></pre>
+<div class="sourceCode" id="cb168"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb168-1"><a href="distributed-systems.html#cb168-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(flights)</span></code></pre></div>
+<pre><code>##   year month day dep_time sched_dep_time dep_delay
+## 1 2013     1   1      517            515         2
+## 2 2013     1   1      533            529         4
+## 3 2013     1   1      542            540         2
+## 4 2013     1   1      544            545        -1
+## 5 2013     1   1      554            600        -6
+## 6 2013     1   1      554            558        -4
+##   arr_time sched_arr_time arr_delay carrier flight
+## 1      830            819        11      UA   1545
+## 2      850            830        20      UA   1714
+## 3      923            850        33      AA   1141
+## 4     1004           1022       -18      B6    725
+## 5      812            837       -25      DL    461
+## 6      740            728        12      UA   1696
+##   tailnum origin dest air_time distance hour minute
+## 1  N14228    EWR  IAH      227     1400    5     15
+## 2  N24211    LGA  IAH      227     1416    5     29
+## 3  N619AA    JFK  MIA      160     1089    5     40
+## 4  N804JB    JFK  BQN      183     1576    5     45
+## 5  N668DN    LGA  ATL      116      762    6      0
+## 6  N39463    EWR  ORD      150      719    5     58
+##              time_hour
+## 1 2013-01-01T10:00:00Z
+## 2 2013-01-01T10:00:00Z
+## 3 2013-01-01T10:00:00Z
+## 4 2013-01-01T10:00:00Z
+## 5 2013-01-01T11:00:00Z
+## 6 2013-01-01T10:00:00Z</code></pre>
+<p>By default, all variables have been imported as type <code>character</code>. For several variables this is, of course, not the optimal data type to compute summary statistics. We thus first have to convert some columns to other data types with the <code>cast</code> function.</p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="distributed-systems.html#cb170-1" aria-hidden="true" tabindex="-1"></a>flights<span class="sc">$</span>dep_delay <span class="ot">&lt;-</span> <span class="fu">cast</span>(flights<span class="sc">$</span>dep_delay, <span class="st">&quot;double&quot;</span>)</span>
+<span id="cb170-2"><a href="distributed-systems.html#cb170-2" aria-hidden="true" tabindex="-1"></a>flights<span class="sc">$</span>dep_time <span class="ot">&lt;-</span> <span class="fu">cast</span>(flights<span class="sc">$</span>dep_time, <span class="st">&quot;double&quot;</span>)</span>
+<span id="cb170-3"><a href="distributed-systems.html#cb170-3" aria-hidden="true" tabindex="-1"></a>flights<span class="sc">$</span>arr_time <span class="ot">&lt;-</span> <span class="fu">cast</span>(flights<span class="sc">$</span>arr_time, <span class="st">&quot;double&quot;</span>)</span>
+<span id="cb170-4"><a href="distributed-systems.html#cb170-4" aria-hidden="true" tabindex="-1"></a>flights<span class="sc">$</span>arr_delay <span class="ot">&lt;-</span> <span class="fu">cast</span>(flights<span class="sc">$</span>arr_delay, <span class="st">&quot;double&quot;</span>)</span>
+<span id="cb170-5"><a href="distributed-systems.html#cb170-5" aria-hidden="true" tabindex="-1"></a>flights<span class="sc">$</span>air_time <span class="ot">&lt;-</span> <span class="fu">cast</span>(flights<span class="sc">$</span>air_time, <span class="st">&quot;double&quot;</span>)</span>
+<span id="cb170-6"><a href="distributed-systems.html#cb170-6" aria-hidden="true" tabindex="-1"></a>flights<span class="sc">$</span>distance <span class="ot">&lt;-</span> <span class="fu">cast</span>(flights<span class="sc">$</span>distance, <span class="st">&quot;double&quot;</span>)</span></code></pre></div>
+<p>Suppose we only want to compute average arrival delays per carrier for flights with a distance over 1000 miles. Variable selection and filtering of observations is implemented in <code>select()</code> and <code>filter()</code> (as in the <code>dplyr</code> package).</p>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="distributed-systems.html#cb171-1" aria-hidden="true" tabindex="-1"></a><span class="co"># filter</span></span>
+<span id="cb171-2"><a href="distributed-systems.html#cb171-2" aria-hidden="true" tabindex="-1"></a>long_flights <span class="ot">&lt;-</span> <span class="fu">select</span>(flights, <span class="st">&quot;carrier&quot;</span>, <span class="st">&quot;year&quot;</span>, <span class="st">&quot;arr_delay&quot;</span>, <span class="st">&quot;distance&quot;</span>)</span>
+<span id="cb171-3"><a href="distributed-systems.html#cb171-3" aria-hidden="true" tabindex="-1"></a>long_flights <span class="ot">&lt;-</span> <span class="fu">filter</span>(long_flights, long_flights<span class="sc">$</span>distance <span class="sc">&gt;=</span> <span class="dv">1000</span>)</span>
+<span id="cb171-4"><a href="distributed-systems.html#cb171-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(long_flights)</span></code></pre></div>
+<pre><code>##   carrier year arr_delay distance
+## 1      UA 2013        11     1400
+## 2      UA 2013        20     1416
+## 3      AA 2013        33     1089
+## 4      B6 2013       -18     1576
+## 5      B6 2013        19     1065
+## 6      B6 2013        -2     1028</code></pre>
+<p>Now we summarize the arrival delays for the subset of long flights by carrier. This is the ‘split-apply-combine’ approach applied in <code>SparkR</code>.</p>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="distributed-systems.html#cb173-1" aria-hidden="true" tabindex="-1"></a><span class="co"># aggregation: mean delay per carrier</span></span>
+<span id="cb173-2"><a href="distributed-systems.html#cb173-2" aria-hidden="true" tabindex="-1"></a>long_flights_delays<span class="ot">&lt;-</span> <span class="fu">summarize</span>(<span class="fu">groupBy</span>(long_flights, long_flights<span class="sc">$</span>carrier),</span>
+<span id="cb173-3"><a href="distributed-systems.html#cb173-3" aria-hidden="true" tabindex="-1"></a>                      <span class="at">avg_delay =</span> <span class="fu">mean</span>(long_flights<span class="sc">$</span>arr_delay))</span>
+<span id="cb173-4"><a href="distributed-systems.html#cb173-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(long_flights_delays)</span></code></pre></div>
+<pre><code>##   carrier avg_delay
+## 1      UA    3.2622
+## 2      AA    0.4958
+## 3      EV   15.6876
+## 4      B6    9.0364
+## 5      DL   -0.2394
+## 6      OO   -2.0000</code></pre>
+<p>Finally, we want to convert the result back into a usual <code>data.frame</code> (loaded in our current R session) in order to further process the summary statistics (output to LaTex table, plot, etc.). Note that as in the previous aggregation exercises with the <code>ff</code> package, the computed summary statistics (in the form of a table/df) are obviously much smaller than the raw data. However, note that converting a <code>SparkDataFrame</code> back into a native R object generally means all the data stored in the RDDs constituting the <code>SparkDataFrame</code> object are loaded into local RAM. Hence, when working with actual big data on a Spark cluster, this type of operation can quickly overflow local RAM.</p>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="distributed-systems.html#cb175-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert result back into native R object</span></span>
+<span id="cb175-2"><a href="distributed-systems.html#cb175-2" aria-hidden="true" tabindex="-1"></a>delays <span class="ot">&lt;-</span> <span class="fu">collect</span>(long_flights_delays)</span>
+<span id="cb175-3"><a href="distributed-systems.html#cb175-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(delays)</span></code></pre></div>
+<pre><code>## [1] &quot;data.frame&quot;</code></pre>
+<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="distributed-systems.html#cb177-1" aria-hidden="true" tabindex="-1"></a>delays</span></code></pre></div>
+<pre><code>##    carrier avg_delay
+## 1       UA    3.2622
+## 2       AA    0.4958
+## 3       EV   15.6876
+## 4       B6    9.0364
+## 5       DL   -0.2394
+## 6       OO   -2.0000
+## 7       F9   21.9207
+## 8       US    0.5567
+## 9       MQ    8.2331
+## 10      HA   -6.9152
+## 11      AS   -9.9309
+## 12      VX    1.7645
+## 13      WN    9.0842
+## 14      9E    6.6730</code></pre>
 </div>
 </div>
+<div id="spark-with-sql" class="section level2" number="5.4">
+<h2><span class="header-section-number">5.4</span> Spark with SQL</h2>
+<p>Instead of interacting with Spark via R, you can do the same via SQL. This can be very convenient at the stage of data exploration and data preparation. Also note that this is a very good example of how knowing some SQL can be very useful when working with Big Data even if you are not interacting with an actual relational database.<a href="#fn30" class="footnote-ref" id="fnref30"><sup>30</sup></a></p>
+<p>To directly interact with Spark via SQL, open a terminal window, switch to the <code>SPARK-HOME</code> directory,</p>
+<div class="sourceCode" id="cb179"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb179-1"><a href="distributed-systems.html#cb179-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> SPARK-HOME</span></code></pre></div>
+<p>and enter the following command,</p>
+<div class="sourceCode" id="cb180"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb180-1"><a href="distributed-systems.html#cb180-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb180-2"><a href="distributed-systems.html#cb180-2" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> bin/spark-sql</span></code></pre></div>
+<p>where <code>SPARK-HOME</code> is again the placeholder for the path to your local Spark installation (printed to the console after running <code>SparkR::install.spark()</code>). This will start up Spark and connect to it via Spark’s sql interface. You will notice that the prompt in the terminal changes (similar to when you start <code>sqlite</code>).</p>
+<p>Let’s run some example queries. The Spark installation comes with several data and script examples. The example data sets are located at <code>SPARK-HOME/examples/src/main/resources</code>. For example, the file <code>employees.json</code> contains the following records in JSON format:</p>
+<div class="sourceCode" id="cb181"><pre class="sourceCode json"><code class="sourceCode json"><span id="cb181-1"><a href="distributed-systems.html#cb181-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span><span class="dt">&quot;name&quot;</span><span class="fu">:</span><span class="st">&quot;Michael&quot;</span><span class="fu">,</span> <span class="dt">&quot;salary&quot;</span><span class="fu">:</span><span class="dv">3000</span><span class="fu">}</span></span>
+<span id="cb181-2"><a href="distributed-systems.html#cb181-2" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span><span class="dt">&quot;name&quot;</span><span class="fu">:</span><span class="st">&quot;Andy&quot;</span><span class="fu">,</span> <span class="dt">&quot;salary&quot;</span><span class="fu">:</span><span class="dv">4500</span><span class="fu">}</span></span>
+<span id="cb181-3"><a href="distributed-systems.html#cb181-3" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span><span class="dt">&quot;name&quot;</span><span class="fu">:</span><span class="st">&quot;Justin&quot;</span><span class="fu">,</span> <span class="dt">&quot;salary&quot;</span><span class="fu">:</span><span class="dv">3500</span><span class="fu">}</span></span>
+<span id="cb181-4"><a href="distributed-systems.html#cb181-4" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span><span class="dt">&quot;name&quot;</span><span class="fu">:</span><span class="st">&quot;Berta&quot;</span><span class="fu">,</span> <span class="dt">&quot;salary&quot;</span><span class="fu">:</span><span class="dv">4000</span><span class="fu">}</span></span></code></pre></div>
+<p>We can query this data directly via SQL commands by referring to the location of the original JSON file.</p>
+<p><em>Select all observations</em></p>
+<div class="sourceCode" id="cb182"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb182-1"><a href="distributed-systems.html#cb182-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb182-2"><a href="distributed-systems.html#cb182-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
+<span id="cb182-3"><a href="distributed-systems.html#cb182-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> json.`examples<span class="op">/</span>src<span class="op">/</span>main<span class="op">/</span>resources<span class="op">/</span>employees.json`</span>
+<span id="cb182-4"><a href="distributed-systems.html#cb182-4" aria-hidden="true" tabindex="-1"></a>;</span></code></pre></div>
+<pre><code>Michael 3000
+Andy    4500
+Justin  3500
+Berta   4000
+Time taken: 0.099 seconds, Fetched 4 row(s)</code></pre>
+<p><em>Filter observations</em></p>
+<div class="sourceCode" id="cb184"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb184-1"><a href="distributed-systems.html#cb184-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb184-2"><a href="distributed-systems.html#cb184-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
+<span id="cb184-3"><a href="distributed-systems.html#cb184-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> json.`examples<span class="op">/</span>src<span class="op">/</span>main<span class="op">/</span>resources<span class="op">/</span>employees.json`</span>
+<span id="cb184-4"><a href="distributed-systems.html#cb184-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> salary <span class="op">&lt;</span><span class="dv">4000</span></span>
+<span id="cb184-5"><a href="distributed-systems.html#cb184-5" aria-hidden="true" tabindex="-1"></a>;</span></code></pre></div>
+<pre><code>Michael 3000
+Justin  3500
+Time taken: 0.125 seconds, Fetched 2 row(s)</code></pre>
+<p><em>Compute the average salary</em></p>
+<div class="sourceCode" id="cb186"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb186-1"><a href="distributed-systems.html#cb186-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb186-2"><a href="distributed-systems.html#cb186-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="fu">AVG</span>(salary) <span class="kw">AS</span> mean_salary </span>
+<span id="cb186-3"><a href="distributed-systems.html#cb186-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> json.`examples<span class="op">/</span>src<span class="op">/</span>main<span class="op">/</span>resources<span class="op">/</span>employees.json`</span>
+<span id="cb186-4"><a href="distributed-systems.html#cb186-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb186-5"><a href="distributed-systems.html#cb186-5" aria-hidden="true" tabindex="-1"></a>;</span></code></pre></div>
+<pre><code>3750.0
+Time taken: 0.142 seconds, Fetched 1 row(s)</code></pre>
+</div>
+<div id="spark-with-r-sql" class="section level2" number="5.5">
+<h2><span class="header-section-number">5.5</span> Spark with R + SQL</h2>
+<p>Most conveniently, you can combine the SQL query features of Spark and SQL with running R on Spark. First, initiate the Spark session in RStudio and import the data as Spark data frame.</p>
+<div class="sourceCode" id="cb188"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb188-1"><a href="distributed-systems.html#cb188-1" aria-hidden="true" tabindex="-1"></a><span class="co"># to install use</span></span>
+<span id="cb188-2"><a href="distributed-systems.html#cb188-2" aria-hidden="true" tabindex="-1"></a><span class="co"># devtools::install_github(&quot;cran/SparkR&quot;)</span></span>
+<span id="cb188-3"><a href="distributed-systems.html#cb188-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb188-4"><a href="distributed-systems.html#cb188-4" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb188-5"><a href="distributed-systems.html#cb188-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(SparkR)</span>
+<span id="cb188-6"><a href="distributed-systems.html#cb188-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb188-7"><a href="distributed-systems.html#cb188-7" aria-hidden="true" tabindex="-1"></a><span class="co"># start session</span></span>
+<span id="cb188-8"><a href="distributed-systems.html#cb188-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sparkR.session</span>()</span></code></pre></div>
+<pre><code>## Java ref type org.apache.spark.sql.SparkSession id 1</code></pre>
+<div class="sourceCode" id="cb190"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb190-1"><a href="distributed-systems.html#cb190-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read data </span></span>
+<span id="cb190-2"><a href="distributed-systems.html#cb190-2" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> <span class="fu">read.df</span>(<span class="st">&quot;data/flights.csv&quot;</span>, <span class="at">source =</span> <span class="st">&quot;csv&quot;</span>, <span class="at">header=</span><span class="st">&quot;true&quot;</span>)</span></code></pre></div>
+<p>Now we can make the Spark data frame accessible for SQL queries by registering it as a temporary table/view with <code>createOrReplaceTempView()</code> and then run SQL queries on it from within the R session via the <code>sql()</code>-function. <code>sql()</code> will return the results as Spark data frame (this means the result is also located on the cluster and does hardly affect the master node’s memory).</p>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="distributed-systems.html#cb191-1" aria-hidden="true" tabindex="-1"></a><span class="co"># register the data frame as a table</span></span>
+<span id="cb191-2"><a href="distributed-systems.html#cb191-2" aria-hidden="true" tabindex="-1"></a><span class="fu">createOrReplaceTempView</span>(flights, <span class="st">&quot;flights&quot;</span> )</span>
+<span id="cb191-3"><a href="distributed-systems.html#cb191-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb191-4"><a href="distributed-systems.html#cb191-4" aria-hidden="true" tabindex="-1"></a><span class="co"># now run SQL queries on it</span></span>
+<span id="cb191-5"><a href="distributed-systems.html#cb191-5" aria-hidden="true" tabindex="-1"></a>long_flights2 <span class="ot">&lt;-</span> <span class="fu">sql</span>(<span class="st">&quot;SELECT DISTINCT carrier,</span></span>
+<span id="cb191-6"><a href="distributed-systems.html#cb191-6" aria-hidden="true" tabindex="-1"></a><span class="st">                             year, </span></span>
+<span id="cb191-7"><a href="distributed-systems.html#cb191-7" aria-hidden="true" tabindex="-1"></a><span class="st">                             arr_delay,</span></span>
+<span id="cb191-8"><a href="distributed-systems.html#cb191-8" aria-hidden="true" tabindex="-1"></a><span class="st">                             distance</span></span>
+<span id="cb191-9"><a href="distributed-systems.html#cb191-9" aria-hidden="true" tabindex="-1"></a><span class="st">                            FROM flights </span></span>
+<span id="cb191-10"><a href="distributed-systems.html#cb191-10" aria-hidden="true" tabindex="-1"></a><span class="st">                            WHERE 1000 &lt;= distance&quot;</span>)</span>
+<span id="cb191-11"><a href="distributed-systems.html#cb191-11" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(long_flights2)</span></code></pre></div>
+<pre><code>##   carrier year arr_delay distance
+## 1      DL 2013       -30     1089
+## 2      UA 2013       -11     1605
+## 3      DL 2013       -42     1598
+## 4      UA 2013        -5     1585
+## 5      AA 2013         6     1389
+## 6      UA 2013       -23     1620</code></pre>
+
 </div>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="15">
-<li id="fn15"><p>For a more detailed discussion of what <code>map</code> and <code>reduce</code> have <em>actually</em> to do with MapReduce see <a href="https://medium.com/@jkff/mapreduce-is-not-functional-programming-39109a4ba7b2">this post</a>.<a href="distributed-systems.html#fnref15" class="footnote-back">↩︎</a></p></li>
-<li id="fn16"><p>More sophisticated programs need to be custom made, written in Java.<a href="distributed-systems.html#fnref16" class="footnote-back">↩︎</a></p></li>
+<ol start="25">
+<li id="fn25"><p>For a more detailed discussion of what <code>map</code> and <code>reduce</code> have <em>actually</em> to do with MapReduce see <a href="https://medium.com/@jkff/mapreduce-is-not-functional-programming-39109a4ba7b2">this post</a>.<a href="distributed-systems.html#fnref25" class="footnote-back">↩︎</a></p></li>
+<li id="fn26"><p>More sophisticated programs need to be custom made, written in Java.<a href="distributed-systems.html#fnref26" class="footnote-back">↩︎</a></p></li>
+<li id="fn27"><p>See <a href="https://cosminsanda.com/posts/a-compelling-case-for-sparkr/">this blog post</a> for a more detailed comparison and discussion of advantages of either package.<a href="distributed-systems.html#fnref27" class="footnote-back">↩︎</a></p></li>
+<li id="fn28"><p>Note that after the installation, the location of Spark is printed to the R console. Alternatively, you can also first install the <code>sparklyr</code>-package and then run <code>sparklyr::spark_install()</code> to install Spark. In the data analysis examples later in the book we will work both with <code>SparkR</code> and <code>sparklyr</code>.<a href="distributed-systems.html#fnref28" class="footnote-back">↩︎</a></p></li>
+<li id="fn29"><p>Simply set the <code>master</code> argument of <code>sparkR.session()</code> to the URL of the Spark master node of the remote cluster. Importantly, the local Spark and Hadoop versions should match the corresponding versions on the remote cluster.<a href="distributed-systems.html#fnref29" class="footnote-back">↩︎</a></p></li>
+<li id="fn30"><p>Importantly, this also means that we cannot use SQL commands related to configuring such databases such as <code>.tables</code> etc. Instead we use SQL commands to directly query data from JSON or CSV files.<a href="distributed-systems.html#fnref30" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

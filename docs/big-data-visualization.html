@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 9 (Big) Data Visualization | Big Data Analytics</title>
+  <title>Chapter 10 (Big) Data Visualization | Big Data Analytics</title>
   <meta name="description" content="A guide to practical big data analytics in R." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 9 (Big) Data Visualization | Big Data Analytics" />
+  <meta property="og:title" content="Chapter 10 (Big) Data Visualization | Big Data Analytics" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://umatter.github.io/BigData" />
   <meta property="og:image" content="https://umatter.github.io/BigDataimg/cover.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="umatter/BigData" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 9 (Big) Data Visualization | Big Data Analytics" />
+  <meta name="twitter:title" content="Chapter 10 (Big) Data Visualization | Big Data Analytics" />
   
   <meta name="twitter:description" content="A guide to practical big data analytics in R." />
   <meta name="twitter:image" content="https://umatter.github.io/BigDataimg/cover.png" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-02-16" />
+<meta name="date" content="2022-02-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -150,152 +150,163 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#content-overview"><i class="fa fa-check"></i><b>1.3</b> Content overview</a></li>
 <li class="chapter" data-level="1.4" data-path="introduction.html"><a href="introduction.html#prerequisits"><i class="fa fa-check"></i><b>1.4</b> Prerequisits</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html"><i class="fa fa-check"></i><b>2</b> Software: Programming with (Big) Data</a>
+<li class="chapter" data-level="2" data-path="big-data-econometrics.html"><a href="big-data-econometrics.html"><i class="fa fa-check"></i><b>2</b> Big Data Econometrics</a>
 <ul>
-<li class="chapter" data-level="2.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#building-blocks-for-programming-with-big-data"><i class="fa fa-check"></i><b>2.1</b> Building blocks for programming with big data</a></li>
-<li class="chapter" data-level="2.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#measuring-r-performance"><i class="fa fa-check"></i><b>2.2</b> Measuring R performance</a></li>
-<li class="chapter" data-level="2.3" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#writing-efficient-code"><i class="fa fa-check"></i><b>2.3</b> Writing efficient code</a>
+<li class="chapter" data-level="2.1" data-path="big-data-econometrics.html"><a href="big-data-econometrics.html#a-practical-big-p-problem"><i class="fa fa-check"></i><b>2.1</b> A practical <em>big P</em> problem</a></li>
+<li class="chapter" data-level="2.2" data-path="big-data-econometrics.html"><a href="big-data-econometrics.html#a-practical-big-n-problem"><i class="fa fa-check"></i><b>2.2</b> A practical <em>big N</em> problem</a>
 <ul>
-<li class="chapter" data-level="2.3.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#memory-allocation-and-growing-objects"><i class="fa fa-check"></i><b>2.3.1</b> Memory allocation and growing objects</a></li>
-<li class="chapter" data-level="2.3.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#vectorization-in-basic-r-functions"><i class="fa fa-check"></i><b>2.3.2</b> Vectorization in basic R functions</a></li>
-<li class="chapter" data-level="2.3.3" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#apply-type-functions-and-vectorization"><i class="fa fa-check"></i><b>2.3.3</b> <code>apply</code>-type functions and vectorization</a></li>
-<li class="chapter" data-level="2.3.4" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#avoid-unnecessary-copying"><i class="fa fa-check"></i><b>2.3.4</b> Avoid unnecessary copying</a></li>
-<li class="chapter" data-level="2.3.5" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#releasing-memory"><i class="fa fa-check"></i><b>2.3.5</b> Releasing memory</a></li>
-<li class="chapter" data-level="2.3.6" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#beyond-r"><i class="fa fa-check"></i><b>2.3.6</b> Beyond R</a></li>
-</ul></li>
-<li class="chapter" data-level="2.4" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#sql-basics"><i class="fa fa-check"></i><b>2.4</b> SQL basics</a>
-<ul>
-<li class="chapter" data-level="2.4.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#first-steps-in-sqlite"><i class="fa fa-check"></i><b>2.4.1</b> First steps in SQL(ite)</a></li>
-<li class="chapter" data-level="2.4.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#joins"><i class="fa fa-check"></i><b>2.4.2</b> Joins</a></li>
+<li class="chapter" data-level="2.2.1" data-path="big-data-econometrics.html"><a href="big-data-econometrics.html#ols-as-a-point-of-reference"><i class="fa fa-check"></i><b>2.2.1</b> OLS as a point of reference</a></li>
+<li class="chapter" data-level="2.2.2" data-path="big-data-econometrics.html"><a href="big-data-econometrics.html#the-uluru-algorithm-as-an-alternative-to-ols"><i class="fa fa-check"></i><b>2.2.2</b> The Uluru algorithm as an alternative to OLS</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html"><i class="fa fa-check"></i><b>3</b> Hardware: Computing Resources</a>
+<li class="chapter" data-level="3" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html"><i class="fa fa-check"></i><b>3</b> Software: Programming with (Big) Data</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#components-of-a-standard-computing-environment"><i class="fa fa-check"></i><b>3.1</b> Components of a standard computing environment</a></li>
-<li class="chapter" data-level="3.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#mass-storage-and-memory"><i class="fa fa-check"></i><b>3.2</b> Mass Storage and Memory</a>
+<li class="chapter" data-level="3.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#domains-of-programming-with-big-data"><i class="fa fa-check"></i><b>3.1</b> Domains of programming with (big) data</a></li>
+<li class="chapter" data-level="3.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#measuring-r-performance"><i class="fa fa-check"></i><b>3.2</b> Measuring R performance</a></li>
+<li class="chapter" data-level="3.3" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#writing-efficient-r-code"><i class="fa fa-check"></i><b>3.3</b> Writing efficient R code</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#units-of-informationdata-storage"><i class="fa fa-check"></i><b>3.2.1</b> Units of information/data storage</a></li>
-<li class="chapter" data-level="3.2.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#combining-ram-and-hard-disk-virtual-memory"><i class="fa fa-check"></i><b>3.2.2</b> Combining RAM and hard-disk: virtual memory</a></li>
+<li class="chapter" data-level="3.3.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#memory-allocation-and-growing-objects"><i class="fa fa-check"></i><b>3.3.1</b> Memory allocation and growing objects</a></li>
+<li class="chapter" data-level="3.3.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#vectorization-in-basic-r-functions"><i class="fa fa-check"></i><b>3.3.2</b> Vectorization in basic R functions</a></li>
+<li class="chapter" data-level="3.3.3" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#apply-type-functions-and-vectorization"><i class="fa fa-check"></i><b>3.3.3</b> <code>apply</code>-type functions and vectorization</a></li>
+<li class="chapter" data-level="3.3.4" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#avoid-unnecessary-copying"><i class="fa fa-check"></i><b>3.3.4</b> Avoid unnecessary copying</a></li>
+<li class="chapter" data-level="3.3.5" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#releasing-memory"><i class="fa fa-check"></i><b>3.3.5</b> Releasing memory</a></li>
+<li class="chapter" data-level="3.3.6" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#beyond-r"><i class="fa fa-check"></i><b>3.3.6</b> Beyond R</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#computation-cpu"><i class="fa fa-check"></i><b>3.3</b> Computation: CPU</a>
+<li class="chapter" data-level="3.4" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#sql-basics"><i class="fa fa-check"></i><b>3.4</b> SQL basics</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#parallelization"><i class="fa fa-check"></i><b>3.3.1</b> Parallelization</a></li>
-<li class="chapter" data-level="3.3.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#gpus-for-scientific-computing"><i class="fa fa-check"></i><b>3.3.2</b> GPUs for Scientific Computing</a></li>
-<li class="chapter" data-level="3.3.3" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#gpus-in-r"><i class="fa fa-check"></i><b>3.3.3</b> GPUs in R</a></li>
-</ul></li>
-<li class="chapter" data-level="3.4" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#resource-allocation"><i class="fa fa-check"></i><b>3.4</b> Resource allocation</a></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="distributed-systems.html"><a href="distributed-systems.html"><i class="fa fa-check"></i><b>4</b> Distributed Systems</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="distributed-systems.html"><a href="distributed-systems.html#mapreduce"><i class="fa fa-check"></i><b>4.1</b> MapReduce</a>
-<ul>
-<li class="chapter" data-level="4.1.1" data-path="distributed-systems.html"><a href="distributed-systems.html#mapreduce-concept-illustrated-in-r"><i class="fa fa-check"></i><b>4.1.1</b> Map/Reduce Concept Illustrated in R</a></li>
-<li class="chapter" data-level="4.1.2" data-path="distributed-systems.html"><a href="distributed-systems.html#mapper"><i class="fa fa-check"></i><b>4.1.2</b> Mapper</a></li>
-<li class="chapter" data-level="4.1.3" data-path="distributed-systems.html"><a href="distributed-systems.html#reducer"><i class="fa fa-check"></i><b>4.1.3</b> Reducer</a></li>
-<li class="chapter" data-level="4.1.4" data-path="distributed-systems.html"><a href="distributed-systems.html#simpler-example-compute-the-total-number-of-words"><i class="fa fa-check"></i><b>4.1.4</b> Simpler example: Compute the total number of words</a></li>
-</ul></li>
-<li class="chapter" data-level="4.2" data-path="distributed-systems.html"><a href="distributed-systems.html#hadoop"><i class="fa fa-check"></i><b>4.2</b> Hadoop</a>
-<ul>
-<li class="chapter" data-level="4.2.1" data-path="distributed-systems.html"><a href="distributed-systems.html#hadoop-word-count"><i class="fa fa-check"></i><b>4.2.1</b> Hadoop Word Count</a></li>
+<li class="chapter" data-level="3.4.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#first-steps-in-sqlite"><i class="fa fa-check"></i><b>3.4.1</b> First steps in SQL(ite)</a></li>
+<li class="chapter" data-level="3.4.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#joins"><i class="fa fa-check"></i><b>3.4.2</b> Joins</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="cloud-computing.html"><a href="cloud-computing.html"><i class="fa fa-check"></i><b>5</b> Cloud Computing</a>
+<li class="chapter" data-level="4" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html"><i class="fa fa-check"></i><b>4</b> Hardware: Computing Resources</a>
 <ul>
-<li class="chapter" data-level="5.1" data-path="cloud-computing.html"><a href="cloud-computing.html#scaling-up-parallel-computing"><i class="fa fa-check"></i><b>5.1</b> Scaling up: parallel computing</a>
+<li class="chapter" data-level="4.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#components-of-a-standard-computing-environment"><i class="fa fa-check"></i><b>4.1</b> Components of a standard computing environment</a></li>
+<li class="chapter" data-level="4.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#mass-storage"><i class="fa fa-check"></i><b>4.2</b> Mass storage</a>
 <ul>
-<li class="chapter" data-level="5.1.1" data-path="cloud-computing.html"><a href="cloud-computing.html#setting-up-aws-ec2-with-rrstudio"><i class="fa fa-check"></i><b>5.1.1</b> Setting up AWS EC2 with R/RStudio</a></li>
-<li class="chapter" data-level="5.1.2" data-path="cloud-computing.html"><a href="cloud-computing.html#parallelization-with-an-ec2-instance"><i class="fa fa-check"></i><b>5.1.2</b> Parallelization with an EC2 instance</a></li>
-<li class="chapter" data-level="5.1.3" data-path="cloud-computing.html"><a href="cloud-computing.html#aws-emr-mapreduce-in-the-cloud"><i class="fa fa-check"></i><b>5.1.3</b> AWS EMR: MapReduce in the cloud</a></li>
+<li class="chapter" data-level="4.2.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#avoid-redundancies"><i class="fa fa-check"></i><b>4.2.1</b> Avoid redundancies</a></li>
+<li class="chapter" data-level="4.2.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#data-compression"><i class="fa fa-check"></i><b>4.2.2</b> Data compression</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#random-access-memory-ram"><i class="fa fa-check"></i><b>4.3</b> Random access memory (RAM)</a></li>
+<li class="chapter" data-level="4.4" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#combining-ram-and-hard-disk-virtual-memory"><i class="fa fa-check"></i><b>4.4</b> Combining RAM and hard-disk: virtual memory</a></li>
+<li class="chapter" data-level="4.5" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#cpu-and-parallelization"><i class="fa fa-check"></i><b>4.5</b> CPU and parallelization</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#naive-multi-session-approach"><i class="fa fa-check"></i><b>4.5.1</b> Naive multi-session approach</a></li>
+<li class="chapter" data-level="4.5.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#multi-core-and-multi-node-approach"><i class="fa fa-check"></i><b>4.5.2</b> Multi-core and multi-node approach</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#gpus-for-scientific-computing"><i class="fa fa-check"></i><b>4.6</b> GPUs for scientific computing</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#gpus-in-r"><i class="fa fa-check"></i><b>4.6.1</b> GPUs in R</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html"><i class="fa fa-check"></i><b>6</b> Data Storage and Databases</a>
+<li class="chapter" data-level="5" data-path="distributed-systems.html"><a href="distributed-systems.html"><i class="fa fa-check"></i><b>5</b> Distributed Systems</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#big-data-storage"><i class="fa fa-check"></i><b>6.1</b> (Big) Data Storage</a></li>
-<li class="chapter" data-level="6.2" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#rdbms-basics"><i class="fa fa-check"></i><b>6.2</b> RDBMS basics</a></li>
-<li class="chapter" data-level="6.3" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#row-based-vs-column-based-databases"><i class="fa fa-check"></i><b>6.3</b> Row-based vs column-based databases</a></li>
-<li class="chapter" data-level="6.4" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#getting-started-with-rsqlite"><i class="fa fa-check"></i><b>6.4</b> Getting started with RSQLite</a>
+<li class="chapter" data-level="5.1" data-path="distributed-systems.html"><a href="distributed-systems.html#mapreduce"><i class="fa fa-check"></i><b>5.1</b> MapReduce</a>
 <ul>
-<li class="chapter" data-level="6.4.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#warm-up-in-sqlite-indices-and-joins"><i class="fa fa-check"></i><b>6.4.1</b> Warm up in SQLite: indices and joins</a></li>
+<li class="chapter" data-level="5.1.1" data-path="distributed-systems.html"><a href="distributed-systems.html#mapreduce-concept-illustrated-in-r"><i class="fa fa-check"></i><b>5.1.1</b> Map/Reduce Concept Illustrated in R</a></li>
+<li class="chapter" data-level="5.1.2" data-path="distributed-systems.html"><a href="distributed-systems.html#mapper"><i class="fa fa-check"></i><b>5.1.2</b> Mapper</a></li>
+<li class="chapter" data-level="5.1.3" data-path="distributed-systems.html"><a href="distributed-systems.html#reducer"><i class="fa fa-check"></i><b>5.1.3</b> Reducer</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#sqlite-from-within-r"><i class="fa fa-check"></i><b>6.5</b> SQLite from within R</a>
+<li class="chapter" data-level="5.2" data-path="distributed-systems.html"><a href="distributed-systems.html#hadoop"><i class="fa fa-check"></i><b>5.2</b> Hadoop</a>
 <ul>
-<li class="chapter" data-level="6.5.1" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#creating-a-new-database-with-rsqlite"><i class="fa fa-check"></i><b>6.5.1</b> Creating a new database with <code>RSQLite</code></a></li>
-<li class="chapter" data-level="6.5.2" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#importing-data"><i class="fa fa-check"></i><b>6.5.2</b> Importing data</a></li>
-<li class="chapter" data-level="6.5.3" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#issue-queries"><i class="fa fa-check"></i><b>6.5.3</b> Issue queries</a></li>
-<li class="chapter" data-level="6.5.4" data-path="data-storage-and-databases.html"><a href="data-storage-and-databases.html#mass-storage-mariadb-on-an-ec2-instance"><i class="fa fa-check"></i><b>6.5.4</b> Mass Storage: MariaDB on an EC2 instance</a></li>
+<li class="chapter" data-level="5.2.1" data-path="distributed-systems.html"><a href="distributed-systems.html#hadoop-word-count-example"><i class="fa fa-check"></i><b>5.2.1</b> Hadoop word count example</a></li>
 </ul></li>
+<li class="chapter" data-level="5.3" data-path="distributed-systems.html"><a href="distributed-systems.html#spark"><i class="fa fa-check"></i><b>5.3</b> Spark</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-r"><i class="fa fa-check"></i><b>5.3.1</b> Spark with R</a></li>
+<li class="chapter" data-level="5.3.2" data-path="distributed-systems.html"><a href="distributed-systems.html#data-import-and-summary-statistics"><i class="fa fa-check"></i><b>5.3.2</b> Data import and summary statistics</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html"><i class="fa fa-check"></i><b>7</b> Big Data Cleaning and Transformation</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#out-of-memory-strategies"><i class="fa fa-check"></i><b>7.1</b> ‘Out-of-memory’ strategies</a>
-<ul>
-<li class="chapter" data-level="7.1.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#chunking-data-with-the-ff-package"><i class="fa fa-check"></i><b>7.1.1</b> Chunking data with the <code>ff</code>-package</a></li>
-<li class="chapter" data-level="7.1.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#memory-mapping-with-bigmemory"><i class="fa fa-check"></i><b>7.1.2</b> Memory mapping with <code>bigmemory</code></a></li>
+<li class="chapter" data-level="5.4" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-sql"><i class="fa fa-check"></i><b>5.4</b> Spark with SQL</a></li>
+<li class="chapter" data-level="5.5" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-r-sql"><i class="fa fa-check"></i><b>5.5</b> Spark with R + SQL</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#typical-cleaning-tasks"><i class="fa fa-check"></i><b>7.2</b> Typical cleaning tasks</a>
+<li class="chapter" data-level="6" data-path="cloud-computing.html"><a href="cloud-computing.html"><i class="fa fa-check"></i><b>6</b> Cloud Computing</a>
 <ul>
-<li class="chapter" data-level="7.2.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#data-preparation-with-ff"><i class="fa fa-check"></i><b>7.2.1</b> Data Preparation with <code>ff</code></a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html"><i class="fa fa-check"></i><b>8</b> Descriptive Statistics and Aggregation</a>
+<li class="chapter" data-level="6.1" data-path="cloud-computing.html"><a href="cloud-computing.html#scaling-up-with-aws-ec2-and-rrstudio"><i class="fa fa-check"></i><b>6.1</b> Scaling up with AWS EC2 and R/RStudio</a>
 <ul>
-<li class="chapter" data-level="8.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-the-split-apply-combine-strategy"><i class="fa fa-check"></i><b>8.1</b> Data aggregation: The ‘split-apply-combine’ strategy</a></li>
-<li class="chapter" data-level="8.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-tutorial"><i class="fa fa-check"></i><b>8.2</b> Data aggregation tutorial</a>
-<ul>
-<li class="chapter" data-level="8.2.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#gathering-and-compilation-of-all-the-raw-data"><i class="fa fa-check"></i><b>8.2.1</b> Gathering and Compilation of all the raw data</a></li>
-<li class="chapter" data-level="8.2.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-with-chunked-data-files"><i class="fa fa-check"></i><b>8.2.2</b> Data aggregation with chunked data files</a></li>
-<li class="chapter" data-level="8.2.3" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>8.2.3</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
+<li class="chapter" data-level="6.1.1" data-path="cloud-computing.html"><a href="cloud-computing.html#parallelization-with-an-ec2-instance"><i class="fa fa-check"></i><b>6.1.1</b> Parallelization with an EC2 instance</a></li>
+<li class="chapter" data-level="6.1.2" data-path="cloud-computing.html"><a href="cloud-computing.html#gpus-on-google-colab"><i class="fa fa-check"></i><b>6.1.2</b> GPUs on Google Colab</a></li>
+<li class="chapter" data-level="6.1.3" data-path="cloud-computing.html"><a href="cloud-computing.html#aws-emr-mapreduce-in-the-cloud"><i class="fa fa-check"></i><b>6.1.3</b> AWS EMR: MapReduce in the cloud</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="big-data-visualization.html"><a href="big-data-visualization.html"><i class="fa fa-check"></i><b>9</b> (Big) Data Visualization</a>
+<li class="chapter" data-level="7" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html"><i class="fa fa-check"></i><b>7</b> Data Collection and Data Storage</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#data-set"><i class="fa fa-check"></i><b>9.1</b> Data Set</a></li>
-<li class="chapter" data-level="9.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-modify-and-create-themes"><i class="fa fa-check"></i><b>9.2</b> Excursus: modify and create themes</a>
+<li class="chapter" data-level="7.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#gathering-and-compilation-of-raw-data"><i class="fa fa-check"></i><b>7.1</b> Gathering and compilation of raw data</a>
 <ul>
-<li class="chapter" data-level="9.2.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#create-your-own-theme-simple-approach"><i class="fa fa-check"></i><b>9.2.1</b> Create your own theme: simple approach</a></li>
-<li class="chapter" data-level="9.2.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#implementing-actual-themes-as-functions."><i class="fa fa-check"></i><b>9.2.2</b> Implementing actual themes as functions.</a></li>
+<li class="chapter" data-level="7.1.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#nyc-taxi-data"><i class="fa fa-check"></i><b>7.1.1</b> NYC taxi data</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="big-data-visualization.html"><a href="big-data-visualization.html#visualize-time-and-space"><i class="fa fa-check"></i><b>9.3</b> Visualize Time and Space</a>
+<li class="chapter" data-level="7.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#data-import-and-memory-allocation"><i class="fa fa-check"></i><b>7.2</b> Data import and memory allocation</a></li>
+<li class="chapter" data-level="7.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#big-data-storage"><i class="fa fa-check"></i><b>7.3</b> (Big) Data Storage</a></li>
+<li class="chapter" data-level="7.4" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#rdbms-basics"><i class="fa fa-check"></i><b>7.4</b> RDBMS basics</a></li>
+<li class="chapter" data-level="7.5" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#row-based-vs-column-based-databases"><i class="fa fa-check"></i><b>7.5</b> Row-based vs column-based databases</a></li>
+<li class="chapter" data-level="7.6" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#getting-started-with-rsqlite"><i class="fa fa-check"></i><b>7.6</b> Getting started with RSQLite</a>
 <ul>
-<li class="chapter" data-level="9.3.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#preparations"><i class="fa fa-check"></i><b>9.3.1</b> Preparations</a></li>
-<li class="chapter" data-level="9.3.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#pick-up-and-drop-off-locations"><i class="fa fa-check"></i><b>9.3.2</b> Pick-up and drop-off locations</a></li>
+<li class="chapter" data-level="7.6.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#warm-up-in-sqlite-indices-and-joins"><i class="fa fa-check"></i><b>7.6.1</b> Warm up in SQLite: indices and joins</a></li>
 </ul></li>
-<li class="chapter" data-level="9.4" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-change-color-schemes"><i class="fa fa-check"></i><b>9.4</b> Excursus: change color schemes</a></li>
-</ul></li>
-<li class="chapter" data-level="10" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html"><i class="fa fa-check"></i><b>10</b> Bottle Necks in Local Big Data Analytics</a>
+<li class="chapter" data-level="7.7" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#sqlite-from-within-r"><i class="fa fa-check"></i><b>7.7</b> SQLite from within R</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#example-of-computation-time-and-memory-allocation"><i class="fa fa-check"></i><b>10.1</b> Example of Computation Time and Memory Allocation</a>
-<ul>
-<li class="chapter" data-level="10.1.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#preparation"><i class="fa fa-check"></i><b>10.1.1</b> Preparation</a></li>
-<li class="chapter" data-level="10.1.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#naïve-approach-ignorant-of-r"><i class="fa fa-check"></i><b>10.1.2</b> Naïve Approach (ignorant of R)</a></li>
-<li class="chapter" data-level="10.1.3" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#improvement-1-pre-allocation-of-memory"><i class="fa fa-check"></i><b>10.1.3</b> Improvement 1: Pre-allocation of memory</a></li>
-<li class="chapter" data-level="10.1.4" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#improvement-2-exploit-vectorization"><i class="fa fa-check"></i><b>10.1.4</b> Improvement 2: Exploit vectorization</a></li>
+<li class="chapter" data-level="7.7.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#creating-a-new-database-with-rsqlite"><i class="fa fa-check"></i><b>7.7.1</b> Creating a new database with <code>RSQLite</code></a></li>
+<li class="chapter" data-level="7.7.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#importing-data"><i class="fa fa-check"></i><b>7.7.2</b> Importing data</a></li>
+<li class="chapter" data-level="7.7.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#issue-queries"><i class="fa fa-check"></i><b>7.7.3</b> Issue queries</a></li>
+<li class="chapter" data-level="7.7.4" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#mass-storage-mariadb-on-an-ec2-instance"><i class="fa fa-check"></i><b>7.7.4</b> Mass Storage: MariaDB on an EC2 instance</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#case-study-parallel-processing"><i class="fa fa-check"></i><b>10.2</b> Case study: Parallel processing</a>
-<ul>
-<li class="chapter" data-level="10.2.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#parallelization-with-an-ec2-instance-1"><i class="fa fa-check"></i><b>10.2.1</b> Parallelization with an EC2 instance</a></li>
 </ul></li>
-<li class="chapter" data-level="10.3" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#case-study-memory-allocation"><i class="fa fa-check"></i><b>10.3</b> Case study: Memory allocation</a></li>
-<li class="chapter" data-level="10.4" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#big-data-econometrics"><i class="fa fa-check"></i><b>10.4</b> Big Data econometrics</a></li>
-<li class="chapter" data-level="10.5" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#example-fast-least-squares-regression"><i class="fa fa-check"></i><b>10.5</b> Example: Fast least squares regression</a>
+<li class="chapter" data-level="8" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html"><i class="fa fa-check"></i><b>8</b> Big Data Cleaning and Transformation</a>
 <ul>
-<li class="chapter" data-level="10.5.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#ols-as-a-point-of-reference"><i class="fa fa-check"></i><b>10.5.1</b> OLS as a point of reference</a></li>
-<li class="chapter" data-level="10.5.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#the-uluru-algorithm-as-an-alternative-to-ols"><i class="fa fa-check"></i><b>10.5.2</b> The Uluru algorithm as an alternative to OLS</a></li>
-</ul></li>
-<li class="chapter" data-level="10.6" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#gpus-and-machine-learning"><i class="fa fa-check"></i><b>10.6</b> GPUs and Machine Learning</a>
+<li class="chapter" data-level="8.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#out-of-memory-strategies"><i class="fa fa-check"></i><b>8.1</b> ‘Out-of-memory’ strategies</a>
 <ul>
-<li class="chapter" data-level="10.6.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#tensorflowkeras-example-predict-housing-prices"><i class="fa fa-check"></i><b>10.6.1</b> Tensorflow/Keras example: predict housing prices</a></li>
+<li class="chapter" data-level="8.1.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#chunking-data-with-the-ff-package"><i class="fa fa-check"></i><b>8.1.1</b> Chunking data with the <code>ff</code>-package</a></li>
+<li class="chapter" data-level="8.1.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#memory-mapping-with-bigmemory"><i class="fa fa-check"></i><b>8.1.2</b> Memory mapping with <code>bigmemory</code></a></li>
 </ul></li>
-<li class="chapter" data-level="10.7" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#a-word-of-caution"><i class="fa fa-check"></i><b>10.7</b> A word of caution</a></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html"><i class="fa fa-check"></i><b>11</b> Applied Econometrics with Apache Spark</a>
+<li class="chapter" data-level="8.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#typical-cleaning-tasks"><i class="fa fa-check"></i><b>8.2</b> Typical cleaning tasks</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html#spark-basics"><i class="fa fa-check"></i><b>11.1</b> Spark basics</a></li>
-<li class="chapter" data-level="11.2" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html#spark-in-r"><i class="fa fa-check"></i><b>11.2</b> Spark in R</a>
-<ul>
-<li class="chapter" data-level="11.2.1" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html#data-import-and-summary-statistics"><i class="fa fa-check"></i><b>11.2.1</b> Data import and summary statistics</a></li>
-<li class="chapter" data-level="11.2.2" data-path="applied-econometrics-with-apache-spark.html"><a href="applied-econometrics-with-apache-spark.html#regression-analysis-with-sparklyr"><i class="fa fa-check"></i><b>11.2.2</b> Regression analysis with <code>sparklyr</code></a></li>
+<li class="chapter" data-level="8.2.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#data-preparation-with-ff"><i class="fa fa-check"></i><b>8.2.1</b> Data Preparation with <code>ff</code></a></li>
 </ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html"><i class="fa fa-check"></i><b>9</b> Descriptive Statistics and Aggregation</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-the-split-apply-combine-strategy"><i class="fa fa-check"></i><b>9.1</b> Data aggregation: The ‘split-apply-combine’ strategy</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-with-chunked-data-files"><i class="fa fa-check"></i><b>9.1.1</b> Data aggregation with chunked data files</a></li>
+<li class="chapter" data-level="9.1.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>9.1.2</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="big-data-visualization.html"><a href="big-data-visualization.html"><i class="fa fa-check"></i><b>10</b> (Big) Data Visualization</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#data-set"><i class="fa fa-check"></i><b>10.1</b> Data Set</a></li>
+<li class="chapter" data-level="10.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-modify-and-create-themes"><i class="fa fa-check"></i><b>10.2</b> Excursus: modify and create themes</a>
+<ul>
+<li class="chapter" data-level="10.2.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#create-your-own-theme-simple-approach"><i class="fa fa-check"></i><b>10.2.1</b> Create your own theme: simple approach</a></li>
+<li class="chapter" data-level="10.2.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#implementing-actual-themes-as-functions."><i class="fa fa-check"></i><b>10.2.2</b> Implementing actual themes as functions.</a></li>
+</ul></li>
+<li class="chapter" data-level="10.3" data-path="big-data-visualization.html"><a href="big-data-visualization.html#visualize-time-and-space"><i class="fa fa-check"></i><b>10.3</b> Visualize Time and Space</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#preparations"><i class="fa fa-check"></i><b>10.3.1</b> Preparations</a></li>
+<li class="chapter" data-level="10.3.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#pick-up-and-drop-off-locations"><i class="fa fa-check"></i><b>10.3.2</b> Pick-up and drop-off locations</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-change-color-schemes"><i class="fa fa-check"></i><b>10.4</b> Excursus: change color schemes</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html"><i class="fa fa-check"></i><b>11</b> Bottle Necks in Local Big Data Analytics</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#example-of-computation-time-and-memory-allocation"><i class="fa fa-check"></i><b>11.1</b> Example of Computation Time and Memory Allocation</a>
+<ul>
+<li class="chapter" data-level="11.1.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#preparation"><i class="fa fa-check"></i><b>11.1.1</b> Preparation</a></li>
+<li class="chapter" data-level="11.1.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#naïve-approach-ignorant-of-r"><i class="fa fa-check"></i><b>11.1.2</b> Naïve Approach (ignorant of R)</a></li>
+<li class="chapter" data-level="11.1.3" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#improvement-1-pre-allocation-of-memory"><i class="fa fa-check"></i><b>11.1.3</b> Improvement 1: Pre-allocation of memory</a></li>
+<li class="chapter" data-level="11.1.4" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#improvement-2-exploit-vectorization"><i class="fa fa-check"></i><b>11.1.4</b> Improvement 2: Exploit vectorization</a></li>
+</ul></li>
+<li class="chapter" data-level="11.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#case-study-parallel-processing"><i class="fa fa-check"></i><b>11.2</b> Case study: Parallel processing</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#parallelization-with-an-ec2-instance-1"><i class="fa fa-check"></i><b>11.2.1</b> Parallelization with an EC2 instance</a></li>
+</ul></li>
+<li class="chapter" data-level="11.3" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#case-study-memory-allocation"><i class="fa fa-check"></i><b>11.3</b> Case study: Memory allocation</a></li>
+<li class="chapter" data-level="11.4" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#gpus-and-machine-learning"><i class="fa fa-check"></i><b>11.4</b> GPUs and Machine Learning</a>
+<ul>
+<li class="chapter" data-level="11.4.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#tensorflowkeras-example-predict-housing-prices"><i class="fa fa-check"></i><b>11.4.1</b> Tensorflow/Keras example: predict housing prices</a></li>
+</ul></li>
+<li class="chapter" data-level="11.5" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#a-word-of-caution"><i class="fa fa-check"></i><b>11.5</b> A word of caution</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html"><i class="fa fa-check"></i><b>12</b> Applied Econometrics with Spark</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#regression-analysis-with-sparklyr"><i class="fa fa-check"></i><b>12.1</b> Regression analysis with <code>sparklyr</code></a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="appendix-a.html"><a href="appendix-a.html"><i class="fa fa-check"></i><b>A</b> Appendix A</a>
@@ -314,6 +325,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="B.0.3" data-path="appendix-b.html"><a href="appendix-b.html#vectors-vs-factors-in-r"><i class="fa fa-check"></i><b>B.0.3</b> Vectors vs Factors in R</a></li>
 <li class="chapter" data-level="B.0.4" data-path="appendix-b.html"><a href="appendix-b.html#r-tools-to-investigate-structures-and-types"><i class="fa fa-check"></i><b>B.0.4</b> R-tools to investigate structures and types</a></li>
 </ul></li>
+<li class="chapter" data-level="C" data-path="appendix-c.html"><a href="appendix-c.html"><i class="fa fa-check"></i><b>C</b> Appendix C</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://umatter.github.io" target="blank">umatter.github.io</a></li>
@@ -335,202 +347,202 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="big-data-visualization" class="section level1" number="9">
-<h1><span class="header-section-number">Chapter 9</span> (Big) Data Visualization</h1>
-<div id="data-set" class="section level2" number="9.1">
-<h2><span class="header-section-number">9.1</span> Data Set</h2>
+<div id="big-data-visualization" class="section level1" number="10">
+<h1><span class="header-section-number">Chapter 10</span> (Big) Data Visualization</h1>
+<div id="data-set" class="section level2" number="10.1">
+<h2><span class="header-section-number">10.1</span> Data Set</h2>
 <p>In this tutorial we will work with the TLC data used in the data aggregation session. The raw data consists of several monthly CSV-files and can be downloaded via the <a href="https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page">TLC’s website</a>. Again, we work only with the first million observations.</p>
 <p>In order to better understand the large data set at hand (particularly regarding the determinants of tips paid) we use <code>ggplot2</code> to visualize some key aspects of the data.</p>
 <p>First, let’s look at the raw relationship between fare paid and the tip paid. We set up the canvas with <code>ggplot</code>.</p>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="big-data-visualization.html#cb295-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb295-2"><a href="big-data-visualization.html#cb295-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb295-3"><a href="big-data-visualization.html#cb295-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb295-4"><a href="big-data-visualization.html#cb295-4" aria-hidden="true" tabindex="-1"></a><span class="co"># set up the canvas</span></span>
-<span id="cb295-5"><a href="big-data-visualization.html#cb295-5" aria-hidden="true" tabindex="-1"></a>taxiplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(taxi, <span class="fu">aes</span>(<span class="at">y=</span>tip_amount, <span class="at">x=</span> fare_amount)) </span>
-<span id="cb295-6"><a href="big-data-visualization.html#cb295-6" aria-hidden="true" tabindex="-1"></a>taxiplot</span></code></pre></div>
-<p><img src="bigdata_files/figure-html/unnamed-chunk-136-1.png" width="672" /></p>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="big-data-visualization.html#cb361-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb361-2"><a href="big-data-visualization.html#cb361-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb361-3"><a href="big-data-visualization.html#cb361-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb361-4"><a href="big-data-visualization.html#cb361-4" aria-hidden="true" tabindex="-1"></a><span class="co"># set up the canvas</span></span>
+<span id="cb361-5"><a href="big-data-visualization.html#cb361-5" aria-hidden="true" tabindex="-1"></a>taxiplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(taxi, <span class="fu">aes</span>(<span class="at">y=</span>tip_amount, <span class="at">x=</span> fare_amount)) </span>
+<span id="cb361-6"><a href="big-data-visualization.html#cb361-6" aria-hidden="true" tabindex="-1"></a>taxiplot</span></code></pre></div>
+<p><img src="bigdata_files/figure-html/unnamed-chunk-174-1.png" width="672" /></p>
 <p>Now we visualize the co-distribution of the two variables with a simple scatter-plot.</p>
-<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="big-data-visualization.html#cb296-1" aria-hidden="true" tabindex="-1"></a><span class="co"># simple x/y plot</span></span>
-<span id="cb296-2"><a href="big-data-visualization.html#cb296-2" aria-hidden="true" tabindex="-1"></a>taxiplot <span class="sc">+</span></span>
-<span id="cb296-3"><a href="big-data-visualization.html#cb296-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>()</span></code></pre></div>
-<p><img src="bigdata_files/figure-html/unnamed-chunk-137-1.png" width="672" /></p>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="big-data-visualization.html#cb362-1" aria-hidden="true" tabindex="-1"></a><span class="co"># simple x/y plot</span></span>
+<span id="cb362-2"><a href="big-data-visualization.html#cb362-2" aria-hidden="true" tabindex="-1"></a>taxiplot <span class="sc">+</span></span>
+<span id="cb362-3"><a href="big-data-visualization.html#cb362-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="bigdata_files/figure-html/unnamed-chunk-175-1.png" width="672" /></p>
 <p>Note that this took quite a while, as R had to literally plot one million dots on the canvas. Moreover many dots fall within the same area, making it impossible to recognize how much mass there actually is. This is typical for visualization exercises with large data sets. One way to improve this, is by making the dots more transparent by setting the <code>alpha</code> parameter.</p>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="big-data-visualization.html#cb297-1" aria-hidden="true" tabindex="-1"></a><span class="co"># simple x/y plot</span></span>
-<span id="cb297-2"><a href="big-data-visualization.html#cb297-2" aria-hidden="true" tabindex="-1"></a>taxiplot <span class="sc">+</span></span>
-<span id="cb297-3"><a href="big-data-visualization.html#cb297-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.2</span>)</span></code></pre></div>
-<p><img src="bigdata_files/figure-html/unnamed-chunk-138-1.png" width="672" /></p>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="big-data-visualization.html#cb363-1" aria-hidden="true" tabindex="-1"></a><span class="co"># simple x/y plot</span></span>
+<span id="cb363-2"><a href="big-data-visualization.html#cb363-2" aria-hidden="true" tabindex="-1"></a>taxiplot <span class="sc">+</span></span>
+<span id="cb363-3"><a href="big-data-visualization.html#cb363-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.2</span>)</span></code></pre></div>
+<p><img src="bigdata_files/figure-html/unnamed-chunk-176-1.png" width="672" /></p>
 <p>Alternatively, we can compute two-dimensional bins. Thereby, the canvas is split into rectangles and the number of observations falling into each respective rectangle is computed. The visualization is based on plotting the rectangles with counts greater than 0 and the shading of the rectangles indicates the count values.</p>
-<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="big-data-visualization.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2-dimensional bins</span></span>
-<span id="cb298-2"><a href="big-data-visualization.html#cb298-2" aria-hidden="true" tabindex="-1"></a>taxiplot <span class="sc">+</span></span>
-<span id="cb298-3"><a href="big-data-visualization.html#cb298-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_bin2d</span>()</span></code></pre></div>
-<p><img src="bigdata_files/figure-html/unnamed-chunk-139-1.png" width="672" /></p>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="big-data-visualization.html#cb364-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2-dimensional bins</span></span>
+<span id="cb364-2"><a href="big-data-visualization.html#cb364-2" aria-hidden="true" tabindex="-1"></a>taxiplot <span class="sc">+</span></span>
+<span id="cb364-3"><a href="big-data-visualization.html#cb364-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_bin2d</span>()</span></code></pre></div>
+<p><img src="bigdata_files/figure-html/unnamed-chunk-177-1.png" width="672" /></p>
 <p>A large part of the tip/fare observations seem to be in the very lower-left corner of the pane, while most other trips seem to be evenly distributed. However, we fail to see slighter differences in this visualization. In order to reduce the dominance of the 2d-bins with very high counts, we display the natural logarithm of counts and display the bins as points.</p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="big-data-visualization.html#cb299-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2-dimensional bins</span></span>
-<span id="cb299-2"><a href="big-data-visualization.html#cb299-2" aria-hidden="true" tabindex="-1"></a>taxiplot <span class="sc">+</span></span>
-<span id="cb299-3"><a href="big-data-visualization.html#cb299-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">stat_bin_2d</span>(<span class="at">geom=</span><span class="st">&quot;point&quot;</span>,</span>
-<span id="cb299-4"><a href="big-data-visualization.html#cb299-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">mapping=</span> <span class="fu">aes</span>(<span class="at">size =</span> <span class="fu">log</span>(..count..))) <span class="sc">+</span></span>
-<span id="cb299-5"><a href="big-data-visualization.html#cb299-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">guides</span>(<span class="at">fill =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<p><img src="bigdata_files/figure-html/unnamed-chunk-140-1.png" width="672" /></p>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="big-data-visualization.html#cb365-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2-dimensional bins</span></span>
+<span id="cb365-2"><a href="big-data-visualization.html#cb365-2" aria-hidden="true" tabindex="-1"></a>taxiplot <span class="sc">+</span></span>
+<span id="cb365-3"><a href="big-data-visualization.html#cb365-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">stat_bin_2d</span>(<span class="at">geom=</span><span class="st">&quot;point&quot;</span>,</span>
+<span id="cb365-4"><a href="big-data-visualization.html#cb365-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">mapping=</span> <span class="fu">aes</span>(<span class="at">size =</span> <span class="fu">log</span>(..count..))) <span class="sc">+</span></span>
+<span id="cb365-5"><a href="big-data-visualization.html#cb365-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">guides</span>(<span class="at">fill =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="bigdata_files/figure-html/unnamed-chunk-178-1.png" width="672" /></p>
 <p>We note that there are many cases with very low fare amounts, many cases with no or hardly any tip, and quite a lot of cases with very high tip amounts (in relation to the rather low fare amount). In the following, we dissect this picture by having a closer look at ‘typical’ tip amounts and whether they differ by type of payment.</p>
-<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="big-data-visualization.html#cb300-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute frequency of per tip amount and payment method</span></span>
-<span id="cb300-2"><a href="big-data-visualization.html#cb300-2" aria-hidden="true" tabindex="-1"></a>taxi[, n_same_tip<span class="sc">:</span><span class="er">=</span> .N, by<span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;tip_amount&quot;</span>, <span class="st">&quot;payment_type&quot;</span>)]</span>
-<span id="cb300-3"><a href="big-data-visualization.html#cb300-3" aria-hidden="true" tabindex="-1"></a>frequencies <span class="ot">&lt;-</span> <span class="fu">unique</span>(taxi[payment_type <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;credit&quot;</span>, <span class="st">&quot;cash&quot;</span>),</span>
-<span id="cb300-4"><a href="big-data-visualization.html#cb300-4" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">c</span>(<span class="st">&quot;n_same_tip&quot;</span>, <span class="st">&quot;tip_amount&quot;</span>, <span class="st">&quot;payment_type&quot;</span>)][<span class="fu">order</span>(n_same_tip, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)])</span>
-<span id="cb300-5"><a href="big-data-visualization.html#cb300-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb300-6"><a href="big-data-visualization.html#cb300-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb300-7"><a href="big-data-visualization.html#cb300-7" aria-hidden="true" tabindex="-1"></a><span class="co"># plot top 20 frequent tip amounts</span></span>
-<span id="cb300-8"><a href="big-data-visualization.html#cb300-8" aria-hidden="true" tabindex="-1"></a>fare <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> frequencies[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>], <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(tip_amount), <span class="at">y =</span> n_same_tip)) </span>
-<span id="cb300-9"><a href="big-data-visualization.html#cb300-9" aria-hidden="true" tabindex="-1"></a>fare <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) </span></code></pre></div>
-<p><img src="bigdata_files/figure-html/unnamed-chunk-141-1.png" width="672" /></p>
-<p>Indeed, paying no tip at all is quite frequent, overall.<a href="#fn24" class="footnote-ref" id="fnref24"><sup>24</sup></a> The bar plot also indicates that there seem to be some ‘focal points’ in the amount of tips paid. Clearly, paying one USD or two USD is more common than paying fractions. However, fractions of dollars might be more likely if tips are paid in cash and customers simply add some loose change to the fare amount paid.</p>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="big-data-visualization.html#cb301-1" aria-hidden="true" tabindex="-1"></a>fare <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb301-2"><a href="big-data-visualization.html#cb301-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="st">&quot;payment_type&quot;</span>) </span></code></pre></div>
-<p><img src="bigdata_files/figure-html/unnamed-chunk-142-1.png" width="672" /></p>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="big-data-visualization.html#cb366-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compute frequency of per tip amount and payment method</span></span>
+<span id="cb366-2"><a href="big-data-visualization.html#cb366-2" aria-hidden="true" tabindex="-1"></a>taxi[, n_same_tip<span class="sc">:</span><span class="er">=</span> .N, by<span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;tip_amount&quot;</span>, <span class="st">&quot;payment_type&quot;</span>)]</span>
+<span id="cb366-3"><a href="big-data-visualization.html#cb366-3" aria-hidden="true" tabindex="-1"></a>frequencies <span class="ot">&lt;-</span> <span class="fu">unique</span>(taxi[payment_type <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;credit&quot;</span>, <span class="st">&quot;cash&quot;</span>),</span>
+<span id="cb366-4"><a href="big-data-visualization.html#cb366-4" aria-hidden="true" tabindex="-1"></a>                           <span class="fu">c</span>(<span class="st">&quot;n_same_tip&quot;</span>, <span class="st">&quot;tip_amount&quot;</span>, <span class="st">&quot;payment_type&quot;</span>)][<span class="fu">order</span>(n_same_tip, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)])</span>
+<span id="cb366-5"><a href="big-data-visualization.html#cb366-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb366-6"><a href="big-data-visualization.html#cb366-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb366-7"><a href="big-data-visualization.html#cb366-7" aria-hidden="true" tabindex="-1"></a><span class="co"># plot top 20 frequent tip amounts</span></span>
+<span id="cb366-8"><a href="big-data-visualization.html#cb366-8" aria-hidden="true" tabindex="-1"></a>fare <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data =</span> frequencies[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>], <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">factor</span>(tip_amount), <span class="at">y =</span> n_same_tip)) </span>
+<span id="cb366-9"><a href="big-data-visualization.html#cb366-9" aria-hidden="true" tabindex="-1"></a>fare <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) </span></code></pre></div>
+<p><img src="bigdata_files/figure-html/unnamed-chunk-179-1.png" width="672" /></p>
+<p>Indeed, paying no tip at all is quite frequent, overall.<a href="#fn40" class="footnote-ref" id="fnref40"><sup>40</sup></a> The bar plot also indicates that there seem to be some ‘focal points’ in the amount of tips paid. Clearly, paying one USD or two USD is more common than paying fractions. However, fractions of dollars might be more likely if tips are paid in cash and customers simply add some loose change to the fare amount paid.</p>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="big-data-visualization.html#cb367-1" aria-hidden="true" tabindex="-1"></a>fare <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb367-2"><a href="big-data-visualization.html#cb367-2" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="st">&quot;payment_type&quot;</span>) </span></code></pre></div>
+<p><img src="bigdata_files/figure-html/unnamed-chunk-180-1.png" width="672" /></p>
 <p>Clearly, it looks like trips paid in cash tend not to be tipped (at least in this subsample).</p>
 <p>Let’s try to tease this information out of the initial points plot. Trips paid in cash are often not tipped, we thus should indicate the payment method. Moreover, tips paid in full dollar amounts might indicate a habit.</p>
-<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="big-data-visualization.html#cb302-1" aria-hidden="true" tabindex="-1"></a><span class="co"># indicate natural numbers</span></span>
-<span id="cb302-2"><a href="big-data-visualization.html#cb302-2" aria-hidden="true" tabindex="-1"></a>taxi[, dollar_paid <span class="sc">:</span><span class="er">=</span> <span class="fu">ifelse</span>(tip_amount <span class="sc">==</span> <span class="fu">round</span>(tip_amount,<span class="dv">0</span>), <span class="st">&quot;Full&quot;</span>, <span class="st">&quot;Fraction&quot;</span>),]</span>
-<span id="cb302-3"><a href="big-data-visualization.html#cb302-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb302-4"><a href="big-data-visualization.html#cb302-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb302-5"><a href="big-data-visualization.html#cb302-5" aria-hidden="true" tabindex="-1"></a><span class="co"># extended x/y plot</span></span>
-<span id="cb302-6"><a href="big-data-visualization.html#cb302-6" aria-hidden="true" tabindex="-1"></a>taxiplot <span class="sc">+</span></span>
-<span id="cb302-7"><a href="big-data-visualization.html#cb302-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.2</span>, <span class="fu">aes</span>(<span class="at">color=</span>payment_type)) <span class="sc">+</span></span>
-<span id="cb302-8"><a href="big-data-visualization.html#cb302-8" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="st">&quot;dollar_paid&quot;</span>)</span></code></pre></div>
-<p><img src="bigdata_files/figure-html/unnamed-chunk-143-1.png" width="672" /></p>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="big-data-visualization.html#cb368-1" aria-hidden="true" tabindex="-1"></a><span class="co"># indicate natural numbers</span></span>
+<span id="cb368-2"><a href="big-data-visualization.html#cb368-2" aria-hidden="true" tabindex="-1"></a>taxi[, dollar_paid <span class="sc">:</span><span class="er">=</span> <span class="fu">ifelse</span>(tip_amount <span class="sc">==</span> <span class="fu">round</span>(tip_amount,<span class="dv">0</span>), <span class="st">&quot;Full&quot;</span>, <span class="st">&quot;Fraction&quot;</span>),]</span>
+<span id="cb368-3"><a href="big-data-visualization.html#cb368-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb368-4"><a href="big-data-visualization.html#cb368-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb368-5"><a href="big-data-visualization.html#cb368-5" aria-hidden="true" tabindex="-1"></a><span class="co"># extended x/y plot</span></span>
+<span id="cb368-6"><a href="big-data-visualization.html#cb368-6" aria-hidden="true" tabindex="-1"></a>taxiplot <span class="sc">+</span></span>
+<span id="cb368-7"><a href="big-data-visualization.html#cb368-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.2</span>, <span class="fu">aes</span>(<span class="at">color=</span>payment_type)) <span class="sc">+</span></span>
+<span id="cb368-8"><a href="big-data-visualization.html#cb368-8" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="st">&quot;dollar_paid&quot;</span>)</span></code></pre></div>
+<p><img src="bigdata_files/figure-html/unnamed-chunk-181-1.png" width="672" /></p>
 <p>Now the picture is getting clearer. Paying tip seems to follow certain rules of thumb. Certain fixed amounts tend to be paid independent of the fare amount (visible in the straight lines of dots on the right-hand panel). At the same time, the pattern in the left panel indicates another habit: computing the amount of tip as a linear function of the total fare amount (‘pay 10% tip’). A third habit might be to determine the amount of tip by ‘rounding up’ the total amount paid. In the following, we try to tease the latter out, only focusing on credit card payments.</p>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="big-data-visualization.html#cb303-1" aria-hidden="true" tabindex="-1"></a>taxi[, rounded_up <span class="sc">:</span><span class="er">=</span> <span class="fu">ifelse</span>(fare_amount <span class="sc">+</span> tip_amount <span class="sc">==</span> <span class="fu">round</span>(fare_amount <span class="sc">+</span> tip_amount, <span class="dv">0</span>),</span>
-<span id="cb303-2"><a href="big-data-visualization.html#cb303-2" aria-hidden="true" tabindex="-1"></a>                            <span class="st">&quot;Rounded up&quot;</span>,</span>
-<span id="cb303-3"><a href="big-data-visualization.html#cb303-3" aria-hidden="true" tabindex="-1"></a>                            <span class="st">&quot;Not rounded&quot;</span>)]</span>
-<span id="cb303-4"><a href="big-data-visualization.html#cb303-4" aria-hidden="true" tabindex="-1"></a><span class="co"># extended x/y plot</span></span>
-<span id="cb303-5"><a href="big-data-visualization.html#cb303-5" aria-hidden="true" tabindex="-1"></a>taxiplot <span class="sc">+</span></span>
-<span id="cb303-6"><a href="big-data-visualization.html#cb303-6" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="at">data=</span> taxi[payment_type <span class="sc">==</span> <span class="st">&quot;credit&quot;</span>],</span>
-<span id="cb303-7"><a href="big-data-visualization.html#cb303-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">alpha=</span><span class="fl">0.2</span>, <span class="fu">aes</span>(<span class="at">color=</span>rounded_up)) <span class="sc">+</span></span>
-<span id="cb303-8"><a href="big-data-visualization.html#cb303-8" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="st">&quot;dollar_paid&quot;</span>)</span></code></pre></div>
-<p><img src="bigdata_files/figure-html/unnamed-chunk-144-1.png" width="672" /></p>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="big-data-visualization.html#cb369-1" aria-hidden="true" tabindex="-1"></a>taxi[, rounded_up <span class="sc">:</span><span class="er">=</span> <span class="fu">ifelse</span>(fare_amount <span class="sc">+</span> tip_amount <span class="sc">==</span> <span class="fu">round</span>(fare_amount <span class="sc">+</span> tip_amount, <span class="dv">0</span>),</span>
+<span id="cb369-2"><a href="big-data-visualization.html#cb369-2" aria-hidden="true" tabindex="-1"></a>                            <span class="st">&quot;Rounded up&quot;</span>,</span>
+<span id="cb369-3"><a href="big-data-visualization.html#cb369-3" aria-hidden="true" tabindex="-1"></a>                            <span class="st">&quot;Not rounded&quot;</span>)]</span>
+<span id="cb369-4"><a href="big-data-visualization.html#cb369-4" aria-hidden="true" tabindex="-1"></a><span class="co"># extended x/y plot</span></span>
+<span id="cb369-5"><a href="big-data-visualization.html#cb369-5" aria-hidden="true" tabindex="-1"></a>taxiplot <span class="sc">+</span></span>
+<span id="cb369-6"><a href="big-data-visualization.html#cb369-6" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="at">data=</span> taxi[payment_type <span class="sc">==</span> <span class="st">&quot;credit&quot;</span>],</span>
+<span id="cb369-7"><a href="big-data-visualization.html#cb369-7" aria-hidden="true" tabindex="-1"></a>                <span class="at">alpha=</span><span class="fl">0.2</span>, <span class="fu">aes</span>(<span class="at">color=</span>rounded_up)) <span class="sc">+</span></span>
+<span id="cb369-8"><a href="big-data-visualization.html#cb369-8" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="st">&quot;dollar_paid&quot;</span>)</span></code></pre></div>
+<p><img src="bigdata_files/figure-html/unnamed-chunk-182-1.png" width="672" /></p>
 <p>Now we can start modelling. A reasonable first shot is to model the tip amount as a linear function of the fare amount, conditional on the no-zero tip amounts paid as fractions of a dollar.</p>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="big-data-visualization.html#cb304-1" aria-hidden="true" tabindex="-1"></a>modelplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span> taxi[payment_type <span class="sc">==</span> <span class="st">&quot;credit&quot;</span> <span class="sc">&amp;</span> dollar_paid <span class="sc">==</span> <span class="st">&quot;Fraction&quot;</span> <span class="sc">&amp;</span> <span class="dv">0</span> <span class="sc">&lt;</span> tip_amount],</span>
-<span id="cb304-2"><a href="big-data-visualization.html#cb304-2" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">aes</span>(<span class="at">x =</span> fare_amount, <span class="at">y =</span> tip_amount))</span>
-<span id="cb304-3"><a href="big-data-visualization.html#cb304-3" aria-hidden="true" tabindex="-1"></a>modelplot <span class="sc">+</span></span>
-<span id="cb304-4"><a href="big-data-visualization.html#cb304-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.2</span>, <span class="at">colour=</span><span class="st">&quot;darkgreen&quot;</span>) <span class="sc">+</span></span>
-<span id="cb304-5"><a href="big-data-visualization.html#cb304-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="big-data-visualization.html#cb370-1" aria-hidden="true" tabindex="-1"></a>modelplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span> taxi[payment_type <span class="sc">==</span> <span class="st">&quot;credit&quot;</span> <span class="sc">&amp;</span> dollar_paid <span class="sc">==</span> <span class="st">&quot;Fraction&quot;</span> <span class="sc">&amp;</span> <span class="dv">0</span> <span class="sc">&lt;</span> tip_amount],</span>
+<span id="cb370-2"><a href="big-data-visualization.html#cb370-2" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">aes</span>(<span class="at">x =</span> fare_amount, <span class="at">y =</span> tip_amount))</span>
+<span id="cb370-3"><a href="big-data-visualization.html#cb370-3" aria-hidden="true" tabindex="-1"></a>modelplot <span class="sc">+</span></span>
+<span id="cb370-4"><a href="big-data-visualization.html#cb370-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.2</span>, <span class="at">colour=</span><span class="st">&quot;darkgreen&quot;</span>) <span class="sc">+</span></span>
+<span id="cb370-5"><a href="big-data-visualization.html#cb370-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="bigdata_files/figure-html/unnamed-chunk-145-1.png" width="672" /></p>
-<p>Finally, we prepare the plot for reporting. <code>ggplot2</code> provides several predefined ‘themes’ for plots which define all kind of aspects of a plot (background color, line colors, font size etc.). The easiest way to tweak the design of your final plot in a certain direction is to just add such a pre-defined theme at the end of your plot. Some of the pre-defined themes allow you to change a few aspects such as the font type and the base size of all the texts in the plot (labels and tick numbers etc.). Here, we use the <code>theme_bw()</code>, increase the font size and switch to serif-type font. <code>theme_bw()</code> is one of the complete themes already shipped with the basic <code>ggplot2</code> installation.<a href="#fn25" class="footnote-ref" id="fnref25"><sup>25</sup></a> Many more themes can be found in additional R packages (see, for example, the <a href="https://cran.r-project.org/web/packages/ggthemes/index.html"><code>ggthemes</code> package</a>).</p>
-<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="big-data-visualization.html#cb306-1" aria-hidden="true" tabindex="-1"></a>modelplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span> taxi[payment_type <span class="sc">==</span> <span class="st">&quot;credit&quot;</span> <span class="sc">&amp;</span> dollar_paid <span class="sc">==</span> <span class="st">&quot;Fraction&quot;</span> <span class="sc">&amp;</span> <span class="dv">0</span> <span class="sc">&lt;</span> tip_amount],</span>
-<span id="cb306-2"><a href="big-data-visualization.html#cb306-2" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">aes</span>(<span class="at">x =</span> fare_amount, <span class="at">y =</span> tip_amount))</span>
-<span id="cb306-3"><a href="big-data-visualization.html#cb306-3" aria-hidden="true" tabindex="-1"></a>modelplot <span class="sc">+</span></span>
-<span id="cb306-4"><a href="big-data-visualization.html#cb306-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.2</span>, <span class="at">colour=</span><span class="st">&quot;darkgreen&quot;</span>) <span class="sc">+</span></span>
-<span id="cb306-5"><a href="big-data-visualization.html#cb306-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
-<span id="cb306-6"><a href="big-data-visualization.html#cb306-6" aria-hidden="true" tabindex="-1"></a>     <span class="fu">ylab</span>(<span class="st">&quot;Amount of tip paid (in USD)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb306-7"><a href="big-data-visualization.html#cb306-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">xlab</span>(<span class="st">&quot;Amount of fare paid (in USD)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb306-8"><a href="big-data-visualization.html#cb306-8" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">18</span>, <span class="at">base_family =</span> <span class="st">&quot;serif&quot;</span>)</span></code></pre></div>
+<p><img src="bigdata_files/figure-html/unnamed-chunk-183-1.png" width="672" /></p>
+<p>Finally, we prepare the plot for reporting. <code>ggplot2</code> provides several predefined ‘themes’ for plots which define all kind of aspects of a plot (background color, line colors, font size etc.). The easiest way to tweak the design of your final plot in a certain direction is to just add such a pre-defined theme at the end of your plot. Some of the pre-defined themes allow you to change a few aspects such as the font type and the base size of all the texts in the plot (labels and tick numbers etc.). Here, we use the <code>theme_bw()</code>, increase the font size and switch to serif-type font. <code>theme_bw()</code> is one of the complete themes already shipped with the basic <code>ggplot2</code> installation.<a href="#fn41" class="footnote-ref" id="fnref41"><sup>41</sup></a> Many more themes can be found in additional R packages (see, for example, the <a href="https://cran.r-project.org/web/packages/ggthemes/index.html"><code>ggthemes</code> package</a>).</p>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="big-data-visualization.html#cb372-1" aria-hidden="true" tabindex="-1"></a>modelplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span> taxi[payment_type <span class="sc">==</span> <span class="st">&quot;credit&quot;</span> <span class="sc">&amp;</span> dollar_paid <span class="sc">==</span> <span class="st">&quot;Fraction&quot;</span> <span class="sc">&amp;</span> <span class="dv">0</span> <span class="sc">&lt;</span> tip_amount],</span>
+<span id="cb372-2"><a href="big-data-visualization.html#cb372-2" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">aes</span>(<span class="at">x =</span> fare_amount, <span class="at">y =</span> tip_amount))</span>
+<span id="cb372-3"><a href="big-data-visualization.html#cb372-3" aria-hidden="true" tabindex="-1"></a>modelplot <span class="sc">+</span></span>
+<span id="cb372-4"><a href="big-data-visualization.html#cb372-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.2</span>, <span class="at">colour=</span><span class="st">&quot;darkgreen&quot;</span>) <span class="sc">+</span></span>
+<span id="cb372-5"><a href="big-data-visualization.html#cb372-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb372-6"><a href="big-data-visualization.html#cb372-6" aria-hidden="true" tabindex="-1"></a>     <span class="fu">ylab</span>(<span class="st">&quot;Amount of tip paid (in USD)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb372-7"><a href="big-data-visualization.html#cb372-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">xlab</span>(<span class="st">&quot;Amount of fare paid (in USD)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb372-8"><a href="big-data-visualization.html#cb372-8" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">18</span>, <span class="at">base_family =</span> <span class="st">&quot;serif&quot;</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="bigdata_files/figure-html/unnamed-chunk-146-1.png" width="672" /></p>
+<p><img src="bigdata_files/figure-html/unnamed-chunk-184-1.png" width="672" /></p>
 </div>
-<div id="excursus-modify-and-create-themes" class="section level2" number="9.2">
-<h2><span class="header-section-number">9.2</span> Excursus: modify and create themes</h2>
+<div id="excursus-modify-and-create-themes" class="section level2" number="10.2">
+<h2><span class="header-section-number">10.2</span> Excursus: modify and create themes</h2>
 <p>Apart from using pre-defined themes as illustrated above, we can use the <code>theme()</code> function to further modify the design of a plot. For example, we can print the axis labels (‘axis titles’) in bold.</p>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="big-data-visualization.html#cb308-1" aria-hidden="true" tabindex="-1"></a>modelplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span> taxi[payment_type <span class="sc">==</span> <span class="st">&quot;credit&quot;</span> <span class="sc">&amp;</span> dollar_paid <span class="sc">==</span> <span class="st">&quot;Fraction&quot;</span> <span class="sc">&amp;</span> <span class="dv">0</span> <span class="sc">&lt;</span> tip_amount],</span>
-<span id="cb308-2"><a href="big-data-visualization.html#cb308-2" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">aes</span>(<span class="at">x =</span> fare_amount, <span class="at">y =</span> tip_amount))</span>
-<span id="cb308-3"><a href="big-data-visualization.html#cb308-3" aria-hidden="true" tabindex="-1"></a>modelplot <span class="sc">+</span></span>
-<span id="cb308-4"><a href="big-data-visualization.html#cb308-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.2</span>, <span class="at">colour=</span><span class="st">&quot;darkgreen&quot;</span>) <span class="sc">+</span></span>
-<span id="cb308-5"><a href="big-data-visualization.html#cb308-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
-<span id="cb308-6"><a href="big-data-visualization.html#cb308-6" aria-hidden="true" tabindex="-1"></a>     <span class="fu">ylab</span>(<span class="st">&quot;Amount of tip paid (in USD)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb308-7"><a href="big-data-visualization.html#cb308-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">xlab</span>(<span class="st">&quot;Amount of fare paid (in USD)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb308-8"><a href="big-data-visualization.html#cb308-8" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">18</span>, <span class="at">base_family =</span> <span class="st">&quot;serif&quot;</span>) <span class="sc">+</span></span>
-<span id="cb308-9"><a href="big-data-visualization.html#cb308-9" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;bold&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="big-data-visualization.html#cb374-1" aria-hidden="true" tabindex="-1"></a>modelplot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span> taxi[payment_type <span class="sc">==</span> <span class="st">&quot;credit&quot;</span> <span class="sc">&amp;</span> dollar_paid <span class="sc">==</span> <span class="st">&quot;Fraction&quot;</span> <span class="sc">&amp;</span> <span class="dv">0</span> <span class="sc">&lt;</span> tip_amount],</span>
+<span id="cb374-2"><a href="big-data-visualization.html#cb374-2" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">aes</span>(<span class="at">x =</span> fare_amount, <span class="at">y =</span> tip_amount))</span>
+<span id="cb374-3"><a href="big-data-visualization.html#cb374-3" aria-hidden="true" tabindex="-1"></a>modelplot <span class="sc">+</span></span>
+<span id="cb374-4"><a href="big-data-visualization.html#cb374-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.2</span>, <span class="at">colour=</span><span class="st">&quot;darkgreen&quot;</span>) <span class="sc">+</span></span>
+<span id="cb374-5"><a href="big-data-visualization.html#cb374-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb374-6"><a href="big-data-visualization.html#cb374-6" aria-hidden="true" tabindex="-1"></a>     <span class="fu">ylab</span>(<span class="st">&quot;Amount of tip paid (in USD)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb374-7"><a href="big-data-visualization.html#cb374-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">xlab</span>(<span class="st">&quot;Amount of fare paid (in USD)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb374-8"><a href="big-data-visualization.html#cb374-8" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">18</span>, <span class="at">base_family =</span> <span class="st">&quot;serif&quot;</span>) <span class="sc">+</span></span>
+<span id="cb374-9"><a href="big-data-visualization.html#cb374-9" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;bold&quot;</span>))</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="bigdata_files/figure-html/unnamed-chunk-147-1.png" width="672" /></p>
+<p><img src="bigdata_files/figure-html/unnamed-chunk-185-1.png" width="672" /></p>
 <p>There is a large list of plot design aspects that can be modified in this way (see <code>?theme()</code> for details).</p>
-<div id="create-your-own-theme-simple-approach" class="section level3" number="9.2.1">
-<h3><span class="header-section-number">9.2.1</span> Create your own theme: simple approach</h3>
+<div id="create-your-own-theme-simple-approach" class="section level3" number="10.2.1">
+<h3><span class="header-section-number">10.2.1</span> Create your own theme: simple approach</h3>
 <p>Extensive design modifications via <code>theme()</code> can involve many lines of code, making your plot code harder to read/understand. In practice, you might want to define your specific theme once and then apply this theme to all of your plots. In order to do so it makes sense to choose one of the existing themes as a basis and then modify its design aspects until you have the design you are looking for. Following the design choices in the examples above, we can create our own <code>theme_my_serif()</code> as follows.</p>
-<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="big-data-visualization.html#cb310-1" aria-hidden="true" tabindex="-1"></a><span class="co"># &#39;define&#39; a new theme</span></span>
-<span id="cb310-2"><a href="big-data-visualization.html#cb310-2" aria-hidden="true" tabindex="-1"></a>theme_my_serif <span class="ot">&lt;-</span>      </span>
-<span id="cb310-3"><a href="big-data-visualization.html#cb310-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">18</span>, <span class="at">base_family =</span> <span class="st">&quot;serif&quot;</span>) <span class="sc">+</span></span>
-<span id="cb310-4"><a href="big-data-visualization.html#cb310-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;bold&quot;</span>))</span>
-<span id="cb310-5"><a href="big-data-visualization.html#cb310-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb310-6"><a href="big-data-visualization.html#cb310-6" aria-hidden="true" tabindex="-1"></a><span class="co"># apply it </span></span>
-<span id="cb310-7"><a href="big-data-visualization.html#cb310-7" aria-hidden="true" tabindex="-1"></a>modelplot <span class="sc">+</span></span>
-<span id="cb310-8"><a href="big-data-visualization.html#cb310-8" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.2</span>, <span class="at">colour=</span><span class="st">&quot;darkgreen&quot;</span>) <span class="sc">+</span></span>
-<span id="cb310-9"><a href="big-data-visualization.html#cb310-9" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
-<span id="cb310-10"><a href="big-data-visualization.html#cb310-10" aria-hidden="true" tabindex="-1"></a>     <span class="fu">ylab</span>(<span class="st">&quot;Amount of tip paid (in USD)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb310-11"><a href="big-data-visualization.html#cb310-11" aria-hidden="true" tabindex="-1"></a>     <span class="fu">xlab</span>(<span class="st">&quot;Amount of fare paid (in USD)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb310-12"><a href="big-data-visualization.html#cb310-12" aria-hidden="true" tabindex="-1"></a>  theme_my_serif</span></code></pre></div>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="big-data-visualization.html#cb376-1" aria-hidden="true" tabindex="-1"></a><span class="co"># &#39;define&#39; a new theme</span></span>
+<span id="cb376-2"><a href="big-data-visualization.html#cb376-2" aria-hidden="true" tabindex="-1"></a>theme_my_serif <span class="ot">&lt;-</span>      </span>
+<span id="cb376-3"><a href="big-data-visualization.html#cb376-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">18</span>, <span class="at">base_family =</span> <span class="st">&quot;serif&quot;</span>) <span class="sc">+</span></span>
+<span id="cb376-4"><a href="big-data-visualization.html#cb376-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;bold&quot;</span>))</span>
+<span id="cb376-5"><a href="big-data-visualization.html#cb376-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb376-6"><a href="big-data-visualization.html#cb376-6" aria-hidden="true" tabindex="-1"></a><span class="co"># apply it </span></span>
+<span id="cb376-7"><a href="big-data-visualization.html#cb376-7" aria-hidden="true" tabindex="-1"></a>modelplot <span class="sc">+</span></span>
+<span id="cb376-8"><a href="big-data-visualization.html#cb376-8" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.2</span>, <span class="at">colour=</span><span class="st">&quot;darkgreen&quot;</span>) <span class="sc">+</span></span>
+<span id="cb376-9"><a href="big-data-visualization.html#cb376-9" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb376-10"><a href="big-data-visualization.html#cb376-10" aria-hidden="true" tabindex="-1"></a>     <span class="fu">ylab</span>(<span class="st">&quot;Amount of tip paid (in USD)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb376-11"><a href="big-data-visualization.html#cb376-11" aria-hidden="true" tabindex="-1"></a>     <span class="fu">xlab</span>(<span class="st">&quot;Amount of fare paid (in USD)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb376-12"><a href="big-data-visualization.html#cb376-12" aria-hidden="true" tabindex="-1"></a>  theme_my_serif</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="bigdata_files/figure-html/unnamed-chunk-148-1.png" width="672" /></p>
+<p><img src="bigdata_files/figure-html/unnamed-chunk-186-1.png" width="672" /></p>
 <p>This practical approach does not require you to define every aspect of a theme. If you indeed want completely define every aspect of a theme, you can set <code>complete=TRUE</code> when calling the theme function.</p>
-<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="big-data-visualization.html#cb312-1" aria-hidden="true" tabindex="-1"></a><span class="co"># &#39;define&#39; a new theme</span></span>
-<span id="cb312-2"><a href="big-data-visualization.html#cb312-2" aria-hidden="true" tabindex="-1"></a>my_serif_theme <span class="ot">&lt;-</span>      </span>
-<span id="cb312-3"><a href="big-data-visualization.html#cb312-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">18</span>, <span class="at">base_family =</span> <span class="st">&quot;serif&quot;</span>) <span class="sc">+</span></span>
-<span id="cb312-4"><a href="big-data-visualization.html#cb312-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;bold&quot;</span>), <span class="at">complete =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb312-5"><a href="big-data-visualization.html#cb312-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb312-6"><a href="big-data-visualization.html#cb312-6" aria-hidden="true" tabindex="-1"></a><span class="co"># apply it </span></span>
-<span id="cb312-7"><a href="big-data-visualization.html#cb312-7" aria-hidden="true" tabindex="-1"></a>modelplot <span class="sc">+</span></span>
-<span id="cb312-8"><a href="big-data-visualization.html#cb312-8" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.2</span>, <span class="at">colour=</span><span class="st">&quot;darkgreen&quot;</span>) <span class="sc">+</span></span>
-<span id="cb312-9"><a href="big-data-visualization.html#cb312-9" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
-<span id="cb312-10"><a href="big-data-visualization.html#cb312-10" aria-hidden="true" tabindex="-1"></a>     <span class="fu">ylab</span>(<span class="st">&quot;Amount of tip paid (in USD)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb312-11"><a href="big-data-visualization.html#cb312-11" aria-hidden="true" tabindex="-1"></a>     <span class="fu">xlab</span>(<span class="st">&quot;Amount of fare paid (in USD)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb312-12"><a href="big-data-visualization.html#cb312-12" aria-hidden="true" tabindex="-1"></a>  theme_my_serif</span></code></pre></div>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="big-data-visualization.html#cb378-1" aria-hidden="true" tabindex="-1"></a><span class="co"># &#39;define&#39; a new theme</span></span>
+<span id="cb378-2"><a href="big-data-visualization.html#cb378-2" aria-hidden="true" tabindex="-1"></a>my_serif_theme <span class="ot">&lt;-</span>      </span>
+<span id="cb378-3"><a href="big-data-visualization.html#cb378-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size =</span> <span class="dv">18</span>, <span class="at">base_family =</span> <span class="st">&quot;serif&quot;</span>) <span class="sc">+</span></span>
+<span id="cb378-4"><a href="big-data-visualization.html#cb378-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;bold&quot;</span>), <span class="at">complete =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb378-5"><a href="big-data-visualization.html#cb378-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb378-6"><a href="big-data-visualization.html#cb378-6" aria-hidden="true" tabindex="-1"></a><span class="co"># apply it </span></span>
+<span id="cb378-7"><a href="big-data-visualization.html#cb378-7" aria-hidden="true" tabindex="-1"></a>modelplot <span class="sc">+</span></span>
+<span id="cb378-8"><a href="big-data-visualization.html#cb378-8" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.2</span>, <span class="at">colour=</span><span class="st">&quot;darkgreen&quot;</span>) <span class="sc">+</span></span>
+<span id="cb378-9"><a href="big-data-visualization.html#cb378-9" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb378-10"><a href="big-data-visualization.html#cb378-10" aria-hidden="true" tabindex="-1"></a>     <span class="fu">ylab</span>(<span class="st">&quot;Amount of tip paid (in USD)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb378-11"><a href="big-data-visualization.html#cb378-11" aria-hidden="true" tabindex="-1"></a>     <span class="fu">xlab</span>(<span class="st">&quot;Amount of fare paid (in USD)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb378-12"><a href="big-data-visualization.html#cb378-12" aria-hidden="true" tabindex="-1"></a>  theme_my_serif</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="bigdata_files/figure-html/unnamed-chunk-149-1.png" width="672" /></p>
+<p><img src="bigdata_files/figure-html/unnamed-chunk-187-1.png" width="672" /></p>
 <p>Note that since we have only defined one aspect (bold axis titles), the rest of the elements follow the default theme.</p>
 <p>Importantly, the approach outlined above does technically not really create a new theme like <code>theme_bw()</code>, as these pre-defined themes are implemented as functions. Note that we add the new theme simply with <code>+ theme_my_serif</code> to the plot (no parentheses). In practice this is the most simple approach and it provides all the functionality you need in order to apply your own ‘theme’ to each of your plots.</p>
 </div>
-<div id="implementing-actual-themes-as-functions." class="section level3" number="9.2.2">
-<h3><span class="header-section-number">9.2.2</span> Implementing actual themes as functions.</h3>
+<div id="implementing-actual-themes-as-functions." class="section level3" number="10.2.2">
+<h3><span class="header-section-number">10.2.2</span> Implementing actual themes as functions.</h3>
 <p>If you really want to implement a theme as a function. The following blueprint can get you started.</p>
-<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="big-data-visualization.html#cb314-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define own theme</span></span>
-<span id="cb314-2"><a href="big-data-visualization.html#cb314-2" aria-hidden="true" tabindex="-1"></a>theme_my_serif <span class="ot">&lt;-</span> </span>
-<span id="cb314-3"><a href="big-data-visualization.html#cb314-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">function</span>(<span class="at">base_size =</span> <span class="dv">15</span>,</span>
-<span id="cb314-4"><a href="big-data-visualization.html#cb314-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">base_family =</span> <span class="st">&quot;&quot;</span>,</span>
-<span id="cb314-5"><a href="big-data-visualization.html#cb314-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">base_line_size =</span> base_size<span class="sc">/</span><span class="dv">170</span>,</span>
-<span id="cb314-6"><a href="big-data-visualization.html#cb314-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">base_rect_size =</span> base_size<span class="sc">/</span><span class="dv">170</span>){ </span>
-<span id="cb314-7"><a href="big-data-visualization.html#cb314-7" aria-hidden="true" tabindex="-1"></a>    </span>
-<span id="cb314-8"><a href="big-data-visualization.html#cb314-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>(<span class="at">base_size =</span> base_size,</span>
-<span id="cb314-9"><a href="big-data-visualization.html#cb314-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">base_family =</span> base_family,</span>
-<span id="cb314-10"><a href="big-data-visualization.html#cb314-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">base_line_size =</span> base_size<span class="sc">/</span><span class="dv">170</span>,</span>
-<span id="cb314-11"><a href="big-data-visualization.html#cb314-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">base_rect_size =</span> base_size<span class="sc">/</span><span class="dv">170</span>) <span class="sc">%+replace%</span>    <span class="co"># use theme_bw() as a basis but replace some design elements</span></span>
-<span id="cb314-12"><a href="big-data-visualization.html#cb314-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
-<span id="cb314-13"><a href="big-data-visualization.html#cb314-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;bold&quot;</span>)</span>
-<span id="cb314-14"><a href="big-data-visualization.html#cb314-14" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb314-15"><a href="big-data-visualization.html#cb314-15" aria-hidden="true" tabindex="-1"></a>  }</span>
-<span id="cb314-16"><a href="big-data-visualization.html#cb314-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb314-17"><a href="big-data-visualization.html#cb314-17" aria-hidden="true" tabindex="-1"></a><span class="co"># apply the theme</span></span>
-<span id="cb314-18"><a href="big-data-visualization.html#cb314-18" aria-hidden="true" tabindex="-1"></a><span class="co"># apply it </span></span>
-<span id="cb314-19"><a href="big-data-visualization.html#cb314-19" aria-hidden="true" tabindex="-1"></a>modelplot <span class="sc">+</span></span>
-<span id="cb314-20"><a href="big-data-visualization.html#cb314-20" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.2</span>, <span class="at">colour=</span><span class="st">&quot;darkgreen&quot;</span>) <span class="sc">+</span></span>
-<span id="cb314-21"><a href="big-data-visualization.html#cb314-21" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
-<span id="cb314-22"><a href="big-data-visualization.html#cb314-22" aria-hidden="true" tabindex="-1"></a>     <span class="fu">ylab</span>(<span class="st">&quot;Amount of tip paid (in USD)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb314-23"><a href="big-data-visualization.html#cb314-23" aria-hidden="true" tabindex="-1"></a>     <span class="fu">xlab</span>(<span class="st">&quot;Amount of fare paid (in USD)&quot;</span>) <span class="sc">+</span></span>
-<span id="cb314-24"><a href="big-data-visualization.html#cb314-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_my_serif</span>(<span class="at">base_size =</span> <span class="dv">18</span>, <span class="at">base_family=</span><span class="st">&quot;serif&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="big-data-visualization.html#cb380-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define own theme</span></span>
+<span id="cb380-2"><a href="big-data-visualization.html#cb380-2" aria-hidden="true" tabindex="-1"></a>theme_my_serif <span class="ot">&lt;-</span> </span>
+<span id="cb380-3"><a href="big-data-visualization.html#cb380-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">function</span>(<span class="at">base_size =</span> <span class="dv">15</span>,</span>
+<span id="cb380-4"><a href="big-data-visualization.html#cb380-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">base_family =</span> <span class="st">&quot;&quot;</span>,</span>
+<span id="cb380-5"><a href="big-data-visualization.html#cb380-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">base_line_size =</span> base_size<span class="sc">/</span><span class="dv">170</span>,</span>
+<span id="cb380-6"><a href="big-data-visualization.html#cb380-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">base_rect_size =</span> base_size<span class="sc">/</span><span class="dv">170</span>){ </span>
+<span id="cb380-7"><a href="big-data-visualization.html#cb380-7" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb380-8"><a href="big-data-visualization.html#cb380-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_bw</span>(<span class="at">base_size =</span> base_size,</span>
+<span id="cb380-9"><a href="big-data-visualization.html#cb380-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">base_family =</span> base_family,</span>
+<span id="cb380-10"><a href="big-data-visualization.html#cb380-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">base_line_size =</span> base_size<span class="sc">/</span><span class="dv">170</span>,</span>
+<span id="cb380-11"><a href="big-data-visualization.html#cb380-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">base_rect_size =</span> base_size<span class="sc">/</span><span class="dv">170</span>) <span class="sc">%+replace%</span>    <span class="co"># use theme_bw() as a basis but replace some design elements</span></span>
+<span id="cb380-12"><a href="big-data-visualization.html#cb380-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
+<span id="cb380-13"><a href="big-data-visualization.html#cb380-13" aria-hidden="true" tabindex="-1"></a>      <span class="at">axis.title =</span> <span class="fu">element_text</span>(<span class="at">face=</span><span class="st">&quot;bold&quot;</span>)</span>
+<span id="cb380-14"><a href="big-data-visualization.html#cb380-14" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb380-15"><a href="big-data-visualization.html#cb380-15" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb380-16"><a href="big-data-visualization.html#cb380-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb380-17"><a href="big-data-visualization.html#cb380-17" aria-hidden="true" tabindex="-1"></a><span class="co"># apply the theme</span></span>
+<span id="cb380-18"><a href="big-data-visualization.html#cb380-18" aria-hidden="true" tabindex="-1"></a><span class="co"># apply it </span></span>
+<span id="cb380-19"><a href="big-data-visualization.html#cb380-19" aria-hidden="true" tabindex="-1"></a>modelplot <span class="sc">+</span></span>
+<span id="cb380-20"><a href="big-data-visualization.html#cb380-20" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.2</span>, <span class="at">colour=</span><span class="st">&quot;darkgreen&quot;</span>) <span class="sc">+</span></span>
+<span id="cb380-21"><a href="big-data-visualization.html#cb380-21" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>) <span class="sc">+</span></span>
+<span id="cb380-22"><a href="big-data-visualization.html#cb380-22" aria-hidden="true" tabindex="-1"></a>     <span class="fu">ylab</span>(<span class="st">&quot;Amount of tip paid (in USD)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb380-23"><a href="big-data-visualization.html#cb380-23" aria-hidden="true" tabindex="-1"></a>     <span class="fu">xlab</span>(<span class="st">&quot;Amount of fare paid (in USD)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb380-24"><a href="big-data-visualization.html#cb380-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_my_serif</span>(<span class="at">base_size =</span> <span class="dv">18</span>, <span class="at">base_family=</span><span class="st">&quot;serif&quot;</span>)</span></code></pre></div>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="bigdata_files/figure-html/unnamed-chunk-150-1.png" width="672" /></p>
+<p><img src="bigdata_files/figure-html/unnamed-chunk-188-1.png" width="672" /></p>
 </div>
 </div>
-<div id="visualize-time-and-space" class="section level2" number="9.3">
-<h2><span class="header-section-number">9.3</span> Visualize Time and Space</h2>
+<div id="visualize-time-and-space" class="section level2" number="10.3">
+<h2><span class="header-section-number">10.3</span> Visualize Time and Space</h2>
 <p>The previous visualization exercises were focused on visually exploring patterns in the tipping behavior of people taking a NYC yellow cap ride. Based on the same data set, will explore the time dimension and spatial dimension of the TLC Yellow Cap data. That is, we explore where trips tend to start and end, depending on the time of the day.</p>
-<div id="preparations" class="section level3" number="9.3.1">
-<h3><span class="header-section-number">9.3.1</span> Preparations</h3>
+<div id="preparations" class="section level3" number="10.3.1">
+<h3><span class="header-section-number">10.3.1</span> Preparations</h3>
 <p>For the visualization of spatial data we first load additional packages that give R some <a href="https://en.wikipedia.org/wiki/Geographic_information_system">GIS</a> features.</p>
-<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="big-data-visualization.html#cb316-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load GIS packages</span></span>
-<span id="cb316-2"><a href="big-data-visualization.html#cb316-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rgdal)</span>
-<span id="cb316-3"><a href="big-data-visualization.html#cb316-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rgeos)</span></code></pre></div>
-<p>Moreover, we download and import a so-called <a href="https://en.wikipedia.org/wiki/Shapefile">‘shape file’</a> (a geospatial data format) of New York City. This will be the basis for our visualization of the spatial dimension of taxi trips. The file is downloaded from <a href="https://www1.nyc.gov/site/planning/index.page">New York’s Department of City Planning</a> and indicates the city’s community district borders.<a href="#fn26" class="footnote-ref" id="fnref26"><sup>26</sup></a></p>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="big-data-visualization.html#cb317-1" aria-hidden="true" tabindex="-1"></a><span class="co"># download the zipped shapefile to a temporary file, unzip</span></span>
-<span id="cb317-2"><a href="big-data-visualization.html#cb317-2" aria-hidden="true" tabindex="-1"></a>URL <span class="ot">&lt;-</span> <span class="st">&quot;https://www1.nyc.gov/assets/planning/download/zip/data-maps/open-data/nycd_19a.zip&quot;</span></span>
-<span id="cb317-3"><a href="big-data-visualization.html#cb317-3" aria-hidden="true" tabindex="-1"></a>tmp_file <span class="ot">&lt;-</span> <span class="fu">tempfile</span>()</span>
-<span id="cb317-4"><a href="big-data-visualization.html#cb317-4" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(URL, tmp_file)</span>
-<span id="cb317-5"><a href="big-data-visualization.html#cb317-5" aria-hidden="true" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="fu">unzip</span>(tmp_file, <span class="at">exdir=</span> <span class="st">&quot;data&quot;</span>)</span>
-<span id="cb317-6"><a href="big-data-visualization.html#cb317-6" aria-hidden="true" tabindex="-1"></a><span class="co"># delete the temporary file</span></span>
-<span id="cb317-7"><a href="big-data-visualization.html#cb317-7" aria-hidden="true" tabindex="-1"></a><span class="fu">unlink</span>(tmp_file)</span></code></pre></div>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="big-data-visualization.html#cb382-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load GIS packages</span></span>
+<span id="cb382-2"><a href="big-data-visualization.html#cb382-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rgdal)</span>
+<span id="cb382-3"><a href="big-data-visualization.html#cb382-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rgeos)</span></code></pre></div>
+<p>Moreover, we download and import a so-called <a href="https://en.wikipedia.org/wiki/Shapefile">‘shape file’</a> (a geospatial data format) of New York City. This will be the basis for our visualization of the spatial dimension of taxi trips. The file is downloaded from <a href="https://www1.nyc.gov/site/planning/index.page">New York’s Department of City Planning</a> and indicates the city’s community district borders.<a href="#fn42" class="footnote-ref" id="fnref42"><sup>42</sup></a></p>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="big-data-visualization.html#cb383-1" aria-hidden="true" tabindex="-1"></a><span class="co"># download the zipped shapefile to a temporary file, unzip</span></span>
+<span id="cb383-2"><a href="big-data-visualization.html#cb383-2" aria-hidden="true" tabindex="-1"></a>URL <span class="ot">&lt;-</span> <span class="st">&quot;https://www1.nyc.gov/assets/planning/download/zip/data-maps/open-data/nycd_19a.zip&quot;</span></span>
+<span id="cb383-3"><a href="big-data-visualization.html#cb383-3" aria-hidden="true" tabindex="-1"></a>tmp_file <span class="ot">&lt;-</span> <span class="fu">tempfile</span>()</span>
+<span id="cb383-4"><a href="big-data-visualization.html#cb383-4" aria-hidden="true" tabindex="-1"></a><span class="fu">download.file</span>(URL, tmp_file)</span>
+<span id="cb383-5"><a href="big-data-visualization.html#cb383-5" aria-hidden="true" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="fu">unzip</span>(tmp_file, <span class="at">exdir=</span> <span class="st">&quot;data&quot;</span>)</span>
+<span id="cb383-6"><a href="big-data-visualization.html#cb383-6" aria-hidden="true" tabindex="-1"></a><span class="co"># delete the temporary file</span></span>
+<span id="cb383-7"><a href="big-data-visualization.html#cb383-7" aria-hidden="true" tabindex="-1"></a><span class="fu">unlink</span>(tmp_file)</span></code></pre></div>
 <p>Now we can import the shape file and have a look at how the GIS data is structured.</p>
-<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="big-data-visualization.html#cb318-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read GIS data</span></span>
-<span id="cb318-2"><a href="big-data-visualization.html#cb318-2" aria-hidden="true" tabindex="-1"></a>nyc_map <span class="ot">&lt;-</span> <span class="fu">readOGR</span>(file_path[<span class="dv">1</span>], <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb318-3"><a href="big-data-visualization.html#cb318-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb318-4"><a href="big-data-visualization.html#cb318-4" aria-hidden="true" tabindex="-1"></a><span class="co"># have a look at the GIS data</span></span>
-<span id="cb318-5"><a href="big-data-visualization.html#cb318-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nyc_map)</span></code></pre></div>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="big-data-visualization.html#cb384-1" aria-hidden="true" tabindex="-1"></a><span class="co"># read GIS data</span></span>
+<span id="cb384-2"><a href="big-data-visualization.html#cb384-2" aria-hidden="true" tabindex="-1"></a>nyc_map <span class="ot">&lt;-</span> <span class="fu">readOGR</span>(file_path[<span class="dv">1</span>], <span class="at">verbose =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb384-3"><a href="big-data-visualization.html#cb384-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb384-4"><a href="big-data-visualization.html#cb384-4" aria-hidden="true" tabindex="-1"></a><span class="co"># have a look at the GIS data</span></span>
+<span id="cb384-5"><a href="big-data-visualization.html#cb384-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nyc_map)</span></code></pre></div>
 <pre><code>## Object of class SpatialPolygonsDataFrame
 ## Coordinates:
 ##      min     max
@@ -551,10 +563,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  3rd Qu.:406   3rd Qu.: 85711   3rd Qu.:1.37e+08  
 ##  Max.   :595   Max.   :270660   Max.   :5.99e+08</code></pre>
 <p>Note that the coordinates are not in the usual longitude and latitude units. The original map uses a different projection than the TLC data of cap trips records. Before plotting, we thus have to change the projection to be in line with the TLC data.</p>
-<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="big-data-visualization.html#cb320-1" aria-hidden="true" tabindex="-1"></a><span class="co"># transform the projection</span></span>
-<span id="cb320-2"><a href="big-data-visualization.html#cb320-2" aria-hidden="true" tabindex="-1"></a>nyc_map <span class="ot">&lt;-</span> <span class="fu">spTransform</span>(nyc_map, <span class="fu">CRS</span>(<span class="st">&quot;+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0&quot;</span>))</span>
-<span id="cb320-3"><a href="big-data-visualization.html#cb320-3" aria-hidden="true" tabindex="-1"></a><span class="co"># check result</span></span>
-<span id="cb320-4"><a href="big-data-visualization.html#cb320-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nyc_map)</span></code></pre></div>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="big-data-visualization.html#cb386-1" aria-hidden="true" tabindex="-1"></a><span class="co"># transform the projection</span></span>
+<span id="cb386-2"><a href="big-data-visualization.html#cb386-2" aria-hidden="true" tabindex="-1"></a>nyc_map <span class="ot">&lt;-</span> <span class="fu">spTransform</span>(nyc_map, <span class="fu">CRS</span>(<span class="st">&quot;+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0&quot;</span>))</span>
+<span id="cb386-3"><a href="big-data-visualization.html#cb386-3" aria-hidden="true" tabindex="-1"></a><span class="co"># check result</span></span>
+<span id="cb386-4"><a href="big-data-visualization.html#cb386-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(nyc_map)</span></code></pre></div>
 <pre><code>## Object of class SpatialPolygonsDataFrame
 ## Coordinates:
 ##      min    max
@@ -571,128 +583,128 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  3rd Qu.:406   3rd Qu.: 85711   3rd Qu.:1.37e+08  
 ##  Max.   :595   Max.   :270660   Max.   :5.99e+08</code></pre>
 <p>One last preparatory step is to convert the map data to a <code>data.frame</code> for plotting with <code>ggplot</code>.</p>
-<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="big-data-visualization.html#cb322-1" aria-hidden="true" tabindex="-1"></a>nyc_map <span class="ot">&lt;-</span> <span class="fu">fortify</span>(nyc_map)</span></code></pre></div>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="big-data-visualization.html#cb388-1" aria-hidden="true" tabindex="-1"></a>nyc_map <span class="ot">&lt;-</span> <span class="fu">fortify</span>(nyc_map)</span></code></pre></div>
 </div>
-<div id="pick-up-and-drop-off-locations" class="section level3" number="9.3.2">
-<h3><span class="header-section-number">9.3.2</span> Pick-up and drop-off locations</h3>
+<div id="pick-up-and-drop-off-locations" class="section level3" number="10.3.2">
+<h3><span class="header-section-number">10.3.2</span> Pick-up and drop-off locations</h3>
 <p>Since trips might actually start or end outside of NYC, we first restrict the sample of trips to those within the boundary box of the map. For the sake of the exercise, we only select a random sample of <code>50000</code> trips from the remaining trip records.</p>
-<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="big-data-visualization.html#cb323-1" aria-hidden="true" tabindex="-1"></a><span class="co"># taxi trips plot data</span></span>
-<span id="cb323-2"><a href="big-data-visualization.html#cb323-2" aria-hidden="true" tabindex="-1"></a>taxi_trips <span class="ot">&lt;-</span> taxi[start_long <span class="sc">&lt;=</span> <span class="fu">max</span>(nyc_map<span class="sc">$</span>long) <span class="sc">&amp;</span> </span>
-<span id="cb323-3"><a href="big-data-visualization.html#cb323-3" aria-hidden="true" tabindex="-1"></a>                        start_long <span class="sc">&gt;=</span> <span class="fu">min</span>(nyc_map<span class="sc">$</span>long) <span class="sc">&amp;</span></span>
-<span id="cb323-4"><a href="big-data-visualization.html#cb323-4" aria-hidden="true" tabindex="-1"></a>                        dest_long <span class="sc">&lt;=</span> <span class="fu">max</span>(nyc_map<span class="sc">$</span>long) <span class="sc">&amp;</span></span>
-<span id="cb323-5"><a href="big-data-visualization.html#cb323-5" aria-hidden="true" tabindex="-1"></a>                        dest_long <span class="sc">&gt;=</span> <span class="fu">min</span>(nyc_map<span class="sc">$</span>long) <span class="sc">&amp;</span></span>
-<span id="cb323-6"><a href="big-data-visualization.html#cb323-6" aria-hidden="true" tabindex="-1"></a>                        start_lat <span class="sc">&lt;=</span> <span class="fu">max</span>(nyc_map<span class="sc">$</span>lat) <span class="sc">&amp;</span> </span>
-<span id="cb323-7"><a href="big-data-visualization.html#cb323-7" aria-hidden="true" tabindex="-1"></a>                        start_lat <span class="sc">&gt;=</span> <span class="fu">min</span>(nyc_map<span class="sc">$</span>lat) <span class="sc">&amp;</span></span>
-<span id="cb323-8"><a href="big-data-visualization.html#cb323-8" aria-hidden="true" tabindex="-1"></a>                        dest_lat <span class="sc">&lt;=</span> <span class="fu">max</span>(nyc_map<span class="sc">$</span>lat) <span class="sc">&amp;</span></span>
-<span id="cb323-9"><a href="big-data-visualization.html#cb323-9" aria-hidden="true" tabindex="-1"></a>                        dest_lat <span class="sc">&gt;=</span> <span class="fu">min</span>(nyc_map<span class="sc">$</span>lat) </span>
-<span id="cb323-10"><a href="big-data-visualization.html#cb323-10" aria-hidden="true" tabindex="-1"></a>                        ]</span>
-<span id="cb323-11"><a href="big-data-visualization.html#cb323-11" aria-hidden="true" tabindex="-1"></a>taxi_trips <span class="ot">&lt;-</span> taxi_trips[<span class="fu">sample</span>(<span class="fu">nrow</span>(taxi_trips), <span class="dv">50000</span>)]</span></code></pre></div>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="big-data-visualization.html#cb389-1" aria-hidden="true" tabindex="-1"></a><span class="co"># taxi trips plot data</span></span>
+<span id="cb389-2"><a href="big-data-visualization.html#cb389-2" aria-hidden="true" tabindex="-1"></a>taxi_trips <span class="ot">&lt;-</span> taxi[start_long <span class="sc">&lt;=</span> <span class="fu">max</span>(nyc_map<span class="sc">$</span>long) <span class="sc">&amp;</span> </span>
+<span id="cb389-3"><a href="big-data-visualization.html#cb389-3" aria-hidden="true" tabindex="-1"></a>                        start_long <span class="sc">&gt;=</span> <span class="fu">min</span>(nyc_map<span class="sc">$</span>long) <span class="sc">&amp;</span></span>
+<span id="cb389-4"><a href="big-data-visualization.html#cb389-4" aria-hidden="true" tabindex="-1"></a>                        dest_long <span class="sc">&lt;=</span> <span class="fu">max</span>(nyc_map<span class="sc">$</span>long) <span class="sc">&amp;</span></span>
+<span id="cb389-5"><a href="big-data-visualization.html#cb389-5" aria-hidden="true" tabindex="-1"></a>                        dest_long <span class="sc">&gt;=</span> <span class="fu">min</span>(nyc_map<span class="sc">$</span>long) <span class="sc">&amp;</span></span>
+<span id="cb389-6"><a href="big-data-visualization.html#cb389-6" aria-hidden="true" tabindex="-1"></a>                        start_lat <span class="sc">&lt;=</span> <span class="fu">max</span>(nyc_map<span class="sc">$</span>lat) <span class="sc">&amp;</span> </span>
+<span id="cb389-7"><a href="big-data-visualization.html#cb389-7" aria-hidden="true" tabindex="-1"></a>                        start_lat <span class="sc">&gt;=</span> <span class="fu">min</span>(nyc_map<span class="sc">$</span>lat) <span class="sc">&amp;</span></span>
+<span id="cb389-8"><a href="big-data-visualization.html#cb389-8" aria-hidden="true" tabindex="-1"></a>                        dest_lat <span class="sc">&lt;=</span> <span class="fu">max</span>(nyc_map<span class="sc">$</span>lat) <span class="sc">&amp;</span></span>
+<span id="cb389-9"><a href="big-data-visualization.html#cb389-9" aria-hidden="true" tabindex="-1"></a>                        dest_lat <span class="sc">&gt;=</span> <span class="fu">min</span>(nyc_map<span class="sc">$</span>lat) </span>
+<span id="cb389-10"><a href="big-data-visualization.html#cb389-10" aria-hidden="true" tabindex="-1"></a>                        ]</span>
+<span id="cb389-11"><a href="big-data-visualization.html#cb389-11" aria-hidden="true" tabindex="-1"></a>taxi_trips <span class="ot">&lt;-</span> taxi_trips[base<span class="sc">::</span><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">nrow</span>(taxi_trips), <span class="dv">50000</span>)]</span></code></pre></div>
 <p>In order to visualize how the cap traffic is changing over the course of the day, we add an additional variable called <code>start_time</code> in which we store the time (hour) of the day a trip started.</p>
-<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="big-data-visualization.html#cb324-1" aria-hidden="true" tabindex="-1"></a>taxi_trips<span class="sc">$</span>start_time <span class="ot">&lt;-</span> <span class="fu">hour</span>(taxi_trips<span class="sc">$</span>pickup_time)</span></code></pre></div>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="big-data-visualization.html#cb390-1" aria-hidden="true" tabindex="-1"></a>taxi_trips<span class="sc">$</span>start_time <span class="ot">&lt;-</span> <span class="fu">hour</span>(taxi_trips<span class="sc">$</span>pickup_time)</span></code></pre></div>
 <p>Particularly, we want to look at differences between, morning, afternoon, and evening/night.</p>
-<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="big-data-visualization.html#cb325-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define new variable for facets</span></span>
-<span id="cb325-2"><a href="big-data-visualization.html#cb325-2" aria-hidden="true" tabindex="-1"></a>taxi_trips<span class="sc">$</span>time_of_day <span class="ot">&lt;-</span> <span class="st">&quot;Morning&quot;</span></span>
-<span id="cb325-3"><a href="big-data-visualization.html#cb325-3" aria-hidden="true" tabindex="-1"></a>taxi_trips[start_time <span class="sc">&gt;</span> <span class="dv">12</span> <span class="sc">&amp;</span> start_time <span class="sc">&lt;</span> <span class="dv">17</span>]<span class="sc">$</span>time_of_day <span class="ot">&lt;-</span> <span class="st">&quot;Afternoon&quot;</span></span>
-<span id="cb325-4"><a href="big-data-visualization.html#cb325-4" aria-hidden="true" tabindex="-1"></a>taxi_trips[start_time <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">17</span><span class="sc">:</span><span class="dv">24</span>, <span class="dv">0</span><span class="sc">:</span><span class="dv">5</span>)]<span class="sc">$</span>time_of_day <span class="ot">&lt;-</span> <span class="st">&quot;Evening/Night&quot;</span></span>
-<span id="cb325-5"><a href="big-data-visualization.html#cb325-5" aria-hidden="true" tabindex="-1"></a>taxi_trips<span class="sc">$</span>time_of_day  <span class="ot">&lt;-</span> <span class="fu">factor</span>(taxi_trips<span class="sc">$</span>time_of_day, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Morning&quot;</span>, <span class="st">&quot;Afternoon&quot;</span>, <span class="st">&quot;Evening/Night&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="big-data-visualization.html#cb391-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define new variable for facets</span></span>
+<span id="cb391-2"><a href="big-data-visualization.html#cb391-2" aria-hidden="true" tabindex="-1"></a>taxi_trips<span class="sc">$</span>time_of_day <span class="ot">&lt;-</span> <span class="st">&quot;Morning&quot;</span></span>
+<span id="cb391-3"><a href="big-data-visualization.html#cb391-3" aria-hidden="true" tabindex="-1"></a>taxi_trips[start_time <span class="sc">&gt;</span> <span class="dv">12</span> <span class="sc">&amp;</span> start_time <span class="sc">&lt;</span> <span class="dv">17</span>]<span class="sc">$</span>time_of_day <span class="ot">&lt;-</span> <span class="st">&quot;Afternoon&quot;</span></span>
+<span id="cb391-4"><a href="big-data-visualization.html#cb391-4" aria-hidden="true" tabindex="-1"></a>taxi_trips[start_time <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">17</span><span class="sc">:</span><span class="dv">24</span>, <span class="dv">0</span><span class="sc">:</span><span class="dv">5</span>)]<span class="sc">$</span>time_of_day <span class="ot">&lt;-</span> <span class="st">&quot;Evening/Night&quot;</span></span>
+<span id="cb391-5"><a href="big-data-visualization.html#cb391-5" aria-hidden="true" tabindex="-1"></a>taxi_trips<span class="sc">$</span>time_of_day  <span class="ot">&lt;-</span> <span class="fu">factor</span>(taxi_trips<span class="sc">$</span>time_of_day, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;Morning&quot;</span>, <span class="st">&quot;Afternoon&quot;</span>, <span class="st">&quot;Evening/Night&quot;</span>))</span></code></pre></div>
 <p>We initiate the plot by first setting up the canvas with our taxi trips data. Then, we add the map as a first layer.</p>
-<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="big-data-visualization.html#cb326-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set up the canvas</span></span>
-<span id="cb326-2"><a href="big-data-visualization.html#cb326-2" aria-hidden="true" tabindex="-1"></a>locations <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(taxi_trips, <span class="fu">aes</span>(<span class="at">x=</span>long, <span class="at">y=</span>lat))</span>
-<span id="cb326-3"><a href="big-data-visualization.html#cb326-3" aria-hidden="true" tabindex="-1"></a><span class="co"># add the map geometry</span></span>
-<span id="cb326-4"><a href="big-data-visualization.html#cb326-4" aria-hidden="true" tabindex="-1"></a>locations <span class="ot">&lt;-</span> locations <span class="sc">+</span> <span class="fu">geom_map</span>(<span class="at">data =</span> nyc_map,</span>
-<span id="cb326-5"><a href="big-data-visualization.html#cb326-5" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">map =</span> nyc_map,</span>
-<span id="cb326-6"><a href="big-data-visualization.html#cb326-6" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">aes</span>(<span class="at">map_id =</span> id))</span>
-<span id="cb326-7"><a href="big-data-visualization.html#cb326-7" aria-hidden="true" tabindex="-1"></a>locations</span></code></pre></div>
-<p><img src="bigdata_files/figure-html/unnamed-chunk-159-1.png" width="672" /></p>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="big-data-visualization.html#cb392-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set up the canvas</span></span>
+<span id="cb392-2"><a href="big-data-visualization.html#cb392-2" aria-hidden="true" tabindex="-1"></a>locations <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(taxi_trips, <span class="fu">aes</span>(<span class="at">x=</span>long, <span class="at">y=</span>lat))</span>
+<span id="cb392-3"><a href="big-data-visualization.html#cb392-3" aria-hidden="true" tabindex="-1"></a><span class="co"># add the map geometry</span></span>
+<span id="cb392-4"><a href="big-data-visualization.html#cb392-4" aria-hidden="true" tabindex="-1"></a>locations <span class="ot">&lt;-</span> locations <span class="sc">+</span> <span class="fu">geom_map</span>(<span class="at">data =</span> nyc_map,</span>
+<span id="cb392-5"><a href="big-data-visualization.html#cb392-5" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">map =</span> nyc_map,</span>
+<span id="cb392-6"><a href="big-data-visualization.html#cb392-6" aria-hidden="true" tabindex="-1"></a>                                  <span class="fu">aes</span>(<span class="at">map_id =</span> id))</span>
+<span id="cb392-7"><a href="big-data-visualization.html#cb392-7" aria-hidden="true" tabindex="-1"></a>locations</span></code></pre></div>
+<p><img src="bigdata_files/figure-html/unnamed-chunk-197-1.png" width="672" /></p>
 <p>Now we can start adding the pick-up and drop-off locations of cap trips.</p>
-<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="big-data-visualization.html#cb327-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add pick-up locations to plot</span></span>
-<span id="cb327-2"><a href="big-data-visualization.html#cb327-2" aria-hidden="true" tabindex="-1"></a>locations <span class="sc">+</span> </span>
-<span id="cb327-3"><a href="big-data-visualization.html#cb327-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>start_long, <span class="at">y=</span>start_lat),</span>
-<span id="cb327-4"><a href="big-data-visualization.html#cb327-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">color=</span><span class="st">&quot;orange&quot;</span>,</span>
-<span id="cb327-5"><a href="big-data-visualization.html#cb327-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">size =</span> <span class="fl">0.1</span>,</span>
-<span id="cb327-6"><a href="big-data-visualization.html#cb327-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">alpha =</span> <span class="fl">0.2</span>)</span></code></pre></div>
-<p><img src="bigdata_files/figure-html/unnamed-chunk-160-1.png" width="672" /></p>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="big-data-visualization.html#cb393-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add pick-up locations to plot</span></span>
+<span id="cb393-2"><a href="big-data-visualization.html#cb393-2" aria-hidden="true" tabindex="-1"></a>locations <span class="sc">+</span> </span>
+<span id="cb393-3"><a href="big-data-visualization.html#cb393-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>start_long, <span class="at">y=</span>start_lat),</span>
+<span id="cb393-4"><a href="big-data-visualization.html#cb393-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">color=</span><span class="st">&quot;orange&quot;</span>,</span>
+<span id="cb393-5"><a href="big-data-visualization.html#cb393-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">size =</span> <span class="fl">0.1</span>,</span>
+<span id="cb393-6"><a href="big-data-visualization.html#cb393-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">alpha =</span> <span class="fl">0.2</span>)</span></code></pre></div>
+<p><img src="bigdata_files/figure-html/unnamed-chunk-198-1.png" width="672" /></p>
 <p>As to be expected, most of the trips start in Manhattan. Now let’s look at where trips end.</p>
-<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="big-data-visualization.html#cb328-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add pick-up locations to plot</span></span>
-<span id="cb328-2"><a href="big-data-visualization.html#cb328-2" aria-hidden="true" tabindex="-1"></a>locations <span class="sc">+</span></span>
-<span id="cb328-3"><a href="big-data-visualization.html#cb328-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>dest_long, <span class="at">y=</span>dest_lat),</span>
-<span id="cb328-4"><a href="big-data-visualization.html#cb328-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">color=</span><span class="st">&quot;steelblue&quot;</span>,</span>
-<span id="cb328-5"><a href="big-data-visualization.html#cb328-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">size =</span> <span class="fl">0.1</span>,</span>
-<span id="cb328-6"><a href="big-data-visualization.html#cb328-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb328-7"><a href="big-data-visualization.html#cb328-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>start_long, <span class="at">y=</span>start_lat),</span>
-<span id="cb328-8"><a href="big-data-visualization.html#cb328-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">color=</span><span class="st">&quot;orange&quot;</span>,</span>
-<span id="cb328-9"><a href="big-data-visualization.html#cb328-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">size =</span> <span class="fl">0.1</span>,</span>
-<span id="cb328-10"><a href="big-data-visualization.html#cb328-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">alpha =</span> <span class="fl">0.2</span>)</span></code></pre></div>
-<p><img src="bigdata_files/figure-html/unnamed-chunk-161-1.png" width="672" /></p>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="big-data-visualization.html#cb394-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add pick-up locations to plot</span></span>
+<span id="cb394-2"><a href="big-data-visualization.html#cb394-2" aria-hidden="true" tabindex="-1"></a>locations <span class="sc">+</span></span>
+<span id="cb394-3"><a href="big-data-visualization.html#cb394-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>dest_long, <span class="at">y=</span>dest_lat),</span>
+<span id="cb394-4"><a href="big-data-visualization.html#cb394-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">color=</span><span class="st">&quot;steelblue&quot;</span>,</span>
+<span id="cb394-5"><a href="big-data-visualization.html#cb394-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">size =</span> <span class="fl">0.1</span>,</span>
+<span id="cb394-6"><a href="big-data-visualization.html#cb394-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb394-7"><a href="big-data-visualization.html#cb394-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>start_long, <span class="at">y=</span>start_lat),</span>
+<span id="cb394-8"><a href="big-data-visualization.html#cb394-8" aria-hidden="true" tabindex="-1"></a>                <span class="at">color=</span><span class="st">&quot;orange&quot;</span>,</span>
+<span id="cb394-9"><a href="big-data-visualization.html#cb394-9" aria-hidden="true" tabindex="-1"></a>                <span class="at">size =</span> <span class="fl">0.1</span>,</span>
+<span id="cb394-10"><a href="big-data-visualization.html#cb394-10" aria-hidden="true" tabindex="-1"></a>                <span class="at">alpha =</span> <span class="fl">0.2</span>)</span></code></pre></div>
+<p><img src="bigdata_files/figure-html/unnamed-chunk-199-1.png" width="672" /></p>
 <p>Incidentally, more trips tend to end outside of Manhattan. And the destinations seem to be broader spread across the city then the pick-up locations. Most destinations are still in Manhattan, though.</p>
 <p>Now let’s have a look at how this picture changes depending on the time of the day.</p>
-<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="big-data-visualization.html#cb329-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pick-up locations </span></span>
-<span id="cb329-2"><a href="big-data-visualization.html#cb329-2" aria-hidden="true" tabindex="-1"></a>locations <span class="sc">+</span></span>
-<span id="cb329-3"><a href="big-data-visualization.html#cb329-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>start_long, <span class="at">y=</span>start_lat),</span>
-<span id="cb329-4"><a href="big-data-visualization.html#cb329-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">color=</span><span class="st">&quot;orange&quot;</span>,</span>
-<span id="cb329-5"><a href="big-data-visualization.html#cb329-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">size =</span> <span class="fl">0.1</span>,</span>
-<span id="cb329-6"><a href="big-data-visualization.html#cb329-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb329-7"><a href="big-data-visualization.html#cb329-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(time_of_day))</span></code></pre></div>
-<p><img src="bigdata_files/figure-html/unnamed-chunk-162-1.png" width="864" /></p>
-<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="big-data-visualization.html#cb330-1" aria-hidden="true" tabindex="-1"></a><span class="co"># drop-off locations </span></span>
-<span id="cb330-2"><a href="big-data-visualization.html#cb330-2" aria-hidden="true" tabindex="-1"></a>locations <span class="sc">+</span></span>
-<span id="cb330-3"><a href="big-data-visualization.html#cb330-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>dest_long, <span class="at">y=</span>dest_lat),</span>
-<span id="cb330-4"><a href="big-data-visualization.html#cb330-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">color=</span><span class="st">&quot;steelblue&quot;</span>,</span>
-<span id="cb330-5"><a href="big-data-visualization.html#cb330-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">size =</span> <span class="fl">0.1</span>,</span>
-<span id="cb330-6"><a href="big-data-visualization.html#cb330-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb330-7"><a href="big-data-visualization.html#cb330-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(time_of_day))</span></code></pre></div>
-<p><img src="bigdata_files/figure-html/unnamed-chunk-163-1.png" width="864" /></p>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="big-data-visualization.html#cb395-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pick-up locations </span></span>
+<span id="cb395-2"><a href="big-data-visualization.html#cb395-2" aria-hidden="true" tabindex="-1"></a>locations <span class="sc">+</span></span>
+<span id="cb395-3"><a href="big-data-visualization.html#cb395-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>start_long, <span class="at">y=</span>start_lat),</span>
+<span id="cb395-4"><a href="big-data-visualization.html#cb395-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">color=</span><span class="st">&quot;orange&quot;</span>,</span>
+<span id="cb395-5"><a href="big-data-visualization.html#cb395-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">size =</span> <span class="fl">0.1</span>,</span>
+<span id="cb395-6"><a href="big-data-visualization.html#cb395-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb395-7"><a href="big-data-visualization.html#cb395-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(time_of_day))</span></code></pre></div>
+<p><img src="bigdata_files/figure-html/unnamed-chunk-200-1.png" width="864" /></p>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="big-data-visualization.html#cb396-1" aria-hidden="true" tabindex="-1"></a><span class="co"># drop-off locations </span></span>
+<span id="cb396-2"><a href="big-data-visualization.html#cb396-2" aria-hidden="true" tabindex="-1"></a>locations <span class="sc">+</span></span>
+<span id="cb396-3"><a href="big-data-visualization.html#cb396-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>dest_long, <span class="at">y=</span>dest_lat),</span>
+<span id="cb396-4"><a href="big-data-visualization.html#cb396-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">color=</span><span class="st">&quot;steelblue&quot;</span>,</span>
+<span id="cb396-5"><a href="big-data-visualization.html#cb396-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">size =</span> <span class="fl">0.1</span>,</span>
+<span id="cb396-6"><a href="big-data-visualization.html#cb396-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb396-7"><a href="big-data-visualization.html#cb396-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(time_of_day))</span></code></pre></div>
+<p><img src="bigdata_files/figure-html/unnamed-chunk-201-1.png" width="864" /></p>
 <p>Alternatively, we can plot the hours on a continuous scale.</p>
-<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb331-1"><a href="big-data-visualization.html#cb331-1" aria-hidden="true" tabindex="-1"></a><span class="co"># drop-off locations </span></span>
-<span id="cb331-2"><a href="big-data-visualization.html#cb331-2" aria-hidden="true" tabindex="-1"></a>locations <span class="sc">+</span></span>
-<span id="cb331-3"><a href="big-data-visualization.html#cb331-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>dest_long, <span class="at">y=</span>dest_lat, <span class="at">color =</span> start_time ),</span>
-<span id="cb331-4"><a href="big-data-visualization.html#cb331-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">size =</span> <span class="fl">0.1</span>,</span>
-<span id="cb331-5"><a href="big-data-visualization.html#cb331-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb331-6"><a href="big-data-visualization.html#cb331-6" aria-hidden="true" tabindex="-1"></a>     <span class="fu">scale_colour_gradient2</span>( <span class="at">low =</span> <span class="st">&quot;red&quot;</span>, <span class="at">mid =</span> <span class="st">&quot;yellow&quot;</span>, <span class="at">high =</span> <span class="st">&quot;red&quot;</span>,</span>
-<span id="cb331-7"><a href="big-data-visualization.html#cb331-7" aria-hidden="true" tabindex="-1"></a>                             <span class="at">midpoint =</span> <span class="dv">12</span>)</span></code></pre></div>
-<p><img src="bigdata_files/figure-html/unnamed-chunk-164-1.png" width="672" /></p>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="big-data-visualization.html#cb397-1" aria-hidden="true" tabindex="-1"></a><span class="co"># drop-off locations </span></span>
+<span id="cb397-2"><a href="big-data-visualization.html#cb397-2" aria-hidden="true" tabindex="-1"></a>locations <span class="sc">+</span></span>
+<span id="cb397-3"><a href="big-data-visualization.html#cb397-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>dest_long, <span class="at">y=</span>dest_lat, <span class="at">color =</span> start_time ),</span>
+<span id="cb397-4"><a href="big-data-visualization.html#cb397-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">size =</span> <span class="fl">0.1</span>,</span>
+<span id="cb397-5"><a href="big-data-visualization.html#cb397-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb397-6"><a href="big-data-visualization.html#cb397-6" aria-hidden="true" tabindex="-1"></a>     <span class="fu">scale_colour_gradient2</span>( <span class="at">low =</span> <span class="st">&quot;red&quot;</span>, <span class="at">mid =</span> <span class="st">&quot;yellow&quot;</span>, <span class="at">high =</span> <span class="st">&quot;red&quot;</span>,</span>
+<span id="cb397-7"><a href="big-data-visualization.html#cb397-7" aria-hidden="true" tabindex="-1"></a>                             <span class="at">midpoint =</span> <span class="dv">12</span>)</span></code></pre></div>
+<p><img src="bigdata_files/figure-html/unnamed-chunk-202-1.png" width="672" /></p>
 </div>
 </div>
-<div id="excursus-change-color-schemes" class="section level2" number="9.4">
-<h2><span class="header-section-number">9.4</span> Excursus: change color schemes</h2>
+<div id="excursus-change-color-schemes" class="section level2" number="10.4">
+<h2><span class="header-section-number">10.4</span> Excursus: change color schemes</h2>
 <p>In the example above we use <code>scale_colour_gradient2()</code> to modify the color gradient used to visualize the start time of taxi trips. By default, ggplot would plot the following (default gradient color setting):</p>
-<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="big-data-visualization.html#cb332-1" aria-hidden="true" tabindex="-1"></a><span class="co"># drop-off locations </span></span>
-<span id="cb332-2"><a href="big-data-visualization.html#cb332-2" aria-hidden="true" tabindex="-1"></a>locations <span class="sc">+</span></span>
-<span id="cb332-3"><a href="big-data-visualization.html#cb332-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>dest_long, <span class="at">y=</span>dest_lat, <span class="at">color =</span> start_time ),</span>
-<span id="cb332-4"><a href="big-data-visualization.html#cb332-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">size =</span> <span class="fl">0.1</span>,</span>
-<span id="cb332-5"><a href="big-data-visualization.html#cb332-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">alpha =</span> <span class="fl">0.2</span>) </span></code></pre></div>
-<p><img src="bigdata_files/figure-html/unnamed-chunk-165-1.png" width="672" /></p>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="big-data-visualization.html#cb398-1" aria-hidden="true" tabindex="-1"></a><span class="co"># drop-off locations </span></span>
+<span id="cb398-2"><a href="big-data-visualization.html#cb398-2" aria-hidden="true" tabindex="-1"></a>locations <span class="sc">+</span></span>
+<span id="cb398-3"><a href="big-data-visualization.html#cb398-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x=</span>dest_long, <span class="at">y=</span>dest_lat, <span class="at">color =</span> start_time ),</span>
+<span id="cb398-4"><a href="big-data-visualization.html#cb398-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">size =</span> <span class="fl">0.1</span>,</span>
+<span id="cb398-5"><a href="big-data-visualization.html#cb398-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">alpha =</span> <span class="fl">0.2</span>) </span></code></pre></div>
+<p><img src="bigdata_files/figure-html/unnamed-chunk-203-1.png" width="672" /></p>
 <p><code>ggplot2</code> offers various functions to modify the color scales used in a plot. In the case of the example above, we visualize values of a continuous variable. Hence we use a gradient color scale. In case of categorical variables we need to modify the default discrete color scale.</p>
 <p>Recall the plot illustrating tipping behavior, where we highlight in which observations the client payd with credit card, cash, etc.</p>
-<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="big-data-visualization.html#cb333-1" aria-hidden="true" tabindex="-1"></a><span class="co"># indicate natural numbers</span></span>
-<span id="cb333-2"><a href="big-data-visualization.html#cb333-2" aria-hidden="true" tabindex="-1"></a>taxi[, dollar_paid <span class="sc">:</span><span class="er">=</span> <span class="fu">ifelse</span>(tip_amount <span class="sc">==</span> <span class="fu">round</span>(tip_amount,<span class="dv">0</span>), <span class="st">&quot;Full&quot;</span>, <span class="st">&quot;Fraction&quot;</span>),]</span>
-<span id="cb333-3"><a href="big-data-visualization.html#cb333-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb333-4"><a href="big-data-visualization.html#cb333-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb333-5"><a href="big-data-visualization.html#cb333-5" aria-hidden="true" tabindex="-1"></a><span class="co"># extended x/y plot</span></span>
-<span id="cb333-6"><a href="big-data-visualization.html#cb333-6" aria-hidden="true" tabindex="-1"></a>taxiplot <span class="sc">+</span></span>
-<span id="cb333-7"><a href="big-data-visualization.html#cb333-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.2</span>, <span class="fu">aes</span>(<span class="at">color=</span>payment_type)) <span class="sc">+</span></span>
-<span id="cb333-8"><a href="big-data-visualization.html#cb333-8" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="st">&quot;dollar_paid&quot;</span>)</span></code></pre></div>
-<p><img src="bigdata_files/figure-html/unnamed-chunk-166-1.png" width="672" /></p>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="big-data-visualization.html#cb399-1" aria-hidden="true" tabindex="-1"></a><span class="co"># indicate natural numbers</span></span>
+<span id="cb399-2"><a href="big-data-visualization.html#cb399-2" aria-hidden="true" tabindex="-1"></a>taxi[, dollar_paid <span class="sc">:</span><span class="er">=</span> <span class="fu">ifelse</span>(tip_amount <span class="sc">==</span> <span class="fu">round</span>(tip_amount,<span class="dv">0</span>), <span class="st">&quot;Full&quot;</span>, <span class="st">&quot;Fraction&quot;</span>),]</span>
+<span id="cb399-3"><a href="big-data-visualization.html#cb399-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb399-4"><a href="big-data-visualization.html#cb399-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb399-5"><a href="big-data-visualization.html#cb399-5" aria-hidden="true" tabindex="-1"></a><span class="co"># extended x/y plot</span></span>
+<span id="cb399-6"><a href="big-data-visualization.html#cb399-6" aria-hidden="true" tabindex="-1"></a>taxiplot <span class="sc">+</span></span>
+<span id="cb399-7"><a href="big-data-visualization.html#cb399-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.2</span>, <span class="fu">aes</span>(<span class="at">color=</span>payment_type)) <span class="sc">+</span></span>
+<span id="cb399-8"><a href="big-data-visualization.html#cb399-8" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="st">&quot;dollar_paid&quot;</span>)</span></code></pre></div>
+<p><img src="bigdata_files/figure-html/unnamed-chunk-204-1.png" width="672" /></p>
 <p>Since we do not further specify the discrete color scheme to be used, ggplot simply uses its default color scheme for this plot. We can change this as follows.</p>
-<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="big-data-visualization.html#cb334-1" aria-hidden="true" tabindex="-1"></a><span class="co"># indicate natural numbers</span></span>
-<span id="cb334-2"><a href="big-data-visualization.html#cb334-2" aria-hidden="true" tabindex="-1"></a>taxi[, dollar_paid <span class="sc">:</span><span class="er">=</span> <span class="fu">ifelse</span>(tip_amount <span class="sc">==</span> <span class="fu">round</span>(tip_amount,<span class="dv">0</span>), <span class="st">&quot;Full&quot;</span>, <span class="st">&quot;Fraction&quot;</span>),]</span>
-<span id="cb334-3"><a href="big-data-visualization.html#cb334-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb334-4"><a href="big-data-visualization.html#cb334-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb334-5"><a href="big-data-visualization.html#cb334-5" aria-hidden="true" tabindex="-1"></a><span class="co"># extended x/y plot</span></span>
-<span id="cb334-6"><a href="big-data-visualization.html#cb334-6" aria-hidden="true" tabindex="-1"></a>taxiplot <span class="sc">+</span></span>
-<span id="cb334-7"><a href="big-data-visualization.html#cb334-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.2</span>, <span class="fu">aes</span>(<span class="at">color=</span>payment_type)) <span class="sc">+</span></span>
-<span id="cb334-8"><a href="big-data-visualization.html#cb334-8" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="st">&quot;dollar_paid&quot;</span>) <span class="sc">+</span></span>
-<span id="cb334-9"><a href="big-data-visualization.html#cb334-9" aria-hidden="true" tabindex="-1"></a>     <span class="fu">scale_color_discrete</span>(<span class="at">type =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;orange&quot;</span>, <span class="st">&quot;purple&quot;</span>))</span></code></pre></div>
-<p><img src="bigdata_files/figure-html/unnamed-chunk-167-1.png" width="672" /></p>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="big-data-visualization.html#cb400-1" aria-hidden="true" tabindex="-1"></a><span class="co"># indicate natural numbers</span></span>
+<span id="cb400-2"><a href="big-data-visualization.html#cb400-2" aria-hidden="true" tabindex="-1"></a>taxi[, dollar_paid <span class="sc">:</span><span class="er">=</span> <span class="fu">ifelse</span>(tip_amount <span class="sc">==</span> <span class="fu">round</span>(tip_amount,<span class="dv">0</span>), <span class="st">&quot;Full&quot;</span>, <span class="st">&quot;Fraction&quot;</span>),]</span>
+<span id="cb400-3"><a href="big-data-visualization.html#cb400-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb400-4"><a href="big-data-visualization.html#cb400-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb400-5"><a href="big-data-visualization.html#cb400-5" aria-hidden="true" tabindex="-1"></a><span class="co"># extended x/y plot</span></span>
+<span id="cb400-6"><a href="big-data-visualization.html#cb400-6" aria-hidden="true" tabindex="-1"></a>taxiplot <span class="sc">+</span></span>
+<span id="cb400-7"><a href="big-data-visualization.html#cb400-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="at">alpha=</span><span class="fl">0.2</span>, <span class="fu">aes</span>(<span class="at">color=</span>payment_type)) <span class="sc">+</span></span>
+<span id="cb400-8"><a href="big-data-visualization.html#cb400-8" aria-hidden="true" tabindex="-1"></a>     <span class="fu">facet_wrap</span>(<span class="st">&quot;dollar_paid&quot;</span>) <span class="sc">+</span></span>
+<span id="cb400-9"><a href="big-data-visualization.html#cb400-9" aria-hidden="true" tabindex="-1"></a>     <span class="fu">scale_color_discrete</span>(<span class="at">type =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;orange&quot;</span>, <span class="st">&quot;purple&quot;</span>))</span></code></pre></div>
+<p><img src="bigdata_files/figure-html/unnamed-chunk-205-1.png" width="672" /></p>
 
 </div>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="24">
-<li id="fn24"><p>Or, could there be another explanation for this pattern in the data?<a href="big-data-visualization.html#fnref24" class="footnote-back">↩︎</a></p></li>
-<li id="fn25"><p>See <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">the ggplot2 documentation</a> for a list of all pre-defined themes shipped with the basic installation.<a href="big-data-visualization.html#fnref25" class="footnote-back">↩︎</a></p></li>
-<li id="fn26"><p>Similar files are provided online by most city authorities in developed countries. See, for example, GIS Data for the City and Canton of Zurich: <a href="https://maps.zh.ch/" class="uri">https://maps.zh.ch/</a>.<a href="big-data-visualization.html#fnref26" class="footnote-back">↩︎</a></p></li>
+<ol start="40">
+<li id="fn40"><p>Or, could there be another explanation for this pattern in the data?<a href="big-data-visualization.html#fnref40" class="footnote-back">↩︎</a></p></li>
+<li id="fn41"><p>See <a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">the ggplot2 documentation</a> for a list of all pre-defined themes shipped with the basic installation.<a href="big-data-visualization.html#fnref41" class="footnote-back">↩︎</a></p></li>
+<li id="fn42"><p>Similar files are provided online by most city authorities in developed countries. See, for example, GIS Data for the City and Canton of Zurich: <a href="https://maps.zh.ch/" class="uri">https://maps.zh.ch/</a>.<a href="big-data-visualization.html#fnref42" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

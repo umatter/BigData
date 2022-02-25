@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>References | Big Data Analytics</title>
+  <title>C Appendix C | Big Data Analytics</title>
   <meta name="description" content="A guide to practical big data analytics in R." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="References | Big Data Analytics" />
+  <meta property="og:title" content="C Appendix C | Big Data Analytics" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://umatter.github.io/BigData" />
   <meta property="og:image" content="https://umatter.github.io/BigDataimg/cover.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="umatter/BigData" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | Big Data Analytics" />
+  <meta name="twitter:title" content="C Appendix C | Big Data Analytics" />
   
   <meta name="twitter:description" content="A guide to practical big data analytics in R." />
   <meta name="twitter:image" content="https://umatter.github.io/BigDataimg/cover.png" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="appendix-c.html"/>
-
+<link rel="prev" href="appendix-b.html"/>
+<link rel="next" href="references.html"/>
 <script src="libs/header-attrs/header-attrs.js"></script>
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
@@ -347,97 +347,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="references" class="section level1 unnumbered">
-<h1>References</h1>
-
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-burns_2011" class="csl-entry">
-Burns, Patrick. 2011. <em>The r Inferno</em>. Lulu Press, Inc. <a href="https://www.burns-stat.com/pages/Tutor/R_inferno.pdf">https://www.burns-stat.com/pages/Tutor/R_inferno.pdf</a>.
+<div id="appendix-c" class="section level1" number="15">
+<h1><span class="header-section-number">C</span> Appendix C</h1>
+<div id="install-hadoop-on-ubuntu-linux" class="section level4" number="15.0.0.1">
+<h4><span class="header-section-number">C.0.0.1</span> Install Hadoop (on Ubuntu Linux)</h4>
+<div class="sourceCode" id="cb561"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb561-1"><a href="appendix-c.html#cb561-1" aria-hidden="true" tabindex="-1"></a><span class="co"># download binary</span></span>
+<span id="cb561-2"><a href="appendix-c.html#cb561-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://dlcdn.apache.org/hadoop/common/hadoop-2.10.1/hadoop-2.10.1.tar.gz</span>
+<span id="cb561-3"><a href="appendix-c.html#cb561-3" aria-hidden="true" tabindex="-1"></a><span class="co"># download checksum</span></span>
+<span id="cb561-4"><a href="appendix-c.html#cb561-4" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://dlcdn.apache.org/hadoop/common/hadoop-2.10.1/hadoop-2.10.1.tar.gz.sha512</span>
+<span id="cb561-5"><a href="appendix-c.html#cb561-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb561-6"><a href="appendix-c.html#cb561-6" aria-hidden="true" tabindex="-1"></a><span class="co"># run the verification</span></span>
+<span id="cb561-7"><a href="appendix-c.html#cb561-7" aria-hidden="true" tabindex="-1"></a><span class="ex">shasum</span> <span class="at">-a</span> 512 hadoop-2.10.1.tar.gz</span>
+<span id="cb561-8"><a href="appendix-c.html#cb561-8" aria-hidden="true" tabindex="-1"></a><span class="co"># compare with value in mds file</span></span>
+<span id="cb561-9"><a href="appendix-c.html#cb561-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> hadoop-2.10.1.tar.gz.sha512</span>
+<span id="cb561-10"><a href="appendix-c.html#cb561-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb561-11"><a href="appendix-c.html#cb561-11" aria-hidden="true" tabindex="-1"></a><span class="co"># if all is fine, unpack</span></span>
+<span id="cb561-12"><a href="appendix-c.html#cb561-12" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzvf</span> hadoop-2.10.1.tar.gz</span>
+<span id="cb561-13"><a href="appendix-c.html#cb561-13" aria-hidden="true" tabindex="-1"></a><span class="co"># move to proper place</span></span>
+<span id="cb561-14"><a href="appendix-c.html#cb561-14" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mv hadoop-2.10.1 /usr/local/hadoop</span>
+<span id="cb561-15"><a href="appendix-c.html#cb561-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb561-16"><a href="appendix-c.html#cb561-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb561-17"><a href="appendix-c.html#cb561-17" aria-hidden="true" tabindex="-1"></a><span class="co"># then point to this version from hadoop</span></span>
+<span id="cb561-18"><a href="appendix-c.html#cb561-18" aria-hidden="true" tabindex="-1"></a><span class="co"># open the file /usr/local/hadoop/etc/hadoop/hadoop-env.sh</span></span></code></pre></div>
+<div class="sourceCode" id="cb562"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb562-1"><a href="appendix-c.html#cb562-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in a text editor and add (where export JAVA_HOME=...)</span></span>
+<span id="cb562-2"><a href="appendix-c.html#cb562-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">JAVA_HOME=$(</span><span class="fu">readlink</span> <span class="at">-f</span> /usr/bin/java <span class="kw">|</span> <span class="fu">sed</span> <span class="st">&quot;s:bin/java::&quot;</span><span class="va">)</span></span>
+<span id="cb562-3"><a href="appendix-c.html#cb562-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb562-4"><a href="appendix-c.html#cb562-4" aria-hidden="true" tabindex="-1"></a><span class="co"># clean up</span></span>
+<span id="cb562-5"><a href="appendix-c.html#cb562-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> hadoop-2.10.1.tar.gz</span>
+<span id="cb562-6"><a href="appendix-c.html#cb562-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> hadoop-2.10.1.tar.gz.sha512</span></code></pre></div>
+<p>After running all of the steps above, run the following line in the terminal to check the installation</p>
+<div class="sourceCode" id="cb563"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb563-1"><a href="appendix-c.html#cb563-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check installation</span></span>
+<span id="cb563-2"><a href="appendix-c.html#cb563-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/usr/local/hadoop/bin/hadoop</span></span></code></pre></div>
 </div>
-<div id="ref-dhillon_2013" class="csl-entry">
-Dhillon, Paramveer, Yichao Lu, Dean P. Foster, and Lyle Ungar. 2013. <span>“New Subsampling Algorithms for Fast Least Squares Regression.”</span> In <em>Advances in Neural Information Processing Systems 26</em>, 360–68.
 </div>
-<div id="ref-donoho_2017" class="csl-entry">
-Donoho, David. 2017. <span>“50 Years of Data Science.”</span> <em>Journal of Computational and Graphical Statistics</em> 26 (4): 745–66. <a href="https://doi.org/10.1080/10618600.2017.1384734">https://doi.org/10.1080/10618600.2017.1384734</a>.
-</div>
-<div id="ref-fatahalian_etal2004" class="csl-entry">
-Fatahalian, K., J. Sugerman, and P. Hanrahan. 2004. <span>“Understanding the Efficiency of GPU Algorithms for Matrix-Matrix Multiplication.”</span> In <em>Proceedings of the ACM SIGGRAPH/EUROGRAPHICS Conference on Graphics Hardware</em>, 133–37. HWWS ’04. New York, NY, USA: Association for Computing Machinery. <a href="https://doi.org/10.1145/1058129.1058148">https://doi.org/10.1145/1058129.1058148</a>.
-</div>
-<div id="ref-karami_etal2017" class="csl-entry">
-Karami, Amir, Aryya Gangopadhyay, Bin Zhou, and Hadi Kharrazi. 2017. <span>“Fuzzy Approach Topic Discovery in Health and Medical Corpora.”</span> <em>International Journal of Fuzzy Systems</em> 20: 1334–45.
-</div>
-<div id="ref-matloff_2015" class="csl-entry">
-Matloff, Norman. 2015. <em>Parallel Computing for Data Science</em>. Boca Raton, FL: CRC Press.
-</div>
-<div id="ref-walkowiak_2016" class="csl-entry">
-Walkowiak, Simkon. 2016. <em>Big Data Analytics with r</em>. Birmingham, UK: PACKT Publishing.
-</div>
-<div id="ref-wickham_2011" class="csl-entry">
-Wickham, Hadley. 2011. <span>“The Split-Apply-Combine Strategy for Data Analysis.”</span> <em>Journal of Statistical Software</em> 40.
-</div>
-</div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
             </section>
 
           </div>
         </div>
       </div>
-<a href="appendix-c.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-
+<a href="appendix-b.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
