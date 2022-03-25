@@ -24,7 +24,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-02-25" />
+<meta name="date" content="2022-03-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -210,21 +210,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="5.2.1" data-path="distributed-systems.html"><a href="distributed-systems.html#hadoop-word-count-example"><i class="fa fa-check"></i><b>5.2.1</b> Hadoop word count example</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="distributed-systems.html"><a href="distributed-systems.html#spark"><i class="fa fa-check"></i><b>5.3</b> Spark</a>
+<li class="chapter" data-level="5.3" data-path="distributed-systems.html"><a href="distributed-systems.html#spark"><i class="fa fa-check"></i><b>5.3</b> Spark</a></li>
+<li class="chapter" data-level="5.4" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-r"><i class="fa fa-check"></i><b>5.4</b> Spark with R</a>
 <ul>
-<li class="chapter" data-level="5.3.1" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-r"><i class="fa fa-check"></i><b>5.3.1</b> Spark with R</a></li>
-<li class="chapter" data-level="5.3.2" data-path="distributed-systems.html"><a href="distributed-systems.html#data-import-and-summary-statistics"><i class="fa fa-check"></i><b>5.3.2</b> Data import and summary statistics</a></li>
+<li class="chapter" data-level="5.4.1" data-path="distributed-systems.html"><a href="distributed-systems.html#data-import-and-summary-statistics"><i class="fa fa-check"></i><b>5.4.1</b> Data import and summary statistics</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-sql"><i class="fa fa-check"></i><b>5.4</b> Spark with SQL</a></li>
-<li class="chapter" data-level="5.5" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-r-sql"><i class="fa fa-check"></i><b>5.5</b> Spark with R + SQL</a></li>
+<li class="chapter" data-level="5.5" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-sql"><i class="fa fa-check"></i><b>5.5</b> Spark with SQL</a></li>
+<li class="chapter" data-level="5.6" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-r-sql"><i class="fa fa-check"></i><b>5.6</b> Spark with R + SQL</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="cloud-computing.html"><a href="cloud-computing.html"><i class="fa fa-check"></i><b>6</b> Cloud Computing</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="cloud-computing.html"><a href="cloud-computing.html#scaling-up-with-aws-ec2-and-rrstudio"><i class="fa fa-check"></i><b>6.1</b> Scaling up with AWS EC2 and R/RStudio</a>
 <ul>
 <li class="chapter" data-level="6.1.1" data-path="cloud-computing.html"><a href="cloud-computing.html#parallelization-with-an-ec2-instance"><i class="fa fa-check"></i><b>6.1.1</b> Parallelization with an EC2 instance</a></li>
-<li class="chapter" data-level="6.1.2" data-path="cloud-computing.html"><a href="cloud-computing.html#gpus-on-google-colab"><i class="fa fa-check"></i><b>6.1.2</b> GPUs on Google Colab</a></li>
-<li class="chapter" data-level="6.1.3" data-path="cloud-computing.html"><a href="cloud-computing.html#aws-emr-mapreduce-in-the-cloud"><i class="fa fa-check"></i><b>6.1.3</b> AWS EMR: MapReduce in the cloud</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="cloud-computing.html"><a href="cloud-computing.html#ec2-with-rstudio-and-gpus"><i class="fa fa-check"></i><b>6.2</b> EC2 with RStudio and GPUs</a></li>
+<li class="chapter" data-level="6.3" data-path="cloud-computing.html"><a href="cloud-computing.html#gpus-on-google-colab"><i class="fa fa-check"></i><b>6.3</b> GPUs on Google Colab</a></li>
+<li class="chapter" data-level="6.4" data-path="cloud-computing.html"><a href="cloud-computing.html#aws-emr-mapreduce-in-the-cloud"><i class="fa fa-check"></i><b>6.4</b> AWS EMR: MapReduce in the cloud</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="cloud-computing.html"><a href="cloud-computing.html#set-up-an-emr-cluster-to-run-with-r"><i class="fa fa-check"></i><b>6.4.1</b> Set up an EMR cluster to run with R</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html"><i class="fa fa-check"></i><b>7</b> Data Collection and Data Storage</a>
@@ -234,19 +238,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#nyc-taxi-data"><i class="fa fa-check"></i><b>7.1.1</b> NYC taxi data</a></li>
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#data-import-and-memory-allocation"><i class="fa fa-check"></i><b>7.2</b> Data import and memory allocation</a></li>
-<li class="chapter" data-level="7.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#big-data-storage"><i class="fa fa-check"></i><b>7.3</b> (Big) Data Storage</a></li>
-<li class="chapter" data-level="7.4" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#rdbms-basics"><i class="fa fa-check"></i><b>7.4</b> RDBMS basics</a></li>
-<li class="chapter" data-level="7.5" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#row-based-vs-column-based-databases"><i class="fa fa-check"></i><b>7.5</b> Row-based vs column-based databases</a></li>
-<li class="chapter" data-level="7.6" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#getting-started-with-rsqlite"><i class="fa fa-check"></i><b>7.6</b> Getting started with RSQLite</a>
+<li class="chapter" data-level="7.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#efficient-local-data-storage"><i class="fa fa-check"></i><b>7.3</b> Efficient local data storage</a>
 <ul>
-<li class="chapter" data-level="7.6.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#warm-up-in-sqlite-indices-and-joins"><i class="fa fa-check"></i><b>7.6.1</b> Warm up in SQLite: indices and joins</a></li>
+<li class="chapter" data-level="7.3.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#rdbms-basics"><i class="fa fa-check"></i><b>7.3.1</b> RDBMS basics</a></li>
+<li class="chapter" data-level="7.3.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#efficient-data-access-indices-and-joins-in-sqlite"><i class="fa fa-check"></i><b>7.3.2</b> Efficient data access: indices and joins in SQLite</a></li>
 </ul></li>
-<li class="chapter" data-level="7.7" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#sqlite-from-within-r"><i class="fa fa-check"></i><b>7.7</b> SQLite from within R</a>
+<li class="chapter" data-level="7.4" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#connecting-r-to-rdbms"><i class="fa fa-check"></i><b>7.4</b> Connecting R to RDBMS</a>
 <ul>
-<li class="chapter" data-level="7.7.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#creating-a-new-database-with-rsqlite"><i class="fa fa-check"></i><b>7.7.1</b> Creating a new database with <code>RSQLite</code></a></li>
-<li class="chapter" data-level="7.7.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#importing-data"><i class="fa fa-check"></i><b>7.7.2</b> Importing data</a></li>
-<li class="chapter" data-level="7.7.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#issue-queries"><i class="fa fa-check"></i><b>7.7.3</b> Issue queries</a></li>
-<li class="chapter" data-level="7.7.4" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#mass-storage-mariadb-on-an-ec2-instance"><i class="fa fa-check"></i><b>7.7.4</b> Mass Storage: MariaDB on an EC2 instance</a></li>
+<li class="chapter" data-level="7.4.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#creating-a-new-database-with-rsqlite"><i class="fa fa-check"></i><b>7.4.1</b> Creating a new database with <code>RSQLite</code></a></li>
+<li class="chapter" data-level="7.4.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#importing-data"><i class="fa fa-check"></i><b>7.4.2</b> Importing data</a></li>
+<li class="chapter" data-level="7.4.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#issue-queries"><i class="fa fa-check"></i><b>7.4.3</b> Issue queries</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#cloud-solutions-for-big-data-storage"><i class="fa fa-check"></i><b>7.5</b> Cloud solutions for (big) data storage</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#easy-to-use-rdbms-in-the-cloud-aws-rds"><i class="fa fa-check"></i><b>7.5.1</b> Easy-to-use RDBMS in the cloud: AWS RDS</a></li>
+<li class="chapter" data-level="7.5.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#database-server-in-the-cloud-mariadb-on-an-ec2-instance"><i class="fa fa-check"></i><b>7.5.2</b> Database server in the cloud: MariaDB on an EC2 instance</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html"><i class="fa fa-check"></i><b>8</b> Big Data Cleaning and Transformation</a>
@@ -266,12 +272,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-the-split-apply-combine-strategy"><i class="fa fa-check"></i><b>9.1</b> Data aggregation: The ‘split-apply-combine’ strategy</a>
 <ul>
 <li class="chapter" data-level="9.1.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-with-chunked-data-files"><i class="fa fa-check"></i><b>9.1.1</b> Data aggregation with chunked data files</a></li>
-<li class="chapter" data-level="9.1.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>9.1.2</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
+<li class="chapter" data-level="9.1.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#cross-tabulation-of-ff-vectors"><i class="fa fa-check"></i><b>9.1.2</b> Cross-tabulation of <code>ff</code> vectors</a></li>
 </ul></li>
+<li class="chapter" data-level="9.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>9.2</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="big-data-visualization.html"><a href="big-data-visualization.html"><i class="fa fa-check"></i><b>10</b> (Big) Data Visualization</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#data-set"><i class="fa fa-check"></i><b>10.1</b> Data Set</a></li>
+<li class="chapter" data-level="10.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#data-exploration-with-ggplot2"><i class="fa fa-check"></i><b>10.1</b> Data exploration with <code>ggplot2</code></a></li>
 <li class="chapter" data-level="10.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-modify-and-create-themes"><i class="fa fa-check"></i><b>10.2</b> Excursus: modify and create themes</a>
 <ul>
 <li class="chapter" data-level="10.2.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#create-your-own-theme-simple-approach"><i class="fa fa-check"></i><b>10.2.1</b> Create your own theme: simple approach</a></li>
@@ -351,33 +358,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">C</span> Appendix C</h1>
 <div id="install-hadoop-on-ubuntu-linux" class="section level4" number="15.0.0.1">
 <h4><span class="header-section-number">C.0.0.1</span> Install Hadoop (on Ubuntu Linux)</h4>
-<div class="sourceCode" id="cb561"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb561-1"><a href="appendix-c.html#cb561-1" aria-hidden="true" tabindex="-1"></a><span class="co"># download binary</span></span>
-<span id="cb561-2"><a href="appendix-c.html#cb561-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://dlcdn.apache.org/hadoop/common/hadoop-2.10.1/hadoop-2.10.1.tar.gz</span>
-<span id="cb561-3"><a href="appendix-c.html#cb561-3" aria-hidden="true" tabindex="-1"></a><span class="co"># download checksum</span></span>
-<span id="cb561-4"><a href="appendix-c.html#cb561-4" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://dlcdn.apache.org/hadoop/common/hadoop-2.10.1/hadoop-2.10.1.tar.gz.sha512</span>
-<span id="cb561-5"><a href="appendix-c.html#cb561-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb561-6"><a href="appendix-c.html#cb561-6" aria-hidden="true" tabindex="-1"></a><span class="co"># run the verification</span></span>
-<span id="cb561-7"><a href="appendix-c.html#cb561-7" aria-hidden="true" tabindex="-1"></a><span class="ex">shasum</span> <span class="at">-a</span> 512 hadoop-2.10.1.tar.gz</span>
-<span id="cb561-8"><a href="appendix-c.html#cb561-8" aria-hidden="true" tabindex="-1"></a><span class="co"># compare with value in mds file</span></span>
-<span id="cb561-9"><a href="appendix-c.html#cb561-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> hadoop-2.10.1.tar.gz.sha512</span>
-<span id="cb561-10"><a href="appendix-c.html#cb561-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb561-11"><a href="appendix-c.html#cb561-11" aria-hidden="true" tabindex="-1"></a><span class="co"># if all is fine, unpack</span></span>
-<span id="cb561-12"><a href="appendix-c.html#cb561-12" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzvf</span> hadoop-2.10.1.tar.gz</span>
-<span id="cb561-13"><a href="appendix-c.html#cb561-13" aria-hidden="true" tabindex="-1"></a><span class="co"># move to proper place</span></span>
-<span id="cb561-14"><a href="appendix-c.html#cb561-14" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mv hadoop-2.10.1 /usr/local/hadoop</span>
-<span id="cb561-15"><a href="appendix-c.html#cb561-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb561-16"><a href="appendix-c.html#cb561-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb561-17"><a href="appendix-c.html#cb561-17" aria-hidden="true" tabindex="-1"></a><span class="co"># then point to this version from hadoop</span></span>
-<span id="cb561-18"><a href="appendix-c.html#cb561-18" aria-hidden="true" tabindex="-1"></a><span class="co"># open the file /usr/local/hadoop/etc/hadoop/hadoop-env.sh</span></span></code></pre></div>
-<div class="sourceCode" id="cb562"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb562-1"><a href="appendix-c.html#cb562-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in a text editor and add (where export JAVA_HOME=...)</span></span>
-<span id="cb562-2"><a href="appendix-c.html#cb562-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">JAVA_HOME=$(</span><span class="fu">readlink</span> <span class="at">-f</span> /usr/bin/java <span class="kw">|</span> <span class="fu">sed</span> <span class="st">&quot;s:bin/java::&quot;</span><span class="va">)</span></span>
-<span id="cb562-3"><a href="appendix-c.html#cb562-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb562-4"><a href="appendix-c.html#cb562-4" aria-hidden="true" tabindex="-1"></a><span class="co"># clean up</span></span>
-<span id="cb562-5"><a href="appendix-c.html#cb562-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> hadoop-2.10.1.tar.gz</span>
-<span id="cb562-6"><a href="appendix-c.html#cb562-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> hadoop-2.10.1.tar.gz.sha512</span></code></pre></div>
+<div class="sourceCode" id="cb566"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb566-1"><a href="appendix-c.html#cb566-1" aria-hidden="true" tabindex="-1"></a><span class="co"># download binary</span></span>
+<span id="cb566-2"><a href="appendix-c.html#cb566-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://dlcdn.apache.org/hadoop/common/hadoop-2.10.1/hadoop-2.10.1.tar.gz</span>
+<span id="cb566-3"><a href="appendix-c.html#cb566-3" aria-hidden="true" tabindex="-1"></a><span class="co"># download checksum</span></span>
+<span id="cb566-4"><a href="appendix-c.html#cb566-4" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://dlcdn.apache.org/hadoop/common/hadoop-2.10.1/hadoop-2.10.1.tar.gz.sha512</span>
+<span id="cb566-5"><a href="appendix-c.html#cb566-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb566-6"><a href="appendix-c.html#cb566-6" aria-hidden="true" tabindex="-1"></a><span class="co"># run the verification</span></span>
+<span id="cb566-7"><a href="appendix-c.html#cb566-7" aria-hidden="true" tabindex="-1"></a><span class="ex">shasum</span> <span class="at">-a</span> 512 hadoop-2.10.1.tar.gz</span>
+<span id="cb566-8"><a href="appendix-c.html#cb566-8" aria-hidden="true" tabindex="-1"></a><span class="co"># compare with value in mds file</span></span>
+<span id="cb566-9"><a href="appendix-c.html#cb566-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> hadoop-2.10.1.tar.gz.sha512</span>
+<span id="cb566-10"><a href="appendix-c.html#cb566-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb566-11"><a href="appendix-c.html#cb566-11" aria-hidden="true" tabindex="-1"></a><span class="co"># if all is fine, unpack</span></span>
+<span id="cb566-12"><a href="appendix-c.html#cb566-12" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzvf</span> hadoop-2.10.1.tar.gz</span>
+<span id="cb566-13"><a href="appendix-c.html#cb566-13" aria-hidden="true" tabindex="-1"></a><span class="co"># move to proper place</span></span>
+<span id="cb566-14"><a href="appendix-c.html#cb566-14" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mv hadoop-2.10.1 /usr/local/hadoop</span>
+<span id="cb566-15"><a href="appendix-c.html#cb566-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb566-16"><a href="appendix-c.html#cb566-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb566-17"><a href="appendix-c.html#cb566-17" aria-hidden="true" tabindex="-1"></a><span class="co"># then point to this version from hadoop</span></span>
+<span id="cb566-18"><a href="appendix-c.html#cb566-18" aria-hidden="true" tabindex="-1"></a><span class="co"># open the file /usr/local/hadoop/etc/hadoop/hadoop-env.sh</span></span></code></pre></div>
+<div class="sourceCode" id="cb567"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb567-1"><a href="appendix-c.html#cb567-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in a text editor and add (where export JAVA_HOME=...)</span></span>
+<span id="cb567-2"><a href="appendix-c.html#cb567-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">JAVA_HOME=$(</span><span class="fu">readlink</span> <span class="at">-f</span> /usr/bin/java <span class="kw">|</span> <span class="fu">sed</span> <span class="st">&quot;s:bin/java::&quot;</span><span class="va">)</span></span>
+<span id="cb567-3"><a href="appendix-c.html#cb567-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb567-4"><a href="appendix-c.html#cb567-4" aria-hidden="true" tabindex="-1"></a><span class="co"># clean up</span></span>
+<span id="cb567-5"><a href="appendix-c.html#cb567-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> hadoop-2.10.1.tar.gz</span>
+<span id="cb567-6"><a href="appendix-c.html#cb567-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> hadoop-2.10.1.tar.gz.sha512</span></code></pre></div>
 <p>After running all of the steps above, run the following line in the terminal to check the installation</p>
-<div class="sourceCode" id="cb563"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb563-1"><a href="appendix-c.html#cb563-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check installation</span></span>
-<span id="cb563-2"><a href="appendix-c.html#cb563-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/usr/local/hadoop/bin/hadoop</span></span></code></pre></div>
+<div class="sourceCode" id="cb568"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb568-1"><a href="appendix-c.html#cb568-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check installation</span></span>
+<span id="cb568-2"><a href="appendix-c.html#cb568-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/usr/local/hadoop/bin/hadoop</span></span></code></pre></div>
 </div>
 </div>
             </section>

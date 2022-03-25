@@ -24,7 +24,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-02-25" />
+<meta name="date" content="2022-03-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -210,21 +210,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="5.2.1" data-path="distributed-systems.html"><a href="distributed-systems.html#hadoop-word-count-example"><i class="fa fa-check"></i><b>5.2.1</b> Hadoop word count example</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="distributed-systems.html"><a href="distributed-systems.html#spark"><i class="fa fa-check"></i><b>5.3</b> Spark</a>
+<li class="chapter" data-level="5.3" data-path="distributed-systems.html"><a href="distributed-systems.html#spark"><i class="fa fa-check"></i><b>5.3</b> Spark</a></li>
+<li class="chapter" data-level="5.4" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-r"><i class="fa fa-check"></i><b>5.4</b> Spark with R</a>
 <ul>
-<li class="chapter" data-level="5.3.1" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-r"><i class="fa fa-check"></i><b>5.3.1</b> Spark with R</a></li>
-<li class="chapter" data-level="5.3.2" data-path="distributed-systems.html"><a href="distributed-systems.html#data-import-and-summary-statistics"><i class="fa fa-check"></i><b>5.3.2</b> Data import and summary statistics</a></li>
+<li class="chapter" data-level="5.4.1" data-path="distributed-systems.html"><a href="distributed-systems.html#data-import-and-summary-statistics"><i class="fa fa-check"></i><b>5.4.1</b> Data import and summary statistics</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-sql"><i class="fa fa-check"></i><b>5.4</b> Spark with SQL</a></li>
-<li class="chapter" data-level="5.5" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-r-sql"><i class="fa fa-check"></i><b>5.5</b> Spark with R + SQL</a></li>
+<li class="chapter" data-level="5.5" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-sql"><i class="fa fa-check"></i><b>5.5</b> Spark with SQL</a></li>
+<li class="chapter" data-level="5.6" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-r-sql"><i class="fa fa-check"></i><b>5.6</b> Spark with R + SQL</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="cloud-computing.html"><a href="cloud-computing.html"><i class="fa fa-check"></i><b>6</b> Cloud Computing</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="cloud-computing.html"><a href="cloud-computing.html#scaling-up-with-aws-ec2-and-rrstudio"><i class="fa fa-check"></i><b>6.1</b> Scaling up with AWS EC2 and R/RStudio</a>
 <ul>
 <li class="chapter" data-level="6.1.1" data-path="cloud-computing.html"><a href="cloud-computing.html#parallelization-with-an-ec2-instance"><i class="fa fa-check"></i><b>6.1.1</b> Parallelization with an EC2 instance</a></li>
-<li class="chapter" data-level="6.1.2" data-path="cloud-computing.html"><a href="cloud-computing.html#gpus-on-google-colab"><i class="fa fa-check"></i><b>6.1.2</b> GPUs on Google Colab</a></li>
-<li class="chapter" data-level="6.1.3" data-path="cloud-computing.html"><a href="cloud-computing.html#aws-emr-mapreduce-in-the-cloud"><i class="fa fa-check"></i><b>6.1.3</b> AWS EMR: MapReduce in the cloud</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="cloud-computing.html"><a href="cloud-computing.html#ec2-with-rstudio-and-gpus"><i class="fa fa-check"></i><b>6.2</b> EC2 with RStudio and GPUs</a></li>
+<li class="chapter" data-level="6.3" data-path="cloud-computing.html"><a href="cloud-computing.html#gpus-on-google-colab"><i class="fa fa-check"></i><b>6.3</b> GPUs on Google Colab</a></li>
+<li class="chapter" data-level="6.4" data-path="cloud-computing.html"><a href="cloud-computing.html#aws-emr-mapreduce-in-the-cloud"><i class="fa fa-check"></i><b>6.4</b> AWS EMR: MapReduce in the cloud</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="cloud-computing.html"><a href="cloud-computing.html#set-up-an-emr-cluster-to-run-with-r"><i class="fa fa-check"></i><b>6.4.1</b> Set up an EMR cluster to run with R</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html"><i class="fa fa-check"></i><b>7</b> Data Collection and Data Storage</a>
@@ -234,19 +238,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#nyc-taxi-data"><i class="fa fa-check"></i><b>7.1.1</b> NYC taxi data</a></li>
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#data-import-and-memory-allocation"><i class="fa fa-check"></i><b>7.2</b> Data import and memory allocation</a></li>
-<li class="chapter" data-level="7.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#big-data-storage"><i class="fa fa-check"></i><b>7.3</b> (Big) Data Storage</a></li>
-<li class="chapter" data-level="7.4" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#rdbms-basics"><i class="fa fa-check"></i><b>7.4</b> RDBMS basics</a></li>
-<li class="chapter" data-level="7.5" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#row-based-vs-column-based-databases"><i class="fa fa-check"></i><b>7.5</b> Row-based vs column-based databases</a></li>
-<li class="chapter" data-level="7.6" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#getting-started-with-rsqlite"><i class="fa fa-check"></i><b>7.6</b> Getting started with RSQLite</a>
+<li class="chapter" data-level="7.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#efficient-local-data-storage"><i class="fa fa-check"></i><b>7.3</b> Efficient local data storage</a>
 <ul>
-<li class="chapter" data-level="7.6.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#warm-up-in-sqlite-indices-and-joins"><i class="fa fa-check"></i><b>7.6.1</b> Warm up in SQLite: indices and joins</a></li>
+<li class="chapter" data-level="7.3.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#rdbms-basics"><i class="fa fa-check"></i><b>7.3.1</b> RDBMS basics</a></li>
+<li class="chapter" data-level="7.3.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#efficient-data-access-indices-and-joins-in-sqlite"><i class="fa fa-check"></i><b>7.3.2</b> Efficient data access: indices and joins in SQLite</a></li>
 </ul></li>
-<li class="chapter" data-level="7.7" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#sqlite-from-within-r"><i class="fa fa-check"></i><b>7.7</b> SQLite from within R</a>
+<li class="chapter" data-level="7.4" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#connecting-r-to-rdbms"><i class="fa fa-check"></i><b>7.4</b> Connecting R to RDBMS</a>
 <ul>
-<li class="chapter" data-level="7.7.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#creating-a-new-database-with-rsqlite"><i class="fa fa-check"></i><b>7.7.1</b> Creating a new database with <code>RSQLite</code></a></li>
-<li class="chapter" data-level="7.7.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#importing-data"><i class="fa fa-check"></i><b>7.7.2</b> Importing data</a></li>
-<li class="chapter" data-level="7.7.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#issue-queries"><i class="fa fa-check"></i><b>7.7.3</b> Issue queries</a></li>
-<li class="chapter" data-level="7.7.4" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#mass-storage-mariadb-on-an-ec2-instance"><i class="fa fa-check"></i><b>7.7.4</b> Mass Storage: MariaDB on an EC2 instance</a></li>
+<li class="chapter" data-level="7.4.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#creating-a-new-database-with-rsqlite"><i class="fa fa-check"></i><b>7.4.1</b> Creating a new database with <code>RSQLite</code></a></li>
+<li class="chapter" data-level="7.4.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#importing-data"><i class="fa fa-check"></i><b>7.4.2</b> Importing data</a></li>
+<li class="chapter" data-level="7.4.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#issue-queries"><i class="fa fa-check"></i><b>7.4.3</b> Issue queries</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#cloud-solutions-for-big-data-storage"><i class="fa fa-check"></i><b>7.5</b> Cloud solutions for (big) data storage</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#easy-to-use-rdbms-in-the-cloud-aws-rds"><i class="fa fa-check"></i><b>7.5.1</b> Easy-to-use RDBMS in the cloud: AWS RDS</a></li>
+<li class="chapter" data-level="7.5.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#database-server-in-the-cloud-mariadb-on-an-ec2-instance"><i class="fa fa-check"></i><b>7.5.2</b> Database server in the cloud: MariaDB on an EC2 instance</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html"><i class="fa fa-check"></i><b>8</b> Big Data Cleaning and Transformation</a>
@@ -266,12 +272,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-the-split-apply-combine-strategy"><i class="fa fa-check"></i><b>9.1</b> Data aggregation: The ‘split-apply-combine’ strategy</a>
 <ul>
 <li class="chapter" data-level="9.1.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-with-chunked-data-files"><i class="fa fa-check"></i><b>9.1.1</b> Data aggregation with chunked data files</a></li>
-<li class="chapter" data-level="9.1.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>9.1.2</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
+<li class="chapter" data-level="9.1.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#cross-tabulation-of-ff-vectors"><i class="fa fa-check"></i><b>9.1.2</b> Cross-tabulation of <code>ff</code> vectors</a></li>
 </ul></li>
+<li class="chapter" data-level="9.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>9.2</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="big-data-visualization.html"><a href="big-data-visualization.html"><i class="fa fa-check"></i><b>10</b> (Big) Data Visualization</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#data-set"><i class="fa fa-check"></i><b>10.1</b> Data Set</a></li>
+<li class="chapter" data-level="10.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#data-exploration-with-ggplot2"><i class="fa fa-check"></i><b>10.1</b> Data exploration with <code>ggplot2</code></a></li>
 <li class="chapter" data-level="10.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-modify-and-create-themes"><i class="fa fa-check"></i><b>10.2</b> Excursus: modify and create themes</a>
 <ul>
 <li class="chapter" data-level="10.2.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#create-your-own-theme-simple-approach"><i class="fa fa-check"></i><b>10.2.1</b> Create your own theme: simple approach</a></li>
@@ -355,57 +362,57 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">7.1.1</span> NYC taxi data</h3>
 <p>The NYC Taxi &amp; Limousine Commission (TLC) provides detailed data on all trip records including pick-up and drop-off times/locations. When combining all available trip records (2009-2018), we get a rather large data set of over 200GB. The code examples below illustrate how to collect and compile the entire data set. In order to avoid long computing times, the code examples shown below are based on a small sub-set of the actual raw data (however, all examples involving virtual memory, are in theory scalable to the extent of the entire raw data set).</p>
 <p>The raw data consists of several monthly CSV-files and can be downloaded via the <a href="https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page">TLC’s website</a>. The following short R-script automates the downloading of all available trip-record files. <em>NOTE</em>: Downloading all files can take several hours and will occupy over 200GB!</p>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="data-collection-and-data-storage.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="do">#################################</span></span>
-<span id="cb194-2"><a href="data-collection-and-data-storage.html#cb194-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Fetch all TLC trip recrods</span></span>
-<span id="cb194-3"><a href="data-collection-and-data-storage.html#cb194-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Data source: </span></span>
-<span id="cb194-4"><a href="data-collection-and-data-storage.html#cb194-4" aria-hidden="true" tabindex="-1"></a><span class="co"># https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page</span></span>
-<span id="cb194-5"><a href="data-collection-and-data-storage.html#cb194-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Input: Monthly csv files from urls</span></span>
-<span id="cb194-6"><a href="data-collection-and-data-storage.html#cb194-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: one large csv file</span></span>
-<span id="cb194-7"><a href="data-collection-and-data-storage.html#cb194-7" aria-hidden="true" tabindex="-1"></a><span class="co"># UM, St. Gallen, January 2019</span></span>
-<span id="cb194-8"><a href="data-collection-and-data-storage.html#cb194-8" aria-hidden="true" tabindex="-1"></a><span class="do">#################################</span></span>
-<span id="cb194-9"><a href="data-collection-and-data-storage.html#cb194-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb194-10"><a href="data-collection-and-data-storage.html#cb194-10" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP -----------------</span></span>
-<span id="cb194-11"><a href="data-collection-and-data-storage.html#cb194-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb194-12"><a href="data-collection-and-data-storage.html#cb194-12" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb194-13"><a href="data-collection-and-data-storage.html#cb194-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
-<span id="cb194-14"><a href="data-collection-and-data-storage.html#cb194-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)</span>
-<span id="cb194-15"><a href="data-collection-and-data-storage.html#cb194-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr)</span>
-<span id="cb194-16"><a href="data-collection-and-data-storage.html#cb194-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb194-17"><a href="data-collection-and-data-storage.html#cb194-17" aria-hidden="true" tabindex="-1"></a><span class="co"># fix vars</span></span>
-<span id="cb194-18"><a href="data-collection-and-data-storage.html#cb194-18" aria-hidden="true" tabindex="-1"></a>BASE_URL <span class="ot">&lt;-</span> <span class="st">&quot;https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2018-01.csv&quot;</span></span>
-<span id="cb194-19"><a href="data-collection-and-data-storage.html#cb194-19" aria-hidden="true" tabindex="-1"></a>OUTPUT_PATH <span class="ot">&lt;-</span> <span class="st">&quot;data/tlc_trips.csv&quot;</span></span>
-<span id="cb194-20"><a href="data-collection-and-data-storage.html#cb194-20" aria-hidden="true" tabindex="-1"></a>START_DATE <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">&quot;2009-01-01&quot;</span>)</span>
-<span id="cb194-21"><a href="data-collection-and-data-storage.html#cb194-21" aria-hidden="true" tabindex="-1"></a>END_DATE <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">&quot;2018-06-01&quot;</span>)</span>
-<span id="cb194-22"><a href="data-collection-and-data-storage.html#cb194-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb194-23"><a href="data-collection-and-data-storage.html#cb194-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb194-24"><a href="data-collection-and-data-storage.html#cb194-24" aria-hidden="true" tabindex="-1"></a><span class="co"># BUILD URLS -----------</span></span>
-<span id="cb194-25"><a href="data-collection-and-data-storage.html#cb194-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb194-26"><a href="data-collection-and-data-storage.html#cb194-26" aria-hidden="true" tabindex="-1"></a><span class="co"># parse base url</span></span>
-<span id="cb194-27"><a href="data-collection-and-data-storage.html#cb194-27" aria-hidden="true" tabindex="-1"></a>base_url <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;2018-01.csv&quot;</span>, <span class="st">&quot;&quot;</span>, BASE_URL)</span>
-<span id="cb194-28"><a href="data-collection-and-data-storage.html#cb194-28" aria-hidden="true" tabindex="-1"></a><span class="co"># build urls</span></span>
-<span id="cb194-29"><a href="data-collection-and-data-storage.html#cb194-29" aria-hidden="true" tabindex="-1"></a>dates <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from=</span> START_DATE,</span>
-<span id="cb194-30"><a href="data-collection-and-data-storage.html#cb194-30" aria-hidden="true" tabindex="-1"></a>                   <span class="at">to =</span> END_DATE,</span>
-<span id="cb194-31"><a href="data-collection-and-data-storage.html#cb194-31" aria-hidden="true" tabindex="-1"></a>                   <span class="at">by =</span> <span class="st">&quot;month&quot;</span>)</span>
-<span id="cb194-32"><a href="data-collection-and-data-storage.html#cb194-32" aria-hidden="true" tabindex="-1"></a>year_months <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;-01$&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="fu">as.character</span>(dates))</span>
-<span id="cb194-33"><a href="data-collection-and-data-storage.html#cb194-33" aria-hidden="true" tabindex="-1"></a>data_urls <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, year_months, <span class="st">&quot;.csv&quot;</span>)</span>
-<span id="cb194-34"><a href="data-collection-and-data-storage.html#cb194-34" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb194-35"><a href="data-collection-and-data-storage.html#cb194-35" aria-hidden="true" tabindex="-1"></a><span class="co"># FETCH AND STACK CSVS ----------------</span></span>
-<span id="cb194-36"><a href="data-collection-and-data-storage.html#cb194-36" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb194-37"><a href="data-collection-and-data-storage.html#cb194-37" aria-hidden="true" tabindex="-1"></a><span class="co"># download, parse all files, write them to one csv</span></span>
-<span id="cb194-38"><a href="data-collection-and-data-storage.html#cb194-38" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (url <span class="cf">in</span> data_urls) {</span>
-<span id="cb194-39"><a href="data-collection-and-data-storage.html#cb194-39" aria-hidden="true" tabindex="-1"></a>     </span>
-<span id="cb194-40"><a href="data-collection-and-data-storage.html#cb194-40" aria-hidden="true" tabindex="-1"></a>     <span class="co"># download to temporary file</span></span>
-<span id="cb194-41"><a href="data-collection-and-data-storage.html#cb194-41" aria-hidden="true" tabindex="-1"></a>     tmpfile <span class="ot">&lt;-</span> <span class="fu">tempfile</span>()</span>
-<span id="cb194-42"><a href="data-collection-and-data-storage.html#cb194-42" aria-hidden="true" tabindex="-1"></a>     <span class="fu">download.file</span>(url, <span class="at">destfile =</span> tmpfile)</span>
-<span id="cb194-43"><a href="data-collection-and-data-storage.html#cb194-43" aria-hidden="true" tabindex="-1"></a>     </span>
-<span id="cb194-44"><a href="data-collection-and-data-storage.html#cb194-44" aria-hidden="true" tabindex="-1"></a>     <span class="co"># parse downloaded file, write to output csv, remove tempfile</span></span>
-<span id="cb194-45"><a href="data-collection-and-data-storage.html#cb194-45" aria-hidden="true" tabindex="-1"></a>     csv_parsed <span class="ot">&lt;-</span> <span class="fu">fread</span>(tmpfile)</span>
-<span id="cb194-46"><a href="data-collection-and-data-storage.html#cb194-46" aria-hidden="true" tabindex="-1"></a>     <span class="fu">fwrite</span>(csv_parsed,</span>
-<span id="cb194-47"><a href="data-collection-and-data-storage.html#cb194-47" aria-hidden="true" tabindex="-1"></a>            <span class="at">file =</span>  OUTPUT_PATH,</span>
-<span id="cb194-48"><a href="data-collection-and-data-storage.html#cb194-48" aria-hidden="true" tabindex="-1"></a>            <span class="at">append =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb194-49"><a href="data-collection-and-data-storage.html#cb194-49" aria-hidden="true" tabindex="-1"></a>     <span class="fu">unlink</span>(tmpfile)</span>
-<span id="cb194-50"><a href="data-collection-and-data-storage.html#cb194-50" aria-hidden="true" tabindex="-1"></a>     </span>
-<span id="cb194-51"><a href="data-collection-and-data-storage.html#cb194-51" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="data-collection-and-data-storage.html#cb199-1" aria-hidden="true" tabindex="-1"></a><span class="do">#################################</span></span>
+<span id="cb199-2"><a href="data-collection-and-data-storage.html#cb199-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Fetch all TLC trip recrods</span></span>
+<span id="cb199-3"><a href="data-collection-and-data-storage.html#cb199-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Data source: </span></span>
+<span id="cb199-4"><a href="data-collection-and-data-storage.html#cb199-4" aria-hidden="true" tabindex="-1"></a><span class="co"># https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page</span></span>
+<span id="cb199-5"><a href="data-collection-and-data-storage.html#cb199-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Input: Monthly csv files from urls</span></span>
+<span id="cb199-6"><a href="data-collection-and-data-storage.html#cb199-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Output: one large csv file</span></span>
+<span id="cb199-7"><a href="data-collection-and-data-storage.html#cb199-7" aria-hidden="true" tabindex="-1"></a><span class="co"># UM, St. Gallen, January 2019</span></span>
+<span id="cb199-8"><a href="data-collection-and-data-storage.html#cb199-8" aria-hidden="true" tabindex="-1"></a><span class="do">#################################</span></span>
+<span id="cb199-9"><a href="data-collection-and-data-storage.html#cb199-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb199-10"><a href="data-collection-and-data-storage.html#cb199-10" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP -----------------</span></span>
+<span id="cb199-11"><a href="data-collection-and-data-storage.html#cb199-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb199-12"><a href="data-collection-and-data-storage.html#cb199-12" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb199-13"><a href="data-collection-and-data-storage.html#cb199-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb199-14"><a href="data-collection-and-data-storage.html#cb199-14" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)</span>
+<span id="cb199-15"><a href="data-collection-and-data-storage.html#cb199-15" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr)</span>
+<span id="cb199-16"><a href="data-collection-and-data-storage.html#cb199-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb199-17"><a href="data-collection-and-data-storage.html#cb199-17" aria-hidden="true" tabindex="-1"></a><span class="co"># fix vars</span></span>
+<span id="cb199-18"><a href="data-collection-and-data-storage.html#cb199-18" aria-hidden="true" tabindex="-1"></a>BASE_URL <span class="ot">&lt;-</span> <span class="st">&quot;https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2018-01.csv&quot;</span></span>
+<span id="cb199-19"><a href="data-collection-and-data-storage.html#cb199-19" aria-hidden="true" tabindex="-1"></a>OUTPUT_PATH <span class="ot">&lt;-</span> <span class="st">&quot;data/tlc_trips.csv&quot;</span></span>
+<span id="cb199-20"><a href="data-collection-and-data-storage.html#cb199-20" aria-hidden="true" tabindex="-1"></a>START_DATE <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">&quot;2009-01-01&quot;</span>)</span>
+<span id="cb199-21"><a href="data-collection-and-data-storage.html#cb199-21" aria-hidden="true" tabindex="-1"></a>END_DATE <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">&quot;2018-06-01&quot;</span>)</span>
+<span id="cb199-22"><a href="data-collection-and-data-storage.html#cb199-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb199-23"><a href="data-collection-and-data-storage.html#cb199-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb199-24"><a href="data-collection-and-data-storage.html#cb199-24" aria-hidden="true" tabindex="-1"></a><span class="co"># BUILD URLS -----------</span></span>
+<span id="cb199-25"><a href="data-collection-and-data-storage.html#cb199-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb199-26"><a href="data-collection-and-data-storage.html#cb199-26" aria-hidden="true" tabindex="-1"></a><span class="co"># parse base url</span></span>
+<span id="cb199-27"><a href="data-collection-and-data-storage.html#cb199-27" aria-hidden="true" tabindex="-1"></a>base_url <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;2018-01.csv&quot;</span>, <span class="st">&quot;&quot;</span>, BASE_URL)</span>
+<span id="cb199-28"><a href="data-collection-and-data-storage.html#cb199-28" aria-hidden="true" tabindex="-1"></a><span class="co"># build urls</span></span>
+<span id="cb199-29"><a href="data-collection-and-data-storage.html#cb199-29" aria-hidden="true" tabindex="-1"></a>dates <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from=</span> START_DATE,</span>
+<span id="cb199-30"><a href="data-collection-and-data-storage.html#cb199-30" aria-hidden="true" tabindex="-1"></a>                   <span class="at">to =</span> END_DATE,</span>
+<span id="cb199-31"><a href="data-collection-and-data-storage.html#cb199-31" aria-hidden="true" tabindex="-1"></a>                   <span class="at">by =</span> <span class="st">&quot;month&quot;</span>)</span>
+<span id="cb199-32"><a href="data-collection-and-data-storage.html#cb199-32" aria-hidden="true" tabindex="-1"></a>year_months <span class="ot">&lt;-</span> <span class="fu">gsub</span>(<span class="st">&quot;-01$&quot;</span>, <span class="st">&quot;&quot;</span>, <span class="fu">as.character</span>(dates))</span>
+<span id="cb199-33"><a href="data-collection-and-data-storage.html#cb199-33" aria-hidden="true" tabindex="-1"></a>data_urls <span class="ot">&lt;-</span> <span class="fu">paste0</span>(base_url, year_months, <span class="st">&quot;.csv&quot;</span>)</span>
+<span id="cb199-34"><a href="data-collection-and-data-storage.html#cb199-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb199-35"><a href="data-collection-and-data-storage.html#cb199-35" aria-hidden="true" tabindex="-1"></a><span class="co"># FETCH AND STACK CSVS ----------------</span></span>
+<span id="cb199-36"><a href="data-collection-and-data-storage.html#cb199-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb199-37"><a href="data-collection-and-data-storage.html#cb199-37" aria-hidden="true" tabindex="-1"></a><span class="co"># download, parse all files, write them to one csv</span></span>
+<span id="cb199-38"><a href="data-collection-and-data-storage.html#cb199-38" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (url <span class="cf">in</span> data_urls) {</span>
+<span id="cb199-39"><a href="data-collection-and-data-storage.html#cb199-39" aria-hidden="true" tabindex="-1"></a>     </span>
+<span id="cb199-40"><a href="data-collection-and-data-storage.html#cb199-40" aria-hidden="true" tabindex="-1"></a>     <span class="co"># download to temporary file</span></span>
+<span id="cb199-41"><a href="data-collection-and-data-storage.html#cb199-41" aria-hidden="true" tabindex="-1"></a>     tmpfile <span class="ot">&lt;-</span> <span class="fu">tempfile</span>()</span>
+<span id="cb199-42"><a href="data-collection-and-data-storage.html#cb199-42" aria-hidden="true" tabindex="-1"></a>     <span class="fu">download.file</span>(url, <span class="at">destfile =</span> tmpfile)</span>
+<span id="cb199-43"><a href="data-collection-and-data-storage.html#cb199-43" aria-hidden="true" tabindex="-1"></a>     </span>
+<span id="cb199-44"><a href="data-collection-and-data-storage.html#cb199-44" aria-hidden="true" tabindex="-1"></a>     <span class="co"># parse downloaded file, write to output csv, remove tempfile</span></span>
+<span id="cb199-45"><a href="data-collection-and-data-storage.html#cb199-45" aria-hidden="true" tabindex="-1"></a>     csv_parsed <span class="ot">&lt;-</span> <span class="fu">fread</span>(tmpfile)</span>
+<span id="cb199-46"><a href="data-collection-and-data-storage.html#cb199-46" aria-hidden="true" tabindex="-1"></a>     <span class="fu">fwrite</span>(csv_parsed,</span>
+<span id="cb199-47"><a href="data-collection-and-data-storage.html#cb199-47" aria-hidden="true" tabindex="-1"></a>            <span class="at">file =</span>  OUTPUT_PATH,</span>
+<span id="cb199-48"><a href="data-collection-and-data-storage.html#cb199-48" aria-hidden="true" tabindex="-1"></a>            <span class="at">append =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb199-49"><a href="data-collection-and-data-storage.html#cb199-49" aria-hidden="true" tabindex="-1"></a>     <span class="fu">unlink</span>(tmpfile)</span>
+<span id="cb199-50"><a href="data-collection-and-data-storage.html#cb199-50" aria-hidden="true" tabindex="-1"></a>     </span>
+<span id="cb199-51"><a href="data-collection-and-data-storage.html#cb199-51" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
 </div>
 </div>
 <div id="data-import-and-memory-allocation" class="section level2" number="7.2">
@@ -426,63 +433,63 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- system.time(flights <- fread("data/flights.csv")) -->
 <!-- ``` -->
 <p>Consider the first steps of a data pipeline in R. The first part of our script to import and clean the data looks as follows.</p>
-<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="data-collection-and-data-storage.html#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="do">###########################################################</span></span>
-<span id="cb195-2"><a href="data-collection-and-data-storage.html#cb195-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Big Data Statistics: Flights data import and preparation</span></span>
-<span id="cb195-3"><a href="data-collection-and-data-storage.html#cb195-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
-<span id="cb195-4"><a href="data-collection-and-data-storage.html#cb195-4" aria-hidden="true" tabindex="-1"></a><span class="co"># U. Matter, January 2019</span></span>
-<span id="cb195-5"><a href="data-collection-and-data-storage.html#cb195-5" aria-hidden="true" tabindex="-1"></a><span class="do">###########################################################</span></span>
-<span id="cb195-6"><a href="data-collection-and-data-storage.html#cb195-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb195-7"><a href="data-collection-and-data-storage.html#cb195-7" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP -----------------</span></span>
-<span id="cb195-8"><a href="data-collection-and-data-storage.html#cb195-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb195-9"><a href="data-collection-and-data-storage.html#cb195-9" aria-hidden="true" tabindex="-1"></a><span class="co"># fix variables</span></span>
-<span id="cb195-10"><a href="data-collection-and-data-storage.html#cb195-10" aria-hidden="true" tabindex="-1"></a>DATA_PATH <span class="ot">&lt;-</span> <span class="st">&quot;materials/data/flights.csv&quot;</span></span>
-<span id="cb195-11"><a href="data-collection-and-data-storage.html#cb195-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb195-12"><a href="data-collection-and-data-storage.html#cb195-12" aria-hidden="true" tabindex="-1"></a><span class="co"># DATA IMPORT ----------------</span></span>
-<span id="cb195-13"><a href="data-collection-and-data-storage.html#cb195-13" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(DATA_PATH)</span>
-<span id="cb195-14"><a href="data-collection-and-data-storage.html#cb195-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb195-15"><a href="data-collection-and-data-storage.html#cb195-15" aria-hidden="true" tabindex="-1"></a><span class="co"># DATA PREPARATION --------</span></span>
-<span id="cb195-16"><a href="data-collection-and-data-storage.html#cb195-16" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> flights[,<span class="sc">-</span><span class="dv">1</span><span class="sc">:-</span><span class="dv">3</span>]</span></code></pre></div>
-<p>When running this script, we notice that some of the steps need a noticable amount of time to process. Moreover, while none of these steps obviously involves a lot of computation (such as a matrix inversion or numerical optimization), it quite likely involves memory allocation. We first read data into RAM (allocated to R by our operating system). It turns out that there are different ways to allocate RAM when reading data from a CSV file. Depending on the amount of data to be read in, one or the other approach might be faster. We first investigate the RAM allocation in R with <code>mem_change()</code> and <code>mem_used()</code>.</p>
-<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="data-collection-and-data-storage.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP -----------------</span></span>
-<span id="cb196-2"><a href="data-collection-and-data-storage.html#cb196-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb196-3"><a href="data-collection-and-data-storage.html#cb196-3" aria-hidden="true" tabindex="-1"></a><span class="co"># fix variables</span></span>
-<span id="cb196-4"><a href="data-collection-and-data-storage.html#cb196-4" aria-hidden="true" tabindex="-1"></a>DATA_PATH <span class="ot">&lt;-</span> <span class="st">&quot;data/flights.csv&quot;</span></span>
-<span id="cb196-5"><a href="data-collection-and-data-storage.html#cb196-5" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb196-6"><a href="data-collection-and-data-storage.html#cb196-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pryr) </span>
-<span id="cb196-7"><a href="data-collection-and-data-storage.html#cb196-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb196-8"><a href="data-collection-and-data-storage.html#cb196-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb196-9"><a href="data-collection-and-data-storage.html#cb196-9" aria-hidden="true" tabindex="-1"></a><span class="co"># check how much memory is used by R (overall)</span></span>
-<span id="cb196-10"><a href="data-collection-and-data-storage.html#cb196-10" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_used</span>()</span></code></pre></div>
-<pre><code>## 1.68 GB</code></pre>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="data-collection-and-data-storage.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check the change in memory due to each step</span></span>
-<span id="cb198-2"><a href="data-collection-and-data-storage.html#cb198-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb198-3"><a href="data-collection-and-data-storage.html#cb198-3" aria-hidden="true" tabindex="-1"></a><span class="co"># DATA IMPORT ----------------</span></span>
-<span id="cb198-4"><a href="data-collection-and-data-storage.html#cb198-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_change</span>(flights <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(DATA_PATH))</span></code></pre></div>
-<pre><code>## 33.2 MB</code></pre>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="data-collection-and-data-storage.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DATA PREPARATION --------</span></span>
-<span id="cb200-2"><a href="data-collection-and-data-storage.html#cb200-2" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> flights[,<span class="sc">-</span><span class="dv">1</span><span class="sc">:-</span><span class="dv">3</span>]</span>
-<span id="cb200-3"><a href="data-collection-and-data-storage.html#cb200-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb200-4"><a href="data-collection-and-data-storage.html#cb200-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check how much memory is used by R now</span></span>
-<span id="cb200-5"><a href="data-collection-and-data-storage.html#cb200-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_used</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="data-collection-and-data-storage.html#cb200-1" aria-hidden="true" tabindex="-1"></a><span class="do">###########################################################</span></span>
+<span id="cb200-2"><a href="data-collection-and-data-storage.html#cb200-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Big Data Statistics: Flights data import and preparation</span></span>
+<span id="cb200-3"><a href="data-collection-and-data-storage.html#cb200-3" aria-hidden="true" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb200-4"><a href="data-collection-and-data-storage.html#cb200-4" aria-hidden="true" tabindex="-1"></a><span class="co"># U. Matter, January 2019</span></span>
+<span id="cb200-5"><a href="data-collection-and-data-storage.html#cb200-5" aria-hidden="true" tabindex="-1"></a><span class="do">###########################################################</span></span>
+<span id="cb200-6"><a href="data-collection-and-data-storage.html#cb200-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb200-7"><a href="data-collection-and-data-storage.html#cb200-7" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP -----------------</span></span>
+<span id="cb200-8"><a href="data-collection-and-data-storage.html#cb200-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb200-9"><a href="data-collection-and-data-storage.html#cb200-9" aria-hidden="true" tabindex="-1"></a><span class="co"># fix variables</span></span>
+<span id="cb200-10"><a href="data-collection-and-data-storage.html#cb200-10" aria-hidden="true" tabindex="-1"></a>DATA_PATH <span class="ot">&lt;-</span> <span class="st">&quot;data/flights.csv&quot;</span></span>
+<span id="cb200-11"><a href="data-collection-and-data-storage.html#cb200-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb200-12"><a href="data-collection-and-data-storage.html#cb200-12" aria-hidden="true" tabindex="-1"></a><span class="co"># DATA IMPORT ----------------</span></span>
+<span id="cb200-13"><a href="data-collection-and-data-storage.html#cb200-13" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(DATA_PATH)</span>
+<span id="cb200-14"><a href="data-collection-and-data-storage.html#cb200-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb200-15"><a href="data-collection-and-data-storage.html#cb200-15" aria-hidden="true" tabindex="-1"></a><span class="co"># DATA PREPARATION --------</span></span>
+<span id="cb200-16"><a href="data-collection-and-data-storage.html#cb200-16" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> flights[,<span class="sc">-</span><span class="dv">1</span><span class="sc">:-</span><span class="dv">3</span>]</span></code></pre></div>
+<p>When running this script, we notice that some of the steps need a noticeable amount of time to process. Moreover, while none of these steps obviously involves a lot of computation (such as a matrix inversion or numerical optimization), it quite likely involves memory allocation. We first read data into RAM (allocated to R by our operating system). It turns out that there are different ways to allocate RAM when reading data from a CSV file. Depending on the amount of data to be read in, one or the other approach might be faster. We first investigate the RAM allocation in R with <code>mem_change()</code> and <code>mem_used()</code>.</p>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="data-collection-and-data-storage.html#cb201-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP -----------------</span></span>
+<span id="cb201-2"><a href="data-collection-and-data-storage.html#cb201-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb201-3"><a href="data-collection-and-data-storage.html#cb201-3" aria-hidden="true" tabindex="-1"></a><span class="co"># fix variables</span></span>
+<span id="cb201-4"><a href="data-collection-and-data-storage.html#cb201-4" aria-hidden="true" tabindex="-1"></a>DATA_PATH <span class="ot">&lt;-</span> <span class="st">&quot;data/flights.csv&quot;</span></span>
+<span id="cb201-5"><a href="data-collection-and-data-storage.html#cb201-5" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb201-6"><a href="data-collection-and-data-storage.html#cb201-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pryr) </span>
+<span id="cb201-7"><a href="data-collection-and-data-storage.html#cb201-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb201-8"><a href="data-collection-and-data-storage.html#cb201-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb201-9"><a href="data-collection-and-data-storage.html#cb201-9" aria-hidden="true" tabindex="-1"></a><span class="co"># check how much memory is used by R (overall)</span></span>
+<span id="cb201-10"><a href="data-collection-and-data-storage.html#cb201-10" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_used</span>()</span></code></pre></div>
+<pre><code>## 1.71 GB</code></pre>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="data-collection-and-data-storage.html#cb203-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check the change in memory due to each step</span></span>
+<span id="cb203-2"><a href="data-collection-and-data-storage.html#cb203-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb203-3"><a href="data-collection-and-data-storage.html#cb203-3" aria-hidden="true" tabindex="-1"></a><span class="co"># DATA IMPORT ----------------</span></span>
+<span id="cb203-4"><a href="data-collection-and-data-storage.html#cb203-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_change</span>(flights <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(DATA_PATH))</span></code></pre></div>
+<pre><code>## 4.04 MB</code></pre>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="data-collection-and-data-storage.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DATA PREPARATION --------</span></span>
+<span id="cb205-2"><a href="data-collection-and-data-storage.html#cb205-2" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> flights[,<span class="sc">-</span><span class="dv">1</span><span class="sc">:-</span><span class="dv">3</span>]</span>
+<span id="cb205-3"><a href="data-collection-and-data-storage.html#cb205-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb205-4"><a href="data-collection-and-data-storage.html#cb205-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check how much memory is used by R now</span></span>
+<span id="cb205-5"><a href="data-collection-and-data-storage.html#cb205-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_used</span>()</span></code></pre></div>
 <pre><code>## 1.71 GB</code></pre>
 <p>The last result is kind of interesting. The object <code>flights</code> must have been larger right after importing it than at the end of the script. We have thrown out several variables, after all. Why does R still use that much memory? R does by default not ‘clean up’ memory unless it is really necessary (meaning no more memory is available). In this case, R has still way more memory available from the operating system, thus there is no need to ‘collect the garbage’ yet. However, we can force R to collect the garbage on the spot with <code>gc()</code>. This can be helpful to better keep track of the memory needed by an analytics script.</p>
-<div class="sourceCode" id="cb202"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb202-1"><a href="data-collection-and-data-storage.html#cb202-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="data-collection-and-data-storage.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span></code></pre></div>
 <pre><code>##             used   (Mb) gc trigger   (Mb)  max used
-## Ncells   6319587  337.6   10539105  562.9  10539105
-## Vcells 169237750 1291.2  421349634 3214.7 292481614
+## Ncells   6320667  337.6    9447368  504.6   9447368
+## Vcells 169263453 1291.4  450070326 3433.8 312426190
 ##          (Mb)
-## Ncells  562.9
-## Vcells 2231.5</code></pre>
+## Ncells  504.6
+## Vcells 2383.7</code></pre>
 <p>Now, let’s see how we can improve the performance of this script with regard to memory allocation. Most memory is allocated when importing the file. Obviously, any improvement of the script must still result in importing all the data. However, there are different ways to read data into RAM. <code>read.csv()</code> reads all lines of a csv file consecutively. In contrast, <code>data.table::fread()</code> first ‘maps’ the data file into memory and only then actually reads it in line by line. This involves an additional initial step, but the larger the file, the less relevant is this first step with regard to the total time needed to read all the data into memory. By switching on the <code>verbose</code> option, we can actually see what <code>fread</code> is doing.</p>
-<div class="sourceCode" id="cb204"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb204-1"><a href="data-collection-and-data-storage.html#cb204-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb204-2"><a href="data-collection-and-data-storage.html#cb204-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="data-collection-and-data-storage.html#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb209-2"><a href="data-collection-and-data-storage.html#cb209-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;data.table&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:pryr&#39;:
 ## 
 ##     address</code></pre>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="data-collection-and-data-storage.html#cb207-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DATA IMPORT ----------------</span></span>
-<span id="cb207-2"><a href="data-collection-and-data-storage.html#cb207-2" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> <span class="fu">fread</span>(DATA_PATH, <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="data-collection-and-data-storage.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DATA IMPORT ----------------</span></span>
+<span id="cb212-2"><a href="data-collection-and-data-storage.html#cb212-2" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> <span class="fu">fread</span>(DATA_PATH, <span class="at">verbose =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>##   OpenMP version (_OPENMP)       201511
 ##   omp_get_num_procs()            12
 ##   R_DATATABLE_NUM_PROCS_PERCENT  unset (default 50)
@@ -535,7 +542,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   Allocating 19 column slots (19 - 0 dropped) with 370043 rows
 ## [11] Read the data
 ##   jumps=[0..30), chunk_size=1032016, total_size=30960501
-## Read 336776 rows x 19 columns from 29.53MB (30960660 bytes) file in 00:00.057 wall clock time
+## Read 336776 rows x 19 columns from 29.53MB (30960660 bytes) file in 00:00.053 wall clock time
 ## [12] Finalizing the datatable
 ##   Type counts:
 ##         14 : int32     &#39;5&#39;
@@ -543,109 +550,104 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##          4 : string    &#39;C&#39;
 ## =============================
 ##    0.000s (  0%) Memory map 0.029GB file
-##    0.003s (  5%) sep=&#39;,&#39; ncol=19 and header detection
+##    0.003s (  6%) sep=&#39;,&#39; ncol=19 and header detection
 ##    0.000s (  0%) Column type detection using 10048 sample rows
-##    0.001s (  3%) Allocation of 370043 rows x 19 cols (0.033GB) of which 336776 ( 91%) rows used
-##    0.053s ( 92%) Reading 30 chunks (0 swept) of 0.984MB (each chunk 11225 rows) using 6 threads
-##    +    0.015s ( 26%) Parse to row-major thread buffers (grown 0 times)
-##    +    0.025s ( 45%) Transpose
-##    +    0.013s ( 22%) Waiting
+##    0.001s (  2%) Allocation of 370043 rows x 19 cols (0.033GB) of which 336776 ( 91%) rows used
+##    0.049s ( 92%) Reading 30 chunks (0 swept) of 0.984MB (each chunk 11225 rows) using 6 threads
+##    +    0.013s ( 25%) Parse to row-major thread buffers (grown 0 times)
+##    +    0.023s ( 43%) Transpose
+##    +    0.013s ( 24%) Waiting
 ##    0.000s (  0%) Rereading 0 columns due to out-of-sample type exceptions
-##    0.057s        Total</code></pre>
+##    0.053s        Total</code></pre>
 <p>Let’s put it all together and look at the memory changes and usage. For a fair comparison, we first have to delete <code>flights</code> and collect the garbage with <code>gc()</code>.</p>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="data-collection-and-data-storage.html#cb209-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP -----------------</span></span>
-<span id="cb209-2"><a href="data-collection-and-data-storage.html#cb209-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb209-3"><a href="data-collection-and-data-storage.html#cb209-3" aria-hidden="true" tabindex="-1"></a><span class="co"># fix variables</span></span>
-<span id="cb209-4"><a href="data-collection-and-data-storage.html#cb209-4" aria-hidden="true" tabindex="-1"></a>DATA_PATH <span class="ot">&lt;-</span> <span class="st">&quot;data/flights.csv&quot;</span></span>
-<span id="cb209-5"><a href="data-collection-and-data-storage.html#cb209-5" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb209-6"><a href="data-collection-and-data-storage.html#cb209-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pryr) </span>
-<span id="cb209-7"><a href="data-collection-and-data-storage.html#cb209-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
-<span id="cb209-8"><a href="data-collection-and-data-storage.html#cb209-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb209-9"><a href="data-collection-and-data-storage.html#cb209-9" aria-hidden="true" tabindex="-1"></a><span class="co"># housekeeping</span></span>
-<span id="cb209-10"><a href="data-collection-and-data-storage.html#cb209-10" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb209-11"><a href="data-collection-and-data-storage.html#cb209-11" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb214"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb214-1"><a href="data-collection-and-data-storage.html#cb214-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP -----------------</span></span>
+<span id="cb214-2"><a href="data-collection-and-data-storage.html#cb214-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb214-3"><a href="data-collection-and-data-storage.html#cb214-3" aria-hidden="true" tabindex="-1"></a><span class="co"># fix variables</span></span>
+<span id="cb214-4"><a href="data-collection-and-data-storage.html#cb214-4" aria-hidden="true" tabindex="-1"></a>DATA_PATH <span class="ot">&lt;-</span> <span class="st">&quot;data/flights.csv&quot;</span></span>
+<span id="cb214-5"><a href="data-collection-and-data-storage.html#cb214-5" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb214-6"><a href="data-collection-and-data-storage.html#cb214-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pryr) </span>
+<span id="cb214-7"><a href="data-collection-and-data-storage.html#cb214-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb214-8"><a href="data-collection-and-data-storage.html#cb214-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb214-9"><a href="data-collection-and-data-storage.html#cb214-9" aria-hidden="true" tabindex="-1"></a><span class="co"># housekeeping</span></span>
+<span id="cb214-10"><a href="data-collection-and-data-storage.html#cb214-10" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb214-11"><a href="data-collection-and-data-storage.html#cb214-11" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span></code></pre></div>
 <pre><code>##             used   (Mb) gc trigger   (Mb)  max used
-## Ncells   6377410  340.6   10539105  562.9  10539105
-## Vcells 166222935 1268.2  421349634 3214.7 292481614
+## Ncells   6378490  340.7    9447368  504.6   9447368
+## Vcells 166248638 1268.4  450070326 3433.8 312426190
 ##          (Mb)
-## Ncells  562.9
-## Vcells 2231.5</code></pre>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="data-collection-and-data-storage.html#cb211-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check the change in memory due to each step</span></span>
-<span id="cb211-2"><a href="data-collection-and-data-storage.html#cb211-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb211-3"><a href="data-collection-and-data-storage.html#cb211-3" aria-hidden="true" tabindex="-1"></a><span class="co"># DATA IMPORT ----------------</span></span>
-<span id="cb211-4"><a href="data-collection-and-data-storage.html#cb211-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_change</span>(flights <span class="ot">&lt;-</span> <span class="fu">fread</span>(DATA_PATH))</span></code></pre></div>
+## Ncells  504.6
+## Vcells 2383.7</code></pre>
+<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="data-collection-and-data-storage.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check the change in memory due to each step</span></span>
+<span id="cb216-2"><a href="data-collection-and-data-storage.html#cb216-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb216-3"><a href="data-collection-and-data-storage.html#cb216-3" aria-hidden="true" tabindex="-1"></a><span class="co"># DATA IMPORT ----------------</span></span>
+<span id="cb216-4"><a href="data-collection-and-data-storage.html#cb216-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_change</span>(flights <span class="ot">&lt;-</span> <span class="fu">fread</span>(DATA_PATH))</span></code></pre></div>
 <pre><code>## 35.8 MB</code></pre>
 </div>
-<div id="big-data-storage" class="section level2" number="7.3">
-<h2><span class="header-section-number">7.3</span> (Big) Data Storage</h2>
+<div id="efficient-local-data-storage" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> Efficient local data storage</h2>
 <!-- So far, we have primarily been concerned with situations in which a data set is too large to fit into RAM, making an analysis of these data either impossible or very slow (inefficient) when using standard tools. Thus, we have explored concepts and tools that help us use the available RAM (and virtual memory) most efficiently for data analysis tasks. -->
-<p>In this subsection, we are concerned with <span class="math inline">\((I)\)</span> how we can store large data sets permanently on a mass storage device in an efficient way (here, efficient can be understood as ‘not taking up too much space’) and <span class="math inline">\((II)\)</span> how we can load (parts of) this data set in an efficient way (here, efficient~fast) for analysis.</p>
+<p>In this section, we are concerned with <span class="math inline">\((I)\)</span> how we can store large data sets permanently on a mass storage device in an efficient way (here, efficient can be understood as ‘not taking up too much space’) and <span class="math inline">\((II)\)</span> how we can load (parts of) this data set in an efficient way (here, efficient~fast) for analysis.</p>
 <p>We look at this problem in two situations:</p>
 <ul>
 <li>The data needs to be stored locally (e.g., on the hard disk of our laptop).</li>
 <li>The data can be stored on a server ‘in the cloud.’</li>
 </ul>
 <p>Various tools have been developed over the last few years to improve the efficiency of storing and accessing large amounts of data (see <span class="citation"><a href="references.html#ref-walkowiak_2016" role="doc-biblioref">Walkowiak</a> (<a href="references.html#ref-walkowiak_2016" role="doc-biblioref">2016</a>)</span>, chapters 5 and 6 for an overview). Here, we focus on the basic concept of Relational Database Systems (RDBMS) and a well-known tool based on this concept, the Structured Query Language (SQL; more specifically, SQLite)</p>
-</div>
-<div id="rdbms-basics" class="section level2" number="7.4">
-<h2><span class="header-section-number">7.4</span> RDBMS basics</h2>
+<div id="rdbms-basics" class="section level3" number="7.3.1">
+<h3><span class="header-section-number">7.3.1</span> RDBMS basics</h3>
 <p>RDBMSs have two key features that tackle the two efficiency concerns mentioned above:</p>
 <ul>
 <li><p>The <em>relational data model</em>: The overall data set is split by columns (covariates) into tables in order to reduce the storage of redundant variable-value repetitions. The resulting database tables are then linked via key-variables (unique identifiers). Thus (simply put), each type of entity on which observations exist resides in its own database table. Within this table, each observation has it’s unique id. Keeping the data in such a structure is very efficient in terms of storage space used.</p></li>
 <li><p><em>Indexing</em>: The key-columns of the database tables are indexed, meaning (in simple terms) ordered on disk. Indexing a table takes time but it has to be performed only once (unless the content of the table changes). The resulting index is then stored on disk as part of the database. These indices substantially reduce the number of disk accesses required to query/find specific observations. Thus, they make the loading of specific parts of the data for analysis much more efficient.</p></li>
 </ul>
 <p>The loading/querying of data from an RDBMS typically involves the selection of specific observations (rows) and covariates (columns) from different tables. Due to the indexing, observations are selected efficiently, and the defined relations between tables (via keys) facilitate the joining of columns to a new table (the queried data).</p>
+<!-- ### Row-based vs column-based databases -->
 </div>
-<div id="row-based-vs-column-based-databases" class="section level2" number="7.5">
-<h2><span class="header-section-number">7.5</span> Row-based vs column-based databases</h2>
-</div>
-<div id="getting-started-with-rsqlite" class="section level2" number="7.6">
-<h2><span class="header-section-number">7.6</span> Getting started with RSQLite</h2>
-<p>The R-package <code>RSQLite</code> embeds SQLite in R. That is, it provides functions that allow us to us SQLite directly from within R.</p>
-<div id="warm-up-in-sqlite-indices-and-joins" class="section level3" number="7.6.1">
-<h3><span class="header-section-number">7.6.1</span> Warm up in SQLite: indices and joins</h3>
-<p>So far we have only had a look at the basic functionality of SQLite. But we have not really looked at the key features of an RDBMS (indexing and relations between tables).</p>
-<p>We set up a new database called <code>air.sqlite</code> and import the csv-file <code>flights.csv</code> (used in previous lectures) as a first table.</p>
-<div class="sourceCode" id="cb213"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb213-1"><a href="data-collection-and-data-storage.html#cb213-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create database and run sqlite</span></span>
-<span id="cb213-2"><a href="data-collection-and-data-storage.html#cb213-2" aria-hidden="true" tabindex="-1"></a><span class="ex">sqlite3</span> air.sqlite</span></code></pre></div>
-<div class="sourceCode" id="cb214"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb214-1"><a href="data-collection-and-data-storage.html#cb214-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- import csvs</span></span>
-<span id="cb214-2"><a href="data-collection-and-data-storage.html#cb214-2" aria-hidden="true" tabindex="-1"></a>.<span class="kw">mode</span> csv</span>
-<span id="cb214-3"><a href="data-collection-and-data-storage.html#cb214-3" aria-hidden="true" tabindex="-1"></a>.import flights.csv flights</span></code></pre></div>
-<p>Again, we can check if everything worked out well with <code>.tables</code> and <code>.schema</code>.</p>
-<div class="sourceCode" id="cb215"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb215-1"><a href="data-collection-and-data-storage.html#cb215-1" aria-hidden="true" tabindex="-1"></a>.<span class="kw">tables</span></span>
-<span id="cb215-2"><a href="data-collection-and-data-storage.html#cb215-2" aria-hidden="true" tabindex="-1"></a>.<span class="kw">schema</span> flights</span></code></pre></div>
+<div id="efficient-data-access-indices-and-joins-in-sqlite" class="section level3" number="7.3.2">
+<h3><span class="header-section-number">7.3.2</span> Efficient data access: indices and joins in SQLite</h3>
+<p>So far we have only had a look at the very basics of writing SQL code. Let us now further explore SQLite as an easy-to-use and easy-to-set-up relational database solution. In a second step we then look at how to connect to a local SQLite database from within R. First, we switch to the Terminal tab in RStudio, set up a new database called <code>air.sqlite</code>, and import the csv-file <code>flights.csv</code> (used in previous chapters) as a first table.</p>
+<div class="sourceCode" id="cb218"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb218-1"><a href="data-collection-and-data-storage.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="co"># switch to data directory</span></span>
+<span id="cb218-2"><a href="data-collection-and-data-storage.html#cb218-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> data</span>
+<span id="cb218-3"><a href="data-collection-and-data-storage.html#cb218-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create database and run sqlite</span></span>
+<span id="cb218-4"><a href="data-collection-and-data-storage.html#cb218-4" aria-hidden="true" tabindex="-1"></a><span class="ex">sqlite3</span> air.sqlite</span></code></pre></div>
+<div class="sourceCode" id="cb219"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb219-1"><a href="data-collection-and-data-storage.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- import csvs</span></span>
+<span id="cb219-2"><a href="data-collection-and-data-storage.html#cb219-2" aria-hidden="true" tabindex="-1"></a>.<span class="kw">mode</span> csv</span>
+<span id="cb219-3"><a href="data-collection-and-data-storage.html#cb219-3" aria-hidden="true" tabindex="-1"></a>.import flights.csv flights</span></code></pre></div>
+<p>We check if everything worked out well via the <code>.tables</code> and <code>.schema</code> commands.</p>
+<div class="sourceCode" id="cb220"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb220-1"><a href="data-collection-and-data-storage.html#cb220-1" aria-hidden="true" tabindex="-1"></a>.<span class="kw">tables</span></span>
+<span id="cb220-2"><a href="data-collection-and-data-storage.html#cb220-2" aria-hidden="true" tabindex="-1"></a>.<span class="kw">schema</span> flights</span></code></pre></div>
 <p>In <code>flights</code>, each row describes a flight (the day it took place, its origin, its destination etc.). It contains a covariate <code>carrier</code> containing the unique ID of the respective airline/carrier carrying out the flight as well as the covariates <code>origin</code> and <code>dest</code>. The latter two variables contain the unique IATA-codes of the airports from which the flights departed and where they arrived, respectively. In <code>flights</code> we thus have observations at the level of individual flights.</p>
-<p>Now we extend our database in a meaningful way, following the relational data model idea. From the [ASA’s website], we download two additional csv files containing data that relate to the flights table:</p>
+<p>Now we extend our database in a meaningful way, following the relational data model idea. First we download two additional csv files containing data that relate to the flights table:</p>
 <ul>
 <li><a href="http://stat-computing.org/dataexpo/2009/airports.csv"><code>airports.csv</code></a>: Describes the locations of US Airports (relates to <code>origin</code> and <code>dest</code>).</li>
 <li><a href="http://stat-computing.org/dataexpo/2009/carriers.csv"><code>carriers.csv</code></a>: A listing of carrier codes with full names (relates to the <code>carrier</code>-column in <code>flights</code>.</li>
 </ul>
 <p>In this code example, the two csvs have already been downloaded to the <code>materials/data</code>-folder.</p>
-<div class="sourceCode" id="cb216"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb216-1"><a href="data-collection-and-data-storage.html#cb216-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- import airport data</span></span>
-<span id="cb216-2"><a href="data-collection-and-data-storage.html#cb216-2" aria-hidden="true" tabindex="-1"></a>.<span class="kw">mode</span> csv</span>
-<span id="cb216-3"><a href="data-collection-and-data-storage.html#cb216-3" aria-hidden="true" tabindex="-1"></a>.import airports.csv airports</span>
-<span id="cb216-4"><a href="data-collection-and-data-storage.html#cb216-4" aria-hidden="true" tabindex="-1"></a>.import carriers.csv carriers</span>
-<span id="cb216-5"><a href="data-collection-and-data-storage.html#cb216-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb216-6"><a href="data-collection-and-data-storage.html#cb216-6" aria-hidden="true" tabindex="-1"></a><span class="co">-- inspect the result</span></span>
-<span id="cb216-7"><a href="data-collection-and-data-storage.html#cb216-7" aria-hidden="true" tabindex="-1"></a>.<span class="kw">tables</span></span>
-<span id="cb216-8"><a href="data-collection-and-data-storage.html#cb216-8" aria-hidden="true" tabindex="-1"></a>.<span class="kw">schema</span> airports</span>
-<span id="cb216-9"><a href="data-collection-and-data-storage.html#cb216-9" aria-hidden="true" tabindex="-1"></a>.<span class="kw">schema</span> carriers</span></code></pre></div>
+<div class="sourceCode" id="cb221"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb221-1"><a href="data-collection-and-data-storage.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- import airport data</span></span>
+<span id="cb221-2"><a href="data-collection-and-data-storage.html#cb221-2" aria-hidden="true" tabindex="-1"></a>.<span class="kw">mode</span> csv</span>
+<span id="cb221-3"><a href="data-collection-and-data-storage.html#cb221-3" aria-hidden="true" tabindex="-1"></a>.import airports.csv airports</span>
+<span id="cb221-4"><a href="data-collection-and-data-storage.html#cb221-4" aria-hidden="true" tabindex="-1"></a>.import carriers.csv carriers</span>
+<span id="cb221-5"><a href="data-collection-and-data-storage.html#cb221-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb221-6"><a href="data-collection-and-data-storage.html#cb221-6" aria-hidden="true" tabindex="-1"></a><span class="co">-- inspect the result</span></span>
+<span id="cb221-7"><a href="data-collection-and-data-storage.html#cb221-7" aria-hidden="true" tabindex="-1"></a>.<span class="kw">tables</span></span>
+<span id="cb221-8"><a href="data-collection-and-data-storage.html#cb221-8" aria-hidden="true" tabindex="-1"></a>.<span class="kw">schema</span> airports</span>
+<span id="cb221-9"><a href="data-collection-and-data-storage.html#cb221-9" aria-hidden="true" tabindex="-1"></a>.<span class="kw">schema</span> carriers</span></code></pre></div>
 <p>Now we can run our first query involving the relation between tables. The aim of the exercise is to query flights data (information on departure delays per flight number and date; from the <code>flights</code>-table) for all <code>United Air Lines Inc.</code>-flights (information from the <code>carriers</code> table ) departing from <code>Newark Intl</code> airport (information from the <code>airports</code>-table). In addition, we want the resulting table ordered by flight number. For the sake of the exercise, we only show the first 10 results of this query (<code>LIMIT 10</code>).</p>
-<div class="sourceCode" id="cb217"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb217-1"><a href="data-collection-and-data-storage.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> </span>
-<span id="cb217-2"><a href="data-collection-and-data-storage.html#cb217-2" aria-hidden="true" tabindex="-1"></a><span class="dt">year</span>,</span>
-<span id="cb217-3"><a href="data-collection-and-data-storage.html#cb217-3" aria-hidden="true" tabindex="-1"></a><span class="dt">month</span>, </span>
-<span id="cb217-4"><a href="data-collection-and-data-storage.html#cb217-4" aria-hidden="true" tabindex="-1"></a><span class="dt">day</span>,</span>
-<span id="cb217-5"><a href="data-collection-and-data-storage.html#cb217-5" aria-hidden="true" tabindex="-1"></a>dep_delay,</span>
-<span id="cb217-6"><a href="data-collection-and-data-storage.html#cb217-6" aria-hidden="true" tabindex="-1"></a>flight</span>
-<span id="cb217-7"><a href="data-collection-and-data-storage.html#cb217-7" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> (flights <span class="kw">INNER</span> <span class="kw">JOIN</span> airports <span class="kw">ON</span> flights.origin<span class="op">=</span>airports.iata) </span>
-<span id="cb217-8"><a href="data-collection-and-data-storage.html#cb217-8" aria-hidden="true" tabindex="-1"></a><span class="kw">INNER</span> <span class="kw">JOIN</span> carriers <span class="kw">ON</span> flights.carrier <span class="op">=</span> carriers.Code</span>
-<span id="cb217-9"><a href="data-collection-and-data-storage.html#cb217-9" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> carriers.Description <span class="op">=</span> <span class="st">&#39;United Air Lines Inc.&#39;</span></span>
-<span id="cb217-10"><a href="data-collection-and-data-storage.html#cb217-10" aria-hidden="true" tabindex="-1"></a><span class="kw">AND</span> airports.airport <span class="op">=</span> <span class="st">&#39;Newark Intl&#39;</span></span>
-<span id="cb217-11"><a href="data-collection-and-data-storage.html#cb217-11" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> flight</span>
-<span id="cb217-12"><a href="data-collection-and-data-storage.html#cb217-12" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> <span class="dv">10</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb222-1"><a href="data-collection-and-data-storage.html#cb222-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> </span>
+<span id="cb222-2"><a href="data-collection-and-data-storage.html#cb222-2" aria-hidden="true" tabindex="-1"></a><span class="dt">year</span>,</span>
+<span id="cb222-3"><a href="data-collection-and-data-storage.html#cb222-3" aria-hidden="true" tabindex="-1"></a><span class="dt">month</span>, </span>
+<span id="cb222-4"><a href="data-collection-and-data-storage.html#cb222-4" aria-hidden="true" tabindex="-1"></a><span class="dt">day</span>,</span>
+<span id="cb222-5"><a href="data-collection-and-data-storage.html#cb222-5" aria-hidden="true" tabindex="-1"></a>dep_delay,</span>
+<span id="cb222-6"><a href="data-collection-and-data-storage.html#cb222-6" aria-hidden="true" tabindex="-1"></a>flight</span>
+<span id="cb222-7"><a href="data-collection-and-data-storage.html#cb222-7" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> (flights <span class="kw">INNER</span> <span class="kw">JOIN</span> airports <span class="kw">ON</span> flights.origin<span class="op">=</span>airports.iata) </span>
+<span id="cb222-8"><a href="data-collection-and-data-storage.html#cb222-8" aria-hidden="true" tabindex="-1"></a><span class="kw">INNER</span> <span class="kw">JOIN</span> carriers <span class="kw">ON</span> flights.carrier <span class="op">=</span> carriers.Code</span>
+<span id="cb222-9"><a href="data-collection-and-data-storage.html#cb222-9" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> carriers.Description <span class="op">=</span> <span class="st">&#39;United Air Lines Inc.&#39;</span></span>
+<span id="cb222-10"><a href="data-collection-and-data-storage.html#cb222-10" aria-hidden="true" tabindex="-1"></a><span class="kw">AND</span> airports.airport <span class="op">=</span> <span class="st">&#39;Newark Intl&#39;</span></span>
+<span id="cb222-11"><a href="data-collection-and-data-storage.html#cb222-11" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> flight</span>
+<span id="cb222-12"><a href="data-collection-and-data-storage.html#cb222-12" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> <span class="dv">10</span>;</span></code></pre></div>
 <div class="knitsql-table">
 <table>
-<caption><span id="tab:unnamed-chunk-118">Table 7.1: </span>Displaying records 1 - 10</caption>
+<caption><span id="tab:unnamed-chunk-122">Table 7.1: </span>Displaying records 1 - 10</caption>
 <thead>
 <tr class="header">
 <th align="right">year</th>
@@ -729,27 +731,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 </div>
-<p>Note that this query has been executed without indexing any of the tables first. Thus SQLite could not take any ‘shortcuts’ when matching the ID columns in order to join the tables for the query output. That is, SQLite had to scan the entire columns to find the matches. Now we index the respective id columns and re-run the query</p>
-<div class="sourceCode" id="cb218"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb218-1"><a href="data-collection-and-data-storage.html#cb218-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">INDEX</span> iata_airports <span class="kw">ON</span> airports (iata);</span>
-<span id="cb218-2"><a href="data-collection-and-data-storage.html#cb218-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">INDEX</span> origin_flights <span class="kw">ON</span> flights (origin);</span>
-<span id="cb218-3"><a href="data-collection-and-data-storage.html#cb218-3" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">INDEX</span> carrier_flights <span class="kw">ON</span> flights (carrier);</span>
-<span id="cb218-4"><a href="data-collection-and-data-storage.html#cb218-4" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">INDEX</span> code_carriers <span class="kw">ON</span> carriers (code);</span></code></pre></div>
-<p>Now we can re-run the query from above. Note that SQLite optimizes the efficiency of the query without our explicit instructions. If there are indices it can use to speed up the query, it will do so.</p>
-<div class="sourceCode" id="cb219"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb219-1"><a href="data-collection-and-data-storage.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> </span>
-<span id="cb219-2"><a href="data-collection-and-data-storage.html#cb219-2" aria-hidden="true" tabindex="-1"></a><span class="dt">year</span>,</span>
-<span id="cb219-3"><a href="data-collection-and-data-storage.html#cb219-3" aria-hidden="true" tabindex="-1"></a><span class="dt">month</span>, </span>
-<span id="cb219-4"><a href="data-collection-and-data-storage.html#cb219-4" aria-hidden="true" tabindex="-1"></a><span class="dt">day</span>,</span>
-<span id="cb219-5"><a href="data-collection-and-data-storage.html#cb219-5" aria-hidden="true" tabindex="-1"></a>dep_delay,</span>
-<span id="cb219-6"><a href="data-collection-and-data-storage.html#cb219-6" aria-hidden="true" tabindex="-1"></a>flight</span>
-<span id="cb219-7"><a href="data-collection-and-data-storage.html#cb219-7" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> (flights <span class="kw">INNER</span> <span class="kw">JOIN</span> airports <span class="kw">ON</span> flights.origin<span class="op">=</span>airports.iata) </span>
-<span id="cb219-8"><a href="data-collection-and-data-storage.html#cb219-8" aria-hidden="true" tabindex="-1"></a><span class="kw">INNER</span> <span class="kw">JOIN</span> carriers <span class="kw">ON</span> flights.carrier <span class="op">=</span> carriers.Code</span>
-<span id="cb219-9"><a href="data-collection-and-data-storage.html#cb219-9" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> carriers.Description <span class="op">=</span> <span class="st">&#39;United Air Lines Inc.&#39;</span></span>
-<span id="cb219-10"><a href="data-collection-and-data-storage.html#cb219-10" aria-hidden="true" tabindex="-1"></a><span class="kw">AND</span> airports.airport <span class="op">=</span> <span class="st">&#39;Newark Intl&#39;</span></span>
-<span id="cb219-11"><a href="data-collection-and-data-storage.html#cb219-11" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> flight</span>
-<span id="cb219-12"><a href="data-collection-and-data-storage.html#cb219-12" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> <span class="dv">10</span>;</span></code></pre></div>
+<p>Note that this query has been executed without indexing any of the tables first. Thus SQLite could not take any ‘shortcuts’ when matching the ID columns in order to join the tables for the query output. That is, SQLite had to scan the entire columns to find the matches. Now we index the respective id columns and re-run the query.</p>
+<div class="sourceCode" id="cb223"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb223-1"><a href="data-collection-and-data-storage.html#cb223-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">INDEX</span> iata_airports <span class="kw">ON</span> airports (iata);</span>
+<span id="cb223-2"><a href="data-collection-and-data-storage.html#cb223-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">INDEX</span> origin_flights <span class="kw">ON</span> flights (origin);</span>
+<span id="cb223-3"><a href="data-collection-and-data-storage.html#cb223-3" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">INDEX</span> carrier_flights <span class="kw">ON</span> flights (carrier);</span>
+<span id="cb223-4"><a href="data-collection-and-data-storage.html#cb223-4" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">INDEX</span> code_carriers <span class="kw">ON</span> carriers (code);</span></code></pre></div>
+<p>Note that SQLite optimizes the efficiency of the query without our explicit instructions. If there are indices it can use to speed up the query, it will do so.</p>
+<div class="sourceCode" id="cb224"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb224-1"><a href="data-collection-and-data-storage.html#cb224-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> </span>
+<span id="cb224-2"><a href="data-collection-and-data-storage.html#cb224-2" aria-hidden="true" tabindex="-1"></a><span class="dt">year</span>,</span>
+<span id="cb224-3"><a href="data-collection-and-data-storage.html#cb224-3" aria-hidden="true" tabindex="-1"></a><span class="dt">month</span>, </span>
+<span id="cb224-4"><a href="data-collection-and-data-storage.html#cb224-4" aria-hidden="true" tabindex="-1"></a><span class="dt">day</span>,</span>
+<span id="cb224-5"><a href="data-collection-and-data-storage.html#cb224-5" aria-hidden="true" tabindex="-1"></a>dep_delay,</span>
+<span id="cb224-6"><a href="data-collection-and-data-storage.html#cb224-6" aria-hidden="true" tabindex="-1"></a>flight</span>
+<span id="cb224-7"><a href="data-collection-and-data-storage.html#cb224-7" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> (flights <span class="kw">INNER</span> <span class="kw">JOIN</span> airports <span class="kw">ON</span> flights.origin<span class="op">=</span>airports.iata) </span>
+<span id="cb224-8"><a href="data-collection-and-data-storage.html#cb224-8" aria-hidden="true" tabindex="-1"></a><span class="kw">INNER</span> <span class="kw">JOIN</span> carriers <span class="kw">ON</span> flights.carrier <span class="op">=</span> carriers.Code</span>
+<span id="cb224-9"><a href="data-collection-and-data-storage.html#cb224-9" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> carriers.Description <span class="op">=</span> <span class="st">&#39;United Air Lines Inc.&#39;</span></span>
+<span id="cb224-10"><a href="data-collection-and-data-storage.html#cb224-10" aria-hidden="true" tabindex="-1"></a><span class="kw">AND</span> airports.airport <span class="op">=</span> <span class="st">&#39;Newark Intl&#39;</span></span>
+<span id="cb224-11"><a href="data-collection-and-data-storage.html#cb224-11" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> flight</span>
+<span id="cb224-12"><a href="data-collection-and-data-storage.html#cb224-12" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> <span class="dv">10</span>;</span></code></pre></div>
 <div class="knitsql-table">
 <table>
-<caption><span id="tab:unnamed-chunk-120">Table 7.2: </span>Displaying records 1 - 10</caption>
+<caption><span id="tab:unnamed-chunk-124">Table 7.2: </span>Displaying records 1 - 10</caption>
 <thead>
 <tr class="header">
 <th align="right">year</th>
@@ -836,168 +838,249 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>You find the final <code>air.sqlite</code>, including all the indices and tables as <code>materials/data/air_final.sqlite</code> in the course’s code repository.</p>
 </div>
 </div>
-<div id="sqlite-from-within-r" class="section level2" number="7.7">
-<h2><span class="header-section-number">7.7</span> SQLite from within R</h2>
-<p>The <code>RSQLite</code>-package provides various R functions to control basically all of SQLite’s functionalities from within R. In the following example, we explore how <code>RSQLite</code> can be used to set up and query the <code>air.sqlite</code> shown in the example above.</p>
-<div id="creating-a-new-database-with-rsqlite" class="section level3" number="7.7.1">
-<h3><span class="header-section-number">7.7.1</span> Creating a new database with <code>RSQLite</code></h3>
+<div id="connecting-r-to-rdbms" class="section level2" number="7.4">
+<h2><span class="header-section-number">7.4</span> Connecting R to RDBMS</h2>
+<p>The R-package <code>RSQLite</code> embeds SQLite in R. That is, it provides functions that allow us to use SQLite directly from within R. You will see that the combinaiton of SQLite with R is a simple but very practical approach to work with very efficiently (and locally) stored data sets. In the following example, we explore how <code>RSQLite</code> can be used to set up and query the <code>air.sqlite</code> shown in the example above.</p>
+<div id="creating-a-new-database-with-rsqlite" class="section level3" number="7.4.1">
+<h3><span class="header-section-number">7.4.1</span> Creating a new database with <code>RSQLite</code></h3>
 <p>Similarly to the raw SQLite-syntax, connecting to a database that does not exist yet, actually creates this (empty database). Note that for all interactions with the database from within R, we need to refer to the connection (here: <code>con_air</code>).</p>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="data-collection-and-data-storage.html#cb220-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb220-2"><a href="data-collection-and-data-storage.html#cb220-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RSQLite)</span>
-<span id="cb220-3"><a href="data-collection-and-data-storage.html#cb220-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb220-4"><a href="data-collection-and-data-storage.html#cb220-4" aria-hidden="true" tabindex="-1"></a><span class="co"># initiate the database</span></span>
-<span id="cb220-5"><a href="data-collection-and-data-storage.html#cb220-5" aria-hidden="true" tabindex="-1"></a>con_air <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(<span class="fu">SQLite</span>(), <span class="st">&quot;data/air.sqlite&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="data-collection-and-data-storage.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb225-2"><a href="data-collection-and-data-storage.html#cb225-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RSQLite)</span>
+<span id="cb225-3"><a href="data-collection-and-data-storage.html#cb225-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb225-4"><a href="data-collection-and-data-storage.html#cb225-4" aria-hidden="true" tabindex="-1"></a><span class="co"># initiate the database</span></span>
+<span id="cb225-5"><a href="data-collection-and-data-storage.html#cb225-5" aria-hidden="true" tabindex="-1"></a>con_air <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(<span class="fu">SQLite</span>(), <span class="st">&quot;data/air.sqlite&quot;</span>)</span></code></pre></div>
 </div>
-<div id="importing-data" class="section level3" number="7.7.2">
-<h3><span class="header-section-number">7.7.2</span> Importing data</h3>
+<div id="importing-data" class="section level3" number="7.4.2">
+<h3><span class="header-section-number">7.4.2</span> Importing data</h3>
 <p>With <code>RSQLite</code> we can easily add <code>data.frame</code>s as SQLite tables to the database.</p>
-<div class="sourceCode" id="cb221"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb221-1"><a href="data-collection-and-data-storage.html#cb221-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import data into current R sesssion</span></span>
-<span id="cb221-2"><a href="data-collection-and-data-storage.html#cb221-2" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;data/flights.csv&quot;</span>)</span>
-<span id="cb221-3"><a href="data-collection-and-data-storage.html#cb221-3" aria-hidden="true" tabindex="-1"></a>airports <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;data/airports.csv&quot;</span>)</span>
-<span id="cb221-4"><a href="data-collection-and-data-storage.html#cb221-4" aria-hidden="true" tabindex="-1"></a>carriers <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;data/carriers.csv&quot;</span>)</span>
-<span id="cb221-5"><a href="data-collection-and-data-storage.html#cb221-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb221-6"><a href="data-collection-and-data-storage.html#cb221-6" aria-hidden="true" tabindex="-1"></a><span class="co"># add tables to database</span></span>
-<span id="cb221-7"><a href="data-collection-and-data-storage.html#cb221-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con_air, <span class="st">&quot;flights&quot;</span>, flights)</span>
-<span id="cb221-8"><a href="data-collection-and-data-storage.html#cb221-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con_air, <span class="st">&quot;airports&quot;</span>, airports)</span>
-<span id="cb221-9"><a href="data-collection-and-data-storage.html#cb221-9" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con_air, <span class="st">&quot;carriers&quot;</span>, carriers)</span></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="data-collection-and-data-storage.html#cb226-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import data into current R sesssion</span></span>
+<span id="cb226-2"><a href="data-collection-and-data-storage.html#cb226-2" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;data/flights.csv&quot;</span>)</span>
+<span id="cb226-3"><a href="data-collection-and-data-storage.html#cb226-3" aria-hidden="true" tabindex="-1"></a>airports <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;data/airports.csv&quot;</span>)</span>
+<span id="cb226-4"><a href="data-collection-and-data-storage.html#cb226-4" aria-hidden="true" tabindex="-1"></a>carriers <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;data/carriers.csv&quot;</span>)</span>
+<span id="cb226-5"><a href="data-collection-and-data-storage.html#cb226-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb226-6"><a href="data-collection-and-data-storage.html#cb226-6" aria-hidden="true" tabindex="-1"></a><span class="co"># add tables to database</span></span>
+<span id="cb226-7"><a href="data-collection-and-data-storage.html#cb226-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con_air, <span class="st">&quot;flights&quot;</span>, flights)</span>
+<span id="cb226-8"><a href="data-collection-and-data-storage.html#cb226-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con_air, <span class="st">&quot;airports&quot;</span>, airports)</span>
+<span id="cb226-9"><a href="data-collection-and-data-storage.html#cb226-9" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con_air, <span class="st">&quot;carriers&quot;</span>, carriers)</span></code></pre></div>
 </div>
-<div id="issue-queries" class="section level3" number="7.7.3">
-<h3><span class="header-section-number">7.7.3</span> Issue queries</h3>
+<div id="issue-queries" class="section level3" number="7.4.3">
+<h3><span class="header-section-number">7.4.3</span> Issue queries</h3>
 <p>Now we can query the database from within R. By default, <code>RSQLite</code> returns the query results as <code>data.frame</code>s. Queries are simply character strings written in SQLite.</p>
-<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="data-collection-and-data-storage.html#cb222-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define query</span></span>
-<span id="cb222-2"><a href="data-collection-and-data-storage.html#cb222-2" aria-hidden="true" tabindex="-1"></a>delay_query <span class="ot">&lt;-</span></span>
-<span id="cb222-3"><a href="data-collection-and-data-storage.html#cb222-3" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;SELECT </span></span>
-<span id="cb222-4"><a href="data-collection-and-data-storage.html#cb222-4" aria-hidden="true" tabindex="-1"></a><span class="st">year,</span></span>
-<span id="cb222-5"><a href="data-collection-and-data-storage.html#cb222-5" aria-hidden="true" tabindex="-1"></a><span class="st">month, </span></span>
-<span id="cb222-6"><a href="data-collection-and-data-storage.html#cb222-6" aria-hidden="true" tabindex="-1"></a><span class="st">day,</span></span>
-<span id="cb222-7"><a href="data-collection-and-data-storage.html#cb222-7" aria-hidden="true" tabindex="-1"></a><span class="st">dep_delay,</span></span>
-<span id="cb222-8"><a href="data-collection-and-data-storage.html#cb222-8" aria-hidden="true" tabindex="-1"></a><span class="st">flight</span></span>
-<span id="cb222-9"><a href="data-collection-and-data-storage.html#cb222-9" aria-hidden="true" tabindex="-1"></a><span class="st">FROM (flights INNER JOIN airports ON flights.origin=airports.iata) </span></span>
-<span id="cb222-10"><a href="data-collection-and-data-storage.html#cb222-10" aria-hidden="true" tabindex="-1"></a><span class="st">INNER JOIN carriers ON flights.carrier = carriers.Code</span></span>
-<span id="cb222-11"><a href="data-collection-and-data-storage.html#cb222-11" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE carriers.Description = &#39;United Air Lines Inc.&#39;</span></span>
-<span id="cb222-12"><a href="data-collection-and-data-storage.html#cb222-12" aria-hidden="true" tabindex="-1"></a><span class="st">AND airports.airport = &#39;Newark Intl&#39;</span></span>
-<span id="cb222-13"><a href="data-collection-and-data-storage.html#cb222-13" aria-hidden="true" tabindex="-1"></a><span class="st">ORDER BY flight</span></span>
-<span id="cb222-14"><a href="data-collection-and-data-storage.html#cb222-14" aria-hidden="true" tabindex="-1"></a><span class="st">LIMIT 10;</span></span>
-<span id="cb222-15"><a href="data-collection-and-data-storage.html#cb222-15" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
-<span id="cb222-16"><a href="data-collection-and-data-storage.html#cb222-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb222-17"><a href="data-collection-and-data-storage.html#cb222-17" aria-hidden="true" tabindex="-1"></a><span class="co"># issue query</span></span>
-<span id="cb222-18"><a href="data-collection-and-data-storage.html#cb222-18" aria-hidden="true" tabindex="-1"></a>delays_df <span class="ot">&lt;-</span> <span class="fu">dbGetQuery</span>(con_air, delay_query)</span>
-<span id="cb222-19"><a href="data-collection-and-data-storage.html#cb222-19" aria-hidden="true" tabindex="-1"></a>delays_df</span></code></pre></div>
-<pre><code>##    year month day dep_delay flight
-## 1  2013     1   4         0      1
-## 2  2013     1   5        -2      1
-## 3  2013     3   6         1      1
-## 4  2013     2  13        -2      3
-## 5  2013     2  16        -9      3
-## 6  2013     2  20         3      3
-## 7  2013     2  23        -5      3
-## 8  2013     2  26        24      3
-## 9  2013     2  27        10      3
-## 10 2013     1   5         3     10</code></pre>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="data-collection-and-data-storage.html#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define query</span></span>
+<span id="cb227-2"><a href="data-collection-and-data-storage.html#cb227-2" aria-hidden="true" tabindex="-1"></a>delay_query <span class="ot">&lt;-</span></span>
+<span id="cb227-3"><a href="data-collection-and-data-storage.html#cb227-3" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;SELECT </span></span>
+<span id="cb227-4"><a href="data-collection-and-data-storage.html#cb227-4" aria-hidden="true" tabindex="-1"></a><span class="st">year,</span></span>
+<span id="cb227-5"><a href="data-collection-and-data-storage.html#cb227-5" aria-hidden="true" tabindex="-1"></a><span class="st">month, </span></span>
+<span id="cb227-6"><a href="data-collection-and-data-storage.html#cb227-6" aria-hidden="true" tabindex="-1"></a><span class="st">day,</span></span>
+<span id="cb227-7"><a href="data-collection-and-data-storage.html#cb227-7" aria-hidden="true" tabindex="-1"></a><span class="st">dep_delay,</span></span>
+<span id="cb227-8"><a href="data-collection-and-data-storage.html#cb227-8" aria-hidden="true" tabindex="-1"></a><span class="st">flight</span></span>
+<span id="cb227-9"><a href="data-collection-and-data-storage.html#cb227-9" aria-hidden="true" tabindex="-1"></a><span class="st">FROM (flights INNER JOIN airports ON flights.origin=airports.iata) </span></span>
+<span id="cb227-10"><a href="data-collection-and-data-storage.html#cb227-10" aria-hidden="true" tabindex="-1"></a><span class="st">INNER JOIN carriers ON flights.carrier = carriers.Code</span></span>
+<span id="cb227-11"><a href="data-collection-and-data-storage.html#cb227-11" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE carriers.Description = &#39;United Air Lines Inc.&#39;</span></span>
+<span id="cb227-12"><a href="data-collection-and-data-storage.html#cb227-12" aria-hidden="true" tabindex="-1"></a><span class="st">AND airports.airport = &#39;Newark Intl&#39;</span></span>
+<span id="cb227-13"><a href="data-collection-and-data-storage.html#cb227-13" aria-hidden="true" tabindex="-1"></a><span class="st">ORDER BY flight</span></span>
+<span id="cb227-14"><a href="data-collection-and-data-storage.html#cb227-14" aria-hidden="true" tabindex="-1"></a><span class="st">LIMIT 10;</span></span>
+<span id="cb227-15"><a href="data-collection-and-data-storage.html#cb227-15" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
+<span id="cb227-16"><a href="data-collection-and-data-storage.html#cb227-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb227-17"><a href="data-collection-and-data-storage.html#cb227-17" aria-hidden="true" tabindex="-1"></a><span class="co"># issue query</span></span>
+<span id="cb227-18"><a href="data-collection-and-data-storage.html#cb227-18" aria-hidden="true" tabindex="-1"></a>delays_df <span class="ot">&lt;-</span> <span class="fu">dbGetQuery</span>(con_air, delay_query)</span>
+<span id="cb227-19"><a href="data-collection-and-data-storage.html#cb227-19" aria-hidden="true" tabindex="-1"></a>delays_df</span></code></pre></div>
+<p>When done working with the database, we close the connection to the database with <code>dbDisconnect(con)</code>.</p>
 </div>
-<div id="mass-storage-mariadb-on-an-ec2-instance" class="section level3" number="7.7.4">
-<h3><span class="header-section-number">7.7.4</span> Mass Storage: MariaDB on an EC2 instance</h3>
-<p>Once we have set up RStudio Server on an EC2 instance, we can run the SQLite examples demonstrated locally in Lecture 7 on it. There are no additional steps needed to install SQLite. However, when using RDBMSs in the cloud, we typically have a more sophisticated implementation than SQLite in mind. Particularly, we want to set up an actual RDBMS-server running in the cloud to which several clients can connect (via RStudio Server). The following example, based on <span class="citation"><a href="references.html#ref-walkowiak_2016" role="doc-biblioref">Walkowiak</a> (<a href="references.html#ref-walkowiak_2016" role="doc-biblioref">2016</a>)</span>, guides you through the first step to set up such a database in the cloud. To keep things simple, the example sets up a database of the same data set as shown in the first SQLite example in Lecture 7, but this time with MariaDB on an EC2 instance in the cloud. For most of the installation steps you are referred to the respective pages in <span class="citation"><a href="references.html#ref-walkowiak_2016" role="doc-biblioref">Walkowiak</a> (<a href="references.html#ref-walkowiak_2016" role="doc-biblioref">2016</a>)</span> (Chapter 5: ’MariaDB with R on a Amazon EC2 instance, pages 255ff). However, since some of the steps shown in the book are outdated, the example below hints to some alternative/additional steps needed to make the database run on an Ubuntu 18.04 machine.</p>
+</div>
+<div id="cloud-solutions-for-big-data-storage" class="section level2" number="7.5">
+<h2><span class="header-section-number">7.5</span> Cloud solutions for (big) data storage</h2>
+<p>As outlined in the previous section, RDBMSs are a very practical tool to store the structured data of an analytics project locally in a database. A local SQLite database can easily be set up and accessed via R, allowing to write the whole data pipeline from data gathering to filtering, aggregating and finally analyzing in R. In contrast to directly working with CSV files, using SQLite has the advantage of organizing the data access much more efficiently in terms of RAM. Only the final result of a query is really loaded fully into R’s memory.</p>
+<p>If mass storage space is too sparse or if RAM is nevertheless not sufficient, even when organizing data access via SQLite, several cloud solutions come to the rescue. Although you could also rent a traditional web server and host a SQL database there, this is usually not worth the while for a data analytics project. In the next section we thus look at three important cases of how to store data as part of an analytics project: <em>RDBMS in the cloud</em>, a serverless <em>data warehouse</em> solution for large datasets called <em>Google BigQuery</em>, and a simple storage service to use as a <em>data lake</em> called <em>AWS S3</em>. All of these solutions are discussed from a data analytics perspective, and for all of these solutions we will look at how to make use of them from within R.</p>
+<div id="easy-to-use-rdbms-in-the-cloud-aws-rds" class="section level3" number="7.5.1">
+<h3><span class="header-section-number">7.5.1</span> Easy-to-use RDBMS in the cloud: AWS RDS</h3>
+<p>Once we have set up RStudio Server on an EC2 instance, we can run the SQLite examples shown above on it. There are no additional steps needed to install SQLite. However, when using RDBMSs in the cloud, we typically have a more sophisticated implementation than SQLite in mind. Particularly, we want to set up an actual RDBMS-server running in the cloud to which several clients can connect (e.g., via RStudio Server).</p>
+<p>AWS’ Relational Database Service (RDS) provides an easy way to set up and run a SQL database in the cloud. The great advantage for users new to RDBMS/SQL is that you do not have to manually set up a server (e.g. a EC2 instance) and install/configure the SQL server. Instead you can directly set up a fully functioning relational database in the cloud.</p>
+<p>In a first step, open the AWS console and search for/select “RDS” in the search bar. Then, click on “Create database” in the lower part of the landing page.</p>
+<div class="figure" style="text-align: center"><span id="fig:rdscreate"></span>
+<img src="img/aws_rds_create.png" alt="Create a managed relational database on AWS RDS." width="80%" />
+<p class="caption">
+Figure 7.1: Create a managed relational database on AWS RDS.
+</p>
+</div>
+
+<p>On the next page, select “Easy create,” “MySQL,” and the “Free tier” DB instance size. Further down you will have to set the database instance identifier the user name and a password.</p>
+<div class="figure" style="text-align: center"><span id="fig:rdseasy"></span>
+<img src="img/aws_rds_easycreate.png" alt="Easy creation of a RDS MySQL DB." width="80%" />
+<p class="caption">
+Figure 7.2: Easy creation of a RDS MySQL DB.
+</p>
+</div>
+
+<p>Once the database instance is ready, you will see it in the databases overview. Click on the DB identifier (the name of your database shown in the list of databases) and click on modify (button in the upper-right corner). In the “Connectivity” panel under “Additional configuration,” select <em>Publicly accessible</em> (this is necessary to interact with the DB from your local machine), and save the settings. Back on the overview page of your database, under “Connectivity &amp; security,” click on the link under the VPC security groups, scroll down and select the “Inbound rules” tab. Edit the inbound rule to allow any IP4 inbound traffic.<a href="#fn34" class="footnote-ref" id="fnref34"><sup>34</sup></a></p>
+<div class="figure" style="text-align: center"><span id="fig:rdsinboundrules"></span>
+<img src="img/rds_inboundrules.png" alt="Allow all IP4 inbound traffic (set Source to 0.0.0.0/0)." width="80%" />
+<p class="caption">
+Figure 7.3: Allow all IP4 inbound traffic (set Source to <code>0.0.0.0/0</code>).
+</p>
+</div>
+
+<p>Now we can connect to the instance via the <code>RMySQL</code> package. Before loading data, we first have to initiate a new database (in contrast, this is done automatically when connecting to a SQLite database).</p>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="data-collection-and-data-storage.html#cb228-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb228-2"><a href="data-collection-and-data-storage.html#cb228-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RMySQL)</span>
+<span id="cb228-3"><a href="data-collection-and-data-storage.html#cb228-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb228-4"><a href="data-collection-and-data-storage.html#cb228-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb228-5"><a href="data-collection-and-data-storage.html#cb228-5" aria-hidden="true" tabindex="-1"></a><span class="co"># fix vars</span></span>
+<span id="cb228-6"><a href="data-collection-and-data-storage.html#cb228-6" aria-hidden="true" tabindex="-1"></a>RDS_ENDPOINT <span class="ot">&lt;-</span> <span class="st">&quot;MY-ENDPOINT&quot;</span> <span class="co"># replace this with the Endpoint shown in the AWS RDS console</span></span>
+<span id="cb228-7"><a href="data-collection-and-data-storage.html#cb228-7" aria-hidden="true" tabindex="-1"></a>PW <span class="ot">&lt;-</span> <span class="st">&quot;MY-PW&quot;</span> <span class="co"># replace this with the password you have set when initiating the RDS DB on AWS</span></span>
+<span id="cb228-8"><a href="data-collection-and-data-storage.html#cb228-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb228-9"><a href="data-collection-and-data-storage.html#cb228-9" aria-hidden="true" tabindex="-1"></a><span class="co"># connect to DB</span></span>
+<span id="cb228-10"><a href="data-collection-and-data-storage.html#cb228-10" aria-hidden="true" tabindex="-1"></a>con_rds <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(RMySQL<span class="sc">::</span><span class="fu">MySQL</span>(),</span>
+<span id="cb228-11"><a href="data-collection-and-data-storage.html#cb228-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">host=</span>RDS_ENDPOINT,</span>
+<span id="cb228-12"><a href="data-collection-and-data-storage.html#cb228-12" aria-hidden="true" tabindex="-1"></a>                 <span class="at">port=</span><span class="dv">3306</span>,</span>
+<span id="cb228-13"><a href="data-collection-and-data-storage.html#cb228-13" aria-hidden="true" tabindex="-1"></a>                 <span class="at">username=</span><span class="st">&quot;admin&quot;</span>,</span>
+<span id="cb228-14"><a href="data-collection-and-data-storage.html#cb228-14" aria-hidden="true" tabindex="-1"></a>                 <span class="at">password=</span>PW)</span>
+<span id="cb228-15"><a href="data-collection-and-data-storage.html#cb228-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb228-16"><a href="data-collection-and-data-storage.html#cb228-16" aria-hidden="true" tabindex="-1"></a><span class="co"># initiate a new database on the MySQL RDS instance</span></span>
+<span id="cb228-17"><a href="data-collection-and-data-storage.html#cb228-17" aria-hidden="true" tabindex="-1"></a><span class="fu">dbSendQuery</span>(con_rds, <span class="st">&quot;CREATE DATABASE air&quot;</span>)</span>
+<span id="cb228-18"><a href="data-collection-and-data-storage.html#cb228-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb228-19"><a href="data-collection-and-data-storage.html#cb228-19" aria-hidden="true" tabindex="-1"></a><span class="co"># disconnect and re-connect directly to the new DB</span></span>
+<span id="cb228-20"><a href="data-collection-and-data-storage.html#cb228-20" aria-hidden="true" tabindex="-1"></a><span class="fu">dbDisconnect</span>(con_rds)</span>
+<span id="cb228-21"><a href="data-collection-and-data-storage.html#cb228-21" aria-hidden="true" tabindex="-1"></a>con_rds <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(RMySQL<span class="sc">::</span><span class="fu">MySQL</span>(),</span>
+<span id="cb228-22"><a href="data-collection-and-data-storage.html#cb228-22" aria-hidden="true" tabindex="-1"></a>                 <span class="at">host=</span>RDS_ENDPOINT,</span>
+<span id="cb228-23"><a href="data-collection-and-data-storage.html#cb228-23" aria-hidden="true" tabindex="-1"></a>                 <span class="at">port=</span><span class="dv">3306</span>,</span>
+<span id="cb228-24"><a href="data-collection-and-data-storage.html#cb228-24" aria-hidden="true" tabindex="-1"></a>                 <span class="at">username=</span><span class="st">&quot;admin&quot;</span>,</span>
+<span id="cb228-25"><a href="data-collection-and-data-storage.html#cb228-25" aria-hidden="true" tabindex="-1"></a>                 <span class="at">dbname=</span><span class="st">&quot;air&quot;</span>,</span>
+<span id="cb228-26"><a href="data-collection-and-data-storage.html#cb228-26" aria-hidden="true" tabindex="-1"></a>                 <span class="at">password=</span>PW)</span></code></pre></div>
+<p><code>RMySQL</code> and <code>RSQLite</code> are both building on the <code>DBI</code> package, which generalizes how we can interact with SQL-type databases via R. This makes it straightforward to apply what we have learned so far by interacting with our local SQLite database to interactions with other databases. As soon as the connection to the new database is established, we can essentially use the same R functions as above to create new tables and import data.</p>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="data-collection-and-data-storage.html#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import data into current R sesssion</span></span>
+<span id="cb229-2"><a href="data-collection-and-data-storage.html#cb229-2" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;data/flights.csv&quot;</span>)</span>
+<span id="cb229-3"><a href="data-collection-and-data-storage.html#cb229-3" aria-hidden="true" tabindex="-1"></a>airports <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;data/airports.csv&quot;</span>)</span>
+<span id="cb229-4"><a href="data-collection-and-data-storage.html#cb229-4" aria-hidden="true" tabindex="-1"></a>carriers <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;data/carriers.csv&quot;</span>)</span>
+<span id="cb229-5"><a href="data-collection-and-data-storage.html#cb229-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb229-6"><a href="data-collection-and-data-storage.html#cb229-6" aria-hidden="true" tabindex="-1"></a><span class="co"># add tables to database</span></span>
+<span id="cb229-7"><a href="data-collection-and-data-storage.html#cb229-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con_rds, <span class="st">&quot;flights&quot;</span>, flights)</span>
+<span id="cb229-8"><a href="data-collection-and-data-storage.html#cb229-8" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con_rds, <span class="st">&quot;airports&quot;</span>, airports)</span>
+<span id="cb229-9"><a href="data-collection-and-data-storage.html#cb229-9" aria-hidden="true" tabindex="-1"></a><span class="fu">dbWriteTable</span>(con_rds, <span class="st">&quot;carriers&quot;</span>, carriers)</span></code></pre></div>
+<p>Finally, we can query our RDS MySQL database on AWS.</p>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="data-collection-and-data-storage.html#cb230-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define query</span></span>
+<span id="cb230-2"><a href="data-collection-and-data-storage.html#cb230-2" aria-hidden="true" tabindex="-1"></a>delay_query <span class="ot">&lt;-</span></span>
+<span id="cb230-3"><a href="data-collection-and-data-storage.html#cb230-3" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;SELECT </span></span>
+<span id="cb230-4"><a href="data-collection-and-data-storage.html#cb230-4" aria-hidden="true" tabindex="-1"></a><span class="st">year,</span></span>
+<span id="cb230-5"><a href="data-collection-and-data-storage.html#cb230-5" aria-hidden="true" tabindex="-1"></a><span class="st">month, </span></span>
+<span id="cb230-6"><a href="data-collection-and-data-storage.html#cb230-6" aria-hidden="true" tabindex="-1"></a><span class="st">day,</span></span>
+<span id="cb230-7"><a href="data-collection-and-data-storage.html#cb230-7" aria-hidden="true" tabindex="-1"></a><span class="st">dep_delay,</span></span>
+<span id="cb230-8"><a href="data-collection-and-data-storage.html#cb230-8" aria-hidden="true" tabindex="-1"></a><span class="st">flight</span></span>
+<span id="cb230-9"><a href="data-collection-and-data-storage.html#cb230-9" aria-hidden="true" tabindex="-1"></a><span class="st">FROM (flights INNER JOIN airports ON flights.origin=airports.iata) </span></span>
+<span id="cb230-10"><a href="data-collection-and-data-storage.html#cb230-10" aria-hidden="true" tabindex="-1"></a><span class="st">INNER JOIN carriers ON flights.carrier = carriers.Code</span></span>
+<span id="cb230-11"><a href="data-collection-and-data-storage.html#cb230-11" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE carriers.Description = &#39;United Air Lines Inc.&#39;</span></span>
+<span id="cb230-12"><a href="data-collection-and-data-storage.html#cb230-12" aria-hidden="true" tabindex="-1"></a><span class="st">AND airports.airport = &#39;Newark Intl&#39;</span></span>
+<span id="cb230-13"><a href="data-collection-and-data-storage.html#cb230-13" aria-hidden="true" tabindex="-1"></a><span class="st">ORDER BY flight</span></span>
+<span id="cb230-14"><a href="data-collection-and-data-storage.html#cb230-14" aria-hidden="true" tabindex="-1"></a><span class="st">LIMIT 10;</span></span>
+<span id="cb230-15"><a href="data-collection-and-data-storage.html#cb230-15" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
+<span id="cb230-16"><a href="data-collection-and-data-storage.html#cb230-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb230-17"><a href="data-collection-and-data-storage.html#cb230-17" aria-hidden="true" tabindex="-1"></a><span class="co"># issue query</span></span>
+<span id="cb230-18"><a href="data-collection-and-data-storage.html#cb230-18" aria-hidden="true" tabindex="-1"></a>delays_df <span class="ot">&lt;-</span> <span class="fu">dbGetQuery</span>(con_rds, delay_query)</span>
+<span id="cb230-19"><a href="data-collection-and-data-storage.html#cb230-19" aria-hidden="true" tabindex="-1"></a>delays_df</span></code></pre></div>
+</div>
+<div id="database-server-in-the-cloud-mariadb-on-an-ec2-instance" class="section level3" number="7.5.2">
+<h3><span class="header-section-number">7.5.2</span> Database server in the cloud: MariaDB on an EC2 instance</h3>
+<p>Working with an SQL database in the cloud via AWS RDS is probably sufficient for most simple use cases. However, for some projects you might want to have more flexibility regarding settings and configurations. A practical solution to this is to set up “manually” a SQL-server on an EC2 instance (and then work with it via RStudio-Server). The following example, based on <span class="citation"><a href="references.html#ref-walkowiak_2016" role="doc-biblioref">Walkowiak</a> (<a href="references.html#ref-walkowiak_2016" role="doc-biblioref">2016</a>)</span>, guides you through the first step to set up such a database in the cloud. For most of the installation steps you are referred to the respective pages in <span class="citation"><a href="references.html#ref-walkowiak_2016" role="doc-biblioref">Walkowiak</a> (<a href="references.html#ref-walkowiak_2016" role="doc-biblioref">2016</a>)</span> (Chapter 5: ’MariaDB with R on a Amazon EC2 instance, pages 255ff). However, since some of the steps shown in the book are outdated, the example below hints to some alternative/additional steps needed to make the database run on an Ubuntu 18.04 machine.</p>
 <p>After launching the EC2 instance on AWS, use the following terminal commands to install R:</p>
-<div class="sourceCode" id="cb224"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb224-1"><a href="data-collection-and-data-storage.html#cb224-1" aria-hidden="true" tabindex="-1"></a><span class="co"># update ubuntu packages</span></span>
-<span id="cb224-2"><a href="data-collection-and-data-storage.html#cb224-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">sudo</span> apt-get update</span>
-<span id="cb224-3"><a href="data-collection-and-data-storage.html#cb224-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">sudo</span> apt-get upgrade</span></code></pre></div>
-<div class="sourceCode" id="cb225"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb225-1"><a href="data-collection-and-data-storage.html#cb225-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install r-base</span></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb231-1"><a href="data-collection-and-data-storage.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="co"># update ubuntu packages</span></span>
+<span id="cb231-2"><a href="data-collection-and-data-storage.html#cb231-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">sudo</span> apt-get update</span>
+<span id="cb231-3"><a href="data-collection-and-data-storage.html#cb231-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">sudo</span> apt-get upgrade</span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb232-1"><a href="data-collection-and-data-storage.html#cb232-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install r-base</span></code></pre></div>
 <p>and to install RStudio Server (on Ubuntu 18.04, as of April 2020):</p>
-<div class="sourceCode" id="cb226"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb226-1"><a href="data-collection-and-data-storage.html#cb226-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install gdebi-core</span>
-<span id="cb226-2"><a href="data-collection-and-data-storage.html#cb226-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.2.5033-amd64.deb</span>
-<span id="cb226-3"><a href="data-collection-and-data-storage.html#cb226-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> gdebi rstudio-server-1.2.5033-amd64.deb</span></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb233-1"><a href="data-collection-and-data-storage.html#cb233-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt-get install gdebi-core</span>
+<span id="cb233-2"><a href="data-collection-and-data-storage.html#cb233-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.2.5033-amd64.deb</span>
+<span id="cb233-3"><a href="data-collection-and-data-storage.html#cb233-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> gdebi rstudio-server-1.2.5033-amd64.deb</span></code></pre></div>
 <p>Following <span class="citation"><a href="references.html#ref-walkowiak_2016" role="doc-biblioref">Walkowiak</a> (<a href="references.html#ref-walkowiak_2016" role="doc-biblioref">2016</a>)</span> (pages 257f), we first set up a new user and give it permissions to <code>ssh</code> directly to the EC2 instance (this way we can then more easily upload data ‘for this user’).</p>
-<div class="sourceCode" id="cb227"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb227-1"><a href="data-collection-and-data-storage.html#cb227-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create user</span></span>
-<span id="cb227-2"><a href="data-collection-and-data-storage.html#cb227-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> adduser umatter </span></code></pre></div>
+<div class="sourceCode" id="cb234"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb234-1"><a href="data-collection-and-data-storage.html#cb234-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create user</span></span>
+<span id="cb234-2"><a href="data-collection-and-data-storage.html#cb234-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> adduser umatter </span></code></pre></div>
 <p>When prompted for additional information just hit enter (for default). Now we can grant the user the permissions</p>
-<div class="sourceCode" id="cb228"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb228-1"><a href="data-collection-and-data-storage.html#cb228-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> cp <span class="at">-r</span> /home/ubuntu/.ssh /home/umatter/</span>
-<span id="cb228-2"><a href="data-collection-and-data-storage.html#cb228-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /home/umatter/</span>
-<span id="cb228-3"><a href="data-collection-and-data-storage.html#cb228-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chown <span class="at">-R</span> umatter:umatter .ssh</span></code></pre></div>
+<div class="sourceCode" id="cb235"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb235-1"><a href="data-collection-and-data-storage.html#cb235-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> cp <span class="at">-r</span> /home/ubuntu/.ssh /home/umatter/</span>
+<span id="cb235-2"><a href="data-collection-and-data-storage.html#cb235-2" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> /home/umatter/</span>
+<span id="cb235-3"><a href="data-collection-and-data-storage.html#cb235-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> chown <span class="at">-R</span> umatter:umatter .ssh</span></code></pre></div>
 <p>Then install MariaDB as follows.</p>
-<div class="sourceCode" id="cb229"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb229-1"><a href="data-collection-and-data-storage.html#cb229-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
-<span id="cb229-2"><a href="data-collection-and-data-storage.html#cb229-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install mariadb-server</span>
-<span id="cb229-3"><a href="data-collection-and-data-storage.html#cb229-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install libmariadbclient-dev</span>
-<span id="cb229-4"><a href="data-collection-and-data-storage.html#cb229-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install libxml2-dev <span class="co"># needed later (dependency for some R packages)</span></span></code></pre></div>
-<p>If prompted to set a password for the root database user (user with all database priviledges), type in and confirm the chosen password.<a href="#fn34" class="footnote-ref" id="fnref34"><sup>34</sup></a></p>
-<div id="data-import" class="section level4" number="7.7.4.1">
-<h4><span class="header-section-number">7.7.4.1</span> Data import</h4>
+<div class="sourceCode" id="cb236"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb236-1"><a href="data-collection-and-data-storage.html#cb236-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb236-2"><a href="data-collection-and-data-storage.html#cb236-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install mariadb-server</span>
+<span id="cb236-3"><a href="data-collection-and-data-storage.html#cb236-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install libmariadbclient-dev</span>
+<span id="cb236-4"><a href="data-collection-and-data-storage.html#cb236-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install libxml2-dev <span class="co"># needed later (dependency for some R packages)</span></span></code></pre></div>
+<p>If prompted to set a password for the root database user (user with all database priviledges), type in and confirm the chosen password.<a href="#fn35" class="footnote-ref" id="fnref35"><sup>35</sup></a></p>
+<div id="data-import" class="section level4" number="7.5.2.1">
+<h4><span class="header-section-number">7.5.2.1</span> Data import</h4>
 <p>With the permissions set above, we can send data from the local machine directly to the instance via <code>ssh</code>. We use this to first transfer the raw data to the instance and then import it to the database.</p>
 <p>The aim is to import the same simple data set <code>economics.csv</code> used in the local SQLite examples of Lecture 7. Following the instructions of <span class="citation"><a href="references.html#ref-walkowiak_2016" role="doc-biblioref">Walkowiak</a> (<a href="references.html#ref-walkowiak_2016" role="doc-biblioref">2016</a>)</span>, pages 252 to 254, we upload the <code>economics.csv</code> file (instead of the example data used in <span class="citation"><a href="references.html#ref-walkowiak_2016" role="doc-biblioref">Walkowiak</a> (<a href="references.html#ref-walkowiak_2016" role="doc-biblioref">2016</a>)</span>). Note that in all the code examples below, the username is <code>umatter</code>, and the IP-address will have to be replaced with the public IP-address of your EC2 instance.</p>
 <p>Open a new terminal window and send the <code>economics.csv</code> data as follows to the instance.</p>
-<div class="sourceCode" id="cb230"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb230-1"><a href="data-collection-and-data-storage.html#cb230-1" aria-hidden="true" tabindex="-1"></a><span class="co"># from the directory where the key-file is stored...</span></span>
-<span id="cb230-2"><a href="data-collection-and-data-storage.html#cb230-2" aria-hidden="true" tabindex="-1"></a><span class="fu">scp</span> <span class="at">-r</span> <span class="at">-i</span> <span class="st">&quot;mariadb_ec2.pem&quot;</span> ~/Desktop/economics.csv umatter@ec2-184-72-202-166.compute-1.amazonaws.com:~/</span></code></pre></div>
+<div class="sourceCode" id="cb237"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb237-1"><a href="data-collection-and-data-storage.html#cb237-1" aria-hidden="true" tabindex="-1"></a><span class="co"># from the directory where the key-file is stored...</span></span>
+<span id="cb237-2"><a href="data-collection-and-data-storage.html#cb237-2" aria-hidden="true" tabindex="-1"></a><span class="fu">scp</span> <span class="at">-r</span> <span class="at">-i</span> <span class="st">&quot;mariadb_ec2.pem&quot;</span> ~/Desktop/economics.csv umatter@ec2-184-72-202-166.compute-1.amazonaws.com:~/</span></code></pre></div>
 <p>Then switch back to the terminal connected to the instance and start the MariaDB server.</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb231-1"><a href="data-collection-and-data-storage.html#cb231-1" aria-hidden="true" tabindex="-1"></a><span class="co"># start the MariaDB server</span></span>
-<span id="cb231-2"><a href="data-collection-and-data-storage.html#cb231-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> service mysql start</span>
-<span id="cb231-3"><a href="data-collection-and-data-storage.html#cb231-3" aria-hidden="true" tabindex="-1"></a><span class="co"># log into the MariaDB client as root </span></span>
-<span id="cb231-4"><a href="data-collection-and-data-storage.html#cb231-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mysql <span class="at">-uroot</span> </span></code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb238-1"><a href="data-collection-and-data-storage.html#cb238-1" aria-hidden="true" tabindex="-1"></a><span class="co"># start the MariaDB server</span></span>
+<span id="cb238-2"><a href="data-collection-and-data-storage.html#cb238-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> service mysql start</span>
+<span id="cb238-3"><a href="data-collection-and-data-storage.html#cb238-3" aria-hidden="true" tabindex="-1"></a><span class="co"># log into the MariaDB client as root </span></span>
+<span id="cb238-4"><a href="data-collection-and-data-storage.html#cb238-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mysql <span class="at">-uroot</span> </span></code></pre></div>
 <p>If not prompted to do so when installing MariaDB (see above), add a new root user in order to login to MariaDB without the <code>sudo</code> (here we simply set the password to ‘Password1’).</p>
-<div class="sourceCode" id="cb232"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb232-1"><a href="data-collection-and-data-storage.html#cb232-1" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">on</span> <span class="op">*</span>.<span class="op">*</span> <span class="kw">to</span> <span class="st">&#39;root&#39;</span>@<span class="st">&#39;localhost&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;Password1&#39;</span>;</span>
-<span id="cb232-2"><a href="data-collection-and-data-storage.html#cb232-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FLUSH</span> <span class="kw">PRIVILEGES</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb239-1"><a href="data-collection-and-data-storage.html#cb239-1" aria-hidden="true" tabindex="-1"></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">PRIVILEGES</span> <span class="kw">on</span> <span class="op">*</span>.<span class="op">*</span> <span class="kw">to</span> <span class="st">&#39;root&#39;</span>@<span class="st">&#39;localhost&#39;</span> <span class="kw">IDENTIFIED</span> <span class="kw">BY</span> <span class="st">&#39;Password1&#39;</span>;</span>
+<span id="cb239-2"><a href="data-collection-and-data-storage.html#cb239-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FLUSH</span> <span class="kw">PRIVILEGES</span>;</span></code></pre></div>
 <p>Restart the mysql server and log in with the database root user.</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb233-1"><a href="data-collection-and-data-storage.html#cb233-1" aria-hidden="true" tabindex="-1"></a><span class="co"># start the MariaDB server</span></span>
-<span id="cb233-2"><a href="data-collection-and-data-storage.html#cb233-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> service mysql restart</span>
-<span id="cb233-3"><a href="data-collection-and-data-storage.html#cb233-3" aria-hidden="true" tabindex="-1"></a><span class="co"># log into the MariaDB client as root </span></span>
-<span id="cb233-4"><a href="data-collection-and-data-storage.html#cb233-4" aria-hidden="true" tabindex="-1"></a><span class="ex">mysql</span> <span class="at">-uroot</span> <span class="at">-p</span></span></code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb240-1"><a href="data-collection-and-data-storage.html#cb240-1" aria-hidden="true" tabindex="-1"></a><span class="co"># start the MariaDB server</span></span>
+<span id="cb240-2"><a href="data-collection-and-data-storage.html#cb240-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> service mysql restart</span>
+<span id="cb240-3"><a href="data-collection-and-data-storage.html#cb240-3" aria-hidden="true" tabindex="-1"></a><span class="co"># log into the MariaDB client as root </span></span>
+<span id="cb240-4"><a href="data-collection-and-data-storage.html#cb240-4" aria-hidden="true" tabindex="-1"></a><span class="ex">mysql</span> <span class="at">-uroot</span> <span class="at">-p</span></span></code></pre></div>
 <p>Now we can initiate a new database called <code>data1</code>.</p>
-<div class="sourceCode" id="cb234"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb234-1"><a href="data-collection-and-data-storage.html#cb234-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">database</span> data1;</span></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb241-1"><a href="data-collection-and-data-storage.html#cb241-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">database</span> data1;</span></code></pre></div>
 <p>To work with the newly created database, we have to ‘select’ it.</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb235-1"><a href="data-collection-and-data-storage.html#cb235-1" aria-hidden="true" tabindex="-1"></a><span class="kw">USE</span> data1;</span></code></pre></div>
-<p>Then, we create the first table of our database and import data into it. Note that we only have to slightly adjust the former SQLite syntax to make this work (remove double quotes for field names). In addition, note that we can use the same field types as in the SQLite DB.<a href="#fn35" class="footnote-ref" id="fnref35"><sup>35</sup></a></p>
-<div class="sourceCode" id="cb236"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb236-1"><a href="data-collection-and-data-storage.html#cb236-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Create the new table</span></span>
-<span id="cb236-2"><a href="data-collection-and-data-storage.html#cb236-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> econ(</span>
-<span id="cb236-3"><a href="data-collection-and-data-storage.html#cb236-3" aria-hidden="true" tabindex="-1"></a><span class="dt">date</span> <span class="dt">DATE</span>,</span>
-<span id="cb236-4"><a href="data-collection-and-data-storage.html#cb236-4" aria-hidden="true" tabindex="-1"></a>pce <span class="dt">REAL</span>,</span>
-<span id="cb236-5"><a href="data-collection-and-data-storage.html#cb236-5" aria-hidden="true" tabindex="-1"></a>pop <span class="dt">INTEGER</span>,</span>
-<span id="cb236-6"><a href="data-collection-and-data-storage.html#cb236-6" aria-hidden="true" tabindex="-1"></a>psavert <span class="dt">REAL</span>,</span>
-<span id="cb236-7"><a href="data-collection-and-data-storage.html#cb236-7" aria-hidden="true" tabindex="-1"></a>uempmed <span class="dt">REAL</span>,</span>
-<span id="cb236-8"><a href="data-collection-and-data-storage.html#cb236-8" aria-hidden="true" tabindex="-1"></a>unemploy <span class="dt">INTEGER</span></span>
-<span id="cb236-9"><a href="data-collection-and-data-storage.html#cb236-9" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb242-1"><a href="data-collection-and-data-storage.html#cb242-1" aria-hidden="true" tabindex="-1"></a><span class="kw">USE</span> data1;</span></code></pre></div>
+<p>Then, we create the first table of our database and import data into it. Note that we only have to slightly adjust the former SQLite syntax to make this work (remove double quotes for field names). In addition, note that we can use the same field types as in the SQLite DB.<a href="#fn36" class="footnote-ref" id="fnref36"><sup>36</sup></a></p>
+<div class="sourceCode" id="cb243"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb243-1"><a href="data-collection-and-data-storage.html#cb243-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Create the new table</span></span>
+<span id="cb243-2"><a href="data-collection-and-data-storage.html#cb243-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> econ(</span>
+<span id="cb243-3"><a href="data-collection-and-data-storage.html#cb243-3" aria-hidden="true" tabindex="-1"></a><span class="dt">date</span> <span class="dt">DATE</span>,</span>
+<span id="cb243-4"><a href="data-collection-and-data-storage.html#cb243-4" aria-hidden="true" tabindex="-1"></a>pce <span class="dt">REAL</span>,</span>
+<span id="cb243-5"><a href="data-collection-and-data-storage.html#cb243-5" aria-hidden="true" tabindex="-1"></a>pop <span class="dt">INTEGER</span>,</span>
+<span id="cb243-6"><a href="data-collection-and-data-storage.html#cb243-6" aria-hidden="true" tabindex="-1"></a>psavert <span class="dt">REAL</span>,</span>
+<span id="cb243-7"><a href="data-collection-and-data-storage.html#cb243-7" aria-hidden="true" tabindex="-1"></a>uempmed <span class="dt">REAL</span>,</span>
+<span id="cb243-8"><a href="data-collection-and-data-storage.html#cb243-8" aria-hidden="true" tabindex="-1"></a>unemploy <span class="dt">INTEGER</span></span>
+<span id="cb243-9"><a href="data-collection-and-data-storage.html#cb243-9" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
 <p>After following the steps in <span class="citation"><a href="references.html#ref-walkowiak_2016" role="doc-biblioref">Walkowiak</a> (<a href="references.html#ref-walkowiak_2016" role="doc-biblioref">2016</a>)</span>, pages 259-262, we can import the <code>economics.csv</code>-file to the <code>econ</code> table in MariaDB (again, assuming the username is <code>umatter</code>). Note that the syntax to import data to a table is quite different from the SQLite example in Lecture 7.</p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb237-1"><a href="data-collection-and-data-storage.html#cb237-1" aria-hidden="true" tabindex="-1"></a>LOAD <span class="kw">DATA</span> <span class="kw">LOCAL</span> INFILE</span>
-<span id="cb237-2"><a href="data-collection-and-data-storage.html#cb237-2" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;/home/umatter/economics.csv&#39;</span> </span>
-<span id="cb237-3"><a href="data-collection-and-data-storage.html#cb237-3" aria-hidden="true" tabindex="-1"></a><span class="kw">INTO</span> <span class="kw">TABLE</span> econ</span>
-<span id="cb237-4"><a href="data-collection-and-data-storage.html#cb237-4" aria-hidden="true" tabindex="-1"></a>FIELDS TERMINATED <span class="kw">BY</span> <span class="st">&#39;,&#39;</span></span>
-<span id="cb237-5"><a href="data-collection-and-data-storage.html#cb237-5" aria-hidden="true" tabindex="-1"></a>LINES TERMINATED <span class="kw">BY</span> <span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span></span>
-<span id="cb237-6"><a href="data-collection-and-data-storage.html#cb237-6" aria-hidden="true" tabindex="-1"></a>IGNORE <span class="dv">1</span> <span class="kw">ROWS</span>;</span></code></pre></div>
+<div class="sourceCode" id="cb244"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb244-1"><a href="data-collection-and-data-storage.html#cb244-1" aria-hidden="true" tabindex="-1"></a>LOAD <span class="kw">DATA</span> <span class="kw">LOCAL</span> INFILE</span>
+<span id="cb244-2"><a href="data-collection-and-data-storage.html#cb244-2" aria-hidden="true" tabindex="-1"></a><span class="st">&#39;/home/umatter/economics.csv&#39;</span> </span>
+<span id="cb244-3"><a href="data-collection-and-data-storage.html#cb244-3" aria-hidden="true" tabindex="-1"></a><span class="kw">INTO</span> <span class="kw">TABLE</span> econ</span>
+<span id="cb244-4"><a href="data-collection-and-data-storage.html#cb244-4" aria-hidden="true" tabindex="-1"></a>FIELDS TERMINATED <span class="kw">BY</span> <span class="st">&#39;,&#39;</span></span>
+<span id="cb244-5"><a href="data-collection-and-data-storage.html#cb244-5" aria-hidden="true" tabindex="-1"></a>LINES TERMINATED <span class="kw">BY</span> <span class="st">&#39;</span><span class="ch">\n</span><span class="st">&#39;</span></span>
+<span id="cb244-6"><a href="data-collection-and-data-storage.html#cb244-6" aria-hidden="true" tabindex="-1"></a>IGNORE <span class="dv">1</span> <span class="kw">ROWS</span>;</span></code></pre></div>
 <p>Now we can start using the newly created database from within RStudio Server running on our EC2 instance (following <span class="citation"><a href="references.html#ref-walkowiak_2016" role="doc-biblioref">Walkowiak</a> (<a href="references.html#ref-walkowiak_2016" role="doc-biblioref">2016</a>)</span>, pages 263ff).</p>
 <p>As in the SQLite examples in Lecture 7, we can now query the database from within the R console (this time using <code>RMySQL</code> instead of <code>RSQLite</code>, and using R from within RStudio Server in the cloud!).</p>
 <p>First, we need to connect to the newly created MariaDB database.</p>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="data-collection-and-data-storage.html#cb238-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install package</span></span>
-<span id="cb238-2"><a href="data-collection-and-data-storage.html#cb238-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;RMySQL&quot;)</span></span>
-<span id="cb238-3"><a href="data-collection-and-data-storage.html#cb238-3" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb238-4"><a href="data-collection-and-data-storage.html#cb238-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RMySQL)</span>
-<span id="cb238-5"><a href="data-collection-and-data-storage.html#cb238-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb238-6"><a href="data-collection-and-data-storage.html#cb238-6" aria-hidden="true" tabindex="-1"></a><span class="co"># connect to the db</span></span>
-<span id="cb238-7"><a href="data-collection-and-data-storage.html#cb238-7" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(RMySQL<span class="sc">::</span><span class="fu">MySQL</span>(), </span>
-<span id="cb238-8"><a href="data-collection-and-data-storage.html#cb238-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">user =</span> <span class="st">&quot;root&quot;</span>,</span>
-<span id="cb238-9"><a href="data-collection-and-data-storage.html#cb238-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">password =</span> <span class="st">&quot;Password1&quot;</span>,</span>
-<span id="cb238-10"><a href="data-collection-and-data-storage.html#cb238-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">host =</span> <span class="st">&quot;localhost&quot;</span>,</span>
-<span id="cb238-11"><a href="data-collection-and-data-storage.html#cb238-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">dbname =</span> <span class="st">&quot;data1&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="data-collection-and-data-storage.html#cb245-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install package</span></span>
+<span id="cb245-2"><a href="data-collection-and-data-storage.html#cb245-2" aria-hidden="true" tabindex="-1"></a><span class="co">#install.packages(&quot;RMySQL&quot;)</span></span>
+<span id="cb245-3"><a href="data-collection-and-data-storage.html#cb245-3" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb245-4"><a href="data-collection-and-data-storage.html#cb245-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(RMySQL)</span>
+<span id="cb245-5"><a href="data-collection-and-data-storage.html#cb245-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb245-6"><a href="data-collection-and-data-storage.html#cb245-6" aria-hidden="true" tabindex="-1"></a><span class="co"># connect to the db</span></span>
+<span id="cb245-7"><a href="data-collection-and-data-storage.html#cb245-7" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(RMySQL<span class="sc">::</span><span class="fu">MySQL</span>(), </span>
+<span id="cb245-8"><a href="data-collection-and-data-storage.html#cb245-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">user =</span> <span class="st">&quot;root&quot;</span>,</span>
+<span id="cb245-9"><a href="data-collection-and-data-storage.html#cb245-9" aria-hidden="true" tabindex="-1"></a>                 <span class="at">password =</span> <span class="st">&quot;Password1&quot;</span>,</span>
+<span id="cb245-10"><a href="data-collection-and-data-storage.html#cb245-10" aria-hidden="true" tabindex="-1"></a>                 <span class="at">host =</span> <span class="st">&quot;localhost&quot;</span>,</span>
+<span id="cb245-11"><a href="data-collection-and-data-storage.html#cb245-11" aria-hidden="true" tabindex="-1"></a>                 <span class="at">dbname =</span> <span class="st">&quot;data1&quot;</span>)</span></code></pre></div>
 <p>In our first query, we select all (<code>*</code>) variable values of the observation of January 1968.</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="data-collection-and-data-storage.html#cb239-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the query</span></span>
-<span id="cb239-2"><a href="data-collection-and-data-storage.html#cb239-2" aria-hidden="true" tabindex="-1"></a>query1 <span class="ot">&lt;-</span> </span>
-<span id="cb239-3"><a href="data-collection-and-data-storage.html#cb239-3" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
-<span id="cb239-4"><a href="data-collection-and-data-storage.html#cb239-4" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT * FROM econ</span></span>
-<span id="cb239-5"><a href="data-collection-and-data-storage.html#cb239-5" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE date = &#39;1968-01-01&#39;;</span></span>
-<span id="cb239-6"><a href="data-collection-and-data-storage.html#cb239-6" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
-<span id="cb239-7"><a href="data-collection-and-data-storage.html#cb239-7" aria-hidden="true" tabindex="-1"></a><span class="co"># send the query to the db and get the result</span></span>
-<span id="cb239-8"><a href="data-collection-and-data-storage.html#cb239-8" aria-hidden="true" tabindex="-1"></a>jan <span class="ot">&lt;-</span> <span class="fu">dbGetQuery</span>(con, query1)</span>
-<span id="cb239-9"><a href="data-collection-and-data-storage.html#cb239-9" aria-hidden="true" tabindex="-1"></a>jan</span></code></pre></div>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="data-collection-and-data-storage.html#cb246-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define the query</span></span>
+<span id="cb246-2"><a href="data-collection-and-data-storage.html#cb246-2" aria-hidden="true" tabindex="-1"></a>query1 <span class="ot">&lt;-</span> </span>
+<span id="cb246-3"><a href="data-collection-and-data-storage.html#cb246-3" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
+<span id="cb246-4"><a href="data-collection-and-data-storage.html#cb246-4" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT * FROM econ</span></span>
+<span id="cb246-5"><a href="data-collection-and-data-storage.html#cb246-5" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE date = &#39;1968-01-01&#39;;</span></span>
+<span id="cb246-6"><a href="data-collection-and-data-storage.html#cb246-6" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
+<span id="cb246-7"><a href="data-collection-and-data-storage.html#cb246-7" aria-hidden="true" tabindex="-1"></a><span class="co"># send the query to the db and get the result</span></span>
+<span id="cb246-8"><a href="data-collection-and-data-storage.html#cb246-8" aria-hidden="true" tabindex="-1"></a>jan <span class="ot">&lt;-</span> <span class="fu">dbGetQuery</span>(con, query1)</span>
+<span id="cb246-9"><a href="data-collection-and-data-storage.html#cb246-9" aria-hidden="true" tabindex="-1"></a>jan</span></code></pre></div>
 <pre><code>#        date   pce    pop psavert uempmed unemploy
 # 1 1968-01-01 531.5 199808    11.7     5.1     2878</code></pre>
 <p>Now let’s select all year/months in which there were more than 15 million unemployed, ordered by date.</p>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="data-collection-and-data-storage.html#cb241-1" aria-hidden="true" tabindex="-1"></a>query2 <span class="ot">&lt;-</span></span>
-<span id="cb241-2"><a href="data-collection-and-data-storage.html#cb241-2" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
-<span id="cb241-3"><a href="data-collection-and-data-storage.html#cb241-3" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT date FROM econ </span></span>
-<span id="cb241-4"><a href="data-collection-and-data-storage.html#cb241-4" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE unemploy &gt; 15000</span></span>
-<span id="cb241-5"><a href="data-collection-and-data-storage.html#cb241-5" aria-hidden="true" tabindex="-1"></a><span class="st">ORDER BY date;</span></span>
-<span id="cb241-6"><a href="data-collection-and-data-storage.html#cb241-6" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
-<span id="cb241-7"><a href="data-collection-and-data-storage.html#cb241-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb241-8"><a href="data-collection-and-data-storage.html#cb241-8" aria-hidden="true" tabindex="-1"></a><span class="co"># send the query to the db and get the result</span></span>
-<span id="cb241-9"><a href="data-collection-and-data-storage.html#cb241-9" aria-hidden="true" tabindex="-1"></a>unemp <span class="ot">&lt;-</span> <span class="fu">dbGetQuery</span>(con, query2)</span>
-<span id="cb241-10"><a href="data-collection-and-data-storage.html#cb241-10" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(unemp)</span></code></pre></div>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="data-collection-and-data-storage.html#cb248-1" aria-hidden="true" tabindex="-1"></a>query2 <span class="ot">&lt;-</span></span>
+<span id="cb248-2"><a href="data-collection-and-data-storage.html#cb248-2" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
+<span id="cb248-3"><a href="data-collection-and-data-storage.html#cb248-3" aria-hidden="true" tabindex="-1"></a><span class="st">SELECT date FROM econ </span></span>
+<span id="cb248-4"><a href="data-collection-and-data-storage.html#cb248-4" aria-hidden="true" tabindex="-1"></a><span class="st">WHERE unemploy &gt; 15000</span></span>
+<span id="cb248-5"><a href="data-collection-and-data-storage.html#cb248-5" aria-hidden="true" tabindex="-1"></a><span class="st">ORDER BY date;</span></span>
+<span id="cb248-6"><a href="data-collection-and-data-storage.html#cb248-6" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;</span></span>
+<span id="cb248-7"><a href="data-collection-and-data-storage.html#cb248-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb248-8"><a href="data-collection-and-data-storage.html#cb248-8" aria-hidden="true" tabindex="-1"></a><span class="co"># send the query to the db and get the result</span></span>
+<span id="cb248-9"><a href="data-collection-and-data-storage.html#cb248-9" aria-hidden="true" tabindex="-1"></a>unemp <span class="ot">&lt;-</span> <span class="fu">dbGetQuery</span>(con, query2)</span>
+<span id="cb248-10"><a href="data-collection-and-data-storage.html#cb248-10" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(unemp)</span></code></pre></div>
 <pre><code>#         date
 # 1 2009-09-01
 # 2 2009-10-01
@@ -1015,8 +1098,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="footnotes">
 <hr />
 <ol start="34">
-<li id="fn34"><p>Below it is shown how to do this ‘manually,’ if not promted at this step.<a href="data-collection-and-data-storage.html#fnref34" class="footnote-back">↩︎</a></p></li>
-<li id="fn35"><p>However, MariaDB is a much more sophisticated RDBMS than SQLite and comes with many more field types, see the official <a href="https://mariadb.com/kb/en/library/data-types/">list of supported data types</a>.<a href="data-collection-and-data-storage.html#fnref35" class="footnote-back">↩︎</a></p></li>
+<li id="fn34"><p>Note that this is not generally recommendable. Only do this to get familiar with the service and to test some code.<a href="data-collection-and-data-storage.html#fnref34" class="footnote-back">↩︎</a></p></li>
+<li id="fn35"><p>Below it is shown how to do this ‘manually,’ if not promted at this step.<a href="data-collection-and-data-storage.html#fnref35" class="footnote-back">↩︎</a></p></li>
+<li id="fn36"><p>However, MariaDB is a much more sophisticated RDBMS than SQLite and comes with many more field types, see the official <a href="https://mariadb.com/kb/en/library/data-types/">list of supported data types</a>.<a href="data-collection-and-data-storage.html#fnref36" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

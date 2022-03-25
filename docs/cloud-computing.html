@@ -24,7 +24,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-02-25" />
+<meta name="date" content="2022-03-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -210,21 +210,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="5.2.1" data-path="distributed-systems.html"><a href="distributed-systems.html#hadoop-word-count-example"><i class="fa fa-check"></i><b>5.2.1</b> Hadoop word count example</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="distributed-systems.html"><a href="distributed-systems.html#spark"><i class="fa fa-check"></i><b>5.3</b> Spark</a>
+<li class="chapter" data-level="5.3" data-path="distributed-systems.html"><a href="distributed-systems.html#spark"><i class="fa fa-check"></i><b>5.3</b> Spark</a></li>
+<li class="chapter" data-level="5.4" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-r"><i class="fa fa-check"></i><b>5.4</b> Spark with R</a>
 <ul>
-<li class="chapter" data-level="5.3.1" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-r"><i class="fa fa-check"></i><b>5.3.1</b> Spark with R</a></li>
-<li class="chapter" data-level="5.3.2" data-path="distributed-systems.html"><a href="distributed-systems.html#data-import-and-summary-statistics"><i class="fa fa-check"></i><b>5.3.2</b> Data import and summary statistics</a></li>
+<li class="chapter" data-level="5.4.1" data-path="distributed-systems.html"><a href="distributed-systems.html#data-import-and-summary-statistics"><i class="fa fa-check"></i><b>5.4.1</b> Data import and summary statistics</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-sql"><i class="fa fa-check"></i><b>5.4</b> Spark with SQL</a></li>
-<li class="chapter" data-level="5.5" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-r-sql"><i class="fa fa-check"></i><b>5.5</b> Spark with R + SQL</a></li>
+<li class="chapter" data-level="5.5" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-sql"><i class="fa fa-check"></i><b>5.5</b> Spark with SQL</a></li>
+<li class="chapter" data-level="5.6" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-r-sql"><i class="fa fa-check"></i><b>5.6</b> Spark with R + SQL</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="cloud-computing.html"><a href="cloud-computing.html"><i class="fa fa-check"></i><b>6</b> Cloud Computing</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="cloud-computing.html"><a href="cloud-computing.html#scaling-up-with-aws-ec2-and-rrstudio"><i class="fa fa-check"></i><b>6.1</b> Scaling up with AWS EC2 and R/RStudio</a>
 <ul>
 <li class="chapter" data-level="6.1.1" data-path="cloud-computing.html"><a href="cloud-computing.html#parallelization-with-an-ec2-instance"><i class="fa fa-check"></i><b>6.1.1</b> Parallelization with an EC2 instance</a></li>
-<li class="chapter" data-level="6.1.2" data-path="cloud-computing.html"><a href="cloud-computing.html#gpus-on-google-colab"><i class="fa fa-check"></i><b>6.1.2</b> GPUs on Google Colab</a></li>
-<li class="chapter" data-level="6.1.3" data-path="cloud-computing.html"><a href="cloud-computing.html#aws-emr-mapreduce-in-the-cloud"><i class="fa fa-check"></i><b>6.1.3</b> AWS EMR: MapReduce in the cloud</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="cloud-computing.html"><a href="cloud-computing.html#ec2-with-rstudio-and-gpus"><i class="fa fa-check"></i><b>6.2</b> EC2 with RStudio and GPUs</a></li>
+<li class="chapter" data-level="6.3" data-path="cloud-computing.html"><a href="cloud-computing.html#gpus-on-google-colab"><i class="fa fa-check"></i><b>6.3</b> GPUs on Google Colab</a></li>
+<li class="chapter" data-level="6.4" data-path="cloud-computing.html"><a href="cloud-computing.html#aws-emr-mapreduce-in-the-cloud"><i class="fa fa-check"></i><b>6.4</b> AWS EMR: MapReduce in the cloud</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="cloud-computing.html"><a href="cloud-computing.html#set-up-an-emr-cluster-to-run-with-r"><i class="fa fa-check"></i><b>6.4.1</b> Set up an EMR cluster to run with R</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html"><i class="fa fa-check"></i><b>7</b> Data Collection and Data Storage</a>
@@ -234,19 +238,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#nyc-taxi-data"><i class="fa fa-check"></i><b>7.1.1</b> NYC taxi data</a></li>
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#data-import-and-memory-allocation"><i class="fa fa-check"></i><b>7.2</b> Data import and memory allocation</a></li>
-<li class="chapter" data-level="7.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#big-data-storage"><i class="fa fa-check"></i><b>7.3</b> (Big) Data Storage</a></li>
-<li class="chapter" data-level="7.4" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#rdbms-basics"><i class="fa fa-check"></i><b>7.4</b> RDBMS basics</a></li>
-<li class="chapter" data-level="7.5" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#row-based-vs-column-based-databases"><i class="fa fa-check"></i><b>7.5</b> Row-based vs column-based databases</a></li>
-<li class="chapter" data-level="7.6" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#getting-started-with-rsqlite"><i class="fa fa-check"></i><b>7.6</b> Getting started with RSQLite</a>
+<li class="chapter" data-level="7.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#efficient-local-data-storage"><i class="fa fa-check"></i><b>7.3</b> Efficient local data storage</a>
 <ul>
-<li class="chapter" data-level="7.6.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#warm-up-in-sqlite-indices-and-joins"><i class="fa fa-check"></i><b>7.6.1</b> Warm up in SQLite: indices and joins</a></li>
+<li class="chapter" data-level="7.3.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#rdbms-basics"><i class="fa fa-check"></i><b>7.3.1</b> RDBMS basics</a></li>
+<li class="chapter" data-level="7.3.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#efficient-data-access-indices-and-joins-in-sqlite"><i class="fa fa-check"></i><b>7.3.2</b> Efficient data access: indices and joins in SQLite</a></li>
 </ul></li>
-<li class="chapter" data-level="7.7" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#sqlite-from-within-r"><i class="fa fa-check"></i><b>7.7</b> SQLite from within R</a>
+<li class="chapter" data-level="7.4" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#connecting-r-to-rdbms"><i class="fa fa-check"></i><b>7.4</b> Connecting R to RDBMS</a>
 <ul>
-<li class="chapter" data-level="7.7.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#creating-a-new-database-with-rsqlite"><i class="fa fa-check"></i><b>7.7.1</b> Creating a new database with <code>RSQLite</code></a></li>
-<li class="chapter" data-level="7.7.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#importing-data"><i class="fa fa-check"></i><b>7.7.2</b> Importing data</a></li>
-<li class="chapter" data-level="7.7.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#issue-queries"><i class="fa fa-check"></i><b>7.7.3</b> Issue queries</a></li>
-<li class="chapter" data-level="7.7.4" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#mass-storage-mariadb-on-an-ec2-instance"><i class="fa fa-check"></i><b>7.7.4</b> Mass Storage: MariaDB on an EC2 instance</a></li>
+<li class="chapter" data-level="7.4.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#creating-a-new-database-with-rsqlite"><i class="fa fa-check"></i><b>7.4.1</b> Creating a new database with <code>RSQLite</code></a></li>
+<li class="chapter" data-level="7.4.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#importing-data"><i class="fa fa-check"></i><b>7.4.2</b> Importing data</a></li>
+<li class="chapter" data-level="7.4.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#issue-queries"><i class="fa fa-check"></i><b>7.4.3</b> Issue queries</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#cloud-solutions-for-big-data-storage"><i class="fa fa-check"></i><b>7.5</b> Cloud solutions for (big) data storage</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#easy-to-use-rdbms-in-the-cloud-aws-rds"><i class="fa fa-check"></i><b>7.5.1</b> Easy-to-use RDBMS in the cloud: AWS RDS</a></li>
+<li class="chapter" data-level="7.5.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#database-server-in-the-cloud-mariadb-on-an-ec2-instance"><i class="fa fa-check"></i><b>7.5.2</b> Database server in the cloud: MariaDB on an EC2 instance</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html"><i class="fa fa-check"></i><b>8</b> Big Data Cleaning and Transformation</a>
@@ -266,12 +272,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-the-split-apply-combine-strategy"><i class="fa fa-check"></i><b>9.1</b> Data aggregation: The ‘split-apply-combine’ strategy</a>
 <ul>
 <li class="chapter" data-level="9.1.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-with-chunked-data-files"><i class="fa fa-check"></i><b>9.1.1</b> Data aggregation with chunked data files</a></li>
-<li class="chapter" data-level="9.1.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>9.1.2</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
+<li class="chapter" data-level="9.1.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#cross-tabulation-of-ff-vectors"><i class="fa fa-check"></i><b>9.1.2</b> Cross-tabulation of <code>ff</code> vectors</a></li>
 </ul></li>
+<li class="chapter" data-level="9.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>9.2</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="big-data-visualization.html"><a href="big-data-visualization.html"><i class="fa fa-check"></i><b>10</b> (Big) Data Visualization</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#data-set"><i class="fa fa-check"></i><b>10.1</b> Data Set</a></li>
+<li class="chapter" data-level="10.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#data-exploration-with-ggplot2"><i class="fa fa-check"></i><b>10.1</b> Data exploration with <code>ggplot2</code></a></li>
 <li class="chapter" data-level="10.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-modify-and-create-themes"><i class="fa fa-check"></i><b>10.2</b> Excursus: modify and create themes</a>
 <ul>
 <li class="chapter" data-level="10.2.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#create-your-own-theme-simple-approach"><i class="fa fa-check"></i><b>10.2.1</b> Create your own theme: simple approach</a></li>
@@ -368,9 +375,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="https://intl.cloud.tencent.com/">Tencent Cloud</a></li>
 <li>and others.</li>
 </ul>
-<p>When we use such cloud services to <em>scale up</em> (vertical scaling) the computing resources, the transition from our local implementation of a data analytics task to the cloud implementation is often rather simple. Once we have set up a cloud instance and figured out how to communicate with it, we typically can run the exact same R-script locally and in the cloud. This is usually the case for parallelized tasks (simply run the same script on a machine with more cores), in-memory tasks (rent a machine with more RAM but still use <code>data.table()</code> etc.), and working with an SQL database (simply set up the database in the cloud instead of locally).</p>
-<p>However, for really memory-intense tasks, the cloud provides options to <em>scale out</em> (horizontal scaling). Meaning, a task is distributed among a cluster of (virtual) computing instances/servers. The implementation of such data analytics tasks is commonly based on a paradigm that we rather do not encounter when working locally: <em>Map/Reduce</em> (implemented in the <em>Hadoop</em> framework).</p>
-<p>In the following, we look first at scaling up more familiar approaches with the help of the cloud and then look at the Map/Reduce concept and how it can be applied in <em>Hadoop</em>. For the sake of simplicity, we will primarily focus on how to use cloud instances provided by AWS. Note, however, that once you are familiar with setting things up on AWS, also using Google Cloud, Azure, etc. will be easy. Most of the core services are provided by all providers and once you understand the basics the different dashboards will look quite familiar.</p>
+<p>When we use such cloud services to <em>scale up</em> (vertical scaling) the computing resources, the transition from our local implementation of a data analytics task to the cloud implementation is often rather simple. Once we have set up a cloud instance and figured out how to communicate with it, we typically can run the exact same R-script locally and in the cloud. This is usually the case for parallelized tasks (simply run the same script on a machine with more cores), in-memory tasks (rent a machine with more RAM but still use <code>data.table()</code> etc.), or even setting up a Spark cluster in the cloud.</p>
+<p>In the following, we look first at scaling up more familiar approaches in the cloud. For the sake of simplicity, we will primarily focus on how to use cloud instances provided by AWS. Note, however, that once you are familiar with setting things up on AWS, also using Google Cloud, Azure, etc. will be easy. Most of the core services are provided by all providers and once you understand the basics the different dashboards will look quite familiar.</p>
 <p>In order to get started, first go to <code>https://aws.amazon.com/</code> and create an account. You will only be charged for the time you use an AWS service. However, even when using some cloud instances, several of AWS’ cloud products offer a free tier to test and try out products. The following examples rely whenever possible on free-tier instances, otherwise I explicitly that running the example in the cloud will generate some costs.</p>
 <div id="scaling-up-with-aws-ec2-and-rrstudio" class="section level2" number="6.1">
 <h2><span class="header-section-number">6.1</span> Scaling up with AWS EC2 and R/RStudio</h2>
@@ -386,65 +392,145 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="parallelization-with-an-ec2-instance" class="section level3" number="6.1.1">
 <h3><span class="header-section-number">6.1.1</span> Parallelization with an EC2 instance</h3>
 <p>This short tutorial illustrates how to scale the computation up by running it on an AWS EC2 instance. Thereby, we build on the techniques discussed in the previous chapter. Note that our EC2 instance is a Linux machine. When running R on a Linux machine, there is sometimes an additional step to install R packages (at least for most of the packages): R packages need to be compiled before they can be installed. The command to install packages is exactly the same (<code>install.packages()</code>) and normally you only notice a slight difference in the output shown in the R console during installation (and the installation process takes a little longer than what you are used to). In some cases you might also have to install additional dependencies directly in Linux. Apart from that, using R via RStudio Server in the cloud looks/feels very similar if not identical as when using R/RStudio locally.</p>
-<div id="parallel-computing-demo" class="section level4" number="6.1.1.1">
-<h4><span class="header-section-number">6.1.1.1</span> Parallel computing demo</h4>
+<div id="preparatory-steps" class="section level4" number="6.1.1.1">
+<h4><span class="header-section-number">6.1.1.1</span> Preparatory steps</h4>
+<p>If your EC2 instance with RStudio-Server is not running yet, do the following. In the AWS console, navigate to EC2, select your EC2 instance (with RStudio Server installed) , and click on “Instance state/Start instance.” You will have to wait until you see “2/2 checks passed.” Then, open a new browser window, enter the address of your EC2/RStudio-Server instance (see above, e.g. <code>http://3.66.120.150</code>), and log in to RStudio. First, we need to install the <code>parallel</code> and <code>doSNOW</code> packages. In addition we will rely on the <code>stringr</code> package.</p>
+<div class="sourceCode" id="cb193"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb193-1"><a href="cloud-computing.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install packages for parallelization</span></span>
+<span id="cb193-2"><a href="cloud-computing.html#cb193-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;parallel&quot;</span>, <span class="st">&quot;doSNOW&quot;</span>, <span class="st">&quot;stringr&quot;</span>)</span></code></pre></div>
+<p>Once the installations have finished, you can load the packages and verify the number of cores available on your EC2 instance as follows. In case you have chosen the free tier T2.micro instance type when setting up your EC2 instance, you will see that you only have one core available. Do not worry. It is reasonable practice to test your parallelization script with a few iterations on a small machine before bringing out the big guns. The specialized packages we use for parallelization here do not mind if you have one or 32 cores, the same code runs on either machine (obviously not very fast with only one core).</p>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="cloud-computing.html#cb194-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages </span></span>
+<span id="cb194-2"><a href="cloud-computing.html#cb194-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(parallel)</span>
+<span id="cb194-3"><a href="cloud-computing.html#cb194-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(doSNOW)</span>
+<span id="cb194-4"><a href="cloud-computing.html#cb194-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb194-5"><a href="cloud-computing.html#cb194-5" aria-hidden="true" tabindex="-1"></a><span class="co"># verify no. of cores available</span></span>
+<span id="cb194-6"><a href="cloud-computing.html#cb194-6" aria-hidden="true" tabindex="-1"></a>n_cores <span class="ot">&lt;-</span> <span class="fu">detectCores</span>()</span>
+<span id="cb194-7"><a href="cloud-computing.html#cb194-7" aria-hidden="true" tabindex="-1"></a>n_cores</span></code></pre></div>
+<p>Finally, we have to upload the data that we want to process as part of the parallelization task. To this end, in RStudio-Server, navigate to the file explorer in the lower-right corner. The graphical user interface of a local RStudio installation and RStudio-Server is almost identical. However, you will find in the file explorer pane a “Upload”-button to transfer files from your local machine to the EC2 instance. In this demonstration, we will work with the previously introduced <code>marketing_data.csv</code> dataset. You can thus click on “Upload” and upload it to the current target directory (the home directory of RStudio-Server). As soon as the file is uploaded you can work with it as usual (as on the local RStudio installation). To keep things like in the local examples, use the file explorer to create a new <code>data</code> folder and move <code>marketing_data.csv</code> in this new folder.</p>
+<div class="figure" style="text-align: center"><span id="fig:ec2rstudioserver"></span>
+<img src="img/screenshot_rstudio_server_upload.png" alt="File explorer and Upload-button on Rstudio-Server." width="50%" />
+<p class="caption">
+Figure 6.1: File explorer and Upload-button on Rstudio-Server.
+</p>
 </div>
-<div id="increase-memorystorage" class="section level4" number="6.1.1.2">
-<h4><span class="header-section-number">6.1.1.2</span> Increase memory/storage</h4>
+
+<p>To test if all is set up properly to run a in parallel on our EC2 instance, open a new R-script in RStudio-Server and copy/paste the preparatory steps and the simple parallelization example from Section 4.5 into the R-Script.</p>
+<div class="sourceCode" id="cb195"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb195-1"><a href="cloud-computing.html#cb195-1" aria-hidden="true" tabindex="-1"></a><span class="co"># PREPARATION -----------------------------</span></span>
+<span id="cb195-2"><a href="cloud-computing.html#cb195-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb195-3"><a href="cloud-computing.html#cb195-3" aria-hidden="true" tabindex="-1"></a><span class="co"># packages</span></span>
+<span id="cb195-4"><a href="cloud-computing.html#cb195-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(stringr)</span>
+<span id="cb195-5"><a href="cloud-computing.html#cb195-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb195-6"><a href="cloud-computing.html#cb195-6" aria-hidden="true" tabindex="-1"></a><span class="co"># import data</span></span>
+<span id="cb195-7"><a href="cloud-computing.html#cb195-7" aria-hidden="true" tabindex="-1"></a>marketing <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/marketing_data.csv&quot;</span>)</span>
+<span id="cb195-8"><a href="cloud-computing.html#cb195-8" aria-hidden="true" tabindex="-1"></a><span class="co"># clean/prepare data</span></span>
+<span id="cb195-9"><a href="cloud-computing.html#cb195-9" aria-hidden="true" tabindex="-1"></a>marketing<span class="sc">$</span>Income <span class="ot">&lt;-</span> <span class="fu">as.numeric</span>(<span class="fu">gsub</span>(<span class="st">&quot;[[:punct:]]&quot;</span>, <span class="st">&quot;&quot;</span>, marketing<span class="sc">$</span>Income)) </span>
+<span id="cb195-10"><a href="cloud-computing.html#cb195-10" aria-hidden="true" tabindex="-1"></a>marketing<span class="sc">$</span>days_customer <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="fu">Sys.Date</span>())<span class="sc">-</span> <span class="fu">as.Date</span>(marketing<span class="sc">$</span>Dt_Customer, <span class="st">&quot;%m/%d/%y&quot;</span>)</span>
+<span id="cb195-11"><a href="cloud-computing.html#cb195-11" aria-hidden="true" tabindex="-1"></a>marketing<span class="sc">$</span>Dt_Customer <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb195-12"><a href="cloud-computing.html#cb195-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb195-13"><a href="cloud-computing.html#cb195-13" aria-hidden="true" tabindex="-1"></a><span class="co"># all sets of independent vars</span></span>
+<span id="cb195-14"><a href="cloud-computing.html#cb195-14" aria-hidden="true" tabindex="-1"></a>indep <span class="ot">&lt;-</span> <span class="fu">names</span>(marketing)[ <span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">19</span>, <span class="dv">27</span>,<span class="dv">28</span>)]</span>
+<span id="cb195-15"><a href="cloud-computing.html#cb195-15" aria-hidden="true" tabindex="-1"></a>combinations_list <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(indep),</span>
+<span id="cb195-16"><a href="cloud-computing.html#cb195-16" aria-hidden="true" tabindex="-1"></a>                            <span class="cf">function</span>(x) <span class="fu">combn</span>(indep, x, <span class="at">simplify =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb195-17"><a href="cloud-computing.html#cb195-17" aria-hidden="true" tabindex="-1"></a>combinations_list <span class="ot">&lt;-</span> <span class="fu">unlist</span>(combinations_list, <span class="at">recursive =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb195-18"><a href="cloud-computing.html#cb195-18" aria-hidden="true" tabindex="-1"></a>models <span class="ot">&lt;-</span> <span class="fu">lapply</span>(combinations_list,</span>
+<span id="cb195-19"><a href="cloud-computing.html#cb195-19" aria-hidden="true" tabindex="-1"></a>                 <span class="cf">function</span>(x) <span class="fu">paste</span>(<span class="st">&quot;Response ~&quot;</span>, <span class="fu">paste</span>(x, <span class="at">collapse=</span><span class="st">&quot;+&quot;</span>)))</span></code></pre></div>
 </div>
-<div id="ec2-with-rstudio-and-gpus" class="section level4" number="6.1.1.3">
-<h4><span class="header-section-number">6.1.1.3</span> EC2 with RStudio and GPUs</h4>
+<div id="test-parallelized-code" class="section level4" number="6.1.1.2">
+<h4><span class="header-section-number">6.1.1.2</span> Test parallelized code</h4>
+<p>Now, we can start testing the code on EC2 without registering the one core for cluster processing. This way <code>%dopart%</code> will automatically resort to running the code sequentially. Make sure to set <code>N</code> to 10 (or another small number) for this test.</p>
+<div class="sourceCode" id="cb196"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb196-1"><a href="cloud-computing.html#cb196-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set cores for parallel processing</span></span>
+<span id="cb196-2"><a href="cloud-computing.html#cb196-2" aria-hidden="true" tabindex="-1"></a><span class="co"># ctemp &lt;- makeCluster(ncores)</span></span>
+<span id="cb196-3"><a href="cloud-computing.html#cb196-3" aria-hidden="true" tabindex="-1"></a><span class="co"># registerDoSNOW(ctemp)</span></span>
+<span id="cb196-4"><a href="cloud-computing.html#cb196-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb196-5"><a href="cloud-computing.html#cb196-5" aria-hidden="true" tabindex="-1"></a><span class="co"># prepare loop</span></span>
+<span id="cb196-6"><a href="cloud-computing.html#cb196-6" aria-hidden="true" tabindex="-1"></a>N <span class="ot">&lt;-</span> <span class="dv">10</span> <span class="co"># just for illustration, the actual code is N &lt;- length(models)</span></span>
+<span id="cb196-7"><a href="cloud-computing.html#cb196-7" aria-hidden="true" tabindex="-1"></a><span class="co"># run loop in parallel</span></span>
+<span id="cb196-8"><a href="cloud-computing.html#cb196-8" aria-hidden="true" tabindex="-1"></a>pseudo_Rsq <span class="ot">&lt;-</span></span>
+<span id="cb196-9"><a href="cloud-computing.html#cb196-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">foreach</span> ( <span class="at">i =</span> <span class="dv">1</span><span class="sc">:</span>N, <span class="at">.combine =</span> c) <span class="sc">%dopar%</span> {</span>
+<span id="cb196-10"><a href="cloud-computing.html#cb196-10" aria-hidden="true" tabindex="-1"></a>    <span class="co"># fit the logit model via maximum likelihood</span></span>
+<span id="cb196-11"><a href="cloud-computing.html#cb196-11" aria-hidden="true" tabindex="-1"></a>    fit <span class="ot">&lt;-</span> <span class="fu">glm</span>(models[[i]], <span class="at">data=</span>marketing, <span class="at">family =</span> <span class="fu">binomial</span>())</span>
+<span id="cb196-12"><a href="cloud-computing.html#cb196-12" aria-hidden="true" tabindex="-1"></a>    <span class="co"># compute the proportion of deviance explained by the independent vars (~R^2)</span></span>
+<span id="cb196-13"><a href="cloud-computing.html#cb196-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="dv">1</span><span class="sc">-</span>(fit<span class="sc">$</span>deviance<span class="sc">/</span>fit<span class="sc">$</span>null.deviance))</span>
+<span id="cb196-14"><a href="cloud-computing.html#cb196-14" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>Once the test has run through successfully, we are ready to scale up and run the actual workload in parallel in the cloud.</p>
+</div>
+<div id="scale-up-and-run-in-parallel" class="section level4" number="6.1.1.3">
+<h4><span class="header-section-number">6.1.1.3</span> Scale up and run in parallel</h4>
+<p>First, switch back to the AWS EC2 console and stop the instance by selecting the tick-mark in the corresponding row, and click on “Instance state/stop instance.” Once the Instance state is “Stopped,” click on “Actions/Instance settings/change instance type.” You will be presented with a drop-down menu from which you can select the new instance type and confirm. The example bellow is based on selecting the <code>t2.2xlarge</code> (with 8 vCPUs and 32MB of RAM). Now you can start the instance again, log in to RStudio-Server (as above) and run the script again but this time with the following lines not commented out (in order to make use of all eight cores).</p>
+<div class="sourceCode" id="cb197"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb197-1"><a href="cloud-computing.html#cb197-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set cores for parallel processing</span></span>
+<span id="cb197-2"><a href="cloud-computing.html#cb197-2" aria-hidden="true" tabindex="-1"></a>ctemp <span class="ot">&lt;-</span> <span class="fu">makeCluster</span>(ncores)</span>
+<span id="cb197-3"><a href="cloud-computing.html#cb197-3" aria-hidden="true" tabindex="-1"></a><span class="fu">registerDoSNOW</span>(ctemp)</span></code></pre></div>
+<p>In order to monitor the usage of computing resources on your instance, switch to the Terminal tab, enter <code>htop</code>, and hit enter. This will open the interactive process viewer called htop. With the default free tier T2.micro instance, you will again notice that only one core is available.</p>
+<div class="figure" style="text-align: center"><span id="fig:ec2rstudioserverhtop"></span>
+<img src="img/ec2_rstudioserver_htop.png" alt="Monitor resources and proceses with htop." width="80%" />
+<p class="caption">
+Figure 6.2: Monitor resources and proceses with htop.
+</p>
+</div>
+
+</div>
+</div>
+</div>
+<div id="ec2-with-rstudio-and-gpus" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> EC2 with RStudio and GPUs</h2>
 <p>To start a ready-made EC2 instance with GPUs and RStudio installed, go to this service provided by RStudio on the AWS Marketplace: <a href="https://aws.amazon.com/marketplace/pp/B0785SXYB2" class="uri">https://aws.amazon.com/marketplace/pp/B0785SXYB2</a>. Click on Subscribe.</p>
 <div class="figure" style="text-align: center"><span id="fig:ec2gpusetup1"></span>
-<img src="img/ec2_gpu1.png" alt="AWS Marketplace product provided by RStudio to run RStudio Server with Tensorflow-GPU on AWS EC2." width="50%" />
+<img src="img/ec2_gpu1.png" alt="AWS Marketplace product provided by RStudio to run RStudio Server with Tensorflow-GPU on AWS EC2." width="80%" />
 <p class="caption">
-Figure 6.1: AWS Marketplace product provided by RStudio to run RStudio Server with Tensorflow-GPU on AWS EC2.
+Figure 6.3: AWS Marketplace product provided by RStudio to run RStudio Server with Tensorflow-GPU on AWS EC2.
 </p>
 </div>
 
 <p>Then, click on Continue to Configuration and Continue to Launch. If you want to use the smallest/cheapest EC2 instance, select under “EC2 Instance Type” <code>g3s.xlarge</code>. If necessary, create a new key pair under ‘Key Pair Settings,’ otherwise keep all the default settings as they are. Then, at the bottom, click on <em>Launch</em>. This will launch a new EC2 instance with a GPU and with RStudio server installed.<a href="#fn31" class="footnote-ref" id="fnref31"><sup>31</sup></a></p>
 <div class="figure" style="text-align: center"><span id="fig:ec2gpusetup2"></span>
-<img src="img/ec2_gpu2.png" alt="Launch RStudio Server with Tensorflow-GPU on AWS EC2." width="50%" />
+<img src="img/ec2_gpu2.png" alt="Launch RStudio Server with Tensorflow-GPU on AWS EC2." width="60%" />
 <p class="caption">
-Figure 6.2: Launch RStudio Server with Tensorflow-GPU on AWS EC2.
+Figure 6.4: Launch RStudio Server with Tensorflow-GPU on AWS EC2.
 </p>
 </div>
 
 <p>Once the instance is launched go to the EC2 dashboard, click on the new instance, copy its public dns, open a new browser window and go to <code>http://&lt;ec2_instance_public_dns&gt;:8787</code>. You should see the RStudio server login. You can log in with username <code>rstudio-user</code> and the instance_id of your newly created instance as the password.<a href="#fn32" class="footnote-ref" id="fnref32"><sup>32</sup></a></p>
 </div>
+<div id="gpus-on-google-colab" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> GPUs on Google Colab</h2>
+<p>Google Colab provides a very easy way to run R code on GPUs from Google Cloud. All you need is a Google account. Open a new browser window, go to <a href="https://colab.to/r" class="uri">https://colab.to/r</a> and log in with your Google account if prompted to do so. Colab will open a <a href="https://en.wikipedia.org/wiki/Project_Jupyter">Jupyter notebook</a> with an R runtime. Click on “Runtime/Change runtime type” and select in the drop-down menu under ‘Hardware accelerator’ the option ‘GPU.’</p>
+<div class="figure" style="text-align: center"><span id="fig:colabr"></span>
+<img src="img/colab_r_gpu.png" alt="Colab notebook with R runtime and GPUs." width="50%" />
+<p class="caption">
+Figure 6.5: Colab notebook with R runtime and GPUs.
+</p>
 </div>
-<div id="gpus-on-google-colab" class="section level3" number="6.1.2">
-<h3><span class="header-section-number">6.1.2</span> GPUs on Google Colab</h3>
-<p>Google Colab provides a very easy way to run R code on GPUs from Google Cloud. All you need is a Google account. Open a new browser window, go to <a href="https://colab.to/r" class="uri">https://colab.to/r</a> and log in with your Google account if prompted to do so. Colab will open a <a href="https://en.wikipedia.org/wiki/Project_Jupyter">Jupyter notebook</a> with an R runtime. Click on Runtime/Change runtime type and in the opening dialog select in the drop-down menu under ‘Hardware accelerator’ the option ‘GPU.’ Install the packages you need to work with GPU acceleration (e.g., <code>keras</code> and <code>tensorflow</code>) and the code relying on GPU processing will be run on GPUs.</p>
+
+<p>Then, you can install the packages you need to work with GPU acceleration (e.g., <code>gpuR</code>, <code>keras</code> and <code>tensorflow</code>) and the code relying on GPU processing will be run on GPUs (or even <a href="https://en.wikipedia.org/wiki/Tensor_Processing_Unit">TPUs</a>). Under the following link you find a Colab-notebook set up for running a <a href="https://tensorflow.rstudio.com/tutorials/beginners/basic-ml/tutorial_basic_classification/">simply image classification tutorial</a> with keras on TPUs: <a href="https://bit.ly/bda_colab">bit.ly/bda_colab</a>.</p>
 </div>
-<div id="aws-emr-mapreduce-in-the-cloud" class="section level3" number="6.1.3">
-<h3><span class="header-section-number">6.1.3</span> AWS EMR: MapReduce in the cloud</h3>
+<div id="aws-emr-mapreduce-in-the-cloud" class="section level2" number="6.4">
+<h2><span class="header-section-number">6.4</span> AWS EMR: MapReduce in the cloud</h2>
 <p>Many cloud computing providers offer specialized services for MapReduce tasks in the cloud. Here we look at a comparatively easy-to-use solution provided by AWS, called Elastic MapReduce (AWS EMR). It allows to set up a Hadoop cluster in the cloud within minutes and requires essentially no additional configuration if the cluster is being used for the kind of data analytics tasks discussed in this book.</p>
-<div id="set-up-an-emr-cluster-to-run-with-r" class="section level4" number="6.1.3.1">
-<h4><span class="header-section-number">6.1.3.1</span> Set up an EMR cluster to run with R</h4>
-<p>Setting up a default AWS EMR cluster via the AWS console is straightforward. Simply go to <code>https://console.aws.amazon.com/elasticmapreduce/</code>, click on “Create cluster” and adjust the default selection of settings if necessary. Alternatively, we can set up an EMR cluster via the AWS command-line interface (CLI). In the following tutorials, we will work with AWS EMR via R/Rstudio (specifically, via the package <code>sparklyr</code>). Per default RStudio is not part of the EMR cluster set up. However, AWS EMR offers a very flexible way to install/configure additional software on virtual EMR clusters via so-called “bootstrap” scripts. These scripts can be shared on AWS S3 and used by others, which is what we do in the following cluster set up via the CLI.<a href="#fn33" class="footnote-ref" id="fnref33"><sup>33</sup></a></p>
-<p>The following command (<code>aws emr create-cluster</code>) initiates our EMR cluster with a specific set of options (all of these options can also be modified via the AWS console in the browser). <code>--applications Name=Hadoop Name=Spark Name=Hive Name=Pig Name=Tez Name=Ganglia</code> specifies which type of basic applications (that are essential to running different types of MapReduce tasks) should be installed on the cluster. Unless you really know what you are doing, do not change that setting. <code>--name "EMR 6.1 RStudio + sparklyr</code> simply specifies how the newly intitiated cluster should be called (this name will then appear on your list of clusers in the AWS console). More relevant for what follows is the line specifying what type of virtual servers (EC2 instances) should be used as part of the cluster: <code>--instance-groups InstanceGroupType=MASTER,InstanceCount=1,InstanceType=m5a.2xlarge</code> specifies that the master node (the machine distributing tasks and coordinating the MapReduce procedure) should be an instance of type <code>m5a.2xlarge</code>; <code>InstanceGroupType=CORE,InstanceCount=4,InstanceType=m5a.2xlarge</code> specifies that the other nodes are also of type <code>m5a.2xlarge</code>. <code>--bootstrap-action Path=s3://aws-bigdata-blog/artifacts/aws-blog-emr-rstudio-sparklyr/rstudio_sparklyr_emr6.sh,Name="Install RStudio"</code> tells the set-up application to run the corresponding bootstrap script on the cluster in order to install the additional software (here RStudio). Finally, there are two important aspects to note: First, in order to initiate the cluster in this way, you need to have an SSH-keypair (for your EC2 instances) set up, which you then instruct the cluster to use with <code>KeyName=</code>. That is, <code>KeyName="sparklyr"</code> means that the user already has create an SSH keypair called <code>sparklyr</code> and that this is the keypair that will be used with the cluster nodes for SSH connections. Second, the <code>--region</code> argument defines in which AWS region the cluster should be created. Importantly, in this particular case, the bootstrap script used to install RStudio on the cluser is stored in the <code>us-east-1</code> region, hence we need to set up the cluster also in this region <code>--region us-east-1</code> (otherwise the set up will fail as the set-up application will not find the bootstrap script and terminate with an error!).</p>
-<div class="sourceCode" id="cb193"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb193-1"><a href="cloud-computing.html#cb193-1" aria-hidden="true" tabindex="-1"></a><span class="ex">aws</span> emr create-cluster   </span>
-<span id="cb193-2"><a href="cloud-computing.html#cb193-2" aria-hidden="true" tabindex="-1"></a><span class="ex">--applications</span> Name=Hadoop Name=Spark Name=Hive Name=Pig Name=Tez Name=Ganglia   </span>
-<span id="cb193-3"><a href="cloud-computing.html#cb193-3" aria-hidden="true" tabindex="-1"></a><span class="ex">--release-label</span> emr-6.1.0   </span>
-<span id="cb193-4"><a href="cloud-computing.html#cb193-4" aria-hidden="true" tabindex="-1"></a><span class="ex">--name</span> <span class="st">&quot;EMR 6.1 RStudio + sparklyr&quot;</span>  </span>
-<span id="cb193-5"><a href="cloud-computing.html#cb193-5" aria-hidden="true" tabindex="-1"></a><span class="ex">--service-role</span> EMR_DefaultRole   </span>
-<span id="cb193-6"><a href="cloud-computing.html#cb193-6" aria-hidden="true" tabindex="-1"></a><span class="ex">--instance-groups</span> InstanceGroupType=MASTER,InstanceCount=1,InstanceType=m5a.2xlarge </span>
-<span id="cb193-7"><a href="cloud-computing.html#cb193-7" aria-hidden="true" tabindex="-1"></a><span class="va">InstanceGroupType=</span>CORE,InstanceCount=4,InstanceType=m5a.2xlarge </span>
-<span id="cb193-8"><a href="cloud-computing.html#cb193-8" aria-hidden="true" tabindex="-1"></a><span class="ex">--bootstrap-action</span> Path=s3://aws-bigdata-blog/artifacts/aws-blog-emr-rstudio-sparklyr/rstudio_sparklyr_emr6.sh,Name=<span class="st">&quot;Install RStudio&quot;</span>     <span class="at">--ec2-attributes</span> InstanceProfile=EMR_EC2_DefaultRole,KeyName=<span class="st">&quot;sparklyr&quot;</span>     </span>
-<span id="cb193-9"><a href="cloud-computing.html#cb193-9" aria-hidden="true" tabindex="-1"></a><span class="ex">--configurations</span> <span class="st">&#39;[{&quot;Classification&quot;:&quot;spark&quot;,&quot;Properties&quot;:{&quot;maximizeResourceAllocation&quot;:&quot;true&quot;}}]&#39;</span>     </span>
-<span id="cb193-10"><a href="cloud-computing.html#cb193-10" aria-hidden="true" tabindex="-1"></a><span class="ex">--region</span> us-east-1</span></code></pre></div>
+<div id="set-up-an-emr-cluster-to-run-with-r" class="section level3" number="6.4.1">
+<h3><span class="header-section-number">6.4.1</span> Set up an EMR cluster to run with R</h3>
+<p>Setting up a default AWS EMR cluster via the AWS console is straightforward. Simply go to <code>https://console.aws.amazon.com/elasticmapreduce/</code>, click on “Create cluster” and adjust the default selection of settings if necessary. Alternatively, we can set up an EMR cluster via the AWS command-line interface (CLI). In the following tutorials, we will work with AWS EMR via R/Rstudio (specifically, via the package <code>sparklyr</code>). Per default, RStudio is not part of the EMR cluster set up. However, AWS EMR offers a very flexible way to install/configure additional software on virtual EMR clusters via so-called “bootstrap” scripts. These scripts can be shared on AWS S3 and used by others, which is what we do in the following cluster set up via the CLI.<a href="#fn33" class="footnote-ref" id="fnref33"><sup>33</sup></a></p>
+<p>The following command (<code>aws emr create-cluster</code>) initiates our EMR cluster with a specific set of options (all of these options can also be modified via the AWS console in the browser). <code>--applications Name=Hadoop Name=Spark Name=Hive Name=Pig Name=Tez Name=Ganglia</code> specifies which type of basic applications (that are essential to running different types of MapReduce tasks) should be installed on the cluster. Unless you really know what you are doing, do not change that setting. <code>--name "EMR 6.1 RStudio + sparklyr</code> simply specifies how the newly initiated cluster should be called (this name will then appear on your list of clusters in the AWS console). More relevant for what follows is the line specifying what type of virtual servers (EC2 instances) should be used as part of the cluster: <code>--instance-groups InstanceGroupType=MASTER,InstanceCount=1,InstanceType=m5a.2xlarge</code> specifies that the master node (the machine distributing tasks and coordinating the MapReduce procedure) should be an instance of type <code>m5a.2xlarge</code>; <code>InstanceGroupType=CORE,InstanceCount=4,InstanceType=m5a.2xlarge</code> specifies that the other nodes are also of type <code>m5a.2xlarge</code>. <code>--bootstrap-action Path=s3://aws-bigdata-blog/artifacts/aws-blog-emr-rstudio-sparklyr/rstudio_sparklyr_emr6.sh,Name="Install RStudio"</code> tells the set-up application to run the corresponding bootstrap script on the cluster in order to install the additional software (here RStudio).</p>
+<p>Finally, there are two important aspects to note: First, in order to initiate the cluster in this way, you need to have an SSH-keypair (for your EC2 instances) set up, which you then instruct the cluster to use with <code>KeyName=</code>. That is, <code>KeyName="sparklyr"</code> means that the user already has create an SSH keypair called <code>sparklyr</code> and that this is the keypair that will be used with the cluster nodes for SSH connections. Second, the <code>--region</code> argument defines in which AWS region the cluster should be created. Importantly, in this particular case, the bootstrap script used to install RStudio on the cluster is stored in the <code>us-east-1</code> region, hence we need to set up the cluster also in this region <code>--region us-east-1</code> (otherwise the set up will fail as the set-up application will not find the bootstrap script and terminate with an error!).</p>
+<div class="sourceCode" id="cb198"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb198-1"><a href="cloud-computing.html#cb198-1" aria-hidden="true" tabindex="-1"></a><span class="ex">aws</span> emr create-cluster <span class="dt">\</span></span>
+<span id="cb198-2"><a href="cloud-computing.html#cb198-2" aria-hidden="true" tabindex="-1"></a>--release-label emr-6.1.0 <span class="dt">\</span></span>
+<span id="cb198-3"><a href="cloud-computing.html#cb198-3" aria-hidden="true" tabindex="-1"></a>--applications Name=Hadoop Name=Spark Name=Hive Name=Pig Name=Tez Name=Ganglia   <span class="dt">\</span></span>
+<span id="cb198-4"><a href="cloud-computing.html#cb198-4" aria-hidden="true" tabindex="-1"></a>--name <span class="st">&quot;EMR 6.1 RStudio + sparklyr&quot;</span>  <span class="dt">\</span></span>
+<span id="cb198-5"><a href="cloud-computing.html#cb198-5" aria-hidden="true" tabindex="-1"></a>--service-role EMR_DefaultRole <span class="dt">\</span></span>
+<span id="cb198-6"><a href="cloud-computing.html#cb198-6" aria-hidden="true" tabindex="-1"></a>--instance-groups InstanceGroupType=MASTER,InstanceCount=1,InstanceType=m5a.2xlarge <span class="dt">\</span></span>
+<span id="cb198-7"><a href="cloud-computing.html#cb198-7" aria-hidden="true" tabindex="-1"></a>InstanceGroupType=CORE,InstanceCount=4,InstanceType=m5a.2xlarge <span class="dt">\</span></span>
+<span id="cb198-8"><a href="cloud-computing.html#cb198-8" aria-hidden="true" tabindex="-1"></a>--bootstrap-action Path=<span class="st">&#39;s3://aws-bigdata-blog/artifacts/aws-blog-emr-rstudio-sparklyr/rstudio_sparklyr_emr6.sh&#39;</span>,Name=<span class="st">&quot;Install RStudio&quot;</span> <span class="at">--ec2-attributes</span> InstanceProfile=EMR_EC2_DefaultRole,KeyName=<span class="st">&quot;sparklyr&quot;</span> <span class="dt">\</span></span>
+<span id="cb198-9"><a href="cloud-computing.html#cb198-9" aria-hidden="true" tabindex="-1"></a>--configurations <span class="st">&#39;[{&quot;Classification&quot;:&quot;spark&quot;,&quot;Properties&quot;:{&quot;maximizeResourceAllocation&quot;:&quot;true&quot;}}]&#39;</span> <span class="dt">\</span></span>
+<span id="cb198-10"><a href="cloud-computing.html#cb198-10" aria-hidden="true" tabindex="-1"></a>--region us-east-1</span></code></pre></div>
 <p>Setting up this cluster with all the additional software and configurations from the bootstrap script will take around 40 minutes. You can always follow the progress in the AWS console on . Once the cluster is ready, you will see something like this:</p>
 <div class="figure" style="text-align: center"><span id="fig:emrsetup"></span>
-<img src="img/aws_emr_ready.png" alt="AWS EMR console indicating the successful set up of the EMR cluster" width="50%" />
+<img src="img/aws_emr_ready.png" alt="AWS EMR console indicating the successful set up of the EMR cluster" width="80%" />
 <p class="caption">
-Figure 6.3: AWS EMR console indicating the successful set up of the EMR cluster
+Figure 6.6: AWS EMR console indicating the successful set up of the EMR cluster
 </p>
 </div>
 
 <p>In order to access RStudio on the EMR cluster’s master node, follow these steps:</p>
 <ul>
-<li><p>Prerequesites to connect to EMR via SSH: <a href="https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-connect-ssh-prereqs.html" class="uri">https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-connect-ssh-prereqs.html</a>.</p></li>
+<li><p>First, follow the prerequisites to connect to EMR via SSH: <a href="https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-connect-ssh-prereqs.html" class="uri">https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-connect-ssh-prereqs.html</a>.</p></li>
 <li><p>Then initiate the SSH tunnel to the EMR cluster as instructed here: <a href="https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-ssh-tunnel.html" class="uri">https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-ssh-tunnel.html</a>.</p></li>
 <li><p>Protect your key-file (<code>sparklyr.pem</code>) by navigating to the location of the key-file on your computer in the terminal and run <code>chmod 600 sparklyr.pem</code> before connecting. Also make sure your IP address is still the one you have entered in the previous step (you can check your current IP address by visiting <a href="https://whatismyipaddress.com/" class="uri">https://whatismyipaddress.com/</a>).</p></li>
 <li><p>In the terminal, connect to the EMR cluster via SSH by running <code>ssh -i ~/sparklyr.pem -ND 8157 hadoop@ec2-52-87-248-175.compute-1.amazonaws.com</code> (if you have protected the key-file as super user, i.e. <code>sudo chmod</code>, you will need to use <code>sudo ssh</code> here).</p></li>
@@ -453,12 +539,9 @@ Figure 6.3: AWS EMR console indicating the successful set up of the EMR cluster
 <li><p>Go to <a href="http://localhost:8787/" class="uri">http://localhost:8787/</a> and enter with username <code>hadoop</code> and password <code>hadoop</code>.</p></li>
 </ul>
 <p>Now you can run <code>sparklyr</code> on the AWS EMR cluster.</p>
-</div>
-<div id="sparklyr-on-emr" class="section level4" number="6.1.3.2">
-<h4><span class="header-section-number">6.1.3.2</span> <code>sparklyr</code> on EMR</h4>
+<!-- ###  `sparklyr` on EMR  -->
 <!-- Add count example here as a demonstration -->
 
-</div>
 </div>
 </div>
 </div>
@@ -466,7 +549,7 @@ Figure 6.3: AWS EMR console indicating the successful set up of the EMR cluster
 <hr />
 <ol start="31">
 <li id="fn31"><p>Note that you might not have the required vCPU limit to additionally launch such an instance. In that case you will get an error message <code>You have requested more vCPU capacity than your current vCPU limit of 0 allows for the instance bucket that the specified instance type belongs to. Please visit http://aws.amazon.com/contact-us/ec2-request to request an adjustment to this limit.</code>. Simply follow the indicated URL and send your request to increase the capacity. After your limit is adjusted, click again on Launch as per the procedure outlined above.<a href="cloud-computing.html#fnref31" class="footnote-back">↩︎</a></p></li>
-<li id="fn32"><p>It is strongly recommended to change the password afterwards. In order to do that, click on “Tools” and select “shell.” Then type “password” into the shell/terminal and enter the current password (the instance id) and then enter the new password, hit enter, and enter again the new password to confirm.<a href="cloud-computing.html#fnref32" class="footnote-back">↩︎</a></p></li>
+<li id="fn32"><p>It is strongly recommended to change the password afterwards. In o#rder to do that, click on “Tools” and select “shell.” Then type “password” into the shell/terminal and enter the current password (the instance id) and then enter the new password, hit enter, and enter again the new password to confirm.<a href="cloud-computing.html#fnref32" class="footnote-back">↩︎</a></p></li>
 <li id="fn33"><p>Specifically, we will use the bootstrap script provided by the AWS Big Data Blog, which is stored here: s3://aws-bigdata-blog/artifacts/aws-blog-emr-rstudio-sparklyr/rstudio_sparklyr_emr6.sh<a href="cloud-computing.html#fnref33" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>

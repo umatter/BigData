@@ -24,7 +24,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-02-25" />
+<meta name="date" content="2022-03-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -210,21 +210,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="5.2.1" data-path="distributed-systems.html"><a href="distributed-systems.html#hadoop-word-count-example"><i class="fa fa-check"></i><b>5.2.1</b> Hadoop word count example</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="distributed-systems.html"><a href="distributed-systems.html#spark"><i class="fa fa-check"></i><b>5.3</b> Spark</a>
+<li class="chapter" data-level="5.3" data-path="distributed-systems.html"><a href="distributed-systems.html#spark"><i class="fa fa-check"></i><b>5.3</b> Spark</a></li>
+<li class="chapter" data-level="5.4" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-r"><i class="fa fa-check"></i><b>5.4</b> Spark with R</a>
 <ul>
-<li class="chapter" data-level="5.3.1" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-r"><i class="fa fa-check"></i><b>5.3.1</b> Spark with R</a></li>
-<li class="chapter" data-level="5.3.2" data-path="distributed-systems.html"><a href="distributed-systems.html#data-import-and-summary-statistics"><i class="fa fa-check"></i><b>5.3.2</b> Data import and summary statistics</a></li>
+<li class="chapter" data-level="5.4.1" data-path="distributed-systems.html"><a href="distributed-systems.html#data-import-and-summary-statistics"><i class="fa fa-check"></i><b>5.4.1</b> Data import and summary statistics</a></li>
 </ul></li>
-<li class="chapter" data-level="5.4" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-sql"><i class="fa fa-check"></i><b>5.4</b> Spark with SQL</a></li>
-<li class="chapter" data-level="5.5" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-r-sql"><i class="fa fa-check"></i><b>5.5</b> Spark with R + SQL</a></li>
+<li class="chapter" data-level="5.5" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-sql"><i class="fa fa-check"></i><b>5.5</b> Spark with SQL</a></li>
+<li class="chapter" data-level="5.6" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-r-sql"><i class="fa fa-check"></i><b>5.6</b> Spark with R + SQL</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="cloud-computing.html"><a href="cloud-computing.html"><i class="fa fa-check"></i><b>6</b> Cloud Computing</a>
 <ul>
 <li class="chapter" data-level="6.1" data-path="cloud-computing.html"><a href="cloud-computing.html#scaling-up-with-aws-ec2-and-rrstudio"><i class="fa fa-check"></i><b>6.1</b> Scaling up with AWS EC2 and R/RStudio</a>
 <ul>
 <li class="chapter" data-level="6.1.1" data-path="cloud-computing.html"><a href="cloud-computing.html#parallelization-with-an-ec2-instance"><i class="fa fa-check"></i><b>6.1.1</b> Parallelization with an EC2 instance</a></li>
-<li class="chapter" data-level="6.1.2" data-path="cloud-computing.html"><a href="cloud-computing.html#gpus-on-google-colab"><i class="fa fa-check"></i><b>6.1.2</b> GPUs on Google Colab</a></li>
-<li class="chapter" data-level="6.1.3" data-path="cloud-computing.html"><a href="cloud-computing.html#aws-emr-mapreduce-in-the-cloud"><i class="fa fa-check"></i><b>6.1.3</b> AWS EMR: MapReduce in the cloud</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="cloud-computing.html"><a href="cloud-computing.html#ec2-with-rstudio-and-gpus"><i class="fa fa-check"></i><b>6.2</b> EC2 with RStudio and GPUs</a></li>
+<li class="chapter" data-level="6.3" data-path="cloud-computing.html"><a href="cloud-computing.html#gpus-on-google-colab"><i class="fa fa-check"></i><b>6.3</b> GPUs on Google Colab</a></li>
+<li class="chapter" data-level="6.4" data-path="cloud-computing.html"><a href="cloud-computing.html#aws-emr-mapreduce-in-the-cloud"><i class="fa fa-check"></i><b>6.4</b> AWS EMR: MapReduce in the cloud</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="cloud-computing.html"><a href="cloud-computing.html#set-up-an-emr-cluster-to-run-with-r"><i class="fa fa-check"></i><b>6.4.1</b> Set up an EMR cluster to run with R</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html"><i class="fa fa-check"></i><b>7</b> Data Collection and Data Storage</a>
@@ -234,19 +238,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.1.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#nyc-taxi-data"><i class="fa fa-check"></i><b>7.1.1</b> NYC taxi data</a></li>
 </ul></li>
 <li class="chapter" data-level="7.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#data-import-and-memory-allocation"><i class="fa fa-check"></i><b>7.2</b> Data import and memory allocation</a></li>
-<li class="chapter" data-level="7.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#big-data-storage"><i class="fa fa-check"></i><b>7.3</b> (Big) Data Storage</a></li>
-<li class="chapter" data-level="7.4" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#rdbms-basics"><i class="fa fa-check"></i><b>7.4</b> RDBMS basics</a></li>
-<li class="chapter" data-level="7.5" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#row-based-vs-column-based-databases"><i class="fa fa-check"></i><b>7.5</b> Row-based vs column-based databases</a></li>
-<li class="chapter" data-level="7.6" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#getting-started-with-rsqlite"><i class="fa fa-check"></i><b>7.6</b> Getting started with RSQLite</a>
+<li class="chapter" data-level="7.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#efficient-local-data-storage"><i class="fa fa-check"></i><b>7.3</b> Efficient local data storage</a>
 <ul>
-<li class="chapter" data-level="7.6.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#warm-up-in-sqlite-indices-and-joins"><i class="fa fa-check"></i><b>7.6.1</b> Warm up in SQLite: indices and joins</a></li>
+<li class="chapter" data-level="7.3.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#rdbms-basics"><i class="fa fa-check"></i><b>7.3.1</b> RDBMS basics</a></li>
+<li class="chapter" data-level="7.3.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#efficient-data-access-indices-and-joins-in-sqlite"><i class="fa fa-check"></i><b>7.3.2</b> Efficient data access: indices and joins in SQLite</a></li>
 </ul></li>
-<li class="chapter" data-level="7.7" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#sqlite-from-within-r"><i class="fa fa-check"></i><b>7.7</b> SQLite from within R</a>
+<li class="chapter" data-level="7.4" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#connecting-r-to-rdbms"><i class="fa fa-check"></i><b>7.4</b> Connecting R to RDBMS</a>
 <ul>
-<li class="chapter" data-level="7.7.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#creating-a-new-database-with-rsqlite"><i class="fa fa-check"></i><b>7.7.1</b> Creating a new database with <code>RSQLite</code></a></li>
-<li class="chapter" data-level="7.7.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#importing-data"><i class="fa fa-check"></i><b>7.7.2</b> Importing data</a></li>
-<li class="chapter" data-level="7.7.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#issue-queries"><i class="fa fa-check"></i><b>7.7.3</b> Issue queries</a></li>
-<li class="chapter" data-level="7.7.4" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#mass-storage-mariadb-on-an-ec2-instance"><i class="fa fa-check"></i><b>7.7.4</b> Mass Storage: MariaDB on an EC2 instance</a></li>
+<li class="chapter" data-level="7.4.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#creating-a-new-database-with-rsqlite"><i class="fa fa-check"></i><b>7.4.1</b> Creating a new database with <code>RSQLite</code></a></li>
+<li class="chapter" data-level="7.4.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#importing-data"><i class="fa fa-check"></i><b>7.4.2</b> Importing data</a></li>
+<li class="chapter" data-level="7.4.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#issue-queries"><i class="fa fa-check"></i><b>7.4.3</b> Issue queries</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#cloud-solutions-for-big-data-storage"><i class="fa fa-check"></i><b>7.5</b> Cloud solutions for (big) data storage</a>
+<ul>
+<li class="chapter" data-level="7.5.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#easy-to-use-rdbms-in-the-cloud-aws-rds"><i class="fa fa-check"></i><b>7.5.1</b> Easy-to-use RDBMS in the cloud: AWS RDS</a></li>
+<li class="chapter" data-level="7.5.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#database-server-in-the-cloud-mariadb-on-an-ec2-instance"><i class="fa fa-check"></i><b>7.5.2</b> Database server in the cloud: MariaDB on an EC2 instance</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="8" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html"><i class="fa fa-check"></i><b>8</b> Big Data Cleaning and Transformation</a>
@@ -266,12 +272,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-the-split-apply-combine-strategy"><i class="fa fa-check"></i><b>9.1</b> Data aggregation: The ‘split-apply-combine’ strategy</a>
 <ul>
 <li class="chapter" data-level="9.1.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-with-chunked-data-files"><i class="fa fa-check"></i><b>9.1.1</b> Data aggregation with chunked data files</a></li>
-<li class="chapter" data-level="9.1.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>9.1.2</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
+<li class="chapter" data-level="9.1.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#cross-tabulation-of-ff-vectors"><i class="fa fa-check"></i><b>9.1.2</b> Cross-tabulation of <code>ff</code> vectors</a></li>
 </ul></li>
+<li class="chapter" data-level="9.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>9.2</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
 </ul></li>
 <li class="chapter" data-level="10" data-path="big-data-visualization.html"><a href="big-data-visualization.html"><i class="fa fa-check"></i><b>10</b> (Big) Data Visualization</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#data-set"><i class="fa fa-check"></i><b>10.1</b> Data Set</a></li>
+<li class="chapter" data-level="10.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#data-exploration-with-ggplot2"><i class="fa fa-check"></i><b>10.1</b> Data exploration with <code>ggplot2</code></a></li>
 <li class="chapter" data-level="10.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-modify-and-create-themes"><i class="fa fa-check"></i><b>10.2</b> Excursus: modify and create themes</a>
 <ul>
 <li class="chapter" data-level="10.2.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#create-your-own-theme-simple-approach"><i class="fa fa-check"></i><b>10.2.1</b> Create your own theme: simple approach</a></li>
@@ -430,7 +437,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="software-programming-with-big-data.html#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># how much time does it take to run this loop?</span></span>
 <span id="cb23-2"><a href="software-programming-with-big-data.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) {i <span class="sc">+</span> <span class="dv">5</span>})</span></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.002   0.000   0.002</code></pre>
+##   0.001   0.000   0.002</code></pre>
 <p>Note that each time you run this line of code, the returned amount of time varies slightly. This has to do with the fact that the actual time needed to run a line of code can depend on various other processes happening at the same time on your computer.</p>
 <p>The <code>microbenchmark</code> and <code>bench</code> packages provide additional functions to measure execution time in more sophisticated ways. In particular, they account for the fact that the processing time for the same code might vary and automatically run the code several times in order to return statistics about the processing time. In addition, <code>microbenchmark()</code> provides highly detailed and highly accurate timing of R expression evaluation. The function is particularly useful to accurately find even “minor” room for improvement when testing a data analysis script on a smaller sub-sample (which might scale when working on a large data set). For example, suppose you need to run a for-loop over millions of iterations and there are different ways to implement the loop of the body (which does not take too much time to process in one iteration). Note that the function actually evaluates the R expression in question many times and returns a statistical summary of the timings.</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="software-programming-with-big-data.html#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load package</span></span>
@@ -439,9 +446,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb25-4"><a href="software-programming-with-big-data.html#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">microbenchmark</span>(<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) {i <span class="sc">+</span> <span class="dv">5</span>})</span></code></pre></div>
 <pre><code>## Unit: milliseconds
 ##                            expr   min    lq  mean
-##  for (i in 1:100) {     i + 5 } 1.114 1.186 1.309
+##  for (i in 1:100) {     i + 5 } 1.066 1.128 2.405
 ##  median    uq   max neval
-##   1.266 1.323 4.903   100</code></pre>
+##   1.158 1.187 125.8   100</code></pre>
 <p>Second, a key aspect to improving the performance of data analysis scripts in R is to detect inefficient memory allocation as well as avoiding that an R-object is either growing too much or is generally too large to handle in memory. To this end, you might want to monitor how much memory R occupies at different points in your script as well as how much memory is taken up by individual R objects. For example, <code>object.size()</code> returns the size of an R object, that is the amount of memory it takes up in the R environment in bytes (<code>pryr::object_size()</code> counts slightly more accurately).</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="software-programming-with-big-data.html#cb27-1" aria-hidden="true" tabindex="-1"></a>hello <span class="ot">&lt;-</span> <span class="st">&quot;Hello, World!&quot;</span></span>
 <span id="cb27-2"><a href="software-programming-with-big-data.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(hello)</span></code></pre></div>
@@ -467,13 +474,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb35-2"><a href="software-programming-with-big-data.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_change</span>(</span>
 <span id="cb35-3"><a href="software-programming-with-big-data.html#cb35-3" aria-hidden="true" tabindex="-1"></a>        thousand_numbers <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1000</span>)</span>
 <span id="cb35-4"><a href="software-programming-with-big-data.html#cb35-4" aria-hidden="true" tabindex="-1"></a>        )</span></code></pre></div>
-<pre><code>## 9.69 kB</code></pre>
+<pre><code>## 488 B</code></pre>
 <div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="software-programming-with-big-data.html#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initiate a vector with 1M (pseudo)-random numbers</span></span>
 <span id="cb37-2"><a href="software-programming-with-big-data.html#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_change</span>(</span>
 <span id="cb37-3"><a href="software-programming-with-big-data.html#cb37-3" aria-hidden="true" tabindex="-1"></a>        a_million_numbers <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1000</span><span class="sc">^</span><span class="dv">2</span>)</span>
 <span id="cb37-4"><a href="software-programming-with-big-data.html#cb37-4" aria-hidden="true" tabindex="-1"></a>        )</span></code></pre></div>
-<pre><code>## 8 MB</code></pre>
-<p>Finally, <code>bench::mark()</code> allows you to easily compare the performance of several different implementations of a code chunk both regarding timing and memory usage. The following code example illustrates this in a comparison of two approaches to computing the product of each element in a vector <code>x</code> with a factor <code>z</code>.</p>
+<pre><code>## 528 B</code></pre>
+<p><code>bench::mark()</code> allows you to easily compare the performance of several different implementations of a code chunk both regarding timing and memory usage. The following code example illustrates this in a comparison of two approaches to computing the product of each element in a vector <code>x</code> with a factor <code>z</code>.</p>
 <div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="software-programming-with-big-data.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
 <span id="cb39-2"><a href="software-programming-with-big-data.html#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bench)</span>
 <span id="cb39-3"><a href="software-programming-with-big-data.html#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -505,8 +512,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## # A tibble: 2 x 3
 ##   `itr/sec` mem_alloc `gc/sec`
 ##       &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;
-## 1      13.2     382MB     8.79
-## 2   78375.     78.2KB     7.84</code></pre>
+## 1      14.0     382MB     7.87
+## 2   85337.     78.2KB     0</code></pre>
 <p>In addition, the <code>bench</code> package provides a simple way to visualize these outputs:</p>
 <div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="software-programming-with-big-data.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(benchmarking, <span class="at">type =</span> <span class="st">&quot;boxplot&quot;</span>)</span></code></pre></div>
 <pre><code>## Loading required namespace: tidyr</code></pre>
@@ -532,8 +539,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb47-18"><a href="software-programming-with-big-data.html#cb47-18" aria-hidden="true" tabindex="-1"></a>result2 <span class="ot">&lt;-</span> x <span class="sc">*</span> z </span>
 <span id="cb47-19"><a href="software-programming-with-big-data.html#cb47-19" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(result2) </span>
 <span id="cb47-20"><a href="software-programming-with-big-data.html#cb47-20" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
-<div id="htmlwidget-888bfd2a867037c2c7f1" style="width:100%;height:600px;" class="profvis html-widget"></div>
-<script type="application/json" data-for="htmlwidget-888bfd2a867037c2c7f1">{"x":{"message":{"prof":{"time":[1,1,2,2,3,3,4,4,5,5,6,6,7,7],"depth":[2,1,2,1,2,1,2,1,2,1,2,1,2,1],"label":["c","rmarkdown::render_site","c","rmarkdown::render_site","c","rmarkdown::render_site","c","rmarkdown::render_site","c","rmarkdown::render_site","c","rmarkdown::render_site","c","rmarkdown::render_site"],"filenum":[1,null,1,null,1,null,1,null,1,null,1,null,1,null],"linenum":[12,null,12,null,12,null,12,null,12,null,12,null,12,null],"memalloc":[1368.40103912354,1368.40103912354,1409.29817962646,1409.29817962646,1468.74918365479,1468.74918365479,1508.12287139893,1508.12287139893,1566.74221801758,1566.74221801758,1606.05291748047,1606.05291748047,1664.25137329102,1664.25137329102],"meminc":[0,0,40.8971405029297,0,59.4510040283203,0,39.3736877441406,0,58.6193466186523,0,39.3106994628906,0,58.1984558105469,0],"filename":["<expr>",null,"<expr>",null,"<expr>",null,"<expr>",null,"<expr>",null,"<expr>",null,"<expr>",null]},"interval":10,"files":[{"filename":"<expr>","content":"# load package\nlibrary(profvis)\n\n# analyse performance of several lines of code\nprofvis({\n        x <- 1:10000\n        z <- 1.5\n        # approach 1: loop\nmultiplication <- \n        function(x,z) {\n                result <- c()\n                for (i in 1:length(x)) {result <- c(result, x[i]*z)}\n                return(result)\n        }\nresult <- multiplication(x,z)\n\n# approach II: \"R-style\"\nresult2 <- x * z \nhead(result2) \n})","normpath":"<expr>"}],"prof_output":"/tmp/RtmpeaGn6A/filee91c7cee59f5.prof","highlight":{"output":["^output\\$"],"gc":["^<GC>$"],"stacktrace":["^\\.\\.stacktraceo(n|ff)\\.\\.$"]},"split":"h"}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-28119af1a721cfc76b87" style="width:100%;height:600px;" class="profvis html-widget"></div>
+<script type="application/json" data-for="htmlwidget-28119af1a721cfc76b87">{"x":{"message":{"prof":{"time":[1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,6,6,6,7,7,7],"depth":[3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1,3,2,1],"label":["for (i in 1:length(x)) {result <- c(result, x[i]*z)}","multiplication","rmarkdown::render_site","for (i in 1:length(x)) {result <- c(result, x[i]*z)}","multiplication","rmarkdown::render_site","for (i in 1:length(x)) {result <- c(result, x[i]*z)}","multiplication","rmarkdown::render_site","for (i in 1:length(x)) {result <- c(result, x[i]*z)}","multiplication","rmarkdown::render_site","for (i in 1:length(x)) {result <- c(result, x[i]*z)}","multiplication","rmarkdown::render_site","for (i in 1:length(x)) {result <- c(result, x[i]*z)}","multiplication","rmarkdown::render_site","for (i in 1:length(x)) {result <- c(result, x[i]*z)}","multiplication","rmarkdown::render_site"],"filenum":[1,1,null,1,1,null,1,1,null,1,1,null,1,1,null,1,1,null,1,1,null],"linenum":[12,15,null,12,15,null,12,15,null,12,15,null,12,15,null,12,15,null,12,15,null],"memalloc":[1370.56123352051,1370.56123352051,1370.56123352051,1411.06107330322,1411.06107330322,1411.06107330322,1473.85535430908,1473.85535430908,1473.85535430908,1516.23021697998,1516.23021697998,1516.23021697998,1580.85214233398,1580.85214233398,1580.85214233398,1624.72852325439,1624.72852325439,1624.72852325439,1689.61281585693,1689.61281585693,1689.61281585693],"meminc":[0,0,0,40.4998397827148,0,0,62.7942810058594,0,0,42.3748626708984,0,0,64.6219253540039,0,0,43.8763809204102,0,0,64.8842926025391,0,0],"filename":["<expr>","<expr>",null,"<expr>","<expr>",null,"<expr>","<expr>",null,"<expr>","<expr>",null,"<expr>","<expr>",null,"<expr>","<expr>",null,"<expr>","<expr>",null]},"interval":10,"files":[{"filename":"<expr>","content":"# load package\nlibrary(profvis)\n\n# analyse performance of several lines of code\nprofvis({\n        x <- 1:10000\n        z <- 1.5\n        # approach 1: loop\nmultiplication <- \n        function(x,z) {\n                result <- c()\n                for (i in 1:length(x)) {result <- c(result, x[i]*z)}\n                return(result)\n        }\nresult <- multiplication(x,z)\n\n# approach II: \"R-style\"\nresult2 <- x * z \nhead(result2) \n})","normpath":"<expr>"}],"prof_output":"/tmp/RtmpoUBuEN/file1145133796293.prof","highlight":{"output":["^output\\$"],"gc":["^<GC>$"],"stacktrace":["^\\.\\.stacktraceo(n|ff)\\.\\.$"]},"split":"h"}},"evals":[],"jsHooks":[]}</script>
 </div>
 <div id="writing-efficient-r-code" class="section level2" number="3.3">
 <h2><span class="header-section-number">3.3</span> Writing efficient R code</h2>
@@ -669,7 +676,7 @@ Clearly, the version with pre-allocation of memory (avoiding growing an object) 
 ##  $ V3: chr  &quot;Breast cancer risk test devised http://bbc.in/1CimpJF&quot; &quot;GP workload harming care - BMA poll http://bbc.in/1ChTBRv&quot; &quot;Short people&#39;s &#39;heart risk greater&#39; http://bbc.in/1ChTANp&quot; &quot;New approach against HIV &#39;promising&#39; http://bbc.in/1E6jAjt&quot; ...
 ##  - attr(*, &quot;.internal.selfref&quot;)=&lt;externalptr&gt;</code></pre>
 <p>Alternatively, we can make use of <code>lapply</code> as follows in order to achieve exactly the same.</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="software-programming-with-big-data.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># prepare loop</span></span>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="software-programming-with-big-data.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use lapply instead of loop</span></span>
 <span id="cb57-2"><a href="software-programming-with-big-data.html#cb57-2" aria-hidden="true" tabindex="-1"></a>all_texts <span class="ot">&lt;-</span> <span class="fu">lapply</span>(textfiles, fread)</span>
 <span id="cb57-3"><a href="software-programming-with-big-data.html#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="co"># combine all in one data.table</span></span>
 <span id="cb57-4"><a href="software-programming-with-big-data.html#cb57-4" aria-hidden="true" tabindex="-1"></a>twitter_text <span class="ot">&lt;-</span> <span class="fu">rbindlist</span>(all_texts)</span>
@@ -713,11 +720,11 @@ Clearly, the version with pre-allocation of memory (avoiding growing an object) 
 <div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="software-programming-with-big-data.html#cb61-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">10000</span>)</span></code></pre></div>
 <p>what is usually said to describe what is happening here is something along the lines of “we initiate a variable called <code>a</code> and assign a numeric vector with 10,000 random numbers. What in fact happens is that the name <code>a</code> is assigned to the integer vector (which in turn exists at a specific memory address). Thus values do not have names but <em>names have values</em>. This has important consequences for memory allocation and performance. For example, because <code>a</code> is in fact just a name attached to a value, the following does not involve any copying of values. It simply”binds" another name, <code>b</code>, to the same value to which <code>a</code> is already bound.</p>
 <div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="software-programming-with-big-data.html#cb62-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> a</span></code></pre></div>
-<p>We can proof this in two ways. First, if what I just stated was not true, the line above would actually lead to more memory being occupied by the current R session. However, this is not the case:</p>
+<p>We can prove this in two ways. First, if what I just stated was not true, the line above would actually lead to more memory being occupied by the current R session. However, this is not the case:</p>
 <div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="software-programming-with-big-data.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object_size</span>(a)</span></code></pre></div>
 <pre><code>## 80 kB</code></pre>
 <div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="software-programming-with-big-data.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_change</span>(c <span class="ot">&lt;-</span> a)</span></code></pre></div>
-<pre><code>## -582 kB</code></pre>
+<pre><code>## -662 kB</code></pre>
 <p>Second, we can see that the values to which <code>a</code> and <code>b</code> are bound are stored at the same memory address. Hence, they are the same values.</p>
 <div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="software-programming-with-big-data.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
 <span id="cb67-2"><a href="software-programming-with-big-data.html#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lobstr)</span></code></pre></div>
@@ -728,26 +735,26 @@ Clearly, the version with pre-allocation of memory (avoiding growing an object) 
 ##     ast, mem_used</code></pre>
 <div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="software-programming-with-big-data.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check memory addresses of objects</span></span>
 <span id="cb70-2"><a href="software-programming-with-big-data.html#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">obj_addr</span>(a)</span></code></pre></div>
-<pre><code>## [1] &quot;0x55c2e0137980&quot;</code></pre>
+<pre><code>## [1] &quot;0x55f9375e65e0&quot;</code></pre>
 <div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="software-programming-with-big-data.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">obj_addr</span>(b)</span></code></pre></div>
-<pre><code>## [1] &quot;0x55c2e0137980&quot;</code></pre>
+<pre><code>## [1] &quot;0x55f9375e65e0&quot;</code></pre>
 <p>Now you probably wonder, what happens to <code>b</code> if we modify <code>a</code>. After all, if the values to which <code>b</code> is bound are changed when we write code concerning <code>a</code>, we might end up with very surprising output. The answer is, and this is key (!), once we modify <code>a</code>, the values need to be <em>copied</em> in order to ensure the integrity of <code>b</code>. Only at this point, our program will require more memory.</p>
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="software-programming-with-big-data.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check the first element&#39;s value</span></span>
 <span id="cb74-2"><a href="software-programming-with-big-data.html#cb74-2" aria-hidden="true" tabindex="-1"></a>a[<span class="dv">1</span>]</span></code></pre></div>
-<pre><code>## [1] 0.7794</code></pre>
+<pre><code>## [1] 0.6808</code></pre>
 <div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="software-programming-with-big-data.html#cb76-1" aria-hidden="true" tabindex="-1"></a>b[<span class="dv">1</span>]</span></code></pre></div>
-<pre><code>## [1] 0.7794</code></pre>
+<pre><code>## [1] 0.6808</code></pre>
 <div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="software-programming-with-big-data.html#cb78-1" aria-hidden="true" tabindex="-1"></a><span class="co"># modify a, check memory change</span></span>
 <span id="cb78-2"><a href="software-programming-with-big-data.html#cb78-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_change</span>(a[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">0</span>)</span></code></pre></div>
 <pre><code>## 77.5 kB</code></pre>
 <div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="software-programming-with-big-data.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check memory addresses</span></span>
 <span id="cb80-2"><a href="software-programming-with-big-data.html#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="fu">obj_addr</span>(a)</span></code></pre></div>
-<pre><code>## [1] &quot;0x55c2e02cfa60&quot;</code></pre>
+<pre><code>## [1] &quot;0x55f9377cd2d0&quot;</code></pre>
 <div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="software-programming-with-big-data.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">obj_addr</span>(b)</span></code></pre></div>
-<pre><code>## [1] &quot;0x55c2e0137980&quot;</code></pre>
+<pre><code>## [1] &quot;0x55f9375e65e0&quot;</code></pre>
 <p>Note that the entire vector needed to be copied for this. There is, of course, a lesson from all this regarding writing efficient code. Knowing how actual copying of values does occur helps avoiding unnecessary copying. The larger an object, the more time it will take to copy it in memory. Objects with a single binding get modified in place (no copying):</p>
 <div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="software-programming-with-big-data.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_change</span>(d <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">10000</span>))</span></code></pre></div>
-<pre><code>## 80.2 kB</code></pre>
+<pre><code>## 112 B</code></pre>
 <div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="software-programming-with-big-data.html#cb86-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_change</span>(d[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">0</span>)</span></code></pre></div>
 <pre><code>## 584 B</code></pre>
 </div>
@@ -758,7 +765,7 @@ Clearly, the version with pre-allocation of memory (avoiding growing an object) 
 <pre><code>## 800 MB</code></pre>
 <div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="software-programming-with-big-data.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_change</span>(<span class="fu">rm</span>(large_vector))</span></code></pre></div>
 <pre><code>## -800 MB</code></pre>
-<p><code>rm()</code> removes all objects that are currently accessible in the global R environment. However, some objects/values might technically not be visible/accessible anymore (for example, objects that have been created in a function which has since returned the function output). To also release memory occupied by these objects you can call <code>gc()</code> (the garbage collector). While R will automatically collect the garbage once it is close to running out of memory, explicitly calling <code>gc</code> can still improve the performance of your script when working with large data sets. This is in particular the case when R is not the only data-intense process running on your computer. For example, when running an R script involving the repeated querying of data from a local SQL database and the subsequent memory-intense processing of this data in R, you can avoid using up too much memory by running <code>rm</code> and <code>gc</code> explicitly.<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a></p>
+<p><code>rm()</code> removes objects that are currently accessible in the global R environment. However, some objects/values might technically not be visible/accessible anymore (for example, objects that have been created in a function which has since returned the function output). To also release memory occupied by these objects you can call <code>gc()</code> (the garbage collector). While R will automatically collect the garbage once it is close to running out of memory, explicitly calling <code>gc</code> can still improve the performance of your script when working with large data sets. This is in particular the case when R is not the only data-intense process running on your computer. For example, when running an R script involving the repeated querying of data from a local SQL database and the subsequent memory-intense processing of this data in R, you can avoid using up too much memory by running <code>rm</code> and <code>gc</code> explicitly.<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a></p>
 </div>
 <div id="beyond-r" class="section level3" number="3.3.6">
 <h3><span class="header-section-number">3.3.6</span> Beyond R</h3>
@@ -770,7 +777,7 @@ Clearly, the version with pre-allocation of memory (avoiding growing an object) 
 ##           parsed_x &lt;- fread(x)
 ##           return(parsed_x)
 ##      }
-## &lt;bytecode: 0x55c2e681c138&gt;</code></pre>
+## &lt;bytecode: 0x55f94340d8e8&gt;</code></pre>
 <p>However, if we do the same for function <code>sum</code>, we don’t see any actual source code.</p>
 <div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="software-programming-with-big-data.html#cb94-1" aria-hidden="true" tabindex="-1"></a>sum</span></code></pre></div>
 <pre><code>## function (..., na.rm = FALSE)  .Primitive(&quot;sum&quot;)</code></pre>
@@ -1008,9 +1015,9 @@ latter group, you might want to get used to working with databases now.</p>
 <span id="cb113-7"><a href="software-programming-with-big-data.html#cb113-7" aria-hidden="true" tabindex="-1"></a>inflation<span class="sc">$</span>year <span class="ot">&lt;-</span> lubridate<span class="sc">::</span><span class="fu">year</span>(inflation<span class="sc">$</span>date)</span>
 <span id="cb113-8"><a href="software-programming-with-big-data.html#cb113-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb113-9"><a href="software-programming-with-big-data.html#cb113-9" aria-hidden="true" tabindex="-1"></a><span class="co"># create final output</span></span>
-<span id="cb113-10"><a href="software-programming-with-big-data.html#cb113-10" aria-hidden="true" tabindex="-1"></a>years <span class="ot">&lt;-</span> <span class="fu">unique</span>(econ2<span class="sc">$</span>year)</span>
+<span id="cb113-10"><a href="software-programming-with-big-data.html#cb113-10" aria-hidden="true" tabindex="-1"></a>years <span class="ot">&lt;-</span> <span class="fu">unique</span>(econ<span class="sc">$</span>year)</span>
 <span id="cb113-11"><a href="software-programming-with-big-data.html#cb113-11" aria-hidden="true" tabindex="-1"></a>averages <span class="ot">&lt;-</span> <span class="fu">sapply</span>(years, <span class="at">FUN =</span> <span class="cf">function</span>(x) {</span>
-<span id="cb113-12"><a href="software-programming-with-big-data.html#cb113-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mean</span>(econ2[econ2<span class="sc">$</span>year<span class="sc">==</span>x,<span class="st">&quot;unemploy&quot;</span>]<span class="sc">/</span>econ2[econ2<span class="sc">$</span>year<span class="sc">==</span>x,<span class="st">&quot;pop&quot;</span>])<span class="sc">*</span><span class="dv">100</span></span>
+<span id="cb113-12"><a href="software-programming-with-big-data.html#cb113-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mean</span>(econ[econ<span class="sc">$</span>year<span class="sc">==</span>x,<span class="st">&quot;unemploy&quot;</span>]<span class="sc">/</span>econ[econ<span class="sc">$</span>year<span class="sc">==</span>x,<span class="st">&quot;pop&quot;</span>])<span class="sc">*</span><span class="dv">100</span></span>
 <span id="cb113-13"><a href="software-programming-with-big-data.html#cb113-13" aria-hidden="true" tabindex="-1"></a>        </span>
 <span id="cb113-14"><a href="software-programming-with-big-data.html#cb113-14" aria-hidden="true" tabindex="-1"></a>} )</span>
 <span id="cb113-15"><a href="software-programming-with-big-data.html#cb113-15" aria-hidden="true" tabindex="-1"></a>unemp <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">year=</span>years,</span>
@@ -1024,12 +1031,12 @@ latter group, you might want to get used to working with databases now.</p>
 <span id="cb113-23"><a href="software-programming-with-big-data.html#cb113-23" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect output</span></span>
 <span id="cb113-24"><a href="software-programming-with-big-data.html#cb113-24" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(output)</span></code></pre></div>
 <pre><code>##   year average_unemp_percent inflation_percent
-## 1 1968                 1.394             4.272
-## 2 1969                 1.396             5.462
-## 3 1970                 2.013             5.838
-## 4 1971                 2.419             4.293
-## 5 1972                 2.324             3.272
-## 6 1973                 2.058             6.178</code></pre>
+## 1 1967                 1.512             2.773
+## 2 1968                 1.394             4.272
+## 3 1969                 1.396             5.462
+## 4 1970                 2.013             5.838
+## 5 1971                 2.419             4.293
+## 6 1972                 2.324             3.272</code></pre>
 <p>Now let’s look at how the same table can be created in SQLite.</p>
 <div class="sourceCode" id="cb115"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb115-1"><a href="software-programming-with-big-data.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> </span>
 <span id="cb115-2"><a href="software-programming-with-big-data.html#cb115-2" aria-hidden="true" tabindex="-1"></a>strftime(<span class="st">&#39;%Y&#39;</span>, econ.<span class="dt">date</span>)  <span class="kw">AS</span> <span class="dt">year</span>,</span>
