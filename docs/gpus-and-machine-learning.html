@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 1 Introduction | Big Data Analytics</title>
+  <title>Chapter 12 GPUs and Machine Learning | Big Data Analytics</title>
   <meta name="description" content="A guide to practical big data analytics in R." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 1 Introduction | Big Data Analytics" />
+  <meta property="og:title" content="Chapter 12 GPUs and Machine Learning | Big Data Analytics" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://umatter.github.io/BigData" />
   <meta property="og:image" content="https://umatter.github.io/BigDataimg/cover.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="umatter/BigData" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 1 Introduction | Big Data Analytics" />
+  <meta name="twitter:title" content="Chapter 12 GPUs and Machine Learning | Big Data Analytics" />
   
   <meta name="twitter:description" content="A guide to practical big data analytics in R." />
   <meta name="twitter:image" content="https://umatter.github.io/BigDataimg/cover.png" />
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="index.html"/>
-<link rel="next" href="big-data-econometrics.html"/>
+<link rel="prev" href="bottle-necks-in-local-big-data-analytics.html"/>
+<link rel="next" href="applied-econometrics-with-spark.html"/>
 <script src="libs/header-attrs/header-attrs.js"></script>
 <script src="libs/jquery/jquery.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
@@ -360,62 +360,270 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="introduction" class="section level1" number="1">
-<h1><span class="header-section-number">Chapter 1</span> Introduction</h1>
-<p>Over the last decade, ‘Big Data’ has often been discussed as the new ‘most valuable’
-resource in highly developed economies, driving the development of new
-products and services in various industries. Extracting knowledge from large data
-sets is increasingly seen as a strategic asset for firms, governments, and NGOs. In a similar vein, the increasing size of data sets in empirical economic research (both in number
-of observations and number of variables) offers new opportunities and poses new
-challenges for economists and business leaders.</p>
-<p>Successfully navigating the data-driven economy presupposes a certain
-understanding of the technologies and methods to gain insights from Big Data.
-This textbook introduces the reader to the basic concepts of Big Data Analytics to
-gain insights from large and complex data sets. Thereby, the focus of the book
-is on the practical application of econometrics/machine learning, given
-large/complex data sets, and all the steps involved before actually analyzing data (data storage, data import, data preparation).
-The book combines conceptual/theoretical material with the practical application of the
-concepts with the open source programming language R. Thereby, the reader will
-acquire the basic skill set to analyze large data sets both locally and in the
-cloud. Various code examples and tutorials, focused on empirical economic and business research, illustrate
-practical techniques to handle and analyze Big Data.</p>
-<div id="what-is-big-in-big-data" class="section level2" number="1.1">
-<h2><span class="header-section-number">1.1</span> What is <em>big</em> in “Big Data?”</h2>
-<p>Generally, we can think of Big Data as data that is (a) expensive to handle and (b) hard to get value from due to its size and complexity. The handling of Big Data is expensive as the data is often gathered from unorthodox sources, providing poorly structured data (e.g., raw text, web pages, images, etc.) as well as because of the infrastructure needed to store and load/process large amounts of data. Getting value/insights from Big Data is related to two distinct properties that render the analysis of large amounts of data difficult:</p>
-<ul>
-<li><p>The <em>big P</em> problem: a data set has more variables than observations, which renders the search for a good predictive model with traditional econometric techniques difficult or illusive. For example, suppose you run an e-commerce business that sells hundreds of thousands of products to tens of thousands of customers. You want to figure out from which product category a customer is most likely to buy an item from, based on her previous product page visits. That is, you want to (in simple terms) regress an indicator of purchasing from a specific category on indicators for previous product page visits. Given this set up, you would potentially end up with hundreds of thousands of explanatory indicator variables (and potentially even linear combinations of those), while you “only” have tens of thousands of observations (one per user/customer) to estimate your model. These sort of problems are at the core of the domain of modern predictive econometrics, which shows how machine learning approaches like the LASSO can be applied in order to get reasonable estimates of such a predictive model.</p></li>
-<li><p>The <em>big N</em> problem: a data set has massive amounts of observations (rows) such that it cannot be handled with standard data analytics techniques and/or on a standard desktop computer. For example, suppose you want to segment your e-commerce customers based on the traces they leave on your website’s server. Specifically, you plan to use the server log files (when does a customer visit the site from where, etc.) in combination with purchase records as well as written product reviews by the users. You focus on 50 variables that you measure on a daily basis over five years for all users. The resulting data set has <span class="math inline">\(50,000 \times 365 \times 5=91,250,000\)</span> rows and with 50 variables (50 columns) over 4.5 billion cells. Such a data set can easily take up dozens of Gigabytes on the hard disk. Hence it will either not fit into the memory of a standard computer to begin with (import fails), or the standard programs to process and analyze the data will likely be very inefficient and take ages to finish when used on such a large data set. There are both econometric techniques as well as various specialized software and hardware tools to handle such a situation.</p></li>
-</ul>
-<p>While covering some aspects of both problem domains, most of this book focuses on practical challenges and solutions related to the <em>big N</em> problem in Big Data Analytics.</p>
+<div id="gpus-and-machine-learning" class="section level1" number="12">
+<h1><span class="header-section-number">Chapter 12</span> GPUs and Machine Learning</h1>
+<p>A most common application of GPUs for scientific computing is machine learning, in particular deep learning (machine learning based on artificial neural networks). Training deep learning models can be very computationally intense and to an important part depends on tensor (matrix) multiplications. This is also an area where you might come across highly parallelized computing based on GPUs without even noticing it, as the now commonly used software to build and train deep neural nets (<a href="https://www.tensorflow.org/">tensorflow</a>, and the high-level <a href="https://keras.io/">Keras</a> API) can easily be run on a CPU or GPU without any further configuration/preparation (apart from the initial installation of these programs). The example below is a simple illustration of how such techniques can be used in an econometrics context.</p>
+<!-- ```{r warning=FALSE, message=FALSE} -->
+<!-- library(keras) -->
+<!-- mnist <- dataset_mnist() -->
+<!-- x_train <- mnist$train$x -->
+<!-- y_train <- mnist$train$y -->
+<!-- x_test <- mnist$test$x -->
+<!-- y_test <- mnist$test$y -->
+<!-- # reshape -->
+<!-- x_train <- array_reshape(x_train, c(nrow(x_train), 784)) -->
+<!-- x_test <- array_reshape(x_test, c(nrow(x_test), 784)) -->
+<!-- # rescale -->
+<!-- x_train <- x_train / 255 -->
+<!-- x_test <- x_test / 255 -->
+<!-- y_train <- to_categorical(y_train, 10) -->
+<!-- y_test <- to_categorical(y_test, 10) -->
+<!-- model <- keras_model_sequential() -->
+<!-- model %>% -->
+<!--   layer_dense(units = 256, activation = 'relu', input_shape = c(784)) %>% -->
+<!--   layer_dropout(rate = 0.4) %>% -->
+<!--   layer_dense(units = 128, activation = 'relu') %>% -->
+<!--   layer_dropout(rate = 0.3) %>% -->
+<!--   layer_dense(units = 10, activation = 'softmax') -->
+<!-- summary(model) -->
+<!-- model %>% compile( -->
+<!--   loss = 'categorical_crossentropy', -->
+<!--   optimizer = optimizer_rmsprop(), -->
+<!--   metrics = c('accuracy') -->
+<!-- ) -->
+<!-- history <- model %>% fit( -->
+<!--   x_train, y_train, -->
+<!--   epochs = 30, batch_size = 128, -->
+<!--   validation_split = 0.2 -->
+<!-- ) -->
+<!-- plot(history) -->
+<!-- ``` -->
+<div id="tensorflowkeras-example-predict-housing-prices" class="section level2" number="12.1">
+<h2><span class="header-section-number">12.1</span> Tensorflow/Keras example: predict housing prices</h2>
+<p>In this example we train a simple sequential model with two hidden layers in order to predict the median value of owner-occupied homes (in USD 1,000) in the Boston area (data are from the 1970s). The original data and a detailed description can be found <a href="https://www.cs.toronto.edu/~delve/data/boston/bostonDetail.html">here</a>. The example follows closely <a href="https://keras.rstudio.com/articles/tutorial_basic_regression.html#the-boston-housing-prices-dataset">this keras tutorial</a> published by RStudio. See <a href="https://keras.rstudio.com/index.html">RStudio’s keras installation guide</a> for how to install keras (and tensorflow) and the corresponding R package <code>keras</code>.<a href="#fn45" class="footnote-ref" id="fnref45"><sup>45</sup></a> While the purpose of the example here is to demonstrate a typical (but very simple!) usage case of GPUs in machine learning, the same code should also run on a normal machine (without using GPUs) with a default installation of keras.</p>
+<p>Apart from <code>keras</code>, we load packages to prepare the data and visualize the output. Via <code>dataset_boston_housing()</code>, we load the dataset (shipped with the keras installation) in the format preferred by the <code>keras</code> library.</p>
+<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb496-1"><a href="gpus-and-machine-learning.html#cb496-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb496-2"><a href="gpus-and-machine-learning.html#cb496-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(keras)</span>
+<span id="cb496-3"><a href="gpus-and-machine-learning.html#cb496-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb496-4"><a href="gpus-and-machine-learning.html#cb496-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb496-5"><a href="gpus-and-machine-learning.html#cb496-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tfdatasets)</span>
+<span id="cb496-6"><a href="gpus-and-machine-learning.html#cb496-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb496-7"><a href="gpus-and-machine-learning.html#cb496-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb496-8"><a href="gpus-and-machine-learning.html#cb496-8" aria-hidden="true" tabindex="-1"></a><span class="co"># load data</span></span>
+<span id="cb496-9"><a href="gpus-and-machine-learning.html#cb496-9" aria-hidden="true" tabindex="-1"></a>boston_housing <span class="ot">&lt;-</span> <span class="fu">dataset_boston_housing</span>()</span>
+<span id="cb496-10"><a href="gpus-and-machine-learning.html#cb496-10" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(boston_housing)</span></code></pre></div>
+<pre><code>## List of 2
+##  $ train:List of 2
+##   ..$ x: num [1:404, 1:13] 1.2325 0.0218 4.8982 0.0396 3.6931 ...
+##   ..$ y: num [1:404(1d)] 15.2 42.3 50 21.1 17.7 18.5 11.3 15.6 15.6 14.4 ...
+##  $ test :List of 2
+##   ..$ x: num [1:102, 1:13] 18.0846 0.1233 0.055 1.2735 0.0715 ...
+##   ..$ y: num [1:102(1d)] 7.2 18.8 19 27 22.2 24.5 31.2 22.9 20.5 23.2 ...</code></pre>
 </div>
-<div id="approaches-to-analyzing-big-data" class="section level2" number="1.2">
-<h2><span class="header-section-number">1.2</span> Approaches to analyzing Big Data</h2>
-<p>Throughout the book, we consider four approaches on how to solve challenges related to analyzing Big Data. Those approaches should not be understood as mutually exclusive categories for Big Data tools, rather they should help us to look at a specific problem from different angles in order to find the most efficient tool/approach to proceed.</p>
-<ol style="list-style-type: decimal">
-<li><p><em>Statistics/econometrics and machine learning</em>: During the initial hype surrounding Big Data/Data Science about a decade ago, statisticians prominently (and justifiably) pointed out that statistics has always been a very useful tool when analyzing “all the data” (the entire population) is too costly.<a href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a> In simple terms, when confronted with the challenge of answering an empirical question based on a <em>big N</em> data set (which is too large to process on a normal computer), one might ask “why not simply take a random sample?” In some situations this might actually be a very reasonable question, and we should be sure to have a good answer for it before we rent a cluster computer with specialized software for distributed computing. After all, statistical inference is there to help us answering empirical questions in situations where collecting data on the entire population would be practically impossible or simply way too costly. In today’s world, digital data is abundant in many domains and the collection is not so much the problem anymore but our standard data analytics tools are not made to analyze such amounts of data. Depending on the question and data at hand, it might thus make sense to simply use well-established “traditional” statistics/econometrics in order to properly address the empirical question. Note, though, that there are also various situations in which this would not work well. For example, consider online advertising. If you want to figure out which user characteristics make a user significantly more likely to click on a specific type of ad, you likely need hundreds of millions of data points because the expected probability that a specific user clicks on an ad is likely generally very low. That is, in many practical big data analytics settings you might expect rather small effects. Consequently, you need to rely on a big-N data set in order to get the statistical power to distinguish an actual effect from a zero effect. However, even then, it might make sense to first look at newer statistical procedures that are specifically made for big-N data before renting a cluster computer. Similarly, traditional statistical/econometric approaches might help to deal with big-p data, but they are usually rather inefficient or have rather problematic statistical properties in such a situation. However, there are also well-established machine learning approaches to better address these problems. In sum, before focusing on specialized software like Hadoop and scaling up hardware resources, make sure to use the adequate statistical tools for a big-data situation. This can save a lot of time and money. Once you have found the most efficient statistical procedure for the problem at hand, you can focus on how to compute it.</p></li>
-<li><p><em>Writing efficient code</em>: no matter how suitable a statistical procedure theoretically is to analyze a large data set, there are always various ways of how this procedure can be implemented in software. Some ways will be less efficient than others. When working with small or moderately sized data sets you might not even notice whether your data analytics script is written in an efficient way. However, it might get unconfortable to run your script once you confront it with a large data set. Hence the question you should ask yourself when taking this perspective is, “can I write this script in a different way to make it faster (but achieve the same result)?” Before introducing you to specialized R-packages to work with large data sets, we thus look at a few important aspects of how to write efficient/fast code in R.</p></li>
-<li><p><em>Use limited local computing resources more efficiently</em>: there are several strategies to use the available local computing resources (your PC) more efficiently, and many of those have been around for a while. In simple terms, these strategies are based on the idea of more explicitly telling the computer how to allocate and use the available hardware resources as part of a data analytics task (something that is usually automatically taken care of by the PC’s operating system). We will touch upon several of these strategies, such as multi-core processing and the efficient use of virtual memory and then practically implement these strategies with the help of specialized R packages. Unlike writing more efficient R code, these packages/strategies usually come with an overhead. That is, they help you safe time only after a certain threshold. In other words, not using these approaches can be faster if the data set is not “too big.” In addition, there can be trade-offs between using one vs the other hardware component more efficiently. Hence, using these strategies can be tricky and the best approach might well depend on the specific situation. The aim is thus to make you comfortable with answering the question “how can I use my local computing environment more efficiently to further speed up this specific analytics task?”</p></li>
-<li><p><em>Scale up and scale out</em>: once you have properly considered all of the above, but the task still cannot be done in a reasonable amount of time, you will need to either <em>scale up</em> or <em>scale out</em> the available computing resources. <em>Scaling up</em> refers to enlarging your machine (e.g., add more random access memory) or to switching to a more powerful machine altogether. Technically, this can mean literally building an additional hardware-device into your PC, today it usually means renting a virtual server in the cloud. Instead of using a “bigger machine,” <em>scaling out</em> means using several machines in concert (cluster computer, distributed systems). While this also has often been done locally (connecting several PCs to a cluster of PCs in order to combine all their computing power), today this too is usually done in the cloud (due to the much easier set up and maintenance). Practically, a key difference between scaling out and scaling up is that by-and-large scaling up does not require you to get familiar with specialized software. You can simply run the exact same script you tested locally on a larger machine in the cloud. Although most of the tools and services available to scale out your analyses are by now quite easy to use, you will have to get familiar with some additional software components and programming paradigms to really make use of the latter.<a href="#fn2" class="footnote-ref" id="fnref2"><sup>2</sup></a> In addition, in some situations, scaling up might be perfectly sufficient while in others only scaling out makes sense (particularly if you need massive amounts of memory). In any event, you should be comfortable dealing with the question “does it make sense to scale up or scale out?” and “if yes, how can it be done?” in a given situation.<a href="#fn3" class="footnote-ref" id="fnref3"><sup>3</sup></a></p></li>
-</ol>
+<div id="data-preparation-1" class="section level2" number="12.2">
+<h2><span class="header-section-number">12.2</span> Data preparation</h2>
+<p>In a first step, we split the data into a training set and a test set. The latter is used to monitor the out-of-sample performance of the model fit. Testing the validity of an estimated model by looking at how it performs out-of-sample is of particular relevance when working with (deep) neural networks, as they can easily lead to over-fitting. Validity checks based on the test sample are, therefore, often an integral part of modelling with tensorflow/keras.</p>
+<div class="sourceCode" id="cb498"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb498-1"><a href="gpus-and-machine-learning.html#cb498-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assign training and test data/labels</span></span>
+<span id="cb498-2"><a href="gpus-and-machine-learning.html#cb498-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(train_data, train_labels) <span class="sc">%&lt;-%</span> boston_housing<span class="sc">$</span>train</span>
+<span id="cb498-3"><a href="gpus-and-machine-learning.html#cb498-3" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(test_data, test_labels) <span class="sc">%&lt;-%</span> boston_housing<span class="sc">$</span>test</span></code></pre></div>
+<p>In order to better understand and interpret the dataset we add the original variable names, and convert it to a <code>tibble</code>.</p>
+<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="gpus-and-machine-learning.html#cb499-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb499-2"><a href="gpus-and-machine-learning.html#cb499-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb499-3"><a href="gpus-and-machine-learning.html#cb499-3" aria-hidden="true" tabindex="-1"></a>column_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;CRIM&#39;</span>, <span class="st">&#39;ZN&#39;</span>, <span class="st">&#39;INDUS&#39;</span>, <span class="st">&#39;CHAS&#39;</span>, <span class="st">&#39;NOX&#39;</span>, <span class="st">&#39;RM&#39;</span>, <span class="st">&#39;AGE&#39;</span>, </span>
+<span id="cb499-4"><a href="gpus-and-machine-learning.html#cb499-4" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&#39;DIS&#39;</span>, <span class="st">&#39;RAD&#39;</span>, <span class="st">&#39;TAX&#39;</span>, <span class="st">&#39;PTRATIO&#39;</span>, <span class="st">&#39;B&#39;</span>, <span class="st">&#39;LSTAT&#39;</span>)</span>
+<span id="cb499-5"><a href="gpus-and-machine-learning.html#cb499-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb499-6"><a href="gpus-and-machine-learning.html#cb499-6" aria-hidden="true" tabindex="-1"></a>train_df <span class="ot">&lt;-</span> train_data <span class="sc">%&gt;%</span> </span>
+<span id="cb499-7"><a href="gpus-and-machine-learning.html#cb499-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>(<span class="at">.name_repair =</span> <span class="st">&quot;minimal&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb499-8"><a href="gpus-and-machine-learning.html#cb499-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(column_names) <span class="sc">%&gt;%</span> </span>
+<span id="cb499-9"><a href="gpus-and-machine-learning.html#cb499-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">label =</span> train_labels)</span>
+<span id="cb499-10"><a href="gpus-and-machine-learning.html#cb499-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb499-11"><a href="gpus-and-machine-learning.html#cb499-11" aria-hidden="true" tabindex="-1"></a>test_df <span class="ot">&lt;-</span> test_data <span class="sc">%&gt;%</span> </span>
+<span id="cb499-12"><a href="gpus-and-machine-learning.html#cb499-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>(<span class="at">.name_repair =</span> <span class="st">&quot;minimal&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb499-13"><a href="gpus-and-machine-learning.html#cb499-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(column_names) <span class="sc">%&gt;%</span> </span>
+<span id="cb499-14"><a href="gpus-and-machine-learning.html#cb499-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">label =</span> test_labels)</span></code></pre></div>
+<p>Next, we have a close look at the data. Note the usage of the term ‘label’ for what is usually called the ‘dependent variable’ in econometrics.<a href="#fn46" class="footnote-ref" id="fnref46"><sup>46</sup></a> As the aim of the exercise is to predict median prices of homes, the output of the model will be a continuous value (‘labels’).</p>
+<div class="sourceCode" id="cb500"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb500-1"><a href="gpus-and-machine-learning.html#cb500-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check example data dimensions and content</span></span>
+<span id="cb500-2"><a href="gpus-and-machine-learning.html#cb500-2" aria-hidden="true" tabindex="-1"></a><span class="fu">paste0</span>(<span class="st">&quot;Training entries: &quot;</span>, <span class="fu">length</span>(train_data), <span class="st">&quot;, labels: &quot;</span>, <span class="fu">length</span>(train_labels))</span></code></pre></div>
+<pre><code>## [1] &quot;Training entries: 5252, labels: 404&quot;</code></pre>
+<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="gpus-and-machine-learning.html#cb502-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(train_data)</span></code></pre></div>
+<pre><code>##        V1              V2              V3       
+##  Min.   : 0.01   Min.   :  0.0   Min.   : 0.46  
+##  1st Qu.: 0.08   1st Qu.:  0.0   1st Qu.: 5.13  
+##  Median : 0.27   Median :  0.0   Median : 9.69  
+##  Mean   : 3.75   Mean   : 11.5   Mean   :11.10  
+##  3rd Qu.: 3.67   3rd Qu.: 12.5   3rd Qu.:18.10  
+##  Max.   :88.98   Max.   :100.0   Max.   :27.74  
+##        V4               V5              V6      
+##  Min.   :0.0000   Min.   :0.385   Min.   :3.56  
+##  1st Qu.:0.0000   1st Qu.:0.453   1st Qu.:5.88  
+##  Median :0.0000   Median :0.538   Median :6.20  
+##  Mean   :0.0619   Mean   :0.557   Mean   :6.27  
+##  3rd Qu.:0.0000   3rd Qu.:0.631   3rd Qu.:6.61  
+##  Max.   :1.0000   Max.   :0.871   Max.   :8.72  
+##        V7              V8              V9       
+##  Min.   :  2.9   Min.   : 1.13   Min.   : 1.00  
+##  1st Qu.: 45.5   1st Qu.: 2.08   1st Qu.: 4.00  
+##  Median : 78.5   Median : 3.14   Median : 5.00  
+##  Mean   : 69.0   Mean   : 3.74   Mean   : 9.44  
+##  3rd Qu.: 94.1   3rd Qu.: 5.12   3rd Qu.:24.00  
+##  Max.   :100.0   Max.   :10.71   Max.   :24.00  
+##       V10           V11            V12       
+##  Min.   :188   Min.   :12.6   Min.   :  0.3  
+##  1st Qu.:279   1st Qu.:17.2   1st Qu.:374.7  
+##  Median :330   Median :19.1   Median :391.2  
+##  Mean   :406   Mean   :18.5   Mean   :354.8  
+##  3rd Qu.:666   3rd Qu.:20.2   3rd Qu.:396.2  
+##  Max.   :711   Max.   :22.0   Max.   :396.9  
+##       V13       
+##  Min.   : 1.73  
+##  1st Qu.: 6.89  
+##  Median :11.39  
+##  Mean   :12.74  
+##  3rd Qu.:17.09  
+##  Max.   :37.97</code></pre>
+<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb504-1"><a href="gpus-and-machine-learning.html#cb504-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(train_labels) <span class="co"># Display first 10 entries</span></span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##     5.0    16.7    20.8    22.4    24.8    50.0</code></pre>
+<p>As the dataset contains variables ranging from per capita crime rate to indicators for highway access, the variables are obviously measured in different units and hence displayed on different scales. This is not per se a problem for the fitting procedure. However, fitting is more efficient when all features (variables) are normalized.</p>
+<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb506-1"><a href="gpus-and-machine-learning.html#cb506-1" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">feature_spec</span>(train_df, label <span class="sc">~</span> . ) <span class="sc">%&gt;%</span> </span>
+<span id="cb506-2"><a href="gpus-and-machine-learning.html#cb506-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_numeric_column</span>(<span class="fu">all_numeric</span>(), <span class="at">normalizer_fn =</span> <span class="fu">scaler_standard</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb506-3"><a href="gpus-and-machine-learning.html#cb506-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>()</span></code></pre></div>
+<pre><code>## Warning: replacing previous import
+## &#39;lifecycle::last_warnings&#39; by &#39;rlang::last_warnings&#39;
+## when loading &#39;hms&#39;</code></pre>
+<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb508-1"><a href="gpus-and-machine-learning.html#cb508-1" aria-hidden="true" tabindex="-1"></a>layer <span class="ot">&lt;-</span> <span class="fu">layer_dense_features</span>(</span>
+<span id="cb508-2"><a href="gpus-and-machine-learning.html#cb508-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">feature_columns =</span> <span class="fu">dense_features</span>(spec), </span>
+<span id="cb508-3"><a href="gpus-and-machine-learning.html#cb508-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">dtype =</span> tf<span class="sc">$</span>float32</span>
+<span id="cb508-4"><a href="gpus-and-machine-learning.html#cb508-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb508-5"><a href="gpus-and-machine-learning.html#cb508-5" aria-hidden="true" tabindex="-1"></a><span class="fu">layer</span>(train_df)</span></code></pre></div>
+<pre><code>## tf.Tensor(
+## [[ 0.81205493  0.44752213 -0.2565147  ... -0.1762239  -0.59443307
+##   -0.48301655]
+##  [-1.9079947   0.43137115 -0.2565147  ...  1.8920003  -0.34800112
+##    2.9880793 ]
+##  [ 1.1091131   0.2203439  -0.2565147  ... -1.8274226   1.563349
+##   -0.48301655]
+##  ...
+##  [-1.6359899   0.07934052 -0.2565147  ... -0.3326088  -0.61246467
+##    0.9895695 ]
+##  [ 1.0554279  -0.98642045 -0.2565147  ... -0.7862657  -0.01742171
+##   -0.48301655]
+##  [-1.7970455   0.23288251 -0.2565147  ...  0.47467488 -0.84687555
+##    2.0414166 ]], shape=(404, 13), dtype=float32)</code></pre>
 </div>
-<div id="content-overview" class="section level2" number="1.3">
-<h2><span class="header-section-number">1.3</span> Content overview</h2>
-<p>The book is organized in three main parts. The first part introduces the reader to the set of software tools primarily used throughout the book: (advanced) R and SQL. It then covers the conceptual basics of modern computing environments and discusses how different hardware components matter in practical local Big Data Analytics as well as how virtual servers in the cloud help to scale up and scale out analyses when the local hardware does not have enough computing resources.</p>
-<p>The second part focuses on all the steps in a data pipeline that precede the actual analysis of the data: data storage, data import/ingestion, data cleaning/transformation, and data aggregation. The chapters in this part of the book discuss basic concepts such as the split-apply-combine approach and demonstrate the practical application of these concepts when working with large data sets in R.</p>
-<p>Finally, the third part of this book focuses on explorative visualization of big data (with a particular focus on GIS) and the application of modern econometrics to large data sets (both locally and in the cloud).</p>
-<p>The code examples, illustrations, and tutorials provided throughout the book focus on data analytics contexts in empirical economics as well as business data science/business analytics. However, the basic concepts and tools covered in the book are not domain-specific and could easily be transferred to other fields of modern data analytics/data science.</p>
+<div id="model-specification" class="section level2" number="12.3">
+<h2><span class="header-section-number">12.3</span> Model specification</h2>
+<p>We specify the model as a linear stack of layers: The input (all 13 explanatory variables), two densely connected hidden layers (each with a 64-dimensional output space), and finally the one-dimensional output layer (the ‘dependent variable’).</p>
+<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb510-1"><a href="gpus-and-machine-learning.html#cb510-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the model</span></span>
+<span id="cb510-2"><a href="gpus-and-machine-learning.html#cb510-2" aria-hidden="true" tabindex="-1"></a><span class="co"># model specification</span></span>
+<span id="cb510-3"><a href="gpus-and-machine-learning.html#cb510-3" aria-hidden="true" tabindex="-1"></a>input <span class="ot">&lt;-</span> <span class="fu">layer_input_from_dataset</span>(train_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>label))</span>
+<span id="cb510-4"><a href="gpus-and-machine-learning.html#cb510-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb510-5"><a href="gpus-and-machine-learning.html#cb510-5" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> input <span class="sc">%&gt;%</span> </span>
+<span id="cb510-6"><a href="gpus-and-machine-learning.html#cb510-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_dense_features</span>(<span class="fu">dense_features</span>(spec)) <span class="sc">%&gt;%</span> </span>
+<span id="cb510-7"><a href="gpus-and-machine-learning.html#cb510-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_dense</span>(<span class="at">units =</span> <span class="dv">64</span>, <span class="at">activation =</span> <span class="st">&quot;relu&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb510-8"><a href="gpus-and-machine-learning.html#cb510-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_dense</span>(<span class="at">units =</span> <span class="dv">64</span>, <span class="at">activation =</span> <span class="st">&quot;relu&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb510-9"><a href="gpus-and-machine-learning.html#cb510-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_dense</span>(<span class="at">units =</span> <span class="dv">1</span>) </span>
+<span id="cb510-10"><a href="gpus-and-machine-learning.html#cb510-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb510-11"><a href="gpus-and-machine-learning.html#cb510-11" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">keras_model</span>(input, output)</span></code></pre></div>
+<p>In order to fit the model, we first have to compile it (configure it for training). At this step we set the configuration parameters that will guide the training/optimization procedure. We use the mean squared errors loss function (<code>mse</code>) typically used for regressions. We chose the <a href="http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf">RMSProp</a> optimizer to find the minimum loss.</p>
+<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb511-1"><a href="gpus-and-machine-learning.html#cb511-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compile the model  </span></span>
+<span id="cb511-2"><a href="gpus-and-machine-learning.html#cb511-2" aria-hidden="true" tabindex="-1"></a>model <span class="sc">%&gt;%</span> </span>
+<span id="cb511-3"><a href="gpus-and-machine-learning.html#cb511-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">compile</span>(</span>
+<span id="cb511-4"><a href="gpus-and-machine-learning.html#cb511-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">loss =</span> <span class="st">&quot;mse&quot;</span>,</span>
+<span id="cb511-5"><a href="gpus-and-machine-learning.html#cb511-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">optimizer =</span> <span class="fu">optimizer_rmsprop</span>(),</span>
+<span id="cb511-6"><a href="gpus-and-machine-learning.html#cb511-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">metrics =</span> <span class="fu">list</span>(<span class="st">&quot;mean_absolute_error&quot;</span>)</span>
+<span id="cb511-7"><a href="gpus-and-machine-learning.html#cb511-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<p>Now we can get a summary of the model we are about to fit to the data.</p>
+<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb512-1"><a href="gpus-and-machine-learning.html#cb512-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get a summary of the model</span></span>
+<span id="cb512-2"><a href="gpus-and-machine-learning.html#cb512-2" aria-hidden="true" tabindex="-1"></a>model</span></code></pre></div>
+<pre><code>## Model
+## Model: &quot;model&quot;
+## _______________________________________________________
+## Layer (type)      Output Shap Param Connected to       
+## =======================================================
+## AGE (InputLayer)  [(None,)]   0                        
+## _______________________________________________________
+## B (InputLayer)    [(None,)]   0                        
+## _______________________________________________________
+## CHAS (InputLayer) [(None,)]   0                        
+## _______________________________________________________
+## CRIM (InputLayer) [(None,)]   0                        
+## _______________________________________________________
+## DIS (InputLayer)  [(None,)]   0                        
+## _______________________________________________________
+## INDUS (InputLayer [(None,)]   0                        
+## _______________________________________________________
+## LSTAT (InputLayer [(None,)]   0                        
+## _______________________________________________________
+## NOX (InputLayer)  [(None,)]   0                        
+## _______________________________________________________
+## PTRATIO (InputLay [(None,)]   0                        
+## _______________________________________________________
+## RAD (InputLayer)  [(None,)]   0                        
+## _______________________________________________________
+## RM (InputLayer)   [(None,)]   0                        
+## _______________________________________________________
+## TAX (InputLayer)  [(None,)]   0                        
+## _______________________________________________________
+## ZN (InputLayer)   [(None,)]   0                        
+## _______________________________________________________
+## dense_features_1  (None, 13)  0     AGE[0][0]          
+##                                     B[0][0]            
+##                                     CHAS[0][0]         
+##                                     CRIM[0][0]         
+##                                     DIS[0][0]          
+##                                     INDUS[0][0]        
+##                                     LSTAT[0][0]        
+##                                     NOX[0][0]          
+##                                     PTRATIO[0][0]      
+##                                     RAD[0][0]          
+##                                     RM[0][0]           
+##                                     TAX[0][0]          
+##                                     ZN[0][0]           
+## _______________________________________________________
+## dense_2 (Dense)   (None, 64)  896   dense_features_1[0]
+## _______________________________________________________
+## dense_1 (Dense)   (None, 64)  4160  dense_2[0][0]      
+## _______________________________________________________
+## dense (Dense)     (None, 1)   65    dense_1[0][0]      
+## =======================================================
+## Total params: 5,121
+## Trainable params: 5,121
+## Non-trainable params: 0
+## _______________________________________________________</code></pre>
 </div>
-<div id="prerequisits" class="section level2" number="1.4">
-<h2><span class="header-section-number">1.4</span> Prerequisits</h2>
-<p>This book builds extensively on programming in R. The reader is expected to already be familiar with R and basic programming concepts such as loops, control statements and functions. In addition, the book presupposes some familiarity with undergraduate and basic graduate statistics/econometrics.</p>
+<div id="training-and-prediction" class="section level2" number="12.4">
+<h2><span class="header-section-number">12.4</span> Training and prediction</h2>
+<p>Given the relatively simple model and small dataset, we set the maximum number of epochs to 500 and allow for early stopping in case the validation loss (based on test data) is not improving for a while.</p>
+<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb514-1"><a href="gpus-and-machine-learning.html#cb514-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set max. number of epochs</span></span>
+<span id="cb514-2"><a href="gpus-and-machine-learning.html#cb514-2" aria-hidden="true" tabindex="-1"></a>epochs <span class="ot">&lt;-</span> <span class="dv">500</span></span></code></pre></div>
+<p>Finally, we fit the model while preserving the training history, and visualize the training progress.</p>
+<div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb515-1"><a href="gpus-and-machine-learning.html#cb515-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model and store training stats</span></span>
+<span id="cb515-2"><a href="gpus-and-machine-learning.html#cb515-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb515-3"><a href="gpus-and-machine-learning.html#cb515-3" aria-hidden="true" tabindex="-1"></a>history <span class="ot">&lt;-</span> model <span class="sc">%&gt;%</span> <span class="fu">fit</span>(</span>
+<span id="cb515-4"><a href="gpus-and-machine-learning.html#cb515-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> train_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>label),</span>
+<span id="cb515-5"><a href="gpus-and-machine-learning.html#cb515-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> train_df<span class="sc">$</span>label,</span>
+<span id="cb515-6"><a href="gpus-and-machine-learning.html#cb515-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">epochs =</span> epochs,</span>
+<span id="cb515-7"><a href="gpus-and-machine-learning.html#cb515-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">validation_split =</span> <span class="fl">0.2</span>,</span>
+<span id="cb515-8"><a href="gpus-and-machine-learning.html#cb515-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="dv">0</span></span>
+<span id="cb515-9"><a href="gpus-and-machine-learning.html#cb515-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb515-10"><a href="gpus-and-machine-learning.html#cb515-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb515-11"><a href="gpus-and-machine-learning.html#cb515-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb515-12"><a href="gpus-and-machine-learning.html#cb515-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(history)</span></code></pre></div>
+<p><img src="bigdata_files/figure-html/unnamed-chunk-262-1.png" width="672" /></p>
+<div id="a-word-of-caution" class="section level3" number="12.4.1">
+<h3><span class="header-section-number">12.4.1</span> A word of caution</h3>
+<p>From just comparing the number of threads of a modern CPU with the number of threads of a modern GPU, one might get the impression that parallel tasks should always be implemented for GPU computing. However, whether one approach or the other is faster can depend a lot on the overall task and the data at hand. Moreover, the parallel implementation of tasks can be done more or less well on either system. Really efficient parallel implementation of tasks can take a lot of coding time (particularly when done for GPUs).<a href="#fn47" class="footnote-ref" id="fnref47"><sup>47</sup></a>.</p>
+
+</div>
 </div>
 </div>
 <div class="footnotes">
 <hr />
-<ol start="1">
-<li id="fn1"><p>David Donoho has nicely summarized this critique in a paper titled <a href="https://doi.org/10.1080/10618600.2017.1384734">“50 Years of Data Science”</a> (<span class="citation"><a href="references.html#ref-donoho_2017" role="doc-biblioref">Donoho</a> (<a href="references.html#ref-donoho_2017" role="doc-biblioref">2017</a>)</span>), which I warmly recommend.<a href="introduction.html#fnref1" class="footnote-back">↩︎</a></p></li>
-<li id="fn2"><p>Not thought, that this aspect of scaling out has recently become much more user-friendly and is likely to get even more so over the next few years. Therefore, we will focus primarily on how to set up such a solution with the help of high-level/easy-to-use interfaces.<a href="introduction.html#fnref2" class="footnote-back">↩︎</a></p></li>
-<li id="fn3"><p>Importantly, the perspective on scaling up and scaling out provided in this book is solely focused on Big Data Analytics in the context of economic/business research. There is a large array of practical problems and corresponding solutions/tools to deal with “Big Data Analytics” in the context of application development (e.g. tools related to data streams) which this book does not cover.<a href="introduction.html#fnref3" class="footnote-back">↩︎</a></p></li>
+<ol start="45">
+<li id="fn45"><p>This might involve the installation of additional packages and software outside the R environment.<a href="gpus-and-machine-learning.html#fnref45" class="footnote-back">↩︎</a></p></li>
+<li id="fn46"><p>Typical textbook examples in machine learning deal with classification (e.g. a logit model), while in microeconometrics the typical example is usually a linear model (continuous dependent variable).<a href="gpus-and-machine-learning.html#fnref46" class="footnote-back">↩︎</a></p></li>
+<li id="fn47"><p>For a more detailed discussion of the relevant factors for well done parallelization (either on CPUs or GPUs), see <span class="citation"><a href="references.html#ref-matloff_2015" role="doc-biblioref">Matloff</a> (<a href="references.html#ref-matloff_2015" role="doc-biblioref">2015</a>)</span><a href="gpus-and-machine-learning.html#fnref47" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -423,8 +631,8 @@ practical techniques to handle and analyze Big Data.</p>
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="big-data-econometrics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="bottle-necks-in-local-big-data-analytics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="applied-econometrics-with-spark.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>

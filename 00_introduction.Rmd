@@ -1,0 +1,416 @@
+\mainmatter
+
+# Introduction
+
+
+Over the last decade, 'Big Data' has often been discussed as the new ‘most valuable’
+resource in highly developed economies, driving the development of new
+products and services in various industries. Extracting knowledge from large data
+sets is increasingly seen as a strategic asset for firms, governments, and NGOs. In a similar vein, the increasing size of data sets in empirical economic research (both in number
+of observations and number of variables) offers new opportunities and poses new
+challenges for economists and business leaders. 
+
+Successfully navigating the data-driven economy presupposes a certain
+understanding of the technologies and methods to gain insights from Big Data.
+This textbook introduces the reader to the basic concepts of Big Data Analytics to
+gain insights from large and complex data sets. Thereby, the focus of the book
+is on the practical application of econometrics/machine learning, given
+large/complex data sets, and all the steps involved before actually analyzing data (data storage, data import, data preparation).
+The book combines conceptual/theoretical material with the practical application of the
+concepts with the open source programming language R. Thereby, the reader will
+acquire the basic skill set to analyze large data sets both locally and in the
+cloud. Various code examples and tutorials, focused on empirical economic and business research, illustrate 
+practical techniques to handle and analyze Big Data.
+
+
+## What is *big* in "Big Data"?
+
+Generally, we can think of Big Data as data that is (a) expensive to handle and (b) hard to get value from due to its size and complexity. The handling of Big Data is expensive as the data is often gathered from unorthodox sources, providing poorly structured data (e.g., raw text, web pages, images, etc.) as well as because of the infrastructure needed to store and load/process large amounts of data. Getting value/insights from Big Data is related to two distinct properties that render the analysis of large amounts of data difficult:
+
+- The *big P* problem: a data set has more variables than observations, which renders the search for a good predictive model with traditional econometric techniques difficult or illusive. For example, suppose you run an e-commerce business that sells hundreds of thousands of products to tens of thousands of customers. You want to figure out from which product category a customer is most likely to buy an item from, based on her previous product page visits. That is, you want to (in simple terms) regress an indicator of purchasing from a specific category on indicators for previous product page visits. Given this set up, you would potentially end up with hundreds of thousands of explanatory indicator variables (and potentially even linear combinations of those), while you "only" have tens of thousands of observations (one per user/customer) to estimate your model. These sort of problems are at the core of the domain of modern predictive econometrics, which shows how machine learning approaches like the LASSO can be applied in order to get reasonable estimates of such a predictive model.
+
+- The *big N* problem: a data set has massive amounts of observations (rows) such that it cannot be handled with standard data analytics techniques and/or on a standard desktop computer. For example, suppose you want to segment your e-commerce customers based on the traces they leave on your website's server. Specifically, you plan to use the server log files (when does a customer visit the site from where, etc.) in combination with purchase records as well as written product reviews by the users. You focus on 50 variables that you measure on a daily basis over five years for all users. The resulting data set has $50,000 \times 365 \times 5=91,250,000$ rows and with 50 variables (50 columns) over 4.5 billion cells. Such a data set can easily take up dozens of Gigabytes on the hard disk. Hence it will either not fit into the memory of a standard computer to begin with (import fails), or the standard programs to process and analyze the data will likely be very inefficient and take ages to finish when used on such a large data set. There are both econometric techniques as well as various specialized software and hardware tools to handle such a situation.
+
+
+While covering some aspects of both problem domains, most of this book focuses on practical challenges and solutions related to the *big N* problem in Big Data Analytics.
+
+## Approaches to analyzing Big Data
+
+Throughout the book, we consider four approaches on how to solve challenges related to analyzing Big Data. Those approaches should not be understood as mutually exclusive categories for Big Data tools, rather they should help us to look at a specific problem from different angles in order to find the most efficient tool/approach to proceed. 
+
+1. *Statistics/econometrics and machine learning*: During the initial hype surrounding Big Data/Data Science about a decade ago, statisticians prominently (and justifiably) pointed out that statistics has always been a very useful tool when analyzing "all the data" (the entire population) is too costly.^[David Donoho has nicely summarized this critique in a paper titled ["50 Years of Data Science"](https://doi.org/10.1080/10618600.2017.1384734) (@donoho_2017), which I warmly recommend.] In simple terms, when confronted with the challenge of answering an empirical question based on a *big N* data set (which is too large to process on a normal computer), one might ask "why not simply take a random sample"? In some situations this might actually be a very reasonable question, and we should be sure to have a good answer for it before we rent a cluster computer with specialized software for distributed computing. After all, statistical inference is there to help us answering empirical questions in situations where collecting data on the entire population would be practically impossible or simply way too costly. In today's world, digital data is abundant in many domains and the collection is not so much the problem anymore but our standard data analytics tools are not made to analyze such amounts of data. Depending on the question and data at hand, it might thus make sense to simply use well-established "traditional" statistics/econometrics in order to properly address the empirical question. Note, though, that there are also various situations in which this would not work well. For example, consider online advertising. If you want to figure out which  user characteristics make a user significantly more likely to click on a specific type of ad, you likely need hundreds of millions of data points because the expected probability that a specific user clicks on an ad is likely generally very low. That is, in many practical big data analytics settings you might expect rather small effects. Consequently, you need to rely on a big-N data set in order to get the statistical power to distinguish an actual effect from a zero effect. However, even then, it might make sense to first look at newer statistical procedures that are specifically made for big-N data before renting a cluster computer. Similarly, traditional statistical/econometric approaches might help to deal with big-p data, but they are usually rather inefficient or have rather problematic statistical properties in such a situation. However, there are also well-established machine learning approaches to better address these problems. In sum, before focusing on specialized software like Hadoop and scaling up hardware resources, make sure to use the adequate statistical tools for a big-data situation. This can save a lot of time and money. Once you have found the most efficient statistical procedure for the problem at hand, you can focus on how to compute it. 
+
+2. *Writing efficient code*: no matter how suitable a statistical procedure theoretically is to analyze a large data set, there are always various ways of how this procedure can be implemented in software. Some ways will be less efficient than others. When working with small or moderately sized data sets you might not even notice whether your data analytics script is written in an efficient way. However, it might get unconfortable to run your script once you confront it with a large data set. Hence the question you should ask yourself when taking this perspective is, "can I write this script in a different way to make it faster (but achieve the same result)?" Before introducing you to specialized R-packages to work with large data sets, we thus look at a few important aspects of how to write efficient/fast code in R.
+
+3. *Use limited local computing resources more efficiently*: there are several strategies to use the available local computing resources (your PC) more efficiently, and many of those have been around for a while. In simple terms, these strategies are based on the idea of more explicitly telling the computer how to allocate and use the available hardware resources as part of a data analytics task (something that is usually automatically taken care of by the PC's operating system). We will touch upon several of these strategies, such as multi-core processing and the efficient use of virtual memory and then practically implement these strategies with the help of specialized R packages. Unlike writing more efficient R code, these packages/strategies usually come with an overhead. That is, they help you safe time only after a certain threshold. In other words, not using these approaches can be faster if the data set is not "too big". In addition, there can be trade-offs between using one vs the other hardware component more efficiently. Hence, using these strategies can be tricky and the best approach might well depend on the specific situation. The aim is thus to make you comfortable with answering the question "how can I use my local computing environment more efficiently to further speed up this specific analytics task"?
+
+4. *Scale up and scale out*: once you have properly considered all of the above, but the task still cannot be done in a reasonable amount of time, you will need to either *scale up* or *scale out* the available computing resources. *Scaling up* refers to enlarging your machine (e.g., add more random access memory) or to switching to a more powerful machine altogether. Technically, this can mean literally building an additional hardware-device into your PC, today it usually means renting a virtual server in the cloud. Instead of using a "bigger machine", *scaling out* means using several machines in concert (cluster computer, distributed systems). While this also has often been done locally (connecting several PCs to a cluster of PCs in order to combine all their computing power), today this too is usually done in the cloud (due to the much easier set up and maintenance). Practically, a key difference between scaling out and scaling up is that by-and-large scaling up does not require you to get familiar with specialized software. You can simply run the exact same script you tested locally on a larger machine in the cloud. Although most of the tools and services available to scale out your analyses are by now quite easy to use, you will have to get familiar with some additional software components and programming paradigms to really make use of the latter.^[Not thought, that this aspect of scaling out has recently become much more user-friendly and is likely to get even more so over the next few years. Therefore, we will focus primarily on how to set up such a solution with the help of high-level/easy-to-use interfaces.] In addition, in some situations, scaling up might be perfectly sufficient while in others only scaling out makes sense (particularly if you need massive amounts of memory). In any event, you should be comfortable dealing with the question "does it make sense to scale up or scale out?" and "if yes, how can it be done?" in a given situation.^[Importantly, the perspective on scaling up and scaling out provided in this book is solely focused on Big Data Analytics in the context of economic/business research. There is a large array of practical problems and corresponding solutions/tools to deal with "Big Data Analytics" in the context of application development (e.g. tools related to data streams) which this book does not cover.]
+
+
+## Content overview
+
+The book is organized in three main parts. The first part introduces the reader to the set of software tools primarily used throughout the book: (advanced) R and SQL. It then covers the conceptual basics of modern computing environments and discusses how different hardware components matter in practical local Big Data Analytics as well as how virtual servers in the cloud help to scale up and scale out analyses when the local hardware does not have enough computing resources.
+
+The second part focuses on all the steps in a data pipeline that precede the actual analysis of the data: data storage, data import/ingestion, data cleaning/transformation, and data aggregation. The chapters in this part of the book discuss basic concepts such as the split-apply-combine approach and demonstrate the practical application of these concepts when working with large data sets in R.
+
+Finally, the third part of this book focuses on explorative visualization of big data (with a particular focus on GIS) and the application of modern econometrics to large data sets (both locally and in the cloud). 
+
+The code examples, illustrations, and tutorials provided throughout the book focus on data analytics contexts in empirical economics as well as business data science/business analytics. However, the basic concepts and tools covered in the book are not domain-specific and could easily be transferred to other fields of modern data analytics/data science.
+
+## Prerequisits
+
+This book builds extensively on programming in R. The reader is expected to already be familiar with R and basic programming concepts such as loops, control statements and functions. In addition, the book presupposes some familiarity with undergraduate and basic graduate statistics/econometrics. 
+
+
+# Big Data Econometrics
+
+Econometrics in the field of Big Data Analytics can be broadly categorized in two domains: techniques/estimators to address *big P*-problems and techniques/estimators to address *big N* problems. While this book presupposes some knowledge in at least one of these domains and mainly focuses on on aspects of Big Data Analytics that precede the estimation of econometric models, it is useful to set the stage for the rest of the chapters with two practical examples concerning *big P* and *big N* econometric methods.
+
+## A practical *big P* problem
+
+Due to the abundance of digital data on all kind of human activities, empirical economists as well as business analysts are increasingly confronted with high-dimensional data (many signals, many variables). While having a lot of variables to work with sounds kind of like a good thing, it introduces new problems for coming up with useful predictive models. In the extreme case of having more variables in the model than observations, traditional methods cannot be used at all. In the less extreme case of just having dozens or hundreds of variables in a model (and plenty of observations) we risk to "falsely" discover seemingly influential variables and consequently come up with a model with potentially very misleading out-of-sample predictions. Thus, how can we find a reasonable model?^[Note that finding a model with good in-sample prediction performance is trivial when you have a lot of variables, simply adding more variables will improve the performance. However, that will inevitably result in a non-sense model as even highly significant variables might not have any actual predictive power when looking at out-of-sample predictions. Hence, in this kind of exercise we should *exclusively focus on out-of-sample predictions* when assessing the performance of candidate models.]
+
+```{r include=FALSE, purl=FALSE, eval=FALSE}
+# documents raw data processing
+
+# load packages, credentials
+library(bigrquery)
+library(data.table)
+library(DBI)
+
+# set options
+# avoid HTTP2 framing layer error when downloading results from google big query
+# https://github.com/cloudyr/googleCloudStorageR/issues/71#issuecomment-332781571
+httr::set_config(httr::config(http_version = 0))
+# avoid problems with too many pages when downloading results
+# https://stackoverflow.com/a/63351689
+options(scipen = 20)
+
+# fix vars
+BILLING <- readLines("../../../../projects/websearch_polarization/_keys/bq_billing.txt") # the project ID on BigQuery (billing must be enabled)
+PROJECT <- readLines("../../../../projects/websearch_polarization/_keys/bq_project.txt") # the project name on BigQuery
+DATASET <- "tables"
+
+# connect to DB on BigQuery
+con <- dbConnect(
+     bigrquery::bigquery(),
+     project = PROJECT,
+     dataset = DATASET,
+     billing = BILLING
+)
+
+
+# run query
+#query <- "SELECT * FROM `bigquery-public-data.google_analytics_sample.ga_sessions_20170801`"
+query <-
+"
+SELECT  totals.visits, totals.transactions, trafficSource.source, device.browser, device.isMobile, geoNetwork.city, geoNetwork.country, channelGrouping
+  FROM
+    `bigquery-public-data.google_analytics_sample.ga_sessions_*`
+  WHERE
+    _TABLE_SUFFIX BETWEEN '20160101'
+    AND '20171231';
+"
+
+ga <- as.data.table(dbGetQuery(con, query, page_size=15000))
+ga$transactions[is.na(ga$transactions)] <- 0
+ga <- ga[ga$city!="not available in demo dataset",]
+ga$purchase <- as.integer(0<ga$transactions)
+ga$transactions <- NULL
+ga_p <- ga[purchase==1]
+ga_rest <- ga[purchase==0][sample(1:nrow(ga[purchase==0]), 45000)]
+ga <- rbindlist(list(ga_p, ga_rest))
+potential_sources <- table(ga$source)
+potential_sources <- names(potential_sources[1<potential_sources])
+ga <- ga[ga$source %in% potential_sources,]
+
+# store dataset
+fwrite(ga, file="data/ga.csv")
+```
+
+Let's look at a real-life example. Suppose you work for Google's e-commerce platform [www.googlemerchandiseshop.com](https://shop.googlemerchandisestore.com) and you are in charge of predicting purchases (i.e., a user is actually buying something from your store in a given session) based on user and browser-session characteristics.^[We will in fact be working with a real-life Google Analytics data from www.googlemerchandiseshop.com, see here for details about the data set: https://www.blog.google/products/marketingplatform/analytics/introducing-google-analytics-sample/.] The dependent variable `purchase` is an indicator equal to `1` if the corresponding shop visit lead to a purchase and equal to `0` otherwise. All other variables contain information about the user and the session (where is the user located? which browser is she using? etc.). As the dependent variable is binary, we will use in a first step a simple logit model, in which we use the origins of the store visitors (how did a visitor end up in the shop) as explanatory variables. Note that many of these variables are categorical and the model matrix thus contains a lot of dummies. The plan in this (intentionally naive) first approach is to simply add a lot of explanatory variables to the model, run logit, and then select the variables with statistically significant coefficient estimates as the final predictive model.
+
+```{r}
+# import/inspect data
+ga <- read.csv("data/ga.csv")
+head(ga)
+
+# create model matrix (dummy vars)
+mm <- cbind(ga$purchase, model.matrix(purchase~source, data=ga,)[,-1])
+mm_df <- as.data.frame(mm) 
+# clean variable names
+names(mm_df) <- c("purchase", gsub("source", "", names(mm_df)[-1]))
+
+# run logit
+model1 <- glm(purchase ~ .,
+              data=mm_df, family=binomial)
+```
+
+Now we can perform the t-tests and filter out the "relevant" variables.
+
+```{r}
+model1_sum <- summary(model1)
+
+# select "significant" variables for final model
+pvalues <- model1_sum$coefficients[,"Pr(>|z|)"]
+vars <- names(pvalues[which(pvalues<0.05)][-1])
+vars
+
+```
+
+Finally, we re-estimate our "final" model
+
+```{r}
+# specify and estimate the final model
+finalmodel <- glm(purchase ~.,
+                  data = mm_df[, c("purchase", vars)], family = binomial)
+```
+
+
+The first problem with this approach is that we should not trust the coefficient t-tests based on which we have selected the covariates too much. The first model model contains 62 explanatory variables (+ the intercept). With that many hypothesis tests, we quite likely reject the NULL of no predictive effect although there is actually no predictive effect. In addition, this approach turns out to be unstable. There might be correlation between some variables in the original set of variables and adding/removing even one variable might substantially affect the predictive power of the model (and the apparent relevance of individual variables). We see this already from the summary of our final model estimate. One of the apparently relevant predictors (`dfa`) is not at all significant anymore in this specification. Thus, we might be tempted to further change the model, which in turn would again change the apparent relevance of other covariates, etc.
+
+```{r}
+summary(finalmodel)
+```
+
+An alternative approach would be to estimate models based on all possible combinations of covariates and then use that sequence of models to select the final model based on some out-of-sample prediction performance measure. Clearly such an approach would take a long time to compute. 
+
+Instead, the *lasso estimator* provides a convenient and efficient way to get a sequence of candidate model. The key idea behind the lasso is to penalize model complexity (the cause for instability) during the estimation procedure.^[This is done by adding $\lambda\sum_k{|\beta_k|}$ as a 'cost' to the optimization problem.] In a second step, we can then select a final model from the sequence of candidate models based on, for example, "out-of-sample" prediction in a k-fold cross validation.
+
+The `gamlr` package provides both parts of this procedure (lasso for the sequence of candidate models, and selection of "best" model based on k-fold CV).
+
+```{r warning=FALSE, message=FALSE}
+# load packages
+library(gamlr)
+
+# create model matrix
+mm <- model.matrix(purchase~source, data = ga)
+```
+
+In cases with both many observations and many candidate explanatory variables, the model matrix might get very large. Even just computing the model matrix might be a computational burden, as we might run out of memory to hold the model matrix object. If this large model matrix is sparse (i.e, has a lot of `0`-entries) there is an alternative way to store it in an R object more memory efficient.
+
+```{r}
+# create the sparse model matrix
+mm_sparse <- sparse.model.matrix(purchase~source, data = ga)
+# the sparse representation needs less than 15% of the memory needed for 
+# the standard matrix representation in this case:
+as.numeric(object.size(mm_sparse)/object.size(mm))
+
+```
+Finally, we run the lasso estimation with K-fold cross-validation.
+
+```{r}
+# run K-fold cross-validation lasso
+cvpurchase <- cv.gamlr(mm, ga$purchase, family="binomial")
+```
+
+
+We then can illustrate the performance of the selected final model, for example, with a ROC curve.
+
+```{r}
+# load packages
+library(PRROC)
+
+# use "best" model for prediction 
+# (model selection based on average OSS deviance, here CV1se rule
+pred <- predict(cvpurchase$gamlr, mm, type="response")
+
+# compute tpr, fpr, plot ROC
+comparison <- roc.curve(scores.class0 = pred,
+                       weights.class0=ga$purchase,
+                       curve=TRUE)
+plot(comparison)
+
+```
+
+Hence, econometrics techniques such as the lasso help deal with big P problems by providing reasonable ways to select a good predictive model (in other words, decide which of the many variables should be included).
+
+
+## A practical *big N* problem
+
+Big N problems are situations in which we know what type of model we want to use but the *number of observations* is too big to run the estimation (computer crashes or slows down a lot). The simplest statistical solution to such a problem is usually to just estimate the model based on a smaller sample. However, we might not want to do that for other reasons (see introduction above). As an illustration of how an alternative statistical procedure can speed up the analysis of big N datasets, we look at a procedure to estimate linear models when the classical OLS estimator is computationally too demanding when analyzing large datasets: The *Uluru* algorithm [@dhillon_2013].
+
+### OLS as a point of reference
+
+Recall the OLS estimator in matrix notation, given the linear model $\mathbf{y}=\mathbf{X}\beta + \epsilon$:
+
+$\hat{\beta}_{OLS} = (\mathbf{X}^\intercal\mathbf{X})^{-1}\mathbf{X}^{\intercal}\mathbf{y}$.
+
+In order to compute $\hat{\beta}_{OLS}$, we have to compute $(\mathbf{X}^\intercal\mathbf{X})^{-1}$, which implies a computationally expensive matrix inversion.^[The computational complexity of this is larger than $O(n^{2})$. That is, for an input of size $n$, the time needed to compute (or the number of operations needed) is $n^2$.] If our data set is large, $\mathbf{X}$ is large and the inversion can take up a lot of computation time. Moreover, the inversion and matrix multiplication to get $\hat{\beta}_{OLS}$ needs a lot of memory. In practice, it might well be that the estimation of a linear model via OLS with the standard approach in R (`lm()`) brings a computer to its knees, as there is not enough RAM available.
+
+To further illustrate the point, we implement the OLS estimator in R.
+
+```{r}
+beta_ols <- 
+     function(X, y) {
+          
+          # compute cross products and inverse
+          XXi <- solve(crossprod(X,X))
+          Xy <- crossprod(X, y) 
+          
+          return( XXi  %*% Xy )
+     }
+```
+
+Now, we will test our OLS estimator function with a few (pseudo) random numbers in a Monte Carlo study. First, we set the sample size parameters `n` (how many observations shall our pseudo sample have?) and `p` (how many variables shall describe these observations?) and initiate the data set `X`.
+
+```{r}
+# set parameter values
+n <- 10000000
+p <- 4 
+
+# Generate sample based on Monte Carlo
+# generate a design matrix (~ our 'dataset') with four variables and 10000 observations
+X <- matrix(rnorm(n*p, mean = 10), ncol = p)
+# add column for intercept
+X <- cbind(rep(1, n), X)
+
+```
+
+Now we define how the real linear model looks like that we have in mind and compute the output `y` of this model, given the input `X`.^[In reality we would not know this, of course. Acting as if we knew the real model is exactly the point of Monte Carlo studies. It allows us to analyze the properties of estimators by simulation.]
+
+```{r}
+# MC model
+y <- 2 + 1.5*X[,2] + 4*X[,3] - 3.5*X[,4] + 0.5*X[,5] + rnorm(n)
+
+```
+
+
+Finally, we test our `beta_ols` function.
+
+```{r}
+# apply the ols estimator
+beta_ols(X, y)
+```
+
+
+### The Uluru algorithm as an alternative to OLS
+
+Following @dhillon_2013, we implement a procedure to compute $\hat{\beta}_{Uluru}$:
+
+$$\hat{\beta}_{Uluru}=\hat{\beta}_{FS} + \hat{\beta}_{correct}$$, where
+$$\hat{\beta}_{FS} = (\mathbf{X}_{subs}^\intercal\mathbf{X}_{subs})^{-1}\mathbf{X}_{subs}^{\intercal}\mathbf{y}_{subs}$$, and
+$$\hat{\beta}_{correct}= \frac{n_{subs}}{n_{rem}} \cdot (\mathbf{X}_{subs}^\intercal\mathbf{X}_{subs})^{-1} \mathbf{X}_{rem}^{\intercal}\mathbf{R}_{rem}$$, and
+$$\mathbf{R}_{rem} = \mathbf{Y}_{rem} - \mathbf{X}_{rem}  \cdot \hat{\beta}_{FS}$$.
+
+The key idea behind this is that the computational bottleneck of the OLS estimator, the cross product and matrix inversion,$(\mathbf{X}^\intercal\mathbf{X})^{-1}$, is only computed on a sub-sample ($X_{subs}$, etc.), not the entire data set. However, the remainder of the data set is also taken into consideration (in order to correct a bias arising from the sub-sampling). Again, we implement the estimator in R to further illustrate this point.
+
+```{r}
+
+
+beta_uluru <-
+     function(X_subs, y_subs, X_rem, y_rem) {
+          
+          # compute beta_fs (this is simply OLS applied to the subsample)
+          XXi_subs <- solve(crossprod(X_subs, X_subs))
+          Xy_subs <- crossprod(X_subs, y_subs)
+          b_fs <- XXi_subs  %*% Xy_subs
+          
+          # compute \mathbf{R}_{rem}
+          R_rem <- y_rem - X_rem %*% b_fs
+          
+          # compute \hat{\beta}_{correct}
+          b_correct <- (nrow(X_subs)/(nrow(X_rem))) * XXi_subs %*% crossprod(X_rem, R_rem)
+
+          # beta uluru       
+          return(b_fs + b_correct)
+     }
+
+```
+
+
+Test it with the same input as above:
+
+```{r}
+# set size of subsample
+n_subs <- 1000
+# select subsample and remainder
+n_obs <- nrow(X)
+X_subs <- X[1L:n_subs,]
+y_subs <- y[1L:n_subs]
+X_rem <- X[(n_subs+1L):n_obs,]
+y_rem <- y[(n_subs+1L):n_obs]
+
+# apply the uluru estimator
+beta_uluru(X_subs, y_subs, X_rem, y_rem)
+```
+
+
+This looks quite good already. Let's have a closer look with a little Monte Carlo study. The aim of the simulation study is to visualize the difference between the classical OLS approach and the *Uluru* algorithm with regard to bias and time complexity if we increase the sub-sample size in *Uluru*. For simplicity, we only look at the first estimated coefficient $\beta_{1}$.
+
+```{r}
+# define subsamples
+n_subs_sizes <- seq(from = 1000, to = 500000, by=10000)
+n_runs <- length(n_subs_sizes)
+# compute uluru result, stop time
+mc_results <- rep(NA, n_runs)
+mc_times <- rep(NA, n_runs)
+for (i in 1:n_runs) {
+     # set size of subsample
+     n_subs <- n_subs_sizes[i]
+     # select subsample and remainder
+     n_obs <- nrow(X)
+     X_subs <- X[1L:n_subs,]
+     y_subs <- y[1L:n_subs]
+     X_rem <- X[(n_subs+1L):n_obs,]
+     y_rem <- y[(n_subs+1L):n_obs]
+     
+     mc_results[i] <- beta_uluru(X_subs, y_subs, X_rem, y_rem)[2] # the first element is the intercept
+     mc_times[i] <- system.time(beta_uluru(X_subs, y_subs, X_rem, y_rem))[3]
+     
+}
+
+# compute ols results and ols time
+ols_time <- system.time(beta_ols(X, y))
+ols_res <- beta_ols(X, y)[2]
+
+```
+
+Let's visualize the comparison with OLS.
+
+```{r message=FALSE, warning=FALSE}
+# load packages
+library(ggplot2)
+
+# prepare data to plot
+plotdata <- data.frame(beta1 = mc_results,
+                       time_elapsed = mc_times,
+                       subs_size = n_subs_sizes)
+```
+
+First, let's look at the time used estimate the linear model.
+
+```{r}
+ggplot(plotdata, aes(x = subs_size, y = time_elapsed)) +
+     geom_point(color="darkgreen") + 
+     geom_hline(yintercept = ols_time[3],
+                color = "red", 
+                size = 1) +
+     theme_minimal() +
+     ylab("Time elapsed") +
+     xlab("Subsample size")
+```
+
+The horizontal red line indicates the computation time for estimation via OLS, the green points indicate the computation time for the estimation via the Ulruru algorithm. Note that even for large sub-samples, the computation time is substantially lower than for OLS.
+
+Finally, let's have a look at how close the results are to OLS.
+```{r}
+ggplot(plotdata, aes(x = subs_size, y = beta1)) +
+     geom_hline(yintercept = ols_res,
+                color = "red", 
+                size = 1) +
+       geom_hline(yintercept = 1.5,
+                color = "green",
+                size = 1) +
+     geom_point(color="darkgreen") + 
+
+     theme_minimal() +
+     ylab("Estimated coefficient") +
+     xlab("Subsample size")
+```
+
+The horizontal red line indicates the size of the estimated coefficient, when using OLS. The horizontal green line indicates the size of the actual coefficient. The green points indicate the size of the same coefficient estimated by the Uluru algorithm for different sub-sample sizes. Note that even relatively small sub-samples already deliver estimates very close to the OLS estimates.
+
+
+
+

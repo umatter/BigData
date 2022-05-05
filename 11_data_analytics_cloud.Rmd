@@ -1,0 +1,67 @@
+
+# Applied Econometrics with Spark
+
+<!-- TODO: -->
+<!-- - cover http://localhost:4040 briefly -->
+<!-- - cover more of sparklyr -->
+
+
+
+
+## Regression analysis with `sparklyr`
+
+Suppose we want to conduct a correlation study of what factors are associated with more or less arrival delay in air travel. Spark provides via its built-in 'MLib' library several high-level functions to conduct regression analyses. When calling these functions via `sparklyr` (or `SparkR`), their usage is actually very similar to the usual R packages/functions commonly used to run regressions in R. 
+
+As a simple point of reference, we first estimate a linear model with the usual R approach (all computed in the R environment). First, we load the data as a common `data.table`. We could also convert a copy of the entire `SparkDataFrame` object to a `data.frame` or `data.table` and get essentially the same outcome. However, collecting the data from the RDD structure would take much longer than parsing the csv with `fread`. In addition, we only import the first 300 rows. Running regression analysis with relatively large datasets in Spark on a small local machine might fail or be rather slow.^[Again, it is important to keep in mind that running Spark on a small local machine is only optimal for learning and testing code (based on relatively small samples). The whole framework is not optimized to be run on a small machine but for cluster computers.]
+
+```{r warning=FALSE, message=FALSE}
+# flights_r <- collect(flights) # very slow!
+flights_r <- data.table::fread("data/flights.csv", nrows = 300) 
+```
+
+Now we run a simple linear regression (OLS) and show the summary output.
+
+```{r}
+# specify the linear model
+model1 <- arr_delay ~ dep_delay + distance
+# fit the model with ols
+fit1 <- lm(model1, flights_r)
+# compute t-tests etc.
+summary(fit1)
+```
+
+Now we aim to compute essentially the same model estimate in `sparklyr`.^[Most regression models commonly used in traditional applied econometrics are in some form provided in `sparklyr` or `SparkR`. See the package documentations for more details.] In order to use Spark via the `sparklyr` package we need to first load the package and establish a connection with Spark (similar to `SparkR::sparkR.session()`).
+
+```{r message=FALSE, warning=FALSE}
+library(sparklyr)
+
+# connect with default configuration
+sc <- spark_connect(master = "local", 
+                    version = "3.1.2")
+```
+
+We then copy the data.table `flights_r` (previously loaded into our R session) to Spark. Again, working on a normal laptop this seems trivial, but the exact same command would allow us (when connected with Spark on a cluster computer in the cloud) to properly load and distribute the data.table on the cluster. Finally, we then fit the model with `ml_linear_regression()` and compute 
+
+```{r message=FALSE, warning=FALSE}
+
+# load data to spark
+flights3 <- copy_to(sc, flights_r, "flights3")
+# fit the model
+fit1_spark <- ml_linear_regression(flights3, formula = model1)
+# compute summary stats
+summary(fit1_spark)
+```
+
+Alternatively, we can use the `spark_apply()` function to run the regression analysis in R via the original R `lm()`-function.
+
+
+```{r message=FALSE, warning=FALSE}
+
+# fit the model
+spark_apply(flights3, function(df) broom::tidy(lm(arr_delay ~ dep_delay + distance, df)),
+        names = c("term", "estimate", "std.error", "statistic", "p.value")
+    )
+```
+
+
+

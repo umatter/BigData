@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 12 Applied Econometrics with Spark | Big Data Analytics</title>
+  <title>Chapter 13 Applied Econometrics with Spark | Big Data Analytics</title>
   <meta name="description" content="A guide to practical big data analytics in R." />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 12 Applied Econometrics with Spark | Big Data Analytics" />
+  <meta property="og:title" content="Chapter 13 Applied Econometrics with Spark | Big Data Analytics" />
   <meta property="og:type" content="book" />
   <meta property="og:url" content="https://umatter.github.io/BigData" />
   <meta property="og:image" content="https://umatter.github.io/BigDataimg/cover.png" />
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="umatter/BigData" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 12 Applied Econometrics with Spark | Big Data Analytics" />
+  <meta name="twitter:title" content="Chapter 13 Applied Econometrics with Spark | Big Data Analytics" />
   
   <meta name="twitter:description" content="A guide to practical big data analytics in R." />
   <meta name="twitter:image" content="https://umatter.github.io/BigDataimg/cover.png" />
@@ -24,14 +24,14 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-03-25" />
+<meta name="date" content="2022-05-05" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="bottle-necks-in-local-big-data-analytics.html"/>
+<link rel="prev" href="gpus-and-machine-learning.html"/>
 <link rel="next" href="appendix-a.html"/>
 <script src="libs/header-attrs/header-attrs.js"></script>
 <script src="libs/jquery/jquery.min.js"></script>
@@ -293,27 +293,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="11" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html"><i class="fa fa-check"></i><b>11</b> Bottle Necks in Local Big Data Analytics</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#example-of-computation-time-and-memory-allocation"><i class="fa fa-check"></i><b>11.1</b> Example of Computation Time and Memory Allocation</a>
+<li class="chapter" data-level="11.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#case-study-data-import-and-memory-allocation"><i class="fa fa-check"></i><b>11.1</b> Case study: Data Import and Memory Allocation</a></li>
+<li class="chapter" data-level="11.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#case-study-loops-memory-and-vectorization"><i class="fa fa-check"></i><b>11.2</b> Case Study: Loops, Memory, and Vectorization</a>
 <ul>
-<li class="chapter" data-level="11.1.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#preparation"><i class="fa fa-check"></i><b>11.1.1</b> Preparation</a></li>
-<li class="chapter" data-level="11.1.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#naïve-approach-ignorant-of-r"><i class="fa fa-check"></i><b>11.1.2</b> Naïve Approach (ignorant of R)</a></li>
-<li class="chapter" data-level="11.1.3" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#improvement-1-pre-allocation-of-memory"><i class="fa fa-check"></i><b>11.1.3</b> Improvement 1: Pre-allocation of memory</a></li>
-<li class="chapter" data-level="11.1.4" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#improvement-2-exploit-vectorization"><i class="fa fa-check"></i><b>11.1.4</b> Improvement 2: Exploit vectorization</a></li>
+<li class="chapter" data-level="11.2.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#preparation"><i class="fa fa-check"></i><b>11.2.1</b> Preparation</a></li>
+<li class="chapter" data-level="11.2.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#naïve-approach-ignorant-of-r"><i class="fa fa-check"></i><b>11.2.2</b> Naïve Approach (ignorant of R)</a></li>
+<li class="chapter" data-level="11.2.3" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#improvement-1-pre-allocation-of-memory"><i class="fa fa-check"></i><b>11.2.3</b> Improvement 1: Pre-allocation of memory</a></li>
+<li class="chapter" data-level="11.2.4" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#improvement-2-exploit-vectorization"><i class="fa fa-check"></i><b>11.2.4</b> Improvement 2: Exploit vectorization</a></li>
 </ul></li>
-<li class="chapter" data-level="11.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#case-study-parallel-processing"><i class="fa fa-check"></i><b>11.2</b> Case study: Parallel processing</a>
+<li class="chapter" data-level="11.3" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#case-study-bootstrapping-and-parallel-processing"><i class="fa fa-check"></i><b>11.3</b> Case study: Bootstrapping and Parallel Processing</a>
 <ul>
-<li class="chapter" data-level="11.2.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#parallelization-with-an-ec2-instance-1"><i class="fa fa-check"></i><b>11.2.1</b> Parallelization with an EC2 instance</a></li>
+<li class="chapter" data-level="11.3.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#parallelization-with-an-ec2-instance-1"><i class="fa fa-check"></i><b>11.3.1</b> Parallelization with an EC2 instance</a></li>
 </ul></li>
-<li class="chapter" data-level="11.3" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#case-study-memory-allocation"><i class="fa fa-check"></i><b>11.3</b> Case study: Memory allocation</a></li>
-<li class="chapter" data-level="11.4" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#gpus-and-machine-learning"><i class="fa fa-check"></i><b>11.4</b> GPUs and Machine Learning</a>
+<li class="chapter" data-level="11.4" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#case-study-efficient-fixed-effects-estimation"><i class="fa fa-check"></i><b>11.4</b> Case Study: Efficient Fixed Effects Estimation</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="gpus-and-machine-learning.html"><a href="gpus-and-machine-learning.html"><i class="fa fa-check"></i><b>12</b> GPUs and Machine Learning</a>
 <ul>
-<li class="chapter" data-level="11.4.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#tensorflowkeras-example-predict-housing-prices"><i class="fa fa-check"></i><b>11.4.1</b> Tensorflow/Keras example: predict housing prices</a></li>
-</ul></li>
-<li class="chapter" data-level="11.5" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#a-word-of-caution"><i class="fa fa-check"></i><b>11.5</b> A word of caution</a></li>
-</ul></li>
-<li class="chapter" data-level="12" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html"><i class="fa fa-check"></i><b>12</b> Applied Econometrics with Spark</a>
+<li class="chapter" data-level="12.1" data-path="gpus-and-machine-learning.html"><a href="gpus-and-machine-learning.html#tensorflowkeras-example-predict-housing-prices"><i class="fa fa-check"></i><b>12.1</b> Tensorflow/Keras example: predict housing prices</a></li>
+<li class="chapter" data-level="12.2" data-path="gpus-and-machine-learning.html"><a href="gpus-and-machine-learning.html#data-preparation-1"><i class="fa fa-check"></i><b>12.2</b> Data preparation</a></li>
+<li class="chapter" data-level="12.3" data-path="gpus-and-machine-learning.html"><a href="gpus-and-machine-learning.html#model-specification"><i class="fa fa-check"></i><b>12.3</b> Model specification</a></li>
+<li class="chapter" data-level="12.4" data-path="gpus-and-machine-learning.html"><a href="gpus-and-machine-learning.html#training-and-prediction"><i class="fa fa-check"></i><b>12.4</b> Training and prediction</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#regression-analysis-with-sparklyr"><i class="fa fa-check"></i><b>12.1</b> Regression analysis with <code>sparklyr</code></a></li>
+<li class="chapter" data-level="12.4.1" data-path="gpus-and-machine-learning.html"><a href="gpus-and-machine-learning.html#a-word-of-caution"><i class="fa fa-check"></i><b>12.4.1</b> A word of caution</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html"><i class="fa fa-check"></i><b>13</b> Applied Econometrics with Spark</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#regression-analysis-with-sparklyr"><i class="fa fa-check"></i><b>13.1</b> Regression analysis with <code>sparklyr</code></a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="appendix-a.html"><a href="appendix-a.html"><i class="fa fa-check"></i><b>A</b> Appendix A</a>
@@ -354,24 +360,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="applied-econometrics-with-spark" class="section level1" number="12">
-<h1><span class="header-section-number">Chapter 12</span> Applied Econometrics with Spark</h1>
+<div id="applied-econometrics-with-spark" class="section level1" number="13">
+<h1><span class="header-section-number">Chapter 13</span> Applied Econometrics with Spark</h1>
 <!-- TODO: -->
 <!-- - cover http://localhost:4040 briefly -->
 <!-- - cover more of sparklyr -->
-<div id="regression-analysis-with-sparklyr" class="section level2" number="12.1">
-<h2><span class="header-section-number">12.1</span> Regression analysis with <code>sparklyr</code></h2>
+<div id="regression-analysis-with-sparklyr" class="section level2" number="13.1">
+<h2><span class="header-section-number">13.1</span> Regression analysis with <code>sparklyr</code></h2>
 <p>Suppose we want to conduct a correlation study of what factors are associated with more or less arrival delay in air travel. Spark provides via its built-in ‘MLib’ library several high-level functions to conduct regression analyses. When calling these functions via <code>sparklyr</code> (or <code>SparkR</code>), their usage is actually very similar to the usual R packages/functions commonly used to run regressions in R.</p>
 <p>As a simple point of reference, we first estimate a linear model with the usual R approach (all computed in the R environment). First, we load the data as a common <code>data.table</code>. We could also convert a copy of the entire <code>SparkDataFrame</code> object to a <code>data.frame</code> or <code>data.table</code> and get essentially the same outcome. However, collecting the data from the RDD structure would take much longer than parsing the csv with <code>fread</code>. In addition, we only import the first 300 rows. Running regression analysis with relatively large datasets in Spark on a small local machine might fail or be rather slow.<a href="#fn48" class="footnote-ref" id="fnref48"><sup>48</sup></a></p>
-<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb493-1"><a href="applied-econometrics-with-spark.html#cb493-1" aria-hidden="true" tabindex="-1"></a><span class="co"># flights_r &lt;- collect(flights) # very slow!</span></span>
-<span id="cb493-2"><a href="applied-econometrics-with-spark.html#cb493-2" aria-hidden="true" tabindex="-1"></a>flights_r <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="st">&quot;data/flights.csv&quot;</span>, <span class="at">nrows =</span> <span class="dv">300</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb516-1"><a href="applied-econometrics-with-spark.html#cb516-1" aria-hidden="true" tabindex="-1"></a><span class="co"># flights_r &lt;- collect(flights) # very slow!</span></span>
+<span id="cb516-2"><a href="applied-econometrics-with-spark.html#cb516-2" aria-hidden="true" tabindex="-1"></a>flights_r <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="st">&quot;data/flights.csv&quot;</span>, <span class="at">nrows =</span> <span class="dv">300</span>) </span></code></pre></div>
 <p>Now we run a simple linear regression (OLS) and show the summary output.</p>
-<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb494-1"><a href="applied-econometrics-with-spark.html#cb494-1" aria-hidden="true" tabindex="-1"></a><span class="co"># specify the linear model</span></span>
-<span id="cb494-2"><a href="applied-econometrics-with-spark.html#cb494-2" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> arr_delay <span class="sc">~</span> dep_delay <span class="sc">+</span> distance</span>
-<span id="cb494-3"><a href="applied-econometrics-with-spark.html#cb494-3" aria-hidden="true" tabindex="-1"></a><span class="co"># fit the model with ols</span></span>
-<span id="cb494-4"><a href="applied-econometrics-with-spark.html#cb494-4" aria-hidden="true" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(model1, flights_r)</span>
-<span id="cb494-5"><a href="applied-econometrics-with-spark.html#cb494-5" aria-hidden="true" tabindex="-1"></a><span class="co"># compute t-tests etc.</span></span>
-<span id="cb494-6"><a href="applied-econometrics-with-spark.html#cb494-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit1)</span></code></pre></div>
+<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="applied-econometrics-with-spark.html#cb517-1" aria-hidden="true" tabindex="-1"></a><span class="co"># specify the linear model</span></span>
+<span id="cb517-2"><a href="applied-econometrics-with-spark.html#cb517-2" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> arr_delay <span class="sc">~</span> dep_delay <span class="sc">+</span> distance</span>
+<span id="cb517-3"><a href="applied-econometrics-with-spark.html#cb517-3" aria-hidden="true" tabindex="-1"></a><span class="co"># fit the model with ols</span></span>
+<span id="cb517-4"><a href="applied-econometrics-with-spark.html#cb517-4" aria-hidden="true" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(model1, flights_r)</span>
+<span id="cb517-5"><a href="applied-econometrics-with-spark.html#cb517-5" aria-hidden="true" tabindex="-1"></a><span class="co"># compute t-tests etc.</span></span>
+<span id="cb517-6"><a href="applied-econometrics-with-spark.html#cb517-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = model1, data = flights_r)
@@ -393,18 +399,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Multiple R-squared:  0.917,  Adjusted R-squared:  0.917 
 ## F-statistic: 1.65e+03 on 2 and 297 DF,  p-value: &lt;2e-16</code></pre>
 <p>Now we aim to compute essentially the same model estimate in <code>sparklyr</code>.<a href="#fn49" class="footnote-ref" id="fnref49"><sup>49</sup></a> In order to use Spark via the <code>sparklyr</code> package we need to first load the package and establish a connection with Spark (similar to <code>SparkR::sparkR.session()</code>).</p>
-<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb496-1"><a href="applied-econometrics-with-spark.html#cb496-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sparklyr)</span>
-<span id="cb496-2"><a href="applied-econometrics-with-spark.html#cb496-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb496-3"><a href="applied-econometrics-with-spark.html#cb496-3" aria-hidden="true" tabindex="-1"></a><span class="co"># connect with default configuration</span></span>
-<span id="cb496-4"><a href="applied-econometrics-with-spark.html#cb496-4" aria-hidden="true" tabindex="-1"></a>sc <span class="ot">&lt;-</span> <span class="fu">spark_connect</span>(<span class="at">master =</span> <span class="st">&quot;local&quot;</span>, </span>
-<span id="cb496-5"><a href="applied-econometrics-with-spark.html#cb496-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">version =</span> <span class="st">&quot;3.1.2&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="applied-econometrics-with-spark.html#cb519-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sparklyr)</span>
+<span id="cb519-2"><a href="applied-econometrics-with-spark.html#cb519-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb519-3"><a href="applied-econometrics-with-spark.html#cb519-3" aria-hidden="true" tabindex="-1"></a><span class="co"># connect with default configuration</span></span>
+<span id="cb519-4"><a href="applied-econometrics-with-spark.html#cb519-4" aria-hidden="true" tabindex="-1"></a>sc <span class="ot">&lt;-</span> <span class="fu">spark_connect</span>(<span class="at">master =</span> <span class="st">&quot;local&quot;</span>, </span>
+<span id="cb519-5"><a href="applied-econometrics-with-spark.html#cb519-5" aria-hidden="true" tabindex="-1"></a>                    <span class="at">version =</span> <span class="st">&quot;3.1.2&quot;</span>)</span></code></pre></div>
 <p>We then copy the data.table <code>flights_r</code> (previously loaded into our R session) to Spark. Again, working on a normal laptop this seems trivial, but the exact same command would allow us (when connected with Spark on a cluster computer in the cloud) to properly load and distribute the data.table on the cluster. Finally, we then fit the model with <code>ml_linear_regression()</code> and compute</p>
-<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb497-1"><a href="applied-econometrics-with-spark.html#cb497-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load data to spark</span></span>
-<span id="cb497-2"><a href="applied-econometrics-with-spark.html#cb497-2" aria-hidden="true" tabindex="-1"></a>flights3 <span class="ot">&lt;-</span> <span class="fu">copy_to</span>(sc, flights_r, <span class="st">&quot;flights3&quot;</span>)</span>
-<span id="cb497-3"><a href="applied-econometrics-with-spark.html#cb497-3" aria-hidden="true" tabindex="-1"></a><span class="co"># fit the model</span></span>
-<span id="cb497-4"><a href="applied-econometrics-with-spark.html#cb497-4" aria-hidden="true" tabindex="-1"></a>fit1_spark <span class="ot">&lt;-</span> <span class="fu">ml_linear_regression</span>(flights3, <span class="at">formula =</span> model1)</span>
-<span id="cb497-5"><a href="applied-econometrics-with-spark.html#cb497-5" aria-hidden="true" tabindex="-1"></a><span class="co"># compute summary stats</span></span>
-<span id="cb497-6"><a href="applied-econometrics-with-spark.html#cb497-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit1_spark)</span></code></pre></div>
+<div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb520-1"><a href="applied-econometrics-with-spark.html#cb520-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load data to spark</span></span>
+<span id="cb520-2"><a href="applied-econometrics-with-spark.html#cb520-2" aria-hidden="true" tabindex="-1"></a>flights3 <span class="ot">&lt;-</span> <span class="fu">copy_to</span>(sc, flights_r, <span class="st">&quot;flights3&quot;</span>)</span>
+<span id="cb520-3"><a href="applied-econometrics-with-spark.html#cb520-3" aria-hidden="true" tabindex="-1"></a><span class="co"># fit the model</span></span>
+<span id="cb520-4"><a href="applied-econometrics-with-spark.html#cb520-4" aria-hidden="true" tabindex="-1"></a>fit1_spark <span class="ot">&lt;-</span> <span class="fu">ml_linear_regression</span>(flights3, <span class="at">formula =</span> model1)</span>
+<span id="cb520-5"><a href="applied-econometrics-with-spark.html#cb520-5" aria-hidden="true" tabindex="-1"></a><span class="co"># compute summary stats</span></span>
+<span id="cb520-6"><a href="applied-econometrics-with-spark.html#cb520-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit1_spark)</span></code></pre></div>
 <pre><code>## Deviance Residuals:
 ##    Min     1Q Median     3Q    Max 
 ## -42.39  -9.96  -1.91   9.87  48.02 
@@ -416,10 +422,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## R-Squared: 0.9172
 ## Root Mean Squared Error: 15.42</code></pre>
 <p>Alternatively, we can use the <code>spark_apply()</code> function to run the regression analysis in R via the original R <code>lm()</code>-function.</p>
-<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb499-1"><a href="applied-econometrics-with-spark.html#cb499-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fit the model</span></span>
-<span id="cb499-2"><a href="applied-econometrics-with-spark.html#cb499-2" aria-hidden="true" tabindex="-1"></a><span class="fu">spark_apply</span>(flights3, <span class="cf">function</span>(df) broom<span class="sc">::</span><span class="fu">tidy</span>(<span class="fu">lm</span>(arr_delay <span class="sc">~</span> dep_delay <span class="sc">+</span> distance, df)),</span>
-<span id="cb499-3"><a href="applied-econometrics-with-spark.html#cb499-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">names =</span> <span class="fu">c</span>(<span class="st">&quot;term&quot;</span>, <span class="st">&quot;estimate&quot;</span>, <span class="st">&quot;std.error&quot;</span>, <span class="st">&quot;statistic&quot;</span>, <span class="st">&quot;p.value&quot;</span>)</span>
-<span id="cb499-4"><a href="applied-econometrics-with-spark.html#cb499-4" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
+<div class="sourceCode" id="cb522"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb522-1"><a href="applied-econometrics-with-spark.html#cb522-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fit the model</span></span>
+<span id="cb522-2"><a href="applied-econometrics-with-spark.html#cb522-2" aria-hidden="true" tabindex="-1"></a><span class="fu">spark_apply</span>(flights3, <span class="cf">function</span>(df) broom<span class="sc">::</span><span class="fu">tidy</span>(<span class="fu">lm</span>(arr_delay <span class="sc">~</span> dep_delay <span class="sc">+</span> distance, df)),</span>
+<span id="cb522-3"><a href="applied-econometrics-with-spark.html#cb522-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">names =</span> <span class="fu">c</span>(<span class="st">&quot;term&quot;</span>, <span class="st">&quot;estimate&quot;</span>, <span class="st">&quot;std.error&quot;</span>, <span class="st">&quot;statistic&quot;</span>, <span class="st">&quot;p.value&quot;</span>)</span>
+<span id="cb522-4"><a href="applied-econometrics-with-spark.html#cb522-4" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
 <pre><code>## # Source: spark&lt;?&gt; [?? x 5]
 ##   term         estimate std.error statistic   p.value
 ##   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
@@ -444,7 +450,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="bottle-necks-in-local-big-data-analytics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="gpus-and-machine-learning.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="appendix-a.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

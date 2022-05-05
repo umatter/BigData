@@ -1,0 +1,772 @@
+
+
+# Data Collection and Data Storage
+
+## Gathering and compilation of raw data
+
+### NYC taxi data
+
+The NYC Taxi & Limousine Commission (TLC) provides detailed data on all trip records including pick-up and drop-off times/locations. When combining all available trip records (2009-2018), we get a rather large data set of over 200GB. The code examples below illustrate how to collect and compile the entire data set. In order to avoid long computing times, the code examples shown below are based on a small sub-set of the actual raw data (however, all examples involving virtual memory, are in theory scalable to the extent of the entire raw data set).
+
+The raw data consists of several monthly CSV-files and can be downloaded via the [TLC's website](https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page). The following short R-script automates the downloading of all available trip-record files. *NOTE*: Downloading all files can take several hours and will occupy over 200GB!
+
+```{r eval=FALSE}
+#################################
+# Fetch all TLC trip recrods
+# Data source: 
+# https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page
+# Input: Monthly csv files from urls
+# Output: one large csv file
+# UM, St. Gallen, January 2019
+#################################
+
+# SET UP -----------------
+
+# load packages
+library(data.table)
+library(rvest)
+library(httr)
+
+# fix vars
+BASE_URL <- "https://s3.amazonaws.com/nyc-tlc/trip+data/yellow_tripdata_2018-01.csv"
+OUTPUT_PATH <- "data/tlc_trips.csv"
+START_DATE <- as.Date("2009-01-01")
+END_DATE <- as.Date("2018-06-01")
+
+
+# BUILD URLS -----------
+
+# parse base url
+base_url <- gsub("2018-01.csv", "", BASE_URL)
+# build urls
+dates <- seq(from= START_DATE,
+                   to = END_DATE,
+                   by = "month")
+year_months <- gsub("-01$", "", as.character(dates))
+data_urls <- paste0(base_url, year_months, ".csv")
+
+# FETCH AND STACK CSVS ----------------
+
+# download, parse all files, write them to one csv
+for (url in data_urls) {
+     
+     # download to temporary file
+     tmpfile <- tempfile()
+     download.file(url, destfile = tmpfile)
+     
+     # parse downloaded file, write to output csv, remove tempfile
+     csv_parsed <- fread(tmpfile)
+     fwrite(csv_parsed,
+            file =  OUTPUT_PATH,
+            append = TRUE)
+     unlink(tmpfile)
+     
+}
+
+
+```
+
+## Data import and memory allocation
+
+<!-- When writing the data-import part of a program, we could use the traditional `read.csv()` or `fread()` from the `data.table`-package. The result is very similar (in many situations, the differences of the resulting objects would not matter at all). -->
+
+<!-- ```{r message=FALSE, warning=FALSE} -->
+<!-- # read a CSV-file the 'traditional way' -->
+<!-- flights <- read.csv("data/flights.csv") -->
+<!-- class(flights) -->
+
+<!-- # alternative (needs the data.table package) -->
+<!-- library(data.table) -->
+<!-- flights <- fread("data/flights.csv") -->
+<!-- class(flights) -->
+
+<!-- ``` -->
+
+<!-- However, the latter approach is usually much faster. -->
+
+<!-- ```{r} -->
+<!-- system.time(flights <- read.csv("data/flights.csv")) -->
+<!-- system.time(flights <- fread("data/flights.csv")) -->
+<!-- ``` -->
+
+Consider the first steps of a data pipeline in R. The first part of our script to import and clean the data looks as follows.
+
+```{r eval =TRUE}
+###########################################################
+# Big Data Statistics: Flights data import and preparation
+#
+# U. Matter, January 2019
+###########################################################
+
+# SET UP -----------------
+
+# fix variables
+DATA_PATH <- "data/flights.csv"
+
+# DATA IMPORT ----------------
+flights <- read.csv(DATA_PATH)
+
+# DATA PREPARATION --------
+flights <- flights[,-1:-3]
+
+
+```
+
+
+When running this script, we notice that some of the steps need a noticeable amount of time to process. Moreover, while none of these steps obviously involves a lot of computation (such as a matrix inversion or numerical optimization), it quite likely involves memory allocation. We first read data into RAM (allocated to R by our operating system). It turns out that there are different ways to allocate RAM when reading data from a CSV file. Depending on the amount of data to be read in, one or the other approach might be faster. We first investigate the RAM allocation in R with `mem_change()` and `mem_used()`.
+
+```{r}
+
+# SET UP -----------------
+
+# fix variables
+DATA_PATH <- "data/flights.csv"
+# load packages
+library(pryr) 
+
+
+# check how much memory is used by R (overall)
+mem_used()
+
+# check the change in memory due to each step
+
+# DATA IMPORT ----------------
+mem_change(flights <- read.csv(DATA_PATH))
+
+# DATA PREPARATION --------
+flights <- flights[,-1:-3]
+
+# check how much memory is used by R now
+mem_used()
+```
+
+The last result is kind of interesting. The object `flights` must have been larger right after importing it than at the end of the script. We have thrown out several variables, after all. Why does R still use that much memory? R does by default not 'clean up' memory unless it is really necessary (meaning no more memory is available). In this case, R has still way more memory available from the operating system, thus there is no need to 'collect the garbage' yet. However, we can force R to collect the garbage on the spot with `gc()`. This can be helpful to better keep track of the memory needed by an analytics script.
+
+```{r}
+gc()
+```
+
+
+Now, let's see how we can improve the performance of this script with regard to memory allocation. Most memory is allocated when importing the file. Obviously, any improvement of the script must still result in importing all the data. However, there are different ways to read data into RAM. `read.csv()` reads all lines of a csv file consecutively. In contrast, `data.table::fread()` first 'maps' the data file into memory and only then actually reads it in line by line. This involves an additional initial step, but the larger the file, the less relevant is this first step with regard to the total time needed to read all the data into memory. By switching on the `verbose` option, we can actually see what `fread` is doing.
+
+```{r}
+# load packages
+library(data.table)
+
+# DATA IMPORT ----------------
+flights <- fread(DATA_PATH, verbose = TRUE)
+
+```
+
+
+Let's put it all together and look at the memory changes and usage. For a fair comparison, we first have to delete `flights` and collect the garbage with `gc()`.
+
+```{r message=FALSE, warning=FALSE}
+
+# SET UP -----------------
+
+# fix variables
+DATA_PATH <- "data/flights.csv"
+# load packages
+library(pryr) 
+library(data.table)
+
+# housekeeping
+flights <- NULL
+gc()
+
+# check the change in memory due to each step
+
+# DATA IMPORT ----------------
+mem_change(flights <- fread(DATA_PATH))
+
+
+
+```
+
+
+
+
+## Efficient local data storage
+
+
+<!-- So far, we have primarily been concerned with situations in which a data set is too large to fit into RAM, making an analysis of these data either impossible or very slow (inefficient) when using standard tools. Thus, we have explored concepts and tools that help us use the available RAM (and virtual memory) most efficiently for data analysis tasks. -->
+
+
+In this section, we are concerned with $(I)$ how we can store large data sets permanently on a mass storage device in an efficient way (here, efficient can be understood as 'not taking up too much space') and $(II)$ how we can load (parts of) this data set in an efficient way (here, efficient~fast) for analysis.
+
+We look at this problem in two situations: 
+
+ - The data needs to be stored locally (e.g., on the hard disk of our laptop).
+ - The data can be stored on a server 'in the cloud'.
+
+Various tools have been developed over the last few years to improve the efficiency of storing and accessing large amounts of data (see @walkowiak_2016, chapters 5 and 6 for an overview). Here, we focus on the basic concept of Relational Database Systems (RDBMS) and a well-known tool based on this concept, the Structured Query Language (SQL; more specifically, SQLite)
+
+### RDBMS basics
+
+RDBMSs have two key features that tackle the two efficiency concerns mentioned above:
+
+- The *relational data model*: The overall data set is split by columns (covariates) into tables in order to reduce the storage of redundant variable-value repetitions. The resulting database tables are then linked via key-variables (unique identifiers). Thus (simply put), each type of entity on which observations exist resides in its own database table. Within this table, each observation has it's unique id. Keeping the data in such a structure is very efficient in terms of storage space used. 
+
+- *Indexing*: The key-columns of the database tables are indexed, meaning (in simple terms) ordered on disk. Indexing a table takes time but it has to be performed only once (unless the content of the table changes). The resulting index is then stored on disk as part of the database. These indices substantially reduce the number of disk accesses required to query/find specific observations. Thus, they make the loading of specific parts of the data for analysis much more efficient.
+
+The loading/querying of data from an RDBMS typically involves the selection of specific observations (rows) and covariates (columns) from different tables. Due to the indexing, observations are selected efficiently, and the defined relations between tables (via keys) facilitate the joining of columns to a new table (the queried data).
+
+
+
+<!-- ### Row-based vs column-based databases -->
+
+
+
+### Efficient data access: indices and joins in SQLite
+
+So far we have only had a look at the very basics of writing SQL code. Let us now further explore SQLite as an easy-to-use and easy-to-set-up relational database solution. In a second step we then look at how to connect to a local SQLite database from within R. First, we switch to the Terminal tab in RStudio, set up a new database called `air.sqlite`, and import the csv-file `flights.csv` (used in previous chapters) as a first table.
+
+```{bash echo=TRUE, eval=FALSE, purl=FALSE, purl=FALSE}
+# switch to data directory
+cd data
+# create database and run sqlite
+sqlite3 air.sqlite
+
+```
+
+
+```{sql connection=con, eval = FALSE, purl=FALSE, purl=FALSE}
+-- import csvs
+.mode csv
+.import flights.csv flights
+```
+
+
+```{r echo=FALSE, message=FALSE, purl=FALSE, purl=FALSE}
+library(DBI)
+# set up a connection for the examples
+con_air <- dbConnect(RSQLite::SQLite(), "data/air_final.sqlite")
+```
+
+We check if everything worked out well via the `.tables` and `.schema` commands.
+
+
+```{sql connection=con_air, eval = FALSE, purl=FALSE}
+.tables
+.schema flights
+```
+
+In `flights`, each row describes a flight (the day it took place, its origin, its destination etc.). It contains a covariate `carrier` containing the unique ID of the respective airline/carrier carrying out the flight as well as the covariates `origin` and `dest`. The latter two variables contain the unique IATA-codes of the airports from which the flights departed and where they arrived, respectively. In `flights` we thus have observations at the level of individual flights.
+
+Now we extend our database in a meaningful way, following the relational data model idea. First we download two additional csv files containing data that relate to the flights table:
+
+- [`airports.csv`](http://stat-computing.org/dataexpo/2009/airports.csv): Describes the locations of US Airports (relates to `origin` and `dest`).
+- [`carriers.csv`](http://stat-computing.org/dataexpo/2009/carriers.csv): A listing of carrier codes with full names (relates to the `carrier`-column in `flights`.
+
+
+```{r echo=FALSE, eval=FALSE, purl=FALSE}
+# ASA source
+URL_AIRPORTS <- "http://stat-computing.org/dataexpo/2009/airports.csv"
+URL_CARRIERS <- "http://stat-computing.org/dataexpo/2009/carriers.csv"
+
+# download
+download.file(URL_AIRPORTS, destfile = "data/airports.csv", quiet = TRUE)
+download.file(URL_CARRIERS, destfile = "data/carriers.csv", quiet = TRUE)
+
+# re-format (facilitates import)
+library(data.table)
+fwrite(fread("data/airports.csv"), "data/airports.csv")
+fwrite(fread("data/carriers.csv"), "data/carriers.csv")
+
+```
+
+
+In this code example, the two csvs have already been downloaded to the `materials/data`-folder.
+
+```{sql connection=con_air, eval = FALSE, purl=FALSE}
+-- import airport data
+.mode csv
+.import airports.csv airports
+.import carriers.csv carriers
+
+-- inspect the result
+.tables
+.schema airports
+.schema carriers
+```
+
+Now we can run our first query involving the relation between tables. The aim of the exercise is to query flights data (information on departure delays per flight number and date; from the `flights`-table) for all `United Air Lines Inc.`-flights (information from the `carriers` table ) departing from `Newark Intl` airport (information from  the `airports`-table). In addition, we want the resulting table ordered by flight number. For the sake of the exercise, we only show the first 10 results of this query (`LIMIT 10`).
+
+
+
+```{sql connection=con_air, eval = TRUE, purl=FALSE}
+SELECT 
+year,
+month, 
+day,
+dep_delay,
+flight
+FROM (flights INNER JOIN airports ON flights.origin=airports.iata) 
+INNER JOIN carriers ON flights.carrier = carriers.Code
+WHERE carriers.Description = 'United Air Lines Inc.'
+AND airports.airport = 'Newark Intl'
+ORDER BY flight
+LIMIT 10;
+
+```
+
+Note that this query has been executed without indexing any of the tables first. Thus SQLite could not take any 'shortcuts' when matching the ID columns in order to join the tables for the query output. That is, SQLite had to scan the entire columns to find the matches. Now we index the respective id columns and re-run the query.
+
+
+
+```{sql connection=con_air, eval = FALSE, purl=FALSE}
+CREATE INDEX iata_airports ON airports (iata);
+CREATE INDEX origin_flights ON flights (origin);
+CREATE INDEX carrier_flights ON flights (carrier);
+CREATE INDEX code_carriers ON carriers (code);
+
+```
+
+
+Note that SQLite optimizes the efficiency of the query without our explicit instructions. If there are indices it can use to speed up the query, it will do so.
+
+```{sql connection=con_air, eval = TRUE, purl=FALSE}
+SELECT 
+year,
+month, 
+day,
+dep_delay,
+flight
+FROM (flights INNER JOIN airports ON flights.origin=airports.iata) 
+INNER JOIN carriers ON flights.carrier = carriers.Code
+WHERE carriers.Description = 'United Air Lines Inc.'
+AND airports.airport = 'Newark Intl'
+ORDER BY flight
+LIMIT 10;
+
+```
+
+
+You find the final `air.sqlite`, including all the indices and tables as `materials/data/air_final.sqlite` in the course's code repository.
+
+## Connecting R to RDBMS
+
+The R-package `RSQLite` embeds SQLite in R. That is, it provides functions that allow us to use SQLite directly from within R. You will see that the combinaiton of SQLite with R is a simple but very practical approach to work with very efficiently (and locally) stored data sets. In the following example, we explore how `RSQLite` can be used to set up and query the `air.sqlite` shown in the example above.
+
+
+### Creating a new database with `RSQLite`
+
+Similarly to the raw SQLite-syntax, connecting to a database that does not exist yet, actually creates this (empty database). Note that for all interactions with the database from within R, we need to refer to the connection (here: `con_air`).
+
+```{r}
+# load packages
+library(RSQLite)
+
+# initiate the database
+con_air <- dbConnect(SQLite(), "data/air.sqlite")
+```
+
+### Importing data
+
+With `RSQLite` we can easily add `data.frame`s as SQLite tables to the database.
+
+```{r eval=FALSE}
+
+# import data into current R sesssion
+flights <- fread("data/flights.csv")
+airports <- fread("data/airports.csv")
+carriers <- fread("data/carriers.csv")
+
+# add tables to database
+dbWriteTable(con_air, "flights", flights)
+dbWriteTable(con_air, "airports", airports)
+dbWriteTable(con_air, "carriers", carriers)
+
+```
+
+### Issue queries
+
+Now we can query the database from within R. By default, `RSQLite` returns the query results as `data.frame`s. Queries are simply character strings written in SQLite.
+
+```{r eval=FALSE}
+# define query
+delay_query <-
+"SELECT 
+year,
+month, 
+day,
+dep_delay,
+flight
+FROM (flights INNER JOIN airports ON flights.origin=airports.iata) 
+INNER JOIN carriers ON flights.carrier = carriers.Code
+WHERE carriers.Description = 'United Air Lines Inc.'
+AND airports.airport = 'Newark Intl'
+ORDER BY flight
+LIMIT 10;
+"
+
+# issue query
+delays_df <- dbGetQuery(con_air, delay_query)
+delays_df
+
+```
+
+```{r echo=FALSE}
+# clean up
+unlink("data/air.sqlite")
+```
+
+When done working with the database, we close the connection to the database with `dbDisconnect(con)`. 
+
+
+
+
+## Cloud solutions for (big) data storage
+
+As outlined in the previous section, RDBMSs are a very practical tool to store the structured data of an analytics project locally in a database. A local SQLite database can easily be set up and accessed via R, allowing to write the whole data pipeline from data gathering to filtering, aggregating and finally analyzing in R. In contrast to directly working with CSV files, using SQLite has the advantage of organizing the data access much more efficiently in terms of RAM. Only the final result of a query is really loaded fully into R's memory.
+
+If mass storage space is too sparse or if RAM is nevertheless not sufficient, even when organizing data access via SQLite, several cloud solutions come to the rescue. Although you could also rent a traditional web server and host a SQL database there, this is usually not worth the while for a data analytics project. In the next section we thus look at three important cases of how to store data as part of an analytics project: *RDBMS in the cloud*, a serverless *data warehouse* solution for large datasets called *Google BigQuery*, and a simple storage service to use as a *data lake* called *AWS S3*. All of these solutions are discussed from a data analytics perspective, and for all of these solutions we will look at how to make use of them from within R.
+
+
+
+### Easy-to-use RDBMS in the cloud: AWS RDS
+
+Once we have set up RStudio Server on an EC2 instance, we can run the SQLite examples shown above on it. There are no additional steps needed to install SQLite. However, when using RDBMSs in the cloud, we typically have a more sophisticated implementation than SQLite in mind. Particularly, we want to set up an actual RDBMS-server running in the cloud to which several clients can connect (e.g., via RStudio Server). 
+
+AWS' Relational Database Service (RDS) provides an easy way to set up and run a SQL database in the cloud. The great advantage for users new to RDBMS/SQL is that you do not have to manually set up a server (e.g. a EC2 instance) and install/configure the SQL server. Instead you can directly set up a fully functioning relational database in the cloud. 
+
+In a first step, open the AWS console and search for/select "RDS" in the search bar. Then, click on "Create database" in the lower part of the landing page.
+
+
+```{r rdscreate, echo=FALSE, out.width = "80%", fig.align='center', fig.cap= "(ref:rdscreate)", purl=FALSE}
+include_graphics("img/aws_rds_create.png")
+```
+
+(ref:rdscreate) Create a managed relational database on AWS RDS.
+
+On the next page, select "Easy create", "MySQL", and the "Free tier" DB instance size. Further down you will have to set the database instance identifier the user name and a password.
+
+```{r rdseasy, echo=FALSE, out.width = "80%", fig.align='center', fig.cap= "(ref:rdseasy)", purl=FALSE}
+include_graphics("img/aws_rds_easycreate.png")
+```
+
+(ref:rdseasy) Easy creation of a RDS MySQL DB.
+
+
+Once the database instance is ready, you will see it in the databases overview. Click on the DB identifier (the name of your database shown in the list of databases) and click on modify (button in the upper-right corner). In the "Connectivity" panel under "Additional configuration", select *Publicly accessible* (this is necessary to interact with the DB from your local machine), and save the settings. Back on the overview page of your database, under "Connectivity & security", click on the link under the VPC security groups, scroll down and select the "Inbound rules" tab. Edit the inbound rule to allow any IP4 inbound traffic.^[Note that this is not generally recommendable. Only do this to get familiar with the service and to test some code.] 
+
+
+```{r rdsinboundrules, echo=FALSE, out.width = "80%", fig.align='center', fig.cap= "(ref:rdsinboundrules)", purl=FALSE}
+include_graphics("img/rds_inboundrules.png")
+```
+
+(ref:rdsinboundrules) Allow all IP4 inbound traffic (set Source to `0.0.0.0/0`).
+
+
+
+Now we can connect to the instance via the `RMySQL` package. Before loading data, we first have to initiate a new database (in contrast, this is done automatically when connecting to a SQLite database).
+
+
+```{r message=FALSE, warning=FALSE, echo=FALSE, eval=FALSE}
+# load packages
+library(RMySQL)
+
+# fix vars
+RDS_ENDPOINT <- readLines("_keys/aws_rds.txt")[1]
+PW <- readLines("_keys/aws_rds.txt")[2]
+
+# connect to DB
+con_rds <- dbConnect(RMySQL::MySQL(),
+                 host=RDS_ENDPOINT,
+                 port=3306,
+                 username="admin",
+                 password=PW)
+
+# initiate a new database on the MySQL RDS instance
+dbSendQuery(con_rds, "CREATE DATABASE IF NOT EXISTS air")
+
+# disconnect and re-connect directly to the new DB
+dbDisconnect(con_rds)
+con_rds <- dbConnect(RMySQL::MySQL(),
+                 host=RDS_ENDPOINT,
+                 port=3306,
+                 username="admin",
+                 dbname="air",
+                 password=PW)
+
+```
+
+
+
+```{r message=FALSE, warning=FALSE, eval=FALSE}
+# load packages
+library(RMySQL)
+library(data.table)
+
+# fix vars
+RDS_ENDPOINT <- "MY-ENDPOINT" # replace this with the Endpoint shown in the AWS RDS console
+PW <- "MY-PW" # replace this with the password you have set when initiating the RDS DB on AWS
+
+# connect to DB
+con_rds <- dbConnect(RMySQL::MySQL(),
+                 host=RDS_ENDPOINT,
+                 port=3306,
+                 username="admin",
+                 password=PW)
+
+# initiate a new database on the MySQL RDS instance
+dbSendQuery(con_rds, "CREATE DATABASE air")
+
+# disconnect and re-connect directly to the new DB
+dbDisconnect(con_rds)
+con_rds <- dbConnect(RMySQL::MySQL(),
+                 host=RDS_ENDPOINT,
+                 port=3306,
+                 username="admin",
+                 dbname="air",
+                 password=PW)
+```
+
+
+`RMySQL` and `RSQLite` are both building on the `DBI` package, which generalizes how we can interact with SQL-type databases via R. This makes it straightforward to apply what we have learned so far by interacting with our local SQLite database to interactions with other databases. As soon as the connection to the new database is established, we can essentially use the same R functions as above to create new tables and import data.
+
+
+```{r eval=FALSE}
+# import data into current R sesssion
+flights <- fread("data/flights.csv")
+airports <- fread("data/airports.csv")
+carriers <- fread("data/carriers.csv")
+
+# add tables to database
+dbWriteTable(con_rds, "flights", flights)
+dbWriteTable(con_rds, "airports", airports)
+dbWriteTable(con_rds, "carriers", carriers)
+```
+
+Finally, we can query our RDS MySQL database on AWS.
+
+```{r eval=FALSE}
+# define query
+delay_query <-
+"SELECT 
+year,
+month, 
+day,
+dep_delay,
+flight
+FROM (flights INNER JOIN airports ON flights.origin=airports.iata) 
+INNER JOIN carriers ON flights.carrier = carriers.Code
+WHERE carriers.Description = 'United Air Lines Inc.'
+AND airports.airport = 'Newark Intl'
+ORDER BY flight
+LIMIT 10;
+"
+
+# issue query
+delays_df <- dbGetQuery(con_rds, delay_query)
+delays_df
+
+```
+
+
+### Database server in the cloud: MariaDB on an EC2 instance
+
+Working with an SQL database in the cloud via AWS RDS is probably sufficient for most simple use cases. However, for some projects you might want to have more flexibility regarding settings and configurations. A practical solution to this is to set up "manually" a SQL-server on an EC2 instance (and then work with it via RStudio-Server). The following example, based on @walkowiak_2016, guides you through the first step to set up such a database in the cloud.  For most of the installation steps you are referred to the respective pages in @walkowiak_2016 (Chapter 5: 'MariaDB with R on a Amazon EC2 instance, pages 255ff). However, since some of the steps shown in the book are outdated, the example below hints to some alternative/additional steps needed to make the database run on an Ubuntu 18.04 machine.
+
+After launching the EC2 instance on AWS, use the following terminal commands to install R:
+
+```{bash eval=FALSE}
+# update ubuntu packages
+ sudo apt-get update
+ sudo apt-get upgrade
+```
+
+```{bash eval=FALSE}
+sudo apt-get install r-base
+```
+
+and to install RStudio Server (on Ubuntu 18.04, as of April 2020):
+
+```{bash eval=FALSE}
+sudo apt-get install gdebi-core
+wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.2.5033-amd64.deb
+sudo gdebi rstudio-server-1.2.5033-amd64.deb
+```
+
+Following @walkowiak_2016 (pages 257f), we first set up a new user and give it permissions to `ssh` directly to the EC2 instance (this way we can then more easily upload data 'for this user').
+
+```{bash eval=FALSE}
+# create user
+sudo adduser umatter 
+```
+
+When prompted for additional information just hit enter (for default). Now we can grant the user the permissions
+
+```{bash eval=FALSE}
+sudo cp -r /home/ubuntu/.ssh /home/umatter/
+cd /home/umatter/
+sudo chown -R umatter:umatter .ssh
+```
+
+Then install MariaDB as follows.
+
+```{bash eval= FALSE}
+sudo apt update
+sudo apt install mariadb-server
+sudo apt install libmariadbclient-dev
+sudo apt install libxml2-dev # needed later (dependency for some R packages)
+```
+
+If prompted to set a password for the root database user (user with all database priviledges), type in and confirm the chosen password.^[Below it is shown how to do this 'manually', if not promted at this step.]
+
+#### Data import
+
+With the permissions set above, we can send data from the local machine directly to the instance via `ssh`. We use this to first transfer the raw data to the instance and then import it to the database. 
+
+The aim is to import the same simple data set `economics.csv` used in the local SQLite examples of Lecture 7. Following the instructions of @walkowiak_2016, pages 252 to 254, we upload the `economics.csv` file (instead of the example data used in @walkowiak_2016). Note that in all the code examples below, the username is `umatter`, and the IP-address will have to be replaced with the public IP-address of your EC2 instance.
+
+Open a new terminal window and send the `economics.csv` data as follows to the instance.
+
+```{bash eval= FALSE}
+# from the directory where the key-file is stored...
+scp -r -i "mariadb_ec2.pem" ~/Desktop/economics.csv umatter@ec2-184-72-202-166.compute-1.amazonaws.com:~/
+```
+
+Then switch back to the terminal connected to the instance and start the MariaDB server. 
+
+```{bash eval=FALSE}
+# start the MariaDB server
+sudo service mysql start
+# log into the MariaDB client as root 
+sudo mysql -uroot 
+```
+
+If not prompted to do so when installing MariaDB (see above), add a new root user in order to login to MariaDB without the `sudo` (here we simply set the password to 'Password1'). 
+
+```{sql eval = FALSE, purl=FALSE}
+GRANT ALL PRIVILEGES on *.* to 'root'@'localhost' IDENTIFIED BY 'Password1';
+FLUSH PRIVILEGES;
+```
+
+Restart the mysql server and log in with the database root user.
+
+```{bash eval=FALSE}
+# start the MariaDB server
+sudo service mysql restart
+# log into the MariaDB client as root 
+mysql -uroot -p
+```
+
+Now we can initiate a new database called `data1`.
+
+```{sql eval = FALSE, purl=FALSE}
+CREATE database data1;
+```
+
+To work with the newly created database, we have to 'select' it.
+
+```{sql eval = FALSE, purl=FALSE}
+USE data1;
+```
+
+Then, we create the first table of our database and import data into it. Note that we only have to slightly adjust the former SQLite syntax to make this work (remove double quotes for field names). In addition, note that we can use the same field types as in the SQLite DB.^[However, MariaDB is a much more sophisticated RDBMS than SQLite and comes with many more field types, see the official [list of supported data types](https://mariadb.com/kb/en/library/data-types/).]
+
+```{sql eval = FALSE, purl=FALSE}
+-- Create the new table
+CREATE TABLE econ(
+date DATE,
+pce REAL,
+pop INTEGER,
+psavert REAL,
+uempmed REAL,
+unemploy INTEGER
+);
+
+```
+
+After following the steps in @walkowiak_2016, pages 259-262, we can import the `economics.csv`-file to the `econ` table in MariaDB (again, assuming the username is `umatter`). Note that the syntax to import data to a table is quite different from the SQLite example in Lecture 7.
+
+```{sql eval = FALSE, purl=FALSE}
+LOAD DATA LOCAL INFILE
+'/home/umatter/economics.csv' 
+INTO TABLE econ
+FIELDS TERMINATED BY ','
+LINES TERMINATED BY '\n'
+IGNORE 1 ROWS;
+```
+
+Now we can start using the newly created database from within RStudio Server running on our EC2 instance (following @walkowiak_2016, pages 263ff). 
+
+As in the SQLite examples in Lecture 7, we can now query the database from within the R console (this time using `RMySQL` instead of `RSQLite`, and using R from within RStudio Server in the cloud!). 
+
+First, we need to connect to the newly created MariaDB database.
+
+```{R eval= FALSE}
+# install package
+#install.packages("RMySQL")
+# load packages
+library(RMySQL)
+
+# connect to the db
+con <- dbConnect(RMySQL::MySQL(), 
+                 user = "root",
+                 password = "Password1",
+                 host = "localhost",
+                 dbname = "data1")
+
+```
+
+
+
+
+In our first query, we select all (`*`) variable values of the observation of January 1968.
+
+```{r, eval = FALSE, purl=FALSE}
+# define the query
+query1 <- 
+"
+SELECT * FROM econ
+WHERE date = '1968-01-01';
+"
+# send the query to the db and get the result
+jan <- dbGetQuery(con, query1)
+jan
+```
+
+```{}
+#        date   pce    pop psavert uempmed unemploy
+# 1 1968-01-01 531.5 199808    11.7     5.1     2878
+```
+
+
+
+Now let's select all year/months in which there were more than 15 million unemployed, ordered by date.
+
+```{r, eval = FALSE, purl=FALSE}
+query2 <-
+"
+SELECT date FROM econ 
+WHERE unemploy > 15000
+ORDER BY date;
+"
+
+# send the query to the db and get the result
+unemp <- dbGetQuery(con, query2)
+head(unemp)
+```
+
+```{}
+#         date
+# 1 2009-09-01
+# 2 2009-10-01
+# 3 2009-11-01
+# 4 2009-12-01
+# 5 2010-01-01
+# 6 2010-02-01
+
+```
+
+
+When done working with the database, we close the connection to the MariaDB database with `dbDisconnect(con)`.
+
+
+
+
+
+

@@ -1,0 +1,256 @@
+
+# Cloud Computing
+
+So far we have focused on the available computing resources on our local machines (desktop/laptop) and how to use them optimally when dealing with large amounts of data and/or computationally demanding tasks. A key aspect of this has been to understand why our local machine is struggling with a computing task when there is a large amount of data to be processed and then identify potential avenues to use the available resources more efficiently. For example, by using one of the following approaches:
+
+ - Computationally intense tasks (but not pushing RAM to the limit): parallelization, using several CPU cores (nodes) in parallel.
+ - Memory-intense tasks (data still fits into RAM): efficient memory allocation.
+ - Memory-intense tasks (data does not fit into RAM): efficient use of virtual memory (use parts of mass storage device as virtual memory).
+ - Storage: efficient storage (avoid redundancies).
+ 
+In practice, data sets might be too large for our local machine even if we take all of the techniques listed above into account. That is, a parallelized task might still take ages to complete because our local machine has too few cores available, a task involving virtual memory would use up way too much space on our hard-disk, etc. 
+
+In such situations, we have to think about horizontal and vertical scaling beyond our local machine. That is, we outsource tasks to a bigger machine (or a cluster of machines) to which our local computer is connected (typically, over the Internet). While only one or two decades ago most organizations had their own large centrally hosted machines (database servers, cluster computers) for such tasks, today they often rely on third-party solutions *'in the cloud'*. That is, specialized companies provide computing resources 
+(usually, virtual servers) that can be easily accessed via a broadband Internet-connection and rented on an hourly (or even minutes or seconds) basis. Given the obvious economies of scale in this line of business, a few large players have emerged who practically dominate most of the global market:
+
+ - [Amazon Web Services (AWS)](https://aws.amazon.com/).
+ - [Microsoft Azure](https://azure.microsoft.com/en-us/)
+ - [Google Cloud Platform](https://cloud.google.com/)
+ - [IBM Cloud](https://www.ibm.com/cloud/)
+ - [Alibaba Cloud](https://www.alibabacloud.com/)
+ - [Tencent Cloud](https://intl.cloud.tencent.com/)
+ - and others.
+ 
+
+When we use such cloud services to *scale up* (vertical scaling) the computing resources, the transition from our local implementation of a data analytics task to the cloud implementation is often rather simple. Once we have set up a cloud instance and figured out how to communicate with it, we typically can run the exact same R-script locally and in the cloud. This is usually the case for parallelized tasks (simply run the same script on a machine with more cores), in-memory tasks (rent a machine with more RAM but still use `data.table()` etc.), or even setting up a Spark cluster in the cloud.
+
+In the following, we look first at scaling up more familiar approaches in the cloud. For the sake of simplicity, we will primarily focus on how to use cloud instances provided by AWS. Note, however, that once you are familiar with setting things up on AWS, also using Google Cloud, Azure, etc. will be easy. Most of the core services are provided by all providers and once you understand the basics the different dashboards will look quite familiar. 
+
+In order to get started, first go to `https://aws.amazon.com/` and create an account. You will only be charged for the time you use an AWS service. However, even when using some cloud instances, several of AWS' cloud products offer a free tier to test and try out products. The following examples rely whenever possible on free-tier instances, otherwise I explicitly that running the example in the cloud will generate some costs.
+
+
+## Scaling up with AWS EC2 and R/RStudio
+
+ One of the easiest ways to set up an AWS EC2 instance for R/RStudio is to use [Louis Aslett's Amazon Machine Image (AMI)](https://www.louisaslett.com/RStudio_AMI/). This way you do not need to install R/Rstudio yourself. Simply follow these five steps:
+
+- Depending on the region in which you want to initiate your EC2 instance, click on the corresponding AMI link in https://www.louisaslett.com/RStudio_AMI/. For example, if you want to initiate the instance in Frankfurt click on [ami-076abd591c4335092](https://console.aws.amazon.com/ec2/home?region=eu-central-1#launchAmi=ami-076abd591c4335092). You will be automatically directed to the AWS page where you can select the type of EC2 instance you want to initiate. Per default the free tier T2.micro instance is selected (I recommend using this type of instance, if you simply want to try out the examples below).
+
+- After selecting the instance type, click on "Review and Launch". On the opened page, select "Edit security groups". There should be one entry with `SSH` selected in the drop-down menu. Click on this drop-down menu and select `HTTP` (instead of `SSH`). Click again on "Review and Launch" to confirm the change. 
+
+- Then, click "Launch" to initiate the instance. From the pop-up concerning the key pair, select "Proceed without a key pair" from the drop-down menu and check the box below ("I acknowledge ..."). Click "Launch" to confirm. A page opens. Click on "View" instances to  see all of your instances and their status. Wait until "Status check" is "2/2 checks passed" (you might want to refresh the instance overview or browser window). 
+
+- Click on the instance ID of your newly launched instance and copy the public IPv4 address, open a new browser window/tab, type in `http://`,  paste the IP address, and hit enter (the address in your browser bar will be something like `http://3.66.120.150`; `http`, not `https`!) . 
+
+- You should see the login-interface to RStudio on your cloud instance. The username is `rstudio` and the password is the instance ID of your newly launched instance (it might take a while to load R/Rstudio). Once RStudio is loaded, you are ready to go. 
+
+*NOTE*: the instructions above help you set up your own EC2 instance with R/RStudio to run some example scripts and tryout R on EC2. For more serious/professional (long-term) usage of an EC2 instance, I strongly recommend to set it up manually and improve the security settings accordingly! The above set up will theoretically result in your instance being accessible for anyone in the Web (something you might want to avoid).
+
+### Parallelization with an EC2 instance
+
+This short tutorial illustrates how to scale the computation up by running it on an AWS EC2 instance. Thereby, we build on the techniques discussed in the previous chapter. Note that our EC2 instance is a Linux machine. When running R on a Linux machine, there is sometimes an additional step to install R packages (at least for most of the packages): R packages need to be compiled before they can be installed. The command to install packages is exactly the same (`install.packages()`) and normally you only notice a slight difference in the output shown in the R console during installation (and the installation process takes a little longer than what you are used to). In some cases you might also have to install additional dependencies directly in Linux. Apart from that, using R via RStudio Server in the cloud looks/feels very similar if not identical as when using R/RStudio locally.
+
+#### Preparatory steps
+
+If your EC2 instance with RStudio-Server is not running yet, do the following. In the AWS console, navigate to EC2, select your EC2 instance  (with RStudio Server installed) , and click on "Instance state/Start instance". You will have to wait until you see "2/2 checks passed". Then, open a new browser window, enter the address of your EC2/RStudio-Server instance (see above, e.g. `http://3.66.120.150`), and log in to RStudio. First, we need to install the `parallel` and `doSNOW` packages. In addition we will rely on the `stringr` package.
+
+```{r, eval=FALSE}
+# install packages for parallelization
+install.packages("parallel", "doSNOW", "stringr")
+```
+
+Once the installations have finished, you can load the packages and verify the number of cores available on your EC2 instance as follows. In case you have chosen the free tier T2.micro instance type when setting up your EC2 instance, you will see that you only have one core available. Do not worry. It is reasonable practice to test your parallelization script with a few iterations on a small machine before bringing out the big guns. The specialized packages we use for parallelization here do not mind if you have one or 32 cores, the same code runs on either machine (obviously not very fast with only one core).
+
+```{r eval=FALSE}
+# load packages 
+library(parallel)
+library(doSNOW)
+
+# verify no. of cores available
+n_cores <- detectCores()
+n_cores
+```
+
+Finally, we have to upload the data that we want to process as part of the parallelization task. To this end, in RStudio-Server, navigate to the file explorer in the lower-right corner. The graphical user interface of a local RStudio installation and RStudio-Server is almost identical. However, you will find in the file explorer pane a "Upload"-button to transfer files from your local machine to the EC2 instance. In this demonstration, we will work with the previously introduced `marketing_data.csv` dataset. You can thus click on "Upload" and upload it to the current target directory (the home directory of RStudio-Server). As soon as the file is uploaded you can work with it as usual (as on the local RStudio installation). To keep things like in the local examples, use the file explorer to create a new `data` folder and move `marketing_data.csv` in this new folder.
+
+```{r ec2rstudioserver, echo=FALSE, out.width = "50%", fig.align='center', fig.cap= "(ref:ec2rstudioserver)", purl=FALSE}
+include_graphics("img/screenshot_rstudio_server_upload.png")
+```
+
+(ref:ec2rstudioserver) File explorer and Upload-button on Rstudio-Server.
+
+To test if all is set up properly to run a in parallel on our EC2 instance, open a new R-script in RStudio-Server and copy/paste the preparatory steps and the simple parallelization example from Section 4.5 into the R-Script. 
+
+
+```{r eval=FALSE}
+# PREPARATION -----------------------------
+
+# packages
+library(stringr)
+
+# import data
+marketing <- read.csv("data/marketing_data.csv")
+# clean/prepare data
+marketing$Income <- as.numeric(gsub("[[:punct:]]", "", marketing$Income)) 
+marketing$days_customer <- as.Date(Sys.Date())- as.Date(marketing$Dt_Customer, "%m/%d/%y")
+marketing$Dt_Customer <- NULL
+
+# all sets of independent vars
+indep <- names(marketing)[ c(2:19, 27,28)]
+combinations_list <- lapply(1:length(indep),
+                            function(x) combn(indep, x, simplify = FALSE))
+combinations_list <- unlist(combinations_list, recursive = FALSE)
+models <- lapply(combinations_list,
+                 function(x) paste("Response ~", paste(x, collapse="+")))
+```
+
+
+#### Test parallelized code
+
+Now, we can start testing the code on EC2 without registering the one core for cluster processing. This way `%dopart%` will automatically resort to running the code sequentially.  Make sure to set `N` to 10 (or another small number) for this test.
+
+```{r eval=FALSE}
+# set cores for parallel processing
+# ctemp <- makeCluster(ncores)
+# registerDoSNOW(ctemp)
+
+# prepare loop
+N <- 10 # just for illustration, the actual code is N <- length(models)
+# run loop in parallel
+pseudo_Rsq <-
+  foreach ( i = 1:N, .combine = c) %dopar% {
+    # fit the logit model via maximum likelihood
+    fit <- glm(models[[i]], data=marketing, family = binomial())
+    # compute the proportion of deviance explained by the independent vars (~R^2)
+    return(1-(fit$deviance/fit$null.deviance))
+}
+```
+
+
+Once the test has run through successfully, we are ready to scale up and run the actual workload in parallel in the cloud.
+
+
+#### Scale up and run in parallel
+
+First, switch back to the AWS EC2 console and stop the instance by selecting the tick-mark in the corresponding row, and click on "Instance state/stop instance". Once the Instance state is "Stopped", click on "Actions/Instance settings/change instance type". You will be presented with a drop-down menu from which you can select the new instance type and confirm. The example bellow is based on selecting the `t2.2xlarge` (with 8 vCPUs and 32MB of RAM). Now you can start the instance again, log in to RStudio-Server (as above) and run the script again but this time with the following lines not commented out (in order to make use of all eight cores).
+
+
+```{r eval=FALSE}
+
+# set cores for parallel processing
+ctemp <- makeCluster(ncores)
+registerDoSNOW(ctemp)
+
+```
+
+
+
+In order to monitor the usage of computing resources on your instance, switch to the Terminal tab, enter `htop`, and hit enter. This will open the interactive process viewer called htop. With the default free tier T2.micro instance, you will again notice that only one core is available.
+
+
+```{r ec2rstudioserverhtop, echo=FALSE, out.width = "80%", fig.align='center', fig.cap= "(ref:ec2rstudioserverhtop)", purl=FALSE}
+include_graphics("img/ec2_rstudioserver_htop.png")
+```
+
+(ref:ec2rstudioserverhtop) Monitor resources and proceses with htop.
+
+
+## EC2 with RStudio and GPUs
+
+To start a ready-made EC2 instance with GPUs and RStudio installed, go to this service provided by RStudio on the AWS Marketplace: https://aws.amazon.com/marketplace/pp/B0785SXYB2. Click on Subscribe.
+
+
+```{r ec2gpusetup1, echo=FALSE, out.width = "80%", fig.align='center', fig.cap= "(ref:ec2gpusetup1)", purl=FALSE}
+include_graphics("img/ec2_gpu1.png")
+```
+
+(ref:ec2gpusetup1) AWS Marketplace product provided by RStudio to run RStudio Server with Tensorflow-GPU on AWS EC2.
+
+
+
+Then, click on Continue to Configuration and Continue to Launch. If you want to use the smallest/cheapest EC2 instance, select under "EC2 Instance Type" `g3s.xlarge`. If necessary, create a new key pair under 'Key Pair Settings', otherwise keep all the default settings as they are. Then, at the bottom, click on *Launch*. This will launch a new EC2 instance with a GPU and with RStudio server installed.^[Note that you might not have the required vCPU limit to additionally launch such an instance. In that case you will get an error message `You have requested more vCPU capacity than your current vCPU limit of 0 allows for the instance bucket that the specified instance type belongs to. Please visit http://aws.amazon.com/contact-us/ec2-request to request an adjustment to this limit.`. Simply follow the indicated URL and send your request to increase the capacity. After your limit is adjusted, click again on Launch as per the procedure outlined above.] 
+
+```{r ec2gpusetup2, echo=FALSE, out.width = "60%", fig.align='center', fig.cap= "(ref:ec2gpusetup2)", purl=FALSE}
+include_graphics("img/ec2_gpu2.png")
+```
+
+(ref:ec2gpusetup2) Launch RStudio Server with Tensorflow-GPU on AWS EC2.
+
+
+
+Once the instance is launched go to the EC2 dashboard, click on the new instance, copy its public dns, open a new browser window and go to `http://<ec2_instance_public_dns>:8787`. You should see the RStudio server login. You can log in with username `rstudio-user` and the instance_id of your newly created instance as the password.^[It is strongly recommended to change the password afterwards. In o#rder to do that, click on "Tools" and select "shell". Then type "password" into the shell/terminal and enter the current password (the instance id) and then enter the new password, hit enter, and enter again the new password to confirm.]
+
+
+
+## GPUs on Google Colab
+
+Google Colab provides a very easy way to run R code on GPUs from Google Cloud. All you need is a Google account. Open a new browser window, go to https://colab.to/r and log in with your Google account if prompted to do so. Colab will open a [Jupyter notebook](https://en.wikipedia.org/wiki/Project_Jupyter) with an R runtime. Click on "Runtime/Change runtime type" and select in the drop-down menu under 'Hardware accelerator' the option 'GPU'.
+
+```{r colabr, echo=FALSE, out.width = "50%", fig.align='center', fig.cap= "(ref:colabr)", purl=FALSE}
+include_graphics("img/colab_r_gpu.png")
+```
+
+(ref:colabr) Colab notebook with R runtime and GPUs.
+
+
+Then, you can install the packages you need to work with GPU acceleration (e.g., `gpuR`, `keras` and `tensorflow`) and the code relying on GPU processing will be run on GPUs (or even [TPUs](https://en.wikipedia.org/wiki/Tensor_Processing_Unit)). Under the following link you find a Colab-notebook set up for running a [simply image classification tutorial](https://tensorflow.rstudio.com/tutorials/beginners/basic-ml/tutorial_basic_classification/) with keras on TPUs: [bit.ly/bda_colab](https://bit.ly/bda_colab). 
+
+
+
+
+
+
+
+## AWS EMR: MapReduce in the cloud
+
+Many cloud computing providers offer specialized services for MapReduce tasks in the cloud. Here we look at a comparatively easy-to-use solution provided by AWS, called Elastic MapReduce (AWS EMR). It allows to set up a Hadoop cluster in the cloud within minutes and requires essentially no additional configuration if the cluster is being used for the kind of data analytics tasks discussed in this book. 
+
+### Set up an EMR cluster to run with R
+
+Setting up a default AWS EMR cluster via the AWS console is straightforward. Simply go to `https://console.aws.amazon.com/elasticmapreduce/`, click on "Create cluster" and adjust the default selection of settings if necessary. Alternatively, we can set up an EMR cluster via the AWS command-line interface (CLI). In the following tutorials, we will work with AWS EMR via R/Rstudio (specifically, via the package `sparklyr`). Per default, RStudio is not part of the EMR cluster set up. However, AWS EMR offers a very flexible way to install/configure additional software on virtual EMR clusters via so-called "bootstrap" scripts. These scripts can be shared on AWS S3 and used by others, which is what we do in the following cluster set up via the CLI.^[Specifically, we will use the bootstrap script provided by the AWS Big Data Blog, which is stored here: s3://aws-bigdata-blog/artifacts/aws-blog-emr-rstudio-sparklyr/rstudio_sparklyr_emr6.sh] 
+
+The following command (`aws emr create-cluster`) initiates our EMR cluster with a specific set of options (all of these options can also be modified via the AWS console in the browser). `--applications Name=Hadoop Name=Spark Name=Hive Name=Pig Name=Tez Name=Ganglia` specifies which type of basic applications (that are essential to running different types of MapReduce tasks) should be installed on the cluster. Unless you really know what you are doing, do not change that setting. `--name "EMR 6.1 RStudio + sparklyr` simply specifies how the newly initiated cluster should be called (this name will then appear on your list of clusters in the AWS console). More relevant for what follows is the line specifying what type of virtual servers (EC2 instances) should be used as part of the cluster:  `--instance-groups InstanceGroupType=MASTER,InstanceCount=1,InstanceType=m5a.2xlarge` specifies that the master node (the machine distributing tasks and coordinating the MapReduce procedure) should be an instance of type `m5a.2xlarge`; `InstanceGroupType=CORE,InstanceCount=4,InstanceType=m5a.2xlarge` specifies that the other nodes are also of type `m5a.2xlarge`. `--bootstrap-action Path=s3://aws-bigdata-blog/artifacts/aws-blog-emr-rstudio-sparklyr/rstudio_sparklyr_emr6.sh,Name="Install RStudio"` tells the set-up application to run the corresponding bootstrap script on the cluster in order to install the additional software (here RStudio).
+
+Finally, there are two important aspects to note: First, in order to initiate the cluster in this way, you need to have an SSH-keypair (for your EC2 instances) set up, which you then instruct the cluster to use with `KeyName=`. That is, `KeyName="sparklyr"` means that the user already has create an SSH keypair called `sparklyr` and that this is the keypair that will be used with the cluster nodes for SSH connections. Second, the `--region` argument defines in which AWS region the cluster should be created. Importantly, in this particular case, the bootstrap script used to install RStudio on the cluster is stored in the `us-east-1` region, hence we need to set up the cluster also in this region `--region us-east-1` (otherwise the set up will fail as the set-up application will not find the bootstrap script and terminate with an error!).
+
+
+```{bash eval=FALSE}
+aws emr create-cluster \
+--release-label emr-6.1.0 \
+--applications Name=Hadoop Name=Spark Name=Hive Name=Pig Name=Tez Name=Ganglia   \
+--name "EMR 6.1 RStudio + sparklyr"  \
+--service-role EMR_DefaultRole \
+--instance-groups InstanceGroupType=MASTER,InstanceCount=1,InstanceType=m5a.2xlarge \
+InstanceGroupType=CORE,InstanceCount=4,InstanceType=m5a.2xlarge \
+--bootstrap-action Path='s3://aws-bigdata-blog/artifacts/aws-blog-emr-rstudio-sparklyr/rstudio_sparklyr_emr6.sh',Name="Install RStudio" --ec2-attributes InstanceProfile=EMR_EC2_DefaultRole,KeyName="sparklyr" \
+--configurations '[{"Classification":"spark","Properties":{"maximizeResourceAllocation":"true"}}]' \
+--region us-east-1
+```
+
+Setting up this cluster with all the additional software and configurations from the bootstrap script will take around 40 minutes. You can always follow the progress in the AWS console on . Once the cluster is ready, you will see something like this:
+
+
+```{r emrsetup, echo=FALSE, out.width = "80%", fig.align='center', fig.cap= "(ref:emrsetup)", purl=FALSE}
+include_graphics("img/aws_emr_ready.png")
+```
+
+(ref:emrsetup) AWS EMR console indicating the successful set up of the EMR cluster
+
+In order to access RStudio on the EMR cluster's master node, follow these steps:
+
+- First, follow the prerequisites to connect to EMR via SSH: https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-connect-ssh-prereqs.html.
+
+- Then initiate the SSH tunnel to the EMR cluster as instructed here: https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-ssh-tunnel.html. 
+
+- Protect your key-file (`sparklyr.pem`) by navigating to the location of the key-file on your computer in the terminal and run  `chmod 600 sparklyr.pem` before connecting. Also make sure your IP address is still the one you have entered in the previous step (you can check your current IP address by visiting https://whatismyipaddress.com/).
+- In the terminal, connect to the EMR cluster via SSH by running `ssh -i ~/sparklyr.pem -ND 8157 hadoop@ec2-52-87-248-175.compute-1.amazonaws.com` (if you have protected the key-file as super user, i.e. `sudo chmod`, you will need to use `sudo ssh` here).
+- In your Firefox browser, install the [FoxyProxy add on](https://addons.mozilla.org/en-US/firefox/addon/foxyproxy-standard/). Follow these instructions to set up the proxy via FoxyProxy: https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-connect-master-node-proxy.html.
+- Select the newly created Socks5 proxy in FoxyProxy.
+- Go to http://localhost:8787/ and enter with username `hadoop` and password `hadoop`. 
+
+Now you can run `sparklyr` on the AWS EMR cluster. 
+
+<!-- ###  `sparklyr` on EMR  -->
+
+
+<!-- Add count example here as a demonstration -->
+

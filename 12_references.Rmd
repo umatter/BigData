@@ -1,0 +1,417 @@
+
+\backmatter
+
+
+# (APPENDIX) Appendix {-} 
+
+# Appendix A
+
+
+
+
+## GitHub
+
+### Initiate a new repository
+
+1. Log in to your GitHub account and click on the plus-sign in the upper right corner. From the drop-down-menu select `New repository`.
+2. Give your repository a name, for example `bigdatastat`. Then, click on the big green button `Create repository`. You have just created a new repository.
+3. Open Rstudio and and navigate to a place on your hard-disk where you want to have the local copy of your repository.
+4. Then create the local repository as suggested by GitHub (see the page shown right after you have clicked on `Create repository`: "…or create a new repository on the command line"). In order to do so, you have to switch to the Terminal window in RStudio and type (or copy paste) the commands as given by GitHub. This should look similar to
+
+```{bash eval = FALSE}
+echo "# bigdatastat" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git remote add origin https://github.com/umatter/bigdatastat.git
+git push -u origin master
+```
+
+5. Refresh the page of your newly created GitHub repository. You should now see the result of your first commit.
+6. Open `README.md` in RStudio and add a few words describing what this repository is all about.
+
+### Clone this course's repository
+
+1. In RStudio, navigate to a folder on your hard-disk where you want to have a local copy of this course's GitHub repository.
+2. Open a new browser window and go to [`www.github.com/umatter/BigData`](www.github.com/umatter/BigData).
+3. Click on `Clone or download` and copy the link.
+4. In RStudio, switch to the Terminal, and type the following command (pasting the copied link).
+
+```{bash eval=FALSE}
+git clone https://github.com/umatter/BigData.git
+```
+
+You have now a local copy of the repository which is linked to the one on GitHub. You can see this by changing to the newly created directory, containing the local copy of the repository:
+```{bash eval=FALSE}
+cd BigData
+```
+
+Whenever there are some updates to the course's repository on GitHub, you can update your local copy with:
+
+```{bash eval=FALSE}
+git pull
+```
+
+(Make sure you are in the `BigData` folder when running `git pull`.)
+
+### Fork this course's repository
+
+1. Go to [`https://github.com/umatter/BigData`](https://github.com/umatter/BigData), click on the 'Fork' button in the upper-right corner (follow the instructions).
+
+2. Clone the forked repository (see the cloning of a repository above for details). Assuming you called your forked repository `BigData-forked`, you run the following command in the terminal (replacing `<yourgithubusername>`:
+
+```
+git clone https://github.com/`<yourgithubusername>`/BigData-forked.git
+```
+
+3. Switch into the newly created directory:
+
+```
+cd BigData-forked
+```
+
+4. Set a remote connection to the *original* repository 
+
+```
+git remote add upstream https://github.com/umatter/BigData.git
+```
+
+You can verify the remotes of your local clone of your forked repository as follows
+```
+git remote -v
+```
+You should see something like
+```
+origin	https://github.com/<yourgithubusername>/BigData-forked.git (fetch)
+origin	https://github.com/<yourgithubusername>/BigData-forked.git (push)
+upstream	https://github.com/umatter/BigData.git (fetch)
+upstream	https://github.com/umatter/BigData.git (push)
+```
+
+5. Fetch changes from the original repository. New material has been added to the original course repository and you want to merge it with your forked repository. In order to do so, you first fetch the changes from the original repository:
+
+```
+git fetch upstream
+```
+
+6. Make sure you are on the master branch of your local repository:
+
+```
+git checkout master
+```
+
+7. Merge the changes fetched from the original repo with the master of your (local clone of the) forked repo.
+
+```
+git merge upstream/master
+```
+
+8. Push the changes to your forked repository on GitHub.
+
+```
+git push
+```
+
+Now your forked repo on GitHub also contains the commits (changes) in the original repository. If you make changes to the files in your forked repo. you can add, commit, and push them as in any repository. Example: open `README.md` in a text editor (e.g. RStudio), add `# HELLO WORLD` to the last line of `README.md`, and save the changes. Then:
+
+```
+git add README.md
+git commit -m "hello world"
+git push
+```
+
+
+
+
+
+
+
+
+
+
+# Appendix B
+
+
+
+### Data types and memory/storage
+
+Data loaded into RAM can be interpreted differently by R depending on the data *type*. Some operators or functions in R only accept data of a specific type as arguments. For example, we can store the numeric values `1.5` and `3` in the variables `a` and `b`, respectively.
+
+```{r}
+a <- 1.5
+b <- 3
+a + b
+```
+
+R interprets this data as type `double` (class 'numeric'):
+
+```{r}
+typeof(a)
+class(a)
+object.size(a)
+```
+
+
+If, however, we define `a` and `b` as follows, R will interpret the values stored in `a` and `b` as text (`character`).
+
+```{r eval=FALSE}
+a <- "1.5"
+b <- "3"
+a + b
+```
+
+```{r}
+typeof(a)
+class(a)
+object.size(a)
+```
+
+Note that the symbols `1.5` take up more or less memory depending on the data-type they are stored in. This directly links to how data/information is stored/represented in binary code, which in turn is reflected in how much memory is used to store these symbols in an object as well as what we can do with it.
+
+
+#### Example in R: Data types and information storage
+
+Given the fact that computers only understand `0`s and `1`s, different approaches are taken to map these digital values to other symbols or images (text, decimal numbers, pictures, etc.) that we humans can more easily make sense of. Regarding text and numbers, these mappings involve *character encodings* (in which combinations of `0`s and `1`s represent a character in a specific alphabet) and *data types*.
+
+Let's illustrate the main concepts with the simple numerical example from above. When we see the decimal number `139` written somewhere, we know that it means 'one-hundred-and-thirty-nine'. The fact that our computer is able to print `139` on the screen means that our computer can somehow map a sequence of `0`s and `1`s to the symbols `1`, `3`, and `9`. Depending on what we want to do with the data value `139` on our computer, there are different ways of how the computer can represent this value internally. Inter alia, we could load it into RAM as a *string* ('text'/'character') or as an *integer* ('natural number') or *double* (numeric, floating point number). All of them can be printed on screen but only the latter two can be used for arithmetic computations. This concept can easily be illustrated in R.
+
+We initiate a new variable with the value `139`. By using this syntax, R by default initiates the variable as an object of type `double`. We then can use this variable in arithmetic operations.
+
+```{r}
+my_number <- 139
+# check the class
+typeof(my_number)
+
+# arithmetic
+my_number*2
+```
+
+When we change the *data type* to 'character' (string) such operations are not possible.
+
+```{r error=TRUE}
+# change and check type/class
+my_number_string <- as.character(my_number)
+typeof(my_number_string)
+
+# try to multiply
+my_number_string*2
+```
+
+If we change the variable to type `integer`, we can still use math operators.
+
+```{r}
+# change and check type/class
+my_number_int <- as.integer(my_number)
+typeof(my_number_int)
+# arithmetics
+my_number_int*2
+```
+
+Having all variables in the right type is relevant for data analytics with all kind of sample sizes. However, given the fact that different data types have to be represented differently internally, different types might take up more or less memory and therefore substantially affect the performance when dealing with massive amounts of data. 
+
+We can illustrate this point with `object.size()`:
+```{r}
+object.size("139")
+object.size(139)
+```
+
+
+
+### Data structures
+
+For now, we have only looked at individual bytes of data. An entire data set can consist of gigabytes of data and contain both text and numeric values. R provides several classes of objects providing different data structures. Both the choice of data types and data structures to store data in can affect how much memory is needed to contain a dataset in RAM. 
+
+### Vectors vs Factors in R
+Vectors are collections of values of the same type. They can contain either all numeric values or all character values. 
+
+
+<!-- ```{r numvec, echo=FALSE, out.width = "5%", fig.align='center', fig.cap= "(ref:capnumvec)", purl=FALSE} -->
+<!-- include_graphics("img/02_numvec.png") -->
+<!-- ``` -->
+
+<!-- (ref:capnumvec) Illustration of a numeric vector (symbolic). Figure by @murrell_2009 (licensed under CC BY-NC-SA 3.0 NZ). -->
+
+
+For example, we can initiate a character vector containing information on the home towns of persons participating in a survey.
+```{r}
+hometown <- c("St.Gallen", "Basel", "St.Gallen")
+hometown
+object.size(hometown)
+```
+
+Unlike in the data types example above, it would likely be not that practical to store these values as type `numeric` to save memory. R would not know how to translate these strings into floating point numbers. Alternatively, we could think of a correspondence table that assigns a numeric (id) code to each unique town name in the data set. This way we would save memory but it would mean additional effort to work with the data. Fortunately, basic R already implements exactly this idea in a user-friendly way in a data-structure called `factor`. 
+
+Factors are sets of categories. Thus, the values come from a fixed set of possible values. 
+
+
+<!-- ```{r factor, echo=FALSE, out.width = "5%", fig.align='center', fig.cap= "(ref:capfactor)", purl=FALSE} -->
+<!-- include_graphics("img/02_factor.png") -->
+<!-- ``` -->
+
+<!-- (ref:capfactor) Illustration of a factor (symbolic). Figure by @murrell_2009 (licensed under CC BY-NC-SA 3.0 NZ). -->
+
+
+
+Considering the same example as above, we can store the same information in an object of type class `factor`.
+```{r}
+hometown_f <- factor(c("St.Gallen", "Basel", "St.Gallen"))
+hometown_f
+object.size(hometown_f)
+```
+
+At first sight, the fact that `hometown_f` takes up more memory than its character vector sibling seems odd. But, we have encountered this kind of 'paradox' before. Again, the more sophisticated approach involves an 'overhead' (here not in terms of computing time but in terms of structure encoded in an object). `hometown_f` has more 'structure' (i.e., a mapping of numbers to 'factor levels'/category labels). This additional structure is also information that needs to be stored somewhere. As in previous examples of this 'overhead costs', this disadvantage is diminishing with larger data sets:
+
+```{r}
+# create a large character vector
+hometown_large <- rep(hometown, times = 1000)
+# and the same content as factor
+hometown_large_f <- factor(hometown_large)
+# compare size
+object.size(hometown_large)
+object.size(hometown_large_f)
+```
+
+
+
+#### Matrices/Arrays
+Matrices are two-dimensional collections of values, arrays higher-dimensional collections of values, of the same type.
+
+
+<!-- ```{r matrix, echo=FALSE, out.width = "10%", fig.align='center', fig.cap= "(ref:capmatrix)", purl=FALSE} -->
+<!-- include_graphics("img/02_matrix.png") -->
+<!-- ``` -->
+
+<!-- (ref:capmatrix) Illustration of a numeric matrix (symbolic). Figure by @murrell_2009 (licensed under CC BY-NC-SA 3.0 NZ). -->
+
+
+For example, we can initiate a three-row/two-column numeric matrix as follows.
+
+```{r}
+my_matrix <- matrix(c(1,2,3,4,5,6), nrow = 3)
+my_matrix
+
+```
+
+And a three-dimensional numeric array as follows.
+
+```{r}
+my_array <- array(c(1,2,3,4,5,6), dim = 3)
+my_array
+
+```
+
+
+#### Data frames, tibbles, and data tables
+Recall that data frames are the typical representation of a (table-like) data set in R. Each column can contain a vector of a given data type (or a factor), but all columns need to be of identical length. Thus in the context of data analysis, we would say that each row of a data frame contains an observation, and each column contains a characteristic of this observation. 
+
+
+
+<!-- ```{r df, echo=FALSE, out.width = "10%", fig.align='center', fig.cap= "(ref:capdf)", purl=FALSE} -->
+<!-- include_graphics("img/02_df.png") -->
+<!-- ``` -->
+
+
+<!-- (ref:capdf) Illustration of a data frame (symbolic). Figure by @murrell_2009 (licensed under CC BY-NC-SA 3.0 NZ). -->
+
+
+The historical implementation of data frames in R is not very comfortable to work with large data sets.^[In the early days of R this was not really an issue because data sets that are rather large by today's standards (in the Gigabytes) could not have been handled properly by normal computers anyhow (due to a lack of RAM).] Several newer implementations of the data-frame concept in R aim to make data processing faster. One is called `tibbles`,  implemented and used in the `tidyverse` packages. The other is called `data table`, implemented in the `data.table`-package. In this course we will focus on the `data.table`-package.
+
+Here is how we define a `data.table` in R:
+
+```{r}
+# load package
+library(data.table)
+# initiate a data.table
+dt <- data.table(person = c("Alice", "Ben"),
+                 age = c(50, 30),
+                 gender = c("f", "m"))
+dt
+
+```
+
+
+#### Lists
+Similar to data frames and data tables, lists can contain different types of data in each element. For example, a list could contain different other lists, data frames, and vectors with differing numbers of elements.
+
+
+
+<!-- ```{r list, echo=FALSE, out.width = "10%", fig.align='center', fig.cap= "(ref:caplist)", purl=FALSE} -->
+<!-- include_graphics("img/02_list.png") -->
+<!-- ``` -->
+
+<!-- (ref:caplist) Illustration of a data frame (symbolic). Figure by @murrell_2009 (licensed under CC BY-NC-SA 3.0 NZ). -->
+
+
+This flexibility can easily be demonstrated by combining some of the data structures created in the examples above:
+
+```{r}
+my_list <- list(my_array, my_matrix, dt)
+my_list
+```
+
+
+### R-tools to investigate structures and types
+
+package | function | purpose
+-------- | ---------- | ---------------------------------------------
+`utils`  | `str()`    | Compactly display the structure of an arbitrary R object.
+`base`   | `class()`   | Prints the class(es) of an R object.
+`base`   | `typeof()`  | Determines the (R-internal) type or storage mode of an object.
+
+
+
+# Appendix C
+
+#### Install Hadoop (on Ubuntu Linux)
+
+```{bash eval=FALSE}
+# download binary
+wget https://dlcdn.apache.org/hadoop/common/hadoop-2.10.1/hadoop-2.10.1.tar.gz
+# download checksum
+wget https://dlcdn.apache.org/hadoop/common/hadoop-2.10.1/hadoop-2.10.1.tar.gz.sha512
+
+# run the verification
+shasum -a 512 hadoop-2.10.1.tar.gz
+# compare with value in mds file
+cat hadoop-2.10.1.tar.gz.sha512
+
+# if all is fine, unpack
+tar -xzvf hadoop-2.10.1.tar.gz
+# move to proper place
+sudo mv hadoop-2.10.1 /usr/local/hadoop
+
+
+# then point to this version from hadoop
+# open the file /usr/local/hadoop/etc/hadoop/hadoop-env.sh
+```
+
+
+```{bash eval=FALSE}
+# in a text editor and add (where export JAVA_HOME=...)
+export JAVA_HOME=$(readlink -f /usr/bin/java | sed "s:bin/java::")
+
+# clean up
+rm hadoop-2.10.1.tar.gz
+rm hadoop-2.10.1.tar.gz.sha512
+```
+
+
+After running all of the steps above, run the following line in the terminal to check the installation
+
+
+```{bash eval=FALSE}
+# check installation
+/usr/local/hadoop/bin/hadoop
+```
+
+
+
+```{r include=FALSE}
+system("rsync -r ~/Dropbox/Teaching/HSG/BigData/BigData/_bookdown_files/bigdata_files ~/Dropbox/Teaching/HSG/BigData/BigData/docs")
+```
+
+
+`r if (knitr::is_html_output()) '
+# References {-}
+'`
+

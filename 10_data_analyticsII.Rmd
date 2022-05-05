@@ -1,0 +1,306 @@
+
+
+
+<!-- ## Example II: Basic statistics (`Rth`) -->
+
+<!-- Install package  -->
+<!-- - needs cuda and thrust (in latest cuda versions included). -->
+<!-- - gcc version 8 or younger (use ` sudo update-alternatives --config gcc` to switch to version 8 if necessary). -->
+<!-- - point directly to thrust when installing -->
+<!--  STILL DOES NOT WORK -->
+<!-- ```{r} -->
+<!-- devtools::install_github("matloff/Rth", configure.args = "--with-thrust-home=/usr/lib/cuda-10.2/targets/x86_64-linux/include/thrust/ --with-backend=CUDA") -->
+<!-- ``` -->
+
+
+
+<!-- Load package -->
+<!-- ```{r} -->
+<!-- # load packages -->
+<!-- library(Rth) -->
+<!-- ``` -->
+
+<!-- Compute histogram and correlation of a 100 million row dataset. -->
+
+<!-- Create the dataset (based on pseudo random numbers) -->
+<!-- ```{r} -->
+<!-- # set fix vars -->
+<!-- N <- 100000000 # number of observations -->
+<!-- P <- 2 # number of variables -->
+
+<!-- # draw random dataset -->
+<!-- randat <- matrix(runif(N*P), ncol = P) -->
+
+<!-- ``` -->
+
+
+<!-- Compute histogram of first var -->
+<!-- ```{r} -->
+<!-- var1 <- randat[,1] -->
+<!-- rthhist("var1") -->
+<!-- Rth::rthhist("var1") -->
+<!-- ``` -->
+
+
+
+<!-- Micro benchmarking of correlation computation -->
+
+
+
+<!-- # Extended Example: OLS -->
+<!-- Here, the CPU is faster! -->
+
+<!-- ```{r} -->
+
+<!-- # Example taken from https://www.arc.vt.edu/wp-content/uploads/2017/04/GPU_R_Workshop_2017_slidy.html#13 -->
+
+<!-- set.seed(123456) -->
+<!-- np <- 40  #number of predictors -->
+<!-- nr <- 1e+05  #number of observations -->
+<!-- X <- cbind(5, 1:nr, matrix(rnorm((np - 1) * nr, 0, 0.01), nrow = nr, ncol = (np - -->
+<!--     1))) -->
+<!-- beta <- matrix(c(1, 3, runif(np - 1, 0, 0.2)), ncol = 1) -->
+<!-- y <- X %*% beta + matrix(rnorm(nr, 0, 1), nrow = nr, ncol = 1) -->
+<!-- # CPU bound version, slight optimize via crossprod but otherwise vanilla -->
+<!-- time2 <- system.time({ -->
+<!--     ms2 <- solve(crossprod(X), crossprod(X, y)) -->
+<!-- }) -->
+<!-- # GPU version, GPU pointer to CPU memory!! (gpuMatrix is simply a pointer) -->
+<!-- gpuX = gpuMatrix(X, type = "float")  #point GPU to matrix -->
+<!-- gpuy = gpuMatrix(y, type = "float") -->
+<!-- time4 <- system.time({ -->
+<!--     ms4 <- gpuR::solve(gpuR::crossprod(gpuX), gpuR::crossprod(gpuX, gpuy)) -->
+<!-- }) -->
+<!-- # GPU version, in GPU memory!! (vclMatrix formation is a memory transfer) -->
+<!-- vclX = vclMatrix(X, type = "float")  #push matrix to GPU -->
+<!-- vcly = vclMatrix(y, type = "float") -->
+<!-- time5 <- system.time({ -->
+<!--     ms5 <- gpuR::solve(gpuR::crossprod(vclX), gpuR::crossprod(vclX, vcly)) -->
+<!-- }) -->
+
+<!-- data.frame(CPU=time3[3], -->
+<!--            GPU_CPUmem=time4[3], -->
+<!--            GPU_GPUmem=time5[3]) -->
+<!-- ``` -->
+
+
+
+# GPUs and Machine Learning
+
+A most common application of GPUs for scientific computing is machine learning, in particular deep learning (machine learning based on artificial neural networks). Training deep learning models can be very computationally intense and to an important part depends on tensor (matrix) multiplications. This is also an area where you might come across highly parallelized computing based on GPUs without even noticing it, as the now commonly used software to build and train deep neural nets ([tensorflow](https://www.tensorflow.org/), and the high-level [Keras](https://keras.io/) API) can easily be run on a CPU or GPU without any further configuration/preparation (apart from the initial installation of these programs). The example below is a simple illustration of how such techniques can be used in an econometrics context.
+
+<!-- ```{r warning=FALSE, message=FALSE} -->
+
+<!-- library(keras) -->
+<!-- mnist <- dataset_mnist() -->
+<!-- x_train <- mnist$train$x -->
+<!-- y_train <- mnist$train$y -->
+<!-- x_test <- mnist$test$x -->
+<!-- y_test <- mnist$test$y -->
+
+
+<!-- # reshape -->
+<!-- x_train <- array_reshape(x_train, c(nrow(x_train), 784)) -->
+<!-- x_test <- array_reshape(x_test, c(nrow(x_test), 784)) -->
+<!-- # rescale -->
+<!-- x_train <- x_train / 255 -->
+<!-- x_test <- x_test / 255 -->
+
+
+<!-- y_train <- to_categorical(y_train, 10) -->
+<!-- y_test <- to_categorical(y_test, 10) -->
+
+
+
+<!-- model <- keras_model_sequential() -->
+<!-- model %>% -->
+<!--   layer_dense(units = 256, activation = 'relu', input_shape = c(784)) %>% -->
+<!--   layer_dropout(rate = 0.4) %>% -->
+<!--   layer_dense(units = 128, activation = 'relu') %>% -->
+<!--   layer_dropout(rate = 0.3) %>% -->
+<!--   layer_dense(units = 10, activation = 'softmax') -->
+
+
+<!-- summary(model) -->
+
+
+<!-- model %>% compile( -->
+<!--   loss = 'categorical_crossentropy', -->
+<!--   optimizer = optimizer_rmsprop(), -->
+<!--   metrics = c('accuracy') -->
+<!-- ) -->
+
+
+<!-- history <- model %>% fit( -->
+<!--   x_train, y_train, -->
+<!--   epochs = 30, batch_size = 128, -->
+<!--   validation_split = 0.2 -->
+<!-- ) -->
+
+
+<!-- plot(history) -->
+<!-- ``` -->
+
+
+##  Tensorflow/Keras example: predict housing prices
+
+In this example we train a simple sequential model with two hidden layers in order to predict the median value of owner-occupied homes (in USD 1,000) in the Boston area (data are from the 1970s). The original data and a detailed description can be found [here](https://www.cs.toronto.edu/~delve/data/boston/bostonDetail.html). The example follows closely [this keras tutorial](https://keras.rstudio.com/articles/tutorial_basic_regression.html#the-boston-housing-prices-dataset) published by RStudio. See [RStudio's keras installation guide](https://keras.rstudio.com/index.html) for how to install keras (and tensorflow) and the corresponding R package `keras`.^[This might involve the installation of additional packages and software outside the R environment.] While the purpose of the example here is to demonstrate a typical (but very simple!) usage case of GPUs in machine learning, the same code should also run on a normal machine (without using GPUs) with a default installation of keras.
+
+Apart from `keras`, we load packages to prepare the data and visualize the output. Via `dataset_boston_housing()`, we load the dataset (shipped with the keras installation) in the format preferred by the `keras` library.
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+if (Sys.info()["sysname"]=="Darwin"){ # run on mac os machine
+     
+        use_python("/Users/umatter/opt/anaconda3/bin/python") # IMPORTANT: keras/tensorflow is set up to run in this environment on this machine!
+}
+
+```
+
+
+```{r warning=FALSE}
+# load packages
+library(keras)
+library(tibble)
+library(ggplot2)
+library(tfdatasets)
+
+
+# load data
+boston_housing <- dataset_boston_housing()
+str(boston_housing)
+```
+
+
+## Data preparation
+
+In a first step, we split the data into a training set and a test set. The latter is used to monitor the out-of-sample performance of the model fit. Testing the validity of an estimated model by looking at how it performs out-of-sample is of particular relevance when working with (deep) neural networks, as they can easily lead to over-fitting. Validity checks based on the test sample are, therefore, often an integral part of modelling with tensorflow/keras.
+
+```{r}
+# assign training and test data/labels
+c(train_data, train_labels) %<-% boston_housing$train
+c(test_data, test_labels) %<-% boston_housing$test
+
+```
+
+
+In order to better understand and interpret the dataset we add the original variable names, and convert it to a `tibble`. 
+
+```{r warning=FALSE, message=FALSE}
+library(dplyr)
+
+column_names <- c('CRIM', 'ZN', 'INDUS', 'CHAS', 'NOX', 'RM', 'AGE', 
+                  'DIS', 'RAD', 'TAX', 'PTRATIO', 'B', 'LSTAT')
+
+train_df <- train_data %>% 
+  as_tibble(.name_repair = "minimal") %>% 
+  setNames(column_names) %>% 
+  mutate(label = train_labels)
+
+test_df <- test_data %>% 
+  as_tibble(.name_repair = "minimal") %>% 
+  setNames(column_names) %>% 
+  mutate(label = test_labels)
+```
+
+
+
+Next, we have a close look at the data. Note the usage of the term 'label' for what is usually called the 'dependent variable' in econometrics.^[Typical textbook examples in machine learning deal with classification (e.g. a logit model), while in microeconometrics the typical example is usually a linear model (continuous dependent variable).] As the aim of the exercise is to predict median prices of homes, the output of the model will be a continuous value ('labels').
+
+```{r}
+# check example data dimensions and content
+paste0("Training entries: ", length(train_data), ", labels: ", length(train_labels))
+summary(train_data)
+summary(train_labels) # Display first 10 entries
+```
+As the dataset contains variables ranging from per capita crime rate to indicators for highway access, the variables are obviously measured in different units and hence displayed on different scales. This is not per se a problem for the fitting procedure. However, fitting is more efficient when all features (variables) are normalized.
+
+```{r}
+spec <- feature_spec(train_df, label ~ . ) %>% 
+  step_numeric_column(all_numeric(), normalizer_fn = scaler_standard()) %>% 
+  fit()
+
+layer <- layer_dense_features(
+  feature_columns = dense_features(spec), 
+  dtype = tf$float32
+)
+layer(train_df)
+
+```
+
+## Model specification
+
+We specify the model as a linear stack of layers: The input (all 13 explanatory variables), two densely connected hidden layers (each with a 64-dimensional output space), and finally the one-dimensional output layer (the 'dependent variable').
+
+
+```{r warning=FALSE, message=FALSE}
+# Create the model
+# model specification
+input <- layer_input_from_dataset(train_df %>% select(-label))
+
+output <- input %>% 
+  layer_dense_features(dense_features(spec)) %>% 
+  layer_dense(units = 64, activation = "relu") %>%
+  layer_dense(units = 64, activation = "relu") %>%
+  layer_dense(units = 1) 
+
+model <- keras_model(input, output)
+
+```
+
+In order to fit the model, we first have to compile it (configure it for training). At this step we set the configuration parameters that will guide the training/optimization procedure. We use the mean squared errors loss function (`mse`) typically used for regressions. We chose the [RMSProp](http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf) optimizer to find the minimum loss.
+
+```{r}
+# compile the model  
+model %>% 
+  compile(
+    loss = "mse",
+    optimizer = optimizer_rmsprop(),
+    metrics = list("mean_absolute_error")
+  )
+```
+
+Now we can get a summary of the model we are about to fit to the data.
+
+```{r}
+# get a summary of the model
+model
+```
+
+
+## Training and prediction
+
+Given the relatively simple model and small dataset, we set the maximum number of epochs to 500 and allow for early stopping in case the validation loss (based on test data) is not improving for a while.
+
+```{r}
+
+# Set max. number of epochs
+epochs <- 500
+
+```
+
+
+Finally, we fit the model while preserving the training history, and visualize the training progress.
+
+```{r warning=FALSE, message=FALSE}
+# Fit the model and store training stats
+
+history <- model %>% fit(
+  x = train_df %>% select(-label),
+  y = train_df$label,
+  epochs = epochs,
+  validation_split = 0.2,
+  verbose = 0
+)
+
+
+plot(history)
+```
+
+
+### A word of caution
+
+From just comparing the number of threads of a modern CPU with the number of threads of a modern GPU, one might get the impression that parallel tasks should always be implemented for GPU computing. However, whether one approach or the other is faster can depend a lot on the overall task and the data at hand. Moreover, the parallel implementation of tasks can be done more or less well on either system. Really efficient parallel implementation of tasks can take a lot of coding time (particularly when done for GPUs).^[For a more detailed discussion of the relevant factors for well done parallelization (either on CPUs or GPUs), see @matloff_2015].
+
+
+
