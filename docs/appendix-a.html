@@ -24,7 +24,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-05-05" />
+<meta name="date" content="2022-05-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -226,10 +226,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="cloud-computing.html"><a href="cloud-computing.html#ec2-with-rstudio-and-gpus"><i class="fa fa-check"></i><b>6.2</b> EC2 with RStudio and GPUs</a></li>
 <li class="chapter" data-level="6.3" data-path="cloud-computing.html"><a href="cloud-computing.html#gpus-on-google-colab"><i class="fa fa-check"></i><b>6.3</b> GPUs on Google Colab</a></li>
-<li class="chapter" data-level="6.4" data-path="cloud-computing.html"><a href="cloud-computing.html#aws-emr-mapreduce-in-the-cloud"><i class="fa fa-check"></i><b>6.4</b> AWS EMR: MapReduce in the cloud</a>
-<ul>
-<li class="chapter" data-level="6.4.1" data-path="cloud-computing.html"><a href="cloud-computing.html#set-up-an-emr-cluster-to-run-with-r"><i class="fa fa-check"></i><b>6.4.1</b> Set up an EMR cluster to run with R</a></li>
-</ul></li>
+<li class="chapter" data-level="6.4" data-path="cloud-computing.html"><a href="cloud-computing.html#aws-emr-mapreduce-in-the-cloud"><i class="fa fa-check"></i><b>6.4</b> AWS EMR: MapReduce in the cloud</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html"><i class="fa fa-check"></i><b>7</b> Data Collection and Data Storage</a>
 <ul>
@@ -319,7 +316,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="13" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html"><i class="fa fa-check"></i><b>13</b> Applied Econometrics with Spark</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#regression-analysis-with-sparklyr"><i class="fa fa-check"></i><b>13.1</b> Regression analysis with <code>sparklyr</code></a></li>
+<li class="chapter" data-level="13.1" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#simple-regression-analysis"><i class="fa fa-check"></i><b>13.1</b> Simple regression analysis</a></li>
+<li class="chapter" data-level="13.2" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#machine-learning-for-classification"><i class="fa fa-check"></i><b>13.2</b> Machine learning for classification</a></li>
+<li class="chapter" data-level="13.3" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#building-machine-learning-pipelines-with-r-and-spark"><i class="fa fa-check"></i><b>13.3</b> Building Machine Learning Pipelines with R and Spark</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#set-up-and-data-import"><i class="fa fa-check"></i><b>13.3.1</b> Set up and data import</a></li>
+<li class="chapter" data-level="13.3.2" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#building-the-pipeline"><i class="fa fa-check"></i><b>13.3.2</b> Building the pipeline</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#text-analysis-with-spark"><i class="fa fa-check"></i><b>13.4</b> Text analysis with Spark</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="appendix-a.html"><a href="appendix-a.html"><i class="fa fa-check"></i><b>A</b> Appendix A</a>
@@ -372,12 +376,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Open Rstudio and and navigate to a place on your hard-disk where you want to have the local copy of your repository.</li>
 <li>Then create the local repository as suggested by GitHub (see the page shown right after you have clicked on <code>Create repository</code>: “…or create a new repository on the command line”). In order to do so, you have to switch to the Terminal window in RStudio and type (or copy paste) the commands as given by GitHub. This should look similar to</li>
 </ol>
-<div class="sourceCode" id="cb524"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb524-1"><a href="appendix-a.html#cb524-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;# bigdatastat&quot;</span> <span class="op">&gt;&gt;</span> README.md</span>
-<span id="cb524-2"><a href="appendix-a.html#cb524-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span>
-<span id="cb524-3"><a href="appendix-a.html#cb524-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
-<span id="cb524-4"><a href="appendix-a.html#cb524-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;first commit&quot;</span></span>
-<span id="cb524-5"><a href="appendix-a.html#cb524-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin https://github.com/umatter/bigdatastat.git</span>
-<span id="cb524-6"><a href="appendix-a.html#cb524-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin master</span></code></pre></div>
+<div class="sourceCode" id="cb552"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb552-1"><a href="appendix-a.html#cb552-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;# bigdatastat&quot;</span> <span class="op">&gt;&gt;</span> README.md</span>
+<span id="cb552-2"><a href="appendix-a.html#cb552-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span>
+<span id="cb552-3"><a href="appendix-a.html#cb552-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
+<span id="cb552-4"><a href="appendix-a.html#cb552-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;first commit&quot;</span></span>
+<span id="cb552-5"><a href="appendix-a.html#cb552-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin https://github.com/umatter/bigdatastat.git</span>
+<span id="cb552-6"><a href="appendix-a.html#cb552-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin master</span></code></pre></div>
 <ol start="5" style="list-style-type: decimal">
 <li>Refresh the page of your newly created GitHub repository. You should now see the result of your first commit.</li>
 <li>Open <code>README.md</code> in RStudio and add a few words describing what this repository is all about.</li>
@@ -391,11 +395,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Click on <code>Clone or download</code> and copy the link.</li>
 <li>In RStudio, switch to the Terminal, and type the following command (pasting the copied link).</li>
 </ol>
-<div class="sourceCode" id="cb525"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb525-1"><a href="appendix-a.html#cb525-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/umatter/BigData.git</span></code></pre></div>
+<div class="sourceCode" id="cb553"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb553-1"><a href="appendix-a.html#cb553-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/umatter/BigData.git</span></code></pre></div>
 <p>You have now a local copy of the repository which is linked to the one on GitHub. You can see this by changing to the newly created directory, containing the local copy of the repository:</p>
-<div class="sourceCode" id="cb526"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb526-1"><a href="appendix-a.html#cb526-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> BigData</span></code></pre></div>
+<div class="sourceCode" id="cb554"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb554-1"><a href="appendix-a.html#cb554-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> BigData</span></code></pre></div>
 <p>Whenever there are some updates to the course’s repository on GitHub, you can update your local copy with:</p>
-<div class="sourceCode" id="cb527"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb527-1"><a href="appendix-a.html#cb527-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull</span></code></pre></div>
+<div class="sourceCode" id="cb555"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb555-1"><a href="appendix-a.html#cb555-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull</span></code></pre></div>
 <p>(Make sure you are in the <code>BigData</code> folder when running <code>git pull</code>.)</p>
 </div>
 <div id="fork-this-courses-repository" class="section level3" number="14.1.3">

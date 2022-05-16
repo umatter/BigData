@@ -24,7 +24,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-05-05" />
+<meta name="date" content="2022-05-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -226,10 +226,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="cloud-computing.html"><a href="cloud-computing.html#ec2-with-rstudio-and-gpus"><i class="fa fa-check"></i><b>6.2</b> EC2 with RStudio and GPUs</a></li>
 <li class="chapter" data-level="6.3" data-path="cloud-computing.html"><a href="cloud-computing.html#gpus-on-google-colab"><i class="fa fa-check"></i><b>6.3</b> GPUs on Google Colab</a></li>
-<li class="chapter" data-level="6.4" data-path="cloud-computing.html"><a href="cloud-computing.html#aws-emr-mapreduce-in-the-cloud"><i class="fa fa-check"></i><b>6.4</b> AWS EMR: MapReduce in the cloud</a>
-<ul>
-<li class="chapter" data-level="6.4.1" data-path="cloud-computing.html"><a href="cloud-computing.html#set-up-an-emr-cluster-to-run-with-r"><i class="fa fa-check"></i><b>6.4.1</b> Set up an EMR cluster to run with R</a></li>
-</ul></li>
+<li class="chapter" data-level="6.4" data-path="cloud-computing.html"><a href="cloud-computing.html#aws-emr-mapreduce-in-the-cloud"><i class="fa fa-check"></i><b>6.4</b> AWS EMR: MapReduce in the cloud</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html"><i class="fa fa-check"></i><b>7</b> Data Collection and Data Storage</a>
 <ul>
@@ -319,7 +316,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="13" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html"><i class="fa fa-check"></i><b>13</b> Applied Econometrics with Spark</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#regression-analysis-with-sparklyr"><i class="fa fa-check"></i><b>13.1</b> Regression analysis with <code>sparklyr</code></a></li>
+<li class="chapter" data-level="13.1" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#simple-regression-analysis"><i class="fa fa-check"></i><b>13.1</b> Simple regression analysis</a></li>
+<li class="chapter" data-level="13.2" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#machine-learning-for-classification"><i class="fa fa-check"></i><b>13.2</b> Machine learning for classification</a></li>
+<li class="chapter" data-level="13.3" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#building-machine-learning-pipelines-with-r-and-spark"><i class="fa fa-check"></i><b>13.3</b> Building Machine Learning Pipelines with R and Spark</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#set-up-and-data-import"><i class="fa fa-check"></i><b>13.3.1</b> Set up and data import</a></li>
+<li class="chapter" data-level="13.3.2" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#building-the-pipeline"><i class="fa fa-check"></i><b>13.3.2</b> Building the pipeline</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#text-analysis-with-spark"><i class="fa fa-check"></i><b>13.4</b> Text analysis with Spark</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="appendix-a.html"><a href="appendix-a.html"><i class="fa fa-check"></i><b>A</b> Appendix A</a>
@@ -364,33 +368,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1><span class="header-section-number">C</span> Appendix C</h1>
 <div id="install-hadoop-on-ubuntu-linux" class="section level4" number="16.0.0.1">
 <h4><span class="header-section-number">C.0.0.1</span> Install Hadoop (on Ubuntu Linux)</h4>
-<div class="sourceCode" id="cb589"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb589-1"><a href="appendix-c.html#cb589-1" aria-hidden="true" tabindex="-1"></a><span class="co"># download binary</span></span>
-<span id="cb589-2"><a href="appendix-c.html#cb589-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://dlcdn.apache.org/hadoop/common/hadoop-2.10.1/hadoop-2.10.1.tar.gz</span>
-<span id="cb589-3"><a href="appendix-c.html#cb589-3" aria-hidden="true" tabindex="-1"></a><span class="co"># download checksum</span></span>
-<span id="cb589-4"><a href="appendix-c.html#cb589-4" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://dlcdn.apache.org/hadoop/common/hadoop-2.10.1/hadoop-2.10.1.tar.gz.sha512</span>
-<span id="cb589-5"><a href="appendix-c.html#cb589-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb589-6"><a href="appendix-c.html#cb589-6" aria-hidden="true" tabindex="-1"></a><span class="co"># run the verification</span></span>
-<span id="cb589-7"><a href="appendix-c.html#cb589-7" aria-hidden="true" tabindex="-1"></a><span class="ex">shasum</span> <span class="at">-a</span> 512 hadoop-2.10.1.tar.gz</span>
-<span id="cb589-8"><a href="appendix-c.html#cb589-8" aria-hidden="true" tabindex="-1"></a><span class="co"># compare with value in mds file</span></span>
-<span id="cb589-9"><a href="appendix-c.html#cb589-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> hadoop-2.10.1.tar.gz.sha512</span>
-<span id="cb589-10"><a href="appendix-c.html#cb589-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb589-11"><a href="appendix-c.html#cb589-11" aria-hidden="true" tabindex="-1"></a><span class="co"># if all is fine, unpack</span></span>
-<span id="cb589-12"><a href="appendix-c.html#cb589-12" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzvf</span> hadoop-2.10.1.tar.gz</span>
-<span id="cb589-13"><a href="appendix-c.html#cb589-13" aria-hidden="true" tabindex="-1"></a><span class="co"># move to proper place</span></span>
-<span id="cb589-14"><a href="appendix-c.html#cb589-14" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mv hadoop-2.10.1 /usr/local/hadoop</span>
-<span id="cb589-15"><a href="appendix-c.html#cb589-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb589-16"><a href="appendix-c.html#cb589-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb589-17"><a href="appendix-c.html#cb589-17" aria-hidden="true" tabindex="-1"></a><span class="co"># then point to this version from hadoop</span></span>
-<span id="cb589-18"><a href="appendix-c.html#cb589-18" aria-hidden="true" tabindex="-1"></a><span class="co"># open the file /usr/local/hadoop/etc/hadoop/hadoop-env.sh</span></span></code></pre></div>
-<div class="sourceCode" id="cb590"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb590-1"><a href="appendix-c.html#cb590-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in a text editor and add (where export JAVA_HOME=...)</span></span>
-<span id="cb590-2"><a href="appendix-c.html#cb590-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">JAVA_HOME=$(</span><span class="fu">readlink</span> <span class="at">-f</span> /usr/bin/java <span class="kw">|</span> <span class="fu">sed</span> <span class="st">&quot;s:bin/java::&quot;</span><span class="va">)</span></span>
-<span id="cb590-3"><a href="appendix-c.html#cb590-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb590-4"><a href="appendix-c.html#cb590-4" aria-hidden="true" tabindex="-1"></a><span class="co"># clean up</span></span>
-<span id="cb590-5"><a href="appendix-c.html#cb590-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> hadoop-2.10.1.tar.gz</span>
-<span id="cb590-6"><a href="appendix-c.html#cb590-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> hadoop-2.10.1.tar.gz.sha512</span></code></pre></div>
+<div class="sourceCode" id="cb617"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb617-1"><a href="appendix-c.html#cb617-1" aria-hidden="true" tabindex="-1"></a><span class="co"># download binary</span></span>
+<span id="cb617-2"><a href="appendix-c.html#cb617-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://dlcdn.apache.org/hadoop/common/hadoop-2.10.1/hadoop-2.10.1.tar.gz</span>
+<span id="cb617-3"><a href="appendix-c.html#cb617-3" aria-hidden="true" tabindex="-1"></a><span class="co"># download checksum</span></span>
+<span id="cb617-4"><a href="appendix-c.html#cb617-4" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://dlcdn.apache.org/hadoop/common/hadoop-2.10.1/hadoop-2.10.1.tar.gz.sha512</span>
+<span id="cb617-5"><a href="appendix-c.html#cb617-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb617-6"><a href="appendix-c.html#cb617-6" aria-hidden="true" tabindex="-1"></a><span class="co"># run the verification</span></span>
+<span id="cb617-7"><a href="appendix-c.html#cb617-7" aria-hidden="true" tabindex="-1"></a><span class="ex">shasum</span> <span class="at">-a</span> 512 hadoop-2.10.1.tar.gz</span>
+<span id="cb617-8"><a href="appendix-c.html#cb617-8" aria-hidden="true" tabindex="-1"></a><span class="co"># compare with value in mds file</span></span>
+<span id="cb617-9"><a href="appendix-c.html#cb617-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> hadoop-2.10.1.tar.gz.sha512</span>
+<span id="cb617-10"><a href="appendix-c.html#cb617-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb617-11"><a href="appendix-c.html#cb617-11" aria-hidden="true" tabindex="-1"></a><span class="co"># if all is fine, unpack</span></span>
+<span id="cb617-12"><a href="appendix-c.html#cb617-12" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzvf</span> hadoop-2.10.1.tar.gz</span>
+<span id="cb617-13"><a href="appendix-c.html#cb617-13" aria-hidden="true" tabindex="-1"></a><span class="co"># move to proper place</span></span>
+<span id="cb617-14"><a href="appendix-c.html#cb617-14" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mv hadoop-2.10.1 /usr/local/hadoop</span>
+<span id="cb617-15"><a href="appendix-c.html#cb617-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb617-16"><a href="appendix-c.html#cb617-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb617-17"><a href="appendix-c.html#cb617-17" aria-hidden="true" tabindex="-1"></a><span class="co"># then point to this version from hadoop</span></span>
+<span id="cb617-18"><a href="appendix-c.html#cb617-18" aria-hidden="true" tabindex="-1"></a><span class="co"># open the file /usr/local/hadoop/etc/hadoop/hadoop-env.sh</span></span></code></pre></div>
+<div class="sourceCode" id="cb618"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb618-1"><a href="appendix-c.html#cb618-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in a text editor and add (where export JAVA_HOME=...)</span></span>
+<span id="cb618-2"><a href="appendix-c.html#cb618-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">JAVA_HOME=$(</span><span class="fu">readlink</span> <span class="at">-f</span> /usr/bin/java <span class="kw">|</span> <span class="fu">sed</span> <span class="st">&quot;s:bin/java::&quot;</span><span class="va">)</span></span>
+<span id="cb618-3"><a href="appendix-c.html#cb618-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb618-4"><a href="appendix-c.html#cb618-4" aria-hidden="true" tabindex="-1"></a><span class="co"># clean up</span></span>
+<span id="cb618-5"><a href="appendix-c.html#cb618-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> hadoop-2.10.1.tar.gz</span>
+<span id="cb618-6"><a href="appendix-c.html#cb618-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> hadoop-2.10.1.tar.gz.sha512</span></code></pre></div>
 <p>After running all of the steps above, run the following line in the terminal to check the installation</p>
-<div class="sourceCode" id="cb591"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb591-1"><a href="appendix-c.html#cb591-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check installation</span></span>
-<span id="cb591-2"><a href="appendix-c.html#cb591-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/usr/local/hadoop/bin/hadoop</span></span></code></pre></div>
+<div class="sourceCode" id="cb619"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb619-1"><a href="appendix-c.html#cb619-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check installation</span></span>
+<span id="cb619-2"><a href="appendix-c.html#cb619-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/usr/local/hadoop/bin/hadoop</span></span></code></pre></div>
 </div>
 </div>
             </section>

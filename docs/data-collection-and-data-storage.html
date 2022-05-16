@@ -24,7 +24,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-05-05" />
+<meta name="date" content="2022-05-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -226,10 +226,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="cloud-computing.html"><a href="cloud-computing.html#ec2-with-rstudio-and-gpus"><i class="fa fa-check"></i><b>6.2</b> EC2 with RStudio and GPUs</a></li>
 <li class="chapter" data-level="6.3" data-path="cloud-computing.html"><a href="cloud-computing.html#gpus-on-google-colab"><i class="fa fa-check"></i><b>6.3</b> GPUs on Google Colab</a></li>
-<li class="chapter" data-level="6.4" data-path="cloud-computing.html"><a href="cloud-computing.html#aws-emr-mapreduce-in-the-cloud"><i class="fa fa-check"></i><b>6.4</b> AWS EMR: MapReduce in the cloud</a>
-<ul>
-<li class="chapter" data-level="6.4.1" data-path="cloud-computing.html"><a href="cloud-computing.html#set-up-an-emr-cluster-to-run-with-r"><i class="fa fa-check"></i><b>6.4.1</b> Set up an EMR cluster to run with R</a></li>
-</ul></li>
+<li class="chapter" data-level="6.4" data-path="cloud-computing.html"><a href="cloud-computing.html#aws-emr-mapreduce-in-the-cloud"><i class="fa fa-check"></i><b>6.4</b> AWS EMR: MapReduce in the cloud</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html"><i class="fa fa-check"></i><b>7</b> Data Collection and Data Storage</a>
 <ul>
@@ -319,7 +316,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="13" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html"><i class="fa fa-check"></i><b>13</b> Applied Econometrics with Spark</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#regression-analysis-with-sparklyr"><i class="fa fa-check"></i><b>13.1</b> Regression analysis with <code>sparklyr</code></a></li>
+<li class="chapter" data-level="13.1" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#simple-regression-analysis"><i class="fa fa-check"></i><b>13.1</b> Simple regression analysis</a></li>
+<li class="chapter" data-level="13.2" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#machine-learning-for-classification"><i class="fa fa-check"></i><b>13.2</b> Machine learning for classification</a></li>
+<li class="chapter" data-level="13.3" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#building-machine-learning-pipelines-with-r-and-spark"><i class="fa fa-check"></i><b>13.3</b> Building Machine Learning Pipelines with R and Spark</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#set-up-and-data-import"><i class="fa fa-check"></i><b>13.3.1</b> Set up and data import</a></li>
+<li class="chapter" data-level="13.3.2" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#building-the-pipeline"><i class="fa fa-check"></i><b>13.3.2</b> Building the pipeline</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#text-analysis-with-spark"><i class="fa fa-check"></i><b>13.4</b> Text analysis with Spark</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="appendix-a.html"><a href="appendix-a.html"><i class="fa fa-check"></i><b>A</b> Appendix A</a>
@@ -466,7 +470,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb204-8"><a href="data-collection-and-data-storage.html#cb204-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb204-9"><a href="data-collection-and-data-storage.html#cb204-9" aria-hidden="true" tabindex="-1"></a><span class="co"># check how much memory is used by R (overall)</span></span>
 <span id="cb204-10"><a href="data-collection-and-data-storage.html#cb204-10" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_used</span>()</span></code></pre></div>
-<pre><code>## 1.71 GB</code></pre>
+<pre><code>## 1.73 GB</code></pre>
 <div class="sourceCode" id="cb206"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb206-1"><a href="data-collection-and-data-storage.html#cb206-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check the change in memory due to each step</span></span>
 <span id="cb206-2"><a href="data-collection-and-data-storage.html#cb206-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb206-3"><a href="data-collection-and-data-storage.html#cb206-3" aria-hidden="true" tabindex="-1"></a><span class="co"># DATA IMPORT ----------------</span></span>
@@ -477,15 +481,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb208-3"><a href="data-collection-and-data-storage.html#cb208-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb208-4"><a href="data-collection-and-data-storage.html#cb208-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check how much memory is used by R now</span></span>
 <span id="cb208-5"><a href="data-collection-and-data-storage.html#cb208-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_used</span>()</span></code></pre></div>
-<pre><code>## 1.71 GB</code></pre>
+<pre><code>## 1.73 GB</code></pre>
 <p>The last result is kind of interesting. The object <code>flights</code> must have been larger right after importing it than at the end of the script. We have thrown out several variables, after all. Why does R still use that much memory? R does by default not ‘clean up’ memory unless it is really necessary (meaning no more memory is available). In this case, R has still way more memory available from the operating system, thus there is no need to ‘collect the garbage’ yet. However, we can force R to collect the garbage on the spot with <code>gc()</code>. This can be helpful to better keep track of the memory needed by an analytics script.</p>
 <div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="data-collection-and-data-storage.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span></code></pre></div>
 <pre><code>##             used   (Mb) gc trigger   (Mb)  max used
-## Ncells   6348774  339.1   10550368  563.5  10550368
-## Vcells 169481293 1293.1  450132776 3434.3 312469873
+## Ncells   6574688  351.2   11442235  611.1  11442235
+## Vcells 169899865 1296.3  401497148 3063.2 334513447
 ##          (Mb)
-## Ncells  563.5
-## Vcells 2384.0</code></pre>
+## Ncells  611.1
+## Vcells 2552.2</code></pre>
 <p>Now, let’s see how we can improve the performance of this script with regard to memory allocation. Most memory is allocated when importing the file. Obviously, any improvement of the script must still result in importing all the data. However, there are different ways to read data into RAM. <code>read.csv()</code> reads all lines of a csv file consecutively. In contrast, <code>data.table::fread()</code> first ‘maps’ the data file into memory and only then actually reads it in line by line. This involves an additional initial step, but the larger the file, the less relevant is this first step with regard to the total time needed to read all the data into memory. By switching on the <code>verbose</code> option, we can actually see what <code>fread</code> is doing.</p>
 <div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="data-collection-and-data-storage.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
 <span id="cb212-2"><a href="data-collection-and-data-storage.html#cb212-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span></code></pre></div>
@@ -548,7 +552,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   Allocating 19 column slots (19 - 0 dropped) with 370043 rows
 ## [11] Read the data
 ##   jumps=[0..30), chunk_size=1032016, total_size=30960501
-## Read 336776 rows x 19 columns from 29.53MB (30960660 bytes) file in 00:00.064 wall clock time
+## Read 336776 rows x 19 columns from 29.53MB (30960660 bytes) file in 00:00.061 wall clock time
 ## [12] Finalizing the datatable
 ##   Type counts:
 ##         14 : int32     &#39;5&#39;
@@ -558,13 +562,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##    0.000s (  0%) Memory map 0.029GB file
 ##    0.003s (  5%) sep=&#39;,&#39; ncol=19 and header detection
 ##    0.000s (  0%) Column type detection using 10048 sample rows
-##    0.001s (  1%) Allocation of 370043 rows x 19 cols (0.033GB) of which 336776 ( 91%) rows used
-##    0.060s ( 94%) Reading 30 chunks (0 swept) of 0.984MB (each chunk 11225 rows) using 6 threads
-##    +    0.017s ( 27%) Parse to row-major thread buffers (grown 0 times)
-##    +    0.027s ( 42%) Transpose
-##    +    0.015s ( 24%) Waiting
+##    0.001s (  2%) Allocation of 370043 rows x 19 cols (0.033GB) of which 336776 ( 91%) rows used
+##    0.057s ( 92%) Reading 30 chunks (0 swept) of 0.984MB (each chunk 11225 rows) using 6 threads
+##    +    0.012s ( 19%) Parse to row-major thread buffers (grown 0 times)
+##    +    0.028s ( 45%) Transpose
+##    +    0.017s ( 28%) Waiting
 ##    0.000s (  0%) Rereading 0 columns due to out-of-sample type exceptions
-##    0.064s        Total</code></pre>
+##    0.061s        Total</code></pre>
 <p>Let’s put it all together and look at the memory changes and usage. For a fair comparison, we first have to delete <code>flights</code> and collect the garbage with <code>gc()</code>.</p>
 <div class="sourceCode" id="cb217"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb217-1"><a href="data-collection-and-data-storage.html#cb217-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP -----------------</span></span>
 <span id="cb217-2"><a href="data-collection-and-data-storage.html#cb217-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -578,11 +582,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb217-10"><a href="data-collection-and-data-storage.html#cb217-10" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
 <span id="cb217-11"><a href="data-collection-and-data-storage.html#cb217-11" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span></code></pre></div>
 <pre><code>##             used   (Mb) gc trigger   (Mb)  max used
-## Ncells   6406594  342.2   10550368  563.5  10550368
-## Vcells 166466481 1270.1  450132776 3434.3 312469873
+## Ncells   6632863  354.3   11442235  611.1  11442235
+## Vcells 166885404 1273.3  401497148 3063.2 334513447
 ##          (Mb)
-## Ncells  563.5
-## Vcells 2384.0</code></pre>
+## Ncells  611.1
+## Vcells 2552.2</code></pre>
 <div class="sourceCode" id="cb219"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb219-1"><a href="data-collection-and-data-storage.html#cb219-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check the change in memory due to each step</span></span>
 <span id="cb219-2"><a href="data-collection-and-data-storage.html#cb219-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb219-3"><a href="data-collection-and-data-storage.html#cb219-3" aria-hidden="true" tabindex="-1"></a><span class="co"># DATA IMPORT ----------------</span></span>
@@ -653,7 +657,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb225-12"><a href="data-collection-and-data-storage.html#cb225-12" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> <span class="dv">10</span>;</span></code></pre></div>
 <div class="knitsql-table">
 <table>
-<caption><span id="tab:unnamed-chunk-124">Table 7.1: </span>Displaying records 1 - 10</caption>
+<caption><span id="tab:unnamed-chunk-126">Table 7.1: </span>Displaying records 1 - 10</caption>
 <thead>
 <tr class="header">
 <th align="right">year</th>
@@ -757,7 +761,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb227-12"><a href="data-collection-and-data-storage.html#cb227-12" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> <span class="dv">10</span>;</span></code></pre></div>
 <div class="knitsql-table">
 <table>
-<caption><span id="tab:unnamed-chunk-126">Table 7.2: </span>Displaying records 1 - 10</caption>
+<caption><span id="tab:unnamed-chunk-128">Table 7.2: </span>Displaying records 1 - 10</caption>
 <thead>
 <tr class="header">
 <th align="right">year</th>
@@ -918,7 +922,7 @@ Figure 7.2: Easy creation of a RDS MySQL DB.
 </p>
 </div>
 
-<p>Once the database instance is ready, you will see it in the databases overview. Click on the DB identifier (the name of your database shown in the list of databases) and click on modify (button in the upper-right corner). In the “Connectivity” panel under “Additional configuration,” select <em>Publicly accessible</em> (this is necessary to interact with the DB from your local machine), and save the settings. Back on the overview page of your database, under “Connectivity &amp; security,” click on the link under the VPC security groups, scroll down and select the “Inbound rules” tab. Edit the inbound rule to allow any IP4 inbound traffic.<a href="#fn34" class="footnote-ref" id="fnref34"><sup>34</sup></a></p>
+<p>Once the database instance is ready, you will see it in the databases overview. Click on the DB identifier (the name of your database shown in the list of databases) and click on modify (button in the upper-right corner). In the “Connectivity” panel under “Additional configuration,” select <em>Publicly accessible</em> (this is necessary to interact with the DB from your local machine), and save the settings. Back on the overview page of your database, under “Connectivity &amp; security,” click on the link under the VPC security groups, scroll down and select the “Inbound rules” tab. Edit the inbound rule to allow any IP4 inbound traffic.<a href="#fn36" class="footnote-ref" id="fnref36"><sup>36</sup></a></p>
 <div class="figure" style="text-align: center"><span id="fig:rdsinboundrules"></span>
 <img src="img/rds_inboundrules.png" alt="Allow all IP4 inbound traffic (set Source to 0.0.0.0/0)." width="80%" />
 <p class="caption">
@@ -1008,7 +1012,7 @@ Figure 7.3: Allow all IP4 inbound traffic (set Source to <code>0.0.0.0/0</code>)
 <span id="cb239-2"><a href="data-collection-and-data-storage.html#cb239-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install mariadb-server</span>
 <span id="cb239-3"><a href="data-collection-and-data-storage.html#cb239-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install libmariadbclient-dev</span>
 <span id="cb239-4"><a href="data-collection-and-data-storage.html#cb239-4" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install libxml2-dev <span class="co"># needed later (dependency for some R packages)</span></span></code></pre></div>
-<p>If prompted to set a password for the root database user (user with all database priviledges), type in and confirm the chosen password.<a href="#fn35" class="footnote-ref" id="fnref35"><sup>35</sup></a></p>
+<p>If prompted to set a password for the root database user (user with all database priviledges), type in and confirm the chosen password.<a href="#fn37" class="footnote-ref" id="fnref37"><sup>37</sup></a></p>
 <div id="data-import" class="section level4" number="7.5.2.1">
 <h4><span class="header-section-number">7.5.2.1</span> Data import</h4>
 <p>With the permissions set above, we can send data from the local machine directly to the instance via <code>ssh</code>. We use this to first transfer the raw data to the instance and then import it to the database.</p>
@@ -1033,7 +1037,7 @@ Figure 7.3: Allow all IP4 inbound traffic (set Source to <code>0.0.0.0/0</code>)
 <div class="sourceCode" id="cb244"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb244-1"><a href="data-collection-and-data-storage.html#cb244-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">database</span> data1;</span></code></pre></div>
 <p>To work with the newly created database, we have to ‘select’ it.</p>
 <div class="sourceCode" id="cb245"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb245-1"><a href="data-collection-and-data-storage.html#cb245-1" aria-hidden="true" tabindex="-1"></a><span class="kw">USE</span> data1;</span></code></pre></div>
-<p>Then, we create the first table of our database and import data into it. Note that we only have to slightly adjust the former SQLite syntax to make this work (remove double quotes for field names). In addition, note that we can use the same field types as in the SQLite DB.<a href="#fn36" class="footnote-ref" id="fnref36"><sup>36</sup></a></p>
+<p>Then, we create the first table of our database and import data into it. Note that we only have to slightly adjust the former SQLite syntax to make this work (remove double quotes for field names). In addition, note that we can use the same field types as in the SQLite DB.<a href="#fn38" class="footnote-ref" id="fnref38"><sup>38</sup></a></p>
 <div class="sourceCode" id="cb246"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb246-1"><a href="data-collection-and-data-storage.html#cb246-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Create the new table</span></span>
 <span id="cb246-2"><a href="data-collection-and-data-storage.html#cb246-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> econ(</span>
 <span id="cb246-3"><a href="data-collection-and-data-storage.html#cb246-3" aria-hidden="true" tabindex="-1"></a><span class="dt">date</span> <span class="dt">DATE</span>,</span>
@@ -1103,10 +1107,10 @@ Figure 7.3: Allow all IP4 inbound traffic (set Source to <code>0.0.0.0/0</code>)
 </div>
 <div class="footnotes">
 <hr />
-<ol start="34">
-<li id="fn34"><p>Note that this is not generally recommendable. Only do this to get familiar with the service and to test some code.<a href="data-collection-and-data-storage.html#fnref34" class="footnote-back">↩︎</a></p></li>
-<li id="fn35"><p>Below it is shown how to do this ‘manually,’ if not promted at this step.<a href="data-collection-and-data-storage.html#fnref35" class="footnote-back">↩︎</a></p></li>
-<li id="fn36"><p>However, MariaDB is a much more sophisticated RDBMS than SQLite and comes with many more field types, see the official <a href="https://mariadb.com/kb/en/library/data-types/">list of supported data types</a>.<a href="data-collection-and-data-storage.html#fnref36" class="footnote-back">↩︎</a></p></li>
+<ol start="36">
+<li id="fn36"><p>Note that this is not generally recommendable. Only do this to get familiar with the service and to test some code.<a href="data-collection-and-data-storage.html#fnref36" class="footnote-back">↩︎</a></p></li>
+<li id="fn37"><p>Below it is shown how to do this ‘manually,’ if not promted at this step.<a href="data-collection-and-data-storage.html#fnref37" class="footnote-back">↩︎</a></p></li>
+<li id="fn38"><p>However, MariaDB is a much more sophisticated RDBMS than SQLite and comes with many more field types, see the official <a href="https://mariadb.com/kb/en/library/data-types/">list of supported data types</a>.<a href="data-collection-and-data-storage.html#fnref38" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

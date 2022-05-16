@@ -24,7 +24,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-05-05" />
+<meta name="date" content="2022-05-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -226,10 +226,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="cloud-computing.html"><a href="cloud-computing.html#ec2-with-rstudio-and-gpus"><i class="fa fa-check"></i><b>6.2</b> EC2 with RStudio and GPUs</a></li>
 <li class="chapter" data-level="6.3" data-path="cloud-computing.html"><a href="cloud-computing.html#gpus-on-google-colab"><i class="fa fa-check"></i><b>6.3</b> GPUs on Google Colab</a></li>
-<li class="chapter" data-level="6.4" data-path="cloud-computing.html"><a href="cloud-computing.html#aws-emr-mapreduce-in-the-cloud"><i class="fa fa-check"></i><b>6.4</b> AWS EMR: MapReduce in the cloud</a>
-<ul>
-<li class="chapter" data-level="6.4.1" data-path="cloud-computing.html"><a href="cloud-computing.html#set-up-an-emr-cluster-to-run-with-r"><i class="fa fa-check"></i><b>6.4.1</b> Set up an EMR cluster to run with R</a></li>
-</ul></li>
+<li class="chapter" data-level="6.4" data-path="cloud-computing.html"><a href="cloud-computing.html#aws-emr-mapreduce-in-the-cloud"><i class="fa fa-check"></i><b>6.4</b> AWS EMR: MapReduce in the cloud</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html"><i class="fa fa-check"></i><b>7</b> Data Collection and Data Storage</a>
 <ul>
@@ -319,7 +316,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="13" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html"><i class="fa fa-check"></i><b>13</b> Applied Econometrics with Spark</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#regression-analysis-with-sparklyr"><i class="fa fa-check"></i><b>13.1</b> Regression analysis with <code>sparklyr</code></a></li>
+<li class="chapter" data-level="13.1" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#simple-regression-analysis"><i class="fa fa-check"></i><b>13.1</b> Simple regression analysis</a></li>
+<li class="chapter" data-level="13.2" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#machine-learning-for-classification"><i class="fa fa-check"></i><b>13.2</b> Machine learning for classification</a></li>
+<li class="chapter" data-level="13.3" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#building-machine-learning-pipelines-with-r-and-spark"><i class="fa fa-check"></i><b>13.3</b> Building Machine Learning Pipelines with R and Spark</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#set-up-and-data-import"><i class="fa fa-check"></i><b>13.3.1</b> Set up and data import</a></li>
+<li class="chapter" data-level="13.3.2" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#building-the-pipeline"><i class="fa fa-check"></i><b>13.3.2</b> Building the pipeline</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#text-analysis-with-spark"><i class="fa fa-check"></i><b>13.4</b> Text analysis with Spark</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="appendix-a.html"><a href="appendix-a.html"><i class="fa fa-check"></i><b>A</b> Appendix A</a>
@@ -539,11 +543,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="big-data-econometrics.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># apply the ols estimator</span></span>
 <span id="cb17-2"><a href="big-data-econometrics.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">beta_ols</span>(X, y)</span></code></pre></div>
 <pre><code>##         [,1]
-## [1,]  2.0004
+## [1,]  1.9956
 ## [2,]  1.5000
-## [3,]  4.0006
-## [4,] -3.5004
-## [5,]  0.4999</code></pre>
+## [3,]  4.0000
+## [4,] -3.4999
+## [5,]  0.5004</code></pre>
 </div>
 <div id="the-uluru-algorithm-as-an-alternative-to-ols" class="section level3" number="2.2.2">
 <h3><span class="header-section-number">2.2.2</span> The Uluru algorithm as an alternative to OLS</h3>
@@ -583,11 +587,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb20-10"><a href="big-data-econometrics.html#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co"># apply the uluru estimator</span></span>
 <span id="cb20-11"><a href="big-data-econometrics.html#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="fu">beta_uluru</span>(X_subs, y_subs, X_rem, y_rem)</span></code></pre></div>
 <pre><code>##         [,1]
-## [1,]  2.0500
-## [2,]  1.4986
-## [3,]  3.9922
-## [4,] -3.4970
-## [5,]  0.5007</code></pre>
+## [1,]  1.9283
+## [2,]  1.5018
+## [3,]  4.0040
+## [4,] -3.5009
+## [5,]  0.5024</code></pre>
 <p>This looks quite good already. Let’s have a closer look with a little Monte Carlo study. The aim of the simulation study is to visualize the difference between the classical OLS approach and the <em>Uluru</em> algorithm with regard to bias and time complexity if we increase the sub-sample size in <em>Uluru</em>. For simplicity, we only look at the first estimated coefficient <span class="math inline">\(\beta_{1}\)</span>.</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="big-data-econometrics.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define subsamples</span></span>
 <span id="cb22-2"><a href="big-data-econometrics.html#cb22-2" aria-hidden="true" tabindex="-1"></a>n_subs_sizes <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1000</span>, <span class="at">to =</span> <span class="dv">500000</span>, <span class="at">by=</span><span class="dv">10000</span>)</span>

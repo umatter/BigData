@@ -24,7 +24,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-05-05" />
+<meta name="date" content="2022-05-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -226,10 +226,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="cloud-computing.html"><a href="cloud-computing.html#ec2-with-rstudio-and-gpus"><i class="fa fa-check"></i><b>6.2</b> EC2 with RStudio and GPUs</a></li>
 <li class="chapter" data-level="6.3" data-path="cloud-computing.html"><a href="cloud-computing.html#gpus-on-google-colab"><i class="fa fa-check"></i><b>6.3</b> GPUs on Google Colab</a></li>
-<li class="chapter" data-level="6.4" data-path="cloud-computing.html"><a href="cloud-computing.html#aws-emr-mapreduce-in-the-cloud"><i class="fa fa-check"></i><b>6.4</b> AWS EMR: MapReduce in the cloud</a>
-<ul>
-<li class="chapter" data-level="6.4.1" data-path="cloud-computing.html"><a href="cloud-computing.html#set-up-an-emr-cluster-to-run-with-r"><i class="fa fa-check"></i><b>6.4.1</b> Set up an EMR cluster to run with R</a></li>
-</ul></li>
+<li class="chapter" data-level="6.4" data-path="cloud-computing.html"><a href="cloud-computing.html#aws-emr-mapreduce-in-the-cloud"><i class="fa fa-check"></i><b>6.4</b> AWS EMR: MapReduce in the cloud</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html"><i class="fa fa-check"></i><b>7</b> Data Collection and Data Storage</a>
 <ul>
@@ -319,7 +316,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="13" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html"><i class="fa fa-check"></i><b>13</b> Applied Econometrics with Spark</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#regression-analysis-with-sparklyr"><i class="fa fa-check"></i><b>13.1</b> Regression analysis with <code>sparklyr</code></a></li>
+<li class="chapter" data-level="13.1" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#simple-regression-analysis"><i class="fa fa-check"></i><b>13.1</b> Simple regression analysis</a></li>
+<li class="chapter" data-level="13.2" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#machine-learning-for-classification"><i class="fa fa-check"></i><b>13.2</b> Machine learning for classification</a></li>
+<li class="chapter" data-level="13.3" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#building-machine-learning-pipelines-with-r-and-spark"><i class="fa fa-check"></i><b>13.3</b> Building Machine Learning Pipelines with R and Spark</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#set-up-and-data-import"><i class="fa fa-check"></i><b>13.3.1</b> Set up and data import</a></li>
+<li class="chapter" data-level="13.3.2" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#building-the-pipeline"><i class="fa fa-check"></i><b>13.3.2</b> Building the pipeline</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#text-analysis-with-spark"><i class="fa fa-check"></i><b>13.4</b> Text analysis with Spark</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="appendix-a.html"><a href="appendix-a.html"><i class="fa fa-check"></i><b>A</b> Appendix A</a>
@@ -394,11 +398,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb254-7"><a href="big-data-cleaning-and-transformation.html#cb254-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">next.rows=</span><span class="dv">100000</span>,</span>
 <span id="cb254-8"><a href="big-data-cleaning-and-transformation.html#cb254-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">colClasses=</span><span class="cn">NA</span>)</span>
 <span id="cb254-9"><a href="big-data-cleaning-and-transformation.html#cb254-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<pre><code>## read.table.ffdf 1..100000 (100000)  csv-read=0.407sec ffdf-write=0.065sec
-## read.table.ffdf 100001..200000 (100000)  csv-read=0.43sec ffdf-write=0.036sec
-## read.table.ffdf 200001..300000 (100000)  csv-read=0.428sec ffdf-write=0.034sec
-## read.table.ffdf 300001..336776 (36776)  csv-read=0.168sec ffdf-write=0.022sec
-##  csv-read=1.433sec  ffdf-write=0.157sec  TOTAL=1.59sec</code></pre>
+<pre><code>## read.table.ffdf 1..100000 (100000)  csv-read=0.38sec ffdf-write=0.08sec
+## read.table.ffdf 100001..200000 (100000)  csv-read=0.417sec ffdf-write=0.032sec
+## read.table.ffdf 200001..300000 (100000)  csv-read=0.389sec ffdf-write=0.03sec
+## read.table.ffdf 300001..336776 (36776)  csv-read=0.151sec ffdf-write=0.019sec
+##  csv-read=1.337sec  ffdf-write=0.161sec  TOTAL=1.498sec</code></pre>
 <pre><code>## -30.1 MB</code></pre>
 <p>Note that there are two substantial differences to what we have previously seen when using <code>fread()</code>. It takes much longer to import a csv into the ffdf structure. However, the RAM allocated to it is much smaller. This is exactly what we would expect, keeping in mind what <code>read.table.ffdf()</code> does in comparison to what <code>fread()</code> does. Now we can actually have a look at the data chunks created by <code>ff</code>.</p>
 <div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="big-data-cleaning-and-transformation.html#cb257-1" aria-hidden="true" tabindex="-1"></a><span class="co"># show the files in the directory keeping the chunks</span></span>
@@ -409,7 +413,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="memory-mapping-with-bigmemory" class="section level3" number="8.1.2">
 <h3><span class="header-section-number">8.1.2</span> Memory mapping with <code>bigmemory</code></h3>
-<p>The <code>bigmemory</code>-package handles data in matrices, and therefore only accepts variables in the same data type. Before importing data via the <code>bigmemory</code>-package, we thus have to ensure that all variables in the raw data can be imported in a common type. This example follows the example of the package authors given <a href="https://cran.r-project.org/web/packages/bigmemory/vignettes/Overview.pdf">here</a>.<a href="#fn37" class="footnote-ref" id="fnref37"><sup>37</sup></a></p>
+<p>The <code>bigmemory</code>-package handles data in matrices, and therefore only accepts variables in the same data type. Before importing data via the <code>bigmemory</code>-package, we thus have to ensure that all variables in the raw data can be imported in a common type. This example follows the example of the package authors given <a href="https://cran.r-project.org/web/packages/bigmemory/vignettes/Overview.pdf">here</a>.<a href="#fn39" class="footnote-ref" id="fnref39"><sup>39</sup></a></p>
 <div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="big-data-cleaning-and-transformation.html#cb259-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP ----------------</span></span>
 <span id="cb259-2"><a href="big-data-cleaning-and-transformation.html#cb259-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb259-3"><a href="big-data-cleaning-and-transformation.html#cb259-3" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
@@ -520,7 +524,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb263-2"><a href="big-data-cleaning-and-transformation.html#cb263-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb263-3"><a href="big-data-cleaning-and-transformation.html#cb263-3" aria-hidden="true" tabindex="-1"></a><span class="co"># check memory used</span></span>
 <span id="cb263-4"><a href="big-data-cleaning-and-transformation.html#cb263-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_used</span>()</span></code></pre></div>
-<pre><code>## 1.71 GB</code></pre>
+<pre><code>## 1.72 GB</code></pre>
 <div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="big-data-cleaning-and-transformation.html#cb265-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Upload flights_sep_oct15.txt and airline_id.csv files from flat files. </span></span>
 <span id="cb265-2"><a href="big-data-cleaning-and-transformation.html#cb265-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb265-3"><a href="big-data-cleaning-and-transformation.html#cb265-3" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(flights.ff <span class="ot">&lt;-</span> <span class="fu">read.table.ffdf</span>(<span class="at">file=</span>FLIGHTS_DATA,</span>
@@ -529,52 +533,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb265-6"><a href="big-data-cleaning-and-transformation.html#cb265-6" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">header=</span><span class="cn">TRUE</span>,</span>
 <span id="cb265-7"><a href="big-data-cleaning-and-transformation.html#cb265-7" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">next.rows=</span><span class="dv">100000</span>,</span>
 <span id="cb265-8"><a href="big-data-cleaning-and-transformation.html#cb265-8" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">colClasses=</span><span class="cn">NA</span>))</span></code></pre></div>
-<pre><code>## read.table.ffdf 1..100000 (100000)  csv-read=0.569sec ffdf-write=0.08sec
-## read.table.ffdf 100001..200000 (100000)  csv-read=0.621sec ffdf-write=0.067sec
-## read.table.ffdf 200001..300000 (100000)  csv-read=0.574sec ffdf-write=0.058sec
-## read.table.ffdf 300001..400000 (100000)  csv-read=0.605sec ffdf-write=0.063sec
-## read.table.ffdf 400001..500000 (100000)  csv-read=0.566sec ffdf-write=0.079sec
-## read.table.ffdf 500001..600000 (100000)  csv-read=0.592sec ffdf-write=0.059sec
-## read.table.ffdf 600001..700000 (100000)  csv-read=0.573sec ffdf-write=0.056sec
-## read.table.ffdf 700001..800000 (100000)  csv-read=0.578sec ffdf-write=0.059sec
-## read.table.ffdf 800001..900000 (100000)  csv-read=0.573sec ffdf-write=0.063sec
-## read.table.ffdf 900001..951111 (51111)  csv-read=0.355sec ffdf-write=0.051sec
-##  csv-read=5.606sec  ffdf-write=0.635sec  TOTAL=6.241sec</code></pre>
+<pre><code>## read.table.ffdf 1..100000 (100000)  csv-read=0.509sec ffdf-write=0.071sec
+## read.table.ffdf 100001..200000 (100000)  csv-read=0.55sec ffdf-write=0.056sec
+## read.table.ffdf 200001..300000 (100000)  csv-read=0.535sec ffdf-write=0.053sec
+## read.table.ffdf 300001..400000 (100000)  csv-read=0.55sec ffdf-write=0.058sec
+## read.table.ffdf 400001..500000 (100000)  csv-read=0.582sec ffdf-write=0.059sec
+## read.table.ffdf 500001..600000 (100000)  csv-read=0.572sec ffdf-write=0.055sec
+## read.table.ffdf 600001..700000 (100000)  csv-read=0.571sec ffdf-write=0.054sec
+## read.table.ffdf 700001..800000 (100000)  csv-read=0.568sec ffdf-write=0.061sec
+## read.table.ffdf 800001..900000 (100000)  csv-read=0.559sec ffdf-write=0.056sec
+## read.table.ffdf 900001..951111 (51111)  csv-read=0.3sec ffdf-write=0.039sec
+##  csv-read=5.296sec  ffdf-write=0.562sec  TOTAL=5.858sec</code></pre>
 <pre><code>##    user  system elapsed 
-##   5.767   0.555   6.244</code></pre>
+##   5.431   0.511   5.861</code></pre>
 <div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="big-data-cleaning-and-transformation.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(airlines.ff <span class="ot">&lt;-</span> <span class="fu">read.csv.ffdf</span>(<span class="at">file=</span> AIRLINES_DATA,</span>
 <span id="cb268-2"><a href="big-data-cleaning-and-transformation.html#cb268-2" aria-hidden="true" tabindex="-1"></a>                             <span class="at">VERBOSE=</span><span class="cn">TRUE</span>,</span>
 <span id="cb268-3"><a href="big-data-cleaning-and-transformation.html#cb268-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">header=</span><span class="cn">TRUE</span>,</span>
 <span id="cb268-4"><a href="big-data-cleaning-and-transformation.html#cb268-4" aria-hidden="true" tabindex="-1"></a>                             <span class="at">next.rows=</span><span class="dv">100000</span>,</span>
 <span id="cb268-5"><a href="big-data-cleaning-and-transformation.html#cb268-5" aria-hidden="true" tabindex="-1"></a>                             <span class="at">colClasses=</span><span class="cn">NA</span>))</span></code></pre></div>
-<pre><code>## read.table.ffdf 1..1607 (1607)  csv-read=0.006sec ffdf-write=0.003sec
-##  csv-read=0.006sec  ffdf-write=0.003sec  TOTAL=0.009sec</code></pre>
+<pre><code>## read.table.ffdf 1..1607 (1607)  csv-read=0.005sec ffdf-write=0.004sec
+##  csv-read=0.005sec  ffdf-write=0.004sec  TOTAL=0.009sec</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.009   0.001   0.009</code></pre>
+##   0.006   0.004   0.010</code></pre>
 <div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="big-data-cleaning-and-transformation.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check memory used</span></span>
 <span id="cb271-2"><a href="big-data-cleaning-and-transformation.html#cb271-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_used</span>()</span></code></pre></div>
-<pre><code>## 1.71 GB</code></pre>
+<pre><code>## 1.72 GB</code></pre>
 <p>Comparison with <code>read.table</code></p>
 <div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="big-data-cleaning-and-transformation.html#cb273-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Using read.table()</span></span>
 <span id="cb273-2"><a href="big-data-cleaning-and-transformation.html#cb273-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(flights.table <span class="ot">&lt;-</span> <span class="fu">read.table</span>(FLIGHTS_DATA, </span>
 <span id="cb273-3"><a href="big-data-cleaning-and-transformation.html#cb273-3" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">sep=</span><span class="st">&quot;,&quot;</span>,</span>
 <span id="cb273-4"><a href="big-data-cleaning-and-transformation.html#cb273-4" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">header=</span><span class="cn">TRUE</span>))</span></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   5.204   0.350   5.481</code></pre>
+##   4.924   0.402   5.255</code></pre>
 <div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="big-data-cleaning-and-transformation.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span></code></pre></div>
 <pre><code>##             used   (Mb) gc trigger   (Mb)  max used
-## Ncells   6628799  354.1   10550368  563.5  10550368
-## Vcells 185332597 1414.0  450132776 3434.3 312469873
+## Ncells   6798356  363.1   11442235  611.1  11442235
+## Vcells 185649594 1416.4  401497148 3063.2 334513447
 ##          (Mb)
-## Ncells  563.5
-## Vcells 2384.0</code></pre>
+## Ncells  611.1
+## Vcells 2552.2</code></pre>
 <div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="big-data-cleaning-and-transformation.html#cb277-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(airlines.table <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(AIRLINES_DATA,</span>
 <span id="cb277-2"><a href="big-data-cleaning-and-transformation.html#cb277-2" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">header =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
 <pre><code>##    user  system elapsed 
 ##   0.002   0.000   0.002</code></pre>
 <div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="big-data-cleaning-and-transformation.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check memory used</span></span>
 <span id="cb279-2"><a href="big-data-cleaning-and-transformation.html#cb279-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_used</span>()</span></code></pre></div>
-<pre><code>## 1.85 GB</code></pre>
+<pre><code>## 1.87 GB</code></pre>
 </div>
 <div id="inspect-imported-files" class="section level4" number="8.2.1.3">
 <h4><span class="header-section-number">8.2.1.3</span> Inspect imported files</h4>
@@ -649,7 +653,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h4><span class="header-section-number">8.2.1.5</span> Subsetting</h4>
 <p>Now, we want to filter out some observations as well as select only specific variables for a subset of the overall data set.</p>
 <div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="big-data-cleaning-and-transformation.html#cb308-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_used</span>()</span></code></pre></div>
-<pre><code>## 2.02 GB</code></pre>
+<pre><code>## 2.03 GB</code></pre>
 <div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="big-data-cleaning-and-transformation.html#cb310-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset the ffdf object flights.data.ff:</span></span>
 <span id="cb310-2"><a href="big-data-cleaning-and-transformation.html#cb310-2" aria-hidden="true" tabindex="-1"></a>subs1.ff <span class="ot">&lt;-</span> <span class="fu">subset.ffdf</span>(flights.data.ff, CANCELLED <span class="sc">==</span> <span class="dv">1</span>, </span>
 <span id="cb310-3"><a href="big-data-cleaning-and-transformation.html#cb310-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">select =</span> <span class="fu">c</span>(FL_DATE, AIRLINE_ID, </span>
@@ -662,7 +666,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <span id="cb310-10"><a href="big-data-cleaning-and-transformation.html#cb310-10" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(subs1.ff)</span></code></pre></div>
 <pre><code>## [1] 4529    7</code></pre>
 <div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="big-data-cleaning-and-transformation.html#cb312-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_used</span>()</span></code></pre></div>
-<pre><code>## 2.02 GB</code></pre>
+<pre><code>## 2.03 GB</code></pre>
 </div>
 <div id="saveloadexport-ffdf-files" class="section level4" number="8.2.1.6">
 <h4><span class="header-section-number">8.2.1.6</span> Save/load/export ffdf-files</h4>
@@ -674,12 +678,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="big-data-cleaning-and-transformation.html#cb315-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading previously saved ffdf files:</span></span>
 <span id="cb315-2"><a href="big-data-cleaning-and-transformation.html#cb315-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(subs1.ff)</span>
 <span id="cb315-3"><a href="big-data-cleaning-and-transformation.html#cb315-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span></code></pre></div>
-<pre><code>##             used (Mb) gc trigger   (Mb)  max used
-## Ncells   6647108  355   10550368  563.5  10550368
-## Vcells 205449240 1568  450132776 3434.3 312469873
+<pre><code>##             used   (Mb) gc trigger   (Mb)  max used
+## Ncells   6816662  364.1   11442235  611.1  11442235
+## Vcells 205766220 1569.9  401497148 3063.2 334513447
 ##          (Mb)
-## Ncells  563.5
-## Vcells 2384.0</code></pre>
+## Ncells  611.1
+## Vcells 2552.2</code></pre>
 <div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="big-data-cleaning-and-transformation.html#cb317-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load.ffdf</span>(<span class="st">&quot;ffdb&quot;</span>)</span>
 <span id="cb317-2"><a href="big-data-cleaning-and-transformation.html#cb317-2" aria-hidden="true" tabindex="-1"></a><span class="co"># check the class and structure of the loaded data</span></span>
 <span id="cb317-3"><a href="big-data-cleaning-and-transformation.html#cb317-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(subs1.ff) </span></code></pre></div>
@@ -839,8 +843,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div class="footnotes">
 <hr />
-<ol start="37">
-<li id="fn37"><p>We only use a fraction of the data used in the package vignette example, the full raw data used there can be downloaded <a href="http://stat-computing.org/dataexpo/2009/the-data.html">here</a>.<a href="big-data-cleaning-and-transformation.html#fnref37" class="footnote-back">↩︎</a></p></li>
+<ol start="39">
+<li id="fn39"><p>We only use a fraction of the data used in the package vignette example, the full raw data used there can be downloaded <a href="http://stat-computing.org/dataexpo/2009/the-data.html">here</a>.<a href="big-data-cleaning-and-transformation.html#fnref39" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>

@@ -24,7 +24,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-05-05" />
+<meta name="date" content="2022-05-16" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -226,10 +226,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="cloud-computing.html"><a href="cloud-computing.html#ec2-with-rstudio-and-gpus"><i class="fa fa-check"></i><b>6.2</b> EC2 with RStudio and GPUs</a></li>
 <li class="chapter" data-level="6.3" data-path="cloud-computing.html"><a href="cloud-computing.html#gpus-on-google-colab"><i class="fa fa-check"></i><b>6.3</b> GPUs on Google Colab</a></li>
-<li class="chapter" data-level="6.4" data-path="cloud-computing.html"><a href="cloud-computing.html#aws-emr-mapreduce-in-the-cloud"><i class="fa fa-check"></i><b>6.4</b> AWS EMR: MapReduce in the cloud</a>
-<ul>
-<li class="chapter" data-level="6.4.1" data-path="cloud-computing.html"><a href="cloud-computing.html#set-up-an-emr-cluster-to-run-with-r"><i class="fa fa-check"></i><b>6.4.1</b> Set up an EMR cluster to run with R</a></li>
-</ul></li>
+<li class="chapter" data-level="6.4" data-path="cloud-computing.html"><a href="cloud-computing.html#aws-emr-mapreduce-in-the-cloud"><i class="fa fa-check"></i><b>6.4</b> AWS EMR: MapReduce in the cloud</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html"><i class="fa fa-check"></i><b>7</b> Data Collection and Data Storage</a>
 <ul>
@@ -319,7 +316,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="13" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html"><i class="fa fa-check"></i><b>13</b> Applied Econometrics with Spark</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#regression-analysis-with-sparklyr"><i class="fa fa-check"></i><b>13.1</b> Regression analysis with <code>sparklyr</code></a></li>
+<li class="chapter" data-level="13.1" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#simple-regression-analysis"><i class="fa fa-check"></i><b>13.1</b> Simple regression analysis</a></li>
+<li class="chapter" data-level="13.2" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#machine-learning-for-classification"><i class="fa fa-check"></i><b>13.2</b> Machine learning for classification</a></li>
+<li class="chapter" data-level="13.3" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#building-machine-learning-pipelines-with-r-and-spark"><i class="fa fa-check"></i><b>13.3</b> Building Machine Learning Pipelines with R and Spark</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#set-up-and-data-import"><i class="fa fa-check"></i><b>13.3.1</b> Set up and data import</a></li>
+<li class="chapter" data-level="13.3.2" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#building-the-pipeline"><i class="fa fa-check"></i><b>13.3.2</b> Building the pipeline</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="applied-econometrics-with-spark.html"><a href="applied-econometrics-with-spark.html#text-analysis-with-spark"><i class="fa fa-check"></i><b>13.4</b> Text analysis with Spark</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="appendix-a.html"><a href="appendix-a.html"><i class="fa fa-check"></i><b>A</b> Appendix A</a>
@@ -365,26 +369,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="data-types-and-memorystorage" class="section level3" number="15.0.1">
 <h3><span class="header-section-number">B.0.1</span> Data types and memory/storage</h3>
 <p>Data loaded into RAM can be interpreted differently by R depending on the data <em>type</em>. Some operators or functions in R only accept data of a specific type as arguments. For example, we can store the numeric values <code>1.5</code> and <code>3</code> in the variables <code>a</code> and <code>b</code>, respectively.</p>
-<div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb538-1"><a href="appendix-b.html#cb538-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fl">1.5</span></span>
-<span id="cb538-2"><a href="appendix-b.html#cb538-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">3</span></span>
-<span id="cb538-3"><a href="appendix-b.html#cb538-3" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> b</span></code></pre></div>
+<div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb566-1"><a href="appendix-b.html#cb566-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fl">1.5</span></span>
+<span id="cb566-2"><a href="appendix-b.html#cb566-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb566-3"><a href="appendix-b.html#cb566-3" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> b</span></code></pre></div>
 <pre><code>## [1] 4.5</code></pre>
 <p>R interprets this data as type <code>double</code> (class ‘numeric’):</p>
-<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb540-1"><a href="appendix-b.html#cb540-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(a)</span></code></pre></div>
+<div class="sourceCode" id="cb568"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb568-1"><a href="appendix-b.html#cb568-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(a)</span></code></pre></div>
 <pre><code>## [1] &quot;double&quot;</code></pre>
-<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb542-1"><a href="appendix-b.html#cb542-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(a)</span></code></pre></div>
+<div class="sourceCode" id="cb570"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb570-1"><a href="appendix-b.html#cb570-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(a)</span></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
-<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb544-1"><a href="appendix-b.html#cb544-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(a)</span></code></pre></div>
+<div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb572-1"><a href="appendix-b.html#cb572-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(a)</span></code></pre></div>
 <pre><code>## 56 bytes</code></pre>
 <p>If, however, we define <code>a</code> and <code>b</code> as follows, R will interpret the values stored in <code>a</code> and <code>b</code> as text (<code>character</code>).</p>
-<div class="sourceCode" id="cb546"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb546-1"><a href="appendix-b.html#cb546-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="st">&quot;1.5&quot;</span></span>
-<span id="cb546-2"><a href="appendix-b.html#cb546-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="st">&quot;3&quot;</span></span>
-<span id="cb546-3"><a href="appendix-b.html#cb546-3" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> b</span></code></pre></div>
-<div class="sourceCode" id="cb547"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb547-1"><a href="appendix-b.html#cb547-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(a)</span></code></pre></div>
+<div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb574-1"><a href="appendix-b.html#cb574-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="st">&quot;1.5&quot;</span></span>
+<span id="cb574-2"><a href="appendix-b.html#cb574-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="st">&quot;3&quot;</span></span>
+<span id="cb574-3"><a href="appendix-b.html#cb574-3" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> b</span></code></pre></div>
+<div class="sourceCode" id="cb575"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb575-1"><a href="appendix-b.html#cb575-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(a)</span></code></pre></div>
 <pre><code>## [1] &quot;double&quot;</code></pre>
-<div class="sourceCode" id="cb549"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb549-1"><a href="appendix-b.html#cb549-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(a)</span></code></pre></div>
+<div class="sourceCode" id="cb577"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb577-1"><a href="appendix-b.html#cb577-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(a)</span></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
-<div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb551-1"><a href="appendix-b.html#cb551-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(a)</span></code></pre></div>
+<div class="sourceCode" id="cb579"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb579-1"><a href="appendix-b.html#cb579-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(a)</span></code></pre></div>
 <pre><code>## 56 bytes</code></pre>
 <p>Note that the symbols <code>1.5</code> take up more or less memory depending on the data-type they are stored in. This directly links to how data/information is stored/represented in binary code, which in turn is reflected in how much memory is used to store these symbols in an object as well as what we can do with it.</p>
 <div id="example-in-r-data-types-and-information-storage" class="section level4" number="15.0.1.1">
@@ -392,34 +396,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Given the fact that computers only understand <code>0</code>s and <code>1</code>s, different approaches are taken to map these digital values to other symbols or images (text, decimal numbers, pictures, etc.) that we humans can more easily make sense of. Regarding text and numbers, these mappings involve <em>character encodings</em> (in which combinations of <code>0</code>s and <code>1</code>s represent a character in a specific alphabet) and <em>data types</em>.</p>
 <p>Let’s illustrate the main concepts with the simple numerical example from above. When we see the decimal number <code>139</code> written somewhere, we know that it means ‘one-hundred-and-thirty-nine.’ The fact that our computer is able to print <code>139</code> on the screen means that our computer can somehow map a sequence of <code>0</code>s and <code>1</code>s to the symbols <code>1</code>, <code>3</code>, and <code>9</code>. Depending on what we want to do with the data value <code>139</code> on our computer, there are different ways of how the computer can represent this value internally. Inter alia, we could load it into RAM as a <em>string</em> (‘text’/‘character’) or as an <em>integer</em> (‘natural number’) or <em>double</em> (numeric, floating point number). All of them can be printed on screen but only the latter two can be used for arithmetic computations. This concept can easily be illustrated in R.</p>
 <p>We initiate a new variable with the value <code>139</code>. By using this syntax, R by default initiates the variable as an object of type <code>double</code>. We then can use this variable in arithmetic operations.</p>
-<div class="sourceCode" id="cb553"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb553-1"><a href="appendix-b.html#cb553-1" aria-hidden="true" tabindex="-1"></a>my_number <span class="ot">&lt;-</span> <span class="dv">139</span></span>
-<span id="cb553-2"><a href="appendix-b.html#cb553-2" aria-hidden="true" tabindex="-1"></a><span class="co"># check the class</span></span>
-<span id="cb553-3"><a href="appendix-b.html#cb553-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(my_number)</span></code></pre></div>
+<div class="sourceCode" id="cb581"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb581-1"><a href="appendix-b.html#cb581-1" aria-hidden="true" tabindex="-1"></a>my_number <span class="ot">&lt;-</span> <span class="dv">139</span></span>
+<span id="cb581-2"><a href="appendix-b.html#cb581-2" aria-hidden="true" tabindex="-1"></a><span class="co"># check the class</span></span>
+<span id="cb581-3"><a href="appendix-b.html#cb581-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(my_number)</span></code></pre></div>
 <pre><code>## [1] &quot;double&quot;</code></pre>
-<div class="sourceCode" id="cb555"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb555-1"><a href="appendix-b.html#cb555-1" aria-hidden="true" tabindex="-1"></a><span class="co"># arithmetic</span></span>
-<span id="cb555-2"><a href="appendix-b.html#cb555-2" aria-hidden="true" tabindex="-1"></a>my_number<span class="sc">*</span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="appendix-b.html#cb583-1" aria-hidden="true" tabindex="-1"></a><span class="co"># arithmetic</span></span>
+<span id="cb583-2"><a href="appendix-b.html#cb583-2" aria-hidden="true" tabindex="-1"></a>my_number<span class="sc">*</span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 278</code></pre>
 <p>When we change the <em>data type</em> to ‘character’ (string) such operations are not possible.</p>
-<div class="sourceCode" id="cb557"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb557-1"><a href="appendix-b.html#cb557-1" aria-hidden="true" tabindex="-1"></a><span class="co"># change and check type/class</span></span>
-<span id="cb557-2"><a href="appendix-b.html#cb557-2" aria-hidden="true" tabindex="-1"></a>my_number_string <span class="ot">&lt;-</span> <span class="fu">as.character</span>(my_number)</span>
-<span id="cb557-3"><a href="appendix-b.html#cb557-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(my_number_string)</span></code></pre></div>
+<div class="sourceCode" id="cb585"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb585-1"><a href="appendix-b.html#cb585-1" aria-hidden="true" tabindex="-1"></a><span class="co"># change and check type/class</span></span>
+<span id="cb585-2"><a href="appendix-b.html#cb585-2" aria-hidden="true" tabindex="-1"></a>my_number_string <span class="ot">&lt;-</span> <span class="fu">as.character</span>(my_number)</span>
+<span id="cb585-3"><a href="appendix-b.html#cb585-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(my_number_string)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
-<div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb559-1"><a href="appendix-b.html#cb559-1" aria-hidden="true" tabindex="-1"></a><span class="co"># try to multiply</span></span>
-<span id="cb559-2"><a href="appendix-b.html#cb559-2" aria-hidden="true" tabindex="-1"></a>my_number_string<span class="sc">*</span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb587"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb587-1"><a href="appendix-b.html#cb587-1" aria-hidden="true" tabindex="-1"></a><span class="co"># try to multiply</span></span>
+<span id="cb587-2"><a href="appendix-b.html#cb587-2" aria-hidden="true" tabindex="-1"></a>my_number_string<span class="sc">*</span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## Error in my_number_string * 2: non-numeric argument to binary operator</code></pre>
 <p>If we change the variable to type <code>integer</code>, we can still use math operators.</p>
-<div class="sourceCode" id="cb561"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb561-1"><a href="appendix-b.html#cb561-1" aria-hidden="true" tabindex="-1"></a><span class="co"># change and check type/class</span></span>
-<span id="cb561-2"><a href="appendix-b.html#cb561-2" aria-hidden="true" tabindex="-1"></a>my_number_int <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(my_number)</span>
-<span id="cb561-3"><a href="appendix-b.html#cb561-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(my_number_int)</span></code></pre></div>
+<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="appendix-b.html#cb589-1" aria-hidden="true" tabindex="-1"></a><span class="co"># change and check type/class</span></span>
+<span id="cb589-2"><a href="appendix-b.html#cb589-2" aria-hidden="true" tabindex="-1"></a>my_number_int <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(my_number)</span>
+<span id="cb589-3"><a href="appendix-b.html#cb589-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(my_number_int)</span></code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
-<div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb563-1"><a href="appendix-b.html#cb563-1" aria-hidden="true" tabindex="-1"></a><span class="co"># arithmetics</span></span>
-<span id="cb563-2"><a href="appendix-b.html#cb563-2" aria-hidden="true" tabindex="-1"></a>my_number_int<span class="sc">*</span><span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="appendix-b.html#cb591-1" aria-hidden="true" tabindex="-1"></a><span class="co"># arithmetics</span></span>
+<span id="cb591-2"><a href="appendix-b.html#cb591-2" aria-hidden="true" tabindex="-1"></a>my_number_int<span class="sc">*</span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 278</code></pre>
 <p>Having all variables in the right type is relevant for data analytics with all kind of sample sizes. However, given the fact that different data types have to be represented differently internally, different types might take up more or less memory and therefore substantially affect the performance when dealing with massive amounts of data.</p>
 <p>We can illustrate this point with <code>object.size()</code>:</p>
-<div class="sourceCode" id="cb565"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb565-1"><a href="appendix-b.html#cb565-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(<span class="st">&quot;139&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="appendix-b.html#cb593-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(<span class="st">&quot;139&quot;</span>)</span></code></pre></div>
 <pre><code>## 112 bytes</code></pre>
-<div class="sourceCode" id="cb567"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb567-1"><a href="appendix-b.html#cb567-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(<span class="dv">139</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="appendix-b.html#cb595-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(<span class="dv">139</span>)</span></code></pre></div>
 <pre><code>## 56 bytes</code></pre>
 </div>
 </div>
@@ -435,10 +439,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- ``` -->
 <!-- (ref:capnumvec) Illustration of a numeric vector (symbolic). Figure by @murrell_2009 (licensed under CC BY-NC-SA 3.0 NZ). -->
 <p>For example, we can initiate a character vector containing information on the home towns of persons participating in a survey.</p>
-<div class="sourceCode" id="cb569"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb569-1"><a href="appendix-b.html#cb569-1" aria-hidden="true" tabindex="-1"></a>hometown <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;St.Gallen&quot;</span>, <span class="st">&quot;Basel&quot;</span>, <span class="st">&quot;St.Gallen&quot;</span>)</span>
-<span id="cb569-2"><a href="appendix-b.html#cb569-2" aria-hidden="true" tabindex="-1"></a>hometown</span></code></pre></div>
+<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="appendix-b.html#cb597-1" aria-hidden="true" tabindex="-1"></a>hometown <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;St.Gallen&quot;</span>, <span class="st">&quot;Basel&quot;</span>, <span class="st">&quot;St.Gallen&quot;</span>)</span>
+<span id="cb597-2"><a href="appendix-b.html#cb597-2" aria-hidden="true" tabindex="-1"></a>hometown</span></code></pre></div>
 <pre><code>## [1] &quot;St.Gallen&quot; &quot;Basel&quot;     &quot;St.Gallen&quot;</code></pre>
-<div class="sourceCode" id="cb571"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb571-1"><a href="appendix-b.html#cb571-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(hometown)</span></code></pre></div>
+<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="appendix-b.html#cb599-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(hometown)</span></code></pre></div>
 <pre><code>## 200 bytes</code></pre>
 <p>Unlike in the data types example above, it would likely be not that practical to store these values as type <code>numeric</code> to save memory. R would not know how to translate these strings into floating point numbers. Alternatively, we could think of a correspondence table that assigns a numeric (id) code to each unique town name in the data set. This way we would save memory but it would mean additional effort to work with the data. Fortunately, basic R already implements exactly this idea in a user-friendly way in a data-structure called <code>factor</code>.</p>
 <p>Factors are sets of categories. Thus, the values come from a fixed set of possible values.</p>
@@ -447,21 +451,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- ``` -->
 <!-- (ref:capfactor) Illustration of a factor (symbolic). Figure by @murrell_2009 (licensed under CC BY-NC-SA 3.0 NZ). -->
 <p>Considering the same example as above, we can store the same information in an object of type class <code>factor</code>.</p>
-<div class="sourceCode" id="cb573"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb573-1"><a href="appendix-b.html#cb573-1" aria-hidden="true" tabindex="-1"></a>hometown_f <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;St.Gallen&quot;</span>, <span class="st">&quot;Basel&quot;</span>, <span class="st">&quot;St.Gallen&quot;</span>))</span>
-<span id="cb573-2"><a href="appendix-b.html#cb573-2" aria-hidden="true" tabindex="-1"></a>hometown_f</span></code></pre></div>
+<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="appendix-b.html#cb601-1" aria-hidden="true" tabindex="-1"></a>hometown_f <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;St.Gallen&quot;</span>, <span class="st">&quot;Basel&quot;</span>, <span class="st">&quot;St.Gallen&quot;</span>))</span>
+<span id="cb601-2"><a href="appendix-b.html#cb601-2" aria-hidden="true" tabindex="-1"></a>hometown_f</span></code></pre></div>
 <pre><code>## [1] St.Gallen Basel     St.Gallen
 ## Levels: Basel St.Gallen</code></pre>
-<div class="sourceCode" id="cb575"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb575-1"><a href="appendix-b.html#cb575-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(hometown_f)</span></code></pre></div>
+<div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb603-1"><a href="appendix-b.html#cb603-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(hometown_f)</span></code></pre></div>
 <pre><code>## 584 bytes</code></pre>
 <p>At first sight, the fact that <code>hometown_f</code> takes up more memory than its character vector sibling seems odd. But, we have encountered this kind of ‘paradox’ before. Again, the more sophisticated approach involves an ‘overhead’ (here not in terms of computing time but in terms of structure encoded in an object). <code>hometown_f</code> has more ‘structure’ (i.e., a mapping of numbers to ‘factor levels’/category labels). This additional structure is also information that needs to be stored somewhere. As in previous examples of this ‘overhead costs,’ this disadvantage is diminishing with larger data sets:</p>
-<div class="sourceCode" id="cb577"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb577-1"><a href="appendix-b.html#cb577-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a large character vector</span></span>
-<span id="cb577-2"><a href="appendix-b.html#cb577-2" aria-hidden="true" tabindex="-1"></a>hometown_large <span class="ot">&lt;-</span> <span class="fu">rep</span>(hometown, <span class="at">times =</span> <span class="dv">1000</span>)</span>
-<span id="cb577-3"><a href="appendix-b.html#cb577-3" aria-hidden="true" tabindex="-1"></a><span class="co"># and the same content as factor</span></span>
-<span id="cb577-4"><a href="appendix-b.html#cb577-4" aria-hidden="true" tabindex="-1"></a>hometown_large_f <span class="ot">&lt;-</span> <span class="fu">factor</span>(hometown_large)</span>
-<span id="cb577-5"><a href="appendix-b.html#cb577-5" aria-hidden="true" tabindex="-1"></a><span class="co"># compare size</span></span>
-<span id="cb577-6"><a href="appendix-b.html#cb577-6" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(hometown_large)</span></code></pre></div>
+<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="appendix-b.html#cb605-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a large character vector</span></span>
+<span id="cb605-2"><a href="appendix-b.html#cb605-2" aria-hidden="true" tabindex="-1"></a>hometown_large <span class="ot">&lt;-</span> <span class="fu">rep</span>(hometown, <span class="at">times =</span> <span class="dv">1000</span>)</span>
+<span id="cb605-3"><a href="appendix-b.html#cb605-3" aria-hidden="true" tabindex="-1"></a><span class="co"># and the same content as factor</span></span>
+<span id="cb605-4"><a href="appendix-b.html#cb605-4" aria-hidden="true" tabindex="-1"></a>hometown_large_f <span class="ot">&lt;-</span> <span class="fu">factor</span>(hometown_large)</span>
+<span id="cb605-5"><a href="appendix-b.html#cb605-5" aria-hidden="true" tabindex="-1"></a><span class="co"># compare size</span></span>
+<span id="cb605-6"><a href="appendix-b.html#cb605-6" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(hometown_large)</span></code></pre></div>
 <pre><code>## 24168 bytes</code></pre>
-<div class="sourceCode" id="cb579"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb579-1"><a href="appendix-b.html#cb579-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(hometown_large_f)</span></code></pre></div>
+<div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="appendix-b.html#cb607-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(hometown_large_f)</span></code></pre></div>
 <pre><code>## 12568 bytes</code></pre>
 <div id="matricesarrays" class="section level4" number="15.0.3.1">
 <h4><span class="header-section-number">B.0.3.1</span> Matrices/Arrays</h4>
@@ -471,15 +475,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- ``` -->
 <!-- (ref:capmatrix) Illustration of a numeric matrix (symbolic). Figure by @murrell_2009 (licensed under CC BY-NC-SA 3.0 NZ). -->
 <p>For example, we can initiate a three-row/two-column numeric matrix as follows.</p>
-<div class="sourceCode" id="cb581"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb581-1"><a href="appendix-b.html#cb581-1" aria-hidden="true" tabindex="-1"></a>my_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>), <span class="at">nrow =</span> <span class="dv">3</span>)</span>
-<span id="cb581-2"><a href="appendix-b.html#cb581-2" aria-hidden="true" tabindex="-1"></a>my_matrix</span></code></pre></div>
+<div class="sourceCode" id="cb609"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb609-1"><a href="appendix-b.html#cb609-1" aria-hidden="true" tabindex="-1"></a>my_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>), <span class="at">nrow =</span> <span class="dv">3</span>)</span>
+<span id="cb609-2"><a href="appendix-b.html#cb609-2" aria-hidden="true" tabindex="-1"></a>my_matrix</span></code></pre></div>
 <pre><code>##      [,1] [,2]
 ## [1,]    1    4
 ## [2,]    2    5
 ## [3,]    3    6</code></pre>
 <p>And a three-dimensional numeric array as follows.</p>
-<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="appendix-b.html#cb583-1" aria-hidden="true" tabindex="-1"></a>my_array <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>), <span class="at">dim =</span> <span class="dv">3</span>)</span>
-<span id="cb583-2"><a href="appendix-b.html#cb583-2" aria-hidden="true" tabindex="-1"></a>my_array</span></code></pre></div>
+<div class="sourceCode" id="cb611"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb611-1"><a href="appendix-b.html#cb611-1" aria-hidden="true" tabindex="-1"></a>my_array <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>), <span class="at">dim =</span> <span class="dv">3</span>)</span>
+<span id="cb611-2"><a href="appendix-b.html#cb611-2" aria-hidden="true" tabindex="-1"></a>my_array</span></code></pre></div>
 <pre><code>## [1] 1 2 3</code></pre>
 </div>
 <div id="data-frames-tibbles-and-data-tables" class="section level4" number="15.0.3.2">
@@ -489,15 +493,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- include_graphics("img/02_df.png") -->
 <!-- ``` -->
 <!-- (ref:capdf) Illustration of a data frame (symbolic). Figure by @murrell_2009 (licensed under CC BY-NC-SA 3.0 NZ). -->
-<p>The historical implementation of data frames in R is not very comfortable to work with large data sets.<a href="#fn50" class="footnote-ref" id="fnref50"><sup>50</sup></a> Several newer implementations of the data-frame concept in R aim to make data processing faster. One is called <code>tibbles</code>, implemented and used in the <code>tidyverse</code> packages. The other is called <code>data table</code>, implemented in the <code>data.table</code>-package. In this course we will focus on the <code>data.table</code>-package.</p>
+<p>The historical implementation of data frames in R is not very comfortable to work with large data sets.<a href="#fn53" class="footnote-ref" id="fnref53"><sup>53</sup></a> Several newer implementations of the data-frame concept in R aim to make data processing faster. One is called <code>tibbles</code>, implemented and used in the <code>tidyverse</code> packages. The other is called <code>data table</code>, implemented in the <code>data.table</code>-package. In this course we will focus on the <code>data.table</code>-package.</p>
 <p>Here is how we define a <code>data.table</code> in R:</p>
-<div class="sourceCode" id="cb585"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb585-1"><a href="appendix-b.html#cb585-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load package</span></span>
-<span id="cb585-2"><a href="appendix-b.html#cb585-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
-<span id="cb585-3"><a href="appendix-b.html#cb585-3" aria-hidden="true" tabindex="-1"></a><span class="co"># initiate a data.table</span></span>
-<span id="cb585-4"><a href="appendix-b.html#cb585-4" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">data.table</span>(<span class="at">person =</span> <span class="fu">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Ben&quot;</span>),</span>
-<span id="cb585-5"><a href="appendix-b.html#cb585-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">30</span>),</span>
-<span id="cb585-6"><a href="appendix-b.html#cb585-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">gender =</span> <span class="fu">c</span>(<span class="st">&quot;f&quot;</span>, <span class="st">&quot;m&quot;</span>))</span>
-<span id="cb585-7"><a href="appendix-b.html#cb585-7" aria-hidden="true" tabindex="-1"></a>dt</span></code></pre></div>
+<div class="sourceCode" id="cb613"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb613-1"><a href="appendix-b.html#cb613-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load package</span></span>
+<span id="cb613-2"><a href="appendix-b.html#cb613-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb613-3"><a href="appendix-b.html#cb613-3" aria-hidden="true" tabindex="-1"></a><span class="co"># initiate a data.table</span></span>
+<span id="cb613-4"><a href="appendix-b.html#cb613-4" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">data.table</span>(<span class="at">person =</span> <span class="fu">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Ben&quot;</span>),</span>
+<span id="cb613-5"><a href="appendix-b.html#cb613-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">30</span>),</span>
+<span id="cb613-6"><a href="appendix-b.html#cb613-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">gender =</span> <span class="fu">c</span>(<span class="st">&quot;f&quot;</span>, <span class="st">&quot;m&quot;</span>))</span>
+<span id="cb613-7"><a href="appendix-b.html#cb613-7" aria-hidden="true" tabindex="-1"></a>dt</span></code></pre></div>
 <pre><code>##    person age gender
 ## 1:  Alice  50      f
 ## 2:    Ben  30      m</code></pre>
@@ -510,8 +514,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- ``` -->
 <!-- (ref:caplist) Illustration of a data frame (symbolic). Figure by @murrell_2009 (licensed under CC BY-NC-SA 3.0 NZ). -->
 <p>This flexibility can easily be demonstrated by combining some of the data structures created in the examples above:</p>
-<div class="sourceCode" id="cb587"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb587-1"><a href="appendix-b.html#cb587-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(my_array, my_matrix, dt)</span>
-<span id="cb587-2"><a href="appendix-b.html#cb587-2" aria-hidden="true" tabindex="-1"></a>my_list</span></code></pre></div>
+<div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb615-1"><a href="appendix-b.html#cb615-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(my_array, my_matrix, dt)</span>
+<span id="cb615-2"><a href="appendix-b.html#cb615-2" aria-hidden="true" tabindex="-1"></a>my_list</span></code></pre></div>
 <pre><code>## [[1]]
 ## [1] 1 2 3
 ## 
@@ -564,8 +568,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div class="footnotes">
 <hr />
-<ol start="50">
-<li id="fn50"><p>In the early days of R this was not really an issue because data sets that are rather large by today’s standards (in the Gigabytes) could not have been handled properly by normal computers anyhow (due to a lack of RAM).<a href="appendix-b.html#fnref50" class="footnote-back">↩︎</a></p></li>
+<ol start="53">
+<li id="fn53"><p>In the early days of R this was not really an issue because data sets that are rather large by today’s standards (in the Gigabytes) could not have been handled properly by normal computers anyhow (due to a lack of RAM).<a href="appendix-b.html#fnref53" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
