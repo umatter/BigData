@@ -8,7 +8,7 @@
 
 
 
-## Regression analysis with `sparklyr`
+## Simple regression analysis 
 
 Suppose we want to conduct a correlation study of what factors are associated with more or less arrival delay in air travel. Spark provides via its built-in 'MLib' library several high-level functions to conduct regression analyses. When calling these functions via `sparklyr` (or `SparkR`), their usage is actually very similar to the usual R packages/functions commonly used to run regressions in R. 
 
@@ -36,8 +36,7 @@ Now we aim to compute essentially the same model estimate in `sparklyr`.^[Most r
 library(sparklyr)
 
 # connect with default configuration
-sc <- spark_connect(master = "local", 
-                    version = "3.1.2")
+sc <- spark_connect(master="local")
 ```
 
 We then copy the data.table `flights_r` (previously loaded into our R session) to Spark. Again, working on a normal laptop this seems trivial, but the exact same command would allow us (when connected with Spark on a cluster computer in the cloud) to properly load and distribute the data.table on the cluster. Finally, we then fit the model with `ml_linear_regression()` and compute 
@@ -45,22 +44,332 @@ We then copy the data.table `flights_r` (previously loaded into our R session) t
 ```{r message=FALSE, warning=FALSE}
 
 # load data to spark
-flights3 <- copy_to(sc, flights_r, "flights3")
+flights_spark <- copy_to(sc, flights_r, "flights_spark")
 # fit the model
-fit1_spark <- ml_linear_regression(flights3, formula = model1)
+fit1_spark <- ml_linear_regression(flights_spark, formula = model1)
 # compute summary stats
 summary(fit1_spark)
 ```
 
-Alternatively, we can use the `spark_apply()` function to run the regression analysis in R via the original R `lm()`-function.
+Alternatively, we can use the `spark_apply()` function to run the regression analysis in R via the original R `lm()`-function.^[Note though, that this approach might take longer.]
 
 
-```{r message=FALSE, warning=FALSE}
+```{r message=FALSE, warning=FALSE, eval=FALSE}
 
 # fit the model
-spark_apply(flights3, function(df) broom::tidy(lm(arr_delay ~ dep_delay + distance, df)),
+spark_apply(flights_spark, function(df) broom::tidy(lm(arr_delay ~ dep_delay + distance, df)),
         names = c("term", "estimate", "std.error", "statistic", "p.value")
     )
+```
+
+Finally, the `parsnip` package (together with the `tidymodels` package) provides a simple interface to run the same model (or similar specifications) on different "engines" (estimators/fitting algorithms), and several of the `parsnip` models are also supported in `sparklyr`. This substantially facilitates the transition from local testing (with a small subset of the data) and then running the estimation on the entire data set on spark.
+
+```{r message=FALSE, warning=FALSE}
+library(tidymodels)
+library(parsnip)
+
+# simple local linear regression example from above
+# via tidymodels/parsnip
+fit1 <- fit(linear_reg(engine="lm"), model1, data=flights_r)
+tidy(fit1)
+
+# run the same on spark 
+fit1_spark <- fit(linear_reg(engine="spark"), model1, data=flights_spark)
+tidy(fit1_spark)
+```
+
+
+We will further build on this interface in the next section where we look at different machine learning procedures for a classification problem.
+
+
+## Machine learning for classification 
+
+Building on `sparklyr`, `tidymodels`, and `parsnip`, we test a set of machine learning models in the classification problem discussed in @varian_2014: predicting Titanic survivors. The data for this exercise can be downloaded from here: [http://doi.org/10.3886/E113925V1](http://doi.org/10.3886/E113925V1). 
+
+We import and prepare the data in R.
+
+```{r}
+# load into R, # select variables of interest, remove missing
+titanic_r <- read.csv("data/titanic3.csv")
+titanic_r <- na.omit(titanic_r[, c("survived",
+                           "pclass",
+                           "sex",
+                           "age",
+                           "sibsp",
+                           "parch")])
+titanic_r$survived <- ifelse(titanic_r$survived==1, "yes", "no")
+```
+
+In order to assess the performance of the classifiers later on, we split the sample into training and test data sets. We do so with the help of the `rsample` package, which provides a number of high-level functions to facilitate this kind of pre-processing.
+
+```{r}
+library(rsample)
+
+# split into training and test set
+titanic_r <- initial_split(titanic_r)
+ti_training <- training(titanic_r)
+ti_testing <- testing(titanic_r)
+```
+
+For the training and assessment of the classifiers, we transfer the two data sets to the spark cluster.
+
+```{r}
+# load data to spark
+ti_training_spark <- copy_to(sc, ti_training, "ti_training_spark")
+ti_testing_spark <- copy_to(sc, ti_testing, "ti_testing_spark")
+```
+
+Now we can set up a 'horse race' between different ML approaches to find the best performing model. Overall, we will consider the following models/algorithms:
+
+- Logistic regression
+- Boosted trees
+- Random forest
+
+```{r}
+# models to be used
+models <- list(logit=logistic_reg(engine="spark", mode = "classification"),
+               btree=boost_tree(engine = "spark", mode = "classification"),
+               rforest=rand_forest(engine = "spark", mode = "classification"))
+# train/fit the models
+fits <- lapply(models, fit, formula=survived~., data=ti_training_spark)
+
+```
+
+
+The fitted models (trained algorithms) can now be assessed with the help of the test data set. To this end, we use the high-level `accuracy` function provided in the `yardstick` package in order to compute the [accuracy](https://en.wikipedia.org/wiki/Accuracy_and_precision) of the fitted models. We proceed in three steps. First, we use the fitted models to predict the outcomes (we classify cases into survived/not survived) of the *test set*. Then we fetch the predictions from the Spark cluster, format the variables, and add the actual outcomes as an additional column.
+
+```{r}
+# run predictions
+predictions <- lapply(fits, predict, new_data=ti_testing_spark)
+# fetch predictions from Spark, format, add actual outcomes
+pred_outcomes <- 
+     lapply(1:length(predictions), function(i){
+          x_r <- collect(predictions[[i]]) # fetch from spark cluster (load into local R environment)
+          x_r$pred_class <- as.factor(x_r$pred_class) # format for predictions
+          x_r$survived <- as.factor(ti_testing$survived) # add true outcomes
+          return(x_r)
+     
+})
+
+```
+
+Finally, we compute the accuracy of the models, stack the results and display them (ordered from best-performing to worst-performing.)
+
+```{r}
+acc <- lapply(pred_outcomes, accuracy, truth="survived", estimate="pred_class")
+acc <- bind_rows(acc)
+acc$model <- names(fits)
+acc[order(acc$.estimate, decreasing = TRUE),]
+```
+
+In this simple example, all models perform similarly well. However, none of them really performs great. In a next step, we might want to learn about which variables are considered more or less important for the predictions. Here, the `tidy()`-function is very useful. As long as the model types are comparable (here `btree` and `rforest`), `tidy()` delivers essentially the same type of summary for different models.
+
+```{r}
+tidy(fits[["btree"]])
+tidy(fits[["rforest"]])
+```
+
+
+Finally, we clean up and disconnect from the Spark cluster.
+
+```{r}
+spark_disconnect(sc)
+```
+
+
+## Building Machine Learning Pipelines with R and Spark
+
+Spark provides a framework to implement machine learning pipelines called [ML Pipelines](https://spark.apache.org/docs/latest/ml-pipeline.html) with the aim of facilitating the combination of various preparatory steps and ML algorithms into a pipeline/workflow. `sparklyr` provides a straightforward interface to ML Pipelines which allows implementing and testing the entire ML workflow in R and then easily deploy the final pipeline to a Spark cluster or more generally to the production environment. In the following example, we will re-visit the e-commerce purchase prediction model (Google Analytics data from the Google Merchandise Shop) introduced in Chapter 1. That is, we want to prepare the Google Analytics data and then use a LASSO to find a set of important predictors for purchase decisions, all built into a ML pipeline.
+
+
+
+### Set up and data import
+
+All of the key ingredients are provided in `sparklyr`. However, I recommend using the 'piping' syntax provided in `dplyr` to implement the ML pipeline. In this context using this syntax is particularly helpful to easily read and understand the code. 
+
+
+```{r, message=FALSE, warning=FALSE}
+# load packages
+library(sparklyr)
+library(dplyr)
+
+# fix vars
+INPUT_DATA <- "data/ga.csv"
+
+```
+
+Recall that the Google Analytics data set is small subset of the overall data generated by Google Analytics on a moderately sized e-commerce site. Hence, it makes perfectly sense to first implement and test the pipeline locally (on a local Spark installation), before deploying it on an actual Spark cluster in the cloud. In a first step, we thus copy the imported data to the local spark instance.
+
+```{r}
+# import to local R session, prepare raw data
+ga <- na.omit(read.csv(INPUT_DATA))
+#ga$purchase <- as.factor(ifelse(ga$purchase==1, "yes", "no"))
+# connect to, and copy the data to the local cluster
+sc <- spark_connect(master = "local")
+ga_spark <- copy_to(sc, ga, "ga_spark")
+```
+
+
+### Building the pipeline
+
+The pipeline object is initiated via `ml_pipeline()`, in which we refer to the connection to the local spark cluster. We then add the model specification (the formula) with `ft_r_formula()` to the pipeline. `ft_r_formula` essentially transforms the data in accordance with the common specification syntax in R (here: `purchase ~ .`). Among other thins, this takes care of properly setting up the model matrix. Finally, we add the model via `ml_logistic_regression()`. Via `elastic_net_param` we can set the penalization parameters (with `alpha=1` we get the lasso).
+
+```{r}
+
+# ml pipeline
+ga_pipeline <- 
+     ml_pipeline(sc) %>%
+     ft_string_indexer(input_col="city", 
+                       output_col="city_output",
+                       handle_invalid = "skip") %>%
+     ft_string_indexer(input_col="country", 
+                       output_col="country_output",
+                       handle_invalid = "skip") %>%
+     ft_string_indexer(input_col="source", 
+                       output_col="source_output",
+                       handle_invalid = "skip") %>%
+     ft_string_indexer(input_col="browser", 
+                       output_col="browser_output",
+                       handle_invalid = "skip") %>%
+     ft_r_formula(purchase ~ .) %>% 
+     ml_logistic_regression(elastic_net_param = list(alpha=1))
+     
+```
+
+Finally, we create a cross validator object in order to in order to train the model with a k-fold cross validation and fit the model.
+
+```{r}
+# specify the hyperparameter grid
+# (parameter values to be considered in optimization)
+ga_params <- list(logistic_regression=list(max_iter=80))
+
+# create the cross-validator object
+set.seed(1)
+cv_lasso <- ml_cross_validator(sc,
+                         estimator=ga_pipeline,
+                         estimator_param_maps = ga_params,
+                         ml_multiclass_classification_evaluator(sc),
+                         num_folds = 50, 
+                         parallelism = 2)
+
+# train/fit the model
+cv_lasso_fit <- ml_fit(cv_lasso, ga_spark)
+
+```
+
+
+
+## Text analysis with Spark
+
+Text analysis/natural language processing often involves rather large amounts of data and is particularly challenging for in-memory-processing. `sparklyr` provides several easy-to-use functions to run some of the computationally most demanding text data handling on a Spark cluster. The following example briefly guides through some of the most common first steps when processing text data for NLP. In the code example, we process Friedrich Schiller's "Wilhelm Tell" (English edition; Project Gutenberg Book ID 2782), which we download from [Project Gutenberg](https://www.gutenberg.org/). The example can easily be extended to process many more books.
+
+The example is set up to work straightforwardly on an AWS EMR cluster. However, given the relatively small amount of data processed here, you can also run it locally. In case you want to run it on EMR, simply follow the steps Chapter 6.4 to set up the cluster and log in to RStudio on the master node. The `sparklyr` package is already installed on EMR (if you use the bootstrap-script introduced in Chapter 6.4 for the set up of the cluster), but other packages might still have to be installed.
+
+We first load the packages and connect the RStudio session to the cluster (in case you run this locally, use `spark_connect(master="local")`).
+
+```{r eval=FALSE}
+# install additional packages
+# install.packages("gutenbergr") # to download book texts from Project Gutenberg
+# install.packages("dplyr") # for the data preparatory steps
+
+# load packages
+library(sparklyr)
+library(gutenbergr)
+library(dplyr)
+
+# fix vars
+# you can look up the book id 
+# via gutenberg_works(author=="Schiller, Friedrich")
+BOOK_ID <- 2782
+
+# connect rstudio session to cluster
+sc <- spark_connect(master = "yarn")
+
+```
+
+
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# install additional packages
+# install.packages("gutenbergr") # to download book texts from Project Gutenberg
+# install.packages("dplyr") # for the data preparatory steps
+
+# load packages
+library(gutenbergr)
+library(dplyr)
+
+# fix vars
+# you can look up the book id 
+# via gutenberg_works(author=="Schiller, Friedrich")
+BOOK_ID <- 2782
+
+
+```
+
+
+We fetch the raw text of the book and copy it to the Spark cluster. Note that you can do this sequentially for many books without exhausting the master node's RAM and then further process the data on the cluster.
+
+```{r warning=FALSE, message=FALSE}
+
+
+# fetch Schiller's Tell, load to cluster
+tell <- gutenbergr::gutenberg_download(BOOK_ID, strip = TRUE)[,-1]
+names(tell) <- "raw_text"
+tell_spark <- copy_to(sc, tell, "tell_spark", overwrite = TRUE)
+```
+
+The text data will be processed in a Spark DataFrame columnd behind the `tbl_spakr`-object. First, we remove empty lines of text, select the column containing all the text, and then remove all non-numeric and non-alphabetical characters. The latter step is an important text cleaning step as we want to avoid special characters to be considered words or part of words later on.
+
+```{r warning=FALSE, message=FALSE}
+# data cleaning
+tell_spark <- filter(tell_spark, raw_text!="")
+tell_spark <- select(tell_spark, raw_text)
+tell_spark <- mutate(tell_spark, 
+                     raw_text = regexp_replace(raw_text, "[^0-9a-zA-Z]+", " "))
+
+```
+
+Now we can split the lines of text in column `raw_text` into individual words (sequences of characters that have been separated by white space). To this end we can call a Spark feature transformation routine called the tokenization, which essentially breaks text into individual terms. Specifically, each line of raw text in column `raw_text` will be split into words. The overall result (stored in a new column specified with `output_col`), is then a nested list in which each word is an element of the corresponding line element.
+
+```{r warning=FALSE, message=FALSE}
+
+# split into words
+tell_spark <- ft_tokenizer(tell_spark, 
+                           input_col = "raw_text",
+                           output_col = "words")
+
+```
+
+Now we can call another feature transformer called "stop words remover", which excludes all the stop words (words often occurring in a text but not carrying much information) from the nested word list.
+
+```{r warning=FALSE, message=FALSE}
+
+# remove stop-words
+tell_spark <- ft_stop_words_remover(tell_spark,
+                                    input_col = "words",
+                                    output_col = "words_wo_stop")
+
+```
+
+Finally, we combine all of the words in one vector and store the result in a new Spark DataFrame called "all_tell_words" (by calling `compute()`) and add some final cleaning steps. 
+
+```{r warning=FALSE, message=FALSE}
+# unnest words, combine in one row
+all_tell_words <- mutate(tell_spark, 
+               word = explode(words_wo_stop))
+compute(all_tell_words, "all_tell_words")
+
+# final cleaning
+all_tell_words <- select(all_tell_words, word)
+all_tell_words <- filter(all_tell_words, 2<nchar(word))
+```
+
+Based on this cleaned set of words, we can compute the word count for the entire book.
+
+```{r warning=FALSE, message=FALSE}
+# word count and store result in Spark memory
+compute(count(all_tell_words, word), "wordcount_tell")
 ```
 
 

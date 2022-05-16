@@ -204,13 +204,14 @@ Then, you can install the packages you need to work with GPU acceleration (e.g.,
 
 Many cloud computing providers offer specialized services for MapReduce tasks in the cloud. Here we look at a comparatively easy-to-use solution provided by AWS, called Elastic MapReduce (AWS EMR). It allows to set up a Hadoop cluster in the cloud within minutes and requires essentially no additional configuration if the cluster is being used for the kind of data analytics tasks discussed in this book. 
 
-### Set up an EMR cluster to run with R
 
 Setting up a default AWS EMR cluster via the AWS console is straightforward. Simply go to `https://console.aws.amazon.com/elasticmapreduce/`, click on "Create cluster" and adjust the default selection of settings if necessary. Alternatively, we can set up an EMR cluster via the AWS command-line interface (CLI). In the following tutorials, we will work with AWS EMR via R/Rstudio (specifically, via the package `sparklyr`). Per default, RStudio is not part of the EMR cluster set up. However, AWS EMR offers a very flexible way to install/configure additional software on virtual EMR clusters via so-called "bootstrap" scripts. These scripts can be shared on AWS S3 and used by others, which is what we do in the following cluster set up via the CLI.^[Specifically, we will use the bootstrap script provided by the AWS Big Data Blog, which is stored here: s3://aws-bigdata-blog/artifacts/aws-blog-emr-rstudio-sparklyr/rstudio_sparklyr_emr6.sh] 
 
-The following command (`aws emr create-cluster`) initiates our EMR cluster with a specific set of options (all of these options can also be modified via the AWS console in the browser). `--applications Name=Hadoop Name=Spark Name=Hive Name=Pig Name=Tez Name=Ganglia` specifies which type of basic applications (that are essential to running different types of MapReduce tasks) should be installed on the cluster. Unless you really know what you are doing, do not change that setting. `--name "EMR 6.1 RStudio + sparklyr` simply specifies how the newly initiated cluster should be called (this name will then appear on your list of clusters in the AWS console). More relevant for what follows is the line specifying what type of virtual servers (EC2 instances) should be used as part of the cluster:  `--instance-groups InstanceGroupType=MASTER,InstanceCount=1,InstanceType=m5a.2xlarge` specifies that the master node (the machine distributing tasks and coordinating the MapReduce procedure) should be an instance of type `m5a.2xlarge`; `InstanceGroupType=CORE,InstanceCount=4,InstanceType=m5a.2xlarge` specifies that the other nodes are also of type `m5a.2xlarge`. `--bootstrap-action Path=s3://aws-bigdata-blog/artifacts/aws-blog-emr-rstudio-sparklyr/rstudio_sparklyr_emr6.sh,Name="Install RStudio"` tells the set-up application to run the corresponding bootstrap script on the cluster in order to install the additional software (here RStudio).
+In order to run the cluster set up via AWS CLI shown below, you need an SSH key to later connect to the EMR cluster. If you do not have such an SSH key for AWS yet, follow these instructions to generate one: https://docs.aws.amazon.com/cloudhsm/classic/userguide/generate_ssh_key.html. In the example below, the key generated in this way is stored in a file called `sparklyr.pem`.^[If you simply copy-paste the CLI command below to set up an EMR cluster, make sure to name your key file also `sparklyr.pem`. Otherwise, make sure to change the part in the command referring to the key file accordingly.]
 
-Finally, there are two important aspects to note: First, in order to initiate the cluster in this way, you need to have an SSH-keypair (for your EC2 instances) set up, which you then instruct the cluster to use with `KeyName=`. That is, `KeyName="sparklyr"` means that the user already has create an SSH keypair called `sparklyr` and that this is the keypair that will be used with the cluster nodes for SSH connections. Second, the `--region` argument defines in which AWS region the cluster should be created. Importantly, in this particular case, the bootstrap script used to install RStudio on the cluster is stored in the `us-east-1` region, hence we need to set up the cluster also in this region `--region us-east-1` (otherwise the set up will fail as the set-up application will not find the bootstrap script and terminate with an error!).
+The following command (`aws emr create-cluster`) initiates our EMR cluster with a specific set of options (all of these options can also be modified via the AWS console in the browser). `--applications Name=Hadoop Name=Spark Name=Hive Name=Pig Name=Tez Name=Ganglia` specifies which type of basic applications (that are essential to running different types of MapReduce tasks) should be installed on the cluster. Unless you really know what you are doing, do not change that setting. `--name "EMR 6.1 RStudio + sparklyr` simply specifies how the newly initiated cluster should be called (this name will then appear on your list of clusters in the AWS console). More relevant for what follows is the line specifying what type of virtual servers (EC2 instances) should be used as part of the cluster:  `--instance-groups InstanceGroupType=MASTER,InstanceCount=1,InstanceType=m3.2xlarge` specifies that the one master node (the machine distributing tasks and coordinating the MapReduce procedure) is an instance of type `m3.2xlarge`; `InstanceGroupType=CORE,InstanceCount=2,InstanceType=m3.2xlarge` specifies that there are two slave nodes in this cluster, also of type `m1.medium`.^[Working with one master node of type `m3.2xlarge` and two slave nodes of the same type only makes sense for test purposes. For an actual] `--bootstrap-action Path=s3://aws-bigdata-blog/artifacts/aws-blog-emr-rstudio-sparklyr/rstudio_sparklyr_emr6.sh,Name="Install RStudio"` tells the set-up application to run the corresponding bootstrap script on the cluster in order to install the additional software (here RStudio).
+
+Finally, there are two important aspects to note: First, in order to initiate the cluster in this way, you need to have an SSH key pair (for your EC2 instances) set up, which you then instruct the cluster to use with `KeyName=`. That is, `KeyName="sparklyr"` means that the user already has create an SSH key pair called `sparklyr` and that this is the key pair that will be used with the cluster nodes for SSH connections. Second, the `--region` argument defines in which AWS region the cluster should be created. Importantly, in this particular case, the bootstrap script used to install RStudio on the cluster is stored in the `us-east-1` region, hence we need to set up the cluster also in this region `--region us-east-1` (otherwise the set up will fail as the set-up application will not find the bootstrap script and terminate with an error!).
 
 
 ```{bash eval=FALSE}
@@ -219,12 +220,13 @@ aws emr create-cluster \
 --applications Name=Hadoop Name=Spark Name=Hive Name=Pig Name=Tez Name=Ganglia   \
 --name "EMR 6.1 RStudio + sparklyr"  \
 --service-role EMR_DefaultRole \
---instance-groups InstanceGroupType=MASTER,InstanceCount=1,InstanceType=m5a.2xlarge \
-InstanceGroupType=CORE,InstanceCount=4,InstanceType=m5a.2xlarge \
+--instance-groups InstanceGroupType=MASTER,InstanceCount=1,InstanceType=m3.2xlarge \
+InstanceGroupType=CORE,InstanceCount=2,InstanceType=m3.2xlarge \
 --bootstrap-action Path='s3://aws-bigdata-blog/artifacts/aws-blog-emr-rstudio-sparklyr/rstudio_sparklyr_emr6.sh',Name="Install RStudio" --ec2-attributes InstanceProfile=EMR_EC2_DefaultRole,KeyName="sparklyr" \
 --configurations '[{"Classification":"spark","Properties":{"maximizeResourceAllocation":"true"}}]' \
 --region us-east-1
 ```
+
 
 Setting up this cluster with all the additional software and configurations from the bootstrap script will take around 40 minutes. You can always follow the progress in the AWS console on . Once the cluster is ready, you will see something like this:
 
@@ -235,22 +237,43 @@ include_graphics("img/aws_emr_ready.png")
 
 (ref:emrsetup) AWS EMR console indicating the successful set up of the EMR cluster
 
-In order to access RStudio on the EMR cluster's master node, follow these steps:
+In order to access RStudio on the EMR cluster's master node via a secure SSH connection, follow these steps:
 
 - First, follow the prerequisites to connect to EMR via SSH: https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-connect-ssh-prereqs.html.
 
 - Then initiate the SSH tunnel to the EMR cluster as instructed here: https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-ssh-tunnel.html. 
 
 - Protect your key-file (`sparklyr.pem`) by navigating to the location of the key-file on your computer in the terminal and run  `chmod 600 sparklyr.pem` before connecting. Also make sure your IP address is still the one you have entered in the previous step (you can check your current IP address by visiting https://whatismyipaddress.com/).
-- In the terminal, connect to the EMR cluster via SSH by running `ssh -i ~/sparklyr.pem -ND 8157 hadoop@ec2-52-87-248-175.compute-1.amazonaws.com` (if you have protected the key-file as super user, i.e. `sudo chmod`, you will need to use `sudo ssh` here).
+- In a browser tab, navigate to the AWS EMR console, click on the newly created cluster and copy the "Master public DNS". In the terminal, connect to the EMR cluster via SSH by running `ssh -i sparklyr.pem -ND 8157 hadoop@master-node-dns` (if you have protected the key-file as super user, i.e. `sudo chmod`, you will need to use `sudo ssh` here; make sure to replace `master-node-dns` with the actual dns copied from the AWS EMR console). The terminal will be busy but you won't see any output (if all goes well). 
 - In your Firefox browser, install the [FoxyProxy add on](https://addons.mozilla.org/en-US/firefox/addon/foxyproxy-standard/). Follow these instructions to set up the proxy via FoxyProxy: https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-connect-master-node-proxy.html.
 - Select the newly created Socks5 proxy in FoxyProxy.
 - Go to http://localhost:8787/ and enter with username `hadoop` and password `hadoop`. 
 
-Now you can run `sparklyr` on the AWS EMR cluster. 
+Now you can run `sparklyr` on the AWS EMR cluster. After finishing working with the cluster, make sure to terminate it via the EMR console. This will shot down all the EC2 instances that are part of the cluster (and hence AWS will stop charging you for this).
 
-<!-- ###  `sparklyr` on EMR  -->
+Once you have connected and logged in to RStudio on the EMR cluster's master node, you can connect the the Rstudio session to the Spark cluster as follows.
 
 
-<!-- Add count example here as a demonstration -->
+```{r echo=FALSE}
+# load packages
+library(sparklyr)
+# connect rstudio session to cluster
+sc <- spark_connect(master = "local")
+
+```
+
+
+
+```{r eval=FALSE}
+# load packages
+library(sparklyr)
+# connect rstudio session to cluster
+sc <- spark_connect(master = "yarn")
+
+```
+
+
+After using the EMR Spark cluster, make sure to terminate the cluster in the AWS EMR console to avoid additional charges. This automatically terminates all the EC2 machines linked to the cluster.
+
+
 
