@@ -278,9 +278,8 @@ library(gutenbergr)
 library(dplyr)
 
 # fix vars
-# you can look up the book id 
-# via gutenberg_works(author=="Schiller, Friedrich")
-BOOK_ID <- 2782
+TELL <- "https://www.gutenberg.org/cache/epub/6788/pg6788.txt"
+
 
 # connect rstudio session to cluster
 sc <- spark_connect(master = "yarn")
@@ -300,9 +299,8 @@ library(gutenbergr)
 library(dplyr)
 
 # fix vars
-# you can look up the book id 
-# via gutenberg_works(author=="Schiller, Friedrich")
-BOOK_ID <- 2782
+TELL <- "https://www.gutenberg.org/cache/epub/6788/pg6788.txt"
+
 
 
 ```
@@ -313,10 +311,14 @@ We fetch the raw text of the book and copy it to the Spark cluster. Note that yo
 ```{r warning=FALSE, message=FALSE}
 
 
+# Data gathering and preparation
 # fetch Schiller's Tell, load to cluster
-tell <- gutenbergr::gutenberg_download(BOOK_ID, strip = TRUE)[,-1]
-names(tell) <- "raw_text"
+tmp_file <- tempfile()
+download.file(TELL, tmp_file)
+raw_text <- readLines(tmp_file)
+tell <- data.frame(raw_text=raw_text)
 tell_spark <- copy_to(sc, tell, "tell_spark", overwrite = TRUE)
+
 ```
 
 The text data will be processed in a Spark DataFrame columnd behind the `tbl_spakr`-object. First, we remove empty lines of text, select the column containing all the text, and then remove all non-numeric and non-alphabetical characters. The latter step is an important text cleaning step as we want to avoid special characters to be considered words or part of words later on.
@@ -358,7 +360,6 @@ Finally, we combine all of the words in one vector and store the result in a new
 # unnest words, combine in one row
 all_tell_words <- mutate(tell_spark, 
                word = explode(words_wo_stop))
-compute(all_tell_words, "all_tell_words")
 
 # final cleaning
 all_tell_words <- select(all_tell_words, word)
@@ -371,6 +372,4 @@ Based on this cleaned set of words, we can compute the word count for the entire
 # word count and store result in Spark memory
 compute(count(all_tell_words, word), "wordcount_tell")
 ```
-
-
 

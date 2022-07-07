@@ -1,0 +1,55 @@
+---
+knit: "bookdown::render_book"
+title: "Big Data Analytics"
+subtitle: "A guide to data science practitioners making the transition to Big Data"
+author: "Ulrich Matter"
+date: "`r Sys.Date()`"
+description: "A guide to data science practitioners making the transition to Big Data."
+github-repo: "umatter/BigData"
+url: "https://umatter.github.io/BigData"
+documentclass: style/krantz
+link-citations: yes
+colorlinks: yes
+lot: yes
+lof: yes
+fontsize: 12pt
+monofont: "Source Code Pro"
+monofontoptions: "Scale=0.7"
+site: bookdown::bookdown_site
+bibliography: [references/bigdata.bib, references/packages.bib]
+biblio-style: apalike
+cover-image: img/cover.png
+---
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(rmarkdown)
+library(bookdown)
+library(knitr)
+
+knitr::write_bib(c(
+  .packages(), 'bookdown', 'knitr', 'rmarkdown', 'httr', 'rvest', 
+  'twitteR', 'jsonlite', 'xml2', 'Rcrawler'
+), 'references/packages.bib')
+
+opts_chunk$set(size="small")
+options( htmltools.dir.version = FALSE, formatR.indent = 2,
+  width = 55, digits = 4, warnPartialMatchAttr = FALSE, warnPartialMatchDollar = FALSE)
+```
+
+# Preface {.unnumbered}
+
+```{r fig.align='center', out.height="300px", echo=FALSE, include=identical(knitr:::pandoc_to(), 'html')}
+knitr::include_graphics('img/cover.png', dpi = NA)
+```
+
+This textbook provides an introduction to Big Data Analytics in the context of empirical economic research. The book covers the computational constraints underlying Big Data Analytics and how to handle them in the statistical computing environment R (local and in the cloud). Revisiting basic statistical/econometric concepts, the book looks at each step of dealing with large data sets in empirical economic research (storage/import, transformation, visualization, aggregation, analysis).
+
+![Creative Commons License](img/cc.png)
+
+The online version of this book is licensed under the [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License](http://creativecommons.org/licenses/by-nc-sa/4.0/).
+
+
+```{block2, type='flushright', html.tag='p'}
+Ulrich Matter 
+St. Gallen, Switzerland
+```
