@@ -413,33 +413,33 @@ div.csl-indent {
 <h1><span class="header-section-number">C</span> Appendix C<a href="appendix-c.html#appendix-c" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <div id="install-hadoop-on-ubuntu-linux" class="section level2 hasAnchor" number="18.1">
 <h2><span class="header-section-number">C.1</span> Install Hadoop (on Ubuntu Linux)<a href="appendix-c.html#install-hadoop-on-ubuntu-linux" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb611"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb611-1"><a href="appendix-c.html#cb611-1" aria-hidden="true" tabindex="-1"></a><span class="co"># download binary</span></span>
-<span id="cb611-2"><a href="appendix-c.html#cb611-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://dlcdn.apache.org/hadoop/common/hadoop-2.10.1/hadoop-2.10.1.tar.gz</span>
-<span id="cb611-3"><a href="appendix-c.html#cb611-3" aria-hidden="true" tabindex="-1"></a><span class="co"># download checksum</span></span>
-<span id="cb611-4"><a href="appendix-c.html#cb611-4" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://dlcdn.apache.org/hadoop/common/hadoop-2.10.1/hadoop-2.10.1.tar.gz.sha512</span>
-<span id="cb611-5"><a href="appendix-c.html#cb611-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb611-6"><a href="appendix-c.html#cb611-6" aria-hidden="true" tabindex="-1"></a><span class="co"># run the verification</span></span>
-<span id="cb611-7"><a href="appendix-c.html#cb611-7" aria-hidden="true" tabindex="-1"></a><span class="ex">shasum</span> <span class="at">-a</span> 512 hadoop-2.10.1.tar.gz</span>
-<span id="cb611-8"><a href="appendix-c.html#cb611-8" aria-hidden="true" tabindex="-1"></a><span class="co"># compare with value in mds file</span></span>
-<span id="cb611-9"><a href="appendix-c.html#cb611-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> hadoop-2.10.1.tar.gz.sha512</span>
-<span id="cb611-10"><a href="appendix-c.html#cb611-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb611-11"><a href="appendix-c.html#cb611-11" aria-hidden="true" tabindex="-1"></a><span class="co"># if all is fine, unpack</span></span>
-<span id="cb611-12"><a href="appendix-c.html#cb611-12" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzvf</span> hadoop-2.10.1.tar.gz</span>
-<span id="cb611-13"><a href="appendix-c.html#cb611-13" aria-hidden="true" tabindex="-1"></a><span class="co"># move to proper place</span></span>
-<span id="cb611-14"><a href="appendix-c.html#cb611-14" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mv hadoop-2.10.1 /usr/local/hadoop</span>
-<span id="cb611-15"><a href="appendix-c.html#cb611-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb611-16"><a href="appendix-c.html#cb611-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb611-17"><a href="appendix-c.html#cb611-17" aria-hidden="true" tabindex="-1"></a><span class="co"># then point to this version from hadoop</span></span>
-<span id="cb611-18"><a href="appendix-c.html#cb611-18" aria-hidden="true" tabindex="-1"></a><span class="co"># open the file /usr/local/hadoop/etc/hadoop/hadoop-env.sh</span></span></code></pre></div>
-<div class="sourceCode" id="cb612"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb612-1"><a href="appendix-c.html#cb612-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in a text editor and add (where export JAVA_HOME=...)</span></span>
-<span id="cb612-2"><a href="appendix-c.html#cb612-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">JAVA_HOME</span><span class="op">=</span><span class="va">$(</span><span class="fu">readlink</span> <span class="at">-f</span> /usr/bin/java <span class="kw">|</span> <span class="fu">sed</span> <span class="st">&quot;s:bin/java::&quot;</span><span class="va">)</span></span>
-<span id="cb612-3"><a href="appendix-c.html#cb612-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb612-4"><a href="appendix-c.html#cb612-4" aria-hidden="true" tabindex="-1"></a><span class="co"># clean up</span></span>
-<span id="cb612-5"><a href="appendix-c.html#cb612-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> hadoop-2.10.1.tar.gz</span>
-<span id="cb612-6"><a href="appendix-c.html#cb612-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> hadoop-2.10.1.tar.gz.sha512</span></code></pre></div>
+<div class="sourceCode" id="cb610"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb610-1"><a href="appendix-c.html#cb610-1" aria-hidden="true" tabindex="-1"></a><span class="co"># download binary</span></span>
+<span id="cb610-2"><a href="appendix-c.html#cb610-2" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://dlcdn.apache.org/hadoop/common/hadoop-2.10.1/hadoop-2.10.1.tar.gz</span>
+<span id="cb610-3"><a href="appendix-c.html#cb610-3" aria-hidden="true" tabindex="-1"></a><span class="co"># download checksum</span></span>
+<span id="cb610-4"><a href="appendix-c.html#cb610-4" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://dlcdn.apache.org/hadoop/common/hadoop-2.10.1/hadoop-2.10.1.tar.gz.sha512</span>
+<span id="cb610-5"><a href="appendix-c.html#cb610-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb610-6"><a href="appendix-c.html#cb610-6" aria-hidden="true" tabindex="-1"></a><span class="co"># run the verification</span></span>
+<span id="cb610-7"><a href="appendix-c.html#cb610-7" aria-hidden="true" tabindex="-1"></a><span class="ex">shasum</span> <span class="at">-a</span> 512 hadoop-2.10.1.tar.gz</span>
+<span id="cb610-8"><a href="appendix-c.html#cb610-8" aria-hidden="true" tabindex="-1"></a><span class="co"># compare with value in mds file</span></span>
+<span id="cb610-9"><a href="appendix-c.html#cb610-9" aria-hidden="true" tabindex="-1"></a><span class="fu">cat</span> hadoop-2.10.1.tar.gz.sha512</span>
+<span id="cb610-10"><a href="appendix-c.html#cb610-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb610-11"><a href="appendix-c.html#cb610-11" aria-hidden="true" tabindex="-1"></a><span class="co"># if all is fine, unpack</span></span>
+<span id="cb610-12"><a href="appendix-c.html#cb610-12" aria-hidden="true" tabindex="-1"></a><span class="fu">tar</span> <span class="at">-xzvf</span> hadoop-2.10.1.tar.gz</span>
+<span id="cb610-13"><a href="appendix-c.html#cb610-13" aria-hidden="true" tabindex="-1"></a><span class="co"># move to proper place</span></span>
+<span id="cb610-14"><a href="appendix-c.html#cb610-14" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> mv hadoop-2.10.1 /usr/local/hadoop</span>
+<span id="cb610-15"><a href="appendix-c.html#cb610-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb610-16"><a href="appendix-c.html#cb610-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb610-17"><a href="appendix-c.html#cb610-17" aria-hidden="true" tabindex="-1"></a><span class="co"># then point to this version from hadoop</span></span>
+<span id="cb610-18"><a href="appendix-c.html#cb610-18" aria-hidden="true" tabindex="-1"></a><span class="co"># open the file /usr/local/hadoop/etc/hadoop/hadoop-env.sh</span></span></code></pre></div>
+<div class="sourceCode" id="cb611"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb611-1"><a href="appendix-c.html#cb611-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in a text editor and add (where export JAVA_HOME=...)</span></span>
+<span id="cb611-2"><a href="appendix-c.html#cb611-2" aria-hidden="true" tabindex="-1"></a><span class="bu">export</span> <span class="va">JAVA_HOME</span><span class="op">=</span><span class="va">$(</span><span class="fu">readlink</span> <span class="at">-f</span> /usr/bin/java <span class="kw">|</span> <span class="fu">sed</span> <span class="st">&quot;s:bin/java::&quot;</span><span class="va">)</span></span>
+<span id="cb611-3"><a href="appendix-c.html#cb611-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb611-4"><a href="appendix-c.html#cb611-4" aria-hidden="true" tabindex="-1"></a><span class="co"># clean up</span></span>
+<span id="cb611-5"><a href="appendix-c.html#cb611-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> hadoop-2.10.1.tar.gz</span>
+<span id="cb611-6"><a href="appendix-c.html#cb611-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span> hadoop-2.10.1.tar.gz.sha512</span></code></pre></div>
 <p>After running all of the steps above, run the following line in the terminal to check the installation</p>
-<div class="sourceCode" id="cb613"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb613-1"><a href="appendix-c.html#cb613-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check installation</span></span>
-<span id="cb613-2"><a href="appendix-c.html#cb613-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/usr/local/hadoop/bin/hadoop</span></span></code></pre></div>
+<div class="sourceCode" id="cb612"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb612-1"><a href="appendix-c.html#cb612-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check installation</span></span>
+<span id="cb612-2"><a href="appendix-c.html#cb612-2" aria-hidden="true" tabindex="-1"></a><span class="ex">/usr/local/hadoop/bin/hadoop</span></span></code></pre></div>
 </div>
 </div>
             </section>

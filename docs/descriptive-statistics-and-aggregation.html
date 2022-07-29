@@ -421,111 +421,111 @@ div.csl-indent {
 <div id="data-import-2" class="section level4 hasAnchor" number="10.1.1.1">
 <h4><span class="header-section-number">10.1.1.1</span> Data import<a href="descriptive-statistics-and-aggregation.html#data-import-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>First, we read the raw taxi trips records into R with the <code>ff</code>-package.</p>
-<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="descriptive-statistics-and-aggregation.html#cb320-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb320-2"><a href="descriptive-statistics-and-aggregation.html#cb320-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ff)</span>
-<span id="cb320-3"><a href="descriptive-statistics-and-aggregation.html#cb320-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ffbase)</span>
-<span id="cb320-4"><a href="descriptive-statistics-and-aggregation.html#cb320-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb320-5"><a href="descriptive-statistics-and-aggregation.html#cb320-5" aria-hidden="true" tabindex="-1"></a><span class="co"># set up the ff directory (for data file chunks)</span></span>
-<span id="cb320-6"><a href="descriptive-statistics-and-aggregation.html#cb320-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="st">&quot;fftaxi&quot;</span>)){</span>
-<span id="cb320-7"><a href="descriptive-statistics-and-aggregation.html#cb320-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">system</span>(<span class="st">&quot;mkdir fftaxi&quot;</span>)</span>
-<span id="cb320-8"><a href="descriptive-statistics-and-aggregation.html#cb320-8" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb320-9"><a href="descriptive-statistics-and-aggregation.html#cb320-9" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">fftempdir =</span> <span class="st">&quot;fftaxi&quot;</span>)</span>
-<span id="cb320-10"><a href="descriptive-statistics-and-aggregation.html#cb320-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb320-11"><a href="descriptive-statistics-and-aggregation.html#cb320-11" aria-hidden="true" tabindex="-1"></a><span class="co"># import a few lines of the data, setting the column classes explicitly</span></span>
-<span id="cb320-12"><a href="descriptive-statistics-and-aggregation.html#cb320-12" aria-hidden="true" tabindex="-1"></a>col_classes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">V1 =</span> <span class="st">&quot;factor&quot;</span>,</span>
-<span id="cb320-13"><a href="descriptive-statistics-and-aggregation.html#cb320-13" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V2 =</span> <span class="st">&quot;POSIXct&quot;</span>,</span>
-<span id="cb320-14"><a href="descriptive-statistics-and-aggregation.html#cb320-14" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V3 =</span> <span class="st">&quot;POSIXct&quot;</span>,</span>
-<span id="cb320-15"><a href="descriptive-statistics-and-aggregation.html#cb320-15" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V4 =</span> <span class="st">&quot;integer&quot;</span>,</span>
-<span id="cb320-16"><a href="descriptive-statistics-and-aggregation.html#cb320-16" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V5 =</span> <span class="st">&quot;numeric&quot;</span>,</span>
-<span id="cb320-17"><a href="descriptive-statistics-and-aggregation.html#cb320-17" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V6 =</span> <span class="st">&quot;numeric&quot;</span>,</span>
-<span id="cb320-18"><a href="descriptive-statistics-and-aggregation.html#cb320-18" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V7 =</span> <span class="st">&quot;numeric&quot;</span>,</span>
-<span id="cb320-19"><a href="descriptive-statistics-and-aggregation.html#cb320-19" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V8 =</span> <span class="st">&quot;numeric&quot;</span>,</span>
-<span id="cb320-20"><a href="descriptive-statistics-and-aggregation.html#cb320-20" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V9 =</span> <span class="st">&quot;numeric&quot;</span>,</span>
-<span id="cb320-21"><a href="descriptive-statistics-and-aggregation.html#cb320-21" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V10 =</span> <span class="st">&quot;numeric&quot;</span>,</span>
-<span id="cb320-22"><a href="descriptive-statistics-and-aggregation.html#cb320-22" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V11 =</span> <span class="st">&quot;numeric&quot;</span>,</span>
-<span id="cb320-23"><a href="descriptive-statistics-and-aggregation.html#cb320-23" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V12 =</span> <span class="st">&quot;factor&quot;</span>,</span>
-<span id="cb320-24"><a href="descriptive-statistics-and-aggregation.html#cb320-24" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V13 =</span> <span class="st">&quot;numeric&quot;</span>,</span>
-<span id="cb320-25"><a href="descriptive-statistics-and-aggregation.html#cb320-25" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V14 =</span> <span class="st">&quot;numeric&quot;</span>,</span>
-<span id="cb320-26"><a href="descriptive-statistics-and-aggregation.html#cb320-26" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V15 =</span> <span class="st">&quot;factor&quot;</span>,</span>
-<span id="cb320-27"><a href="descriptive-statistics-and-aggregation.html#cb320-27" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V16 =</span> <span class="st">&quot;numeric&quot;</span>,</span>
-<span id="cb320-28"><a href="descriptive-statistics-and-aggregation.html#cb320-28" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V17 =</span> <span class="st">&quot;numeric&quot;</span>,</span>
-<span id="cb320-29"><a href="descriptive-statistics-and-aggregation.html#cb320-29" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V18 =</span> <span class="st">&quot;numeric&quot;</span>)</span>
-<span id="cb320-30"><a href="descriptive-statistics-and-aggregation.html#cb320-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb320-31"><a href="descriptive-statistics-and-aggregation.html#cb320-31" aria-hidden="true" tabindex="-1"></a><span class="co"># import the first one million observations</span></span>
-<span id="cb320-32"><a href="descriptive-statistics-and-aggregation.html#cb320-32" aria-hidden="true" tabindex="-1"></a>taxi <span class="ot">&lt;-</span> <span class="fu">read.table.ffdf</span>(<span class="at">file =</span> <span class="st">&quot;data/tlc_trips.csv&quot;</span>,</span>
-<span id="cb320-33"><a href="descriptive-statistics-and-aggregation.html#cb320-33" aria-hidden="true" tabindex="-1"></a>                        <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>,</span>
-<span id="cb320-34"><a href="descriptive-statistics-and-aggregation.html#cb320-34" aria-hidden="true" tabindex="-1"></a>                        <span class="at">header =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb320-35"><a href="descriptive-statistics-and-aggregation.html#cb320-35" aria-hidden="true" tabindex="-1"></a>                        <span class="at">next.rows =</span> <span class="dv">100000</span>,</span>
-<span id="cb320-36"><a href="descriptive-statistics-and-aggregation.html#cb320-36" aria-hidden="true" tabindex="-1"></a>                        <span class="at">colClasses=</span> col_classes,</span>
-<span id="cb320-37"><a href="descriptive-statistics-and-aggregation.html#cb320-37" aria-hidden="true" tabindex="-1"></a>                        <span class="at">nrows =</span> <span class="dv">1000000</span></span>
-<span id="cb320-38"><a href="descriptive-statistics-and-aggregation.html#cb320-38" aria-hidden="true" tabindex="-1"></a>                        )</span></code></pre></div>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="descriptive-statistics-and-aggregation.html#cb319-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb319-2"><a href="descriptive-statistics-and-aggregation.html#cb319-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ff)</span>
+<span id="cb319-3"><a href="descriptive-statistics-and-aggregation.html#cb319-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ffbase)</span>
+<span id="cb319-4"><a href="descriptive-statistics-and-aggregation.html#cb319-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb319-5"><a href="descriptive-statistics-and-aggregation.html#cb319-5" aria-hidden="true" tabindex="-1"></a><span class="co"># set up the ff directory (for data file chunks)</span></span>
+<span id="cb319-6"><a href="descriptive-statistics-and-aggregation.html#cb319-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="st">&quot;fftaxi&quot;</span>)){</span>
+<span id="cb319-7"><a href="descriptive-statistics-and-aggregation.html#cb319-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">system</span>(<span class="st">&quot;mkdir fftaxi&quot;</span>)</span>
+<span id="cb319-8"><a href="descriptive-statistics-and-aggregation.html#cb319-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb319-9"><a href="descriptive-statistics-and-aggregation.html#cb319-9" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">fftempdir =</span> <span class="st">&quot;fftaxi&quot;</span>)</span>
+<span id="cb319-10"><a href="descriptive-statistics-and-aggregation.html#cb319-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb319-11"><a href="descriptive-statistics-and-aggregation.html#cb319-11" aria-hidden="true" tabindex="-1"></a><span class="co"># import a few lines of the data, setting the column classes explicitly</span></span>
+<span id="cb319-12"><a href="descriptive-statistics-and-aggregation.html#cb319-12" aria-hidden="true" tabindex="-1"></a>col_classes <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">V1 =</span> <span class="st">&quot;factor&quot;</span>,</span>
+<span id="cb319-13"><a href="descriptive-statistics-and-aggregation.html#cb319-13" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V2 =</span> <span class="st">&quot;POSIXct&quot;</span>,</span>
+<span id="cb319-14"><a href="descriptive-statistics-and-aggregation.html#cb319-14" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V3 =</span> <span class="st">&quot;POSIXct&quot;</span>,</span>
+<span id="cb319-15"><a href="descriptive-statistics-and-aggregation.html#cb319-15" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V4 =</span> <span class="st">&quot;integer&quot;</span>,</span>
+<span id="cb319-16"><a href="descriptive-statistics-and-aggregation.html#cb319-16" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V5 =</span> <span class="st">&quot;numeric&quot;</span>,</span>
+<span id="cb319-17"><a href="descriptive-statistics-and-aggregation.html#cb319-17" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V6 =</span> <span class="st">&quot;numeric&quot;</span>,</span>
+<span id="cb319-18"><a href="descriptive-statistics-and-aggregation.html#cb319-18" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V7 =</span> <span class="st">&quot;numeric&quot;</span>,</span>
+<span id="cb319-19"><a href="descriptive-statistics-and-aggregation.html#cb319-19" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V8 =</span> <span class="st">&quot;numeric&quot;</span>,</span>
+<span id="cb319-20"><a href="descriptive-statistics-and-aggregation.html#cb319-20" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V9 =</span> <span class="st">&quot;numeric&quot;</span>,</span>
+<span id="cb319-21"><a href="descriptive-statistics-and-aggregation.html#cb319-21" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V10 =</span> <span class="st">&quot;numeric&quot;</span>,</span>
+<span id="cb319-22"><a href="descriptive-statistics-and-aggregation.html#cb319-22" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V11 =</span> <span class="st">&quot;numeric&quot;</span>,</span>
+<span id="cb319-23"><a href="descriptive-statistics-and-aggregation.html#cb319-23" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V12 =</span> <span class="st">&quot;factor&quot;</span>,</span>
+<span id="cb319-24"><a href="descriptive-statistics-and-aggregation.html#cb319-24" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V13 =</span> <span class="st">&quot;numeric&quot;</span>,</span>
+<span id="cb319-25"><a href="descriptive-statistics-and-aggregation.html#cb319-25" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V14 =</span> <span class="st">&quot;numeric&quot;</span>,</span>
+<span id="cb319-26"><a href="descriptive-statistics-and-aggregation.html#cb319-26" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V15 =</span> <span class="st">&quot;factor&quot;</span>,</span>
+<span id="cb319-27"><a href="descriptive-statistics-and-aggregation.html#cb319-27" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V16 =</span> <span class="st">&quot;numeric&quot;</span>,</span>
+<span id="cb319-28"><a href="descriptive-statistics-and-aggregation.html#cb319-28" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V17 =</span> <span class="st">&quot;numeric&quot;</span>,</span>
+<span id="cb319-29"><a href="descriptive-statistics-and-aggregation.html#cb319-29" aria-hidden="true" tabindex="-1"></a>                 <span class="at">V18 =</span> <span class="st">&quot;numeric&quot;</span>)</span>
+<span id="cb319-30"><a href="descriptive-statistics-and-aggregation.html#cb319-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb319-31"><a href="descriptive-statistics-and-aggregation.html#cb319-31" aria-hidden="true" tabindex="-1"></a><span class="co"># import the first one million observations</span></span>
+<span id="cb319-32"><a href="descriptive-statistics-and-aggregation.html#cb319-32" aria-hidden="true" tabindex="-1"></a>taxi <span class="ot">&lt;-</span> <span class="fu">read.table.ffdf</span>(<span class="at">file =</span> <span class="st">&quot;data/tlc_trips.csv&quot;</span>,</span>
+<span id="cb319-33"><a href="descriptive-statistics-and-aggregation.html#cb319-33" aria-hidden="true" tabindex="-1"></a>                        <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>,</span>
+<span id="cb319-34"><a href="descriptive-statistics-and-aggregation.html#cb319-34" aria-hidden="true" tabindex="-1"></a>                        <span class="at">header =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb319-35"><a href="descriptive-statistics-and-aggregation.html#cb319-35" aria-hidden="true" tabindex="-1"></a>                        <span class="at">next.rows =</span> <span class="dv">100000</span>,</span>
+<span id="cb319-36"><a href="descriptive-statistics-and-aggregation.html#cb319-36" aria-hidden="true" tabindex="-1"></a>                        <span class="at">colClasses=</span> col_classes,</span>
+<span id="cb319-37"><a href="descriptive-statistics-and-aggregation.html#cb319-37" aria-hidden="true" tabindex="-1"></a>                        <span class="at">nrows =</span> <span class="dv">1000000</span></span>
+<span id="cb319-38"><a href="descriptive-statistics-and-aggregation.html#cb319-38" aria-hidden="true" tabindex="-1"></a>                        )</span></code></pre></div>
 <p>Following the data documentation provided by TLC, we give the columns of our data set more meaningful names and remove the empty columns (some covariates are only collected in later years).</p>
-<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="descriptive-statistics-and-aggregation.html#cb321-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first, we remove the empty vars V8 and V9</span></span>
-<span id="cb321-2"><a href="descriptive-statistics-and-aggregation.html#cb321-2" aria-hidden="true" tabindex="-1"></a>taxi<span class="sc">$</span>V8 <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb321-3"><a href="descriptive-statistics-and-aggregation.html#cb321-3" aria-hidden="true" tabindex="-1"></a>taxi<span class="sc">$</span>V9 <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb321-4"><a href="descriptive-statistics-and-aggregation.html#cb321-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb321-5"><a href="descriptive-statistics-and-aggregation.html#cb321-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb321-6"><a href="descriptive-statistics-and-aggregation.html#cb321-6" aria-hidden="true" tabindex="-1"></a><span class="co"># set covariate names according to the data dictionary</span></span>
-<span id="cb321-7"><a href="descriptive-statistics-and-aggregation.html#cb321-7" aria-hidden="true" tabindex="-1"></a><span class="co"># see https://www1.nyc.gov/assets/tlc/downloads/pdf/data_dictionary_trip_records_yellow.pdf</span></span>
-<span id="cb321-8"><a href="descriptive-statistics-and-aggregation.html#cb321-8" aria-hidden="true" tabindex="-1"></a><span class="co"># note instead of taxizonne ids, long/lat are provided</span></span>
-<span id="cb321-9"><a href="descriptive-statistics-and-aggregation.html#cb321-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb321-10"><a href="descriptive-statistics-and-aggregation.html#cb321-10" aria-hidden="true" tabindex="-1"></a>varnames <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;vendor_id&quot;</span>,</span>
-<span id="cb321-11"><a href="descriptive-statistics-and-aggregation.html#cb321-11" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;pickup_time&quot;</span>,</span>
-<span id="cb321-12"><a href="descriptive-statistics-and-aggregation.html#cb321-12" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;dropoff_time&quot;</span>,</span>
-<span id="cb321-13"><a href="descriptive-statistics-and-aggregation.html#cb321-13" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;passenger_count&quot;</span>,</span>
-<span id="cb321-14"><a href="descriptive-statistics-and-aggregation.html#cb321-14" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;trip_distance&quot;</span>,</span>
-<span id="cb321-15"><a href="descriptive-statistics-and-aggregation.html#cb321-15" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;start_lat&quot;</span>,</span>
-<span id="cb321-16"><a href="descriptive-statistics-and-aggregation.html#cb321-16" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;start_long&quot;</span>,</span>
-<span id="cb321-17"><a href="descriptive-statistics-and-aggregation.html#cb321-17" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;dest_lat&quot;</span>,</span>
-<span id="cb321-18"><a href="descriptive-statistics-and-aggregation.html#cb321-18" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;dest_long&quot;</span>,</span>
-<span id="cb321-19"><a href="descriptive-statistics-and-aggregation.html#cb321-19" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;payment_type&quot;</span>,</span>
-<span id="cb321-20"><a href="descriptive-statistics-and-aggregation.html#cb321-20" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;fare_amount&quot;</span>,</span>
-<span id="cb321-21"><a href="descriptive-statistics-and-aggregation.html#cb321-21" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;extra&quot;</span>,</span>
-<span id="cb321-22"><a href="descriptive-statistics-and-aggregation.html#cb321-22" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;mta_tax&quot;</span>,</span>
-<span id="cb321-23"><a href="descriptive-statistics-and-aggregation.html#cb321-23" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;tip_amount&quot;</span>,</span>
-<span id="cb321-24"><a href="descriptive-statistics-and-aggregation.html#cb321-24" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;tolls_amount&quot;</span>,</span>
-<span id="cb321-25"><a href="descriptive-statistics-and-aggregation.html#cb321-25" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;total_amount&quot;</span>)</span>
-<span id="cb321-26"><a href="descriptive-statistics-and-aggregation.html#cb321-26" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(taxi) <span class="ot">&lt;-</span> varnames</span></code></pre></div>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="descriptive-statistics-and-aggregation.html#cb320-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first, we remove the empty vars V8 and V9</span></span>
+<span id="cb320-2"><a href="descriptive-statistics-and-aggregation.html#cb320-2" aria-hidden="true" tabindex="-1"></a>taxi<span class="sc">$</span>V8 <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb320-3"><a href="descriptive-statistics-and-aggregation.html#cb320-3" aria-hidden="true" tabindex="-1"></a>taxi<span class="sc">$</span>V9 <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb320-4"><a href="descriptive-statistics-and-aggregation.html#cb320-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb320-5"><a href="descriptive-statistics-and-aggregation.html#cb320-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb320-6"><a href="descriptive-statistics-and-aggregation.html#cb320-6" aria-hidden="true" tabindex="-1"></a><span class="co"># set covariate names according to the data dictionary</span></span>
+<span id="cb320-7"><a href="descriptive-statistics-and-aggregation.html#cb320-7" aria-hidden="true" tabindex="-1"></a><span class="co"># see https://www1.nyc.gov/assets/tlc/downloads/pdf/data_dictionary_trip_records_yellow.pdf</span></span>
+<span id="cb320-8"><a href="descriptive-statistics-and-aggregation.html#cb320-8" aria-hidden="true" tabindex="-1"></a><span class="co"># note instead of taxizonne ids, long/lat are provided</span></span>
+<span id="cb320-9"><a href="descriptive-statistics-and-aggregation.html#cb320-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb320-10"><a href="descriptive-statistics-and-aggregation.html#cb320-10" aria-hidden="true" tabindex="-1"></a>varnames <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;vendor_id&quot;</span>,</span>
+<span id="cb320-11"><a href="descriptive-statistics-and-aggregation.html#cb320-11" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;pickup_time&quot;</span>,</span>
+<span id="cb320-12"><a href="descriptive-statistics-and-aggregation.html#cb320-12" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;dropoff_time&quot;</span>,</span>
+<span id="cb320-13"><a href="descriptive-statistics-and-aggregation.html#cb320-13" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;passenger_count&quot;</span>,</span>
+<span id="cb320-14"><a href="descriptive-statistics-and-aggregation.html#cb320-14" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;trip_distance&quot;</span>,</span>
+<span id="cb320-15"><a href="descriptive-statistics-and-aggregation.html#cb320-15" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;start_lat&quot;</span>,</span>
+<span id="cb320-16"><a href="descriptive-statistics-and-aggregation.html#cb320-16" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;start_long&quot;</span>,</span>
+<span id="cb320-17"><a href="descriptive-statistics-and-aggregation.html#cb320-17" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;dest_lat&quot;</span>,</span>
+<span id="cb320-18"><a href="descriptive-statistics-and-aggregation.html#cb320-18" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;dest_long&quot;</span>,</span>
+<span id="cb320-19"><a href="descriptive-statistics-and-aggregation.html#cb320-19" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;payment_type&quot;</span>,</span>
+<span id="cb320-20"><a href="descriptive-statistics-and-aggregation.html#cb320-20" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;fare_amount&quot;</span>,</span>
+<span id="cb320-21"><a href="descriptive-statistics-and-aggregation.html#cb320-21" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;extra&quot;</span>,</span>
+<span id="cb320-22"><a href="descriptive-statistics-and-aggregation.html#cb320-22" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;mta_tax&quot;</span>,</span>
+<span id="cb320-23"><a href="descriptive-statistics-and-aggregation.html#cb320-23" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;tip_amount&quot;</span>,</span>
+<span id="cb320-24"><a href="descriptive-statistics-and-aggregation.html#cb320-24" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;tolls_amount&quot;</span>,</span>
+<span id="cb320-25"><a href="descriptive-statistics-and-aggregation.html#cb320-25" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;total_amount&quot;</span>)</span>
+<span id="cb320-26"><a href="descriptive-statistics-and-aggregation.html#cb320-26" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(taxi) <span class="ot">&lt;-</span> varnames</span></code></pre></div>
 <p>When inspecting the factor variables of the data set, we notice that some of the values are not standardized/normalized and the resulting factor levels are, therefore, somewhat ambiguous. We better clean this before getting into data aggregation tasks. Note the <code>ff</code>-specific syntax needed to recode the factor.</p>
-<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="descriptive-statistics-and-aggregation.html#cb322-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect the factor levels</span></span>
-<span id="cb322-2"><a href="descriptive-statistics-and-aggregation.html#cb322-2" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(taxi<span class="sc">$</span>payment_type)</span></code></pre></div>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="descriptive-statistics-and-aggregation.html#cb321-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect the factor levels</span></span>
+<span id="cb321-2"><a href="descriptive-statistics-and-aggregation.html#cb321-2" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(taxi<span class="sc">$</span>payment_type)</span></code></pre></div>
 <pre><code>## [1] &quot;Cash&quot;      &quot;CASH&quot;      &quot;Credit&quot;    &quot;CREDIT&quot;   
 ## [5] &quot;Dispute&quot;   &quot;No Charge&quot;</code></pre>
-<div class="sourceCode" id="cb324"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb324-1"><a href="descriptive-statistics-and-aggregation.html#cb324-1" aria-hidden="true" tabindex="-1"></a><span class="co"># recode them</span></span>
-<span id="cb324-2"><a href="descriptive-statistics-and-aggregation.html#cb324-2" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(taxi<span class="sc">$</span>payment_type) <span class="ot">&lt;-</span> <span class="fu">tolower</span>(<span class="fu">levels</span>(taxi<span class="sc">$</span>payment_type))</span>
-<span id="cb324-3"><a href="descriptive-statistics-and-aggregation.html#cb324-3" aria-hidden="true" tabindex="-1"></a>taxi<span class="sc">$</span>payment_type <span class="ot">&lt;-</span> <span class="fu">ff</span>(taxi<span class="sc">$</span>payment_type,</span>
-<span id="cb324-4"><a href="descriptive-statistics-and-aggregation.html#cb324-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">unique</span>(<span class="fu">levels</span>(taxi<span class="sc">$</span>payment_type)),</span>
-<span id="cb324-5"><a href="descriptive-statistics-and-aggregation.html#cb324-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">ramclass =</span> <span class="st">&quot;factor&quot;</span>)</span>
-<span id="cb324-6"><a href="descriptive-statistics-and-aggregation.html#cb324-6" aria-hidden="true" tabindex="-1"></a><span class="co"># check result</span></span>
-<span id="cb324-7"><a href="descriptive-statistics-and-aggregation.html#cb324-7" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(taxi<span class="sc">$</span>payment_type)</span></code></pre></div>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="descriptive-statistics-and-aggregation.html#cb323-1" aria-hidden="true" tabindex="-1"></a><span class="co"># recode them</span></span>
+<span id="cb323-2"><a href="descriptive-statistics-and-aggregation.html#cb323-2" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(taxi<span class="sc">$</span>payment_type) <span class="ot">&lt;-</span> <span class="fu">tolower</span>(<span class="fu">levels</span>(taxi<span class="sc">$</span>payment_type))</span>
+<span id="cb323-3"><a href="descriptive-statistics-and-aggregation.html#cb323-3" aria-hidden="true" tabindex="-1"></a>taxi<span class="sc">$</span>payment_type <span class="ot">&lt;-</span> <span class="fu">ff</span>(taxi<span class="sc">$</span>payment_type,</span>
+<span id="cb323-4"><a href="descriptive-statistics-and-aggregation.html#cb323-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">unique</span>(<span class="fu">levels</span>(taxi<span class="sc">$</span>payment_type)),</span>
+<span id="cb323-5"><a href="descriptive-statistics-and-aggregation.html#cb323-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">ramclass =</span> <span class="st">&quot;factor&quot;</span>)</span>
+<span id="cb323-6"><a href="descriptive-statistics-and-aggregation.html#cb323-6" aria-hidden="true" tabindex="-1"></a><span class="co"># check result</span></span>
+<span id="cb323-7"><a href="descriptive-statistics-and-aggregation.html#cb323-7" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(taxi<span class="sc">$</span>payment_type)</span></code></pre></div>
 <pre><code>## [1] &quot;cash&quot;      &quot;credit&quot;    &quot;dispute&quot;   &quot;no charge&quot;</code></pre>
 </div>
 <div id="aggregation-with-split-apply-combine" class="section level4 hasAnchor" number="10.1.1.2">
 <h4><span class="header-section-number">10.1.1.2</span> Aggregation with split-apply-combine<a href="descriptive-statistics-and-aggregation.html#aggregation-with-split-apply-combine" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>First, we have a look at whether trips paid with credit card tend to involve lower tip amounts than trips paid by cash. In order to do so, we create a table that shows the average amount of tip paid for each payment-type category.</p>
 <p>In simple words, this means we first split the data set into subsets, each of which containing all observations belonging to a distinct payment type. Then, we compute the arithmetic mean of the tip-column of each of these subsets. Finally, we combine all of these results in one table (i.e., the split-apply-combine strategy). When working with <code>ff</code>, the <code>ffdfply()</code>-function provides a user-friendly implementation of split-apply-combine type of tasks.</p>
-<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="descriptive-statistics-and-aggregation.html#cb326-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb326-2"><a href="descriptive-statistics-and-aggregation.html#cb326-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(doBy)</span>
-<span id="cb326-3"><a href="descriptive-statistics-and-aggregation.html#cb326-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb326-4"><a href="descriptive-statistics-and-aggregation.html#cb326-4" aria-hidden="true" tabindex="-1"></a><span class="co"># split-apply-combine procedure on data file chunks</span></span>
-<span id="cb326-5"><a href="descriptive-statistics-and-aggregation.html#cb326-5" aria-hidden="true" tabindex="-1"></a>tip_pcategory <span class="ot">&lt;-</span> <span class="fu">ffdfdply</span>(taxi,</span>
-<span id="cb326-6"><a href="descriptive-statistics-and-aggregation.html#cb326-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">split =</span> taxi<span class="sc">$</span>payment_type,</span>
-<span id="cb326-7"><a href="descriptive-statistics-and-aggregation.html#cb326-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">BATCHBYTES =</span> <span class="dv">100000000</span>,</span>
-<span id="cb326-8"><a href="descriptive-statistics-and-aggregation.html#cb326-8" aria-hidden="true" tabindex="-1"></a>                          <span class="at">FUN =</span> <span class="cf">function</span>(x) {</span>
-<span id="cb326-9"><a href="descriptive-statistics-and-aggregation.html#cb326-9" aria-hidden="true" tabindex="-1"></a>                               <span class="fu">summaryBy</span>(tip_amount<span class="sc">~</span>payment_type,</span>
-<span id="cb326-10"><a href="descriptive-statistics-and-aggregation.html#cb326-10" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">data =</span> x,</span>
-<span id="cb326-11"><a href="descriptive-statistics-and-aggregation.html#cb326-11" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">FUN =</span> mean,</span>
-<span id="cb326-12"><a href="descriptive-statistics-and-aggregation.html#cb326-12" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">na.rm =</span> <span class="cn">TRUE</span>)})</span></code></pre></div>
-<pre><code>## 2022-07-29 21:54:56, calculating split sizes</code></pre>
-<pre><code>## 2022-07-29 21:54:56, building up split locations</code></pre>
-<pre><code>## 2022-07-29 21:54:57, working on split 1/2, extracting data in RAM of 1 split elements, totalling, 0.0815 GB, while max specified data specified using BATCHBYTES is 0.09313 GB</code></pre>
-<pre><code>## 2022-07-29 21:54:57, ... applying FUN to selected data</code></pre>
-<pre><code>## 2022-07-29 21:54:57, ... appending result to the output ffdf</code></pre>
-<pre><code>## 2022-07-29 21:54:57, working on split 2/2, extracting data in RAM of 3 split elements, totalling, 0.02281 GB, while max specified data specified using BATCHBYTES is 0.09313 GB</code></pre>
-<pre><code>## 2022-07-29 21:54:58, ... applying FUN to selected data</code></pre>
-<pre><code>## 2022-07-29 21:54:58, ... appending result to the output ffdf</code></pre>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="descriptive-statistics-and-aggregation.html#cb325-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb325-2"><a href="descriptive-statistics-and-aggregation.html#cb325-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(doBy)</span>
+<span id="cb325-3"><a href="descriptive-statistics-and-aggregation.html#cb325-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb325-4"><a href="descriptive-statistics-and-aggregation.html#cb325-4" aria-hidden="true" tabindex="-1"></a><span class="co"># split-apply-combine procedure on data file chunks</span></span>
+<span id="cb325-5"><a href="descriptive-statistics-and-aggregation.html#cb325-5" aria-hidden="true" tabindex="-1"></a>tip_pcategory <span class="ot">&lt;-</span> <span class="fu">ffdfdply</span>(taxi,</span>
+<span id="cb325-6"><a href="descriptive-statistics-and-aggregation.html#cb325-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">split =</span> taxi<span class="sc">$</span>payment_type,</span>
+<span id="cb325-7"><a href="descriptive-statistics-and-aggregation.html#cb325-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">BATCHBYTES =</span> <span class="dv">100000000</span>,</span>
+<span id="cb325-8"><a href="descriptive-statistics-and-aggregation.html#cb325-8" aria-hidden="true" tabindex="-1"></a>                          <span class="at">FUN =</span> <span class="cf">function</span>(x) {</span>
+<span id="cb325-9"><a href="descriptive-statistics-and-aggregation.html#cb325-9" aria-hidden="true" tabindex="-1"></a>                               <span class="fu">summaryBy</span>(tip_amount<span class="sc">~</span>payment_type,</span>
+<span id="cb325-10"><a href="descriptive-statistics-and-aggregation.html#cb325-10" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">data =</span> x,</span>
+<span id="cb325-11"><a href="descriptive-statistics-and-aggregation.html#cb325-11" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">FUN =</span> mean,</span>
+<span id="cb325-12"><a href="descriptive-statistics-and-aggregation.html#cb325-12" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">na.rm =</span> <span class="cn">TRUE</span>)})</span></code></pre></div>
+<pre><code>## 2022-07-30 00:00:52, calculating split sizes</code></pre>
+<pre><code>## 2022-07-30 00:00:52, building up split locations</code></pre>
+<pre><code>## 2022-07-30 00:00:53, working on split 1/2, extracting data in RAM of 1 split elements, totalling, 0.0815 GB, while max specified data specified using BATCHBYTES is 0.09313 GB</code></pre>
+<pre><code>## 2022-07-30 00:00:53, ... applying FUN to selected data</code></pre>
+<pre><code>## 2022-07-30 00:00:53, ... appending result to the output ffdf</code></pre>
+<pre><code>## 2022-07-30 00:00:53, working on split 2/2, extracting data in RAM of 3 split elements, totalling, 0.02281 GB, while max specified data specified using BATCHBYTES is 0.09313 GB</code></pre>
+<pre><code>## 2022-07-30 00:00:53, ... applying FUN to selected data</code></pre>
+<pre><code>## 2022-07-30 00:00:53, ... appending result to the output ffdf</code></pre>
 <p>Note how the output describes the procedure step by step. Now we can have a look at the resulting summary statistic in the form of a <code>data.frame()</code>.</p>
-<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="descriptive-statistics-and-aggregation.html#cb335-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(tip_pcategory)</span></code></pre></div>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="descriptive-statistics-and-aggregation.html#cb334-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(tip_pcategory)</span></code></pre></div>
 <pre><code>##   payment_type tip_amount.mean
 ## 1         cash       0.0008162
 ## 2       credit       2.1619737
@@ -533,28 +533,28 @@ div.csl-indent {
 ## 4    no charge       0.0041056</code></pre>
 <p>The result would go against our initial hypothesis. However, the comparison is a little flawed. If trips paid by credit card also tend to be longer, the result is not too surprising. We should thus look at the share of tip (or percentage), given the overall amount paid for the trip.</p>
 <p>We add an additional variable <code>percent_tip</code> and then repeat the aggregation exercise for this variable.</p>
-<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="descriptive-statistics-and-aggregation.html#cb337-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add additional column with the share of tip</span></span>
-<span id="cb337-2"><a href="descriptive-statistics-and-aggregation.html#cb337-2" aria-hidden="true" tabindex="-1"></a>taxi<span class="sc">$</span>percent_tip <span class="ot">&lt;-</span> (taxi<span class="sc">$</span>tip_amount<span class="sc">/</span>taxi<span class="sc">$</span>total_amount)<span class="sc">*</span><span class="dv">100</span></span>
-<span id="cb337-3"><a href="descriptive-statistics-and-aggregation.html#cb337-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb337-4"><a href="descriptive-statistics-and-aggregation.html#cb337-4" aria-hidden="true" tabindex="-1"></a><span class="co"># recompute the aggregate stats</span></span>
-<span id="cb337-5"><a href="descriptive-statistics-and-aggregation.html#cb337-5" aria-hidden="true" tabindex="-1"></a>tip_pcategory <span class="ot">&lt;-</span> <span class="fu">ffdfdply</span>(taxi,</span>
-<span id="cb337-6"><a href="descriptive-statistics-and-aggregation.html#cb337-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">split =</span> taxi<span class="sc">$</span>payment_type,</span>
-<span id="cb337-7"><a href="descriptive-statistics-and-aggregation.html#cb337-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">BATCHBYTES =</span> <span class="dv">100000000</span>,</span>
-<span id="cb337-8"><a href="descriptive-statistics-and-aggregation.html#cb337-8" aria-hidden="true" tabindex="-1"></a>                          <span class="at">FUN =</span> <span class="cf">function</span>(x) {</span>
-<span id="cb337-9"><a href="descriptive-statistics-and-aggregation.html#cb337-9" aria-hidden="true" tabindex="-1"></a>                               <span class="fu">summaryBy</span>(percent_tip<span class="sc">~</span>payment_type, <span class="co"># note the difference here</span></span>
-<span id="cb337-10"><a href="descriptive-statistics-and-aggregation.html#cb337-10" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">data =</span> x,</span>
-<span id="cb337-11"><a href="descriptive-statistics-and-aggregation.html#cb337-11" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">FUN =</span> mean,</span>
-<span id="cb337-12"><a href="descriptive-statistics-and-aggregation.html#cb337-12" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">na.rm =</span> <span class="cn">TRUE</span>)})</span></code></pre></div>
-<pre><code>## 2022-07-29 21:54:58, calculating split sizes</code></pre>
-<pre><code>## 2022-07-29 21:54:58, building up split locations</code></pre>
-<pre><code>## 2022-07-29 21:54:58, working on split 1/2, extracting data in RAM of 1 split elements, totalling, 0.08732 GB, while max specified data specified using BATCHBYTES is 0.09313 GB</code></pre>
-<pre><code>## 2022-07-29 21:54:59, ... applying FUN to selected data</code></pre>
-<pre><code>## 2022-07-29 21:54:59, ... appending result to the output ffdf</code></pre>
-<pre><code>## 2022-07-29 21:54:59, working on split 2/2, extracting data in RAM of 3 split elements, totalling, 0.02444 GB, while max specified data specified using BATCHBYTES is 0.09313 GB</code></pre>
-<pre><code>## 2022-07-29 21:54:59, ... applying FUN to selected data</code></pre>
-<pre><code>## 2022-07-29 21:54:59, ... appending result to the output ffdf</code></pre>
-<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="descriptive-statistics-and-aggregation.html#cb346-1" aria-hidden="true" tabindex="-1"></a><span class="co"># show result as data frame</span></span>
-<span id="cb346-2"><a href="descriptive-statistics-and-aggregation.html#cb346-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(tip_pcategory)</span></code></pre></div>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="descriptive-statistics-and-aggregation.html#cb336-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add additional column with the share of tip</span></span>
+<span id="cb336-2"><a href="descriptive-statistics-and-aggregation.html#cb336-2" aria-hidden="true" tabindex="-1"></a>taxi<span class="sc">$</span>percent_tip <span class="ot">&lt;-</span> (taxi<span class="sc">$</span>tip_amount<span class="sc">/</span>taxi<span class="sc">$</span>total_amount)<span class="sc">*</span><span class="dv">100</span></span>
+<span id="cb336-3"><a href="descriptive-statistics-and-aggregation.html#cb336-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb336-4"><a href="descriptive-statistics-and-aggregation.html#cb336-4" aria-hidden="true" tabindex="-1"></a><span class="co"># recompute the aggregate stats</span></span>
+<span id="cb336-5"><a href="descriptive-statistics-and-aggregation.html#cb336-5" aria-hidden="true" tabindex="-1"></a>tip_pcategory <span class="ot">&lt;-</span> <span class="fu">ffdfdply</span>(taxi,</span>
+<span id="cb336-6"><a href="descriptive-statistics-and-aggregation.html#cb336-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">split =</span> taxi<span class="sc">$</span>payment_type,</span>
+<span id="cb336-7"><a href="descriptive-statistics-and-aggregation.html#cb336-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">BATCHBYTES =</span> <span class="dv">100000000</span>,</span>
+<span id="cb336-8"><a href="descriptive-statistics-and-aggregation.html#cb336-8" aria-hidden="true" tabindex="-1"></a>                          <span class="at">FUN =</span> <span class="cf">function</span>(x) {</span>
+<span id="cb336-9"><a href="descriptive-statistics-and-aggregation.html#cb336-9" aria-hidden="true" tabindex="-1"></a>                               <span class="fu">summaryBy</span>(percent_tip<span class="sc">~</span>payment_type, <span class="co"># note the difference here</span></span>
+<span id="cb336-10"><a href="descriptive-statistics-and-aggregation.html#cb336-10" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">data =</span> x,</span>
+<span id="cb336-11"><a href="descriptive-statistics-and-aggregation.html#cb336-11" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">FUN =</span> mean,</span>
+<span id="cb336-12"><a href="descriptive-statistics-and-aggregation.html#cb336-12" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">na.rm =</span> <span class="cn">TRUE</span>)})</span></code></pre></div>
+<pre><code>## 2022-07-30 00:00:53, calculating split sizes</code></pre>
+<pre><code>## 2022-07-30 00:00:53, building up split locations</code></pre>
+<pre><code>## 2022-07-30 00:00:54, working on split 1/2, extracting data in RAM of 1 split elements, totalling, 0.08732 GB, while max specified data specified using BATCHBYTES is 0.09313 GB</code></pre>
+<pre><code>## 2022-07-30 00:00:54, ... applying FUN to selected data</code></pre>
+<pre><code>## 2022-07-30 00:00:54, ... appending result to the output ffdf</code></pre>
+<pre><code>## 2022-07-30 00:00:54, working on split 2/2, extracting data in RAM of 3 split elements, totalling, 0.02444 GB, while max specified data specified using BATCHBYTES is 0.09313 GB</code></pre>
+<pre><code>## 2022-07-30 00:00:55, ... applying FUN to selected data</code></pre>
+<pre><code>## 2022-07-30 00:00:55, ... appending result to the output ffdf</code></pre>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="descriptive-statistics-and-aggregation.html#cb345-1" aria-hidden="true" tabindex="-1"></a><span class="co"># show result as data frame</span></span>
+<span id="cb345-2"><a href="descriptive-statistics-and-aggregation.html#cb345-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(tip_pcategory)</span></code></pre></div>
 <pre><code>##   payment_type percent_tip.mean
 ## 1         cash         0.005978
 ## 2       credit        16.004173
@@ -565,25 +565,25 @@ div.csl-indent {
 <div id="cross-tabulation-of-ff-vectors" class="section level3 hasAnchor" number="10.1.2">
 <h3><span class="header-section-number">10.1.2</span> Cross-tabulation of <code>ff</code> vectors<a href="descriptive-statistics-and-aggregation.html#cross-tabulation-of-ff-vectors" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Also in relative terms, trips paid by credit card tend to be tipped more. However, are there actually many trips paid by credit card? In order to figure this out, we count the number of trips per payment type by applying the <code>table.ff</code>-function provided in <code>ffbase</code>.</p>
-<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="descriptive-statistics-and-aggregation.html#cb348-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table.ff</span>(taxi<span class="sc">$</span>payment_type)</span></code></pre></div>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="descriptive-statistics-and-aggregation.html#cb347-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table.ff</span>(taxi<span class="sc">$</span>payment_type)</span></code></pre></div>
 <pre><code>## 
 ##      cash    credit   dispute no charge 
 ##    781295    215424       536      2745</code></pre>
 <p>Incidentally, trips paid in cash are way more frequent than trips paid by credit card. Again using the <code>table.ff</code>-function, we investigate what factors might be correlated with payment types. First, we have a look at whether payment type is associated with the number of passengers in a trip.</p>
-<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="descriptive-statistics-and-aggregation.html#cb350-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select the subset of observations only containing trips paid by credit card or cash</span></span>
-<span id="cb350-2"><a href="descriptive-statistics-and-aggregation.html#cb350-2" aria-hidden="true" tabindex="-1"></a>taxi_sub <span class="ot">&lt;-</span> <span class="fu">subset.ffdf</span>(taxi, payment_type<span class="sc">==</span><span class="st">&quot;credit&quot;</span> <span class="sc">|</span> payment_type <span class="sc">==</span> <span class="st">&quot;cash&quot;</span>)</span>
-<span id="cb350-3"><a href="descriptive-statistics-and-aggregation.html#cb350-3" aria-hidden="true" tabindex="-1"></a>taxi_sub<span class="sc">$</span>payment_type <span class="ot">&lt;-</span> <span class="fu">ff</span>(taxi_sub<span class="sc">$</span>payment_type,</span>
-<span id="cb350-4"><a href="descriptive-statistics-and-aggregation.html#cb350-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;credit&quot;</span>, <span class="st">&quot;cash&quot;</span>),</span>
-<span id="cb350-5"><a href="descriptive-statistics-and-aggregation.html#cb350-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">ramclass =</span> <span class="st">&quot;factor&quot;</span>)</span>
-<span id="cb350-6"><a href="descriptive-statistics-and-aggregation.html#cb350-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb350-7"><a href="descriptive-statistics-and-aggregation.html#cb350-7" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the cross tabulation</span></span>
-<span id="cb350-8"><a href="descriptive-statistics-and-aggregation.html#cb350-8" aria-hidden="true" tabindex="-1"></a>crosstab <span class="ot">&lt;-</span> <span class="fu">table.ff</span>(taxi_sub<span class="sc">$</span>passenger_count,</span>
-<span id="cb350-9"><a href="descriptive-statistics-and-aggregation.html#cb350-9" aria-hidden="true" tabindex="-1"></a>                     taxi_sub<span class="sc">$</span>payment_type</span>
-<span id="cb350-10"><a href="descriptive-statistics-and-aggregation.html#cb350-10" aria-hidden="true" tabindex="-1"></a>                     )</span>
-<span id="cb350-11"><a href="descriptive-statistics-and-aggregation.html#cb350-11" aria-hidden="true" tabindex="-1"></a><span class="co"># add names to the margins</span></span>
-<span id="cb350-12"><a href="descriptive-statistics-and-aggregation.html#cb350-12" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(<span class="fu">dimnames</span>(crosstab)) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Passenger count&quot;</span>, <span class="st">&quot;Payment type&quot;</span>)</span>
-<span id="cb350-13"><a href="descriptive-statistics-and-aggregation.html#cb350-13" aria-hidden="true" tabindex="-1"></a><span class="co"># show result</span></span>
-<span id="cb350-14"><a href="descriptive-statistics-and-aggregation.html#cb350-14" aria-hidden="true" tabindex="-1"></a>crosstab</span></code></pre></div>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="descriptive-statistics-and-aggregation.html#cb349-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select the subset of observations only containing trips paid by credit card or cash</span></span>
+<span id="cb349-2"><a href="descriptive-statistics-and-aggregation.html#cb349-2" aria-hidden="true" tabindex="-1"></a>taxi_sub <span class="ot">&lt;-</span> <span class="fu">subset.ffdf</span>(taxi, payment_type<span class="sc">==</span><span class="st">&quot;credit&quot;</span> <span class="sc">|</span> payment_type <span class="sc">==</span> <span class="st">&quot;cash&quot;</span>)</span>
+<span id="cb349-3"><a href="descriptive-statistics-and-aggregation.html#cb349-3" aria-hidden="true" tabindex="-1"></a>taxi_sub<span class="sc">$</span>payment_type <span class="ot">&lt;-</span> <span class="fu">ff</span>(taxi_sub<span class="sc">$</span>payment_type,</span>
+<span id="cb349-4"><a href="descriptive-statistics-and-aggregation.html#cb349-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;credit&quot;</span>, <span class="st">&quot;cash&quot;</span>),</span>
+<span id="cb349-5"><a href="descriptive-statistics-and-aggregation.html#cb349-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">ramclass =</span> <span class="st">&quot;factor&quot;</span>)</span>
+<span id="cb349-6"><a href="descriptive-statistics-and-aggregation.html#cb349-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb349-7"><a href="descriptive-statistics-and-aggregation.html#cb349-7" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the cross tabulation</span></span>
+<span id="cb349-8"><a href="descriptive-statistics-and-aggregation.html#cb349-8" aria-hidden="true" tabindex="-1"></a>crosstab <span class="ot">&lt;-</span> <span class="fu">table.ff</span>(taxi_sub<span class="sc">$</span>passenger_count,</span>
+<span id="cb349-9"><a href="descriptive-statistics-and-aggregation.html#cb349-9" aria-hidden="true" tabindex="-1"></a>                     taxi_sub<span class="sc">$</span>payment_type</span>
+<span id="cb349-10"><a href="descriptive-statistics-and-aggregation.html#cb349-10" aria-hidden="true" tabindex="-1"></a>                     )</span>
+<span id="cb349-11"><a href="descriptive-statistics-and-aggregation.html#cb349-11" aria-hidden="true" tabindex="-1"></a><span class="co"># add names to the margins</span></span>
+<span id="cb349-12"><a href="descriptive-statistics-and-aggregation.html#cb349-12" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(<span class="fu">dimnames</span>(crosstab)) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Passenger count&quot;</span>, <span class="st">&quot;Payment type&quot;</span>)</span>
+<span id="cb349-13"><a href="descriptive-statistics-and-aggregation.html#cb349-13" aria-hidden="true" tabindex="-1"></a><span class="co"># show result</span></span>
+<span id="cb349-14"><a href="descriptive-statistics-and-aggregation.html#cb349-14" aria-hidden="true" tabindex="-1"></a>crosstab</span></code></pre></div>
 <pre><code>##                Payment type
 ## Passenger count credit   cash
 ##               0      2     44
@@ -594,17 +594,17 @@ div.csl-indent {
 ##               5  20688  73027
 ##               6   1097   3588</code></pre>
 <p>From the raw numbers it is hard to see whether there are significant differences between the categories cash and credit. We therefore use a visualization technique called ‘mosaic plot’ to visualize the cross-tabulation.</p>
-<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="descriptive-statistics-and-aggregation.html#cb352-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(vcd)</span></span>
-<span id="cb352-2"><a href="descriptive-statistics-and-aggregation.html#cb352-2" aria-hidden="true" tabindex="-1"></a><span class="co"># load package for mosaic plot</span></span>
-<span id="cb352-3"><a href="descriptive-statistics-and-aggregation.html#cb352-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vcd)</span></code></pre></div>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="descriptive-statistics-and-aggregation.html#cb351-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(vcd)</span></span>
+<span id="cb351-2"><a href="descriptive-statistics-and-aggregation.html#cb351-2" aria-hidden="true" tabindex="-1"></a><span class="co"># load package for mosaic plot</span></span>
+<span id="cb351-3"><a href="descriptive-statistics-and-aggregation.html#cb351-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vcd)</span></code></pre></div>
 <pre><code>## Loading required package: grid</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;grid&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:ff&#39;:
 ## 
 ##     pattern</code></pre>
-<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="descriptive-statistics-and-aggregation.html#cb356-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generate a mosaic plot</span></span>
-<span id="cb356-2"><a href="descriptive-statistics-and-aggregation.html#cb356-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mosaic</span>(crosstab, <span class="at">shade =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="descriptive-statistics-and-aggregation.html#cb355-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generate a mosaic plot</span></span>
+<span id="cb355-2"><a href="descriptive-statistics-and-aggregation.html#cb355-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mosaic</span>(crosstab, <span class="at">shade =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="bigdata_files/figure-html/unnamed-chunk-178-1.png" width="672" /></p>
 <p>The plot suggests that trips involving more than one passenger tend to be paid rather by cash than by credit card.</p>
 </div>
@@ -615,66 +615,66 @@ div.csl-indent {
 <div id="data-import-3" class="section level4 hasAnchor" number="10.2.0.1">
 <h4><span class="header-section-number">10.2.0.1</span> Data import<a href="descriptive-statistics-and-aggregation.html#data-import-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>We use the already familiar <code>fread()</code> to import the same first million observations from the January 2009 taxi trips records.</p>
-<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="descriptive-statistics-and-aggregation.html#cb357-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb357-2"><a href="descriptive-statistics-and-aggregation.html#cb357-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
-<span id="cb357-3"><a href="descriptive-statistics-and-aggregation.html#cb357-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb357-4"><a href="descriptive-statistics-and-aggregation.html#cb357-4" aria-hidden="true" tabindex="-1"></a><span class="co"># import data into RAM (needs around 200MB)</span></span>
-<span id="cb357-5"><a href="descriptive-statistics-and-aggregation.html#cb357-5" aria-hidden="true" tabindex="-1"></a>taxi <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;data/tlc_trips.csv&quot;</span>,</span>
-<span id="cb357-6"><a href="descriptive-statistics-and-aggregation.html#cb357-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">nrows =</span> <span class="dv">1000000</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="descriptive-statistics-and-aggregation.html#cb356-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb356-2"><a href="descriptive-statistics-and-aggregation.html#cb356-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb356-3"><a href="descriptive-statistics-and-aggregation.html#cb356-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb356-4"><a href="descriptive-statistics-and-aggregation.html#cb356-4" aria-hidden="true" tabindex="-1"></a><span class="co"># import data into RAM (needs around 200MB)</span></span>
+<span id="cb356-5"><a href="descriptive-statistics-and-aggregation.html#cb356-5" aria-hidden="true" tabindex="-1"></a>taxi <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;data/tlc_trips.csv&quot;</span>,</span>
+<span id="cb356-6"><a href="descriptive-statistics-and-aggregation.html#cb356-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">nrows =</span> <span class="dv">1000000</span>)</span></code></pre></div>
 </div>
 <div id="data-preparation" class="section level4 hasAnchor" number="10.2.0.2">
 <h4><span class="header-section-number">10.2.0.2</span> Data preparation<a href="descriptive-statistics-and-aggregation.html#data-preparation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>We prepare/clean the data as in the <code>ff</code>-approach above.</p>
-<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="descriptive-statistics-and-aggregation.html#cb358-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first, we remove the empty vars V8 and V9</span></span>
-<span id="cb358-2"><a href="descriptive-statistics-and-aggregation.html#cb358-2" aria-hidden="true" tabindex="-1"></a>taxi<span class="sc">$</span>V8 <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb358-3"><a href="descriptive-statistics-and-aggregation.html#cb358-3" aria-hidden="true" tabindex="-1"></a>taxi<span class="sc">$</span>V9 <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
-<span id="cb358-4"><a href="descriptive-statistics-and-aggregation.html#cb358-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb358-5"><a href="descriptive-statistics-and-aggregation.html#cb358-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb358-6"><a href="descriptive-statistics-and-aggregation.html#cb358-6" aria-hidden="true" tabindex="-1"></a><span class="co"># set covariate names according to the data dictionary</span></span>
-<span id="cb358-7"><a href="descriptive-statistics-and-aggregation.html#cb358-7" aria-hidden="true" tabindex="-1"></a><span class="co"># see https://www1.nyc.gov/assets/tlc/downloads/pdf/data_dictionary_trip_records_yellow.pdf</span></span>
-<span id="cb358-8"><a href="descriptive-statistics-and-aggregation.html#cb358-8" aria-hidden="true" tabindex="-1"></a><span class="co"># note instead of taxizonne ids, long/lat are provided</span></span>
-<span id="cb358-9"><a href="descriptive-statistics-and-aggregation.html#cb358-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb358-10"><a href="descriptive-statistics-and-aggregation.html#cb358-10" aria-hidden="true" tabindex="-1"></a>varnames <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;vendor_id&quot;</span>,</span>
-<span id="cb358-11"><a href="descriptive-statistics-and-aggregation.html#cb358-11" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;pickup_time&quot;</span>,</span>
-<span id="cb358-12"><a href="descriptive-statistics-and-aggregation.html#cb358-12" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;dropoff_time&quot;</span>,</span>
-<span id="cb358-13"><a href="descriptive-statistics-and-aggregation.html#cb358-13" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;passenger_count&quot;</span>,</span>
-<span id="cb358-14"><a href="descriptive-statistics-and-aggregation.html#cb358-14" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;trip_distance&quot;</span>,</span>
-<span id="cb358-15"><a href="descriptive-statistics-and-aggregation.html#cb358-15" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;start_lat&quot;</span>,</span>
-<span id="cb358-16"><a href="descriptive-statistics-and-aggregation.html#cb358-16" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;start_long&quot;</span>,</span>
-<span id="cb358-17"><a href="descriptive-statistics-and-aggregation.html#cb358-17" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;dest_lat&quot;</span>,</span>
-<span id="cb358-18"><a href="descriptive-statistics-and-aggregation.html#cb358-18" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;dest_long&quot;</span>,</span>
-<span id="cb358-19"><a href="descriptive-statistics-and-aggregation.html#cb358-19" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;payment_type&quot;</span>,</span>
-<span id="cb358-20"><a href="descriptive-statistics-and-aggregation.html#cb358-20" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;fare_amount&quot;</span>,</span>
-<span id="cb358-21"><a href="descriptive-statistics-and-aggregation.html#cb358-21" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;extra&quot;</span>,</span>
-<span id="cb358-22"><a href="descriptive-statistics-and-aggregation.html#cb358-22" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;mta_tax&quot;</span>,</span>
-<span id="cb358-23"><a href="descriptive-statistics-and-aggregation.html#cb358-23" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;tip_amount&quot;</span>,</span>
-<span id="cb358-24"><a href="descriptive-statistics-and-aggregation.html#cb358-24" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;tolls_amount&quot;</span>,</span>
-<span id="cb358-25"><a href="descriptive-statistics-and-aggregation.html#cb358-25" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;total_amount&quot;</span>)</span>
-<span id="cb358-26"><a href="descriptive-statistics-and-aggregation.html#cb358-26" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(taxi) <span class="ot">&lt;-</span> varnames</span>
-<span id="cb358-27"><a href="descriptive-statistics-and-aggregation.html#cb358-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb358-28"><a href="descriptive-statistics-and-aggregation.html#cb358-28" aria-hidden="true" tabindex="-1"></a><span class="co"># clean the factor levels</span></span>
-<span id="cb358-29"><a href="descriptive-statistics-and-aggregation.html#cb358-29" aria-hidden="true" tabindex="-1"></a>taxi<span class="sc">$</span>payment_type <span class="ot">&lt;-</span> <span class="fu">tolower</span>(taxi<span class="sc">$</span>payment_type)</span>
-<span id="cb358-30"><a href="descriptive-statistics-and-aggregation.html#cb358-30" aria-hidden="true" tabindex="-1"></a>taxi<span class="sc">$</span>payment_type <span class="ot">&lt;-</span> <span class="fu">factor</span>(taxi<span class="sc">$</span>payment_type, <span class="at">levels =</span> <span class="fu">unique</span>(taxi<span class="sc">$</span>payment_type))     </span></code></pre></div>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="descriptive-statistics-and-aggregation.html#cb357-1" aria-hidden="true" tabindex="-1"></a><span class="co"># first, we remove the empty vars V8 and V9</span></span>
+<span id="cb357-2"><a href="descriptive-statistics-and-aggregation.html#cb357-2" aria-hidden="true" tabindex="-1"></a>taxi<span class="sc">$</span>V8 <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb357-3"><a href="descriptive-statistics-and-aggregation.html#cb357-3" aria-hidden="true" tabindex="-1"></a>taxi<span class="sc">$</span>V9 <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
+<span id="cb357-4"><a href="descriptive-statistics-and-aggregation.html#cb357-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb357-5"><a href="descriptive-statistics-and-aggregation.html#cb357-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb357-6"><a href="descriptive-statistics-and-aggregation.html#cb357-6" aria-hidden="true" tabindex="-1"></a><span class="co"># set covariate names according to the data dictionary</span></span>
+<span id="cb357-7"><a href="descriptive-statistics-and-aggregation.html#cb357-7" aria-hidden="true" tabindex="-1"></a><span class="co"># see https://www1.nyc.gov/assets/tlc/downloads/pdf/data_dictionary_trip_records_yellow.pdf</span></span>
+<span id="cb357-8"><a href="descriptive-statistics-and-aggregation.html#cb357-8" aria-hidden="true" tabindex="-1"></a><span class="co"># note instead of taxizonne ids, long/lat are provided</span></span>
+<span id="cb357-9"><a href="descriptive-statistics-and-aggregation.html#cb357-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb357-10"><a href="descriptive-statistics-and-aggregation.html#cb357-10" aria-hidden="true" tabindex="-1"></a>varnames <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;vendor_id&quot;</span>,</span>
+<span id="cb357-11"><a href="descriptive-statistics-and-aggregation.html#cb357-11" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;pickup_time&quot;</span>,</span>
+<span id="cb357-12"><a href="descriptive-statistics-and-aggregation.html#cb357-12" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;dropoff_time&quot;</span>,</span>
+<span id="cb357-13"><a href="descriptive-statistics-and-aggregation.html#cb357-13" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;passenger_count&quot;</span>,</span>
+<span id="cb357-14"><a href="descriptive-statistics-and-aggregation.html#cb357-14" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;trip_distance&quot;</span>,</span>
+<span id="cb357-15"><a href="descriptive-statistics-and-aggregation.html#cb357-15" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;start_lat&quot;</span>,</span>
+<span id="cb357-16"><a href="descriptive-statistics-and-aggregation.html#cb357-16" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;start_long&quot;</span>,</span>
+<span id="cb357-17"><a href="descriptive-statistics-and-aggregation.html#cb357-17" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;dest_lat&quot;</span>,</span>
+<span id="cb357-18"><a href="descriptive-statistics-and-aggregation.html#cb357-18" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;dest_long&quot;</span>,</span>
+<span id="cb357-19"><a href="descriptive-statistics-and-aggregation.html#cb357-19" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;payment_type&quot;</span>,</span>
+<span id="cb357-20"><a href="descriptive-statistics-and-aggregation.html#cb357-20" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;fare_amount&quot;</span>,</span>
+<span id="cb357-21"><a href="descriptive-statistics-and-aggregation.html#cb357-21" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;extra&quot;</span>,</span>
+<span id="cb357-22"><a href="descriptive-statistics-and-aggregation.html#cb357-22" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;mta_tax&quot;</span>,</span>
+<span id="cb357-23"><a href="descriptive-statistics-and-aggregation.html#cb357-23" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;tip_amount&quot;</span>,</span>
+<span id="cb357-24"><a href="descriptive-statistics-and-aggregation.html#cb357-24" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;tolls_amount&quot;</span>,</span>
+<span id="cb357-25"><a href="descriptive-statistics-and-aggregation.html#cb357-25" aria-hidden="true" tabindex="-1"></a>              <span class="st">&quot;total_amount&quot;</span>)</span>
+<span id="cb357-26"><a href="descriptive-statistics-and-aggregation.html#cb357-26" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(taxi) <span class="ot">&lt;-</span> varnames</span>
+<span id="cb357-27"><a href="descriptive-statistics-and-aggregation.html#cb357-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb357-28"><a href="descriptive-statistics-and-aggregation.html#cb357-28" aria-hidden="true" tabindex="-1"></a><span class="co"># clean the factor levels</span></span>
+<span id="cb357-29"><a href="descriptive-statistics-and-aggregation.html#cb357-29" aria-hidden="true" tabindex="-1"></a>taxi<span class="sc">$</span>payment_type <span class="ot">&lt;-</span> <span class="fu">tolower</span>(taxi<span class="sc">$</span>payment_type)</span>
+<span id="cb357-30"><a href="descriptive-statistics-and-aggregation.html#cb357-30" aria-hidden="true" tabindex="-1"></a>taxi<span class="sc">$</span>payment_type <span class="ot">&lt;-</span> <span class="fu">factor</span>(taxi<span class="sc">$</span>payment_type, <span class="at">levels =</span> <span class="fu">unique</span>(taxi<span class="sc">$</span>payment_type))     </span></code></pre></div>
 <p>Note the simpler syntax of essentially doing the same thing, but all in-memory.</p>
 </div>
 <div id="data.table-syntax-for-split-apply-combine-operations" class="section level4 hasAnchor" number="10.2.0.3">
 <h4><span class="header-section-number">10.2.0.3</span> <code>data.table</code>-syntax for ‘split-apply-combine’ operations<a href="descriptive-statistics-and-aggregation.html#data.table-syntax-for-split-apply-combine-operations" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>With the <code>[]</code>-syntax we index/subset usual <code>data.frame</code> objects in R. When working with <code>data.table</code>s, much more can be done in the step of ‘sub-setting’ the frame.<a href="#fn42" class="footnote-ref" id="fnref42"><sup>42</sup></a></p>
 <p>For example, we can directly compute on columns.</p>
-<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="descriptive-statistics-and-aggregation.html#cb359-1" aria-hidden="true" tabindex="-1"></a>taxi[, <span class="fu">mean</span>(tip_amount<span class="sc">/</span>total_amount)]</span></code></pre></div>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="descriptive-statistics-and-aggregation.html#cb358-1" aria-hidden="true" tabindex="-1"></a>taxi[, <span class="fu">mean</span>(tip_amount<span class="sc">/</span>total_amount)]</span></code></pre></div>
 <pre><code>## [1] 0.03452</code></pre>
 <p>Moreover, in the same step, we can ‘split’ the rows <em>by</em> specific groups and apply the function to each subset.</p>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="descriptive-statistics-and-aggregation.html#cb361-1" aria-hidden="true" tabindex="-1"></a>taxi[, .(<span class="at">percent_tip =</span> <span class="fu">mean</span>((tip_amount<span class="sc">/</span>total_amount)<span class="sc">*</span><span class="dv">100</span>)), by <span class="ot">=</span> payment_type]</span></code></pre></div>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="descriptive-statistics-and-aggregation.html#cb360-1" aria-hidden="true" tabindex="-1"></a>taxi[, .(<span class="at">percent_tip =</span> <span class="fu">mean</span>((tip_amount<span class="sc">/</span>total_amount)<span class="sc">*</span><span class="dv">100</span>)), by <span class="ot">=</span> payment_type]</span></code></pre></div>
 <pre><code>##    payment_type percent_tip
 ## 1:         cash    0.005978
 ## 2:       credit   16.004173
 ## 3:    no charge    0.040433
 ## 4:      dispute    0.045660</code></pre>
 <p>Similarly, we can use <code>data.table</code>’s <code>dcast()</code> for cross-tabulation-like operations.</p>
-<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="descriptive-statistics-and-aggregation.html#cb363-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dcast</span>(taxi[payment_type <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;credit&quot;</span>, <span class="st">&quot;cash&quot;</span>)],</span>
-<span id="cb363-2"><a href="descriptive-statistics-and-aggregation.html#cb363-2" aria-hidden="true" tabindex="-1"></a>      passenger_count<span class="sc">~</span>payment_type, </span>
-<span id="cb363-3"><a href="descriptive-statistics-and-aggregation.html#cb363-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">fun.aggregate =</span> length,</span>
-<span id="cb363-4"><a href="descriptive-statistics-and-aggregation.html#cb363-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">value.var =</span> <span class="st">&quot;vendor_id&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="descriptive-statistics-and-aggregation.html#cb362-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dcast</span>(taxi[payment_type <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;credit&quot;</span>, <span class="st">&quot;cash&quot;</span>)],</span>
+<span id="cb362-2"><a href="descriptive-statistics-and-aggregation.html#cb362-2" aria-hidden="true" tabindex="-1"></a>      passenger_count<span class="sc">~</span>payment_type, </span>
+<span id="cb362-3"><a href="descriptive-statistics-and-aggregation.html#cb362-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">fun.aggregate =</span> length,</span>
+<span id="cb362-4"><a href="descriptive-statistics-and-aggregation.html#cb362-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">value.var =</span> <span class="st">&quot;vendor_id&quot;</span>)</span></code></pre></div>
 <pre><code>##    passenger_count   cash credit
 ## 1:               0     44      2
 ## 2:               1 516828 149990

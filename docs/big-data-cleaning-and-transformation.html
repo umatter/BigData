@@ -422,57 +422,57 @@ div.csl-indent {
 <div id="chunking-data-with-the-ff-package" class="section level3 hasAnchor" number="9.1.1">
 <h3><span class="header-section-number">9.1.1</span> Chunking data with the <code>ff</code>-package<a href="big-data-cleaning-and-transformation.html#chunking-data-with-the-ff-package" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Before looking at the more detailed code examples in <span class="citation">Walkowiak (<a href="#ref-walkowiak_2016" role="doc-biblioref">2016</a>)</span>, we investigate how the <code>ff</code> package (and the concept of chunked files) basically works. In order to do so, we first install and load the <code>ff</code> and <code>ffbase</code> packages, as well as the <code>pryr</code> package. We use the already known <code>flights.csv</code>-data set as an example. When importing data via the <code>ff</code> package, we first have to set up a directory where <code>ff</code> can store the partitioned data set (recall that this is explicitly/visibly done on disk). As in the code examples of the book, we call this new directory <code>ffdf</code> (after <code>ff</code>-data.frame).</p>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="big-data-cleaning-and-transformation.html#cb247-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP --------------</span></span>
-<span id="cb247-2"><a href="big-data-cleaning-and-transformation.html#cb247-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb247-3"><a href="big-data-cleaning-and-transformation.html#cb247-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c(&quot;ff&quot;, &quot;ffbase&quot;))</span></span>
-<span id="cb247-4"><a href="big-data-cleaning-and-transformation.html#cb247-4" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb247-5"><a href="big-data-cleaning-and-transformation.html#cb247-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ff)</span>
-<span id="cb247-6"><a href="big-data-cleaning-and-transformation.html#cb247-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ffbase)</span>
-<span id="cb247-7"><a href="big-data-cleaning-and-transformation.html#cb247-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pryr)</span>
-<span id="cb247-8"><a href="big-data-cleaning-and-transformation.html#cb247-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb247-9"><a href="big-data-cleaning-and-transformation.html#cb247-9" aria-hidden="true" tabindex="-1"></a><span class="co"># create directory for ff chunks, and assign directory to ff </span></span>
-<span id="cb247-10"><a href="big-data-cleaning-and-transformation.html#cb247-10" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;mkdir ffdf&quot;</span>)</span>
-<span id="cb247-11"><a href="big-data-cleaning-and-transformation.html#cb247-11" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">fftempdir =</span> <span class="st">&quot;ffdf&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="big-data-cleaning-and-transformation.html#cb246-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP --------------</span></span>
+<span id="cb246-2"><a href="big-data-cleaning-and-transformation.html#cb246-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb246-3"><a href="big-data-cleaning-and-transformation.html#cb246-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c(&quot;ff&quot;, &quot;ffbase&quot;))</span></span>
+<span id="cb246-4"><a href="big-data-cleaning-and-transformation.html#cb246-4" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb246-5"><a href="big-data-cleaning-and-transformation.html#cb246-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ff)</span>
+<span id="cb246-6"><a href="big-data-cleaning-and-transformation.html#cb246-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ffbase)</span>
+<span id="cb246-7"><a href="big-data-cleaning-and-transformation.html#cb246-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pryr)</span>
+<span id="cb246-8"><a href="big-data-cleaning-and-transformation.html#cb246-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb246-9"><a href="big-data-cleaning-and-transformation.html#cb246-9" aria-hidden="true" tabindex="-1"></a><span class="co"># create directory for ff chunks, and assign directory to ff </span></span>
+<span id="cb246-10"><a href="big-data-cleaning-and-transformation.html#cb246-10" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;mkdir ffdf&quot;</span>)</span>
+<span id="cb246-11"><a href="big-data-cleaning-and-transformation.html#cb246-11" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">fftempdir =</span> <span class="st">&quot;ffdf&quot;</span>)</span></code></pre></div>
 <p>Now we can read in the data with <code>read.table.ffdf</code>. In order to better understand the underlying concept, we record the change in memory in the R environment with <code>mem_change()</code>.</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="big-data-cleaning-and-transformation.html#cb248-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_change</span>(</span>
-<span id="cb248-2"><a href="big-data-cleaning-and-transformation.html#cb248-2" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> </span>
-<span id="cb248-3"><a href="big-data-cleaning-and-transformation.html#cb248-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">read.table.ffdf</span>(<span class="at">file=</span><span class="st">&quot;data/flights.csv&quot;</span>,</span>
-<span id="cb248-4"><a href="big-data-cleaning-and-transformation.html#cb248-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">sep=</span><span class="st">&quot;,&quot;</span>,</span>
-<span id="cb248-5"><a href="big-data-cleaning-and-transformation.html#cb248-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">VERBOSE=</span><span class="cn">TRUE</span>,</span>
-<span id="cb248-6"><a href="big-data-cleaning-and-transformation.html#cb248-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">header=</span><span class="cn">TRUE</span>,</span>
-<span id="cb248-7"><a href="big-data-cleaning-and-transformation.html#cb248-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">next.rows=</span><span class="dv">100000</span>,</span>
-<span id="cb248-8"><a href="big-data-cleaning-and-transformation.html#cb248-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">colClasses=</span><span class="cn">NA</span>)</span>
-<span id="cb248-9"><a href="big-data-cleaning-and-transformation.html#cb248-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<pre><code>## read.table.ffdf 1..100000 (100000)  csv-read=0.404sec ffdf-write=0.069sec
-## read.table.ffdf 100001..200000 (100000)  csv-read=0.384sec ffdf-write=0.042sec
-## read.table.ffdf 200001..300000 (100000)  csv-read=0.392sec ffdf-write=0.044sec
-## read.table.ffdf 300001..336776 (36776)  csv-read=0.152sec ffdf-write=0.024sec
-##  csv-read=1.332sec  ffdf-write=0.179sec  TOTAL=1.511sec</code></pre>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="big-data-cleaning-and-transformation.html#cb247-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_change</span>(</span>
+<span id="cb247-2"><a href="big-data-cleaning-and-transformation.html#cb247-2" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> </span>
+<span id="cb247-3"><a href="big-data-cleaning-and-transformation.html#cb247-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">read.table.ffdf</span>(<span class="at">file=</span><span class="st">&quot;data/flights.csv&quot;</span>,</span>
+<span id="cb247-4"><a href="big-data-cleaning-and-transformation.html#cb247-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">sep=</span><span class="st">&quot;,&quot;</span>,</span>
+<span id="cb247-5"><a href="big-data-cleaning-and-transformation.html#cb247-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">VERBOSE=</span><span class="cn">TRUE</span>,</span>
+<span id="cb247-6"><a href="big-data-cleaning-and-transformation.html#cb247-6" aria-hidden="true" tabindex="-1"></a>                     <span class="at">header=</span><span class="cn">TRUE</span>,</span>
+<span id="cb247-7"><a href="big-data-cleaning-and-transformation.html#cb247-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">next.rows=</span><span class="dv">100000</span>,</span>
+<span id="cb247-8"><a href="big-data-cleaning-and-transformation.html#cb247-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">colClasses=</span><span class="cn">NA</span>)</span>
+<span id="cb247-9"><a href="big-data-cleaning-and-transformation.html#cb247-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<pre><code>## read.table.ffdf 1..100000 (100000)  csv-read=0.466sec ffdf-write=0.065sec
+## read.table.ffdf 100001..200000 (100000)  csv-read=0.449sec ffdf-write=0.039sec
+## read.table.ffdf 200001..300000 (100000)  csv-read=0.425sec ffdf-write=0.035sec
+## read.table.ffdf 300001..336776 (36776)  csv-read=0.164sec ffdf-write=0.028sec
+##  csv-read=1.504sec  ffdf-write=0.167sec  TOTAL=1.671sec</code></pre>
 <pre><code>## -30.1 MB</code></pre>
 <p>Note that there are two substantial differences to what we have previously seen when using <code>fread()</code>. It takes much longer to import a csv into the ffdf structure. However, the RAM allocated to it is much smaller. This is exactly what we would expect, keeping in mind what <code>read.table.ffdf()</code> does in comparison to what <code>fread()</code> does. Now we can actually have a look at the data chunks created by <code>ff</code>.</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="big-data-cleaning-and-transformation.html#cb251-1" aria-hidden="true" tabindex="-1"></a><span class="co"># show the files in the directory keeping the chunks</span></span>
-<span id="cb251-2"><a href="big-data-cleaning-and-transformation.html#cb251-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">list.files</span>(<span class="st">&quot;ffdf&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="big-data-cleaning-and-transformation.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="co"># show the files in the directory keeping the chunks</span></span>
+<span id="cb250-2"><a href="big-data-cleaning-and-transformation.html#cb250-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">list.files</span>(<span class="st">&quot;ffdf&quot;</span>))</span></code></pre></div>
 <pre><code>## [1] &quot;clone10c9b3c430ec8.ff&quot; &quot;clone10c9b4977164.ff&quot; 
 ## [3] &quot;clone10c9b56908fe0.ff&quot; &quot;clone10c9b77bbf204.ff&quot;
-## [5] &quot;clone18ff55474d98.ff&quot;  &quot;clone18ff56cbf21c.ff&quot;</code></pre>
+## [5] &quot;clone10f811541f044.ff&quot; &quot;clone10f812de57dc6.ff&quot;</code></pre>
 </div>
 <div id="memory-mapping-with-bigmemory" class="section level3 hasAnchor" number="9.1.2">
 <h3><span class="header-section-number">9.1.2</span> Memory mapping with <code>bigmemory</code><a href="big-data-cleaning-and-transformation.html#memory-mapping-with-bigmemory" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The <code>bigmemory</code>-package handles data in matrices, and therefore only accepts variables in the same data type. Before importing data via the <code>bigmemory</code>-package, we thus have to ensure that all variables in the raw data can be imported in a common type. This example follows the example of the package authors given <a href="https://cran.r-project.org/web/packages/bigmemory/vignettes/Overview.pdf">here</a>.<a href="#fn39" class="footnote-ref" id="fnref39"><sup>39</sup></a></p>
-<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="big-data-cleaning-and-transformation.html#cb253-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP ----------------</span></span>
-<span id="cb253-2"><a href="big-data-cleaning-and-transformation.html#cb253-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb253-3"><a href="big-data-cleaning-and-transformation.html#cb253-3" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb253-4"><a href="big-data-cleaning-and-transformation.html#cb253-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bigmemory)</span>
-<span id="cb253-5"><a href="big-data-cleaning-and-transformation.html#cb253-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(biganalytics)</span>
-<span id="cb253-6"><a href="big-data-cleaning-and-transformation.html#cb253-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb253-7"><a href="big-data-cleaning-and-transformation.html#cb253-7" aria-hidden="true" tabindex="-1"></a><span class="co"># import the data</span></span>
-<span id="cb253-8"><a href="big-data-cleaning-and-transformation.html#cb253-8" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> <span class="fu">read.big.matrix</span>(<span class="st">&quot;data/flights.csv&quot;</span>,</span>
-<span id="cb253-9"><a href="big-data-cleaning-and-transformation.html#cb253-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">type=</span><span class="st">&quot;integer&quot;</span>,</span>
-<span id="cb253-10"><a href="big-data-cleaning-and-transformation.html#cb253-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">header=</span><span class="cn">TRUE</span>,</span>
-<span id="cb253-11"><a href="big-data-cleaning-and-transformation.html#cb253-11" aria-hidden="true" tabindex="-1"></a>                     <span class="at">backingfile=</span><span class="st">&quot;flights.bin&quot;</span>,</span>
-<span id="cb253-12"><a href="big-data-cleaning-and-transformation.html#cb253-12" aria-hidden="true" tabindex="-1"></a>                     <span class="at">descriptorfile=</span><span class="st">&quot;flights.desc&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="big-data-cleaning-and-transformation.html#cb252-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP ----------------</span></span>
+<span id="cb252-2"><a href="big-data-cleaning-and-transformation.html#cb252-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb252-3"><a href="big-data-cleaning-and-transformation.html#cb252-3" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb252-4"><a href="big-data-cleaning-and-transformation.html#cb252-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bigmemory)</span>
+<span id="cb252-5"><a href="big-data-cleaning-and-transformation.html#cb252-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(biganalytics)</span>
+<span id="cb252-6"><a href="big-data-cleaning-and-transformation.html#cb252-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb252-7"><a href="big-data-cleaning-and-transformation.html#cb252-7" aria-hidden="true" tabindex="-1"></a><span class="co"># import the data</span></span>
+<span id="cb252-8"><a href="big-data-cleaning-and-transformation.html#cb252-8" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> <span class="fu">read.big.matrix</span>(<span class="st">&quot;data/flights.csv&quot;</span>,</span>
+<span id="cb252-9"><a href="big-data-cleaning-and-transformation.html#cb252-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">type=</span><span class="st">&quot;integer&quot;</span>,</span>
+<span id="cb252-10"><a href="big-data-cleaning-and-transformation.html#cb252-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">header=</span><span class="cn">TRUE</span>,</span>
+<span id="cb252-11"><a href="big-data-cleaning-and-transformation.html#cb252-11" aria-hidden="true" tabindex="-1"></a>                     <span class="at">backingfile=</span><span class="st">&quot;flights.bin&quot;</span>,</span>
+<span id="cb252-12"><a href="big-data-cleaning-and-transformation.html#cb252-12" aria-hidden="true" tabindex="-1"></a>                     <span class="at">descriptorfile=</span><span class="st">&quot;flights.desc&quot;</span>)</span></code></pre></div>
 <p>Note that, similar to the <code>ff</code>-example, <code>read.big.matrix()</code> initiates a local file-backing <code>flights.bin</code> on disk which is linked to the <code>flights</code>-object in RAM. From looking at the imported file, we see that various variable values have been discarded. This is due to the fact that we have forced all variables to be of type <code>"integer"</code> when importing the data set.</p>
-<div class="sourceCode" id="cb254"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb254-1"><a href="big-data-cleaning-and-transformation.html#cb254-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(flights)</span></code></pre></div>
+<div class="sourceCode" id="cb253"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb253-1"><a href="big-data-cleaning-and-transformation.html#cb253-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(flights)</span></code></pre></div>
 <pre><code>##                       min        max       mean
 ## year             2013.000   2013.000   2013.000
 ## month               1.000     12.000      6.549
@@ -547,121 +547,121 @@ div.csl-indent {
 <div id="set-up" class="section level4 hasAnchor" number="9.2.1.1">
 <h4><span class="header-section-number">9.2.1.1</span> Set up<a href="big-data-cleaning-and-transformation.html#set-up" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The following examples are based on <span class="citation">Walkowiak (<a href="#ref-walkowiak_2016" role="doc-biblioref">2016</a>)</span>, Chapter 3. You can download the original data sets used in these examples from <a href="https://github.com/PacktPublishing/Big-Data-Analytics-with-R/tree/master/Chapter%203">the book’s GitHub repository</a>. The set up for our analysis script involves the loading of the <code>ff</code> and <code>ffbase</code> packages, the intitiation of fix variables to hold the paths to the data sets, as well as the creation and assignment of a new local directory <code>ffdf</code> in which the binary flat files-partitioned chunks of the original data sets will be stored.</p>
-<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="big-data-cleaning-and-transformation.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="do">## SET UP ------------------------</span></span>
-<span id="cb256-2"><a href="big-data-cleaning-and-transformation.html#cb256-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb256-3"><a href="big-data-cleaning-and-transformation.html#cb256-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create and set directory for ff files</span></span>
-<span id="cb256-4"><a href="big-data-cleaning-and-transformation.html#cb256-4" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;mkdir ffdf&quot;</span>)</span>
-<span id="cb256-5"><a href="big-data-cleaning-and-transformation.html#cb256-5" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">fftempdir =</span> <span class="st">&quot;ffdf&quot;</span>)</span>
-<span id="cb256-6"><a href="big-data-cleaning-and-transformation.html#cb256-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb256-7"><a href="big-data-cleaning-and-transformation.html#cb256-7" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb256-8"><a href="big-data-cleaning-and-transformation.html#cb256-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ff)</span>
-<span id="cb256-9"><a href="big-data-cleaning-and-transformation.html#cb256-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ffbase)</span>
-<span id="cb256-10"><a href="big-data-cleaning-and-transformation.html#cb256-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pryr)</span>
-<span id="cb256-11"><a href="big-data-cleaning-and-transformation.html#cb256-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb256-12"><a href="big-data-cleaning-and-transformation.html#cb256-12" aria-hidden="true" tabindex="-1"></a><span class="co"># fix vars</span></span>
-<span id="cb256-13"><a href="big-data-cleaning-and-transformation.html#cb256-13" aria-hidden="true" tabindex="-1"></a>FLIGHTS_DATA <span class="ot">&lt;-</span> <span class="st">&quot;data/flights_sep_oct15.txt&quot;</span></span>
-<span id="cb256-14"><a href="big-data-cleaning-and-transformation.html#cb256-14" aria-hidden="true" tabindex="-1"></a>AIRLINES_DATA <span class="ot">&lt;-</span> <span class="st">&quot;data/airline_id.csv&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="big-data-cleaning-and-transformation.html#cb255-1" aria-hidden="true" tabindex="-1"></a><span class="do">## SET UP ------------------------</span></span>
+<span id="cb255-2"><a href="big-data-cleaning-and-transformation.html#cb255-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb255-3"><a href="big-data-cleaning-and-transformation.html#cb255-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create and set directory for ff files</span></span>
+<span id="cb255-4"><a href="big-data-cleaning-and-transformation.html#cb255-4" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;mkdir ffdf&quot;</span>)</span>
+<span id="cb255-5"><a href="big-data-cleaning-and-transformation.html#cb255-5" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">fftempdir =</span> <span class="st">&quot;ffdf&quot;</span>)</span>
+<span id="cb255-6"><a href="big-data-cleaning-and-transformation.html#cb255-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb255-7"><a href="big-data-cleaning-and-transformation.html#cb255-7" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb255-8"><a href="big-data-cleaning-and-transformation.html#cb255-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ff)</span>
+<span id="cb255-9"><a href="big-data-cleaning-and-transformation.html#cb255-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ffbase)</span>
+<span id="cb255-10"><a href="big-data-cleaning-and-transformation.html#cb255-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pryr)</span>
+<span id="cb255-11"><a href="big-data-cleaning-and-transformation.html#cb255-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb255-12"><a href="big-data-cleaning-and-transformation.html#cb255-12" aria-hidden="true" tabindex="-1"></a><span class="co"># fix vars</span></span>
+<span id="cb255-13"><a href="big-data-cleaning-and-transformation.html#cb255-13" aria-hidden="true" tabindex="-1"></a>FLIGHTS_DATA <span class="ot">&lt;-</span> <span class="st">&quot;data/flights_sep_oct15.txt&quot;</span></span>
+<span id="cb255-14"><a href="big-data-cleaning-and-transformation.html#cb255-14" aria-hidden="true" tabindex="-1"></a>AIRLINES_DATA <span class="ot">&lt;-</span> <span class="st">&quot;data/airline_id.csv&quot;</span></span></code></pre></div>
 </div>
 <div id="data-import-1" class="section level4 hasAnchor" number="9.2.1.2">
 <h4><span class="header-section-number">9.2.1.2</span> Data import<a href="big-data-cleaning-and-transformation.html#data-import-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>In a first step we read (or ‘upload’) the data into R. This step involves the creation of the binary chunked files as well as the mapping of these files and the metadata. In comparison to the traditional <code>read.csv</code> approach, you will notice two things. On the one hand the data import takes longer, on the other hand it uses up much less RAM than than with <code>read.csv</code>.</p>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="big-data-cleaning-and-transformation.html#cb257-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DATA IMPORT ------------------</span></span>
-<span id="cb257-2"><a href="big-data-cleaning-and-transformation.html#cb257-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb257-3"><a href="big-data-cleaning-and-transformation.html#cb257-3" aria-hidden="true" tabindex="-1"></a><span class="co"># check memory used</span></span>
-<span id="cb257-4"><a href="big-data-cleaning-and-transformation.html#cb257-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_used</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="big-data-cleaning-and-transformation.html#cb256-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DATA IMPORT ------------------</span></span>
+<span id="cb256-2"><a href="big-data-cleaning-and-transformation.html#cb256-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb256-3"><a href="big-data-cleaning-and-transformation.html#cb256-3" aria-hidden="true" tabindex="-1"></a><span class="co"># check memory used</span></span>
+<span id="cb256-4"><a href="big-data-cleaning-and-transformation.html#cb256-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_used</span>()</span></code></pre></div>
 <pre><code>## 1.72 GB</code></pre>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="big-data-cleaning-and-transformation.html#cb259-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Upload flights_sep_oct15.txt and airline_id.csv files from flat files. </span></span>
-<span id="cb259-2"><a href="big-data-cleaning-and-transformation.html#cb259-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb259-3"><a href="big-data-cleaning-and-transformation.html#cb259-3" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(flights.ff <span class="ot">&lt;-</span> <span class="fu">read.table.ffdf</span>(<span class="at">file=</span>FLIGHTS_DATA,</span>
-<span id="cb259-4"><a href="big-data-cleaning-and-transformation.html#cb259-4" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">sep=</span><span class="st">&quot;,&quot;</span>,</span>
-<span id="cb259-5"><a href="big-data-cleaning-and-transformation.html#cb259-5" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">VERBOSE=</span><span class="cn">TRUE</span>,</span>
-<span id="cb259-6"><a href="big-data-cleaning-and-transformation.html#cb259-6" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">header=</span><span class="cn">TRUE</span>,</span>
-<span id="cb259-7"><a href="big-data-cleaning-and-transformation.html#cb259-7" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">next.rows=</span><span class="dv">100000</span>,</span>
-<span id="cb259-8"><a href="big-data-cleaning-and-transformation.html#cb259-8" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">colClasses=</span><span class="cn">NA</span>))</span></code></pre></div>
-<pre><code>## read.table.ffdf 1..100000 (100000)  csv-read=0.551sec ffdf-write=0.101sec
-## read.table.ffdf 100001..200000 (100000)  csv-read=0.551sec ffdf-write=0.058sec
-## read.table.ffdf 200001..300000 (100000)  csv-read=0.56sec ffdf-write=0.063sec
-## read.table.ffdf 300001..400000 (100000)  csv-read=0.523sec ffdf-write=0.059sec
-## read.table.ffdf 400001..500000 (100000)  csv-read=0.517sec ffdf-write=0.063sec
-## read.table.ffdf 500001..600000 (100000)  csv-read=0.536sec ffdf-write=0.068sec
-## read.table.ffdf 600001..700000 (100000)  csv-read=0.533sec ffdf-write=0.055sec
-## read.table.ffdf 700001..800000 (100000)  csv-read=0.571sec ffdf-write=0.082sec
-## read.table.ffdf 800001..900000 (100000)  csv-read=0.554sec ffdf-write=0.075sec
-## read.table.ffdf 900001..951111 (51111)  csv-read=0.306sec ffdf-write=0.047sec
-##  csv-read=5.202sec  ffdf-write=0.671sec  TOTAL=5.873sec</code></pre>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="big-data-cleaning-and-transformation.html#cb258-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Upload flights_sep_oct15.txt and airline_id.csv files from flat files. </span></span>
+<span id="cb258-2"><a href="big-data-cleaning-and-transformation.html#cb258-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb258-3"><a href="big-data-cleaning-and-transformation.html#cb258-3" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(flights.ff <span class="ot">&lt;-</span> <span class="fu">read.table.ffdf</span>(<span class="at">file=</span>FLIGHTS_DATA,</span>
+<span id="cb258-4"><a href="big-data-cleaning-and-transformation.html#cb258-4" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">sep=</span><span class="st">&quot;,&quot;</span>,</span>
+<span id="cb258-5"><a href="big-data-cleaning-and-transformation.html#cb258-5" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">VERBOSE=</span><span class="cn">TRUE</span>,</span>
+<span id="cb258-6"><a href="big-data-cleaning-and-transformation.html#cb258-6" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">header=</span><span class="cn">TRUE</span>,</span>
+<span id="cb258-7"><a href="big-data-cleaning-and-transformation.html#cb258-7" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">next.rows=</span><span class="dv">100000</span>,</span>
+<span id="cb258-8"><a href="big-data-cleaning-and-transformation.html#cb258-8" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">colClasses=</span><span class="cn">NA</span>))</span></code></pre></div>
+<pre><code>## read.table.ffdf 1..100000 (100000)  csv-read=0.602sec ffdf-write=0.079sec
+## read.table.ffdf 100001..200000 (100000)  csv-read=0.639sec ffdf-write=0.071sec
+## read.table.ffdf 200001..300000 (100000)  csv-read=0.758sec ffdf-write=0.063sec
+## read.table.ffdf 300001..400000 (100000)  csv-read=0.655sec ffdf-write=0.08sec
+## read.table.ffdf 400001..500000 (100000)  csv-read=0.712sec ffdf-write=0.067sec
+## read.table.ffdf 500001..600000 (100000)  csv-read=0.642sec ffdf-write=0.066sec
+## read.table.ffdf 600001..700000 (100000)  csv-read=0.689sec ffdf-write=0.067sec
+## read.table.ffdf 700001..800000 (100000)  csv-read=0.712sec ffdf-write=0.099sec
+## read.table.ffdf 800001..900000 (100000)  csv-read=0.631sec ffdf-write=0.064sec
+## read.table.ffdf 900001..951111 (51111)  csv-read=0.366sec ffdf-write=0.063sec
+##  csv-read=6.406sec  ffdf-write=0.719sec  TOTAL=7.125sec</code></pre>
 <pre><code>##    user  system elapsed 
-##   5.280   0.675   5.876</code></pre>
-<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="big-data-cleaning-and-transformation.html#cb262-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(airlines.ff <span class="ot">&lt;-</span> <span class="fu">read.csv.ffdf</span>(<span class="at">file=</span> AIRLINES_DATA,</span>
-<span id="cb262-2"><a href="big-data-cleaning-and-transformation.html#cb262-2" aria-hidden="true" tabindex="-1"></a>                             <span class="at">VERBOSE=</span><span class="cn">TRUE</span>,</span>
-<span id="cb262-3"><a href="big-data-cleaning-and-transformation.html#cb262-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">header=</span><span class="cn">TRUE</span>,</span>
-<span id="cb262-4"><a href="big-data-cleaning-and-transformation.html#cb262-4" aria-hidden="true" tabindex="-1"></a>                             <span class="at">next.rows=</span><span class="dv">100000</span>,</span>
-<span id="cb262-5"><a href="big-data-cleaning-and-transformation.html#cb262-5" aria-hidden="true" tabindex="-1"></a>                             <span class="at">colClasses=</span><span class="cn">NA</span>))</span></code></pre></div>
-<pre><code>## read.table.ffdf 1..1607 (1607)  csv-read=0.005sec ffdf-write=0.004sec
-##  csv-read=0.005sec  ffdf-write=0.004sec  TOTAL=0.009sec</code></pre>
+##   6.577   0.634   7.127</code></pre>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="big-data-cleaning-and-transformation.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(airlines.ff <span class="ot">&lt;-</span> <span class="fu">read.csv.ffdf</span>(<span class="at">file=</span> AIRLINES_DATA,</span>
+<span id="cb261-2"><a href="big-data-cleaning-and-transformation.html#cb261-2" aria-hidden="true" tabindex="-1"></a>                             <span class="at">VERBOSE=</span><span class="cn">TRUE</span>,</span>
+<span id="cb261-3"><a href="big-data-cleaning-and-transformation.html#cb261-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">header=</span><span class="cn">TRUE</span>,</span>
+<span id="cb261-4"><a href="big-data-cleaning-and-transformation.html#cb261-4" aria-hidden="true" tabindex="-1"></a>                             <span class="at">next.rows=</span><span class="dv">100000</span>,</span>
+<span id="cb261-5"><a href="big-data-cleaning-and-transformation.html#cb261-5" aria-hidden="true" tabindex="-1"></a>                             <span class="at">colClasses=</span><span class="cn">NA</span>))</span></code></pre></div>
+<pre><code>## read.table.ffdf 1..1607 (1607)  csv-read=0.004sec ffdf-write=0.004sec
+##  csv-read=0.004sec  ffdf-write=0.004sec  TOTAL=0.008sec</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.010   0.001   0.010</code></pre>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="big-data-cleaning-and-transformation.html#cb265-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check memory used</span></span>
-<span id="cb265-2"><a href="big-data-cleaning-and-transformation.html#cb265-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_used</span>()</span></code></pre></div>
+##   0.009   0.001   0.009</code></pre>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="big-data-cleaning-and-transformation.html#cb264-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check memory used</span></span>
+<span id="cb264-2"><a href="big-data-cleaning-and-transformation.html#cb264-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_used</span>()</span></code></pre></div>
 <pre><code>## 1.72 GB</code></pre>
 <p>Comparison with <code>read.table</code></p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="big-data-cleaning-and-transformation.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Using read.table()</span></span>
-<span id="cb267-2"><a href="big-data-cleaning-and-transformation.html#cb267-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(flights.table <span class="ot">&lt;-</span> <span class="fu">read.table</span>(FLIGHTS_DATA, </span>
-<span id="cb267-3"><a href="big-data-cleaning-and-transformation.html#cb267-3" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">sep=</span><span class="st">&quot;,&quot;</span>,</span>
-<span id="cb267-4"><a href="big-data-cleaning-and-transformation.html#cb267-4" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">header=</span><span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="big-data-cleaning-and-transformation.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Using read.table()</span></span>
+<span id="cb266-2"><a href="big-data-cleaning-and-transformation.html#cb266-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(flights.table <span class="ot">&lt;-</span> <span class="fu">read.table</span>(FLIGHTS_DATA, </span>
+<span id="cb266-3"><a href="big-data-cleaning-and-transformation.html#cb266-3" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">sep=</span><span class="st">&quot;,&quot;</span>,</span>
+<span id="cb266-4"><a href="big-data-cleaning-and-transformation.html#cb266-4" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">header=</span><span class="cn">TRUE</span>))</span></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   4.911   0.450   5.289</code></pre>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="big-data-cleaning-and-transformation.html#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span></code></pre></div>
+##   5.093   0.528   5.545</code></pre>
+<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="big-data-cleaning-and-transformation.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span></code></pre></div>
 <pre><code>##             used   (Mb) gc trigger   (Mb)  max used
-## Ncells   6769407  361.6   10216710  545.7  10216710
-## Vcells 185594137 1416.0  409898628 3127.3 291446071
+## Ncells   6752774  360.7   10524318  562.1  10524318
+## Vcells 185576331 1415.9  401568752 3063.8 334573894
 ##          (Mb)
-## Ncells  545.7
-## Vcells 2223.6</code></pre>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="big-data-cleaning-and-transformation.html#cb271-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(airlines.table <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(AIRLINES_DATA,</span>
-<span id="cb271-2"><a href="big-data-cleaning-and-transformation.html#cb271-2" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">header =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+## Ncells  562.1
+## Vcells 2552.6</code></pre>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="big-data-cleaning-and-transformation.html#cb270-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(airlines.table <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(AIRLINES_DATA,</span>
+<span id="cb270-2"><a href="big-data-cleaning-and-transformation.html#cb270-2" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">header =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
 <pre><code>##    user  system elapsed 
 ##   0.002   0.000   0.002</code></pre>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="big-data-cleaning-and-transformation.html#cb273-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check memory used</span></span>
-<span id="cb273-2"><a href="big-data-cleaning-and-transformation.html#cb273-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_used</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="big-data-cleaning-and-transformation.html#cb272-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check memory used</span></span>
+<span id="cb272-2"><a href="big-data-cleaning-and-transformation.html#cb272-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_used</span>()</span></code></pre></div>
 <pre><code>## 1.86 GB</code></pre>
 </div>
 <div id="inspect-imported-files" class="section level4 hasAnchor" number="9.2.1.3">
 <h4><span class="header-section-number">9.2.1.3</span> Inspect imported files<a href="big-data-cleaning-and-transformation.html#inspect-imported-files" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>A particularly useful aspect of working with the ff-package and the packages building on them is that many of the simple R functions that work on usual data.frames in RAM also work on ffdfs. Hence, without actually having loaded the entire raw data of a large data set into RAM, we can quickly get an overview of the key characteristics such as the number of observations and the number of variables.</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="big-data-cleaning-and-transformation.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Inspect the ffdf objects.</span></span>
-<span id="cb275-2"><a href="big-data-cleaning-and-transformation.html#cb275-2" aria-hidden="true" tabindex="-1"></a><span class="do">## For flights.ff object:</span></span>
-<span id="cb275-3"><a href="big-data-cleaning-and-transformation.html#cb275-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(flights.ff)</span></code></pre></div>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="big-data-cleaning-and-transformation.html#cb274-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Inspect the ffdf objects.</span></span>
+<span id="cb274-2"><a href="big-data-cleaning-and-transformation.html#cb274-2" aria-hidden="true" tabindex="-1"></a><span class="do">## For flights.ff object:</span></span>
+<span id="cb274-3"><a href="big-data-cleaning-and-transformation.html#cb274-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(flights.ff)</span></code></pre></div>
 <pre><code>## [1] &quot;ffdf&quot;</code></pre>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="big-data-cleaning-and-transformation.html#cb277-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(flights.ff)</span></code></pre></div>
+<div class="sourceCode" id="cb276"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb276-1"><a href="big-data-cleaning-and-transformation.html#cb276-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(flights.ff)</span></code></pre></div>
 <pre><code>## [1] 951111     28</code></pre>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="big-data-cleaning-and-transformation.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="do">## For airlines.ff object:</span></span>
-<span id="cb279-2"><a href="big-data-cleaning-and-transformation.html#cb279-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(airlines.ff)</span></code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="big-data-cleaning-and-transformation.html#cb278-1" aria-hidden="true" tabindex="-1"></a><span class="do">## For airlines.ff object:</span></span>
+<span id="cb278-2"><a href="big-data-cleaning-and-transformation.html#cb278-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(airlines.ff)</span></code></pre></div>
 <pre><code>## [1] &quot;ffdf&quot;</code></pre>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb281-1"><a href="big-data-cleaning-and-transformation.html#cb281-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(airlines.ff)</span></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="big-data-cleaning-and-transformation.html#cb280-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(airlines.ff)</span></code></pre></div>
 <pre><code>## [1] 1607    2</code></pre>
 </div>
 <div id="data-cleaning-and-transformation" class="section level4 hasAnchor" number="9.2.1.4">
 <h4><span class="header-section-number">9.2.1.4</span> Data cleaning and transformation<a href="big-data-cleaning-and-transformation.html#data-cleaning-and-transformation" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>After inspecting the data, we go through several steps of cleaning and transformation, with the goal of then merging the two data sets. That is, we want to create a new data set that contains detailed flights information but with additional information on the carriers/airlines. First, we want to rename some of the variables.</p>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="big-data-cleaning-and-transformation.html#cb283-1" aria-hidden="true" tabindex="-1"></a><span class="co"># step 1: </span></span>
-<span id="cb283-2"><a href="big-data-cleaning-and-transformation.html#cb283-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Rename &quot;Code&quot; variable from airlines.ff to &quot;AIRLINE_ID&quot; and &quot;Description&quot; into &quot;AIRLINE_NM&quot;.</span></span>
-<span id="cb283-3"><a href="big-data-cleaning-and-transformation.html#cb283-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(airlines.ff) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;AIRLINE_ID&quot;</span>, <span class="st">&quot;AIRLINE_NM&quot;</span>)</span>
-<span id="cb283-4"><a href="big-data-cleaning-and-transformation.html#cb283-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(airlines.ff)</span></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="big-data-cleaning-and-transformation.html#cb282-1" aria-hidden="true" tabindex="-1"></a><span class="co"># step 1: </span></span>
+<span id="cb282-2"><a href="big-data-cleaning-and-transformation.html#cb282-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Rename &quot;Code&quot; variable from airlines.ff to &quot;AIRLINE_ID&quot; and &quot;Description&quot; into &quot;AIRLINE_NM&quot;.</span></span>
+<span id="cb282-3"><a href="big-data-cleaning-and-transformation.html#cb282-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(airlines.ff) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;AIRLINE_ID&quot;</span>, <span class="st">&quot;AIRLINE_NM&quot;</span>)</span>
+<span id="cb282-4"><a href="big-data-cleaning-and-transformation.html#cb282-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(airlines.ff)</span></code></pre></div>
 <pre><code>## [1] &quot;AIRLINE_ID&quot; &quot;AIRLINE_NM&quot;</code></pre>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="big-data-cleaning-and-transformation.html#cb285-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(airlines.ff[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>,])</span></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="big-data-cleaning-and-transformation.html#cb284-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(airlines.ff[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>,])</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    20 obs. of  2 variables:
 ##  $ AIRLINE_ID: int  19031 19032 19033 19034 19035 19036 19037 19038 19039 19040 ...
 ##  $ AIRLINE_NM: Factor w/ 1607 levels &quot;40-Mile Air: Q5&quot;,..: 945 1025 503 721 64 725 1194 99 1395 276 ...</code></pre>
 <p>Now we can join the two data sets via the unique airline identifier <code>"AIRLINE_ID"</code>. Note that these kind of operations would usually take up substantially more RAM on the spot, if both original data sets would also be fully loaded into RAM. As illustrated by the <code>mem_change()</code>-function, this is not the case here. All that is needed is a small chunk of RAM to keep the metadata and mapping-information of the new <code>ffdf</code> object, all the actual data is cached on the hard disk.</p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb287-1"><a href="big-data-cleaning-and-transformation.html#cb287-1" aria-hidden="true" tabindex="-1"></a><span class="co"># merge of ffdf objects</span></span>
-<span id="cb287-2"><a href="big-data-cleaning-and-transformation.html#cb287-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_change</span>(flights.data.ff <span class="ot">&lt;-</span> <span class="fu">merge.ffdf</span>(flights.ff, airlines.ff, <span class="at">by=</span><span class="st">&quot;AIRLINE_ID&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="big-data-cleaning-and-transformation.html#cb286-1" aria-hidden="true" tabindex="-1"></a><span class="co"># merge of ffdf objects</span></span>
+<span id="cb286-2"><a href="big-data-cleaning-and-transformation.html#cb286-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_change</span>(flights.data.ff <span class="ot">&lt;-</span> <span class="fu">merge.ffdf</span>(flights.ff, airlines.ff, <span class="at">by=</span><span class="st">&quot;AIRLINE_ID&quot;</span>))</span></code></pre></div>
 <pre><code>## 777 kB</code></pre>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="big-data-cleaning-and-transformation.html#cb289-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The new object is only 551.2 Kb in size</span></span>
-<span id="cb289-2"><a href="big-data-cleaning-and-transformation.html#cb289-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(flights.data.ff)</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="big-data-cleaning-and-transformation.html#cb288-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The new object is only 551.2 Kb in size</span></span>
+<span id="cb288-2"><a href="big-data-cleaning-and-transformation.html#cb288-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(flights.data.ff)</span></code></pre></div>
 <pre><code>## [1] &quot;ffdf&quot;</code></pre>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="big-data-cleaning-and-transformation.html#cb291-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(flights.data.ff)</span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="big-data-cleaning-and-transformation.html#cb290-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(flights.data.ff)</span></code></pre></div>
 <pre><code>## [1] 951111     29</code></pre>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="big-data-cleaning-and-transformation.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(flights.data.ff)</span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="big-data-cleaning-and-transformation.html#cb292-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(flights.data.ff)</span></code></pre></div>
 <pre><code>##  [1] &quot;YEAR&quot;              &quot;MONTH&quot;            
 ##  [3] &quot;DAY_OF_MONTH&quot;      &quot;DAY_OF_WEEK&quot;      
 ##  [5] &quot;FL_DATE&quot;           &quot;UNIQUE_CARRIER&quot;   
@@ -678,62 +678,62 @@ div.csl-indent {
 ## [27] &quot;AIR_TIME&quot;          &quot;DISTANCE&quot;         
 ## [29] &quot;AIRLINE_NM&quot;</code></pre>
 <p>Inspect difference to in-memory operation</p>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="big-data-cleaning-and-transformation.html#cb295-1" aria-hidden="true" tabindex="-1"></a><span class="do">##For flights.table:</span></span>
-<span id="cb295-2"><a href="big-data-cleaning-and-transformation.html#cb295-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(airlines.table) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;AIRLINE_ID&quot;</span>, <span class="st">&quot;AIRLINE_NM&quot;</span>)</span>
-<span id="cb295-3"><a href="big-data-cleaning-and-transformation.html#cb295-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(airlines.table)</span></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="big-data-cleaning-and-transformation.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="do">##For flights.table:</span></span>
+<span id="cb294-2"><a href="big-data-cleaning-and-transformation.html#cb294-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(airlines.table) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;AIRLINE_ID&quot;</span>, <span class="st">&quot;AIRLINE_NM&quot;</span>)</span>
+<span id="cb294-3"><a href="big-data-cleaning-and-transformation.html#cb294-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(airlines.table)</span></code></pre></div>
 <pre><code>## [1] &quot;AIRLINE_ID&quot; &quot;AIRLINE_NM&quot;</code></pre>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="big-data-cleaning-and-transformation.html#cb297-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(airlines.table[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>,])</span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="big-data-cleaning-and-transformation.html#cb296-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(airlines.table[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>,])</span></code></pre></div>
 <pre><code>## &#39;data.frame&#39;:    20 obs. of  2 variables:
 ##  $ AIRLINE_ID: int  19031 19032 19033 19034 19035 19036 19037 19038 19039 19040 ...
 ##  $ AIRLINE_NM: chr  &quot;Mackey International Inc.: MAC&quot; &quot;Munz Northern Airlines Inc.: XY&quot; &quot;Cochise Airlines Inc.: COC&quot; &quot;Golden Gate Airlines Inc.: GSA&quot; ...</code></pre>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="big-data-cleaning-and-transformation.html#cb299-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check memory usage of merge in RAM </span></span>
-<span id="cb299-2"><a href="big-data-cleaning-and-transformation.html#cb299-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_change</span>(flights.data.table <span class="ot">&lt;-</span> <span class="fu">merge</span>(flights.table,</span>
-<span id="cb299-3"><a href="big-data-cleaning-and-transformation.html#cb299-3" aria-hidden="true" tabindex="-1"></a>                                       airlines.table,</span>
-<span id="cb299-4"><a href="big-data-cleaning-and-transformation.html#cb299-4" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">by=</span><span class="st">&quot;AIRLINE_ID&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="big-data-cleaning-and-transformation.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check memory usage of merge in RAM </span></span>
+<span id="cb298-2"><a href="big-data-cleaning-and-transformation.html#cb298-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_change</span>(flights.data.table <span class="ot">&lt;-</span> <span class="fu">merge</span>(flights.table,</span>
+<span id="cb298-3"><a href="big-data-cleaning-and-transformation.html#cb298-3" aria-hidden="true" tabindex="-1"></a>                                       airlines.table,</span>
+<span id="cb298-4"><a href="big-data-cleaning-and-transformation.html#cb298-4" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">by=</span><span class="st">&quot;AIRLINE_ID&quot;</span>))</span></code></pre></div>
 <pre><code>## 161 MB</code></pre>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="big-data-cleaning-and-transformation.html#cb301-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The new object is already 105.7 Mb in size</span></span>
-<span id="cb301-2"><a href="big-data-cleaning-and-transformation.html#cb301-2" aria-hidden="true" tabindex="-1"></a><span class="co">#A rapid spike in RAM use when processing</span></span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="big-data-cleaning-and-transformation.html#cb300-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The new object is already 105.7 Mb in size</span></span>
+<span id="cb300-2"><a href="big-data-cleaning-and-transformation.html#cb300-2" aria-hidden="true" tabindex="-1"></a><span class="co">#A rapid spike in RAM use when processing</span></span></code></pre></div>
 </div>
 <div id="subsetting" class="section level4 hasAnchor" number="9.2.1.5">
 <h4><span class="header-section-number">9.2.1.5</span> Subsetting<a href="big-data-cleaning-and-transformation.html#subsetting" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Now, we want to filter out some observations as well as select only specific variables for a subset of the overall data set.</p>
-<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="big-data-cleaning-and-transformation.html#cb302-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_used</span>()</span></code></pre></div>
-<pre><code>## 2.03 GB</code></pre>
-<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="big-data-cleaning-and-transformation.html#cb304-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset the ffdf object flights.data.ff:</span></span>
-<span id="cb304-2"><a href="big-data-cleaning-and-transformation.html#cb304-2" aria-hidden="true" tabindex="-1"></a>subs1.ff <span class="ot">&lt;-</span> <span class="fu">subset.ffdf</span>(flights.data.ff, CANCELLED <span class="sc">==</span> <span class="dv">1</span>, </span>
-<span id="cb304-3"><a href="big-data-cleaning-and-transformation.html#cb304-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">select =</span> <span class="fu">c</span>(FL_DATE, AIRLINE_ID, </span>
-<span id="cb304-4"><a href="big-data-cleaning-and-transformation.html#cb304-4" aria-hidden="true" tabindex="-1"></a>                                   ORIGIN_CITY_NAME,</span>
-<span id="cb304-5"><a href="big-data-cleaning-and-transformation.html#cb304-5" aria-hidden="true" tabindex="-1"></a>                                   ORIGIN_STATE_NM,</span>
-<span id="cb304-6"><a href="big-data-cleaning-and-transformation.html#cb304-6" aria-hidden="true" tabindex="-1"></a>                                   DEST_CITY_NAME,</span>
-<span id="cb304-7"><a href="big-data-cleaning-and-transformation.html#cb304-7" aria-hidden="true" tabindex="-1"></a>                                   DEST_STATE_NM,</span>
-<span id="cb304-8"><a href="big-data-cleaning-and-transformation.html#cb304-8" aria-hidden="true" tabindex="-1"></a>                                   CANCELLATION_CODE))</span>
-<span id="cb304-9"><a href="big-data-cleaning-and-transformation.html#cb304-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb304-10"><a href="big-data-cleaning-and-transformation.html#cb304-10" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(subs1.ff)</span></code></pre></div>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="big-data-cleaning-and-transformation.html#cb301-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_used</span>()</span></code></pre></div>
+<pre><code>## 2.02 GB</code></pre>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="big-data-cleaning-and-transformation.html#cb303-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset the ffdf object flights.data.ff:</span></span>
+<span id="cb303-2"><a href="big-data-cleaning-and-transformation.html#cb303-2" aria-hidden="true" tabindex="-1"></a>subs1.ff <span class="ot">&lt;-</span> <span class="fu">subset.ffdf</span>(flights.data.ff, CANCELLED <span class="sc">==</span> <span class="dv">1</span>, </span>
+<span id="cb303-3"><a href="big-data-cleaning-and-transformation.html#cb303-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">select =</span> <span class="fu">c</span>(FL_DATE, AIRLINE_ID, </span>
+<span id="cb303-4"><a href="big-data-cleaning-and-transformation.html#cb303-4" aria-hidden="true" tabindex="-1"></a>                                   ORIGIN_CITY_NAME,</span>
+<span id="cb303-5"><a href="big-data-cleaning-and-transformation.html#cb303-5" aria-hidden="true" tabindex="-1"></a>                                   ORIGIN_STATE_NM,</span>
+<span id="cb303-6"><a href="big-data-cleaning-and-transformation.html#cb303-6" aria-hidden="true" tabindex="-1"></a>                                   DEST_CITY_NAME,</span>
+<span id="cb303-7"><a href="big-data-cleaning-and-transformation.html#cb303-7" aria-hidden="true" tabindex="-1"></a>                                   DEST_STATE_NM,</span>
+<span id="cb303-8"><a href="big-data-cleaning-and-transformation.html#cb303-8" aria-hidden="true" tabindex="-1"></a>                                   CANCELLATION_CODE))</span>
+<span id="cb303-9"><a href="big-data-cleaning-and-transformation.html#cb303-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb303-10"><a href="big-data-cleaning-and-transformation.html#cb303-10" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(subs1.ff)</span></code></pre></div>
 <pre><code>## [1] 4529    7</code></pre>
-<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="big-data-cleaning-and-transformation.html#cb306-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_used</span>()</span></code></pre></div>
-<pre><code>## 2.03 GB</code></pre>
+<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="big-data-cleaning-and-transformation.html#cb305-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_used</span>()</span></code></pre></div>
+<pre><code>## 2.02 GB</code></pre>
 </div>
 <div id="saveloadexport-ffdf-files" class="section level4 hasAnchor" number="9.2.1.6">
 <h4><span class="header-section-number">9.2.1.6</span> Save/load/export ffdf-files<a href="big-data-cleaning-and-transformation.html#saveloadexport-ffdf-files" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>In order to better organize and easily reload newly created <code>ffdf</code>s, we can explicitly save them to disk.</p>
-<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="big-data-cleaning-and-transformation.html#cb308-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save a newly created ffdf object to a data file:</span></span>
-<span id="cb308-2"><a href="big-data-cleaning-and-transformation.html#cb308-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb308-3"><a href="big-data-cleaning-and-transformation.html#cb308-3" aria-hidden="true" tabindex="-1"></a><span class="fu">save.ffdf</span>(subs1.ff, <span class="at">overwrite =</span> <span class="cn">TRUE</span>) <span class="co">#7 files (one for each column) created in the ffdb directory</span></span></code></pre></div>
+<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="big-data-cleaning-and-transformation.html#cb307-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save a newly created ffdf object to a data file:</span></span>
+<span id="cb307-2"><a href="big-data-cleaning-and-transformation.html#cb307-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb307-3"><a href="big-data-cleaning-and-transformation.html#cb307-3" aria-hidden="true" tabindex="-1"></a><span class="fu">save.ffdf</span>(subs1.ff, <span class="at">overwrite =</span> <span class="cn">TRUE</span>) <span class="co">#7 files (one for each column) created in the ffdb directory</span></span></code></pre></div>
 <p>If we want to reload a previously saved <code>ffdf</code>, we do not have to go through the chunking of a raw data file again, but can very quickly load the data mapping and metadata into RAM in order to further work with the data (stored on disk).</p>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="big-data-cleaning-and-transformation.html#cb309-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading previously saved ffdf files:</span></span>
-<span id="cb309-2"><a href="big-data-cleaning-and-transformation.html#cb309-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(subs1.ff)</span>
-<span id="cb309-3"><a href="big-data-cleaning-and-transformation.html#cb309-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="big-data-cleaning-and-transformation.html#cb308-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading previously saved ffdf files:</span></span>
+<span id="cb308-2"><a href="big-data-cleaning-and-transformation.html#cb308-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(subs1.ff)</span>
+<span id="cb308-3"><a href="big-data-cleaning-and-transformation.html#cb308-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span></code></pre></div>
 <pre><code>##             used   (Mb) gc trigger   (Mb)  max used
-## Ncells   6787711  362.6   10216710  545.7  10216710
-## Vcells 205710785 1569.5  409898628 3127.3 291446071
+## Ncells   6771077  361.7   10524318  562.1  10524318
+## Vcells 205692952 1569.4  401568752 3063.8 334573894
 ##          (Mb)
-## Ncells  545.7
-## Vcells 2223.6</code></pre>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="big-data-cleaning-and-transformation.html#cb311-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load.ffdf</span>(<span class="st">&quot;ffdb&quot;</span>)</span>
-<span id="cb311-2"><a href="big-data-cleaning-and-transformation.html#cb311-2" aria-hidden="true" tabindex="-1"></a><span class="co"># check the class and structure of the loaded data</span></span>
-<span id="cb311-3"><a href="big-data-cleaning-and-transformation.html#cb311-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(subs1.ff) </span></code></pre></div>
+## Ncells  562.1
+## Vcells 2552.6</code></pre>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="big-data-cleaning-and-transformation.html#cb310-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load.ffdf</span>(<span class="st">&quot;ffdb&quot;</span>)</span>
+<span id="cb310-2"><a href="big-data-cleaning-and-transformation.html#cb310-2" aria-hidden="true" tabindex="-1"></a><span class="co"># check the class and structure of the loaded data</span></span>
+<span id="cb310-3"><a href="big-data-cleaning-and-transformation.html#cb310-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(subs1.ff) </span></code></pre></div>
 <pre><code>## [1] &quot;ffdf&quot;</code></pre>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="big-data-cleaning-and-transformation.html#cb313-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(subs1.ff)</span></code></pre></div>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="big-data-cleaning-and-transformation.html#cb312-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(subs1.ff)</span></code></pre></div>
 <pre><code>## List of 3
 ##  $ virtual: &#39;data.frame&#39;:    7 obs. of  7 variables:
 ##  .. $ VirtualVmode     : chr  &quot;integer&quot; &quot;integer&quot; &quot;integer&quot; &quot;integer&quot; ...
@@ -867,9 +867,9 @@ div.csl-indent {
 ## - attributes: List of 2
 ##  .. $ names: chr [1:2] &quot;virtual&quot; &quot;physical&quot;
 ##  .. $ class: chr &quot;ffdf&quot;</code></pre>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="big-data-cleaning-and-transformation.html#cb315-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(subs1.ff)</span></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="big-data-cleaning-and-transformation.html#cb314-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(subs1.ff)</span></code></pre></div>
 <pre><code>## [1] 4529    7</code></pre>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="big-data-cleaning-and-transformation.html#cb317-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dimnames</span>(subs1.ff)</span></code></pre></div>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="big-data-cleaning-and-transformation.html#cb316-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dimnames</span>(subs1.ff)</span></code></pre></div>
 <pre><code>## [[1]]
 ## NULL
 ## 
@@ -879,8 +879,8 @@ div.csl-indent {
 ## [5] &quot;DEST_CITY_NAME&quot;    &quot;DEST_STATE_NM&quot;    
 ## [7] &quot;CANCELLATION_CODE&quot;</code></pre>
 <p>In case we want to store an <code>ffdf</code> data set in a format more accessible for other users (such as csv), we can do so as follows. This last step is also quite common in practice. The initial raw data set is very large, thus we perform all the theoretically very memory-intense tasks of preparing the analytic data set via <code>ff</code> and then store the (often much smaller) analytic data set in a more accessible csv file in order to later read it into RAM and run more computationally intense analyses directly in RAM.</p>
-<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="big-data-cleaning-and-transformation.html#cb319-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  Export subs1.ff into CSV and TXT files:</span></span>
-<span id="cb319-2"><a href="big-data-cleaning-and-transformation.html#cb319-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv.ffdf</span>(subs1.ff, <span class="st">&quot;subset1.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="big-data-cleaning-and-transformation.html#cb318-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  Export subs1.ff into CSV and TXT files:</span></span>
+<span id="cb318-2"><a href="big-data-cleaning-and-transformation.html#cb318-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv.ffdf</span>(subs1.ff, <span class="st">&quot;subset1.csv&quot;</span>)</span></code></pre></div>
 
 </div>
 </div>

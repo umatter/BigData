@@ -548,12 +548,12 @@ div.csl-indent {
 <p>Finally, we test our <code>beta_ols</code> function.</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="two-domains-of-big-data-analytics.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># apply the OLS estimator</span></span>
 <span id="cb17-2"><a href="two-domains-of-big-data-analytics.html#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="fu">beta_ols</span>(X, y)</span></code></pre></div>
-<pre><code>##        [,1]
-## [1,]  2.007
-## [2,]  1.500
-## [3,]  4.000
-## [4,] -3.500
-## [5,]  0.500</code></pre>
+<pre><code>##         [,1]
+## [1,]  1.9956
+## [2,]  1.5000
+## [3,]  4.0000
+## [4,] -3.4999
+## [5,]  0.5004</code></pre>
 </div>
 <div id="the-uluru-algorithm-as-an-alternative-to-ols" class="section level3 hasAnchor" number="2.2.2">
 <h3><span class="header-section-number">2.2.2</span> The <em>Uluru</em> algorithm as an alternative to OLS<a href="two-domains-of-big-data-analytics.html#the-uluru-algorithm-as-an-alternative-to-ols" class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -596,11 +596,11 @@ div.csl-indent {
 <span id="cb20-10"><a href="two-domains-of-big-data-analytics.html#cb20-10" aria-hidden="true" tabindex="-1"></a><span class="co"># apply the uluru estimator</span></span>
 <span id="cb20-11"><a href="two-domains-of-big-data-analytics.html#cb20-11" aria-hidden="true" tabindex="-1"></a><span class="fu">beta_uluru</span>(X_subs, y_subs, X_rem, y_rem)</span></code></pre></div>
 <pre><code>##         [,1]
-## [1,]  1.9763
-## [2,]  1.4985
-## [3,]  4.0006
-## [4,] -3.4957
-## [5,]  0.4986</code></pre>
+## [1,]  1.9283
+## [2,]  1.5018
+## [3,]  4.0040
+## [4,] -3.5009
+## [5,]  0.5024</code></pre>
 <p>This looks quite good already. Let’s have a closer look with a little Monte Carlo study. The aim of the simulation study is to visualize the difference between the classical OLS approach and the <em>Uluru</em> algorithm with regard to bias and time complexity if we increase the sub-sample size in <em>Uluru</em>. For simplicity, we only look at the first estimated coefficient <span class="math inline">\(\beta_{1}\)</span>.</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="two-domains-of-big-data-analytics.html#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># define sub-samples</span></span>
 <span id="cb22-2"><a href="two-domains-of-big-data-analytics.html#cb22-2" aria-hidden="true" tabindex="-1"></a>n_subs_sizes <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">1000</span>, <span class="at">to =</span> <span class="dv">500000</span>, <span class="at">by=</span><span class="dv">10000</span>)</span>

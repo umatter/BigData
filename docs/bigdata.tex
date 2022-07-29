@@ -599,12 +599,12 @@ Finally, we test our \texttt{beta\_ols} function.
 \end{Shaded}
 
 \begin{verbatim}
-##        [,1]
-## [1,]  1.992
-## [2,]  1.500
-## [3,]  4.001
-## [4,] -3.500
-## [5,]  0.500
+##         [,1]
+## [1,]  1.9956
+## [2,]  1.5000
+## [3,]  4.0000
+## [4,] -3.4999
+## [5,]  0.5004
 \end{verbatim}
 
 \hypertarget{the-uluru-algorithm-as-an-alternative-to-ols}{%
@@ -663,12 +663,12 @@ We then test it with the same input as above:
 \end{Shaded}
 
 \begin{verbatim}
-##        [,1]
-## [1,]  2.188
-## [2,]  1.489
-## [3,]  3.998
-## [4,] -3.503
-## [5,]  0.498
+##         [,1]
+## [1,]  1.9283
+## [2,]  1.5018
+## [3,]  4.0040
+## [4,] -3.5009
+## [5,]  0.5024
 \end{verbatim}
 
 This looks quite good already. Let's have a closer look with a little Monte Carlo study. The aim of the simulation study is to visualize the difference between the classical OLS approach and the \emph{Uluru} algorithm with regard to bias and time complexity if we increase the sub-sample size in \emph{Uluru}. For simplicity, we only look at the first estimated coefficient \(\beta_{1}\).
@@ -852,7 +852,7 @@ Most of these functions are used in an interactive way in the R console. They se
 
 \begin{verbatim}
 ##    user  system elapsed 
-##   0.002   0.000   0.002
+##   0.001   0.000   0.001
 \end{verbatim}
 
 Note that each time you run this line of code, the returned amount of time varies slightly. This has to do with the fact that the actual time needed to run a line of code can depend on various other processes happening at the same time on your computer.
@@ -871,9 +871,9 @@ The \texttt{microbenchmark} and \texttt{bench} packages provide additional funct
 \begin{verbatim}
 ## Unit: milliseconds
 ##                            expr   min    lq mean
-##  for (i in 1:100) {     i + 5 } 1.129 1.228 1.36
-##  median   uq   max neval
-##   1.278 1.35 4.859   100
+##  for (i in 1:100) {     i + 5 } 1.277 1.343 1.41
+##  median    uq  max neval
+##   1.376 1.444 1.98   100
 \end{verbatim}
 
 Second, a key aspect to improving the performance of data analysis scripts in R is to detect inefficient memory allocation as well as avoiding that an R-object is either growing too much or is generally too large to handle in memory. To this end, you might want to monitor how much memory R occupies at different points in your script as well as how much memory is taken up by individual R objects. For example, \texttt{object.size()} returns the size of an R object, that is the amount of memory it takes up in the R environment in bytes (\texttt{pryr::object\_size()} counts slightly more accurately).
@@ -932,7 +932,7 @@ This is useful to implementing your script with a generally less memory-intense 
 \end{Shaded}
 
 \begin{verbatim}
-## 9.64 kB
+## 4.65 kB
 \end{verbatim}
 
 \begin{Shaded}
@@ -945,7 +945,7 @@ This is useful to implementing your script with a generally less memory-intense 
 \end{Shaded}
 
 \begin{verbatim}
-## 8 MB
+## 528 B
 \end{verbatim}
 
 \texttt{bench::mark()} allows you to easily compare the performance of several different implementations of a code chunk both regarding timing and memory usage. The following code example illustrates this in a comparison of two approaches to computing the product of each element in a vector \texttt{x} with a factor \texttt{z}.
@@ -1003,8 +1003,8 @@ This is useful to implementing your script with a generally less memory-intense 
 ## # A tibble: 2 x 3
 ##   `itr/sec` mem_alloc `gc/sec`
 ##       <dbl> <bch:byt>    <dbl>
-## 1      13.1     382MB    11.2 
-## 2   75944.     78.2KB     7.60
+## 1      11.3     382MB     4.85
+## 2   72604.     78.2KB     7.26
 \end{verbatim}
 
 In addition, the \texttt{bench} package provides a simple way to visualize these outputs:
@@ -1014,10 +1014,6 @@ In addition, the \texttt{bench} package provides a simple way to visualize these
 \FunctionTok{plot}\NormalTok{(benchmarking, }\AttributeTok{type =} \StringTok{"boxplot"}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
-
-\begin{verbatim}
-## Loading required namespace: tidyr
-\end{verbatim}
 
 \includegraphics{bigdata_files/figure-latex/unnamed-chunk-30-1.pdf}
 
@@ -1338,7 +1334,7 @@ We can prove this in two ways. First, if what I just stated was not true, the li
 \end{Shaded}
 
 \begin{verbatim}
-## -635 kB
+## -389 kB
 \end{verbatim}
 
 Second, we can see that the values to which \texttt{a} and \texttt{b} are bound are stored at the same memory address. Hence, they are the same values.
@@ -1369,7 +1365,7 @@ Second, we can see that the values to which \texttt{a} and \texttt{b} are bound 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "0x555ade63c190"
+## [1] "0x55c3df6cbca0"
 \end{verbatim}
 
 \begin{Shaded}
@@ -1379,7 +1375,7 @@ Second, we can see that the values to which \texttt{a} and \texttt{b} are bound 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "0x555ade63c190"
+## [1] "0x55c3df6cbca0"
 \end{verbatim}
 
 Now you probably wonder, what happens to \texttt{b} if we modify \texttt{a}. After all, if the values to which \texttt{b} is bound are changed when we write code concerning \texttt{a}, we might end up with very surprising output. The answer is, and this is key (!), once we modify \texttt{a}, the values need to be \emph{copied} in order to ensure the integrity of \texttt{b}. Only at this point, our program will require more memory.
@@ -1392,7 +1388,7 @@ Now you probably wonder, what happens to \texttt{b} if we modify \texttt{a}. Aft
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.234
+## [1] 0.9715
 \end{verbatim}
 
 \begin{Shaded}
@@ -1402,7 +1398,7 @@ Now you probably wonder, what happens to \texttt{b} if we modify \texttt{a}. Aft
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.234
+## [1] 0.9715
 \end{verbatim}
 
 \begin{Shaded}
@@ -1424,7 +1420,7 @@ Now you probably wonder, what happens to \texttt{b} if we modify \texttt{a}. Aft
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "0x555b179e2e50"
+## [1] "0x55c3bedd3260"
 \end{verbatim}
 
 \begin{Shaded}
@@ -1434,7 +1430,7 @@ Now you probably wonder, what happens to \texttt{b} if we modify \texttt{a}. Aft
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "0x555ade63c190"
+## [1] "0x55c3df6cbca0"
 \end{verbatim}
 
 Note that the entire vector needed to be copied for this. There is, of course, a lesson from all this regarding writing efficient code. Knowing how actual copying of values does occur helps avoiding unnecessary copying. The larger an object, the more time it will take to copy it in memory. Objects with a single binding get modified in place (no copying):
@@ -1446,7 +1442,7 @@ Note that the entire vector needed to be copied for this. There is, of course, a
 \end{Shaded}
 
 \begin{verbatim}
-## 80.2 kB
+## 112 B
 \end{verbatim}
 
 \begin{Shaded}
@@ -1506,7 +1502,7 @@ We can actually investigate this by looking at the source code of an R function.
 ##           parsed_x <- fread(x)
 ##           return(parsed_x)
 ##      }
-## <bytecode: 0x555ad8639c18>
+## <bytecode: 0x55c42230e3a8>
 \end{verbatim}
 
 However, if we do the same for function \texttt{sum}, we don't see any actual source code.
@@ -2412,9 +2408,9 @@ Now we run the three examples: first, based on standard R, using the CPU. Then, 
 ## # A tibble: 3 x 6
 ##   expression                            min   median
 ##   <bch:expr>                       <bch:tm> <bch:tm>
-## 1 cpu <- t(X) %*% X                  76.8ms   77.7ms
-## 2 gpu1_pointer <- t(gpuX) %*% gpuX  32.21ms     34ms
-## 3 gpu2_memory <- t(vclX) %*% vclX    9.36ms   15.1ms
+## 1 cpu <- t(X) %*% X                 79.21ms   83.8ms
+## 2 gpu1_pointer <- t(gpuX) %*% gpuX  31.53ms   33.7ms
+## 3 gpu2_memory <- t(vclX) %*% vclX    9.54ms     15ms
 ## # ... with 3 more variables: `itr/sec` <dbl>,
 ## #   mem_alloc <bch:byt>, `gc/sec` <dbl>
 ## # i Use `colnames()` to see all variable names
@@ -2443,7 +2439,7 @@ Due to the high demand for more computational power in the domain of training co
 
 }
 
-\caption{Illustration of a tensor processing unit (GPU).}\label{fig:tpu}
+\caption{Illustration of a tensor processing unit (TPU).}\label{fig:tpu}
 \end{figure}
 
 
@@ -3582,11 +3578,11 @@ The last result is kind of interesting. The object \texttt{flights} must have be
 
 \begin{verbatim}
 ##             used   (Mb) gc trigger   (Mb)  max used
-## Ncells   6535541  349.1   10692948  571.1  10692948
-## Vcells 169834397 1295.8  409858047 3127.0 284501290
+## Ncells   6520271  348.3   10529398  562.4  10529398
+## Vcells 169819779 1295.7  401568752 3063.8 334573213
 ##          (Mb)
-## Ncells  571.1
-## Vcells 2170.6
+## Ncells  562.4
+## Vcells 2552.6
 \end{verbatim}
 
 Now, let's see how we can improve the performance of this script with regard to memory allocation. Most memory is allocated when importing the file. Obviously, any improvement of the script must still result in importing all the data. However, there are different ways to read data into RAM. \texttt{read.csv()} reads all lines of a csv file consecutively. In contrast, \texttt{data.table::fread()} first `maps' the data file into memory and only then actually reads it in line by line. This involves an additional initial step, but the larger the file, the less relevant is this first step with regard to the total time needed to read all the data into memory. By switching on the \texttt{verbose} option, we can actually see what \texttt{fread} is doing.
@@ -3669,7 +3665,7 @@ Now, let's see how we can improve the performance of this script with regard to 
 ##   Allocating 19 column slots (19 - 0 dropped) with 370043 rows
 ## [11] Read the data
 ##   jumps=[0..30), chunk_size=1032016, total_size=30960501
-## Read 336776 rows x 19 columns from 29.53MB (30960660 bytes) file in 00:00.066 wall clock time
+## Read 336776 rows x 19 columns from 29.53MB (30960660 bytes) file in 00:00.063 wall clock time
 ## [12] Finalizing the datatable
 ##   Type counts:
 ##         14 : int32     '5'
@@ -3679,13 +3675,13 @@ Now, let's see how we can improve the performance of this script with regard to 
 ##    0.000s (  0%) Memory map 0.029GB file
 ##    0.003s (  5%) sep=',' ncol=19 and header detection
 ##    0.000s (  0%) Column type detection using 10048 sample rows
-##    0.001s (  1%) Allocation of 370043 rows x 19 cols (0.033GB) of which 336776 ( 91%) rows used
-##    0.062s ( 94%) Reading 30 chunks (0 swept) of 0.984MB (each chunk 11225 rows) using 6 threads
-##    +    0.018s ( 27%) Parse to row-major thread buffers (grown 0 times)
-##    +    0.028s ( 43%) Transpose
-##    +    0.016s ( 24%) Waiting
+##    0.001s (  2%) Allocation of 370043 rows x 19 cols (0.033GB) of which 336776 ( 91%) rows used
+##    0.058s ( 93%) Reading 30 chunks (0 swept) of 0.984MB (each chunk 11225 rows) using 6 threads
+##    +    0.013s ( 21%) Parse to row-major thread buffers (grown 0 times)
+##    +    0.029s ( 46%) Transpose
+##    +    0.016s ( 26%) Waiting
 ##    0.000s (  0%) Rereading 0 columns due to out-of-sample type exceptions
-##    0.066s        Total
+##    0.063s        Total
 \end{verbatim}
 
 Let's put it all together and look at the memory changes and usage. For a fair comparison, we first have to delete \texttt{flights} and collect the garbage with \texttt{gc()}.
@@ -3708,11 +3704,11 @@ Let's put it all together and look at the memory changes and usage. For a fair c
 
 \begin{verbatim}
 ##             used   (Mb) gc trigger   (Mb)  max used
-## Ncells   6593725  352.2   10692948  571.1  10692948
-## Vcells 166820133 1272.8  409858047 3127.0 284501290
+## Ncells   6578811  351.4   10529398  562.4  10529398
+## Vcells 166805869 1272.7  401568752 3063.8 334573213
 ##          (Mb)
-## Ncells  571.1
-## Vcells 2170.6
+## Ncells  562.4
+## Vcells 2552.6
 \end{verbatim}
 
 \begin{Shaded}
@@ -4411,11 +4407,11 @@ Now we can read in the data with \texttt{read.table.ffdf}. In order to better un
 \end{Shaded}
 
 \begin{verbatim}
-## read.table.ffdf 1..100000 (100000)  csv-read=0.404sec ffdf-write=0.055sec
-## read.table.ffdf 100001..200000 (100000)  csv-read=0.372sec ffdf-write=0.034sec
-## read.table.ffdf 200001..300000 (100000)  csv-read=0.374sec ffdf-write=0.033sec
-## read.table.ffdf 300001..336776 (36776)  csv-read=0.149sec ffdf-write=0.02sec
-##  csv-read=1.299sec  ffdf-write=0.142sec  TOTAL=1.441sec
+## read.table.ffdf 1..100000 (100000)  csv-read=0.416sec ffdf-write=0.056sec
+## read.table.ffdf 100001..200000 (100000)  csv-read=0.424sec ffdf-write=0.042sec
+## read.table.ffdf 200001..300000 (100000)  csv-read=0.445sec ffdf-write=0.037sec
+## read.table.ffdf 300001..336776 (36776)  csv-read=0.181sec ffdf-write=0.031sec
+##  csv-read=1.466sec  ffdf-write=0.166sec  TOTAL=1.632sec
 \end{verbatim}
 
 \begin{verbatim}
@@ -4623,22 +4619,22 @@ In a first step we read (or `upload') the data into R. This step involves the cr
 \end{Shaded}
 
 \begin{verbatim}
-## read.table.ffdf 1..100000 (100000)  csv-read=0.525sec ffdf-write=0.087sec
-## read.table.ffdf 100001..200000 (100000)  csv-read=0.582sec ffdf-write=0.074sec
-## read.table.ffdf 200001..300000 (100000)  csv-read=0.555sec ffdf-write=0.064sec
-## read.table.ffdf 300001..400000 (100000)  csv-read=0.567sec ffdf-write=0.075sec
-## read.table.ffdf 400001..500000 (100000)  csv-read=0.568sec ffdf-write=0.073sec
-## read.table.ffdf 500001..600000 (100000)  csv-read=0.586sec ffdf-write=0.064sec
-## read.table.ffdf 600001..700000 (100000)  csv-read=0.575sec ffdf-write=0.063sec
-## read.table.ffdf 700001..800000 (100000)  csv-read=0.567sec ffdf-write=0.071sec
-## read.table.ffdf 800001..900000 (100000)  csv-read=0.544sec ffdf-write=0.066sec
-## read.table.ffdf 900001..951111 (51111)  csv-read=0.288sec ffdf-write=0.04sec
-##  csv-read=5.357sec  ffdf-write=0.677sec  TOTAL=6.034sec
+## read.table.ffdf 1..100000 (100000)  csv-read=0.545sec ffdf-write=0.08sec
+## read.table.ffdf 100001..200000 (100000)  csv-read=0.637sec ffdf-write=0.068sec
+## read.table.ffdf 200001..300000 (100000)  csv-read=0.666sec ffdf-write=0.073sec
+## read.table.ffdf 300001..400000 (100000)  csv-read=0.724sec ffdf-write=0.062sec
+## read.table.ffdf 400001..500000 (100000)  csv-read=0.597sec ffdf-write=0.062sec
+## read.table.ffdf 500001..600000 (100000)  csv-read=0.588sec ffdf-write=0.087sec
+## read.table.ffdf 600001..700000 (100000)  csv-read=0.602sec ffdf-write=0.075sec
+## read.table.ffdf 700001..800000 (100000)  csv-read=0.567sec ffdf-write=0.064sec
+## read.table.ffdf 800001..900000 (100000)  csv-read=0.572sec ffdf-write=0.064sec
+## read.table.ffdf 900001..951111 (51111)  csv-read=0.307sec ffdf-write=0.045sec
+##  csv-read=5.805sec  ffdf-write=0.68sec  TOTAL=6.485sec
 \end{verbatim}
 
 \begin{verbatim}
 ##    user  system elapsed 
-##   5.574   0.540   6.036
+##   5.968   0.602   6.490
 \end{verbatim}
 
 \begin{Shaded}
@@ -4652,13 +4648,13 @@ In a first step we read (or `upload') the data into R. This step involves the cr
 \end{Shaded}
 
 \begin{verbatim}
-## read.table.ffdf 1..1607 (1607)  csv-read=0.005sec ffdf-write=0.004sec
-##  csv-read=0.005sec  ffdf-write=0.004sec  TOTAL=0.009sec
+## read.table.ffdf 1..1607 (1607)  csv-read=0.005sec ffdf-write=0.003sec
+##  csv-read=0.005sec  ffdf-write=0.003sec  TOTAL=0.008sec
 \end{verbatim}
 
 \begin{verbatim}
 ##    user  system elapsed 
-##   0.006   0.005   0.010
+##   0.009   0.000   0.009
 \end{verbatim}
 
 \begin{Shaded}
@@ -4685,7 +4681,7 @@ Comparison with \texttt{read.table}
 
 \begin{verbatim}
 ##    user  system elapsed 
-##   4.991   0.324   5.238
+##   5.208   0.420   5.547
 \end{verbatim}
 
 \begin{Shaded}
@@ -4695,12 +4691,12 @@ Comparison with \texttt{read.table}
 \end{Shaded}
 
 \begin{verbatim}
-##             used (Mb) gc trigger   (Mb)  max used
-## Ncells   6758389  361   10692948  571.1  10692948
-## Vcells 185578317 1416  409858047 3127.0 291430251
+##             used   (Mb) gc trigger   (Mb)  max used
+## Ncells   6741759  360.1   10529398  562.4  10529398
+## Vcells 185560679 1415.8  401568752 3063.8 334573213
 ##          (Mb)
-## Ncells  571.1
-## Vcells 2223.5
+## Ncells  562.4
+## Vcells 2552.6
 \end{verbatim}
 
 \begin{Shaded}
@@ -4976,12 +4972,12 @@ If we want to reload a previously saved \texttt{ffdf}, we do not have to go thro
 \end{Shaded}
 
 \begin{verbatim}
-##             used (Mb) gc trigger   (Mb)  max used
-## Ncells   6776693  362   10692948  571.1  10692948
-## Vcells 205694964 1569  409858047 3127.0 291430251
+##             used   (Mb) gc trigger   (Mb)  max used
+## Ncells   6760062  361.1   10529398  562.4  10529398
+## Vcells 205677300 1569.2  401568752 3063.8 334573213
 ##          (Mb)
-## Ncells  571.1
-## Vcells 2223.5
+## Ncells  562.4
+## Vcells 2552.6
 \end{verbatim}
 
 \begin{Shaded}
@@ -5325,35 +5321,35 @@ In simple words, this means we first split the data set into subsets, each of wh
 \end{Shaded}
 
 \begin{verbatim}
-## 2022-07-29 22:11:51, calculating split sizes
+## 2022-07-29 23:14:38, calculating split sizes
 \end{verbatim}
 
 \begin{verbatim}
-## 2022-07-29 22:11:51, building up split locations
+## 2022-07-29 23:14:39, building up split locations
 \end{verbatim}
 
 \begin{verbatim}
-## 2022-07-29 22:11:51, working on split 1/2, extracting data in RAM of 1 split elements, totalling, 0.0815 GB, while max specified data specified using BATCHBYTES is 0.09313 GB
+## 2022-07-29 23:14:39, working on split 1/2, extracting data in RAM of 1 split elements, totalling, 0.0815 GB, while max specified data specified using BATCHBYTES is 0.09313 GB
 \end{verbatim}
 
 \begin{verbatim}
-## 2022-07-29 22:11:52, ... applying FUN to selected data
+## 2022-07-29 23:14:40, ... applying FUN to selected data
 \end{verbatim}
 
 \begin{verbatim}
-## 2022-07-29 22:11:52, ... appending result to the output ffdf
+## 2022-07-29 23:14:40, ... appending result to the output ffdf
 \end{verbatim}
 
 \begin{verbatim}
-## 2022-07-29 22:11:52, working on split 2/2, extracting data in RAM of 3 split elements, totalling, 0.02281 GB, while max specified data specified using BATCHBYTES is 0.09313 GB
+## 2022-07-29 23:14:40, working on split 2/2, extracting data in RAM of 3 split elements, totalling, 0.02281 GB, while max specified data specified using BATCHBYTES is 0.09313 GB
 \end{verbatim}
 
 \begin{verbatim}
-## 2022-07-29 22:11:52, ... applying FUN to selected data
+## 2022-07-29 23:14:40, ... applying FUN to selected data
 \end{verbatim}
 
 \begin{verbatim}
-## 2022-07-29 22:11:52, ... appending result to the output ffdf
+## 2022-07-29 23:14:40, ... appending result to the output ffdf
 \end{verbatim}
 
 Note how the output describes the procedure step by step. Now we can have a look at the resulting summary statistic in the form of a \texttt{data.frame()}.
@@ -5394,35 +5390,35 @@ We add an additional variable \texttt{percent\_tip} and then repeat the aggregat
 \end{Shaded}
 
 \begin{verbatim}
-## 2022-07-29 22:11:52, calculating split sizes
+## 2022-07-29 23:14:40, calculating split sizes
 \end{verbatim}
 
 \begin{verbatim}
-## 2022-07-29 22:11:52, building up split locations
+## 2022-07-29 23:14:40, building up split locations
 \end{verbatim}
 
 \begin{verbatim}
-## 2022-07-29 22:11:52, working on split 1/2, extracting data in RAM of 1 split elements, totalling, 0.08732 GB, while max specified data specified using BATCHBYTES is 0.09313 GB
+## 2022-07-29 23:14:40, working on split 1/2, extracting data in RAM of 1 split elements, totalling, 0.08732 GB, while max specified data specified using BATCHBYTES is 0.09313 GB
 \end{verbatim}
 
 \begin{verbatim}
-## 2022-07-29 22:11:53, ... applying FUN to selected data
+## 2022-07-29 23:14:41, ... applying FUN to selected data
 \end{verbatim}
 
 \begin{verbatim}
-## 2022-07-29 22:11:53, ... appending result to the output ffdf
+## 2022-07-29 23:14:41, ... appending result to the output ffdf
 \end{verbatim}
 
 \begin{verbatim}
-## 2022-07-29 22:11:53, working on split 2/2, extracting data in RAM of 3 split elements, totalling, 0.02444 GB, while max specified data specified using BATCHBYTES is 0.09313 GB
+## 2022-07-29 23:14:41, working on split 2/2, extracting data in RAM of 3 split elements, totalling, 0.02444 GB, while max specified data specified using BATCHBYTES is 0.09313 GB
 \end{verbatim}
 
 \begin{verbatim}
-## 2022-07-29 22:11:53, ... applying FUN to selected data
+## 2022-07-29 23:14:42, ... applying FUN to selected data
 \end{verbatim}
 
 \begin{verbatim}
-## 2022-07-29 22:11:54, ... appending result to the output ffdf
+## 2022-07-29 23:14:42, ... appending result to the output ffdf
 \end{verbatim}
 
 \begin{Shaded}
@@ -6295,7 +6291,7 @@ When running this script, we notice that some of the steps need a certain amount
 \end{Shaded}
 
 \begin{verbatim}
-## 2.31 GB
+## 2.3 GB
 \end{verbatim}
 
 \begin{Shaded}
@@ -6322,7 +6318,7 @@ When running this script, we notice that some of the steps need a certain amount
 \end{Shaded}
 
 \begin{verbatim}
-## 2.34 GB
+## 2.33 GB
 \end{verbatim}
 
 The last result is kind of interesting. The object \texttt{flights} must have been larger right after importing it than at the end of the script. We have thrown out several variables, after all. Why does R still use that much memory? R does by default not `clean up' memory unless it is really necessary (meaning no more memory is available). In this case, R has still way more memory available from the operating system, thus there is no need to `collect the garbage' yet. However, we can force R to collect the garbage on the spot with \texttt{gc()}. This can be helpful to better keep track of the memory needed by an analytics script.
@@ -6334,12 +6330,12 @@ The last result is kind of interesting. The object \texttt{flights} must have be
 \end{Shaded}
 
 \begin{verbatim}
-##             used   (Mb) gc trigger (Mb)  max used
-## Ncells   8529715  455.6   14810401  791  12986236
-## Vcells 232255241 1772.0  409858047 3127 409846454
+##             used   (Mb) gc trigger   (Mb)  max used
+## Ncells   8423937  449.9   14642848  782.1  13007720
+## Vcells 232083800 1770.7  401800560 3065.5 401800560
 ##          (Mb)
-## Ncells  693.6
-## Vcells 3126.9
+## Ncells  694.7
+## Vcells 3065.5
 \end{verbatim}
 
 Now, let's see how we can improve the performance of this script with regard to memory allocation. Most memory is allocated when importing the file. Obviously, any improvement of the script must still result in importing all the data. However, there are different ways to read data into RAM. \texttt{read.csv()} reads all lines of a csv file consecutively. In contrast, \texttt{data.table::fread()} first `maps' the data file into memory and only then actually reads it in line by line. This involves an additional initial step, but the larger the file, the less relevant is this first step with regard to the total time needed to read all the data into memory. By switching on the \texttt{verbose} option, we can actually see what \texttt{fread} is doing.
@@ -6407,7 +6403,7 @@ Now, let's see how we can improve the performance of this script with regard to 
 ##   Allocating 19 column slots (19 - 0 dropped) with 370043 rows
 ## [11] Read the data
 ##   jumps=[0..30), chunk_size=1032016, total_size=30960501
-## Read 336776 rows x 19 columns from 29.53MB (30960660 bytes) file in 00:00.076 wall clock time
+## Read 336776 rows x 19 columns from 29.53MB (30960660 bytes) file in 00:00.073 wall clock time
 ## [12] Finalizing the datatable
 ##   Type counts:
 ##         14 : int32     '5'
@@ -6418,12 +6414,12 @@ Now, let's see how we can improve the performance of this script with regard to 
 ##    0.003s (  4%) sep=',' ncol=19 and header detection
 ##    0.000s (  0%) Column type detection using 10048 sample rows
 ##    0.001s (  1%) Allocation of 370043 rows x 19 cols (0.033GB) of which 336776 ( 91%) rows used
-##    0.072s ( 95%) Reading 30 chunks (0 swept) of 0.984MB (each chunk 11225 rows) using 6 threads
-##    +    0.015s ( 20%) Parse to row-major thread buffers (grown 0 times)
-##    +    0.034s ( 44%) Transpose
-##    +    0.023s ( 31%) Waiting
+##    0.069s ( 94%) Reading 30 chunks (0 swept) of 0.984MB (each chunk 11225 rows) using 6 threads
+##    +    0.015s ( 21%) Parse to row-major thread buffers (grown 0 times)
+##    +    0.034s ( 46%) Transpose
+##    +    0.020s ( 27%) Waiting
 ##    0.000s (  0%) Rereading 0 columns due to out-of-sample type exceptions
-##    0.076s        Total
+##    0.073s        Total
 \end{verbatim}
 
 Let's put it all together and look at the memory changes and usage. For a fair comparison, we first have to delete \texttt{flights} and collect the garbage with \texttt{gc()}.
@@ -6445,12 +6441,12 @@ Let's put it all together and look at the memory changes and usage. For a fair c
 \end{Shaded}
 
 \begin{verbatim}
-##             used   (Mb) gc trigger (Mb)  max used
-## Ncells   8522088  455.2   14810401  791  12986236
-## Vcells 229092840 1747.9  409858047 3127 409846454
+##             used   (Mb) gc trigger   (Mb)  max used
+## Ncells   8416358  449.5   14642848  782.1  13007720
+## Vcells 228921447 1746.6  401800560 3065.5 401800560
 ##          (Mb)
-## Ncells  693.6
-## Vcells 3126.9
+## Ncells  694.7
+## Vcells 3065.5
 \end{verbatim}
 
 \begin{Shaded}
@@ -6551,7 +6547,7 @@ How long does it take?
 
 \begin{verbatim}
 ##    user  system elapsed 
-##   0.095   0.000   0.095
+##   0.096   0.000   0.095
 \end{verbatim}
 
 Assuming a linear time algorithm (\(O(n)\)), we need that much time for one additional row of data:
@@ -6641,7 +6637,7 @@ Let's see if this helped to make the code faster.
 
 \begin{verbatim}
 ##   elapsed 
-## 1.742e-06
+## 1.524e-06
 \end{verbatim}
 
 Again, we can extrapolate (approximately) the computation time, assuming the data set had millions of rows.
@@ -6655,7 +6651,7 @@ Again, we can extrapolate (approximately) the computation time, assuming the dat
 
 \begin{verbatim}
 ## elapsed 
-##   174.2
+##   152.4
 \end{verbatim}
 
 \begin{Shaded}
@@ -6667,7 +6663,7 @@ Again, we can extrapolate (approximately) the computation time, assuming the dat
 
 \begin{verbatim}
 ## elapsed 
-##   2.904
+##   2.541
 \end{verbatim}
 
 \begin{Shaded}
@@ -6679,7 +6675,7 @@ Again, we can extrapolate (approximately) the computation time, assuming the dat
 
 \begin{verbatim}
 ## elapsed 
-## 0.04839
+## 0.04234
 \end{verbatim}
 
 This looks much better, but we can do even better.
@@ -6773,7 +6769,7 @@ Now we get a more precise picture regarding the improvement due to vectorization
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.1603
+## [1] 0.154
 \end{verbatim}
 
 \begin{Shaded}
@@ -6784,7 +6780,7 @@ Now we get a more precise picture regarding the improvement due to vectorization
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.002672
+## [1] 0.002566
 \end{verbatim}
 
 \begin{Shaded}
@@ -6795,7 +6791,7 @@ Now we get a more precise picture regarding the improvement due to vectorization
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 4.453e-05
+## [1] 4.277e-05
 \end{verbatim}
 
 \hypertarget{case-study-bootstrapping-and-parallel-processing}{%
@@ -6984,7 +6980,7 @@ As a last step, we compute again \(SE_{boot}\).
 
 \begin{verbatim}
 ## (Intercept)       white 
-##    0.004507    0.005998
+##    0.004783    0.005467
 \end{verbatim}
 
 \hypertarget{parallelization-with-an-ec2-instance-1}{%
@@ -7214,7 +7210,7 @@ In order to set a point of reference, we first estimate specification (1) with s
 
 \begin{verbatim}
 ## elapsed 
-##   11.81
+##   12.83
 \end{verbatim}
 
 As expected, this takes quite some time to compute. However, there is an alternative approach to estimating such models that substantially reduces the computational burden by ``sweeping out the fixed effects dummies''. In the simple case of only one fixed effect variable (e.g., only individual fixed effects), the trick is called ``within transformation'' or ``demeaning'' and is quite simple to implement. For each of the categories in the fixed effect variable the mean of the covariate and subtract the mean from the covariate's value.
@@ -7243,7 +7239,7 @@ As expected, this takes quite some time to compute. However, there is an alterna
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.003924
+## [1] 0.003799
 \end{verbatim}
 
 \begin{Shaded}
