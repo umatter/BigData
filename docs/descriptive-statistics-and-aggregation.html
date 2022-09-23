@@ -23,7 +23,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-07-29" />
+<meta name="date" content="2022-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -516,14 +516,14 @@ div.csl-indent {
 <span id="cb325-10"><a href="descriptive-statistics-and-aggregation.html#cb325-10" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">data =</span> x,</span>
 <span id="cb325-11"><a href="descriptive-statistics-and-aggregation.html#cb325-11" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">FUN =</span> mean,</span>
 <span id="cb325-12"><a href="descriptive-statistics-and-aggregation.html#cb325-12" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">na.rm =</span> <span class="cn">TRUE</span>)})</span></code></pre></div>
-<pre><code>## 2022-07-30 00:00:52, calculating split sizes</code></pre>
-<pre><code>## 2022-07-30 00:00:52, building up split locations</code></pre>
-<pre><code>## 2022-07-30 00:00:53, working on split 1/2, extracting data in RAM of 1 split elements, totalling, 0.0815 GB, while max specified data specified using BATCHBYTES is 0.09313 GB</code></pre>
-<pre><code>## 2022-07-30 00:00:53, ... applying FUN to selected data</code></pre>
-<pre><code>## 2022-07-30 00:00:53, ... appending result to the output ffdf</code></pre>
-<pre><code>## 2022-07-30 00:00:53, working on split 2/2, extracting data in RAM of 3 split elements, totalling, 0.02281 GB, while max specified data specified using BATCHBYTES is 0.09313 GB</code></pre>
-<pre><code>## 2022-07-30 00:00:53, ... applying FUN to selected data</code></pre>
-<pre><code>## 2022-07-30 00:00:53, ... appending result to the output ffdf</code></pre>
+<pre><code>## 2022-09-23 17:55:27, calculating split sizes</code></pre>
+<pre><code>## 2022-09-23 17:55:27, building up split locations</code></pre>
+<pre><code>## 2022-09-23 17:55:28, working on split 1/2, extracting data in RAM of 1 split elements, totalling, 0.0815 GB, while max specified data specified using BATCHBYTES is 0.09313 GB</code></pre>
+<pre><code>## 2022-09-23 17:55:28, ... applying FUN to selected data</code></pre>
+<pre><code>## 2022-09-23 17:55:28, ... appending result to the output ffdf</code></pre>
+<pre><code>## 2022-09-23 17:55:28, working on split 2/2, extracting data in RAM of 3 split elements, totalling, 0.02281 GB, while max specified data specified using BATCHBYTES is 0.09313 GB</code></pre>
+<pre><code>## 2022-09-23 17:55:29, ... applying FUN to selected data</code></pre>
+<pre><code>## 2022-09-23 17:55:29, ... appending result to the output ffdf</code></pre>
 <p>Note how the output describes the procedure step by step. Now we can have a look at the resulting summary statistic in the form of a <code>data.frame()</code>.</p>
 <div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="descriptive-statistics-and-aggregation.html#cb334-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(tip_pcategory)</span></code></pre></div>
 <pre><code>##   payment_type tip_amount.mean
@@ -545,14 +545,14 @@ div.csl-indent {
 <span id="cb336-10"><a href="descriptive-statistics-and-aggregation.html#cb336-10" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">data =</span> x,</span>
 <span id="cb336-11"><a href="descriptive-statistics-and-aggregation.html#cb336-11" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">FUN =</span> mean,</span>
 <span id="cb336-12"><a href="descriptive-statistics-and-aggregation.html#cb336-12" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">na.rm =</span> <span class="cn">TRUE</span>)})</span></code></pre></div>
-<pre><code>## 2022-07-30 00:00:53, calculating split sizes</code></pre>
-<pre><code>## 2022-07-30 00:00:53, building up split locations</code></pre>
-<pre><code>## 2022-07-30 00:00:54, working on split 1/2, extracting data in RAM of 1 split elements, totalling, 0.08732 GB, while max specified data specified using BATCHBYTES is 0.09313 GB</code></pre>
-<pre><code>## 2022-07-30 00:00:54, ... applying FUN to selected data</code></pre>
-<pre><code>## 2022-07-30 00:00:54, ... appending result to the output ffdf</code></pre>
-<pre><code>## 2022-07-30 00:00:54, working on split 2/2, extracting data in RAM of 3 split elements, totalling, 0.02444 GB, while max specified data specified using BATCHBYTES is 0.09313 GB</code></pre>
-<pre><code>## 2022-07-30 00:00:55, ... applying FUN to selected data</code></pre>
-<pre><code>## 2022-07-30 00:00:55, ... appending result to the output ffdf</code></pre>
+<pre><code>## 2022-09-23 17:55:29, calculating split sizes</code></pre>
+<pre><code>## 2022-09-23 17:55:29, building up split locations</code></pre>
+<pre><code>## 2022-09-23 17:55:29, working on split 1/2, extracting data in RAM of 1 split elements, totalling, 0.08732 GB, while max specified data specified using BATCHBYTES is 0.09313 GB</code></pre>
+<pre><code>## 2022-09-23 17:55:30, ... applying FUN to selected data</code></pre>
+<pre><code>## 2022-09-23 17:55:30, ... appending result to the output ffdf</code></pre>
+<pre><code>## 2022-09-23 17:55:30, working on split 2/2, extracting data in RAM of 3 split elements, totalling, 0.02444 GB, while max specified data specified using BATCHBYTES is 0.09313 GB</code></pre>
+<pre><code>## 2022-09-23 17:55:31, ... applying FUN to selected data</code></pre>
+<pre><code>## 2022-09-23 17:55:31, ... appending result to the output ffdf</code></pre>
 <div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="descriptive-statistics-and-aggregation.html#cb345-1" aria-hidden="true" tabindex="-1"></a><span class="co"># show result as data frame</span></span>
 <span id="cb345-2"><a href="descriptive-statistics-and-aggregation.html#cb345-2" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(tip_pcategory)</span></code></pre></div>
 <pre><code>##   payment_type percent_tip.mean
@@ -749,7 +749,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["bigdata.pdf", "bigdata.html", "bigdata.epub"],
+"download": {},
 "search": {
 "engine": "fuse",
 "options": null

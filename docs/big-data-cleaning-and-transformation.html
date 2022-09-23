@@ -23,7 +23,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-07-29" />
+<meta name="date" content="2022-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -443,11 +443,11 @@ div.csl-indent {
 <span id="cb247-7"><a href="big-data-cleaning-and-transformation.html#cb247-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">next.rows=</span><span class="dv">100000</span>,</span>
 <span id="cb247-8"><a href="big-data-cleaning-and-transformation.html#cb247-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">colClasses=</span><span class="cn">NA</span>)</span>
 <span id="cb247-9"><a href="big-data-cleaning-and-transformation.html#cb247-9" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
-<pre><code>## read.table.ffdf 1..100000 (100000)  csv-read=0.466sec ffdf-write=0.065sec
-## read.table.ffdf 100001..200000 (100000)  csv-read=0.449sec ffdf-write=0.039sec
-## read.table.ffdf 200001..300000 (100000)  csv-read=0.425sec ffdf-write=0.035sec
-## read.table.ffdf 300001..336776 (36776)  csv-read=0.164sec ffdf-write=0.028sec
-##  csv-read=1.504sec  ffdf-write=0.167sec  TOTAL=1.671sec</code></pre>
+<pre><code>## read.table.ffdf 1..100000 (100000)  csv-read=0.352sec ffdf-write=0.071sec
+## read.table.ffdf 100001..200000 (100000)  csv-read=0.422sec ffdf-write=0.039sec
+## read.table.ffdf 200001..300000 (100000)  csv-read=0.402sec ffdf-write=0.034sec
+## read.table.ffdf 300001..336776 (36776)  csv-read=0.163sec ffdf-write=0.021sec
+##  csv-read=1.339sec  ffdf-write=0.165sec  TOTAL=1.504sec</code></pre>
 <pre><code>## -30.1 MB</code></pre>
 <p>Note that there are two substantial differences to what we have previously seen when using <code>fread()</code>. It takes much longer to import a csv into the ffdf structure. However, the RAM allocated to it is much smaller. This is exactly what we would expect, keeping in mind what <code>read.table.ffdf()</code> does in comparison to what <code>fread()</code> does. Now we can actually have a look at the data chunks created by <code>ff</code>.</p>
 <div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="big-data-cleaning-and-transformation.html#cb250-1" aria-hidden="true" tabindex="-1"></a><span class="co"># show the files in the directory keeping the chunks</span></span>
@@ -578,28 +578,28 @@ div.csl-indent {
 <span id="cb258-6"><a href="big-data-cleaning-and-transformation.html#cb258-6" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">header=</span><span class="cn">TRUE</span>,</span>
 <span id="cb258-7"><a href="big-data-cleaning-and-transformation.html#cb258-7" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">next.rows=</span><span class="dv">100000</span>,</span>
 <span id="cb258-8"><a href="big-data-cleaning-and-transformation.html#cb258-8" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">colClasses=</span><span class="cn">NA</span>))</span></code></pre></div>
-<pre><code>## read.table.ffdf 1..100000 (100000)  csv-read=0.602sec ffdf-write=0.079sec
-## read.table.ffdf 100001..200000 (100000)  csv-read=0.639sec ffdf-write=0.071sec
-## read.table.ffdf 200001..300000 (100000)  csv-read=0.758sec ffdf-write=0.063sec
-## read.table.ffdf 300001..400000 (100000)  csv-read=0.655sec ffdf-write=0.08sec
-## read.table.ffdf 400001..500000 (100000)  csv-read=0.712sec ffdf-write=0.067sec
-## read.table.ffdf 500001..600000 (100000)  csv-read=0.642sec ffdf-write=0.066sec
-## read.table.ffdf 600001..700000 (100000)  csv-read=0.689sec ffdf-write=0.067sec
-## read.table.ffdf 700001..800000 (100000)  csv-read=0.712sec ffdf-write=0.099sec
-## read.table.ffdf 800001..900000 (100000)  csv-read=0.631sec ffdf-write=0.064sec
-## read.table.ffdf 900001..951111 (51111)  csv-read=0.366sec ffdf-write=0.063sec
-##  csv-read=6.406sec  ffdf-write=0.719sec  TOTAL=7.125sec</code></pre>
+<pre><code>## read.table.ffdf 1..100000 (100000)  csv-read=0.548sec ffdf-write=0.089sec
+## read.table.ffdf 100001..200000 (100000)  csv-read=0.571sec ffdf-write=0.057sec
+## read.table.ffdf 200001..300000 (100000)  csv-read=0.55sec ffdf-write=0.074sec
+## read.table.ffdf 300001..400000 (100000)  csv-read=0.616sec ffdf-write=0.08sec
+## read.table.ffdf 400001..500000 (100000)  csv-read=0.617sec ffdf-write=0.066sec
+## read.table.ffdf 500001..600000 (100000)  csv-read=0.609sec ffdf-write=0.078sec
+## read.table.ffdf 600001..700000 (100000)  csv-read=0.6sec ffdf-write=0.079sec
+## read.table.ffdf 700001..800000 (100000)  csv-read=0.609sec ffdf-write=0.085sec
+## read.table.ffdf 800001..900000 (100000)  csv-read=0.562sec ffdf-write=0.065sec
+## read.table.ffdf 900001..951111 (51111)  csv-read=0.298sec ffdf-write=0.047sec
+##  csv-read=5.58sec  ffdf-write=0.72sec  TOTAL=6.3sec</code></pre>
 <pre><code>##    user  system elapsed 
-##   6.577   0.634   7.127</code></pre>
+##   5.602   0.800   6.312</code></pre>
 <div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="big-data-cleaning-and-transformation.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(airlines.ff <span class="ot">&lt;-</span> <span class="fu">read.csv.ffdf</span>(<span class="at">file=</span> AIRLINES_DATA,</span>
 <span id="cb261-2"><a href="big-data-cleaning-and-transformation.html#cb261-2" aria-hidden="true" tabindex="-1"></a>                             <span class="at">VERBOSE=</span><span class="cn">TRUE</span>,</span>
 <span id="cb261-3"><a href="big-data-cleaning-and-transformation.html#cb261-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">header=</span><span class="cn">TRUE</span>,</span>
 <span id="cb261-4"><a href="big-data-cleaning-and-transformation.html#cb261-4" aria-hidden="true" tabindex="-1"></a>                             <span class="at">next.rows=</span><span class="dv">100000</span>,</span>
 <span id="cb261-5"><a href="big-data-cleaning-and-transformation.html#cb261-5" aria-hidden="true" tabindex="-1"></a>                             <span class="at">colClasses=</span><span class="cn">NA</span>))</span></code></pre></div>
-<pre><code>## read.table.ffdf 1..1607 (1607)  csv-read=0.004sec ffdf-write=0.004sec
-##  csv-read=0.004sec  ffdf-write=0.004sec  TOTAL=0.008sec</code></pre>
+<pre><code>## read.table.ffdf 1..1607 (1607)  csv-read=0.005sec ffdf-write=0.005sec
+##  csv-read=0.005sec  ffdf-write=0.005sec  TOTAL=0.01sec</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.009   0.001   0.009</code></pre>
+##   0.010   0.000   0.011</code></pre>
 <div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="big-data-cleaning-and-transformation.html#cb264-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check memory used</span></span>
 <span id="cb264-2"><a href="big-data-cleaning-and-transformation.html#cb264-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_used</span>()</span></code></pre></div>
 <pre><code>## 1.72 GB</code></pre>
@@ -609,14 +609,11 @@ div.csl-indent {
 <span id="cb266-3"><a href="big-data-cleaning-and-transformation.html#cb266-3" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">sep=</span><span class="st">&quot;,&quot;</span>,</span>
 <span id="cb266-4"><a href="big-data-cleaning-and-transformation.html#cb266-4" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">header=</span><span class="cn">TRUE</span>))</span></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   5.093   0.528   5.545</code></pre>
+##   4.554   0.438   4.912</code></pre>
 <div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="big-data-cleaning-and-transformation.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span></code></pre></div>
-<pre><code>##             used   (Mb) gc trigger   (Mb)  max used
-## Ncells   6752774  360.7   10524318  562.1  10524318
-## Vcells 185576331 1415.9  401568752 3063.8 334573894
-##          (Mb)
-## Ncells  562.1
-## Vcells 2552.6</code></pre>
+<pre><code>##             used   (Mb) gc trigger (Mb)  max used (Mb)
+## Ncells   6752907  360.7   10522908  562  10522908  562
+## Vcells 185576576 1415.9  401568752 3064 334573795 2553</code></pre>
 <div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="big-data-cleaning-and-transformation.html#cb270-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(airlines.table <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(AIRLINES_DATA,</span>
 <span id="cb270-2"><a href="big-data-cleaning-and-transformation.html#cb270-2" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">header =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
 <pre><code>##    user  system elapsed 
@@ -723,12 +720,9 @@ div.csl-indent {
 <div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="big-data-cleaning-and-transformation.html#cb308-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading previously saved ffdf files:</span></span>
 <span id="cb308-2"><a href="big-data-cleaning-and-transformation.html#cb308-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(subs1.ff)</span>
 <span id="cb308-3"><a href="big-data-cleaning-and-transformation.html#cb308-3" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span></code></pre></div>
-<pre><code>##             used   (Mb) gc trigger   (Mb)  max used
-## Ncells   6771077  361.7   10524318  562.1  10524318
-## Vcells 205692952 1569.4  401568752 3063.8 334573894
-##          (Mb)
-## Ncells  562.1
-## Vcells 2552.6</code></pre>
+<pre><code>##             used   (Mb) gc trigger (Mb)  max used (Mb)
+## Ncells   6771210  361.7   10522908  562  10522908  562
+## Vcells 205693191 1569.4  401568752 3064 334573795 2553</code></pre>
 <div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="big-data-cleaning-and-transformation.html#cb310-1" aria-hidden="true" tabindex="-1"></a><span class="fu">load.ffdf</span>(<span class="st">&quot;ffdb&quot;</span>)</span>
 <span id="cb310-2"><a href="big-data-cleaning-and-transformation.html#cb310-2" aria-hidden="true" tabindex="-1"></a><span class="co"># check the class and structure of the loaded data</span></span>
 <span id="cb310-3"><a href="big-data-cleaning-and-transformation.html#cb310-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(subs1.ff) </span></code></pre></div>
@@ -946,7 +940,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["bigdata.pdf", "bigdata.html", "bigdata.epub"],
+"download": {},
 "search": {
 "engine": "fuse",
 "options": null

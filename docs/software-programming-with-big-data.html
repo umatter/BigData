@@ -23,7 +23,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-07-29" />
+<meta name="date" content="2022-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -492,7 +492,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="software-programming-with-big-data.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># how much time does it take to run this loop?</span></span>
 <span id="cb26-2"><a href="software-programming-with-big-data.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) {i <span class="sc">+</span> <span class="dv">5</span>})</span></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.001   0.000   0.002</code></pre>
+##   0.002   0.000   0.002</code></pre>
 <p>Note that each time you run this line of code, the returned amount of time varies slightly. This has to do with the fact that the actual time needed to run a line of code can depend on various other processes happening at the same time on your computer.</p>
 <p>The <code>microbenchmark</code> and <code>bench</code> packages provide additional functions to measure execution time in more sophisticated ways. In particular, they account for the fact that the processing time for the same code might vary and automatically run the code several times in order to return statistics about the processing time. In addition, <code>microbenchmark()</code> provides highly detailed and highly accurate timing of R expression evaluation. The function is particularly useful to accurately find even “minor” room for improvement when testing a data analysis script on a smaller sub-sample (which might scale when working on a large data set). For example, suppose you need to run a for-loop over millions of iterations and there are different ways to implement the loop of the body (which does not take too much time to process in one iteration). Note that the function actually evaluates the R expression in question many times and returns a statistical summary of the timings.</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="software-programming-with-big-data.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load package</span></span>
@@ -501,9 +501,9 @@ div.csl-indent {
 <span id="cb28-4"><a href="software-programming-with-big-data.html#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">microbenchmark</span>(<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) {i <span class="sc">+</span> <span class="dv">5</span>})</span></code></pre></div>
 <pre><code>## Unit: milliseconds
 ##                            expr   min    lq  mean
-##  for (i in 1:100) {     i + 5 } 1.213 1.291 1.325
-##  median   uq   max neval
-##   1.312 1.34 1.543   100</code></pre>
+##  for (i in 1:100) {     i + 5 } 1.133 1.235 1.388
+##  median    uq   max neval
+##   1.305 1.434 2.035   100</code></pre>
 <p>Second, a key aspect to improving the performance of data analysis scripts in R is to detect inefficient memory allocation as well as avoiding that an R-object is either growing too much or is generally too large to handle in memory. To this end, you might want to monitor how much memory R occupies at different points in your script as well as how much memory is taken up by individual R objects. For example, <code>object.size()</code> returns the size of an R object, that is the amount of memory it takes up in the R environment in bytes (<code>pryr::object_size()</code> counts slightly more accurately).</p>
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="software-programming-with-big-data.html#cb30-1" aria-hidden="true" tabindex="-1"></a>hello <span class="ot">&lt;-</span> <span class="st">&quot;Hello, World!&quot;</span></span>
 <span id="cb30-2"><a href="software-programming-with-big-data.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(hello)</span></code></pre></div>
@@ -565,8 +565,8 @@ div.csl-indent {
 <pre><code>## # A tibble: 2 × 3
 ##   `itr/sec` mem_alloc `gc/sec`
 ##       &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;
-## 1      11.3     382MB     4.86
-## 2   72814.     78.2KB     7.28</code></pre>
+## 1      12.6     382MB     5.41
+## 2   82825.     78.2KB     8.28</code></pre>
 <p>In addition, the <code>bench</code> package provides a simple way to visualize these outputs:</p>
 <div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="software-programming-with-big-data.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(benchmarking, <span class="at">type =</span> <span class="st">&quot;boxplot&quot;</span>)</span></code></pre></div>
 <p><img src="bigdata_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
@@ -785,9 +785,9 @@ Clearly, the version with pre-allocation of memory (avoiding growing an object) 
 ##     ast, mem_used</code></pre>
 <div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="software-programming-with-big-data.html#cb70-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check memory addresses of objects</span></span>
 <span id="cb70-2"><a href="software-programming-with-big-data.html#cb70-2" aria-hidden="true" tabindex="-1"></a><span class="fu">obj_addr</span>(a)</span></code></pre></div>
-<pre><code>## [1] &quot;0x562f28df2010&quot;</code></pre>
+<pre><code>## [1] &quot;0x5620d95ee360&quot;</code></pre>
 <div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="software-programming-with-big-data.html#cb72-1" aria-hidden="true" tabindex="-1"></a><span class="fu">obj_addr</span>(b)</span></code></pre></div>
-<pre><code>## [1] &quot;0x562f28df2010&quot;</code></pre>
+<pre><code>## [1] &quot;0x5620d95ee360&quot;</code></pre>
 <p>Now you probably wonder, what happens to <code>b</code> if we modify <code>a</code>. After all, if the values to which <code>b</code> is bound are changed when we write code concerning <code>a</code>, we might end up with very surprising output. The answer is, and this is key (!), once we modify <code>a</code>, the values need to be <em>copied</em> in order to ensure the integrity of <code>b</code>. Only at this point, our program will require more memory.</p>
 <div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="software-programming-with-big-data.html#cb74-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check the first element&#39;s value</span></span>
 <span id="cb74-2"><a href="software-programming-with-big-data.html#cb74-2" aria-hidden="true" tabindex="-1"></a>a[<span class="dv">1</span>]</span></code></pre></div>
@@ -799,9 +799,9 @@ Clearly, the version with pre-allocation of memory (avoiding growing an object) 
 <pre><code>## 79 kB</code></pre>
 <div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="software-programming-with-big-data.html#cb80-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check memory addresses</span></span>
 <span id="cb80-2"><a href="software-programming-with-big-data.html#cb80-2" aria-hidden="true" tabindex="-1"></a><span class="fu">obj_addr</span>(a)</span></code></pre></div>
-<pre><code>## [1] &quot;0x562efe795260&quot;</code></pre>
+<pre><code>## [1] &quot;0x5620cc0e5f30&quot;</code></pre>
 <div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="software-programming-with-big-data.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">obj_addr</span>(b)</span></code></pre></div>
-<pre><code>## [1] &quot;0x562f28df2010&quot;</code></pre>
+<pre><code>## [1] &quot;0x5620d95ee360&quot;</code></pre>
 <p>Note that the entire vector needed to be copied for this. There is, of course, a lesson from all this regarding writing efficient code. Knowing how actual copying of values does occur helps avoiding unnecessary copying. The larger an object, the more time it will take to copy it in memory. Objects with a single binding get modified in place (no copying):</p>
 <div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="software-programming-with-big-data.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_change</span>(d <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">10000</span>))</span></code></pre></div>
 <pre><code>## 112 B</code></pre>
@@ -827,7 +827,7 @@ Clearly, the version with pre-allocation of memory (avoiding growing an object) 
 ##           parsed_x &lt;- fread(x)
 ##           return(parsed_x)
 ##      }
-## &lt;bytecode: 0x562f453003b8&gt;</code></pre>
+## &lt;bytecode: 0x5621121b1a90&gt;</code></pre>
 <p>However, if we do the same for function <code>sum</code>, we don’t see any actual source code.</p>
 <div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="software-programming-with-big-data.html#cb94-1" aria-hidden="true" tabindex="-1"></a>sum</span></code></pre></div>
 <pre><code>## function (..., na.rm = FALSE)  .Primitive(&quot;sum&quot;)</code></pre>
@@ -1215,7 +1215,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["bigdata.pdf", "bigdata.html", "bigdata.epub"],
+"download": {},
 "search": {
 "engine": "fuse",
 "options": null

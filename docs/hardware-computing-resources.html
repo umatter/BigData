@@ -23,7 +23,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-07-29" />
+<meta name="date" content="2022-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -768,9 +768,9 @@ Figure 4.4: Illustration of a graphic processing unit (GPU).
 <pre><code>## # A tibble: 3 × 6
 ##   expression                            min   median
 ##   &lt;bch:expr&gt;                       &lt;bch:tm&gt; &lt;bch:tm&gt;
-## 1 cpu &lt;- t(X) %*% X                 73.14ms   74.2ms
-## 2 gpu1_pointer &lt;- t(gpuX) %*% gpuX  31.21ms   32.5ms
-## 3 gpu2_memory &lt;- t(vclX) %*% vclX    9.74ms   15.2ms
+## 1 cpu &lt;- t(X) %*% X                    69ms   76.2ms
+## 2 gpu1_pointer &lt;- t(gpuX) %*% gpuX   32.8ms   33.4ms
+## 3 gpu2_memory &lt;- t(vclX) %*% vclX      10ms   14.9ms
 ## # … with 3 more variables: `itr/sec` &lt;dbl&gt;,
 ## #   mem_alloc &lt;bch:byt&gt;, `gc/sec` &lt;dbl&gt;
 ## # ℹ Use `colnames()` to see all variable names</code></pre>
@@ -864,7 +864,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["bigdata.pdf", "bigdata.html", "bigdata.epub"],
+"download": {},
 "search": {
 "engine": "fuse",
 "options": null

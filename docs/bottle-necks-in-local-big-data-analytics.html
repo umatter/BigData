@@ -23,7 +23,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-07-29" />
+<meta name="date" content="2022-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -456,8 +456,8 @@ div.csl-indent {
 <p>The last result is kind of interesting. The object <code>flights</code> must have been larger right after importing it than at the end of the script. We have thrown out several variables, after all. Why does R still use that much memory? R does by default not ‘clean up’ memory unless it is really necessary (meaning no more memory is available). In this case, R has still way more memory available from the operating system, thus there is no need to ‘collect the garbage’ yet. However, we can force R to collect the garbage on the spot with <code>gc()</code>. This can be helpful to better keep track of the memory needed by an analytics script.</p>
 <div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb412-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span></code></pre></div>
 <pre><code>##             used   (Mb) gc trigger   (Mb)  max used
-## Ncells   8434961  450.5   14675322  783.8  13015827
-## Vcells 232099481 1770.8  401568752 3063.8 401555664
+## Ncells   8435096  450.5   14676745  783.9  13015970
+## Vcells 232099747 1770.8  401568752 3063.8 401555918
 ##          (Mb)
 ## Ncells  695.2
 ## Vcells 3063.7</code></pre>
@@ -519,7 +519,7 @@ div.csl-indent {
 ##   Allocating 19 column slots (19 - 0 dropped) with 370043 rows
 ## [11] Read the data
 ##   jumps=[0..30), chunk_size=1032016, total_size=30960501
-## Read 336776 rows x 19 columns from 29.53MB (30960660 bytes) file in 00:00.067 wall clock time
+## Read 336776 rows x 19 columns from 29.53MB (30960660 bytes) file in 00:00.099 wall clock time
 ## [12] Finalizing the datatable
 ##   Type counts:
 ##         14 : int32     &#39;5&#39;
@@ -527,15 +527,15 @@ div.csl-indent {
 ##          4 : string    &#39;C&#39;
 ## =============================
 ##    0.000s (  0%) Memory map 0.029GB file
-##    0.003s (  4%) sep=&#39;,&#39; ncol=19 and header detection
+##    0.004s (  4%) sep=&#39;,&#39; ncol=19 and header detection
 ##    0.000s (  0%) Column type detection using 10048 sample rows
 ##    0.001s (  1%) Allocation of 370043 rows x 19 cols (0.033GB) of which 336776 ( 91%) rows used
-##    0.063s ( 94%) Reading 30 chunks (0 swept) of 0.984MB (each chunk 11225 rows) using 6 threads
-##    +    0.015s ( 22%) Parse to row-major thread buffers (grown 0 times)
-##    +    0.030s ( 46%) Transpose
-##    +    0.018s ( 26%) Waiting
+##    0.095s ( 95%) Reading 30 chunks (0 swept) of 0.984MB (each chunk 11225 rows) using 6 threads
+##    +    0.023s ( 23%) Parse to row-major thread buffers (grown 0 times)
+##    +    0.048s ( 48%) Transpose
+##    +    0.024s ( 24%) Waiting
 ##    0.000s (  0%) Rereading 0 columns due to out-of-sample type exceptions
-##    0.067s        Total</code></pre>
+##    0.099s        Total</code></pre>
 <p>Let’s put it all together and look at the memory changes and usage. For a fair comparison, we first have to delete <code>flights</code> and collect the garbage with <code>gc()</code>.</p>
 <div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb416-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP -----------------</span></span>
 <span id="cb416-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb416-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -549,8 +549,8 @@ div.csl-indent {
 <span id="cb416-10"><a href="bottle-necks-in-local-big-data-analytics.html#cb416-10" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
 <span id="cb416-11"><a href="bottle-necks-in-local-big-data-analytics.html#cb416-11" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span></code></pre></div>
 <pre><code>##             used   (Mb) gc trigger   (Mb)  max used
-## Ncells   8427382  450.1   14675322  783.8  13015827
-## Vcells 228937128 1746.7  401568752 3063.8 401555664
+## Ncells   8427517  450.1   14676745  783.9  13015970
+## Vcells 228937394 1746.7  401568752 3063.8 401555918
 ##          (Mb)
 ## Ncells  695.2
 ## Vcells 3063.7</code></pre>
@@ -609,25 +609,25 @@ div.csl-indent {
 <span id="cb426-11"><a href="bottle-necks-in-local-big-data-analytics.html#cb426-11" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb426-12"><a href="bottle-necks-in-local-big-data-analytics.html#cb426-12" aria-hidden="true" tabindex="-1"></a>time_elapsed</span></code></pre></div>
 <pre><code>##    user  system elapsed 
-##    0.09    0.00    0.09</code></pre>
+##   0.111   0.000   0.111</code></pre>
 <p>Assuming a linear time algorithm (<span class="math inline">\(O(n)\)</span>), we need that much time for one additional row of data:</p>
 <div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb428-1" aria-hidden="true" tabindex="-1"></a>time_per_row <span class="ot">&lt;-</span> time_elapsed[<span class="dv">3</span>]<span class="sc">/</span>n_obs</span>
 <span id="cb428-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb428-2" aria-hidden="true" tabindex="-1"></a>time_per_row</span></code></pre></div>
-<pre><code>##  elapsed 
-## 1.96e-05</code></pre>
+<pre><code>##   elapsed 
+## 2.417e-05</code></pre>
 <p>If we deal with big data, say 100 million rows, that is</p>
 <div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb430-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in seconds</span></span>
 <span id="cb430-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb430-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>) </span></code></pre></div>
 <pre><code>## elapsed 
-##    1960</code></pre>
+##    2417</code></pre>
 <div class="sourceCode" id="cb432"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb432-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb432-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in minutes</span></span>
 <span id="cb432-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb432-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>)<span class="sc">/</span><span class="dv">60</span> </span></code></pre></div>
 <pre><code>## elapsed 
-##   32.67</code></pre>
+##   40.29</code></pre>
 <div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb434-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in hours</span></span>
 <span id="cb434-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb434-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>)<span class="sc">/</span><span class="dv">60</span><span class="sc">^</span><span class="dv">2</span> </span></code></pre></div>
 <pre><code>## elapsed 
-##  0.5444</code></pre>
+##  0.6715</code></pre>
 <p>Can we improve this?</p>
 </div>
 <div id="improvement-1-pre-allocation-of-memory" class="section level3 hasAnchor" number="12.2.3">
@@ -705,13 +705,13 @@ div.csl-indent {
 <p>Now we get a more precise picture regarding the improvement due to vectorization (again, assuming 100 million rows):</p>
 <div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb454-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in seconds</span></span>
 <span id="cb454-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb454-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>) </span></code></pre></div>
-<pre><code>## [1] 0.1458</code></pre>
+<pre><code>## [1] 0.1656</code></pre>
 <div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb456-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb456-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in minutes</span></span>
 <span id="cb456-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb456-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>)<span class="sc">/</span><span class="dv">60</span> </span></code></pre></div>
-<pre><code>## [1] 0.002429</code></pre>
+<pre><code>## [1] 0.00276</code></pre>
 <div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb458-1" aria-hidden="true" tabindex="-1"></a><span class="co"># in hours</span></span>
 <span id="cb458-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb458-2" aria-hidden="true" tabindex="-1"></a>(time_per_row<span class="sc">*</span><span class="dv">100</span><span class="sc">^</span><span class="dv">4</span>)<span class="sc">/</span><span class="dv">60</span><span class="sc">^</span><span class="dv">2</span> </span></code></pre></div>
-<pre><code>## [1] 4.049e-05</code></pre>
+<pre><code>## [1] 4.601e-05</code></pre>
 <!-- #### What do we learn from this? -->
 <!-- 1. How R allocates and deallocates memory can have a substantial effect on computation time. -->
 <!--      - (Particularly, if we deal with a large data set!) -->
@@ -845,7 +845,7 @@ div.csl-indent {
 <span id="cb469-3"><a href="bottle-necks-in-local-big-data-analytics.html#cb469-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">FUN =</span> sd)</span>
 <span id="cb469-4"><a href="bottle-necks-in-local-big-data-analytics.html#cb469-4" aria-hidden="true" tabindex="-1"></a>se_boot</span></code></pre></div>
 <pre><code>## (Intercept)       white 
-##    0.003069    0.004720</code></pre>
+##    0.003849    0.006428</code></pre>
 <div id="parallelization-with-an-ec2-instance-1" class="section level3 hasAnchor" number="12.3.1">
 <h3><span class="header-section-number">12.3.1</span> Parallelization with an EC2 instance<a href="bottle-necks-in-local-big-data-analytics.html#parallelization-with-an-ec2-instance-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <!-- This short tutorial illustrates how to scale the computation of clustered standard errors shown in Lecture 3 up by running it on an AWS EC2 instance. Below we use the same source code as in the original example (see [`03_computation_memory.Rmd`](https://github.com/umatter/BigData/blob/master/materials/notes/03_computation_memory.Rmd)). Note that there are a few things that we need to keep in mind in order to make the script run on an AWS EC2 instance in RStudio Server.  -->
@@ -1019,7 +1019,7 @@ div.csl-indent {
 <div class="sourceCode" id="cb481"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb481-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb481-1" aria-hidden="true" tabindex="-1"></a><span class="co"># median amount of time needed for estimation</span></span>
 <span id="cb481-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb481-2" aria-hidden="true" tabindex="-1"></a>runtime[<span class="dv">3</span>]</span></code></pre></div>
 <pre><code>## elapsed 
-##   12.13</code></pre>
+##   15.62</code></pre>
 <p>As expected, this takes quite some time to compute. However, there is an alternative approach to estimating such models that substantially reduces the computational burden by “sweeping out the fixed effects dummies”. In the simple case of only one fixed effect variable (e.g., only individual fixed effects), the trick is called “within transformation” or “demeaning” and is quite simple to implement. For each of the categories in the fixed effect variable the mean of the covariate and subtract the mean from the covariate’s value.</p>
 <div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb483-1" aria-hidden="true" tabindex="-1"></a><span class="co"># illustration of within transformation for the senator fixed effects</span></span>
 <span id="cb483-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb483-2" aria-hidden="true" tabindex="-1"></a>cm_within <span class="ot">&lt;-</span> </span>
@@ -1039,7 +1039,7 @@ div.csl-indent {
 <span id="cb483-16"><a href="bottle-necks-in-local-big-data-analytics.html#cb483-16" aria-hidden="true" tabindex="-1"></a>                           pctsumyessamestate <span class="sc">+</span> pctsumyessameparty <span class="sc">-</span><span class="dv">1</span>, <span class="at">data =</span> cm_within))</span>
 <span id="cb483-17"><a href="bottle-necks-in-local-big-data-analytics.html#cb483-17" aria-hidden="true" tabindex="-1"></a><span class="co"># computation time comparison</span></span>
 <span id="cb483-18"><a href="bottle-necks-in-local-big-data-analytics.html#cb483-18" aria-hidden="true" tabindex="-1"></a><span class="fu">as.numeric</span>(within_time[<span class="dv">3</span>])<span class="sc">/</span><span class="fu">as.numeric</span>(dummy_time[<span class="dv">3</span>])</span></code></pre></div>
-<pre><code>## [1] 0.003764</code></pre>
+<pre><code>## [1] 0.003818</code></pre>
 <div class="sourceCode" id="cb485"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb485-1"><a href="bottle-necks-in-local-big-data-analytics.html#cb485-1" aria-hidden="true" tabindex="-1"></a><span class="co"># comparison of estimates</span></span>
 <span id="cb485-2"><a href="bottle-necks-in-local-big-data-analytics.html#cb485-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coeftest</span>(fit_dummy)[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,]</span></code></pre></div>
 <pre><code>##                     Estimate Std. Error t value
@@ -1234,7 +1234,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["bigdata.pdf", "bigdata.html", "bigdata.epub"],
+"download": {},
 "search": {
 "engine": "fuse",
 "options": null

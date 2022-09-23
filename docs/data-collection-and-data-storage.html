@@ -23,7 +23,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-07-29" />
+<meta name="date" content="2022-09-23" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -529,12 +529,9 @@ div.csl-indent {
 <pre><code>## 1.72 GB</code></pre>
 <p>The last result is kind of interesting. The object <code>flights</code> must have been larger right after importing it than at the end of the script. We have thrown out several variables, after all. Why does R still use that much memory? R does by default not ‘clean up’ memory unless it is really necessary (meaning no more memory is available). In this case, R has still way more memory available from the operating system, thus there is no need to ‘collect the garbage’ yet. However, we can force R to collect the garbage on the spot with <code>gc()</code>. This can be helpful to better keep track of the memory needed by an analytics script.</p>
 <div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="data-collection-and-data-storage.html#cb203-1" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span></code></pre></div>
-<pre><code>##             used   (Mb) gc trigger   (Mb)  max used
-## Ncells   6531286  348.9   10524318  562.1  10524318
-## Vcells 169835407 1295.8  401568752 3063.8 334573894
-##          (Mb)
-## Ncells  562.1
-## Vcells 2552.6</code></pre>
+<pre><code>##             used   (Mb) gc trigger (Mb)  max used (Mb)
+## Ncells   6531419  348.9   10522908  562  10522908  562
+## Vcells 169835663 1295.8  401568752 3064 334573795 2553</code></pre>
 <p>Now, let’s see how we can improve the performance of this script with regard to memory allocation. Most memory is allocated when importing the file. Obviously, any improvement of the script must still result in importing all the data. However, there are different ways to read data into RAM. <code>read.csv()</code> reads all lines of a csv file consecutively. In contrast, <code>data.table::fread()</code> first ‘maps’ the data file into memory and only then actually reads it in line by line. This involves an additional initial step, but the larger the file, the less relevant is this first step with regard to the total time needed to read all the data into memory. By switching on the <code>verbose</code> option, we can actually see what <code>fread</code> is doing.</p>
 <div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="data-collection-and-data-storage.html#cb205-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
 <span id="cb205-2"><a href="data-collection-and-data-storage.html#cb205-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span></code></pre></div>
@@ -597,7 +594,7 @@ div.csl-indent {
 ##   Allocating 19 column slots (19 - 0 dropped) with 370043 rows
 ## [11] Read the data
 ##   jumps=[0..30), chunk_size=1032016, total_size=30960501
-## Read 336776 rows x 19 columns from 29.53MB (30960660 bytes) file in 00:00.061 wall clock time
+## Read 336776 rows x 19 columns from 29.53MB (30960660 bytes) file in 00:00.056 wall clock time
 ## [12] Finalizing the datatable
 ##   Type counts:
 ##         14 : int32     &#39;5&#39;
@@ -605,15 +602,15 @@ div.csl-indent {
 ##          4 : string    &#39;C&#39;
 ## =============================
 ##    0.000s (  0%) Memory map 0.029GB file
-##    0.003s (  5%) sep=&#39;,&#39; ncol=19 and header detection
+##    0.003s (  6%) sep=&#39;,&#39; ncol=19 and header detection
 ##    0.000s (  0%) Column type detection using 10048 sample rows
-##    0.001s (  1%) Allocation of 370043 rows x 19 cols (0.033GB) of which 336776 ( 91%) rows used
-##    0.057s ( 94%) Reading 30 chunks (0 swept) of 0.984MB (each chunk 11225 rows) using 6 threads
-##    +    0.013s ( 21%) Parse to row-major thread buffers (grown 0 times)
-##    +    0.028s ( 47%) Transpose
-##    +    0.016s ( 26%) Waiting
+##    0.001s (  2%) Allocation of 370043 rows x 19 cols (0.033GB) of which 336776 ( 91%) rows used
+##    0.052s ( 93%) Reading 30 chunks (0 swept) of 0.984MB (each chunk 11225 rows) using 6 threads
+##    +    0.012s ( 22%) Parse to row-major thread buffers (grown 0 times)
+##    +    0.024s ( 43%) Transpose
+##    +    0.016s ( 28%) Waiting
 ##    0.000s (  0%) Rereading 0 columns due to out-of-sample type exceptions
-##    0.061s        Total</code></pre>
+##    0.056s        Total</code></pre>
 <p>Let’s put it all together and look at the memory changes and usage. For a fair comparison, we first have to delete <code>flights</code> and collect the garbage with <code>gc()</code>.</p>
 <div class="sourceCode" id="cb210"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb210-1"><a href="data-collection-and-data-storage.html#cb210-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP -----------------</span></span>
 <span id="cb210-2"><a href="data-collection-and-data-storage.html#cb210-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -626,12 +623,9 @@ div.csl-indent {
 <span id="cb210-9"><a href="data-collection-and-data-storage.html#cb210-9" aria-hidden="true" tabindex="-1"></a><span class="co"># housekeeping</span></span>
 <span id="cb210-10"><a href="data-collection-and-data-storage.html#cb210-10" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> <span class="cn">NULL</span></span>
 <span id="cb210-11"><a href="data-collection-and-data-storage.html#cb210-11" aria-hidden="true" tabindex="-1"></a><span class="fu">gc</span>()</span></code></pre></div>
-<pre><code>##             used (Mb) gc trigger   (Mb)  max used
-## Ncells   6589826  352   10524318  562.1  10524318
-## Vcells 166821493 1273  401568752 3063.8 334573894
-##          (Mb)
-## Ncells  562.1
-## Vcells 2552.6</code></pre>
+<pre><code>##             used (Mb) gc trigger (Mb)  max used (Mb)
+## Ncells   6589959  352   10522908  562  10522908  562
+## Vcells 166821748 1273  401568752 3064 334573795 2553</code></pre>
 <div class="sourceCode" id="cb212"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb212-1"><a href="data-collection-and-data-storage.html#cb212-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check the change in memory due to each step</span></span>
 <span id="cb212-2"><a href="data-collection-and-data-storage.html#cb212-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb212-3"><a href="data-collection-and-data-storage.html#cb212-3" aria-hidden="true" tabindex="-1"></a><span class="co"># DATA IMPORT ----------------</span></span>
@@ -1212,7 +1206,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["bigdata.pdf", "bigdata.html", "bigdata.epub"],
+"download": {},
 "search": {
 "engine": "fuse",
 "options": null
