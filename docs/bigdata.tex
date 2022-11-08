@@ -236,7 +236,7 @@
 \makeatother
 \subtitle{A guide to data science practitioners making the transition to Big Data}
 \author{Ulrich Matter}
-\date{2022-07-29}
+\date{2022-10-05}
 
 \begin{document}
 \maketitle
@@ -263,60 +263,35 @@
 }
 \listoffigures
 \listoftables
-\hypertarget{preface}{%
-\chapter*{Preface}\label{preface}}
-
-
-This textbook provides an introduction to Big Data Analytics in the context of empirical economic research. The book covers the computational constraints underlying Big Data Analytics and how to handle them in the statistical computing environment R (local and in the cloud). Revisiting basic statistical/econometric concepts, the book looks at each step of dealing with large data sets in empirical economic research (storage/import, transformation, visualization, aggregation, analysis).
-
-\hypertarget{prerequisites}{%
-\section*{Prerequisites}\label{prerequisites}}
-
-
-This book builds extensively on programming in R. The reader is expected to already be familiar with R and basic programming concepts such as loops, control statements and functions. In addition, the book presupposes some familiarity with undergraduate and basic graduate statistics/econometrics.
-
-\begin{figure}
-\centering
-\includegraphics{img/cc.png}
-\caption{Creative Commons License}
-\end{figure}
-
-The online version of this book is licensed under the \href{http://creativecommons.org/licenses/by-nc-sa/4.0/}{Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License}.
-
-\begin{flushright}
-Ulrich Matter
-St.~Gallen, Switzerland
-\end{flushright}
-
 \mainmatter
-
-\hypertarget{part-setting-the-scene-analyzing-big-data}{%
-\part{Setting the Scene: Analyzing Big Data}\label{part-setting-the-scene-analyzing-big-data}}
 
 \hypertarget{introduction}{%
 \chapter{Introduction}\label{introduction}}
 
 Over the last decade, `Big Data' has often been discussed as the new `most valuable'
-resource in highly developed economies, driving the development of new
-products and services in various industries. Extracting knowledge from large data
-sets is increasingly seen as a strategic asset for firms, governments, and NGOs. In a similar vein, the increasing size of data sets in empirical economic research (both in number
-of observations and number of variables) offers new opportunities and poses new
-challenges for economists and business leaders.
+resource in highly developed economies, driving the development of new products and services in various industries. Extracting knowledge from large data sets is increasingly seen as a strategic asset for firms, governments, and NGOs. In a similar vein, the increasing size of data sets in empirical economic research (both in number of observations and number of variables) offers new opportunities and poses new challenges for economists and business leaders.
 
-Successfully navigating the data-driven economy presupposes a certain
-understanding of the technologies and methods to gain insights from Big Data.
-This textbook introduces the reader to the basic concepts of Big Data Analytics to
-gain insights from large and complex data sets. Thereby, the focus of the book
-is on the practical application of econometrics, given
-large/complex data sets, and all the steps involved before actually analyzing data (data storage, data import, data preparation).
-The book combines conceptual/theoretical material with the practical application of the
-concepts with R and SQL. Thereby, the reader will
-acquire the basic skill set to analyze large data sets both locally and in the
-cloud. Various code examples and tutorials, focused on empirical economic and business research, illustrate
-practical techniques to handle and analyze Big Data.
+Successfully navigating the data-driven economy presupposes a certain understanding of the technologies and methods to gain insights from Big Data. This textbook introduces the reader to the basic concepts of Big Data Analytics to gain insights from large and complex data sets. Thereby, the focus of the book is on the practical application of econometrics, given large/complex data sets, and all the steps involved before actually analyzing data (data storage, data import, data preparation). The book combines conceptual/theoretical material with the practical application of the concepts with R and SQL. Thereby, the reader will acquire the basic skill set to analyze large data sets both locally and in the cloud. Various code examples and tutorials, focused on empirical economic and business research, illustrate practical techniques to handle and analyze Big Data.
+
+The book is organized in four main parts. The first part introduces the reader to the topic of Big Data Analytics from the perspective of a practitioner in empirical economic and business research. It covers the differences between \emph{Big P} and \emph{Big N} problems and shows avenues of how to practically address either.
+
+The second part focuses on the tools and platforms to work with Big Data. Initially, this part introduces a set of software tools primarily used throughout the book: (advanced) R and SQL. It then covers the conceptual basis of modern computing environments and discusses how different hardware components matter in practical local Big Data Analytics as well as how virtual servers in the cloud help to scale up and scale out analyses when the local hardware does not have enough computing resources.
+
+Building on the previous part, the third part of this book visits all: data collection and data storage, data import/ingestion, data cleaning/transformation, data aggregation, and finally, data analysis (with a particular focus on modern applied econometrics) and explorative data visualization (with a particular focus on GIS). The chapters in this part of the book discuss basic concepts such as the split-apply-combine approach and demonstrate the practical application of these concepts when working with large data sets in R. Many tutorials and code examples illustrate how a specific task can be implemented with comparatively simple tools locally as well as with a broader set of tools in the cloud. Thereby, the reader re-visits key concepts regarding computing resources and econometric methods.
+
+The code examples, illustrations, and tutorials provided throughout the book focus on data analytics contexts in empirical economics as well as business data science/business analytics. However, the basic concepts and tools covered in the book are not domain-specific and could easily be transferred to other fields of modern data analytics/data science.
+
+\hypertarget{part-setting-the-scene-analyzing-big-data}{%
+\part{Setting the Scene: Analyzing Big Data}\label{part-setting-the-scene-analyzing-big-data}}
+
+\hypertarget{s}{%
+\chapter*{Introduction}\label{s}}
+
+
+\index{Setting the Scene: Analyzing Big Data}
 
 \hypertarget{what-is-big-in-big-data}{%
-\section{\texorpdfstring{What is \emph{big} in ``Big Data''?}{What is big in ``Big Data''?}}\label{what-is-big-in-big-data}}
+\chapter{\texorpdfstring{What is \emph{big} in ``Big Data''?}{What is big in ``Big Data''?}}\label{what-is-big-in-big-data}}
 
 Generally, we can think of Big Data as data that is (a) expensive to handle and (b) hard to get value from due to its size and complexity. The handling of Big Data is expensive as the data is often gathered from unorthodox sources, providing poorly structured data (e.g., raw text, web pages, images, etc.) as well as because of the infrastructure needed to store and load/process large amounts of data. Getting value/insights from Big Data is related to two distinct properties that render the analysis of large amounts of data difficult:
 
@@ -330,7 +305,7 @@ Generally, we can think of Big Data as data that is (a) expensive to handle and 
 While covering some aspects of both problem domains, most of this book focuses on practical challenges and solutions related to the \emph{big N} problem in Big Data Analytics.
 
 \hypertarget{approaches-to-analyzing-big-data}{%
-\section{Approaches to analyzing Big Data}\label{approaches-to-analyzing-big-data}}
+\chapter{Approaches to analyzing Big Data}\label{approaches-to-analyzing-big-data}}
 
 Throughout the book, we consider four approaches on how to solve challenges related to analyzing Big Data. Those approaches should not be understood as mutually exclusive categories for Big Data tools, rather they should help us to look at a specific problem from different angles in order to find the most efficient tool/approach to proceed.
 
@@ -345,17 +320,6 @@ Throughout the book, we consider four approaches on how to solve challenges rela
 \item
   \emph{Scale up and scale out}: once you have properly considered all of the above, but the task still cannot be done in a reasonable amount of time, you will need to either \emph{scale up} or \emph{scale out} the available computing resources. \emph{Scaling up} refers to enlarging your machine (e.g., add more random access memory) or to switching to a more powerful machine altogether. Technically, this can mean literally building an additional hardware-device into your PC, today it usually means renting a virtual server in the cloud. Instead of using a ``bigger machine'', \emph{scaling out} means using several machines in concert (cluster computer, distributed systems). While this also has often been done locally (connecting several PCs to a cluster of PCs in order to combine all their computing power), today this too is usually done in the cloud (due to the much easier set up and maintenance). Practically, a key difference between scaling out and scaling up is that by-and-large scaling up does not require you to get familiar with specialized software. You can simply run the exact same script you tested locally on a larger machine in the cloud. Although most of the tools and services available to scale out your analyses are by now quite easy to use, you will have to get familiar with some additional software components and programming paradigms to really make use of the latter.\footnote{Not thought, that this aspect of scaling out has recently become much more user-friendly and is likely to get even more so over the next few years. Therefore, we will focus primarily on how to set up such a solution with the help of high-level/easy-to-use interfaces.} In addition, in some situations, scaling up might be perfectly sufficient while in others only scaling out makes sense (particularly if you need massive amounts of memory). In any event, you should be comfortable dealing with the question ``does it make sense to scale up or scale out?'' and ``if yes, how can it be done?'' in a given situation.\footnote{Importantly, the perspective on scaling up and scaling out provided in this book is solely focused on Big Data Analytics in the context of economic/business research. There is a large array of practical problems and corresponding solutions/tools to deal with ``Big Data Analytics'' in the context of application development (e.g.~tools related to data streams) which this book does not cover.}
 \end{enumerate}
-
-\hypertarget{content-overview}{%
-\section{Content overview}\label{content-overview}}
-
-The book is organized in three main parts. The first part introduces the reader to the topic of Big Data Analytics from the perspective of a practitioner in empirical economic and business research. It covers the differences between \emph{Big P} and \emph{Big N} problems and shows avenues of how to practically address either.
-
-The second part focuses on the tools and platforms to work with Big Data. Initially, this part introduces a set of software tools primarily used throughout the book: (advanced) R and SQL. It then covers the conceptual basis of modern computing environments and discusses how different hardware components matter in practical local Big Data Analytics as well as how virtual servers in the cloud help to scale up and scale out analyses when the local hardware does not have enough computing resources.
-
-Building on the previous part, the third part of this book visits all: data collection and data storage, data import/ingestion, data cleaning/transformation, data aggregation, and finally, data analysis (with a particular focus on modern applied econometrics) and explorative data visualization (with a particular focus on GIS). The chapters in this part of the book discuss basic concepts such as the split-apply-combine approach and demonstrate the practical application of these concepts when working with large data sets in R. Many tutorials and code examples illustrate how a specific task can be implemented with comparatively simple tools locally as well as with a broader set of tools in the cloud. Thereby, the reader re-visits key concepts regarding computing resources and econometric methods.
-
-The code examples, illustrations, and tutorials provided throughout the book focus on data analytics contexts in empirical economics as well as business data science/business analytics. However, the basic concepts and tools covered in the book are not domain-specific and could easily be transferred to other fields of modern data analytics/data science.
 
 \hypertarget{two-domains-of-big-data-analytics}{%
 \chapter{Two domains of Big Data Analytics}\label{two-domains-of-big-data-analytics}}
@@ -529,7 +493,7 @@ We then can illustrate the performance of the selected final model, for example,
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{bigdata_files/figure-latex/unnamed-chunk-12-1.pdf}
+\includegraphics{bigdata_files/figure-latex/unnamed-chunk-11-1.pdf}
 
 Hence, econometrics techniques such as the lasso help deal with \emph{big P} problems by providing reasonable ways to select a good predictive model (in other words, decide which of the many variables should be included).
 
@@ -737,7 +701,7 @@ First, let's look at the time used estimate the linear model.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{bigdata_files/figure-latex/unnamed-chunk-21-1.pdf}
+\includegraphics{bigdata_files/figure-latex/unnamed-chunk-20-1.pdf}
 
 The horizontal red line indicates the computation time for estimation via OLS; the green points indicate the computation time for the estimation via the \emph{Ulruru} algorithm. Note that even for large sub-samples, the computation time is substantially lower than for OLS.
 
@@ -760,7 +724,7 @@ Finally, let's have a look at how close the results are to OLS.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{bigdata_files/figure-latex/unnamed-chunk-22-1.pdf}
+\includegraphics{bigdata_files/figure-latex/unnamed-chunk-21-1.pdf}
 
 The horizontal red line indicates the size of the estimated coefficient, when using OLS. The horizontal green line indicates the size of the actual coefficient. The green points indicate the size of the same coefficient estimated by the \emph{Uluru} algorithm for different sub-sample sizes. Note that even relatively small sub-samples already deliver estimates very close to the OLS estimates.
 
@@ -773,6 +737,12 @@ When applying econometrics to `'large'' datasets, two types of problems dominate
 
 \hypertarget{part-platform-software-and-computing-resources}{%
 \part{Platform: Software and Computing Resources}\label{part-platform-software-and-computing-resources}}
+
+\hypertarget{p}{%
+\chapter*{Introduction}\label{p}}
+
+
+\index{Platform: Software and Computing Resources}
 
 \hypertarget{software-programming-with-big-data}{%
 \chapter{Software: Programming with (Big) Data}\label{software-programming-with-big-data}}
@@ -852,7 +822,7 @@ Most of these functions are used in an interactive way in the R console. They se
 
 \begin{verbatim}
 ##    user  system elapsed 
-##   0.001   0.000   0.001
+##   0.002   0.000   0.001
 \end{verbatim}
 
 Note that each time you run this line of code, the returned amount of time varies slightly. This has to do with the fact that the actual time needed to run a line of code can depend on various other processes happening at the same time on your computer.
@@ -871,9 +841,9 @@ The \texttt{microbenchmark} and \texttt{bench} packages provide additional funct
 \begin{verbatim}
 ## Unit: milliseconds
 ##                            expr   min    lq mean
-##  for (i in 1:100) {     i + 5 } 1.277 1.343 1.41
-##  median    uq  max neval
-##   1.376 1.444 1.98   100
+##  for (i in 1:100) {     i + 5 } 1.075 1.089 1.12
+##  median    uq   max neval
+##   1.119 1.132 1.347   100
 \end{verbatim}
 
 Second, a key aspect to improving the performance of data analysis scripts in R is to detect inefficient memory allocation as well as avoiding that an R-object is either growing too much or is generally too large to handle in memory. To this end, you might want to monitor how much memory R occupies at different points in your script as well as how much memory is taken up by individual R objects. For example, \texttt{object.size()} returns the size of an R object, that is the amount of memory it takes up in the R environment in bytes (\texttt{pryr::object\_size()} counts slightly more accurately).
@@ -1003,8 +973,8 @@ This is useful to implementing your script with a generally less memory-intense 
 ## # A tibble: 2 x 3
 ##   `itr/sec` mem_alloc `gc/sec`
 ##       <dbl> <bch:byt>    <dbl>
-## 1      11.3     382MB     4.85
-## 2   72604.     78.2KB     7.26
+## 1      13.7     382MB     5.87
+## 2   87516.     78.2KB     8.75
 \end{verbatim}
 
 In addition, the \texttt{bench} package provides a simple way to visualize these outputs:
@@ -1015,7 +985,7 @@ In addition, the \texttt{bench} package provides a simple way to visualize these
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{bigdata_files/figure-latex/unnamed-chunk-30-1.pdf}
+\includegraphics{bigdata_files/figure-latex/unnamed-chunk-29-1.pdf}
 
 Finally, to analyze the performance of your entire script/program the \texttt{profvis} package provides visual summaries to quickly detect the most prominent bottle necks. You can either call this via the \texttt{profvis()} function with the code section to be profiled as argument, or via the RStudio user interface by clicking on the Code Tools menu in the editor window and select ``Profile selected lines''.
 
@@ -1130,7 +1100,7 @@ The following plot shows the difference in the performance of the two functions.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{bigdata_files/figure-latex/unnamed-chunk-34-1.pdf}
+\includegraphics{bigdata_files/figure-latex/unnamed-chunk-33-1.pdf}
 Clearly, the version with pre-allocation of memory (avoiding growing an object) is overall much faster. In addition, we see that the problem with the growing object in the naive implementation tends to get worse with each iteration. The take-away message for the practitioner: if possible, always initiate the ``container'' object (list, matrix, etc.) for iteration results as an empty object of the final size/dimensions.
 
 The attentive reader and experienced R coder will have noticed by this point, that both of the functions implemented above are not really smart practice to solve the problem at hand. If you consider yourself part of this group the next subsection will make you more comfortable.
@@ -1182,7 +1152,7 @@ Let's have a look at whether this improves the function's performance further.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{bigdata_files/figure-latex/unnamed-chunk-36-1.pdf}
+\includegraphics{bigdata_files/figure-latex/unnamed-chunk-35-1.pdf}
 
 Clearly, the vectorized implementation is even faster. The take-away message: make use of vectorized basic R functions where possible. At this point you might wonder: why not always use vectorization over loops, when working with R? This question (and closely related similar questions) have been fiercely debated in the R online community over the last few years. Also the debate contains and has contained several (in my view) slightly misleading arguments. A simple answer to this question is: it is in fact not that simple to use \emph{actual} vectorization for every kind of problem in r. There are a number of functions often mentioned to achieve ``vectorization'' easily in R, however, they do not actually implement actual vectorization in its original technical sense (the type just demonstrated here with the R math operators). Since this point is very prominent in debates about how to improve R code, the next subsection attempts to summarize the most important aspects to keep in mind.
 
@@ -1324,7 +1294,7 @@ We can prove this in two ways. First, if what I just stated was not true, the li
 \end{Shaded}
 
 \begin{verbatim}
-## 80.05 kB
+## 80,048 B
 \end{verbatim}
 
 \begin{Shaded}
@@ -1334,7 +1304,7 @@ We can prove this in two ways. First, if what I just stated was not true, the li
 \end{Shaded}
 
 \begin{verbatim}
-## -389 kB
+## -387 kB
 \end{verbatim}
 
 Second, we can see that the values to which \texttt{a} and \texttt{b} are bound are stored at the same memory address. Hence, they are the same values.
@@ -1365,7 +1335,7 @@ Second, we can see that the values to which \texttt{a} and \texttt{b} are bound 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "0x55c3df6cbca0"
+## [1] "0x562c29b52420"
 \end{verbatim}
 
 \begin{Shaded}
@@ -1375,7 +1345,7 @@ Second, we can see that the values to which \texttt{a} and \texttt{b} are bound 
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "0x55c3df6cbca0"
+## [1] "0x562c29b52420"
 \end{verbatim}
 
 Now you probably wonder, what happens to \texttt{b} if we modify \texttt{a}. After all, if the values to which \texttt{b} is bound are changed when we write code concerning \texttt{a}, we might end up with very surprising output. The answer is, and this is key (!), once we modify \texttt{a}, the values need to be \emph{copied} in order to ensure the integrity of \texttt{b}. Only at this point, our program will require more memory.
@@ -1420,7 +1390,7 @@ Now you probably wonder, what happens to \texttt{b} if we modify \texttt{a}. Aft
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "0x55c3bedd3260"
+## [1] "0x562c249e8080"
 \end{verbatim}
 
 \begin{Shaded}
@@ -1430,7 +1400,7 @@ Now you probably wonder, what happens to \texttt{b} if we modify \texttt{a}. Aft
 \end{Shaded}
 
 \begin{verbatim}
-## [1] "0x55c3df6cbca0"
+## [1] "0x562c29b52420"
 \end{verbatim}
 
 Note that the entire vector needed to be copied for this. There is, of course, a lesson from all this regarding writing efficient code. Knowing how actual copying of values does occur helps avoiding unnecessary copying. The larger an object, the more time it will take to copy it in memory. Objects with a single binding get modified in place (no copying):
@@ -1502,7 +1472,7 @@ We can actually investigate this by looking at the source code of an R function.
 ##           parsed_x <- fread(x)
 ##           return(parsed_x)
 ##      }
-## <bytecode: 0x55c42230e3a8>
+## <bytecode: 0x562c8b95d0e8>
 \end{verbatim}
 
 However, if we do the same for function \texttt{sum}, we don't see any actual source code.
@@ -1582,7 +1552,7 @@ In contrast, when using SQL we write code that describes how the final result is
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-54}6 records}
+\caption{\label{tab:unnamed-chunk-53}6 records}
 \centering
 \begin{tabular}[t]{l|r}
 \hline
@@ -1714,7 +1684,7 @@ In our first query, we select all (\texttt{*}) variable values of the observatio
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-62}1 records}
+\caption{\label{tab:unnamed-chunk-61}1 records}
 \centering
 \begin{tabular}[t]{l|r|r|r|r|r}
 \hline
@@ -1741,7 +1711,7 @@ Now let's select all dates and unemployment values of observations with more tha
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-63}9 records}
+\caption{\label{tab:unnamed-chunk-62}9 records}
 \centering
 \begin{tabular}[t]{l|r}
 \hline
@@ -1848,7 +1818,7 @@ Now let's look at how the same table can be created in SQLite.
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-67}Displaying records 1 - 6}
+\caption{\label{tab:unnamed-chunk-66}Displaying records 1 - 6}
 \centering
 \begin{tabular}[t]{l|r|r}
 \hline
@@ -2351,9 +2321,9 @@ In a first step, we load the \texttt{gpuR}-package.\footnote{As with setting up 
 
 \begin{verbatim}
 ## Number of platforms: 1
-## - platform: NVIDIA Corporation: OpenCL 3.0 CUDA 11.6.134
+## - platform: NVIDIA Corporation: OpenCL 3.0 CUDA 11.4.264
 ##   - context device index: 0
-##     - NVIDIA GeForce GTX 1650
+##     - NVIDIA GeForce GTX 1050
 ## checked all devices
 ## completed initialization
 \end{verbatim}
@@ -2408,12 +2378,11 @@ Now we run the three examples: first, based on standard R, using the CPU. Then, 
 ## # A tibble: 3 x 6
 ##   expression                            min   median
 ##   <bch:expr>                       <bch:tm> <bch:tm>
-## 1 cpu <- t(X) %*% X                 79.21ms   83.8ms
-## 2 gpu1_pointer <- t(gpuX) %*% gpuX  31.53ms   33.7ms
-## 3 gpu2_memory <- t(vclX) %*% vclX    9.54ms     15ms
+## 1 cpu <- t(X) %*% X                  69.5ms   69.9ms
+## 2 gpu1_pointer <- t(gpuX) %*% gpuX   31.9ms   34.1ms
+## 3 gpu2_memory <- t(vclX) %*% vclX    11.2ms     17ms
 ## # ... with 3 more variables: `itr/sec` <dbl>,
 ## #   mem_alloc <bch:byt>, `gc/sec` <dbl>
-## # i Use `colnames()` to see all variable names
 \end{verbatim}
 
 The performance comparison is visualized with boxplots.
@@ -2424,7 +2393,7 @@ The performance comparison is visualized with boxplots.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{bigdata_files/figure-latex/unnamed-chunk-78-1.pdf}
+\includegraphics{bigdata_files/figure-latex/unnamed-chunk-77-1.pdf}
 
 The theoretically expected pattern becomes clearly visible. When using the GPU + GPU memory, the matrix operation takes on average less than 20 ms, with GPU + RAM over 30 ms, and with the common CPU operation close to 100 ms to finish. In the chapters on applied data analysis, we will look at some applications of GPUs in the domain of deep learning (which relies heavily on matrix multiplications).
 
@@ -3409,21 +3378,22 @@ Once you have connected and logged in to RStudio on the EMR cluster's master nod
 
 After using the EMR Spark cluster, make sure to terminate the cluster in the AWS EMR console to avoid additional charges. This automatically terminates all the EC2 machines linked to the cluster.
 
-\hypertarget{part-applied-big-data-analytics}{%
-\part{Applied Big Data Analytics}\label{part-applied-big-data-analytics}}
+\hypertarget{part-components-of-big-data-analytics}{%
+\part{Components of Big Data Analytics}\label{part-components-of-big-data-analytics}}
 
-Platform: Software and Computing Resources
+\hypertarget{c}{%
+\chapter*{Introduction}\label{c}}
+
+
+\index{Components of big Data Analytics}
+
+\begin{center}\includegraphics[width=0.8\linewidth]{img/data_pipeline} \end{center}
 
 \hypertarget{forms-of-big-data-and-the-data-pipeline}{%
 \chapter{Forms of Big Data and the Data Pipeline}\label{forms-of-big-data-and-the-data-pipeline}}
 
 \hypertarget{unstructured-semi-structured-structured-data}{%
 \section{Unstructured, semi-structured, structured data}\label{unstructured-semi-structured-structured-data}}
-
-\hypertarget{data-pipelines-a-systematic-approach-to-processing-big-data}{%
-\section{Data pipelines: a systematic approach to processing big data}\label{data-pipelines-a-systematic-approach-to-processing-big-data}}
-
-\begin{center}\includegraphics[width=0.8\linewidth]{img/data_pipeline} \end{center}
 
 \hypertarget{data-collection-and-data-storage}{%
 \chapter{Data Collection and Data Storage}\label{data-collection-and-data-storage}}
@@ -3578,11 +3548,11 @@ The last result is kind of interesting. The object \texttt{flights} must have be
 
 \begin{verbatim}
 ##             used   (Mb) gc trigger   (Mb)  max used
-## Ncells   6520271  348.3   10529398  562.4  10529398
-## Vcells 169819779 1295.7  401568752 3063.8 334573213
+## Ncells   6535153  349.1   10532628  562.6  10532628
+## Vcells 169839559 1295.8  401573396 3063.8 334577825
 ##          (Mb)
-## Ncells  562.4
-## Vcells 2552.6
+## Ncells  562.6
+## Vcells 2552.7
 \end{verbatim}
 
 Now, let's see how we can improve the performance of this script with regard to memory allocation. Most memory is allocated when importing the file. Obviously, any improvement of the script must still result in importing all the data. However, there are different ways to read data into RAM. \texttt{read.csv()} reads all lines of a csv file consecutively. In contrast, \texttt{data.table::fread()} first `maps' the data file into memory and only then actually reads it in line by line. This involves an additional initial step, but the larger the file, the less relevant is this first step with regard to the total time needed to read all the data into memory. By switching on the \texttt{verbose} option, we can actually see what \texttt{fread} is doing.
@@ -3614,19 +3584,19 @@ Now, let's see how we can improve the performance of this script with regard to 
 
 \begin{verbatim}
 ##   OpenMP version (_OPENMP)       201511
-##   omp_get_num_procs()            12
+##   omp_get_num_procs()            4
 ##   R_DATATABLE_NUM_PROCS_PERCENT  unset (default 50)
 ##   R_DATATABLE_NUM_THREADS        unset
 ##   R_DATATABLE_THROTTLE           unset (default 1024)
 ##   omp_get_thread_limit()         2147483647
-##   omp_get_max_threads()          12
+##   omp_get_max_threads()          4
 ##   OMP_THREAD_LIMIT               unset
 ##   OMP_NUM_THREADS                unset
 ##   RestoreAfterFork               true
-##   data.table is using 6 threads with throttle==1024. See ?setDTthreads.
+##   data.table is using 2 threads with throttle==1024. See ?setDTthreads.
 ## Input contains no \n. Taking this to be a filename to open
 ## [01] Check arguments
-##   Using 6 threads (omp_get_max_threads()=12, nth=6)
+##   Using 2 threads (omp_get_max_threads()=4, nth=2)
 ##   NAstrings = [<<NA>>]
 ##   None of the NAstrings look like numbers.
 ##   show progress = 0
@@ -3665,7 +3635,7 @@ Now, let's see how we can improve the performance of this script with regard to 
 ##   Allocating 19 column slots (19 - 0 dropped) with 370043 rows
 ## [11] Read the data
 ##   jumps=[0..30), chunk_size=1032016, total_size=30960501
-## Read 336776 rows x 19 columns from 29.53MB (30960660 bytes) file in 00:00.063 wall clock time
+## Read 336776 rows x 19 columns from 29.53MB (30960660 bytes) file in 00:00.066 wall clock time
 ## [12] Finalizing the datatable
 ##   Type counts:
 ##         14 : int32     '5'
@@ -3675,13 +3645,13 @@ Now, let's see how we can improve the performance of this script with regard to 
 ##    0.000s (  0%) Memory map 0.029GB file
 ##    0.003s (  5%) sep=',' ncol=19 and header detection
 ##    0.000s (  0%) Column type detection using 10048 sample rows
-##    0.001s (  2%) Allocation of 370043 rows x 19 cols (0.033GB) of which 336776 ( 91%) rows used
-##    0.058s ( 93%) Reading 30 chunks (0 swept) of 0.984MB (each chunk 11225 rows) using 6 threads
-##    +    0.013s ( 21%) Parse to row-major thread buffers (grown 0 times)
-##    +    0.029s ( 46%) Transpose
-##    +    0.016s ( 26%) Waiting
+##    0.001s (  1%) Allocation of 370043 rows x 19 cols (0.033GB) of which 336776 ( 91%) rows used
+##    0.062s ( 94%) Reading 30 chunks (0 swept) of 0.984MB (each chunk 11225 rows) using 2 threads
+##    +    0.034s ( 51%) Parse to row-major thread buffers (grown 0 times)
+##    +    0.027s ( 40%) Transpose
+##    +    0.002s (  2%) Waiting
 ##    0.000s (  0%) Rereading 0 columns due to out-of-sample type exceptions
-##    0.063s        Total
+##    0.066s        Total
 \end{verbatim}
 
 Let's put it all together and look at the memory changes and usage. For a fair comparison, we first have to delete \texttt{flights} and collect the garbage with \texttt{gc()}.
@@ -3704,11 +3674,11 @@ Let's put it all together and look at the memory changes and usage. For a fair c
 
 \begin{verbatim}
 ##             used   (Mb) gc trigger   (Mb)  max used
-## Ncells   6578811  351.4   10529398  562.4  10529398
-## Vcells 166805869 1272.7  401568752 3063.8 334573213
+## Ncells   6593693  352.2   10532628  562.6  10532628
+## Vcells 166825649 1272.8  401573396 3063.8 334577825
 ##          (Mb)
-## Ncells  562.4
-## Vcells 2552.6
+## Ncells  562.6
+## Vcells 2552.7
 \end{verbatim}
 
 \begin{Shaded}
@@ -3835,7 +3805,7 @@ Now we can run our first query involving the relation between tables. The aim of
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-126}Displaying records 1 - 10}
+\caption{\label{tab:unnamed-chunk-125}Displaying records 1 - 10}
 \centering
 \begin{tabular}[t]{r|r|r|r|r}
 \hline
@@ -3896,7 +3866,7 @@ Note that SQLite optimizes the efficiency of the query without our explicit inst
 
 \begin{table}
 
-\caption{\label{tab:unnamed-chunk-128}Displaying records 1 - 10}
+\caption{\label{tab:unnamed-chunk-127}Displaying records 1 - 10}
 \centering
 \begin{tabular}[t]{r|r|r|r|r}
 \hline
@@ -4407,11 +4377,11 @@ Now we can read in the data with \texttt{read.table.ffdf}. In order to better un
 \end{Shaded}
 
 \begin{verbatim}
-## read.table.ffdf 1..100000 (100000)  csv-read=0.416sec ffdf-write=0.056sec
-## read.table.ffdf 100001..200000 (100000)  csv-read=0.424sec ffdf-write=0.042sec
-## read.table.ffdf 200001..300000 (100000)  csv-read=0.445sec ffdf-write=0.037sec
-## read.table.ffdf 300001..336776 (36776)  csv-read=0.181sec ffdf-write=0.031sec
-##  csv-read=1.466sec  ffdf-write=0.166sec  TOTAL=1.632sec
+## read.table.ffdf 1..100000 (100000)  csv-read=0.325sec ffdf-write=0.049sec
+## read.table.ffdf 100001..200000 (100000)  csv-read=0.342sec ffdf-write=0.033sec
+## read.table.ffdf 200001..300000 (100000)  csv-read=0.333sec ffdf-write=0.033sec
+## read.table.ffdf 300001..336776 (36776)  csv-read=0.13sec ffdf-write=0.021sec
+##  csv-read=1.13sec  ffdf-write=0.136sec  TOTAL=1.266sec
 \end{verbatim}
 
 \begin{verbatim}
@@ -4430,7 +4400,7 @@ Note that there are two substantial differences to what we have previously seen 
 \begin{verbatim}
 ## [1] "clone10c9b3c430ec8.ff" "clone10c9b4977164.ff" 
 ## [3] "clone10c9b56908fe0.ff" "clone10c9b77bbf204.ff"
-## [5] "clone18ff55474d98.ff"  "clone18ff56cbf21c.ff"
+## [5] "clone10f811541f044.ff" "clone10f812de57dc6.ff"
 \end{verbatim}
 
 \hypertarget{memory-mapping-with-bigmemory}{%
@@ -4619,22 +4589,22 @@ In a first step we read (or `upload') the data into R. This step involves the cr
 \end{Shaded}
 
 \begin{verbatim}
-## read.table.ffdf 1..100000 (100000)  csv-read=0.545sec ffdf-write=0.08sec
-## read.table.ffdf 100001..200000 (100000)  csv-read=0.637sec ffdf-write=0.068sec
-## read.table.ffdf 200001..300000 (100000)  csv-read=0.666sec ffdf-write=0.073sec
-## read.table.ffdf 300001..400000 (100000)  csv-read=0.724sec ffdf-write=0.062sec
-## read.table.ffdf 400001..500000 (100000)  csv-read=0.597sec ffdf-write=0.062sec
-## read.table.ffdf 500001..600000 (100000)  csv-read=0.588sec ffdf-write=0.087sec
-## read.table.ffdf 600001..700000 (100000)  csv-read=0.602sec ffdf-write=0.075sec
-## read.table.ffdf 700001..800000 (100000)  csv-read=0.567sec ffdf-write=0.064sec
-## read.table.ffdf 800001..900000 (100000)  csv-read=0.572sec ffdf-write=0.064sec
-## read.table.ffdf 900001..951111 (51111)  csv-read=0.307sec ffdf-write=0.045sec
-##  csv-read=5.805sec  ffdf-write=0.68sec  TOTAL=6.485sec
+## read.table.ffdf 1..100000 (100000)  csv-read=0.44sec ffdf-write=0.068sec
+## read.table.ffdf 100001..200000 (100000)  csv-read=0.466sec ffdf-write=0.052sec
+## read.table.ffdf 200001..300000 (100000)  csv-read=0.455sec ffdf-write=0.053sec
+## read.table.ffdf 300001..400000 (100000)  csv-read=0.478sec ffdf-write=0.056sec
+## read.table.ffdf 400001..500000 (100000)  csv-read=0.481sec ffdf-write=0.057sec
+## read.table.ffdf 500001..600000 (100000)  csv-read=0.486sec ffdf-write=0.057sec
+## read.table.ffdf 600001..700000 (100000)  csv-read=0.483sec ffdf-write=0.057sec
+## read.table.ffdf 700001..800000 (100000)  csv-read=0.487sec ffdf-write=0.059sec
+## read.table.ffdf 800001..900000 (100000)  csv-read=0.477sec ffdf-write=0.059sec
+## read.table.ffdf 900001..951111 (51111)  csv-read=0.244sec ffdf-write=0.041sec
+##  csv-read=4.497sec  ffdf-write=0.559sec  TOTAL=5.056sec
 \end{verbatim}
 
 \begin{verbatim}
 ##    user  system elapsed 
-##   5.968   0.602   6.490
+##   4.569   0.510   5.060
 \end{verbatim}
 
 \begin{Shaded}
@@ -4648,8 +4618,8 @@ In a first step we read (or `upload') the data into R. This step involves the cr
 \end{Shaded}
 
 \begin{verbatim}
-## read.table.ffdf 1..1607 (1607)  csv-read=0.005sec ffdf-write=0.003sec
-##  csv-read=0.005sec  ffdf-write=0.003sec  TOTAL=0.008sec
+## read.table.ffdf 1..1607 (1607)  csv-read=0.005sec ffdf-write=0.004sec
+##  csv-read=0.005sec  ffdf-write=0.004sec  TOTAL=0.009sec
 \end{verbatim}
 
 \begin{verbatim}
@@ -4681,7 +4651,7 @@ Comparison with \texttt{read.table}
 
 \begin{verbatim}
 ##    user  system elapsed 
-##   5.208   0.420   5.547
+##   4.219   0.238   4.389
 \end{verbatim}
 
 \begin{Shaded}
@@ -4692,11 +4662,11 @@ Comparison with \texttt{read.table}
 
 \begin{verbatim}
 ##             used   (Mb) gc trigger   (Mb)  max used
-## Ncells   6741759  360.1   10529398  562.4  10529398
-## Vcells 185560679 1415.8  401568752 3063.8 334573213
+## Ncells   6756849  360.9   10532628  562.6  10532628
+## Vcells 185580961 1415.9  401573396 3063.8 334577825
 ##          (Mb)
-## Ncells  562.4
-## Vcells 2552.6
+## Ncells  562.6
+## Vcells 2552.7
 \end{verbatim}
 
 \begin{Shaded}
@@ -4973,11 +4943,11 @@ If we want to reload a previously saved \texttt{ffdf}, we do not have to go thro
 
 \begin{verbatim}
 ##             used   (Mb) gc trigger   (Mb)  max used
-## Ncells   6760062  361.1   10529398  562.4  10529398
-## Vcells 205677300 1569.2  401568752 3063.8 334573213
+## Ncells   6775152  361.9   10532628  562.6  10532628
+## Vcells 205697582 1569.4  401573396 3063.8 334577825
 ##          (Mb)
-## Ncells  562.4
-## Vcells 2552.6
+## Ncells  562.6
+## Vcells 2552.7
 \end{verbatim}
 
 \begin{Shaded}
@@ -5321,35 +5291,35 @@ In simple words, this means we first split the data set into subsets, each of wh
 \end{Shaded}
 
 \begin{verbatim}
-## 2022-07-29 23:14:38, calculating split sizes
+## 2022-10-05 17:44:12, calculating split sizes
 \end{verbatim}
 
 \begin{verbatim}
-## 2022-07-29 23:14:39, building up split locations
+## 2022-10-05 17:44:12, building up split locations
 \end{verbatim}
 
 \begin{verbatim}
-## 2022-07-29 23:14:39, working on split 1/2, extracting data in RAM of 1 split elements, totalling, 0.0815 GB, while max specified data specified using BATCHBYTES is 0.09313 GB
+## 2022-10-05 17:44:13, working on split 1/2, extracting data in RAM of 1 split elements, totalling, 0.0815 GB, while max specified data specified using BATCHBYTES is 0.09313 GB
 \end{verbatim}
 
 \begin{verbatim}
-## 2022-07-29 23:14:40, ... applying FUN to selected data
+## 2022-10-05 17:44:13, ... applying FUN to selected data
 \end{verbatim}
 
 \begin{verbatim}
-## 2022-07-29 23:14:40, ... appending result to the output ffdf
+## 2022-10-05 17:44:14, ... appending result to the output ffdf
 \end{verbatim}
 
 \begin{verbatim}
-## 2022-07-29 23:14:40, working on split 2/2, extracting data in RAM of 3 split elements, totalling, 0.02281 GB, while max specified data specified using BATCHBYTES is 0.09313 GB
+## 2022-10-05 17:44:14, working on split 2/2, extracting data in RAM of 3 split elements, totalling, 0.02281 GB, while max specified data specified using BATCHBYTES is 0.09313 GB
 \end{verbatim}
 
 \begin{verbatim}
-## 2022-07-29 23:14:40, ... applying FUN to selected data
+## 2022-10-05 17:44:14, ... applying FUN to selected data
 \end{verbatim}
 
 \begin{verbatim}
-## 2022-07-29 23:14:40, ... appending result to the output ffdf
+## 2022-10-05 17:44:14, ... appending result to the output ffdf
 \end{verbatim}
 
 Note how the output describes the procedure step by step. Now we can have a look at the resulting summary statistic in the form of a \texttt{data.frame()}.
@@ -5390,35 +5360,35 @@ We add an additional variable \texttt{percent\_tip} and then repeat the aggregat
 \end{Shaded}
 
 \begin{verbatim}
-## 2022-07-29 23:14:40, calculating split sizes
+## 2022-10-05 17:44:14, calculating split sizes
 \end{verbatim}
 
 \begin{verbatim}
-## 2022-07-29 23:14:40, building up split locations
+## 2022-10-05 17:44:14, building up split locations
 \end{verbatim}
 
 \begin{verbatim}
-## 2022-07-29 23:14:40, working on split 1/2, extracting data in RAM of 1 split elements, totalling, 0.08732 GB, while max specified data specified using BATCHBYTES is 0.09313 GB
+## 2022-10-05 17:44:14, working on split 1/2, extracting data in RAM of 1 split elements, totalling, 0.08732 GB, while max specified data specified using BATCHBYTES is 0.09313 GB
 \end{verbatim}
 
 \begin{verbatim}
-## 2022-07-29 23:14:41, ... applying FUN to selected data
+## 2022-10-05 17:44:15, ... applying FUN to selected data
 \end{verbatim}
 
 \begin{verbatim}
-## 2022-07-29 23:14:41, ... appending result to the output ffdf
+## 2022-10-05 17:44:15, ... appending result to the output ffdf
 \end{verbatim}
 
 \begin{verbatim}
-## 2022-07-29 23:14:41, working on split 2/2, extracting data in RAM of 3 split elements, totalling, 0.02444 GB, while max specified data specified using BATCHBYTES is 0.09313 GB
+## 2022-10-05 17:44:15, working on split 2/2, extracting data in RAM of 3 split elements, totalling, 0.02444 GB, while max specified data specified using BATCHBYTES is 0.09313 GB
 \end{verbatim}
 
 \begin{verbatim}
-## 2022-07-29 23:14:42, ... applying FUN to selected data
+## 2022-10-05 17:44:16, ... applying FUN to selected data
 \end{verbatim}
 
 \begin{verbatim}
-## 2022-07-29 23:14:42, ... appending result to the output ffdf
+## 2022-10-05 17:44:16, ... appending result to the output ffdf
 \end{verbatim}
 
 \begin{Shaded}
@@ -5518,7 +5488,7 @@ From the raw numbers it is hard to see whether there are significant differences
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{bigdata_files/figure-latex/unnamed-chunk-178-1.pdf}
+\includegraphics{bigdata_files/figure-latex/unnamed-chunk-177-1.pdf}
 
 The plot suggests that trips involving more than one passenger tend to be paid rather by cash than by credit card.
 
@@ -5663,7 +5633,7 @@ First, let's look at the raw relationship between fare paid and the tip paid. We
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{bigdata_files/figure-latex/unnamed-chunk-186-1.pdf}
+\includegraphics{bigdata_files/figure-latex/unnamed-chunk-185-1.pdf}
 
 Now we visualize the co-distribution of the two variables with a simple scatter-plot.
 
@@ -5675,7 +5645,7 @@ Now we visualize the co-distribution of the two variables with a simple scatter-
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{bigdata_files/figure-latex/unnamed-chunk-187-1.pdf}
+\includegraphics{bigdata_files/figure-latex/unnamed-chunk-186-1.pdf}
 
 Note that this took quite a while, as R had to literally plot one million dots on the canvas. Moreover many dots fall within the same area, making it impossible to recognize how much mass there actually is. This is typical for visualization exercises with large data sets. One way to improve this, is by making the dots more transparent by setting the \texttt{alpha} parameter.
 
@@ -5687,7 +5657,7 @@ Note that this took quite a while, as R had to literally plot one million dots o
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{bigdata_files/figure-latex/unnamed-chunk-188-1.pdf}
+\includegraphics{bigdata_files/figure-latex/unnamed-chunk-187-1.pdf}
 
 Alternatively, we can compute two-dimensional bins. Thereby, the canvas is split into rectangles and the number of observations falling into each respective rectangle is computed. The visualization is based on plotting the rectangles with counts greater than 0 and the shading of the rectangles indicates the count values.
 
@@ -5699,7 +5669,7 @@ Alternatively, we can compute two-dimensional bins. Thereby, the canvas is split
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{bigdata_files/figure-latex/unnamed-chunk-189-1.pdf}
+\includegraphics{bigdata_files/figure-latex/unnamed-chunk-188-1.pdf}
 
 A large part of the tip/fare observations seem to be in the very lower-left corner of the pane, while most other trips seem to be evenly distributed. However, we fail to see slighter differences in this visualization. In order to reduce the dominance of the 2d-bins with very high counts, we display the natural logarithm of counts and display the bins as points.
 
@@ -5718,7 +5688,7 @@ A large part of the tip/fare observations seem to be in the very lower-left corn
 ## Please use `guides(<scale> = "none")` instead.
 \end{verbatim}
 
-\includegraphics{bigdata_files/figure-latex/unnamed-chunk-190-1.pdf}
+\includegraphics{bigdata_files/figure-latex/unnamed-chunk-189-1.pdf}
 
 We note that there are many cases with very low fare amounts, many cases with no or hardly any tip, and quite a lot of cases with very high tip amounts (in relation to the rather low fare amount). In the following, we dissect this picture by having a closer look at `typical' tip amounts and whether they differ by type of payment.
 
@@ -5736,7 +5706,7 @@ We note that there are many cases with very low fare amounts, many cases with no
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{bigdata_files/figure-latex/unnamed-chunk-191-1.pdf}
+\includegraphics{bigdata_files/figure-latex/unnamed-chunk-190-1.pdf}
 
 Indeed, paying no tip at all is quite frequent, overall.\footnote{Or, could there be another explanation for this pattern in the data?} The bar plot also indicates that there seem to be some `focal points' in the amount of tips paid. Clearly, paying one USD or two USD is more common than paying fractions. However, fractions of dollars might be more likely if tips are paid in cash and customers simply add some loose change to the fare amount paid.
 
@@ -5747,7 +5717,7 @@ Indeed, paying no tip at all is quite frequent, overall.\footnote{Or, could ther
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{bigdata_files/figure-latex/unnamed-chunk-192-1.pdf}
+\includegraphics{bigdata_files/figure-latex/unnamed-chunk-191-1.pdf}
 
 Clearly, it looks like trips paid in cash tend not to be tipped (at least in this subsample).
 
@@ -5766,7 +5736,7 @@ Let's try to tease this information out of the initial points plot. Trips paid i
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{bigdata_files/figure-latex/unnamed-chunk-193-1.pdf}
+\includegraphics{bigdata_files/figure-latex/unnamed-chunk-192-1.pdf}
 
 Now the picture is getting clearer. Paying tip seems to follow certain rules of thumb. Certain fixed amounts tend to be paid independent of the fare amount (visible in the straight lines of dots on the right-hand panel). At the same time, the pattern in the left panel indicates another habit: computing the amount of tip as a linear function of the total fare amount (`pay 10\% tip'). A third habit might be to determine the amount of tip by `rounding up' the total amount paid. In the following, we try to tease the latter out, only focusing on credit card payments.
 
@@ -5783,7 +5753,7 @@ Now the picture is getting clearer. Paying tip seems to follow certain rules of 
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{bigdata_files/figure-latex/unnamed-chunk-194-1.pdf}
+\includegraphics{bigdata_files/figure-latex/unnamed-chunk-193-1.pdf}
 
 Now we can start modelling. A reasonable first shot is to model the tip amount as a linear function of the fare amount, conditional on the no-zero tip amounts paid as fractions of a dollar.
 
@@ -5801,7 +5771,7 @@ Now we can start modelling. A reasonable first shot is to model the tip amount a
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics{bigdata_files/figure-latex/unnamed-chunk-195-1.pdf}
+\includegraphics{bigdata_files/figure-latex/unnamed-chunk-194-1.pdf}
 
 Finally, we prepare the plot for reporting. \texttt{ggplot2} provides several predefined `themes' for plots which define all kind of aspects of a plot (background color, line colors, font size etc.). The easiest way to tweak the design of your final plot in a certain direction is to just add such a pre-defined theme at the end of your plot. Some of the pre-defined themes allow you to change a few aspects such as the font type and the base size of all the texts in the plot (labels and tick numbers etc.). Here, we use the \texttt{theme\_bw()}, increase the font size and switch to serif-type font. \texttt{theme\_bw()} is one of the complete themes already shipped with the basic \texttt{ggplot2} installation.\footnote{See \href{https://ggplot2.tidyverse.org/reference/ggtheme.html}{the ggplot2 documentation} for a list of all pre-defined themes shipped with the basic installation.} Many more themes can be found in additional R packages (see, for example, the \href{https://cran.r-project.org/web/packages/ggthemes/index.html}{\texttt{ggthemes} package}).
 
@@ -5822,7 +5792,7 @@ Finally, we prepare the plot for reporting. \texttt{ggplot2} provides several pr
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics{bigdata_files/figure-latex/unnamed-chunk-196-1.pdf}
+\includegraphics{bigdata_files/figure-latex/unnamed-chunk-195-1.pdf}
 
 \hypertarget{excursus-modify-and-create-themes}{%
 \section{Excursus: modify and create themes}\label{excursus-modify-and-create-themes}}
@@ -5847,7 +5817,7 @@ Apart from using pre-defined themes as illustrated above, we can use the \texttt
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics{bigdata_files/figure-latex/unnamed-chunk-197-1.pdf}
+\includegraphics{bigdata_files/figure-latex/unnamed-chunk-196-1.pdf}
 
 There is a large list of plot design aspects that can be modified in this way (see \texttt{?theme()} for details).
 
@@ -5877,7 +5847,7 @@ Extensive design modifications via \texttt{theme()} can involve many lines of co
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics{bigdata_files/figure-latex/unnamed-chunk-198-1.pdf}
+\includegraphics{bigdata_files/figure-latex/unnamed-chunk-197-1.pdf}
 
 This practical approach does not require you to define every aspect of a theme. If you indeed want completely define every aspect of a theme, you can set \texttt{complete=TRUE} when calling the theme function.
 
@@ -5902,7 +5872,7 @@ This practical approach does not require you to define every aspect of a theme. 
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics{bigdata_files/figure-latex/unnamed-chunk-199-1.pdf}
+\includegraphics{bigdata_files/figure-latex/unnamed-chunk-198-1.pdf}
 
 Note that since we have only defined one aspect (bold axis titles), the rest of the elements follow the default theme.
 
@@ -5946,7 +5916,7 @@ If you really want to implement a theme as a function. The following blueprint c
 ## `geom_smooth()` using formula 'y ~ x'
 \end{verbatim}
 
-\includegraphics{bigdata_files/figure-latex/unnamed-chunk-200-1.pdf}
+\includegraphics{bigdata_files/figure-latex/unnamed-chunk-199-1.pdf}
 
 \hypertarget{visualize-time-and-space}{%
 \section{Visualize Time and Space}\label{visualize-time-and-space}}
@@ -6106,7 +6076,7 @@ We initiate the plot by first setting up the canvas with our taxi trips data. Th
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{bigdata_files/figure-latex/unnamed-chunk-209-1.pdf}
+\includegraphics{bigdata_files/figure-latex/unnamed-chunk-208-1.pdf}
 
 Now we can start adding the pick-up and drop-off locations of cap trips.
 
@@ -6121,7 +6091,7 @@ Now we can start adding the pick-up and drop-off locations of cap trips.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{bigdata_files/figure-latex/unnamed-chunk-210-1.pdf}
+\includegraphics{bigdata_files/figure-latex/unnamed-chunk-209-1.pdf}
 
 As to be expected, most of the trips start in Manhattan. Now let's look at where trips end.
 
@@ -6140,7 +6110,7 @@ As to be expected, most of the trips start in Manhattan. Now let's look at where
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{bigdata_files/figure-latex/unnamed-chunk-211-1.pdf}
+\includegraphics{bigdata_files/figure-latex/unnamed-chunk-210-1.pdf}
 
 Incidentally, more trips tend to end outside of Manhattan. And the destinations seem to be broader spread across the city then the pick-up locations. Most destinations are still in Manhattan, though.
 
@@ -6158,7 +6128,7 @@ Now let's have a look at how this picture changes depending on the time of the d
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{bigdata_files/figure-latex/unnamed-chunk-212-1.pdf}
+\includegraphics{bigdata_files/figure-latex/unnamed-chunk-211-1.pdf}
 
 \begin{Shaded}
 \begin{Highlighting}[]
@@ -6172,7 +6142,7 @@ Now let's have a look at how this picture changes depending on the time of the d
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{bigdata_files/figure-latex/unnamed-chunk-213-1.pdf}
+\includegraphics{bigdata_files/figure-latex/unnamed-chunk-212-1.pdf}
 
 Alternatively, we can plot the hours on a continuous scale.
 
@@ -6188,7 +6158,7 @@ Alternatively, we can plot the hours on a continuous scale.
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{bigdata_files/figure-latex/unnamed-chunk-214-1.pdf}
+\includegraphics{bigdata_files/figure-latex/unnamed-chunk-213-1.pdf}
 
 \hypertarget{excursus-change-color-schemes}{%
 \section{Excursus: change color schemes}\label{excursus-change-color-schemes}}
@@ -6205,7 +6175,7 @@ In the example above we use \texttt{scale\_colour\_gradient2()} to modify the co
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{bigdata_files/figure-latex/unnamed-chunk-215-1.pdf}
+\includegraphics{bigdata_files/figure-latex/unnamed-chunk-214-1.pdf}
 
 \texttt{ggplot2} offers various functions to modify the color scales used in a plot. In the case of the example above, we visualize values of a continuous variable. Hence we use a gradient color scale. In case of categorical variables we need to modify the default discrete color scale.
 
@@ -6224,7 +6194,7 @@ Recall the plot illustrating tipping behavior, where we highlight in which obser
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{bigdata_files/figure-latex/unnamed-chunk-216-1.pdf}
+\includegraphics{bigdata_files/figure-latex/unnamed-chunk-215-1.pdf}
 
 Since we do not further specify the discrete color scheme to be used, ggplot simply uses its default color scheme for this plot. We can change this as follows.
 
@@ -6242,7 +6212,7 @@ Since we do not further specify the discrete color scheme to be used, ggplot sim
 \end{Highlighting}
 \end{Shaded}
 
-\includegraphics{bigdata_files/figure-latex/unnamed-chunk-217-1.pdf}
+\includegraphics{bigdata_files/figure-latex/unnamed-chunk-216-1.pdf}
 
 \hypertarget{bottle-necks-in-local-big-data-analytics}{%
 \chapter{Bottle Necks in Local Big Data Analytics}\label{bottle-necks-in-local-big-data-analytics}}
@@ -6331,11 +6301,11 @@ The last result is kind of interesting. The object \texttt{flights} must have be
 
 \begin{verbatim}
 ##             used   (Mb) gc trigger   (Mb)  max used
-## Ncells   8423937  449.9   14642848  782.1  13007720
-## Vcells 232083800 1770.7  401800560 3065.5 401800560
+## Ncells   8439657  450.8   14682698  784.2  13024085
+## Vcells 232105381 1770.9  401573396 3063.8 401562431
 ##          (Mb)
-## Ncells  694.7
-## Vcells 3065.5
+## Ncells  695.6
+## Vcells 3063.7
 \end{verbatim}
 
 Now, let's see how we can improve the performance of this script with regard to memory allocation. Most memory is allocated when importing the file. Obviously, any improvement of the script must still result in importing all the data. However, there are different ways to read data into RAM. \texttt{read.csv()} reads all lines of a csv file consecutively. In contrast, \texttt{data.table::fread()} first `maps' the data file into memory and only then actually reads it in line by line. This involves an additional initial step, but the larger the file, the less relevant is this first step with regard to the total time needed to read all the data into memory. By switching on the \texttt{verbose} option, we can actually see what \texttt{fread} is doing.
@@ -6352,19 +6322,19 @@ Now, let's see how we can improve the performance of this script with regard to 
 
 \begin{verbatim}
 ##   OpenMP version (_OPENMP)       201511
-##   omp_get_num_procs()            12
+##   omp_get_num_procs()            4
 ##   R_DATATABLE_NUM_PROCS_PERCENT  unset (default 50)
 ##   R_DATATABLE_NUM_THREADS        unset
 ##   R_DATATABLE_THROTTLE           unset (default 1024)
 ##   omp_get_thread_limit()         2147483647
-##   omp_get_max_threads()          12
+##   omp_get_max_threads()          4
 ##   OMP_THREAD_LIMIT               unset
 ##   OMP_NUM_THREADS                unset
 ##   RestoreAfterFork               true
-##   data.table is using 6 threads with throttle==1024. See ?setDTthreads.
+##   data.table is using 2 threads with throttle==1024. See ?setDTthreads.
 ## Input contains no \n. Taking this to be a filename to open
 ## [01] Check arguments
-##   Using 6 threads (omp_get_max_threads()=12, nth=6)
+##   Using 2 threads (omp_get_max_threads()=4, nth=2)
 ##   NAstrings = [<<NA>>]
 ##   None of the NAstrings look like numbers.
 ##   show progress = 0
@@ -6403,7 +6373,7 @@ Now, let's see how we can improve the performance of this script with regard to 
 ##   Allocating 19 column slots (19 - 0 dropped) with 370043 rows
 ## [11] Read the data
 ##   jumps=[0..30), chunk_size=1032016, total_size=30960501
-## Read 336776 rows x 19 columns from 29.53MB (30960660 bytes) file in 00:00.073 wall clock time
+## Read 336776 rows x 19 columns from 29.53MB (30960660 bytes) file in 00:00.066 wall clock time
 ## [12] Finalizing the datatable
 ##   Type counts:
 ##         14 : int32     '5'
@@ -6414,12 +6384,12 @@ Now, let's see how we can improve the performance of this script with regard to 
 ##    0.003s (  4%) sep=',' ncol=19 and header detection
 ##    0.000s (  0%) Column type detection using 10048 sample rows
 ##    0.001s (  1%) Allocation of 370043 rows x 19 cols (0.033GB) of which 336776 ( 91%) rows used
-##    0.069s ( 94%) Reading 30 chunks (0 swept) of 0.984MB (each chunk 11225 rows) using 6 threads
-##    +    0.015s ( 21%) Parse to row-major thread buffers (grown 0 times)
-##    +    0.034s ( 46%) Transpose
-##    +    0.020s ( 27%) Waiting
+##    0.062s ( 94%) Reading 30 chunks (0 swept) of 0.984MB (each chunk 11225 rows) using 2 threads
+##    +    0.033s ( 51%) Parse to row-major thread buffers (grown 0 times)
+##    +    0.027s ( 41%) Transpose
+##    +    0.002s (  2%) Waiting
 ##    0.000s (  0%) Rereading 0 columns due to out-of-sample type exceptions
-##    0.073s        Total
+##    0.066s        Total
 \end{verbatim}
 
 Let's put it all together and look at the memory changes and usage. For a fair comparison, we first have to delete \texttt{flights} and collect the garbage with \texttt{gc()}.
@@ -6442,11 +6412,11 @@ Let's put it all together and look at the memory changes and usage. For a fair c
 
 \begin{verbatim}
 ##             used   (Mb) gc trigger   (Mb)  max used
-## Ncells   8416358  449.5   14642848  782.1  13007720
-## Vcells 228921447 1746.6  401800560 3065.5 401800560
+## Ncells   8432078  450.4   14682698  784.2  13024085
+## Vcells 228943027 1746.7  401573396 3063.8 401562431
 ##          (Mb)
-## Ncells  694.7
-## Vcells 3065.5
+## Ncells  695.6
+## Vcells 3063.7
 \end{verbatim}
 
 \begin{Shaded}
@@ -6547,7 +6517,7 @@ How long does it take?
 
 \begin{verbatim}
 ##    user  system elapsed 
-##   0.096   0.000   0.095
+##   0.078   0.000   0.078
 \end{verbatim}
 
 Assuming a linear time algorithm (\(O(n)\)), we need that much time for one additional row of data:
@@ -6561,7 +6531,7 @@ Assuming a linear time algorithm (\(O(n)\)), we need that much time for one addi
 
 \begin{verbatim}
 ##   elapsed 
-## 2.069e-05
+## 1.699e-05
 \end{verbatim}
 
 If we deal with big data, say 100 million rows, that is
@@ -6575,7 +6545,7 @@ If we deal with big data, say 100 million rows, that is
 
 \begin{verbatim}
 ## elapsed 
-##    2069
+##    1699
 \end{verbatim}
 
 \begin{Shaded}
@@ -6587,7 +6557,7 @@ If we deal with big data, say 100 million rows, that is
 
 \begin{verbatim}
 ## elapsed 
-##   34.48
+##   28.31
 \end{verbatim}
 
 \begin{Shaded}
@@ -6599,7 +6569,7 @@ If we deal with big data, say 100 million rows, that is
 
 \begin{verbatim}
 ## elapsed 
-##  0.5747
+##  0.4718
 \end{verbatim}
 
 Can we improve this?
@@ -6637,7 +6607,7 @@ Let's see if this helped to make the code faster.
 
 \begin{verbatim}
 ##   elapsed 
-## 1.524e-06
+## 1.307e-06
 \end{verbatim}
 
 Again, we can extrapolate (approximately) the computation time, assuming the data set had millions of rows.
@@ -6651,7 +6621,7 @@ Again, we can extrapolate (approximately) the computation time, assuming the dat
 
 \begin{verbatim}
 ## elapsed 
-##   152.4
+##   130.7
 \end{verbatim}
 
 \begin{Shaded}
@@ -6663,7 +6633,7 @@ Again, we can extrapolate (approximately) the computation time, assuming the dat
 
 \begin{verbatim}
 ## elapsed 
-##   2.541
+##   2.178
 \end{verbatim}
 
 \begin{Shaded}
@@ -6675,7 +6645,7 @@ Again, we can extrapolate (approximately) the computation time, assuming the dat
 
 \begin{verbatim}
 ## elapsed 
-## 0.04234
+##  0.0363
 \end{verbatim}
 
 This looks much better, but we can do even better.
@@ -6769,7 +6739,7 @@ Now we get a more precise picture regarding the improvement due to vectorization
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.154
+## [1] 0.1346
 \end{verbatim}
 
 \begin{Shaded}
@@ -6780,7 +6750,7 @@ Now we get a more precise picture regarding the improvement due to vectorization
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.002566
+## [1] 0.002243
 \end{verbatim}
 
 \begin{Shaded}
@@ -6791,7 +6761,7 @@ Now we get a more precise picture regarding the improvement due to vectorization
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 4.277e-05
+## [1] 3.738e-05
 \end{verbatim}
 
 \hypertarget{case-study-bootstrapping-and-parallel-processing}{%
@@ -6980,7 +6950,7 @@ As a last step, we compute again \(SE_{boot}\).
 
 \begin{verbatim}
 ## (Intercept)       white 
-##    0.004783    0.005467
+##    0.004260    0.004879
 \end{verbatim}
 
 \hypertarget{parallelization-with-an-ec2-instance-1}{%
@@ -7210,7 +7180,7 @@ In order to set a point of reference, we first estimate specification (1) with s
 
 \begin{verbatim}
 ## elapsed 
-##   12.83
+##    11.8
 \end{verbatim}
 
 As expected, this takes quite some time to compute. However, there is an alternative approach to estimating such models that substantially reduces the computational burden by ``sweeping out the fixed effects dummies''. In the simple case of only one fixed effect variable (e.g., only individual fixed effects), the trick is called ``within transformation'' or ``demeaning'' and is quite simple to implement. For each of the categories in the fixed effect variable the mean of the covariate and subtract the mean from the covariate's value.
@@ -7239,7 +7209,7 @@ As expected, this takes quite some time to compute. However, there is an alterna
 \end{Shaded}
 
 \begin{verbatim}
-## [1] 0.003799
+## [1] 0.003897
 \end{verbatim}
 
 \begin{Shaded}
@@ -7315,25 +7285,17 @@ Finally we can display the regression table.
 
 \begin{verbatim}
 ## 
-## ===================================================
 ##                            Dependent variable:     
-##                        ----------------------------
 ##                               Vote (yes/no)        
 ##                             (1)            (2)     
-## ---------------------------------------------------
 ## School Connected Votes    0.045***      0.052***   
 ##                           (0.016)        (0.016)   
-##                                                    
 ## State Votes               0.119***      0.122***   
 ##                           (0.013)        (0.012)   
-##                                                    
 ## Party Votes               0.926***      0.945***   
 ##                           (0.022)        (0.024)   
-##                                                    
-## ---------------------------------------------------
 ## Observations              425,653        425,653   
 ## Adjusted R2                0.641          0.641    
-## ===================================================
 ## Note:                   *p<0.1; **p<0.05; ***p<0.01
 \end{verbatim}
 
@@ -7364,7 +7326,7 @@ Apart from \texttt{keras}, we load packages to prepare the data and visualize th
 \end{Shaded}
 
 \begin{verbatim}
-## Loaded Tensorflow version 2.5.0
+## Loaded Tensorflow version 2.8.0
 \end{verbatim}
 
 \begin{Shaded}
@@ -7583,6 +7545,12 @@ From just comparing the number of threads of a modern CPU with the number of thr
 
 \hypertarget{part-application-topics-in-big-data-econometrics}{%
 \part{Application: Topics in Big Data Econometrics}\label{part-application-topics-in-big-data-econometrics}}
+
+\hypertarget{a}{%
+\chapter*{Introduction}\label{a}}
+
+
+\index{Application: Topics in Big Data Econometrics }
 
 \hypertarget{regression-analysis-and-categorization-with-spark-and-r}{%
 \chapter{Regression Analysis and Categorization with Spark and R}\label{regression-analysis-and-categorization-with-spark-and-r}}
@@ -8066,20 +8034,19 @@ Based on this cleaned set of words, we can compute the word count for the entire
 
 \begin{verbatim}
 ## # Source: spark<wordcount_tell> [?? x 2]
-##    word           n
-##    <chr>      <dbl>
-##  1 language       2
-##  2 martin         1
-##  3 baron          8
-##  4 nephew         3
-##  5 hofe           3
-##  6 reding        16
-##  7 fisherman     39
-##  8 baumgarten    32
-##  9 hildegard      3
-## 10 soldiers       4
+##    word         n
+##    <chr>    <dbl>
+##  1 ebook       11
+##  2 copy        12
+##  3 online       4
+##  4 title        3
+##  5 date         3
+##  6 language     2
+##  7 start        4
+##  8 produced     3
+##  9 david        2
+## 10 theodore     1
 ## # ... with more rows
-## # i Use `print(n = ...)` to see more rows
 \end{verbatim}
 
 \backmatter

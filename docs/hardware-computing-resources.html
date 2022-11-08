@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 4 Hardware: Computing Resources | Big Data Analytics</title>
+  <title>Chapter 6 Hardware: Computing Resources | Big Data Analytics</title>
   <meta name="description" content="A guide to data science practitioners making the transition to Big Data." />
   <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 4 Hardware: Computing Resources | Big Data Analytics" />
+  <meta property="og:title" content="Chapter 6 Hardware: Computing Resources | Big Data Analytics" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://umatter.github.io/BigData/img/cover.png" />
   <meta property="og:description" content="A guide to data science practitioners making the transition to Big Data." />
   <meta name="github-repo" content="umatter/BigData" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 4 Hardware: Computing Resources | Big Data Analytics" />
+  <meta name="twitter:title" content="Chapter 6 Hardware: Computing Resources | Big Data Analytics" />
   
   <meta name="twitter:description" content="A guide to data science practitioners making the transition to Big Data." />
   <meta name="twitter:image" content="https://umatter.github.io/BigData/img/cover.png" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-09-23" />
+<meta name="date" content="2022-11-08" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -92,7 +92,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -105,7 +105,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -158,206 +158,210 @@ div.csl-indent {
 <li><a href="./">Big Data Analytics</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a>
 <ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#license"><i class="fa fa-check"></i>License</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
 <li class="part"><span><b>I Setting the Scene: Analyzing Big Data</b></span></li>
-<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<li class="chapter" data-level="" data-path="s.html"><a href="s.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="2" data-path="what-is-big-in-big-data.html"><a href="what-is-big-in-big-data.html"><i class="fa fa-check"></i><b>2</b> What is <em>big</em> in “Big Data”?</a></li>
+<li class="chapter" data-level="3" data-path="approaches-to-analyzing-big-data.html"><a href="approaches-to-analyzing-big-data.html"><i class="fa fa-check"></i><b>3</b> Approaches to analyzing Big Data</a></li>
+<li class="chapter" data-level="4" data-path="two-domains-of-big-data-analytics.html"><a href="two-domains-of-big-data-analytics.html"><i class="fa fa-check"></i><b>4</b> Two domains of Big Data Analytics</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="introduction.html"><a href="introduction.html#what-is-big-in-big-data"><i class="fa fa-check"></i><b>1.1</b> What is <em>big</em> in “Big Data”?</a></li>
-<li class="chapter" data-level="1.2" data-path="introduction.html"><a href="introduction.html#approaches-to-analyzing-big-data"><i class="fa fa-check"></i><b>1.2</b> Approaches to analyzing Big Data</a></li>
-<li class="chapter" data-level="1.3" data-path="introduction.html"><a href="introduction.html#content-overview"><i class="fa fa-check"></i><b>1.3</b> Content overview</a></li>
+<li class="chapter" data-level="4.1" data-path="two-domains-of-big-data-analytics.html"><a href="two-domains-of-big-data-analytics.html#a-practical-big-p-problem"><i class="fa fa-check"></i><b>4.1</b> A practical <em>big P</em> problem</a></li>
+<li class="chapter" data-level="4.2" data-path="two-domains-of-big-data-analytics.html"><a href="two-domains-of-big-data-analytics.html#a-practical-big-n-problem"><i class="fa fa-check"></i><b>4.2</b> A practical <em>big N</em> problem</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="two-domains-of-big-data-analytics.html"><a href="two-domains-of-big-data-analytics.html#ols-as-a-point-of-reference"><i class="fa fa-check"></i><b>4.2.1</b> OLS as a point of reference</a></li>
+<li class="chapter" data-level="4.2.2" data-path="two-domains-of-big-data-analytics.html"><a href="two-domains-of-big-data-analytics.html#the-uluru-algorithm-as-an-alternative-to-ols"><i class="fa fa-check"></i><b>4.2.2</b> The <em>Uluru</em> algorithm as an alternative to OLS</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="two-domains-of-big-data-analytics.html"><a href="two-domains-of-big-data-analytics.html"><i class="fa fa-check"></i><b>2</b> Two domains of Big Data Analytics</a>
-<ul>
-<li class="chapter" data-level="2.1" data-path="two-domains-of-big-data-analytics.html"><a href="two-domains-of-big-data-analytics.html#a-practical-big-p-problem"><i class="fa fa-check"></i><b>2.1</b> A practical <em>big P</em> problem</a></li>
-<li class="chapter" data-level="2.2" data-path="two-domains-of-big-data-analytics.html"><a href="two-domains-of-big-data-analytics.html#a-practical-big-n-problem"><i class="fa fa-check"></i><b>2.2</b> A practical <em>big N</em> problem</a>
-<ul>
-<li class="chapter" data-level="2.2.1" data-path="two-domains-of-big-data-analytics.html"><a href="two-domains-of-big-data-analytics.html#ols-as-a-point-of-reference"><i class="fa fa-check"></i><b>2.2.1</b> OLS as a point of reference</a></li>
-<li class="chapter" data-level="2.2.2" data-path="two-domains-of-big-data-analytics.html"><a href="two-domains-of-big-data-analytics.html#the-uluru-algorithm-as-an-alternative-to-ols"><i class="fa fa-check"></i><b>2.2.2</b> The <em>Uluru</em> algorithm as an alternative to OLS</a></li>
-</ul></li>
-<li class="chapter" data-level="2.3" data-path="two-domains-of-big-data-analytics.html"><a href="two-domains-of-big-data-analytics.html#conclusion"><i class="fa fa-check"></i><b>2.3</b> Conclusion</a></li>
+<li class="chapter" data-level="4.3" data-path="two-domains-of-big-data-analytics.html"><a href="two-domains-of-big-data-analytics.html#conclusion"><i class="fa fa-check"></i><b>4.3</b> Conclusion</a></li>
 </ul></li>
 <li class="part"><span><b>II Platform: Software and Computing Resources</b></span></li>
-<li class="chapter" data-level="3" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html"><i class="fa fa-check"></i><b>3</b> Software: Programming with (Big) Data</a>
+<li class="chapter" data-level="" data-path="p.html"><a href="p.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="5" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html"><i class="fa fa-check"></i><b>5</b> Software: Programming with (Big) Data</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#domains-of-programming-with-big-data"><i class="fa fa-check"></i><b>3.1</b> Domains of programming with (big) data</a></li>
-<li class="chapter" data-level="3.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#measuring-r-performance"><i class="fa fa-check"></i><b>3.2</b> Measuring R performance</a></li>
-<li class="chapter" data-level="3.3" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#writing-efficient-r-code"><i class="fa fa-check"></i><b>3.3</b> Writing efficient R code</a>
+<li class="chapter" data-level="5.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#domains-of-programming-with-big-data"><i class="fa fa-check"></i><b>5.1</b> Domains of programming with (big) data</a></li>
+<li class="chapter" data-level="5.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#measuring-r-performance"><i class="fa fa-check"></i><b>5.2</b> Measuring R performance</a></li>
+<li class="chapter" data-level="5.3" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#writing-efficient-r-code"><i class="fa fa-check"></i><b>5.3</b> Writing efficient R code</a>
 <ul>
-<li class="chapter" data-level="3.3.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#memory-allocation-and-growing-objects"><i class="fa fa-check"></i><b>3.3.1</b> Memory allocation and growing objects</a></li>
-<li class="chapter" data-level="3.3.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#vectorization-in-basic-r-functions"><i class="fa fa-check"></i><b>3.3.2</b> Vectorization in basic R functions</a></li>
-<li class="chapter" data-level="3.3.3" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#apply-type-functions-and-vectorization"><i class="fa fa-check"></i><b>3.3.3</b> <code>apply</code>-type functions and vectorization</a></li>
-<li class="chapter" data-level="3.3.4" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#avoid-unnecessary-copying"><i class="fa fa-check"></i><b>3.3.4</b> Avoid unnecessary copying</a></li>
-<li class="chapter" data-level="3.3.5" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#releasing-memory"><i class="fa fa-check"></i><b>3.3.5</b> Releasing memory</a></li>
-<li class="chapter" data-level="3.3.6" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#beyond-r"><i class="fa fa-check"></i><b>3.3.6</b> Beyond R</a></li>
+<li class="chapter" data-level="5.3.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#memory-allocation-and-growing-objects"><i class="fa fa-check"></i><b>5.3.1</b> Memory allocation and growing objects</a></li>
+<li class="chapter" data-level="5.3.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#vectorization-in-basic-r-functions"><i class="fa fa-check"></i><b>5.3.2</b> Vectorization in basic R functions</a></li>
+<li class="chapter" data-level="5.3.3" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#apply-type-functions-and-vectorization"><i class="fa fa-check"></i><b>5.3.3</b> <code>apply</code>-type functions and vectorization</a></li>
+<li class="chapter" data-level="5.3.4" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#avoid-unnecessary-copying"><i class="fa fa-check"></i><b>5.3.4</b> Avoid unnecessary copying</a></li>
+<li class="chapter" data-level="5.3.5" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#releasing-memory"><i class="fa fa-check"></i><b>5.3.5</b> Releasing memory</a></li>
+<li class="chapter" data-level="5.3.6" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#beyond-r"><i class="fa fa-check"></i><b>5.3.6</b> Beyond R</a></li>
 </ul></li>
-<li class="chapter" data-level="3.4" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#sql-basics"><i class="fa fa-check"></i><b>3.4</b> SQL basics</a>
+<li class="chapter" data-level="5.4" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#sql-basics"><i class="fa fa-check"></i><b>5.4</b> SQL basics</a>
 <ul>
-<li class="chapter" data-level="3.4.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#first-steps-in-sqlite"><i class="fa fa-check"></i><b>3.4.1</b> First steps in SQL(ite)</a></li>
-<li class="chapter" data-level="3.4.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#joins"><i class="fa fa-check"></i><b>3.4.2</b> Joins</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="4" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html"><i class="fa fa-check"></i><b>4</b> Hardware: Computing Resources</a>
-<ul>
-<li class="chapter" data-level="4.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#components-of-a-standard-computing-environment"><i class="fa fa-check"></i><b>4.1</b> Components of a standard computing environment</a></li>
-<li class="chapter" data-level="4.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#mass-storage"><i class="fa fa-check"></i><b>4.2</b> Mass storage</a>
-<ul>
-<li class="chapter" data-level="4.2.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#avoid-redundancies"><i class="fa fa-check"></i><b>4.2.1</b> Avoid redundancies</a></li>
-<li class="chapter" data-level="4.2.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#data-compression"><i class="fa fa-check"></i><b>4.2.2</b> Data compression</a></li>
-</ul></li>
-<li class="chapter" data-level="4.3" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#random-access-memory-ram"><i class="fa fa-check"></i><b>4.3</b> Random access memory (RAM)</a></li>
-<li class="chapter" data-level="4.4" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#combining-ram-and-hard-disk-virtual-memory"><i class="fa fa-check"></i><b>4.4</b> Combining RAM and hard disk: virtual memory</a></li>
-<li class="chapter" data-level="4.5" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#cpu-and-parallelization"><i class="fa fa-check"></i><b>4.5</b> CPU and parallelization</a>
-<ul>
-<li class="chapter" data-level="4.5.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#naive-multi-session-approach"><i class="fa fa-check"></i><b>4.5.1</b> Naive multi-session approach</a></li>
-<li class="chapter" data-level="4.5.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#multi-core-and-multi-node-approach"><i class="fa fa-check"></i><b>4.5.2</b> Multi-core and multi-node approach</a></li>
-</ul></li>
-<li class="chapter" data-level="4.6" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#gpus-for-scientific-computing"><i class="fa fa-check"></i><b>4.6</b> GPUs for scientific computing</a>
-<ul>
-<li class="chapter" data-level="4.6.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#gpus-in-r"><i class="fa fa-check"></i><b>4.6.1</b> GPUs in R</a></li>
-</ul></li>
-<li class="chapter" data-level="4.7" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#the-road-ahead-hardware-made-for-machine-learning"><i class="fa fa-check"></i><b>4.7</b> The road ahead: Hardware made for machine learning</a></li>
-<li class="chapter" data-level="4.8" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#insufficient-computing-resources"><i class="fa fa-check"></i><b>4.8</b> Insufficient computing resources?</a></li>
-</ul></li>
-<li class="chapter" data-level="5" data-path="distributed-systems.html"><a href="distributed-systems.html"><i class="fa fa-check"></i><b>5</b> Distributed Systems</a>
-<ul>
-<li class="chapter" data-level="5.1" data-path="distributed-systems.html"><a href="distributed-systems.html#mapreduce"><i class="fa fa-check"></i><b>5.1</b> MapReduce</a>
-<ul>
-<li class="chapter" data-level="5.1.1" data-path="distributed-systems.html"><a href="distributed-systems.html#mapreduce-concept-illustrated-in-r"><i class="fa fa-check"></i><b>5.1.1</b> Map/Reduce Concept Illustrated in R</a></li>
-<li class="chapter" data-level="5.1.2" data-path="distributed-systems.html"><a href="distributed-systems.html#mapper"><i class="fa fa-check"></i><b>5.1.2</b> Mapper</a></li>
-<li class="chapter" data-level="5.1.3" data-path="distributed-systems.html"><a href="distributed-systems.html#reducer"><i class="fa fa-check"></i><b>5.1.3</b> Reducer</a></li>
-</ul></li>
-<li class="chapter" data-level="5.2" data-path="distributed-systems.html"><a href="distributed-systems.html#hadoop"><i class="fa fa-check"></i><b>5.2</b> Hadoop</a>
-<ul>
-<li class="chapter" data-level="5.2.1" data-path="distributed-systems.html"><a href="distributed-systems.html#hadoop-word-count-example"><i class="fa fa-check"></i><b>5.2.1</b> Hadoop word count example</a></li>
-</ul></li>
-<li class="chapter" data-level="5.3" data-path="distributed-systems.html"><a href="distributed-systems.html#spark"><i class="fa fa-check"></i><b>5.3</b> Spark</a></li>
-<li class="chapter" data-level="5.4" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-r"><i class="fa fa-check"></i><b>5.4</b> Spark with R</a>
-<ul>
-<li class="chapter" data-level="5.4.1" data-path="distributed-systems.html"><a href="distributed-systems.html#data-import-and-summary-statistics"><i class="fa fa-check"></i><b>5.4.1</b> Data import and summary statistics</a></li>
-</ul></li>
-<li class="chapter" data-level="5.5" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-sql"><i class="fa fa-check"></i><b>5.5</b> Spark with SQL</a></li>
-<li class="chapter" data-level="5.6" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-r-sql"><i class="fa fa-check"></i><b>5.6</b> Spark with R + SQL</a></li>
-</ul></li>
-<li class="chapter" data-level="6" data-path="cloud-computing.html"><a href="cloud-computing.html"><i class="fa fa-check"></i><b>6</b> Cloud Computing</a>
-<ul>
-<li class="chapter" data-level="6.1" data-path="cloud-computing.html"><a href="cloud-computing.html#cloud-computing-basics-and-platforms"><i class="fa fa-check"></i><b>6.1</b> Cloud computing basics and platforms</a></li>
-<li class="chapter" data-level="6.2" data-path="cloud-computing.html"><a href="cloud-computing.html#scaling-up-in-the-cloud"><i class="fa fa-check"></i><b>6.2</b> Scaling up in the cloud</a>
-<ul>
-<li class="chapter" data-level="6.2.1" data-path="cloud-computing.html"><a href="cloud-computing.html#scaling-up-with-aws-ec2-and-rrstudio"><i class="fa fa-check"></i><b>6.2.1</b> Scaling up with AWS EC2 and R/RStudio</a></li>
-<li class="chapter" data-level="6.2.2" data-path="cloud-computing.html"><a href="cloud-computing.html#scaling-up-with-gpus"><i class="fa fa-check"></i><b>6.2.2</b> Scaling up with GPUs</a></li>
-</ul></li>
-<li class="chapter" data-level="6.3" data-path="cloud-computing.html"><a href="cloud-computing.html#gpus-on-google-colab"><i class="fa fa-check"></i><b>6.3</b> GPUs on Google Colab</a></li>
-<li class="chapter" data-level="6.4" data-path="cloud-computing.html"><a href="cloud-computing.html#aws-emr-mapreduce-in-the-cloud"><i class="fa fa-check"></i><b>6.4</b> AWS EMR: MapReduce in the cloud</a></li>
-</ul></li>
-<li class="part"><span><b>III Applied Big Data Analytics</b></span></li>
-<li class="chapter" data-level="7" data-path="forms-of-big-data-and-the-data-pipeline.html"><a href="forms-of-big-data-and-the-data-pipeline.html"><i class="fa fa-check"></i><b>7</b> Forms of Big Data and the Data Pipeline</a>
-<ul>
-<li class="chapter" data-level="7.1" data-path="forms-of-big-data-and-the-data-pipeline.html"><a href="forms-of-big-data-and-the-data-pipeline.html#unstructured-semi-structured-structured-data"><i class="fa fa-check"></i><b>7.1</b> Unstructured, semi-structured, structured data</a></li>
-<li class="chapter" data-level="7.2" data-path="forms-of-big-data-and-the-data-pipeline.html"><a href="forms-of-big-data-and-the-data-pipeline.html#data-pipelines-a-systematic-approach-to-processing-big-data"><i class="fa fa-check"></i><b>7.2</b> Data pipelines: a systematic approach to processing big data</a></li>
-</ul></li>
-<li class="chapter" data-level="8" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html"><i class="fa fa-check"></i><b>8</b> Data Collection and Data Storage</a>
-<ul>
-<li class="chapter" data-level="8.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#gathering-and-compilation-of-raw-data"><i class="fa fa-check"></i><b>8.1</b> Gathering and compilation of raw data</a>
-<ul>
-<li class="chapter" data-level="8.1.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#nyc-taxi-data"><i class="fa fa-check"></i><b>8.1.1</b> NYC taxi data</a></li>
-</ul></li>
-<li class="chapter" data-level="8.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#data-import-and-memory-allocation"><i class="fa fa-check"></i><b>8.2</b> Data import and memory allocation</a></li>
-<li class="chapter" data-level="8.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#efficient-local-data-storage"><i class="fa fa-check"></i><b>8.3</b> Efficient local data storage</a>
-<ul>
-<li class="chapter" data-level="8.3.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#rdbms-basics"><i class="fa fa-check"></i><b>8.3.1</b> RDBMS basics</a></li>
-<li class="chapter" data-level="8.3.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#efficient-data-access-indices-and-joins-in-sqlite"><i class="fa fa-check"></i><b>8.3.2</b> Efficient data access: indices and joins in SQLite</a></li>
-</ul></li>
-<li class="chapter" data-level="8.4" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#connecting-r-to-rdbms"><i class="fa fa-check"></i><b>8.4</b> Connecting R to RDBMS</a>
-<ul>
-<li class="chapter" data-level="8.4.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#creating-a-new-database-with-rsqlite"><i class="fa fa-check"></i><b>8.4.1</b> Creating a new database with <code>RSQLite</code></a></li>
-<li class="chapter" data-level="8.4.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#importing-data"><i class="fa fa-check"></i><b>8.4.2</b> Importing data</a></li>
-<li class="chapter" data-level="8.4.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#issue-queries"><i class="fa fa-check"></i><b>8.4.3</b> Issue queries</a></li>
-</ul></li>
-<li class="chapter" data-level="8.5" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#cloud-solutions-for-big-data-storage"><i class="fa fa-check"></i><b>8.5</b> Cloud solutions for (big) data storage</a>
-<ul>
-<li class="chapter" data-level="8.5.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#easy-to-use-rdbms-in-the-cloud-aws-rds"><i class="fa fa-check"></i><b>8.5.1</b> Easy-to-use RDBMS in the cloud: AWS RDS</a></li>
-<li class="chapter" data-level="8.5.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#database-server-in-the-cloud-mariadb-on-an-ec2-instance"><i class="fa fa-check"></i><b>8.5.2</b> Database server in the cloud: MariaDB on an EC2 instance</a></li>
+<li class="chapter" data-level="5.4.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#first-steps-in-sqlite"><i class="fa fa-check"></i><b>5.4.1</b> First steps in SQL(ite)</a></li>
+<li class="chapter" data-level="5.4.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#joins"><i class="fa fa-check"></i><b>5.4.2</b> Joins</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="9" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html"><i class="fa fa-check"></i><b>9</b> Big Data Cleaning and Transformation</a>
+<li class="chapter" data-level="6" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html"><i class="fa fa-check"></i><b>6</b> Hardware: Computing Resources</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#out-of-memory-strategies"><i class="fa fa-check"></i><b>9.1</b> ‘Out-of-memory’ strategies</a>
+<li class="chapter" data-level="6.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#components-of-a-standard-computing-environment"><i class="fa fa-check"></i><b>6.1</b> Components of a standard computing environment</a></li>
+<li class="chapter" data-level="6.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#mass-storage"><i class="fa fa-check"></i><b>6.2</b> Mass storage</a>
 <ul>
-<li class="chapter" data-level="9.1.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#chunking-data-with-the-ff-package"><i class="fa fa-check"></i><b>9.1.1</b> Chunking data with the <code>ff</code>-package</a></li>
-<li class="chapter" data-level="9.1.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#memory-mapping-with-bigmemory"><i class="fa fa-check"></i><b>9.1.2</b> Memory mapping with <code>bigmemory</code></a></li>
+<li class="chapter" data-level="6.2.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#avoid-redundancies"><i class="fa fa-check"></i><b>6.2.1</b> Avoid redundancies</a></li>
+<li class="chapter" data-level="6.2.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#data-compression"><i class="fa fa-check"></i><b>6.2.2</b> Data compression</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#typical-cleaning-tasks"><i class="fa fa-check"></i><b>9.2</b> Typical cleaning tasks</a>
+<li class="chapter" data-level="6.3" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#random-access-memory-ram"><i class="fa fa-check"></i><b>6.3</b> Random access memory (RAM)</a></li>
+<li class="chapter" data-level="6.4" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#combining-ram-and-hard-disk-virtual-memory"><i class="fa fa-check"></i><b>6.4</b> Combining RAM and hard disk: virtual memory</a></li>
+<li class="chapter" data-level="6.5" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#cpu-and-parallelization"><i class="fa fa-check"></i><b>6.5</b> CPU and parallelization</a>
 <ul>
-<li class="chapter" data-level="9.2.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#data-preparation-with-ff"><i class="fa fa-check"></i><b>9.2.1</b> Data Preparation with <code>ff</code></a></li>
+<li class="chapter" data-level="6.5.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#naive-multi-session-approach"><i class="fa fa-check"></i><b>6.5.1</b> Naive multi-session approach</a></li>
+<li class="chapter" data-level="6.5.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#multi-core-and-multi-node-approach"><i class="fa fa-check"></i><b>6.5.2</b> Multi-core and multi-node approach</a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#gpus-for-scientific-computing"><i class="fa fa-check"></i><b>6.6</b> GPUs for scientific computing</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#gpus-in-r"><i class="fa fa-check"></i><b>6.6.1</b> GPUs in R</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#the-road-ahead-hardware-made-for-machine-learning"><i class="fa fa-check"></i><b>6.7</b> The road ahead: Hardware made for machine learning</a></li>
+<li class="chapter" data-level="6.8" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#insufficient-computing-resources"><i class="fa fa-check"></i><b>6.8</b> Insufficient computing resources?</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="distributed-systems.html"><a href="distributed-systems.html"><i class="fa fa-check"></i><b>7</b> Distributed Systems</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="distributed-systems.html"><a href="distributed-systems.html#mapreduce"><i class="fa fa-check"></i><b>7.1</b> MapReduce</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="distributed-systems.html"><a href="distributed-systems.html#mapreduce-concept-illustrated-in-r"><i class="fa fa-check"></i><b>7.1.1</b> Map/Reduce Concept Illustrated in R</a></li>
+<li class="chapter" data-level="7.1.2" data-path="distributed-systems.html"><a href="distributed-systems.html#mapper"><i class="fa fa-check"></i><b>7.1.2</b> Mapper</a></li>
+<li class="chapter" data-level="7.1.3" data-path="distributed-systems.html"><a href="distributed-systems.html#reducer"><i class="fa fa-check"></i><b>7.1.3</b> Reducer</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="distributed-systems.html"><a href="distributed-systems.html#hadoop"><i class="fa fa-check"></i><b>7.2</b> Hadoop</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="distributed-systems.html"><a href="distributed-systems.html#hadoop-word-count-example"><i class="fa fa-check"></i><b>7.2.1</b> Hadoop word count example</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="distributed-systems.html"><a href="distributed-systems.html#spark"><i class="fa fa-check"></i><b>7.3</b> Spark</a></li>
+<li class="chapter" data-level="7.4" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-r"><i class="fa fa-check"></i><b>7.4</b> Spark with R</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="distributed-systems.html"><a href="distributed-systems.html#data-import-and-summary-statistics"><i class="fa fa-check"></i><b>7.4.1</b> Data import and summary statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-sql"><i class="fa fa-check"></i><b>7.5</b> Spark with SQL</a></li>
+<li class="chapter" data-level="7.6" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-r-sql"><i class="fa fa-check"></i><b>7.6</b> Spark with R + SQL</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="cloud-computing.html"><a href="cloud-computing.html"><i class="fa fa-check"></i><b>8</b> Cloud Computing</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="cloud-computing.html"><a href="cloud-computing.html#cloud-computing-basics-and-platforms"><i class="fa fa-check"></i><b>8.1</b> Cloud computing basics and platforms</a></li>
+<li class="chapter" data-level="8.2" data-path="cloud-computing.html"><a href="cloud-computing.html#scaling-up-in-the-cloud"><i class="fa fa-check"></i><b>8.2</b> Scaling up in the cloud</a>
+<ul>
+<li class="chapter" data-level="8.2.1" data-path="cloud-computing.html"><a href="cloud-computing.html#scaling-up-with-aws-ec2-and-rrstudio"><i class="fa fa-check"></i><b>8.2.1</b> Scaling up with AWS EC2 and R/RStudio</a></li>
+<li class="chapter" data-level="8.2.2" data-path="cloud-computing.html"><a href="cloud-computing.html#scaling-up-with-gpus"><i class="fa fa-check"></i><b>8.2.2</b> Scaling up with GPUs</a></li>
+</ul></li>
+<li class="chapter" data-level="8.3" data-path="cloud-computing.html"><a href="cloud-computing.html#gpus-on-google-colab"><i class="fa fa-check"></i><b>8.3</b> GPUs on Google Colab</a></li>
+<li class="chapter" data-level="8.4" data-path="cloud-computing.html"><a href="cloud-computing.html#scaling-out-mapreduce-in-the-cloud"><i class="fa fa-check"></i><b>8.4</b> Scaling out: MapReduce in the cloud</a></li>
+</ul></li>
+<li class="part"><span><b>III Components of Big Data Analytics</b></span></li>
+<li class="chapter" data-level="" data-path="c.html"><a href="c.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="9" data-path="forms-of-big-data-and-the-data-pipeline.html"><a href="forms-of-big-data-and-the-data-pipeline.html"><i class="fa fa-check"></i><b>9</b> Forms of Big Data and the Data Pipeline</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="forms-of-big-data-and-the-data-pipeline.html"><a href="forms-of-big-data-and-the-data-pipeline.html#unstructured-semi-structured-structured-data"><i class="fa fa-check"></i><b>9.1</b> Unstructured, semi-structured, structured data</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html"><i class="fa fa-check"></i><b>10</b> Data Collection and Data Storage</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#gathering-and-compilation-of-raw-data"><i class="fa fa-check"></i><b>10.1</b> Gathering and compilation of raw data</a>
+<ul>
+<li class="chapter" data-level="10.1.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#nyc-taxi-data"><i class="fa fa-check"></i><b>10.1.1</b> NYC taxi data</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#data-import-and-memory-allocation"><i class="fa fa-check"></i><b>10.2</b> Data import and memory allocation</a></li>
+<li class="chapter" data-level="10.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#efficient-local-data-storage"><i class="fa fa-check"></i><b>10.3</b> Efficient local data storage</a>
+<ul>
+<li class="chapter" data-level="10.3.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#rdbms-basics"><i class="fa fa-check"></i><b>10.3.1</b> RDBMS basics</a></li>
+<li class="chapter" data-level="10.3.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#efficient-data-access-indices-and-joins-in-sqlite"><i class="fa fa-check"></i><b>10.3.2</b> Efficient data access: indices and joins in SQLite</a></li>
+</ul></li>
+<li class="chapter" data-level="10.4" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#connecting-r-to-rdbms"><i class="fa fa-check"></i><b>10.4</b> Connecting R to RDBMS</a>
+<ul>
+<li class="chapter" data-level="10.4.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#creating-a-new-database-with-rsqlite"><i class="fa fa-check"></i><b>10.4.1</b> Creating a new database with <code>RSQLite</code></a></li>
+<li class="chapter" data-level="10.4.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#importing-data"><i class="fa fa-check"></i><b>10.4.2</b> Importing data</a></li>
+<li class="chapter" data-level="10.4.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#issue-queries"><i class="fa fa-check"></i><b>10.4.3</b> Issue queries</a></li>
+</ul></li>
+<li class="chapter" data-level="10.5" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#cloud-solutions-for-big-data-storage"><i class="fa fa-check"></i><b>10.5</b> Cloud solutions for (big) data storage</a>
+<ul>
+<li class="chapter" data-level="10.5.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#easy-to-use-rdbms-in-the-cloud-aws-rds"><i class="fa fa-check"></i><b>10.5.1</b> Easy-to-use RDBMS in the cloud: AWS RDS</a></li>
+<li class="chapter" data-level="10.5.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#database-server-in-the-cloud-mariadb-on-an-ec2-instance"><i class="fa fa-check"></i><b>10.5.2</b> Database server in the cloud: MariaDB on an EC2 instance</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html"><i class="fa fa-check"></i><b>10</b> Descriptive Statistics and Aggregation</a>
+<li class="chapter" data-level="11" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html"><i class="fa fa-check"></i><b>11</b> Big Data Cleaning and Transformation</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-the-split-apply-combine-strategy"><i class="fa fa-check"></i><b>10.1</b> Data aggregation: The ‘split-apply-combine’ strategy</a>
+<li class="chapter" data-level="11.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#out-of-memory-strategies"><i class="fa fa-check"></i><b>11.1</b> ‘Out-of-memory’ strategies</a>
 <ul>
-<li class="chapter" data-level="10.1.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-with-chunked-data-files"><i class="fa fa-check"></i><b>10.1.1</b> Data aggregation with chunked data files</a></li>
-<li class="chapter" data-level="10.1.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#cross-tabulation-of-ff-vectors"><i class="fa fa-check"></i><b>10.1.2</b> Cross-tabulation of <code>ff</code> vectors</a></li>
+<li class="chapter" data-level="11.1.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#chunking-data-with-the-ff-package"><i class="fa fa-check"></i><b>11.1.1</b> Chunking data with the <code>ff</code>-package</a></li>
+<li class="chapter" data-level="11.1.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#memory-mapping-with-bigmemory"><i class="fa fa-check"></i><b>11.1.2</b> Memory mapping with <code>bigmemory</code></a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>10.2</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
+<li class="chapter" data-level="11.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#typical-cleaning-tasks"><i class="fa fa-check"></i><b>11.2</b> Typical cleaning tasks</a>
+<ul>
+<li class="chapter" data-level="11.2.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#data-preparation-with-ff"><i class="fa fa-check"></i><b>11.2.1</b> Data Preparation with <code>ff</code></a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="big-data-visualization.html"><a href="big-data-visualization.html"><i class="fa fa-check"></i><b>11</b> (Big) Data Visualization</a>
-<ul>
-<li class="chapter" data-level="11.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#data-exploration-with-ggplot2"><i class="fa fa-check"></i><b>11.1</b> Data exploration with <code>ggplot2</code></a></li>
-<li class="chapter" data-level="11.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-modify-and-create-themes"><i class="fa fa-check"></i><b>11.2</b> Excursus: modify and create themes</a>
-<ul>
-<li class="chapter" data-level="11.2.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#create-your-own-theme-simple-approach"><i class="fa fa-check"></i><b>11.2.1</b> Create your own theme: simple approach</a></li>
-<li class="chapter" data-level="11.2.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#implementing-actual-themes-as-functions."><i class="fa fa-check"></i><b>11.2.2</b> Implementing actual themes as functions.</a></li>
 </ul></li>
-<li class="chapter" data-level="11.3" data-path="big-data-visualization.html"><a href="big-data-visualization.html#visualize-time-and-space"><i class="fa fa-check"></i><b>11.3</b> Visualize Time and Space</a>
+<li class="chapter" data-level="12" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html"><i class="fa fa-check"></i><b>12</b> Descriptive Statistics and Aggregation</a>
 <ul>
-<li class="chapter" data-level="11.3.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#preparations"><i class="fa fa-check"></i><b>11.3.1</b> Preparations</a></li>
-<li class="chapter" data-level="11.3.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#pick-up-and-drop-off-locations"><i class="fa fa-check"></i><b>11.3.2</b> Pick-up and drop-off locations</a></li>
+<li class="chapter" data-level="12.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-the-split-apply-combine-strategy"><i class="fa fa-check"></i><b>12.1</b> Data aggregation: The ‘split-apply-combine’ strategy</a>
+<ul>
+<li class="chapter" data-level="12.1.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-with-chunked-data-files"><i class="fa fa-check"></i><b>12.1.1</b> Data aggregation with chunked data files</a></li>
+<li class="chapter" data-level="12.1.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#cross-tabulation-of-ff-vectors"><i class="fa fa-check"></i><b>12.1.2</b> Cross-tabulation of <code>ff</code> vectors</a></li>
 </ul></li>
-<li class="chapter" data-level="11.4" data-path="big-data-visualization.html"><a href="big-data-visualization.html#excursus-change-color-schemes"><i class="fa fa-check"></i><b>11.4</b> Excursus: change color schemes</a></li>
+<li class="chapter" data-level="12.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>12.2</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html"><i class="fa fa-check"></i><b>12</b> Bottle Necks in Local Big Data Analytics</a>
+<li class="chapter" data-level="13" data-path="big-data-visualization.html"><a href="big-data-visualization.html"><i class="fa fa-check"></i><b>13</b> (Big) Data Visualization</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#case-study-data-import-and-memory-allocation"><i class="fa fa-check"></i><b>12.1</b> Case study: Data Import and Memory Allocation</a></li>
-<li class="chapter" data-level="12.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#case-study-loops-memory-and-vectorization"><i class="fa fa-check"></i><b>12.2</b> Case Study: Loops, Memory, and Vectorization</a>
+<li class="chapter" data-level="13.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#data-exploration-with-ggplot2"><i class="fa fa-check"></i><b>13.1</b> Data exploration with <code>ggplot2</code></a></li>
+<li class="chapter" data-level="13.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#aside-modify-and-create-themes"><i class="fa fa-check"></i><b>13.2</b> Aside: modify and create themes</a>
 <ul>
-<li class="chapter" data-level="12.2.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#preparation"><i class="fa fa-check"></i><b>12.2.1</b> Preparation</a></li>
-<li class="chapter" data-level="12.2.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#naïve-approach-ignorant-of-r"><i class="fa fa-check"></i><b>12.2.2</b> Naïve Approach (ignorant of R)</a></li>
-<li class="chapter" data-level="12.2.3" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#improvement-1-pre-allocation-of-memory"><i class="fa fa-check"></i><b>12.2.3</b> Improvement 1: Pre-allocation of memory</a></li>
-<li class="chapter" data-level="12.2.4" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#improvement-2-exploit-vectorization"><i class="fa fa-check"></i><b>12.2.4</b> Improvement 2: Exploit vectorization</a></li>
+<li class="chapter" data-level="13.2.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#create-your-own-theme-simple-approach"><i class="fa fa-check"></i><b>13.2.1</b> Create your own theme: simple approach</a></li>
+<li class="chapter" data-level="13.2.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#implementing-actual-themes-as-functions."><i class="fa fa-check"></i><b>13.2.2</b> Implementing actual themes as functions.</a></li>
 </ul></li>
-<li class="chapter" data-level="12.3" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#case-study-bootstrapping-and-parallel-processing"><i class="fa fa-check"></i><b>12.3</b> Case study: Bootstrapping and Parallel Processing</a>
+<li class="chapter" data-level="13.3" data-path="big-data-visualization.html"><a href="big-data-visualization.html#visualize-time-and-space"><i class="fa fa-check"></i><b>13.3</b> Visualize Time and Space</a>
 <ul>
-<li class="chapter" data-level="12.3.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#parallelization-with-an-ec2-instance-1"><i class="fa fa-check"></i><b>12.3.1</b> Parallelization with an EC2 instance</a></li>
+<li class="chapter" data-level="13.3.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#preparations"><i class="fa fa-check"></i><b>13.3.1</b> Preparations</a></li>
+<li class="chapter" data-level="13.3.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#pick-up-and-drop-off-locations"><i class="fa fa-check"></i><b>13.3.2</b> Pick-up and drop-off locations</a></li>
 </ul></li>
-<li class="chapter" data-level="12.4" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#case-study-efficient-fixed-effects-estimation"><i class="fa fa-check"></i><b>12.4</b> Case Study: Efficient Fixed Effects Estimation</a></li>
+<li class="chapter" data-level="13.4" data-path="big-data-visualization.html"><a href="big-data-visualization.html#aside-change-color-schemes"><i class="fa fa-check"></i><b>13.4</b> Aside: change color schemes</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="gpus-and-machine-learning.html"><a href="gpus-and-machine-learning.html"><i class="fa fa-check"></i><b>13</b> GPUs and Machine Learning</a>
+<li class="chapter" data-level="14" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html"><i class="fa fa-check"></i><b>14</b> Bottle Necks in Local Big Data Analytics</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="gpus-and-machine-learning.html"><a href="gpus-and-machine-learning.html#tensorflowkeras-example-predict-housing-prices"><i class="fa fa-check"></i><b>13.1</b> Tensorflow/Keras example: predict housing prices</a></li>
-<li class="chapter" data-level="13.2" data-path="gpus-and-machine-learning.html"><a href="gpus-and-machine-learning.html#data-preparation-1"><i class="fa fa-check"></i><b>13.2</b> Data preparation</a></li>
-<li class="chapter" data-level="13.3" data-path="gpus-and-machine-learning.html"><a href="gpus-and-machine-learning.html#model-specification"><i class="fa fa-check"></i><b>13.3</b> Model specification</a></li>
-<li class="chapter" data-level="13.4" data-path="gpus-and-machine-learning.html"><a href="gpus-and-machine-learning.html#training-and-prediction"><i class="fa fa-check"></i><b>13.4</b> Training and prediction</a>
+<li class="chapter" data-level="14.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#case-study-data-import-and-memory-allocation"><i class="fa fa-check"></i><b>14.1</b> Case study: Data Import and Memory Allocation</a></li>
+<li class="chapter" data-level="14.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#case-study-loops-memory-and-vectorization"><i class="fa fa-check"></i><b>14.2</b> Case Study: Loops, Memory, and Vectorization</a>
 <ul>
-<li class="chapter" data-level="13.4.1" data-path="gpus-and-machine-learning.html"><a href="gpus-and-machine-learning.html#a-word-of-caution"><i class="fa fa-check"></i><b>13.4.1</b> A word of caution</a></li>
+<li class="chapter" data-level="14.2.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#preparation"><i class="fa fa-check"></i><b>14.2.1</b> Preparation</a></li>
+<li class="chapter" data-level="14.2.2" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#naïve-approach-ignorant-of-r"><i class="fa fa-check"></i><b>14.2.2</b> Naïve Approach (ignorant of R)</a></li>
+<li class="chapter" data-level="14.2.3" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#improvement-1-pre-allocation-of-memory"><i class="fa fa-check"></i><b>14.2.3</b> Improvement 1: Pre-allocation of memory</a></li>
+<li class="chapter" data-level="14.2.4" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#improvement-2-exploit-vectorization"><i class="fa fa-check"></i><b>14.2.4</b> Improvement 2: Exploit vectorization</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#case-study-bootstrapping-and-parallel-processing"><i class="fa fa-check"></i><b>14.3</b> Case study: Bootstrapping and Parallel Processing</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#parallelization-with-an-ec2-instance-1"><i class="fa fa-check"></i><b>14.3.1</b> Parallelization with an EC2 instance</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="bottle-necks-in-local-big-data-analytics.html"><a href="bottle-necks-in-local-big-data-analytics.html#case-study-efficient-fixed-effects-estimation"><i class="fa fa-check"></i><b>14.4</b> Case Study: Efficient Fixed Effects Estimation</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="gpus-and-machine-learning.html"><a href="gpus-and-machine-learning.html"><i class="fa fa-check"></i><b>15</b> GPUs and Machine Learning</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="gpus-and-machine-learning.html"><a href="gpus-and-machine-learning.html#tensorflowkeras-example-predict-housing-prices"><i class="fa fa-check"></i><b>15.1</b> Tensorflow/Keras example: predict housing prices</a></li>
+<li class="chapter" data-level="15.2" data-path="gpus-and-machine-learning.html"><a href="gpus-and-machine-learning.html#data-preparation-1"><i class="fa fa-check"></i><b>15.2</b> Data preparation</a></li>
+<li class="chapter" data-level="15.3" data-path="gpus-and-machine-learning.html"><a href="gpus-and-machine-learning.html#model-specification"><i class="fa fa-check"></i><b>15.3</b> Model specification</a></li>
+<li class="chapter" data-level="15.4" data-path="gpus-and-machine-learning.html"><a href="gpus-and-machine-learning.html#training-and-prediction"><i class="fa fa-check"></i><b>15.4</b> Training and prediction</a>
+<ul>
+<li class="chapter" data-level="15.4.1" data-path="gpus-and-machine-learning.html"><a href="gpus-and-machine-learning.html#a-word-of-caution"><i class="fa fa-check"></i><b>15.4.1</b> A word of caution</a></li>
 </ul></li>
 </ul></li>
 <li class="part"><span><b>IV Application: Topics in Big Data Econometrics</b></span></li>
-<li class="chapter" data-level="14" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html"><i class="fa fa-check"></i><b>14</b> Regression Analysis and Categorization with Spark and R</a>
+<li class="chapter" data-level="" data-path="a.html"><a href="a.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="16" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html"><i class="fa fa-check"></i><b>16</b> Regression Analysis and Categorization with Spark and R</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#simple-regression-analysis"><i class="fa fa-check"></i><b>14.1</b> Simple regression analysis</a></li>
-<li class="chapter" data-level="14.2" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#machine-learning-for-classification"><i class="fa fa-check"></i><b>14.2</b> Machine learning for classification</a></li>
-<li class="chapter" data-level="14.3" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#building-machine-learning-pipelines-with-r-and-spark"><i class="fa fa-check"></i><b>14.3</b> Building machine learning pipelines with R and Spark</a>
+<li class="chapter" data-level="16.1" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#simple-regression-analysis"><i class="fa fa-check"></i><b>16.1</b> Simple regression analysis</a></li>
+<li class="chapter" data-level="16.2" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#machine-learning-for-classification"><i class="fa fa-check"></i><b>16.2</b> Machine learning for classification</a></li>
+<li class="chapter" data-level="16.3" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#building-machine-learning-pipelines-with-r-and-spark"><i class="fa fa-check"></i><b>16.3</b> Building machine learning pipelines with R and Spark</a>
 <ul>
-<li class="chapter" data-level="14.3.1" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#set-up-and-data-import"><i class="fa fa-check"></i><b>14.3.1</b> Set up and data import</a></li>
-<li class="chapter" data-level="14.3.2" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#building-the-pipeline"><i class="fa fa-check"></i><b>14.3.2</b> Building the pipeline</a></li>
+<li class="chapter" data-level="16.3.1" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#set-up-and-data-import"><i class="fa fa-check"></i><b>16.3.1</b> Set up and data import</a></li>
+<li class="chapter" data-level="16.3.2" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#building-the-pipeline"><i class="fa fa-check"></i><b>16.3.2</b> Building the pipeline</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html"><i class="fa fa-check"></i><b>15</b> Large-scale Text Analysis with sparklyr</a>
+<li class="chapter" data-level="17" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html"><i class="fa fa-check"></i><b>17</b> Large-scale Text Analysis with sparklyr</a>
 <ul>
-<li class="chapter" data-level="15.1" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#getting-started-import-preparation-and-word-frequencies"><i class="fa fa-check"></i><b>15.1</b> Getting started: import, preparation, and word frequencies</a></li>
+<li class="chapter" data-level="17.1" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#getting-started-import-preparation-and-word-frequencies"><i class="fa fa-check"></i><b>17.1</b> Getting started: import, preparation, and word frequencies</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="appendix-a.html"><a href="appendix-a.html"><i class="fa fa-check"></i><b>A</b> Appendix A</a>
@@ -409,16 +413,16 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="hardware-computing-resources" class="section level1 hasAnchor" number="4">
-<h1><span class="header-section-number">Chapter 4</span> Hardware: Computing Resources<a href="hardware-computing-resources.html#hardware-computing-resources" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="hardware-computing-resources" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Hardware: Computing Resources<a href="hardware-computing-resources.html#hardware-computing-resources" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>In order to better understand how we can use the available computing resources most efficiently in an analytics task, this chapter first briefly reviews the most basic hardware components and how they matter for computation. We then look at each of these components (and additional specialized components) through the lens of Big Data. That is, for each component, we look at how this component becomes a crucial bottleneck when processing large amounts of data and what we can do about it in R.</p>
-<div id="components-of-a-standard-computing-environment" class="section level2 hasAnchor" number="4.1">
-<h2><span class="header-section-number">4.1</span> Components of a standard computing environment<a href="hardware-computing-resources.html#components-of-a-standard-computing-environment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="components-of-a-standard-computing-environment" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Components of a standard computing environment<a href="hardware-computing-resources.html#components-of-a-standard-computing-environment" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Figure <a href="#components"><strong>??</strong></a> illustrates the key components of a standard computing environment to process digital data. In our case, these components serve the purpose of computing a statistic, given a large dataset as input.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:components"></span>
 <img src="img/computing_environment.png" alt="Basic components of a standard computing environment." width="99%" />
 <p class="caption">
-Figure 4.1: Basic components of a standard computing environment.
+Figure 6.1: Basic components of a standard computing environment.
 </p>
 </div>
 
@@ -435,8 +439,8 @@ Figure 4.1: Basic components of a standard computing environment.
 </ul>
 <p>From a software perspective, there are many (context-specific) strategies that can help us to use the resources available more efficiently in order to process large amounts of data. In the following sub-sections, we first get an idea of what we mean by capacity and <em>big</em> regarding the most important hardware components. First we focus on mass storage and memory, then on the CPU, and finally on new alternatives to the CPU.</p>
 </div>
-<div id="mass-storage" class="section level2 hasAnchor" number="4.2">
-<h2><span class="header-section-number">4.2</span> Mass storage<a href="hardware-computing-resources.html#mass-storage" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="mass-storage" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Mass storage<a href="hardware-computing-resources.html#mass-storage" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In a simple computing environment, the mass storage device (hard disk) is where the data is stored to be analyzed. So, in what units do we measure the size of datasets and consequently the mass storage capacity of a computer? The smallest unit of information in computing/digital data is called a <em>bit</em> (from <em>bi</em>nary dig<em>it</em>; abbrev. ‘b’) and can take one of two (symbolic) values, either a <code>0</code> or a <code>1</code> (“off” or “on”). Consider, for example, the decimal number <code>139</code>. Written in the binary system, <code>139</code> corresponds to the binary number <code>10001011</code>. In order to store this number on a hard disk, we require a capacity of 8 bits, or one <em>byte</em> (1 byte = 8 bits; abbrev. ‘B’). Historically, one byte encoded a single character of text (i.e., in the ASCII character encoding system). When thinking of a given dataset in its raw/binary representation, we can simply think of it as a row of <code>0</code>s and <code>1</code>s.</p>
 <p>Bigger units for storage capacity usually build on bytes, for example:</p>
 <ul>
@@ -445,8 +449,8 @@ Figure 4.1: Basic components of a standard computing environment.
 <li><span class="math inline">\(1 \text{ gigabyte (GB)} = 1000^{3} \approx 2^{30} \text{ bytes}\)</span></li>
 </ul>
 <p>Currently, a common laptop or desktop computer has several hundred GBs of mass storage capacity. The problems related to a lack of mass storage capacity in Big Data analytics are likely the easiest to understand. Suppose you collect large amounts of data from an online source such as the Twitter API (application programming interface). At some point, R will throw an error and stop the data collection procedure as the operating system will not allow R to use up more disk space. The simplest solution to this problem is to clean up your hard disk: empty the trash, archive files in the cloud or on an external drive and delete them on the main disk, etc. In addition, there are some easy-to-learn tricks to use from within R to save some disk space.</p>
-<div id="avoid-redundancies" class="section level3 hasAnchor" number="4.2.1">
-<h3><span class="header-section-number">4.2.1</span> Avoid redundancies<a href="hardware-computing-resources.html#avoid-redundancies" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="avoid-redundancies" class="section level3 hasAnchor" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Avoid redundancies<a href="hardware-computing-resources.html#avoid-redundancies" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Different formats for structuring data stored on disk use up more or less space. A simple example is the comparison of JSON (JavaScript Object Notation) and CSV (Comma Separated Values) – both data structures that are widely used to store data for analytics purposes. JSON is much more flexible in that it allows the definition of arbitrarily complex hierarchical data structures (and even allows for hints at data types). However, this flexibility comes with some overhead in the usage of special characters to define the structure. Consider the following JSON excerpt of an economic time series fetched from the Federal Reserve’s <a href="https://fred.stlouisfed.org/docs/api/fred/series_observations.html#example_json">FRED API</a>.</p>
 <pre><code>{
     &quot;realtime_start&quot;: &quot;2013-08-14&quot;,
@@ -494,8 +498,8 @@ Figure 4.1: Basic components of a standard computing environment.
 <p>In fact, in that particular example, storing the data in JSON format would take up more than double the hard-disk space as CSV. Of course, this is not to say that one should generally store data in CSV files. In many situations, you might really have to rely on JSON’s flexibility to represent more complex structures. However, in practice it is very much worthwhile to think about whether you can improve storage efficiency by simply storing raw data in a different format.</p>
 <p>Another related point to storing data in CSV files is to remove redundancies by splitting the data into several tables/CSV files, whereby each table contains the variables exclusively describing the type of observation in it. For example, when analyzing customer data for marketing purposes, the dataset stored in one CSV file might be at the level of individual purchases. That is, each row contains both information on what has been purchased on which day by which customer as well as additional variables describing the customer (such as customer id, name, address, etc.). Instead of keeping all of this data in one file, we could split it into two files, where one only contains the order ids and corresponding customer ids as well as attributes of individual orders (but not additional attributes of the customers themselves) and the other contains the customer ids and all customer attributes. Thereby, we avoid redundancies in the form of repeatedly storing the same values of customer attributes (like name and address) for each order.<a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a></p>
 </div>
-<div id="data-compression" class="section level3 hasAnchor" number="4.2.2">
-<h3><span class="header-section-number">4.2.2</span> Data compression<a href="hardware-computing-resources.html#data-compression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="data-compression" class="section level3 hasAnchor" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> Data compression<a href="hardware-computing-resources.html#data-compression" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Data compression essentially follows from the same basic idea of avoiding redundancies in data storage as the simple approaches discussed above. However, it happens on a much more fundamental level. Data compression algorithms encode the information contained in the original representation of the data with fewer bits. In the case of lossless compression, this results in a new data file containing the exact same information but taking up less space on disk. In simple terms, compression replaces repeatedly occurring sequences with shorter expressions and keeps track of replacements in a table. Based on the table, the file can then be de-compressed to recreate the original representation of the data. For example, consider the following character string.</p>
 <pre><code>&quot;xxxxxyyyyyzzzz&quot;</code></pre>
 <p>The same data could be represented with fewer bits as:</p>
@@ -533,8 +537,8 @@ Figure 4.1: Basic components of a standard computing environment.
 <p>So far, we have only focused on data size in the context of mass storage capacity. But what happens once you load a large dataset into R (e.g., by means of <code>read.csv()</code>)? A program called a “parser” is executed that reads the raw data from the hard disk and creates a representation of that data in the R environment, that is, in random access memory (RAM). All common computers have more GBs of mass storage available than GBs of RAM. Hence, new issues of hardware capacity loom at the stage of data import, which brings us to the next subsection.</p>
 </div>
 </div>
-<div id="random-access-memory-ram" class="section level2 hasAnchor" number="4.3">
-<h2><span class="header-section-number">4.3</span> Random access memory (RAM)<a href="hardware-computing-resources.html#random-access-memory-ram" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="random-access-memory-ram" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Random access memory (RAM)<a href="hardware-computing-resources.html#random-access-memory-ram" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Currently, a common laptop or desktop computer has 8–32 GB of RAM capacity. These are more-or-less the numbers you should keep in the back of your mind for the examples/discussions that follow. That is, we will consider a dataset as “big” if it takes up several GBs in RAM (and therefore might overwhelm a machine with 8GB RAM capacity).</p>
 <p>There are several types of problems that you might run into in practice when attempting to import and analyze a dataset of the size close to or larger than your computer’s RAM capacity. First, importing the data might take much longer than expected, your computer might freeze during import (or later during the analysis), R/Rstudio might crash, or you might get an error message hinting at a lack of RAM. How can you anticipate such problems, and what can you do about them?</p>
 <p>Many of the techniques and packages discussed in the following chapters are in one way or another solutions to these kinds of problems. However, there are a few relatively simple things to keep in mind before we go into the details.</p>
@@ -545,14 +549,14 @@ Figure 4.1: Basic components of a standard computing environment.
 </ol>
 <p>Finally, recall the lessons regarding memory usage from the section “Writing efficient R code” in Chapter 1.</p>
 </div>
-<div id="combining-ram-and-hard-disk-virtual-memory" class="section level2 hasAnchor" number="4.4">
-<h2><span class="header-section-number">4.4</span> Combining RAM and hard disk: virtual memory<a href="hardware-computing-resources.html#combining-ram-and-hard-disk-virtual-memory" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="combining-ram-and-hard-disk-virtual-memory" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> Combining RAM and hard disk: virtual memory<a href="hardware-computing-resources.html#combining-ram-and-hard-disk-virtual-memory" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>What if all the RAM in our computer is not enough to store all the data we want to analyze?</p>
 <p>Modern operating systems (OSs) have a way of dealing with such a situation. Once all RAM is used up by the currently running programs, the OS allocates parts of the memory back to the hard disk, which then works as <em>virtual memory</em>. Figure 4.2 illustrates this point.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:vm"></span>
-<img src="img/virtual_memory.png" alt="Virtual memory. Overall memory is mapped to RAM and parts of the hard disk." width="75%" />
+<img src="img/virtual_memory.png" alt="Virtual memory. Overall memory is mapped to RAM and parts of the hard disk." width="40%" />
 <p class="caption">
-Figure 4.2: Virtual memory. Overall memory is mapped to RAM and parts of the hard disk.
+Figure 6.2: Virtual memory. Overall memory is mapped to RAM and parts of the hard disk.
 </p>
 </div>
 
@@ -560,8 +564,8 @@ Figure 4.2: Virtual memory. Overall memory is mapped to RAM and parts of the har
 <p>While this default usage of virtual memory by the OS is helpful for running several applications at the same time, each taking up a moderate amount of memory, it is not a really useful tool for processing large amounts of data in one application (R). However, the underlying idea of using both RAM and mass storage simultaneously in order to cope with a lack of memory is very useful in the context of Big Data analytics.</p>
 <p>Several R packages have been developed that exploit the idea behind virtual memory explicitly for analyzing large amounts of data. The basic idea behind these packages is to map a dataset to the hard disk when loading it into R. The actual data values are stored in chunks on the hard disk, while the structure/metadata of the dataset is loaded into R.</p>
 </div>
-<div id="cpu-and-parallelization" class="section level2 hasAnchor" number="4.5">
-<h2><span class="header-section-number">4.5</span> CPU and parallelization<a href="hardware-computing-resources.html#cpu-and-parallelization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="cpu-and-parallelization" class="section level2 hasAnchor" number="6.5">
+<h2><span class="header-section-number">6.5</span> CPU and parallelization<a href="hardware-computing-resources.html#cpu-and-parallelization" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The actual processing of the data is done in the computer’s central processing unit (CPU). Consequently, the performance of the CPU has a substantial effect on how fast a data analytics task runs. A CPU’s performance is usually denoted by its <em>clock rate</em> measured in gigaherz (GHz). In simple terms, a CPU with a clock rate of 4.8 GHz can execute 4.8 billion basic operations per second. Holding all other aspects constant, you can thus expect an analytics task to run faster if it runs on a computer with higher CPU clock rate. Alternatively to scaling up the CPU, we can exploit the fact that modern CPUs have several <em>cores</em>. In the normal usage of a PC, the operating system makes use of these cores to run several applications smoothly <em>in parallel</em> (e.g., you listen to music on Spotify while browsing the web and running some analytics script in RStudio in the background).</p>
 <p>Modern computing environments such as R allow us to explicitly run parts of the same analytics task in parallel, that is, on several CPU cores at the same time. Following the same logic, we can also connect several computers (each with several CPU cores) in a cluster computer and run the program in parallel on all of these computing nodes. Both of these approaches are generally referred to as <em>parallelization</em> and both are supported in several R packages.</p>
 <p>An R program run in parallel typically involves the following steps</p>
@@ -619,15 +623,15 @@ Figure 4.2: Virtual memory. Overall memory is mapped to RAM and parts of the har
 <span id="cb130-45"><a href="hardware-computing-resources.html#cb130-45" aria-hidden="true" tabindex="-1"></a><span class="co"># SELECT THE WINNER ---------------</span></span>
 <span id="cb130-46"><a href="hardware-computing-resources.html#cb130-46" aria-hidden="true" tabindex="-1"></a>models[[<span class="fu">which.max</span>(pseudo_Rsq)]]</span></code></pre></div>
 <pre><code>## [1] &quot;Response ~ MntWines&quot;</code></pre>
-<div id="naive-multi-session-approach" class="section level3 hasAnchor" number="4.5.1">
-<h3><span class="header-section-number">4.5.1</span> Naive multi-session approach<a href="hardware-computing-resources.html#naive-multi-session-approach" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="naive-multi-session-approach" class="section level3 hasAnchor" number="6.5.1">
+<h3><span class="header-section-number">6.5.1</span> Naive multi-session approach<a href="hardware-computing-resources.html#naive-multi-session-approach" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>There is actually a simple way of doing this “manually” on a multi-core PC, which intuitively illustrates the point of parallelization (although it would not be a very practical approach): you write an R script that loads the dataset, runs the fist <span class="math inline">\(n\)</span> of the total of <span class="math inline">\(N\)</span> regressions and stores the result in a local text file. Next, you run the script in your current RStudio session, open an additional RStudio session and run the script with the next <span class="math inline">\(n\)</span> regressions, and so on until all cores are occupied with one RStudio session. At the end you collect all of the results from the separate text files and combine them to get the final result. Depending on the problem at hand, this could indeed speed up the overall task, and it is technically speaking a form of “multi-session” approach. However, as you have surely noticed, this is unlikely to be a very practical approach.</p>
 </div>
-<div id="multi-core-and-multi-node-approach" class="section level3 hasAnchor" number="4.5.2">
-<h3><span class="header-section-number">4.5.2</span> Multi-core and multi-node approach<a href="hardware-computing-resources.html#multi-core-and-multi-node-approach" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="multi-core-and-multi-node-approach" class="section level3 hasAnchor" number="6.5.2">
+<h3><span class="header-section-number">6.5.2</span> Multi-core and multi-node approach<a href="hardware-computing-resources.html#multi-core-and-multi-node-approach" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>A more practical approach is to write one R script (with the help of some specialized packages) that instructs R to automatically distribute the batches to different cores (or different computing nodes in a cluster computer), control and monitor the progress in all cores, and then automatically collect and combine the results from all cores. There are several approaches to achieve this in R.</p>
-<div id="parallel-for-loops-using-socket" class="section level4 hasAnchor" number="4.5.2.1">
-<h4><span class="header-section-number">4.5.2.1</span> Parallel for-loops using socket<a href="hardware-computing-resources.html#parallel-for-loops-using-socket" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="parallel-for-loops-using-socket" class="section level4 hasAnchor" number="6.5.2.1">
+<h4><span class="header-section-number">6.5.2.1</span> Parallel for-loops using socket<a href="hardware-computing-resources.html#parallel-for-loops-using-socket" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Likely the most intuitive approach to parallelizing a task in R is the <code>foreach</code> package. It allows you to write a <code>foreach</code> statement that is very similar to the for-loop syntax in R. Hence, you can straightforwardly “translate” an already implemented sequential approach with a common for-loop to a parallel implementation.</p>
 <div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="hardware-computing-resources.html#cb132-1" aria-hidden="true" tabindex="-1"></a><span class="co"># COMPUTE REGRESSIONS IN PARALLEL (MULTI-CORE) --------------------------</span></span>
 <span id="cb132-2"><a href="hardware-computing-resources.html#cb132-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -660,8 +664,8 @@ Figure 4.2: Virtual memory. Overall memory is mapped to RAM and parts of the har
 <pre><code>## [1] &quot;Response ~ Year_Birth+Teenhome+Recency+MntWines+days_customer&quot;</code></pre>
 <p>With relatively few cases, this approach is not very fast due to the overhead of “distributing” variables/objects from the master process to all cores/workers. In simple terms, the socket approach means that the cores do not share the same variables/the same environment, which creates overhead. However, this approach is usually very stable and runs on all platforms.</p>
 </div>
-<div id="parallel-lapply-using-forking" class="section level4 hasAnchor" number="4.5.2.2">
-<h4><span class="header-section-number">4.5.2.2</span> Parallel lapply using forking<a href="hardware-computing-resources.html#parallel-lapply-using-forking" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="parallel-lapply-using-forking" class="section level4 hasAnchor" number="6.5.2.2">
+<h4><span class="header-section-number">6.5.2.2</span> Parallel lapply using forking<a href="hardware-computing-resources.html#parallel-lapply-using-forking" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Finally, let us look at the implementation based on forking. In the fork approach, each core works with the same objects/variables in a shared environment, which makes this approach very fast. However, depending on what exactly is being computed, sharing an environment can cause problems.<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a> If you are not sure whether your set up might run into issues with forking, it would be better to rely on a non-fork approach.</p>
 <div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="hardware-computing-resources.html#cb134-1" aria-hidden="true" tabindex="-1"></a><span class="co"># COMPUTE REGRESSIONS IN PARALLEL (MULTI-CORE) ---------------</span></span>
 <span id="cb134-2"><a href="hardware-computing-resources.html#cb134-2" aria-hidden="true" tabindex="-1"></a></span>
@@ -693,13 +697,13 @@ Figure 4.2: Virtual memory. Overall memory is mapped to RAM and parts of the har
 </div>
 </div>
 </div>
-<div id="gpus-for-scientific-computing" class="section level2 hasAnchor" number="4.6">
-<h2><span class="header-section-number">4.6</span> GPUs for scientific computing<a href="hardware-computing-resources.html#gpus-for-scientific-computing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="gpus-for-scientific-computing" class="section level2 hasAnchor" number="6.6">
+<h2><span class="header-section-number">6.6</span> GPUs for scientific computing<a href="hardware-computing-resources.html#gpus-for-scientific-computing" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The success of the computer games industry in the late 1990s/early 2000s led to an interesting positive externality for scientific computing. The ever more demanding graphics of modern computer games and the huge economic success of the computer games industry set incentives for hardware producers to invest in research and development of more powerful ‘graphic cards’, extending a normal PC/computing environment with additional computing power solely dedicated to graphics. At the heart of these graphic cards are so-called GPUs (graphic processing units), microprocessors specifically optimized for graphics processing. Figure 4.3 depicts a modern graphics card similar to those commonly built into today’s ‘gaming’ PCs.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:gpu"></span>
 <img src="img/GPU.png" alt="Illustration of a graphic processing unit (GPU)." width="40%" />
 <p class="caption">
-Figure 4.3: Illustration of a graphic processing unit (GPU).
+Figure 6.3: Illustration of a graphic processing unit (GPU).
 </p>
 </div>
 
@@ -707,13 +711,13 @@ Figure 4.3: Illustration of a graphic processing unit (GPU).
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:gpuarchitecture"></span>
 <img src="img/gpu_details.png" alt="Illustration of a graphic processing unit (GPU)." width="95%" />
 <p class="caption">
-Figure 4.4: Illustration of a graphic processing unit (GPU).
+Figure 6.4: Illustration of a graphic processing unit (GPU).
 </p>
 </div>
 
 <p>While, initially, programming GPUs for scientific computing required a very good understanding of the hardware, graphics card producers have realized that there is an additional market for their products (in particular with the recent rise of deep learning) and now provide several high-level APIs to use GPUs for tasks other than graphics processing. Over the last few years, more high-level software has been developed that makes it much easier to use GPUs in parallel computing tasks. The following subsections show some examples of such software in the R environment.<a href="#fn22" class="footnote-ref" id="fnref22"><sup>22</sup></a></p>
-<div id="gpus-in-r" class="section level3 hasAnchor" number="4.6.1">
-<h3><span class="header-section-number">4.6.1</span> GPUs in R<a href="hardware-computing-resources.html#gpus-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="gpus-in-r" class="section level3 hasAnchor" number="6.6.1">
+<h3><span class="header-section-number">6.6.1</span> GPUs in R<a href="hardware-computing-resources.html#gpus-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <!-- ## Installation -->
 <!-- This is for pop OS machines. Install drivers etc. for NVIDIA card -->
 <!-- ```{bash eval=FALSE} -->
@@ -724,15 +728,15 @@ Figure 4.4: Illustration of a graphic processing unit (GPU).
 <!-- # sudo apt install tensorflow-cuda-latest -->
 <!-- ``` -->
 <!-- Install `gpuR` in R (`install.packages("gpuR")`). -->
-<div id="gpu-computing-example-matrix-multiplication-comparison-gpur" class="section level4 hasAnchor" number="4.6.1.1">
-<h4><span class="header-section-number">4.6.1.1</span> GPU computing example: Matrix multiplication comparison (<code>gpuR</code>)<a href="hardware-computing-resources.html#gpu-computing-example-matrix-multiplication-comparison-gpur" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div id="gpu-computing-example-matrix-multiplication-comparison-gpur" class="section level4 hasAnchor" number="6.6.1.1">
+<h4><span class="header-section-number">6.6.1.1</span> GPU computing example: Matrix multiplication comparison (<code>gpuR</code>)<a href="hardware-computing-resources.html#gpu-computing-example-matrix-multiplication-comparison-gpur" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>The <code>gpuR</code> package provides basic R functions to compute with GPUs from within the R environment. In the following example we compare the performance of a CPU with a GPU based on a matrix multiplication exercise. For a large <span class="math inline">\(N\times P\)</span> matrix <span class="math inline">\(X\)</span>, we want to compute <span class="math inline">\(X^tX\)</span>.</p>
 <p>In a first step, we load the <code>gpuR</code>-package.<a href="#fn23" class="footnote-ref" id="fnref23"><sup>23</sup></a> Note the output to the console. It shows the type of GPU identified by <code>gpuR</code>. This is the platform on which <code>gpuR</code> will compute the GPU examples. In order to compare the performances, we also load the <code>bench</code> package.</p>
 <div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb136-1"><a href="hardware-computing-resources.html#cb136-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load package</span></span>
 <span id="cb136-2"><a href="hardware-computing-resources.html#cb136-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bench)</span>
 <span id="cb136-3"><a href="hardware-computing-resources.html#cb136-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gpuR)</span></code></pre></div>
 <pre><code>## Number of platforms: 1
-## - platform: NVIDIA Corporation: OpenCL 3.0 CUDA 11.6.134
+## - platform: NVIDIA Corporation: OpenCL 3.0 CUDA 11.7.101
 ##   - context device index: 0
 ##     - NVIDIA GeForce GTX 1650
 ## checked all devices
@@ -768,33 +772,32 @@ Figure 4.4: Illustration of a graphic processing unit (GPU).
 <pre><code>## # A tibble: 3 × 6
 ##   expression                            min   median
 ##   &lt;bch:expr&gt;                       &lt;bch:tm&gt; &lt;bch:tm&gt;
-## 1 cpu &lt;- t(X) %*% X                    69ms   76.2ms
-## 2 gpu1_pointer &lt;- t(gpuX) %*% gpuX   32.8ms   33.4ms
-## 3 gpu2_memory &lt;- t(vclX) %*% vclX      10ms   14.9ms
+## 1 cpu &lt;- t(X) %*% X                  73.3ms   76.2ms
+## 2 gpu1_pointer &lt;- t(gpuX) %*% gpuX   32.7ms   35.4ms
+## 3 gpu2_memory &lt;- t(vclX) %*% vclX    10.1ms   15.1ms
 ## # … with 3 more variables: `itr/sec` &lt;dbl&gt;,
-## #   mem_alloc &lt;bch:byt&gt;, `gc/sec` &lt;dbl&gt;
-## # ℹ Use `colnames()` to see all variable names</code></pre>
+## #   mem_alloc &lt;bch:byt&gt;, `gc/sec` &lt;dbl&gt;</code></pre>
 <p>The performance comparison is visualized with boxplots.</p>
 <div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="hardware-computing-resources.html#cb142-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(gpu_cpu, <span class="at">type =</span> <span class="st">&quot;boxplot&quot;</span>)</span></code></pre></div>
-<p><img src="bigdata_files/figure-html/unnamed-chunk-78-1.png" width="672" /></p>
+<p><img src="bigdata_files/figure-html/unnamed-chunk-77-1.png" width="672" /></p>
 <p>The theoretically expected pattern becomes clearly visible. When using the GPU + GPU memory, the matrix operation takes on average less than 20 ms, with GPU + RAM over 30 ms, and with the common CPU operation close to 100 ms to finish. In the chapters on applied data analysis, we will look at some applications of GPUs in the domain of deep learning (which relies heavily on matrix multiplications).</p>
 </div>
 </div>
 </div>
-<div id="the-road-ahead-hardware-made-for-machine-learning" class="section level2 hasAnchor" number="4.7">
-<h2><span class="header-section-number">4.7</span> The road ahead: Hardware made for machine learning<a href="hardware-computing-resources.html#the-road-ahead-hardware-made-for-machine-learning" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="the-road-ahead-hardware-made-for-machine-learning" class="section level2 hasAnchor" number="6.7">
+<h2><span class="header-section-number">6.7</span> The road ahead: Hardware made for machine learning<a href="hardware-computing-resources.html#the-road-ahead-hardware-made-for-machine-learning" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Due to the high demand for more computational power in the domain of training complex neural network models (for example, in computer vision), Google has recently developed a new hardware platform specifically designed to work with complex neural networks using TensorFlow: Tensor Processing Units (TPUs). TPUs were designed from the ground up to improve performance in dense vector and matrix computations with the aim of substantially increasing the speed of training deep learning models implemented with TensorFlow.</p>
 <div class="figure" style="text-align: center"><span style="display:block;" id="fig:tpu"></span>
 <img src="img/TPU.png" alt="Illustration of a tensor processing unit (TPU)." width="40%" />
 <p class="caption">
-Figure 4.5: Illustration of a tensor processing unit (TPU).
+Figure 6.5: Illustration of a tensor processing unit (TPU).
 </p>
 </div>
 
 <p>While initially only used internally by Google, the Google Cloud platform now offers cloud TPUs to the general public.</p>
 </div>
-<div id="insufficient-computing-resources" class="section level2 hasAnchor" number="4.8">
-<h2><span class="header-section-number">4.8</span> Insufficient computing resources?<a href="hardware-computing-resources.html#insufficient-computing-resources" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="insufficient-computing-resources" class="section level2 hasAnchor" number="6.8">
+<h2><span class="header-section-number">6.8</span> Insufficient computing resources?<a href="hardware-computing-resources.html#insufficient-computing-resources" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>When working with very large datasets (i.e., terabytes of data), processing the data on one common computer might not work due to a lack of memory or would be way too slow due to a lack of computing power (CPU cores). The architecture or basic hardware set up of a common computer is subject to a limited amount of RAM and a limited number of CPUs/CPU cores. Hence simply scaling up might not be sufficient. Instead we need to scale out. In simple terms, this means connecting several computers (each with their own RAM, CPU, and mass storage) in a network, distributing the dataset across all computers (“nodes”) in this network, and working on the data simultaneously across all nodes. In the next chapter, we look into how such ``distributed systems’’ basically work, what software frameworks are commonly used to work on distributed systems, and how we can interact with this software (and the distributed system) via R and SQL.</p>
 
 </div>
