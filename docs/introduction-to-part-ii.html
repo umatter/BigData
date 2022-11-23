@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 1 What is big in “Big Data”? | Big Data Analytics</title>
+  <title>Introduction to Part II | Big Data Analytics</title>
   <meta name="description" content="A guide to data science practitioners making the transition to Big Data." />
   <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 1 What is big in “Big Data”? | Big Data Analytics" />
+  <meta property="og:title" content="Introduction to Part II | Big Data Analytics" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://umatter.github.io/BigData/img/cover.jpg" />
   <meta property="og:description" content="A guide to data science practitioners making the transition to Big Data." />
   <meta name="github-repo" content="umatter/BigData" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 1 What is big in “Big Data”? | Big Data Analytics" />
+  <meta name="twitter:title" content="Introduction to Part II | Big Data Analytics" />
   
   <meta name="twitter:description" content="A guide to data science practitioners making the transition to Big Data." />
   <meta name="twitter:image" content="https://umatter.github.io/BigData/img/cover.jpg" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="s.html"/>
-<link rel="next" href="approaches-to-analyzing-big-data.html"/>
+<link rel="prev" href="cloud-computing.html"/>
+<link rel="next" href="data-collection-and-data-storage.html"/>
 <script src="libs/jquery/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
@@ -432,22 +432,22 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="what-is-big-in-big-data" class="section level1 hasAnchor" number="1">
-<h1><span class="header-section-number">Chapter 1</span> What is <em>big</em> in “Big Data”?<a href="what-is-big-in-big-data.html#what-is-big-in-big-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Generally, we can think of Big Data as data that is (a) expensive to handle and (b) hard to get value from due to its size and complexity. The handling of Big Data is expensive as the data is often gathered from unorthodox sources, providing poorly structured data (e.g., raw text, web pages, images, etc.) as well as because of the infrastructure needed to store and load/process large amounts of data. Getting value/insights from Big Data is related to two distinct properties that render the analysis of large amounts of data difficult:</p>
-<ul>
-<li><p>The <em>big P</em> problem: a data set has more variables than observations, which renders the search for a good predictive model with traditional econometric techniques difficult or illusive. For example, suppose you run an e-commerce business that sells hundreds of thousands of products to tens of thousands of customers. You want to figure out from which product category a customer is most likely to buy an item from, based on her previous product page visits. That is, you want to (in simple terms) regress an indicator of purchasing from a specific category on indicators for previous product page visits. Given this set up, you would potentially end up with hundreds of thousands of explanatory indicator variables (and potentially even linear combinations of those), while you “only” have tens of thousands of observations (one per user/customer) to estimate your model. These sorts of problems are at the core of the domain of modern predictive econometrics, which shows how machine learning approaches like the LASSO can be applied in order to get reasonable estimates of such a predictive model.</p></li>
-<li><p>The <em>big N</em> problem: a data set has massive amounts of observations (rows) such that it cannot be handled with standard data analytics techniques and/or on a standard desktop computer. For example, suppose you want to segment your e-commerce customers based on the traces they leave on your website’s server. Specifically, you plan to use the server log files (when does a customer visit the site from where, etc.) in combination with purchase records as well as written product reviews by the users. You focus on 50 variables that you measure on a daily basis over five years for all users. The resulting data set has <span class="math inline">\(50,000 \times 365 \times 5=91,250,000\)</span> rows and with 50 variables (50 columns) over 4.5 billion cells. Such a data set can easily take up dozens of Gigabytes on the hard disk. Hence it will either not fit into the memory of a standard computer to begin with (import fails), or the standard programs to process and analyze the data will likely be very inefficient and take ages to finish when used on such a large data set. There are both econometric techniques as well as various specialized software and hardware tools to handle such a situation.</p></li>
-</ul>
-<p>While covering some aspects of both problem domains, most of this book focuses on practical challenges and solutions related to the <em>big N</em> problem in Big Data Analytics.</p>
+<div id="introduction-to-part-ii" class="section level1 unnumbered hasAnchor">
+<h1>Introduction to Part II<a href="introduction-to-part-ii.html#introduction-to-part-ii" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p></p>
+<div id="forms-of-big-data-and-the-data-pipeline" class="section level2 unnumbered hasAnchor">
+<h2>Forms of Big Data and the Data Pipeline<a href="introduction-to-part-ii.html#forms-of-big-data-and-the-data-pipeline" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="img/data_pipeline.png" width="80%" style="display: block; margin: auto;" /></p>
+
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="s.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="approaches-to-analyzing-big-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="cloud-computing.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="data-collection-and-data-storage.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>
