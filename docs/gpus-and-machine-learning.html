@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 13 GPUs and Machine Learning | Big Data Analytics</title>
   <meta name="description" content="A guide to data science practitioners making the transition to Big Data." />
-  <meta name="generator" content="bookdown 0.27 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 13 GPUs and Machine Learning | Big Data Analytics" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-11-29" />
+<meta name="date" content="2022-12-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -227,12 +227,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="6" data-path="distributed-systems.html"><a href="distributed-systems.html"><i class="fa fa-check"></i><b>6</b> Distributed Systems</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="distributed-systems.html"><a href="distributed-systems.html#mapreduce"><i class="fa fa-check"></i><b>6.1</b> MapReduce</a>
-<ul>
-<li class="chapter" data-level="6.1.1" data-path="distributed-systems.html"><a href="distributed-systems.html#aside-mapreduce-concept-illustrated-in-r"><i class="fa fa-check"></i><b>6.1.1</b> Aside: MapReduce Concept Illustrated in R</a></li>
-<li class="chapter" data-level="6.1.2" data-path="distributed-systems.html"><a href="distributed-systems.html#mapper"><i class="fa fa-check"></i><b>6.1.2</b> Mapper</a></li>
-<li class="chapter" data-level="6.1.3" data-path="distributed-systems.html"><a href="distributed-systems.html#reducer"><i class="fa fa-check"></i><b>6.1.3</b> Reducer</a></li>
-</ul></li>
+<li class="chapter" data-level="6.1" data-path="distributed-systems.html"><a href="distributed-systems.html#mapreduce"><i class="fa fa-check"></i><b>6.1</b> MapReduce</a></li>
 <li class="chapter" data-level="6.2" data-path="distributed-systems.html"><a href="distributed-systems.html#apache-hadoop"><i class="fa fa-check"></i><b>6.2</b> Apache Hadoop</a>
 <ul>
 <li class="chapter" data-level="6.2.1" data-path="distributed-systems.html"><a href="distributed-systems.html#hadoop-word-count-example"><i class="fa fa-check"></i><b>6.2.1</b> Hadoop word count example</a></li>
@@ -264,47 +259,43 @@ div.csl-indent {
 <li class="chapter" data-level="7.6" data-path="cloud-computing.html"><a href="cloud-computing.html#wrapping-up-3"><i class="fa fa-check"></i><b>7.6</b> Wrapping up</a></li>
 </ul></li>
 <li class="part"><span><b>III Components of Big Data Analytics</b></span></li>
-<li class="chapter" data-level="" data-path="introduction-to-part-ii.html"><a href="introduction-to-part-ii.html"><i class="fa fa-check"></i>Introduction to Part II</a>
-<ul>
-<li class="chapter" data-level="7.7" data-path="introduction-to-part-ii.html"><a href="introduction-to-part-ii.html#aside-etl-vs.-elt"><i class="fa fa-check"></i><b>7.7</b> Aside: ETL vs. ELT</a></li>
-</ul></li>
+<li class="chapter" data-level="" data-path="introduction-to-part-ii.html"><a href="introduction-to-part-ii.html"><i class="fa fa-check"></i>Introduction to Part II</a></li>
 <li class="chapter" data-level="8" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html"><i class="fa fa-check"></i><b>8</b> Data Collection and Data Storage</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#gathering-and-compilation-of-raw-data"><i class="fa fa-check"></i><b>8.1</b> Gathering and compilation of raw data</a></li>
 <li class="chapter" data-level="8.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#stackcombine-raw-source-files"><i class="fa fa-check"></i><b>8.2</b> Stack/combine raw source files</a></li>
-<li class="chapter" data-level="8.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#aside-csv-import-and-memory-allocation"><i class="fa fa-check"></i><b>8.3</b> Aside: CSV import and memory allocation</a></li>
-<li class="chapter" data-level="8.4" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#efficient-local-data-storage"><i class="fa fa-check"></i><b>8.4</b> Efficient local data storage</a>
+<li class="chapter" data-level="8.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#efficient-local-data-storage"><i class="fa fa-check"></i><b>8.3</b> Efficient local data storage</a>
 <ul>
-<li class="chapter" data-level="8.4.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#rdbms-basics"><i class="fa fa-check"></i><b>8.4.1</b> RDBMS basics</a></li>
-<li class="chapter" data-level="8.4.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#efficient-data-access-indices-and-joins-in-sqlite"><i class="fa fa-check"></i><b>8.4.2</b> Efficient data access: indices and joins in SQLite</a></li>
+<li class="chapter" data-level="8.3.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#rdbms-basics"><i class="fa fa-check"></i><b>8.3.1</b> RDBMS basics</a></li>
+<li class="chapter" data-level="8.3.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#efficient-data-access-indices-and-joins-in-sqlite"><i class="fa fa-check"></i><b>8.3.2</b> Efficient data access: indices and joins in SQLite</a></li>
 </ul></li>
-<li class="chapter" data-level="8.5" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#connecting-r-to-rdbms"><i class="fa fa-check"></i><b>8.5</b> Connecting R to RDBMS</a>
+<li class="chapter" data-level="8.4" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#connecting-r-to-rdbms"><i class="fa fa-check"></i><b>8.4</b> Connecting R to RDBMS</a>
 <ul>
-<li class="chapter" data-level="8.5.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#creating-a-new-database-with-rsqlite"><i class="fa fa-check"></i><b>8.5.1</b> Creating a new database with <code>RSQLite</code></a></li>
-<li class="chapter" data-level="8.5.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#importing-data"><i class="fa fa-check"></i><b>8.5.2</b> Importing data</a></li>
-<li class="chapter" data-level="8.5.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#issue-queries"><i class="fa fa-check"></i><b>8.5.3</b> Issue queries</a></li>
+<li class="chapter" data-level="8.4.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#creating-a-new-database-with-rsqlite"><i class="fa fa-check"></i><b>8.4.1</b> Creating a new database with <code>RSQLite</code></a></li>
+<li class="chapter" data-level="8.4.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#importing-data"><i class="fa fa-check"></i><b>8.4.2</b> Importing data</a></li>
+<li class="chapter" data-level="8.4.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#issue-queries"><i class="fa fa-check"></i><b>8.4.3</b> Issue queries</a></li>
 </ul></li>
-<li class="chapter" data-level="8.6" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#cloud-solutions-for-big-data-storage"><i class="fa fa-check"></i><b>8.6</b> Cloud solutions for (big) data storage</a>
+<li class="chapter" data-level="8.5" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#cloud-solutions-for-big-data-storage"><i class="fa fa-check"></i><b>8.5</b> Cloud solutions for (big) data storage</a>
 <ul>
-<li class="chapter" data-level="8.6.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#easy-to-use-rdbms-in-the-cloud-aws-rds"><i class="fa fa-check"></i><b>8.6.1</b> Easy-to-use RDBMS in the cloud: AWS RDS</a></li>
+<li class="chapter" data-level="8.5.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#easy-to-use-rdbms-in-the-cloud-aws-rds"><i class="fa fa-check"></i><b>8.5.1</b> Easy-to-use RDBMS in the cloud: AWS RDS</a></li>
 </ul></li>
-<li class="chapter" data-level="8.7" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#column-based-analytics-databases"><i class="fa fa-check"></i><b>8.7</b> Column-based analytics databases</a>
+<li class="chapter" data-level="8.6" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#column-based-analytics-databases"><i class="fa fa-check"></i><b>8.6</b> Column-based analytics databases</a>
 <ul>
-<li class="chapter" data-level="8.7.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#installation-and-start-up"><i class="fa fa-check"></i><b>8.7.1</b> Installation and start up</a></li>
-<li class="chapter" data-level="8.7.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#first-steps-via-druids-gui"><i class="fa fa-check"></i><b>8.7.2</b> First steps via Druid’s GUI</a></li>
-<li class="chapter" data-level="8.7.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#querey-druid-from-r"><i class="fa fa-check"></i><b>8.7.3</b> Querey Druid from R</a></li>
+<li class="chapter" data-level="8.6.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#installation-and-start-up"><i class="fa fa-check"></i><b>8.6.1</b> Installation and start up</a></li>
+<li class="chapter" data-level="8.6.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#first-steps-via-druids-gui"><i class="fa fa-check"></i><b>8.6.2</b> First steps via Druid’s GUI</a></li>
+<li class="chapter" data-level="8.6.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#query-druid-from-r"><i class="fa fa-check"></i><b>8.6.3</b> Query Druid from R</a></li>
 </ul></li>
-<li class="chapter" data-level="8.8" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#data-warehouses"><i class="fa fa-check"></i><b>8.8</b> Data warehouses</a>
+<li class="chapter" data-level="8.7" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#data-warehouses"><i class="fa fa-check"></i><b>8.7</b> Data warehouses</a>
 <ul>
-<li class="chapter" data-level="8.8.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#data-warehouse-for-analytics-google-bigquery-example"><i class="fa fa-check"></i><b>8.8.1</b> Data warehouse for analytics: Google BigQuery example</a></li>
+<li class="chapter" data-level="8.7.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#data-warehouse-for-analytics-google-bigquery-example"><i class="fa fa-check"></i><b>8.7.1</b> Data warehouse for analytics: Google BigQuery example</a></li>
 </ul></li>
-<li class="chapter" data-level="8.9" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#data-lakes-and-simple-storage-service"><i class="fa fa-check"></i><b>8.9</b> Data lakes and simple storage service</a>
+<li class="chapter" data-level="8.8" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#data-lakes-and-simple-storage-service"><i class="fa fa-check"></i><b>8.8</b> Data lakes and simple storage service</a>
 <ul>
-<li class="chapter" data-level="8.9.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#aws-s3-with-r-first-steps"><i class="fa fa-check"></i><b>8.9.1</b> AWS S3 with R: first steps</a></li>
-<li class="chapter" data-level="8.9.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#uploading-data-to-s3"><i class="fa fa-check"></i><b>8.9.2</b> Uploading data to S3</a></li>
-<li class="chapter" data-level="8.9.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#more-than-just-simple-storage-s3-aws-athena"><i class="fa fa-check"></i><b>8.9.3</b> More than just simple storage: S3 + AWS Athena</a></li>
+<li class="chapter" data-level="8.8.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#aws-s3-with-r-first-steps"><i class="fa fa-check"></i><b>8.8.1</b> AWS S3 with R: first steps</a></li>
+<li class="chapter" data-level="8.8.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#uploading-data-to-s3"><i class="fa fa-check"></i><b>8.8.2</b> Uploading data to S3</a></li>
+<li class="chapter" data-level="8.8.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#more-than-just-simple-storage-s3-aws-athena"><i class="fa fa-check"></i><b>8.8.3</b> More than just simple storage: S3 + AWS Athena</a></li>
 </ul></li>
-<li class="chapter" data-level="8.10" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#wrapping-up-4"><i class="fa fa-check"></i><b>8.10</b> Wrapping up</a></li>
+<li class="chapter" data-level="8.9" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#wrapping-up-4"><i class="fa fa-check"></i><b>8.9</b> Wrapping up</a></li>
 </ul></li>
 <li class="chapter" data-level="9" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html"><i class="fa fa-check"></i><b>9</b> Big Data Cleaning and Transformation</a>
 <ul>
@@ -333,25 +324,20 @@ div.csl-indent {
 <li class="chapter" data-level="10.1.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-with-chunked-data-files"><i class="fa fa-check"></i><b>10.1.1</b> Data aggregation with chunked data files</a></li>
 <li class="chapter" data-level="10.1.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#cross-tabulation-of-ff-vectors"><i class="fa fa-check"></i><b>10.1.2</b> Cross-tabulation of <code>ff</code> vectors</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>10.2</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
-<li class="chapter" data-level="10.3" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#wrapping-up-6"><i class="fa fa-check"></i><b>10.3</b> Wrapping up</a></li>
+<li class="chapter" data-level="10.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-arrow"><i class="fa fa-check"></i><b>10.2</b> High-speed in-memory data aggregation with <code>arrow</code></a></li>
+<li class="chapter" data-level="10.3" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>10.3</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
+<li class="chapter" data-level="10.4" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#wrapping-up-6"><i class="fa fa-check"></i><b>10.4</b> Wrapping up</a></li>
 </ul></li>
 <li class="chapter" data-level="11" data-path="big-data-visualization.html"><a href="big-data-visualization.html"><i class="fa fa-check"></i><b>11</b> (Big) Data Visualization</a>
 <ul>
 <li class="chapter" data-level="11.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#challenges-of-big-data-visualization"><i class="fa fa-check"></i><b>11.1</b> Challenges of big data visualization</a></li>
 <li class="chapter" data-level="11.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#data-exploration-with-ggplot2"><i class="fa fa-check"></i><b>11.2</b> Data exploration with <code>ggplot2</code></a></li>
-<li class="chapter" data-level="11.3" data-path="big-data-visualization.html"><a href="big-data-visualization.html#aside-modify-and-create-themes"><i class="fa fa-check"></i><b>11.3</b> Aside: modify and create themes</a>
+<li class="chapter" data-level="11.3" data-path="big-data-visualization.html"><a href="big-data-visualization.html#visualize-time-and-space"><i class="fa fa-check"></i><b>11.3</b> Visualize Time and Space</a>
 <ul>
-<li class="chapter" data-level="11.3.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#create-your-own-theme-simple-approach"><i class="fa fa-check"></i><b>11.3.1</b> Create your own theme: simple approach</a></li>
-<li class="chapter" data-level="11.3.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#implementing-actual-themes-as-functions."><i class="fa fa-check"></i><b>11.3.2</b> Implementing actual themes as functions.</a></li>
+<li class="chapter" data-level="11.3.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#preparations"><i class="fa fa-check"></i><b>11.3.1</b> Preparations</a></li>
+<li class="chapter" data-level="11.3.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#pick-up-and-drop-off-locations"><i class="fa fa-check"></i><b>11.3.2</b> Pick-up and drop-off locations</a></li>
 </ul></li>
-<li class="chapter" data-level="11.4" data-path="big-data-visualization.html"><a href="big-data-visualization.html#visualize-time-and-space"><i class="fa fa-check"></i><b>11.4</b> Visualize Time and Space</a>
-<ul>
-<li class="chapter" data-level="11.4.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#preparations"><i class="fa fa-check"></i><b>11.4.1</b> Preparations</a></li>
-<li class="chapter" data-level="11.4.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#pick-up-and-drop-off-locations"><i class="fa fa-check"></i><b>11.4.2</b> Pick-up and drop-off locations</a></li>
-</ul></li>
-<li class="chapter" data-level="11.5" data-path="big-data-visualization.html"><a href="big-data-visualization.html#aside-change-color-schemes"><i class="fa fa-check"></i><b>11.5</b> Aside: change color schemes</a></li>
-<li class="chapter" data-level="11.6" data-path="big-data-visualization.html"><a href="big-data-visualization.html#wrapping-up-7"><i class="fa fa-check"></i><b>11.6</b> Wrapping up</a></li>
+<li class="chapter" data-level="11.4" data-path="big-data-visualization.html"><a href="big-data-visualization.html#wrapping-up-7"><i class="fa fa-check"></i><b>11.4</b> Wrapping up</a></li>
 </ul></li>
 <li class="part"><span><b>IV Application: Topics in Big Data Econometrics</b></span></li>
 <li class="chapter" data-level="" data-path="a.html"><a href="a.html"><i class="fa fa-check"></i>Introduction</a></li>
@@ -374,7 +360,7 @@ div.csl-indent {
 <li class="chapter" data-level="13" data-path="gpus-and-machine-learning.html"><a href="gpus-and-machine-learning.html"><i class="fa fa-check"></i><b>13</b> GPUs and Machine Learning</a>
 <ul>
 <li class="chapter" data-level="13.1" data-path="gpus-and-machine-learning.html"><a href="gpus-and-machine-learning.html#tensorflowkeras-example-predict-housing-prices"><i class="fa fa-check"></i><b>13.1</b> Tensorflow/Keras example: predict housing prices</a></li>
-<li class="chapter" data-level="13.2" data-path="gpus-and-machine-learning.html"><a href="gpus-and-machine-learning.html#data-preparation-1"><i class="fa fa-check"></i><b>13.2</b> Data preparation</a></li>
+<li class="chapter" data-level="13.2" data-path="gpus-and-machine-learning.html"><a href="gpus-and-machine-learning.html#data-preparation"><i class="fa fa-check"></i><b>13.2</b> Data preparation</a></li>
 <li class="chapter" data-level="13.3" data-path="gpus-and-machine-learning.html"><a href="gpus-and-machine-learning.html#model-specification"><i class="fa fa-check"></i><b>13.3</b> Model specification</a></li>
 <li class="chapter" data-level="13.4" data-path="gpus-and-machine-learning.html"><a href="gpus-and-machine-learning.html#training-and-prediction"><i class="fa fa-check"></i><b>13.4</b> Training and prediction</a>
 <ul>
@@ -556,12 +542,12 @@ div.csl-indent {
 <!-- ``` -->
 <div id="tensorflowkeras-example-predict-housing-prices" class="section level2 hasAnchor" number="13.1">
 <h2><span class="header-section-number">13.1</span> Tensorflow/Keras example: predict housing prices<a href="gpus-and-machine-learning.html#tensorflowkeras-example-predict-housing-prices" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In this example we train a simple sequential model with two hidden layers in order to predict the median value of owner-occupied homes (in USD 1,000) in the Boston area (data are from the 1970s). The original data and a detailed description can be found <a href="https://www.cs.toronto.edu/~delve/data/boston/bostonDetail.html">here</a>. The example follows closely <a href="https://keras.rstudio.com/articles/tutorial_basic_regression.html#the-boston-housing-prices-dataset">this keras tutorial</a> published by RStudio. See <a href="https://keras.rstudio.com/index.html">RStudio’s keras installation guide</a> for how to install keras (and tensorflow) and the corresponding R package <code>keras</code>.<a href="#fn55" class="footnote-ref" id="fnref55"><sup>55</sup></a> While the purpose of the example here is to demonstrate a typical (but very simple!) usage case of GPUs in machine learning, the same code should also run on a normal machine (without using GPUs) with a default installation of keras.</p>
+<p>In this example we train a simple sequential model with two hidden layers in order to predict the median value of owner-occupied homes (in USD 1,000) in the Boston area (data are from the 1970s). The original data and a detailed description can be found <a href="https://www.cs.toronto.edu/~delve/data/boston/bostonDetail.html">here</a>. The example follows closely <a href="https://keras.rstudio.com/articles/tutorial_basic_regression.html#the-boston-housing-prices-dataset">this keras tutorial</a> published by RStudio. See <a href="https://keras.rstudio.com/index.html">RStudio’s keras installation guide</a> for how to install keras (and tensorflow) and the corresponding R package <code>keras</code>.<a href="#fn56" class="footnote-ref" id="fnref56"><sup>56</sup></a> While the purpose of the example here is to demonstrate a typical (but very simple!) usage case of GPUs in machine learning, the same code should also run on a normal machine (without using GPUs) with a default installation of keras.</p>
 <p>Apart from <code>keras</code>, we load packages to prepare the data and visualize the output. Via <code>dataset_boston_housing()</code>, we load the dataset (shipped with the keras installation) in the format preferred by the <code>keras</code> library.</p>
-<div class="sourceCode" id="cb564"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb564-1"><a href="gpus-and-machine-learning.html#cb564-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb564-2"><a href="gpus-and-machine-learning.html#cb564-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(keras)</span>
-<span id="cb564-3"><a href="gpus-and-machine-learning.html#cb564-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb564-4"><a href="gpus-and-machine-learning.html#cb564-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="gpus-and-machine-learning.html#cb593-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb593-2"><a href="gpus-and-machine-learning.html#cb593-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(keras)</span>
+<span id="cb593-3"><a href="gpus-and-machine-learning.html#cb593-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb593-4"><a href="gpus-and-machine-learning.html#cb593-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;ggplot2&#39;</code></pre>
 <pre><code>## The following object is masked _by_ &#39;.GlobalEnv&#39;:
@@ -570,16 +556,16 @@ div.csl-indent {
 <pre><code>## The following object is masked from &#39;package:SparkR&#39;:
 ## 
 ##     expr</code></pre>
-<div class="sourceCode" id="cb568"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb568-1"><a href="gpus-and-machine-learning.html#cb568-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tfdatasets)</span></code></pre></div>
+<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="gpus-and-machine-learning.html#cb597-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tfdatasets)</span></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;tfdatasets&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:SparkR&#39;:
 ## 
 ##     contains</code></pre>
-<div class="sourceCode" id="cb571"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb571-1"><a href="gpus-and-machine-learning.html#cb571-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load data</span></span>
-<span id="cb571-2"><a href="gpus-and-machine-learning.html#cb571-2" aria-hidden="true" tabindex="-1"></a>boston_housing <span class="ot">&lt;-</span> <span class="fu">dataset_boston_housing</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb600"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb600-1"><a href="gpus-and-machine-learning.html#cb600-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load data</span></span>
+<span id="cb600-2"><a href="gpus-and-machine-learning.html#cb600-2" aria-hidden="true" tabindex="-1"></a>boston_housing <span class="ot">&lt;-</span> <span class="fu">dataset_boston_housing</span>()</span></code></pre></div>
 <pre><code>## Loaded Tensorflow version 2.5.0</code></pre>
-<div class="sourceCode" id="cb573"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb573-1"><a href="gpus-and-machine-learning.html#cb573-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(boston_housing)</span></code></pre></div>
+<div class="sourceCode" id="cb602"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb602-1"><a href="gpus-and-machine-learning.html#cb602-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(boston_housing)</span></code></pre></div>
 <pre><code>## List of 2
 ##  $ train:List of 2
 ##   ..$ x: num [1:404, 1:13] 1.2325 0.0218 4.8982 0.0396 3.6931 ...
@@ -588,30 +574,30 @@ div.csl-indent {
 ##   ..$ x: num [1:102, 1:13] 18.0846 0.1233 0.055 1.2735 0.0715 ...
 ##   ..$ y: num [1:102(1d)] 7.2 18.8 19 27 22.2 24.5 31.2 22.9 20.5 23.2 ...</code></pre>
 </div>
-<div id="data-preparation-1" class="section level2 hasAnchor" number="13.2">
-<h2><span class="header-section-number">13.2</span> Data preparation<a href="gpus-and-machine-learning.html#data-preparation-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="data-preparation" class="section level2 hasAnchor" number="13.2">
+<h2><span class="header-section-number">13.2</span> Data preparation<a href="gpus-and-machine-learning.html#data-preparation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>In a first step, we split the data into a training set and a test set. The latter is used to monitor the out-of-sample performance of the model fit. Testing the validity of an estimated model by looking at how it performs out-of-sample is of particular relevance when working with (deep) neural networks, as they can easily lead to over-fitting. Validity checks based on the test sample are, therefore, often an integral part of modelling with tensorflow/keras.</p>
-<div class="sourceCode" id="cb575"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb575-1"><a href="gpus-and-machine-learning.html#cb575-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assign training and test data/labels</span></span>
-<span id="cb575-2"><a href="gpus-and-machine-learning.html#cb575-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(train_data, train_labels) <span class="sc">%&lt;-%</span> boston_housing<span class="sc">$</span>train</span>
-<span id="cb575-3"><a href="gpus-and-machine-learning.html#cb575-3" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(test_data, test_labels) <span class="sc">%&lt;-%</span> boston_housing<span class="sc">$</span>test</span></code></pre></div>
+<div class="sourceCode" id="cb604"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb604-1"><a href="gpus-and-machine-learning.html#cb604-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assign training and test data/labels</span></span>
+<span id="cb604-2"><a href="gpus-and-machine-learning.html#cb604-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(train_data, train_labels) <span class="sc">%&lt;-%</span> boston_housing<span class="sc">$</span>train</span>
+<span id="cb604-3"><a href="gpus-and-machine-learning.html#cb604-3" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(test_data, test_labels) <span class="sc">%&lt;-%</span> boston_housing<span class="sc">$</span>test</span></code></pre></div>
 <p>In order to better understand and interpret the dataset we add the original variable names, and convert it to a <code>tibble</code>.</p>
-<div class="sourceCode" id="cb576"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb576-1"><a href="gpus-and-machine-learning.html#cb576-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb576-2"><a href="gpus-and-machine-learning.html#cb576-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb576-3"><a href="gpus-and-machine-learning.html#cb576-3" aria-hidden="true" tabindex="-1"></a>column_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;CRIM&#39;</span>, <span class="st">&#39;ZN&#39;</span>, <span class="st">&#39;INDUS&#39;</span>, <span class="st">&#39;CHAS&#39;</span>, <span class="st">&#39;NOX&#39;</span>, <span class="st">&#39;RM&#39;</span>, <span class="st">&#39;AGE&#39;</span>, </span>
-<span id="cb576-4"><a href="gpus-and-machine-learning.html#cb576-4" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&#39;DIS&#39;</span>, <span class="st">&#39;RAD&#39;</span>, <span class="st">&#39;TAX&#39;</span>, <span class="st">&#39;PTRATIO&#39;</span>, <span class="st">&#39;B&#39;</span>, <span class="st">&#39;LSTAT&#39;</span>)</span>
-<span id="cb576-5"><a href="gpus-and-machine-learning.html#cb576-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb576-6"><a href="gpus-and-machine-learning.html#cb576-6" aria-hidden="true" tabindex="-1"></a>train_df <span class="ot">&lt;-</span> train_data <span class="sc">%&gt;%</span> </span>
-<span id="cb576-7"><a href="gpus-and-machine-learning.html#cb576-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>(<span class="at">.name_repair =</span> <span class="st">&quot;minimal&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb576-8"><a href="gpus-and-machine-learning.html#cb576-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(column_names) <span class="sc">%&gt;%</span> </span>
-<span id="cb576-9"><a href="gpus-and-machine-learning.html#cb576-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">label =</span> train_labels)</span>
-<span id="cb576-10"><a href="gpus-and-machine-learning.html#cb576-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb576-11"><a href="gpus-and-machine-learning.html#cb576-11" aria-hidden="true" tabindex="-1"></a>test_df <span class="ot">&lt;-</span> test_data <span class="sc">%&gt;%</span> </span>
-<span id="cb576-12"><a href="gpus-and-machine-learning.html#cb576-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>(<span class="at">.name_repair =</span> <span class="st">&quot;minimal&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb576-13"><a href="gpus-and-machine-learning.html#cb576-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(column_names) <span class="sc">%&gt;%</span> </span>
-<span id="cb576-14"><a href="gpus-and-machine-learning.html#cb576-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">label =</span> test_labels)</span></code></pre></div>
-<p>Next, we have a close look at the data. Note the usage of the term ‘label’ for what is usually called the ‘dependent variable’ in econometrics.<a href="#fn56" class="footnote-ref" id="fnref56"><sup>56</sup></a> As the aim of the exercise is to predict median prices of homes, the output of the model will be a continuous value (‘labels’).</p>
-<div class="sourceCode" id="cb577"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb577-1"><a href="gpus-and-machine-learning.html#cb577-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check training data dimensions and content</span></span>
-<span id="cb577-2"><a href="gpus-and-machine-learning.html#cb577-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(train_data)</span></code></pre></div>
+<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="gpus-and-machine-learning.html#cb605-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb605-2"><a href="gpus-and-machine-learning.html#cb605-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb605-3"><a href="gpus-and-machine-learning.html#cb605-3" aria-hidden="true" tabindex="-1"></a>column_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;CRIM&#39;</span>, <span class="st">&#39;ZN&#39;</span>, <span class="st">&#39;INDUS&#39;</span>, <span class="st">&#39;CHAS&#39;</span>, <span class="st">&#39;NOX&#39;</span>, <span class="st">&#39;RM&#39;</span>, <span class="st">&#39;AGE&#39;</span>, </span>
+<span id="cb605-4"><a href="gpus-and-machine-learning.html#cb605-4" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&#39;DIS&#39;</span>, <span class="st">&#39;RAD&#39;</span>, <span class="st">&#39;TAX&#39;</span>, <span class="st">&#39;PTRATIO&#39;</span>, <span class="st">&#39;B&#39;</span>, <span class="st">&#39;LSTAT&#39;</span>)</span>
+<span id="cb605-5"><a href="gpus-and-machine-learning.html#cb605-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb605-6"><a href="gpus-and-machine-learning.html#cb605-6" aria-hidden="true" tabindex="-1"></a>train_df <span class="ot">&lt;-</span> train_data <span class="sc">%&gt;%</span> </span>
+<span id="cb605-7"><a href="gpus-and-machine-learning.html#cb605-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>(<span class="at">.name_repair =</span> <span class="st">&quot;minimal&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb605-8"><a href="gpus-and-machine-learning.html#cb605-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(column_names) <span class="sc">%&gt;%</span> </span>
+<span id="cb605-9"><a href="gpus-and-machine-learning.html#cb605-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">label =</span> train_labels)</span>
+<span id="cb605-10"><a href="gpus-and-machine-learning.html#cb605-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb605-11"><a href="gpus-and-machine-learning.html#cb605-11" aria-hidden="true" tabindex="-1"></a>test_df <span class="ot">&lt;-</span> test_data <span class="sc">%&gt;%</span> </span>
+<span id="cb605-12"><a href="gpus-and-machine-learning.html#cb605-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>(<span class="at">.name_repair =</span> <span class="st">&quot;minimal&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb605-13"><a href="gpus-and-machine-learning.html#cb605-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(column_names) <span class="sc">%&gt;%</span> </span>
+<span id="cb605-14"><a href="gpus-and-machine-learning.html#cb605-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">label =</span> test_labels)</span></code></pre></div>
+<p>Next, we have a close look at the data. Note the usage of the term ‘label’ for what is usually called the ‘dependent variable’ in econometrics.<a href="#fn57" class="footnote-ref" id="fnref57"><sup>57</sup></a> As the aim of the exercise is to predict median prices of homes, the output of the model will be a continuous value (‘labels’).</p>
+<div class="sourceCode" id="cb606"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb606-1"><a href="gpus-and-machine-learning.html#cb606-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check training data dimensions and content</span></span>
+<span id="cb606-2"><a href="gpus-and-machine-learning.html#cb606-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(train_data)</span></code></pre></div>
 <pre><code>##        V1              V2              V3       
 ##  Min.   : 0.01   Min.   :  0.0   Min.   : 0.46  
 ##  1st Qu.: 0.08   1st Qu.:  0.0   1st Qu.: 5.13  
@@ -647,7 +633,7 @@ div.csl-indent {
 ##  Mean   :12.74  
 ##  3rd Qu.:17.09  
 ##  Max.   :37.97</code></pre>
-<div class="sourceCode" id="cb579"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb579-1"><a href="gpus-and-machine-learning.html#cb579-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(train_data) <span class="co"># Display first 10 entries</span></span></code></pre></div>
+<div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb608-1"><a href="gpus-and-machine-learning.html#cb608-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(train_data) <span class="co"># Display first 10 entries</span></span></code></pre></div>
 <pre><code>##         [,1] [,2]  [,3] [,4]  [,5]  [,6]  [,7]  [,8]
 ## [1,] 1.23247  0.0  8.14    0 0.538 6.142  91.7 3.977
 ## [2,] 0.02177 82.5  2.03    0 0.415 7.610  15.7 6.270
@@ -663,63 +649,63 @@ div.csl-indent {
 ## [5,]   24   666  20.2 391.4 14.65
 ## [6,]    5   287  19.6 391.1 11.74</code></pre>
 <p>As the dataset contains variables ranging from per capita crime rate to indicators for highway access, the variables are obviously measured in different units and hence displayed on different scales. This is not per se a problem for the fitting procedure. However, fitting is more efficient when all features (variables) are normalized.</p>
-<div class="sourceCode" id="cb581"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb581-1"><a href="gpus-and-machine-learning.html#cb581-1" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">feature_spec</span>(train_df, label <span class="sc">~</span> . ) <span class="sc">%&gt;%</span> </span>
-<span id="cb581-2"><a href="gpus-and-machine-learning.html#cb581-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_numeric_column</span>(<span class="fu">all_numeric</span>(), <span class="at">normalizer_fn =</span> <span class="fu">scaler_standard</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb581-3"><a href="gpus-and-machine-learning.html#cb581-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>()</span>
-<span id="cb581-4"><a href="gpus-and-machine-learning.html#cb581-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb581-5"><a href="gpus-and-machine-learning.html#cb581-5" aria-hidden="true" tabindex="-1"></a>layer <span class="ot">&lt;-</span> <span class="fu">layer_dense_features</span>(</span>
-<span id="cb581-6"><a href="gpus-and-machine-learning.html#cb581-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">feature_columns =</span> <span class="fu">dense_features</span>(spec), </span>
-<span id="cb581-7"><a href="gpus-and-machine-learning.html#cb581-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">dtype =</span> tf<span class="sc">$</span>float32</span>
-<span id="cb581-8"><a href="gpus-and-machine-learning.html#cb581-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb581-9"><a href="gpus-and-machine-learning.html#cb581-9" aria-hidden="true" tabindex="-1"></a><span class="fu">layer</span>(train_df)</span></code></pre></div>
+<div class="sourceCode" id="cb610"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb610-1"><a href="gpus-and-machine-learning.html#cb610-1" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">feature_spec</span>(train_df, label <span class="sc">~</span> . ) <span class="sc">%&gt;%</span> </span>
+<span id="cb610-2"><a href="gpus-and-machine-learning.html#cb610-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_numeric_column</span>(<span class="fu">all_numeric</span>(), <span class="at">normalizer_fn =</span> <span class="fu">scaler_standard</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb610-3"><a href="gpus-and-machine-learning.html#cb610-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>()</span>
+<span id="cb610-4"><a href="gpus-and-machine-learning.html#cb610-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb610-5"><a href="gpus-and-machine-learning.html#cb610-5" aria-hidden="true" tabindex="-1"></a>layer <span class="ot">&lt;-</span> <span class="fu">layer_dense_features</span>(</span>
+<span id="cb610-6"><a href="gpus-and-machine-learning.html#cb610-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">feature_columns =</span> <span class="fu">dense_features</span>(spec), </span>
+<span id="cb610-7"><a href="gpus-and-machine-learning.html#cb610-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">dtype =</span> tf<span class="sc">$</span>float32</span>
+<span id="cb610-8"><a href="gpus-and-machine-learning.html#cb610-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb610-9"><a href="gpus-and-machine-learning.html#cb610-9" aria-hidden="true" tabindex="-1"></a><span class="fu">layer</span>(train_df)</span></code></pre></div>
 </div>
 <div id="model-specification" class="section level2 hasAnchor" number="13.3">
 <h2><span class="header-section-number">13.3</span> Model specification<a href="gpus-and-machine-learning.html#model-specification" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>We specify the model as a linear stack of layers: The input (all 13 explanatory variables), two densely connected hidden layers (each with a 64-dimensional output space), and finally the one-dimensional output layer (the ‘dependent variable’).</p>
-<div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb582-1"><a href="gpus-and-machine-learning.html#cb582-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the model</span></span>
-<span id="cb582-2"><a href="gpus-and-machine-learning.html#cb582-2" aria-hidden="true" tabindex="-1"></a><span class="co"># model specification</span></span>
-<span id="cb582-3"><a href="gpus-and-machine-learning.html#cb582-3" aria-hidden="true" tabindex="-1"></a>input <span class="ot">&lt;-</span> <span class="fu">layer_input_from_dataset</span>(train_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>label))</span>
-<span id="cb582-4"><a href="gpus-and-machine-learning.html#cb582-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb582-5"><a href="gpus-and-machine-learning.html#cb582-5" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> input <span class="sc">%&gt;%</span> </span>
-<span id="cb582-6"><a href="gpus-and-machine-learning.html#cb582-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_dense_features</span>(<span class="fu">dense_features</span>(spec)) <span class="sc">%&gt;%</span> </span>
-<span id="cb582-7"><a href="gpus-and-machine-learning.html#cb582-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_dense</span>(<span class="at">units =</span> <span class="dv">64</span>, <span class="at">activation =</span> <span class="st">&quot;relu&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb582-8"><a href="gpus-and-machine-learning.html#cb582-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_dense</span>(<span class="at">units =</span> <span class="dv">64</span>, <span class="at">activation =</span> <span class="st">&quot;relu&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb582-9"><a href="gpus-and-machine-learning.html#cb582-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_dense</span>(<span class="at">units =</span> <span class="dv">1</span>) </span>
-<span id="cb582-10"><a href="gpus-and-machine-learning.html#cb582-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb582-11"><a href="gpus-and-machine-learning.html#cb582-11" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">keras_model</span>(input, output)</span></code></pre></div>
+<div class="sourceCode" id="cb611"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb611-1"><a href="gpus-and-machine-learning.html#cb611-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the model</span></span>
+<span id="cb611-2"><a href="gpus-and-machine-learning.html#cb611-2" aria-hidden="true" tabindex="-1"></a><span class="co"># model specification</span></span>
+<span id="cb611-3"><a href="gpus-and-machine-learning.html#cb611-3" aria-hidden="true" tabindex="-1"></a>input <span class="ot">&lt;-</span> <span class="fu">layer_input_from_dataset</span>(train_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>label))</span>
+<span id="cb611-4"><a href="gpus-and-machine-learning.html#cb611-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb611-5"><a href="gpus-and-machine-learning.html#cb611-5" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> input <span class="sc">%&gt;%</span> </span>
+<span id="cb611-6"><a href="gpus-and-machine-learning.html#cb611-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_dense_features</span>(<span class="fu">dense_features</span>(spec)) <span class="sc">%&gt;%</span> </span>
+<span id="cb611-7"><a href="gpus-and-machine-learning.html#cb611-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_dense</span>(<span class="at">units =</span> <span class="dv">64</span>, <span class="at">activation =</span> <span class="st">&quot;relu&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb611-8"><a href="gpus-and-machine-learning.html#cb611-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_dense</span>(<span class="at">units =</span> <span class="dv">64</span>, <span class="at">activation =</span> <span class="st">&quot;relu&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb611-9"><a href="gpus-and-machine-learning.html#cb611-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_dense</span>(<span class="at">units =</span> <span class="dv">1</span>) </span>
+<span id="cb611-10"><a href="gpus-and-machine-learning.html#cb611-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb611-11"><a href="gpus-and-machine-learning.html#cb611-11" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">keras_model</span>(input, output)</span></code></pre></div>
 <p>In order to fit the model, we first have to compile it (configure it for training). At this step we set the configuration parameters that will guide the training/optimization procedure. We use the mean squared errors loss function (<code>mse</code>) typically used for regressions. We chose the <a href="http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf">RMSProp</a> optimizer to find the minimum loss.</p>
-<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="gpus-and-machine-learning.html#cb583-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compile the model  </span></span>
-<span id="cb583-2"><a href="gpus-and-machine-learning.html#cb583-2" aria-hidden="true" tabindex="-1"></a>model <span class="sc">%&gt;%</span> </span>
-<span id="cb583-3"><a href="gpus-and-machine-learning.html#cb583-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">compile</span>(</span>
-<span id="cb583-4"><a href="gpus-and-machine-learning.html#cb583-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">loss =</span> <span class="st">&quot;mse&quot;</span>,</span>
-<span id="cb583-5"><a href="gpus-and-machine-learning.html#cb583-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">optimizer =</span> <span class="fu">optimizer_rmsprop</span>(),</span>
-<span id="cb583-6"><a href="gpus-and-machine-learning.html#cb583-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">metrics =</span> <span class="fu">list</span>(<span class="st">&quot;mean_absolute_error&quot;</span>)</span>
-<span id="cb583-7"><a href="gpus-and-machine-learning.html#cb583-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb612-1"><a href="gpus-and-machine-learning.html#cb612-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compile the model  </span></span>
+<span id="cb612-2"><a href="gpus-and-machine-learning.html#cb612-2" aria-hidden="true" tabindex="-1"></a>model <span class="sc">%&gt;%</span> </span>
+<span id="cb612-3"><a href="gpus-and-machine-learning.html#cb612-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">compile</span>(</span>
+<span id="cb612-4"><a href="gpus-and-machine-learning.html#cb612-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">loss =</span> <span class="st">&quot;mse&quot;</span>,</span>
+<span id="cb612-5"><a href="gpus-and-machine-learning.html#cb612-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">optimizer =</span> <span class="fu">optimizer_rmsprop</span>(),</span>
+<span id="cb612-6"><a href="gpus-and-machine-learning.html#cb612-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">metrics =</span> <span class="fu">list</span>(<span class="st">&quot;mean_absolute_error&quot;</span>)</span>
+<span id="cb612-7"><a href="gpus-and-machine-learning.html#cb612-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <p>Now we can get a summary of the model we are about to fit to the data.</p>
-<div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="gpus-and-machine-learning.html#cb584-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get a summary of the model</span></span>
-<span id="cb584-2"><a href="gpus-and-machine-learning.html#cb584-2" aria-hidden="true" tabindex="-1"></a>model</span></code></pre></div>
+<div class="sourceCode" id="cb613"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb613-1"><a href="gpus-and-machine-learning.html#cb613-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get a summary of the model</span></span>
+<span id="cb613-2"><a href="gpus-and-machine-learning.html#cb613-2" aria-hidden="true" tabindex="-1"></a>model</span></code></pre></div>
 </div>
 <div id="training-and-prediction" class="section level2 hasAnchor" number="13.4">
 <h2><span class="header-section-number">13.4</span> Training and prediction<a href="gpus-and-machine-learning.html#training-and-prediction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Given the relatively simple model and small dataset, we set the maximum number of epochs to 500 and allow for early stopping in case the validation loss (based on test data) is not improving for a while.</p>
-<div class="sourceCode" id="cb585"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb585-1"><a href="gpus-and-machine-learning.html#cb585-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set max. number of epochs</span></span>
-<span id="cb585-2"><a href="gpus-and-machine-learning.html#cb585-2" aria-hidden="true" tabindex="-1"></a>epochs <span class="ot">&lt;-</span> <span class="dv">500</span></span></code></pre></div>
+<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="gpus-and-machine-learning.html#cb614-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set max. number of epochs</span></span>
+<span id="cb614-2"><a href="gpus-and-machine-learning.html#cb614-2" aria-hidden="true" tabindex="-1"></a>epochs <span class="ot">&lt;-</span> <span class="dv">500</span></span></code></pre></div>
 <p>Finally, we fit the model while preserving the training history, and visualize the training progress.</p>
-<div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb586-1"><a href="gpus-and-machine-learning.html#cb586-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model and store training stats</span></span>
-<span id="cb586-2"><a href="gpus-and-machine-learning.html#cb586-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb586-3"><a href="gpus-and-machine-learning.html#cb586-3" aria-hidden="true" tabindex="-1"></a>history <span class="ot">&lt;-</span> model <span class="sc">%&gt;%</span> <span class="fu">fit</span>(</span>
-<span id="cb586-4"><a href="gpus-and-machine-learning.html#cb586-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> train_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>label),</span>
-<span id="cb586-5"><a href="gpus-and-machine-learning.html#cb586-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> train_df<span class="sc">$</span>label,</span>
-<span id="cb586-6"><a href="gpus-and-machine-learning.html#cb586-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">epochs =</span> epochs,</span>
-<span id="cb586-7"><a href="gpus-and-machine-learning.html#cb586-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">validation_split =</span> <span class="fl">0.2</span>,</span>
-<span id="cb586-8"><a href="gpus-and-machine-learning.html#cb586-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="dv">0</span></span>
-<span id="cb586-9"><a href="gpus-and-machine-learning.html#cb586-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb586-10"><a href="gpus-and-machine-learning.html#cb586-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb586-11"><a href="gpus-and-machine-learning.html#cb586-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb586-12"><a href="gpus-and-machine-learning.html#cb586-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(history)</span></code></pre></div>
+<div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb615-1"><a href="gpus-and-machine-learning.html#cb615-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model and store training stats</span></span>
+<span id="cb615-2"><a href="gpus-and-machine-learning.html#cb615-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb615-3"><a href="gpus-and-machine-learning.html#cb615-3" aria-hidden="true" tabindex="-1"></a>history <span class="ot">&lt;-</span> model <span class="sc">%&gt;%</span> <span class="fu">fit</span>(</span>
+<span id="cb615-4"><a href="gpus-and-machine-learning.html#cb615-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> train_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>label),</span>
+<span id="cb615-5"><a href="gpus-and-machine-learning.html#cb615-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> train_df<span class="sc">$</span>label,</span>
+<span id="cb615-6"><a href="gpus-and-machine-learning.html#cb615-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">epochs =</span> epochs,</span>
+<span id="cb615-7"><a href="gpus-and-machine-learning.html#cb615-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">validation_split =</span> <span class="fl">0.2</span>,</span>
+<span id="cb615-8"><a href="gpus-and-machine-learning.html#cb615-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="dv">0</span></span>
+<span id="cb615-9"><a href="gpus-and-machine-learning.html#cb615-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb615-10"><a href="gpus-and-machine-learning.html#cb615-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb615-11"><a href="gpus-and-machine-learning.html#cb615-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb615-12"><a href="gpus-and-machine-learning.html#cb615-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(history)</span></code></pre></div>
 <div id="a-word-of-caution" class="section level3 hasAnchor" number="13.4.1">
 <h3><span class="header-section-number">13.4.1</span> A word of caution<a href="gpus-and-machine-learning.html#a-word-of-caution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>From just comparing the number of threads of a modern CPU with the number of threads of a modern GPU, one might get the impression that parallel tasks should always be implemented for GPU computing. However, whether one approach or the other is faster can depend a lot on the overall task and the data at hand. Moreover, the parallel implementation of tasks can be done more or less well on either system. Really efficient parallel implementation of tasks can take a lot of coding time (particularly when done for GPUs).<a href="#fn57" class="footnote-ref" id="fnref57"><sup>57</sup></a>.</p>
+<p>From just comparing the number of threads of a modern CPU with the number of threads of a modern GPU, one might get the impression that parallel tasks should always be implemented for GPU computing. However, whether one approach or the other is faster can depend a lot on the overall task and the data at hand. Moreover, the parallel implementation of tasks can be done more or less well on either system. Really efficient parallel implementation of tasks can take a lot of coding time (particularly when done for GPUs).<a href="#fn58" class="footnote-ref" id="fnref58"><sup>58</sup></a>.</p>
 <!-- ```{r echo=FALSE, warning=FALSE, message=FALSE} -->
 <!-- try(detach("package:lmtest", unload=TRUE, force = TRUE)) -->
 <!-- try(detach("package:data.table", unload=TRUE, force = TRUE)) -->
@@ -757,10 +743,10 @@ Matloff, Norman. 2015. <em>Parallel Computing for Data Science</em>. Boca Raton,
 </div>
 <div class="footnotes">
 <hr />
-<ol start="55">
-<li id="fn55"><p>This might involve the installation of additional packages and software outside the R environment.<a href="gpus-and-machine-learning.html#fnref55" class="footnote-back">↩︎</a></p></li>
-<li id="fn56"><p>Typical textbook examples in machine learning deal with classification (e.g. a logit model), while in microeconometrics the typical example is usually a linear model (continuous dependent variable).<a href="gpus-and-machine-learning.html#fnref56" class="footnote-back">↩︎</a></p></li>
-<li id="fn57"><p>For a more detailed discussion of the relevant factors for well done parallelization (either on CPUs or GPUs), see <span class="citation">Matloff (<a href="#ref-matloff_2015" role="doc-biblioref">2015</a>)</span><a href="gpus-and-machine-learning.html#fnref57" class="footnote-back">↩︎</a></p></li>
+<ol start="56">
+<li id="fn56"><p>This might involve the installation of additional packages and software outside the R environment.<a href="gpus-and-machine-learning.html#fnref56" class="footnote-back">↩︎</a></p></li>
+<li id="fn57"><p>Typical textbook examples in machine learning deal with classification (e.g. a logit model), while in microeconometrics the typical example is usually a linear model (continuous dependent variable).<a href="gpus-and-machine-learning.html#fnref57" class="footnote-back">↩︎</a></p></li>
+<li id="fn58"><p>For a more detailed discussion of the relevant factors for well done parallelization (either on CPUs or GPUs), see <span class="citation">Matloff (<a href="#ref-matloff_2015" role="doc-biblioref">2015</a>)</span><a href="gpus-and-machine-learning.html#fnref58" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -829,7 +815,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');
