@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>A Appendix A | Big Data Analytics</title>
+  <title>Chapter 10 Inspect difference to in-memory operation | Big Data Analytics</title>
   <meta name="description" content="A guide to data science practitioners making the transition to Big Data." />
   <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="A Appendix A | Big Data Analytics" />
+  <meta property="og:title" content="Chapter 10 Inspect difference to in-memory operation | Big Data Analytics" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://umatter.github.io/BigData/img/cover.jpg" />
   <meta property="og:description" content="A guide to data science practitioners making the transition to Big Data." />
   <meta name="github-repo" content="umatter/BigData" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="A Appendix A | Big Data Analytics" />
+  <meta name="twitter:title" content="Chapter 10 Inspect difference to in-memory operation | Big Data Analytics" />
   
   <meta name="twitter:description" content="A guide to data science practitioners making the transition to Big Data." />
   <meta name="twitter:image" content="https://umatter.github.io/BigData/img/cover.jpg" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="large-scale-text-analysis-with-sparklyr.html"/>
-<link rel="next" href="appendix-b.html"/>
+<link rel="prev" href="big-data-cleaning-and-transformation.html"/>
+<link rel="next" href="descriptive-statistics-and-aggregation.html"/>
 <script src="libs/jquery/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
@@ -441,87 +441,284 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="appendix-a" class="section level1 hasAnchor" number="17">
-<h1><span class="header-section-number">A</span> Appendix A<a href="appendix-a.html#appendix-a" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="github" class="section level2 hasAnchor" number="17.1">
-<h2><span class="header-section-number">A.1</span> GitHub<a href="appendix-a.html#github" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="initiate-a-new-repository" class="section level3 hasAnchor" number="17.1.1">
-<h3><span class="header-section-number">A.1.1</span> Initiate a new repository<a href="appendix-a.html#initiate-a-new-repository" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ol style="list-style-type: decimal">
-<li>Log in to your GitHub account and click on the plus-sign in the upper right corner. From the drop-down-menu select <code>New repository</code>.</li>
-<li>Give your repository a name, for example <code>bigdatastat</code>. Then, click on the big green button <code>Create repository</code>. You have just created a new repository.</li>
-<li>Open Rstudio and and navigate to a place on your hard-disk where you want to have the local copy of your repository.</li>
-<li>Then create the local repository as suggested by GitHub (see the page shown right after you have clicked on <code>Create repository</code>: “…or create a new repository on the command line”). In order to do so, you have to switch to the Terminal window in RStudio and type (or copy paste) the commands as given by GitHub. This should look similar to</li>
-</ol>
-<div class="sourceCode" id="cb659"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb659-1"><a href="appendix-a.html#cb659-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;# bigdatastat&quot;</span> <span class="op">&gt;&gt;</span> README.md</span>
-<span id="cb659-2"><a href="appendix-a.html#cb659-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span>
-<span id="cb659-3"><a href="appendix-a.html#cb659-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
-<span id="cb659-4"><a href="appendix-a.html#cb659-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;first commit&quot;</span></span>
-<span id="cb659-5"><a href="appendix-a.html#cb659-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin https://github.com/umatter/bigdatastat.git</span>
-<span id="cb659-6"><a href="appendix-a.html#cb659-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin master</span></code></pre></div>
-<ol start="5" style="list-style-type: decimal">
-<li>Refresh the page of your newly created GitHub repository. You should now see the result of your first commit.</li>
-<li>Open <code>README.md</code> in RStudio and add a few words describing what this repository is all about.</li>
-</ol>
+<div id="inspect-difference-to-in-memory-operation" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">Chapter 10</span> Inspect difference to in-memory operation<a href="inspect-difference-to-in-memory-operation.html#inspect-difference-to-in-memory-operation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb319-1"><a href="inspect-difference-to-in-memory-operation.html#cb319-1" aria-hidden="true" tabindex="-1"></a><span class="do">##For flights.table:</span></span>
+<span id="cb319-2"><a href="inspect-difference-to-in-memory-operation.html#cb319-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(airlines.table) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;AIRLINE_ID&quot;</span>, <span class="st">&quot;AIRLINE_NM&quot;</span>)</span>
+<span id="cb319-3"><a href="inspect-difference-to-in-memory-operation.html#cb319-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(airlines.table)</span></code></pre></div>
+<pre><code>## [1] &quot;AIRLINE_ID&quot; &quot;AIRLINE_NM&quot;</code></pre>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb321-1"><a href="inspect-difference-to-in-memory-operation.html#cb321-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(airlines.table[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>,])</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;:    20 obs. of  2 variables:
+##  $ AIRLINE_ID: int  19031 19032 19033 19034 19035 19036 19037 19038 19039 19040 ...
+##  $ AIRLINE_NM: chr  &quot;Mackey International Inc.: MAC&quot; &quot;Munz Northern Airlines Inc.: XY&quot; &quot;Cochise Airlines Inc.: COC&quot; &quot;Golden Gate Airlines Inc.: GSA&quot; ...</code></pre>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="inspect-difference-to-in-memory-operation.html#cb323-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check memory usage of merge in RAM </span></span>
+<span id="cb323-2"><a href="inspect-difference-to-in-memory-operation.html#cb323-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_change</span>(flights.data.table <span class="ot">&lt;-</span> <span class="fu">merge</span>(flights.table,</span>
+<span id="cb323-3"><a href="inspect-difference-to-in-memory-operation.html#cb323-3" aria-hidden="true" tabindex="-1"></a>                                       airlines.table,</span>
+<span id="cb323-4"><a href="inspect-difference-to-in-memory-operation.html#cb323-4" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">by=</span><span class="st">&quot;AIRLINE_ID&quot;</span>))</span></code></pre></div>
+<pre><code>## 161 MB</code></pre>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="inspect-difference-to-in-memory-operation.html#cb325-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The new object is already 105.7 MB in size</span></span>
+<span id="cb325-2"><a href="inspect-difference-to-in-memory-operation.html#cb325-2" aria-hidden="true" tabindex="-1"></a><span class="co">#A rapid spike in RAM use when processing</span></span></code></pre></div>
+<div id="subsetting" class="section level3 hasAnchor" number="10.0.1">
+<h3><span class="header-section-number">10.0.1</span> Subsetting<a href="inspect-difference-to-in-memory-operation.html#subsetting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Now, we want to filter out some observations as well as select only specific variables for a subset of the overall dataset.</p>
+<div class="sourceCode" id="cb326"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb326-1"><a href="inspect-difference-to-in-memory-operation.html#cb326-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_used</span>()</span></code></pre></div>
+<pre><code>## 2.09 GB</code></pre>
+<div class="sourceCode" id="cb328"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb328-1"><a href="inspect-difference-to-in-memory-operation.html#cb328-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset the ff_files object flights.data.ff:</span></span>
+<span id="cb328-2"><a href="inspect-difference-to-in-memory-operation.html#cb328-2" aria-hidden="true" tabindex="-1"></a>subs1.ff <span class="ot">&lt;-</span> <span class="fu">subset.ffdf</span>(flights.data.ff, CANCELLED <span class="sc">==</span> <span class="dv">1</span>, </span>
+<span id="cb328-3"><a href="inspect-difference-to-in-memory-operation.html#cb328-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">select =</span> <span class="fu">c</span>(FL_DATE, AIRLINE_ID, </span>
+<span id="cb328-4"><a href="inspect-difference-to-in-memory-operation.html#cb328-4" aria-hidden="true" tabindex="-1"></a>                                   ORIGIN_CITY_NAME,</span>
+<span id="cb328-5"><a href="inspect-difference-to-in-memory-operation.html#cb328-5" aria-hidden="true" tabindex="-1"></a>                                   ORIGIN_STATE_NM,</span>
+<span id="cb328-6"><a href="inspect-difference-to-in-memory-operation.html#cb328-6" aria-hidden="true" tabindex="-1"></a>                                   DEST_CITY_NAME,</span>
+<span id="cb328-7"><a href="inspect-difference-to-in-memory-operation.html#cb328-7" aria-hidden="true" tabindex="-1"></a>                                   DEST_STATE_NM,</span>
+<span id="cb328-8"><a href="inspect-difference-to-in-memory-operation.html#cb328-8" aria-hidden="true" tabindex="-1"></a>                                   CANCELLATION_CODE))</span>
+<span id="cb328-9"><a href="inspect-difference-to-in-memory-operation.html#cb328-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb328-10"><a href="inspect-difference-to-in-memory-operation.html#cb328-10" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(subs1.ff)</span></code></pre></div>
+<pre><code>## [1] 4529    7</code></pre>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="inspect-difference-to-in-memory-operation.html#cb330-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_used</span>()</span></code></pre></div>
+<pre><code>## 2.09 GB</code></pre>
 </div>
-<div id="clone-this-courses-repository" class="section level3 hasAnchor" number="17.1.2">
-<h3><span class="header-section-number">A.1.2</span> Clone this course’s repository<a href="appendix-a.html#clone-this-courses-repository" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ol style="list-style-type: decimal">
-<li>In RStudio, navigate to a folder on your hard-disk where you want to have a local copy of this course’s GitHub repository.</li>
-<li>Open a new browser window and go to <a href="www.github.com/umatter/BigData"><code>www.github.com/umatter/BigData</code></a>.</li>
-<li>Click on <code>Clone or download</code> and copy the link.</li>
-<li>In RStudio, switch to the Terminal, and type the following command (pasting the copied link).</li>
-</ol>
-<div class="sourceCode" id="cb660"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb660-1"><a href="appendix-a.html#cb660-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/umatter/BigData.git</span></code></pre></div>
-<p>You have now a local copy of the repository which is linked to the one on GitHub. You can see this by changing to the newly created directory, containing the local copy of the repository:</p>
-<div class="sourceCode" id="cb661"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb661-1"><a href="appendix-a.html#cb661-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> BigData</span></code></pre></div>
-<p>Whenever there are some updates to the course’s repository on GitHub, you can update your local copy with:</p>
-<div class="sourceCode" id="cb662"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb662-1"><a href="appendix-a.html#cb662-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull</span></code></pre></div>
-<p>(Make sure you are in the <code>BigData</code> folder when running <code>git pull</code>.)</p>
+<div id="saveloadexport-ff_files-files" class="section level3 hasAnchor" number="10.0.2">
+<h3><span class="header-section-number">10.0.2</span> Save/load/export ff_files files<a href="inspect-difference-to-in-memory-operation.html#saveloadexport-ff_files-files" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In order to better organize and easily reload the newly created <code>ff_files</code> files, we can explicitly save them to disk.</p>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="inspect-difference-to-in-memory-operation.html#cb332-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save a newly created ff_files object to a data file:</span></span>
+<span id="cb332-2"><a href="inspect-difference-to-in-memory-operation.html#cb332-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb332-3"><a href="inspect-difference-to-in-memory-operation.html#cb332-3" aria-hidden="true" tabindex="-1"></a><span class="fu">save.ffdf</span>(subs1.ff, <span class="at">overwrite =</span> <span class="cn">TRUE</span>) <span class="co">#7 files (one for each column) created in the ffdb directory</span></span></code></pre></div>
+<p>If we want to reload a previously saved <code>ff_files</code> object, we do not have to go through the chunking of the raw data file again but can very quickly load the data mapping and metadata into RAM in order to further work with the data (stored on disk).</p>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb333-1"><a href="inspect-difference-to-in-memory-operation.html#cb333-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading previously saved ff_files files:</span></span>
+<span id="cb333-2"><a href="inspect-difference-to-in-memory-operation.html#cb333-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(subs1.ff)</span>
+<span id="cb333-3"><a href="inspect-difference-to-in-memory-operation.html#cb333-3" aria-hidden="true" tabindex="-1"></a><span class="co">#gc()</span></span>
+<span id="cb333-4"><a href="inspect-difference-to-in-memory-operation.html#cb333-4" aria-hidden="true" tabindex="-1"></a><span class="fu">load.ffdf</span>(<span class="st">&quot;ffdb&quot;</span>)</span>
+<span id="cb333-5"><a href="inspect-difference-to-in-memory-operation.html#cb333-5" aria-hidden="true" tabindex="-1"></a><span class="co"># check the class and structure of the loaded data</span></span>
+<span id="cb333-6"><a href="inspect-difference-to-in-memory-operation.html#cb333-6" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(subs1.ff) </span></code></pre></div>
+<pre><code>## [1] &quot;ffdf&quot;</code></pre>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb335-1"><a href="inspect-difference-to-in-memory-operation.html#cb335-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(subs1.ff)</span></code></pre></div>
+<pre><code>## List of 3
+##  $ virtual: &#39;data.frame&#39;:    7 obs. of  7 variables:
+##  .. $ VirtualVmode     : chr  &quot;integer&quot; &quot;integer&quot; &quot;integer&quot; &quot;integer&quot; ...
+##  .. $ AsIs             : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
+##  .. $ VirtualIsMatrix  : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
+##  .. $ PhysicalIsMatrix : logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
+##  .. $ PhysicalElementNo: int  1 2 3 4 5 6 7
+##  .. $ PhysicalFirstCol : int  1 1 1 1 1 1 1
+##  .. $ PhysicalLastCol  : int  1 1 1 1 1 1 1
+##  .. - attr(*, &quot;Dim&quot;)= int [1:2] 4529 7
+##  .. - attr(*, &quot;Dimorder&quot;)= int [1:2] 1 2
+##  $ physical: List of 7
+##  .. $ FL_DATE          : list()
+##  ..  ..- attr(*, &quot;physical&quot;)=Class &#39;ff_pointer&#39; &lt;externalptr&gt; 
+##  ..  .. ..- attr(*, &quot;vmode&quot;)= chr &quot;integer&quot;
+##  ..  .. ..- attr(*, &quot;maxlength&quot;)= int 4529
+##  ..  .. ..- attr(*, &quot;pattern&quot;)= chr &quot;ffdf&quot;
+##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/home/umatter/Dropbox/Teaching/HSG/BigData/BigData/ffdb/subs1.ff$FL_DATE.ff&quot;
+##  ..  .. ..- attr(*, &quot;pagesize&quot;)= int 65536
+##  ..  .. ..- attr(*, &quot;finalizer&quot;)= chr &quot;close&quot;
+##  ..  .. ..- attr(*, &quot;finonexit&quot;)= logi TRUE
+##  ..  .. ..- attr(*, &quot;readonly&quot;)= logi FALSE
+##  ..  .. ..- attr(*, &quot;caching&quot;)= chr &quot;mmnoflush&quot;
+##  ..  ..- attr(*, &quot;virtual&quot;)= list()
+##  ..  .. ..- attr(*, &quot;Length&quot;)= int 4529
+##  ..  .. ..- attr(*, &quot;Symmetric&quot;)= logi FALSE
+##  ..  .. ..- attr(*, &quot;Levels&quot;)= chr [1:61] &quot;2015-09-01&quot; &quot;2015-09-02&quot; &quot;2015-09-03&quot; &quot;2015-09-04&quot; ...
+##  ..  .. ..- attr(*, &quot;ramclass&quot;)= chr &quot;factor&quot;
+##  .. .. - attr(*, &quot;class&quot;) =  chr [1:2] &quot;ff_vector&quot; &quot;ff&quot;
+##  .. $ AIRLINE_ID       : list()
+##  ..  ..- attr(*, &quot;physical&quot;)=Class &#39;ff_pointer&#39; &lt;externalptr&gt; 
+##  ..  .. ..- attr(*, &quot;vmode&quot;)= chr &quot;integer&quot;
+##  ..  .. ..- attr(*, &quot;maxlength&quot;)= int 4529
+##  ..  .. ..- attr(*, &quot;pattern&quot;)= chr &quot;ffdf&quot;
+##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/home/umatter/Dropbox/Teaching/HSG/BigData/BigData/ffdb/subs1.ff$AIRLINE_ID.ff&quot;
+##  ..  .. ..- attr(*, &quot;pagesize&quot;)= int 65536
+##  ..  .. ..- attr(*, &quot;finalizer&quot;)= chr &quot;close&quot;
+##  ..  .. ..- attr(*, &quot;finonexit&quot;)= logi TRUE
+##  ..  .. ..- attr(*, &quot;readonly&quot;)= logi FALSE
+##  ..  .. ..- attr(*, &quot;caching&quot;)= chr &quot;mmnoflush&quot;
+##  ..  ..- attr(*, &quot;virtual&quot;)= list()
+##  ..  .. ..- attr(*, &quot;Length&quot;)= int 4529
+##  ..  .. ..- attr(*, &quot;Symmetric&quot;)= logi FALSE
+##  .. .. - attr(*, &quot;class&quot;) =  chr [1:2] &quot;ff_vector&quot; &quot;ff&quot;
+##  .. $ ORIGIN_CITY_NAME : list()
+##  ..  ..- attr(*, &quot;physical&quot;)=Class &#39;ff_pointer&#39; &lt;externalptr&gt; 
+##  ..  .. ..- attr(*, &quot;vmode&quot;)= chr &quot;integer&quot;
+##  ..  .. ..- attr(*, &quot;maxlength&quot;)= int 4529
+##  ..  .. ..- attr(*, &quot;pattern&quot;)= chr &quot;ffdf&quot;
+##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/home/umatter/Dropbox/Teaching/HSG/BigData/BigData/ffdb/subs1.ff$ORIGIN_CITY_NAME.ff&quot;
+##  ..  .. ..- attr(*, &quot;pagesize&quot;)= int 65536
+##  ..  .. ..- attr(*, &quot;finalizer&quot;)= chr &quot;close&quot;
+##  ..  .. ..- attr(*, &quot;finonexit&quot;)= logi TRUE
+##  ..  .. ..- attr(*, &quot;readonly&quot;)= logi FALSE
+##  ..  .. ..- attr(*, &quot;caching&quot;)= chr &quot;mmnoflush&quot;
+##  ..  ..- attr(*, &quot;virtual&quot;)= list()
+##  ..  .. ..- attr(*, &quot;Length&quot;)= int 4529
+##  ..  .. ..- attr(*, &quot;Symmetric&quot;)= logi FALSE
+##  ..  .. ..- attr(*, &quot;Levels&quot;)= chr [1:305] &quot;Abilene, TX&quot; &quot;Akron, OH&quot; &quot;Albany, GA&quot; &quot;Albany, NY&quot; ...
+##  ..  .. ..- attr(*, &quot;ramclass&quot;)= chr &quot;factor&quot;
+##  .. .. - attr(*, &quot;class&quot;) =  chr [1:2] &quot;ff_vector&quot; &quot;ff&quot;
+##  .. $ ORIGIN_STATE_NM  : list()
+##  ..  ..- attr(*, &quot;physical&quot;)=Class &#39;ff_pointer&#39; &lt;externalptr&gt; 
+##  ..  .. ..- attr(*, &quot;vmode&quot;)= chr &quot;integer&quot;
+##  ..  .. ..- attr(*, &quot;maxlength&quot;)= int 4529
+##  ..  .. ..- attr(*, &quot;pattern&quot;)= chr &quot;ffdf&quot;
+##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/home/umatter/Dropbox/Teaching/HSG/BigData/BigData/ffdb/subs1.ff$ORIGIN_STATE_NM.ff&quot;
+##  ..  .. ..- attr(*, &quot;pagesize&quot;)= int 65536
+##  ..  .. ..- attr(*, &quot;finalizer&quot;)= chr &quot;close&quot;
+##  ..  .. ..- attr(*, &quot;finonexit&quot;)= logi TRUE
+##  ..  .. ..- attr(*, &quot;readonly&quot;)= logi FALSE
+##  ..  .. ..- attr(*, &quot;caching&quot;)= chr &quot;mmnoflush&quot;
+##  ..  ..- attr(*, &quot;virtual&quot;)= list()
+##  ..  .. ..- attr(*, &quot;Length&quot;)= int 4529
+##  ..  .. ..- attr(*, &quot;Symmetric&quot;)= logi FALSE
+##  ..  .. ..- attr(*, &quot;Levels&quot;)= chr [1:52] &quot;Alabama&quot; &quot;Alaska&quot; &quot;Arizona&quot; &quot;Arkansas&quot; ...
+##  ..  .. ..- attr(*, &quot;ramclass&quot;)= chr &quot;factor&quot;
+##  .. .. - attr(*, &quot;class&quot;) =  chr [1:2] &quot;ff_vector&quot; &quot;ff&quot;
+##  .. $ DEST_CITY_NAME   : list()
+##  ..  ..- attr(*, &quot;physical&quot;)=Class &#39;ff_pointer&#39; &lt;externalptr&gt; 
+##  ..  .. ..- attr(*, &quot;vmode&quot;)= chr &quot;integer&quot;
+##  ..  .. ..- attr(*, &quot;maxlength&quot;)= int 4529
+##  ..  .. ..- attr(*, &quot;pattern&quot;)= chr &quot;ffdf&quot;
+##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/home/umatter/Dropbox/Teaching/HSG/BigData/BigData/ffdb/subs1.ff$DEST_CITY_NAME.ff&quot;
+##  ..  .. ..- attr(*, &quot;pagesize&quot;)= int 65536
+##  ..  .. ..- attr(*, &quot;finalizer&quot;)= chr &quot;close&quot;
+##  ..  .. ..- attr(*, &quot;finonexit&quot;)= logi TRUE
+##  ..  .. ..- attr(*, &quot;readonly&quot;)= logi FALSE
+##  ..  .. ..- attr(*, &quot;caching&quot;)= chr &quot;mmnoflush&quot;
+##  ..  ..- attr(*, &quot;virtual&quot;)= list()
+##  ..  .. ..- attr(*, &quot;Length&quot;)= int 4529
+##  ..  .. ..- attr(*, &quot;Symmetric&quot;)= logi FALSE
+##  ..  .. ..- attr(*, &quot;Levels&quot;)= chr [1:306] &quot;Abilene, TX&quot; &quot;Akron, OH&quot; &quot;Albany, GA&quot; &quot;Albany, NY&quot; ...
+##  ..  .. ..- attr(*, &quot;ramclass&quot;)= chr &quot;factor&quot;
+##  .. .. - attr(*, &quot;class&quot;) =  chr [1:2] &quot;ff_vector&quot; &quot;ff&quot;
+##  .. $ DEST_STATE_NM    : list()
+##  ..  ..- attr(*, &quot;physical&quot;)=Class &#39;ff_pointer&#39; &lt;externalptr&gt; 
+##  ..  .. ..- attr(*, &quot;vmode&quot;)= chr &quot;integer&quot;
+##  ..  .. ..- attr(*, &quot;maxlength&quot;)= int 4529
+##  ..  .. ..- attr(*, &quot;pattern&quot;)= chr &quot;ffdf&quot;
+##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/home/umatter/Dropbox/Teaching/HSG/BigData/BigData/ffdb/subs1.ff$DEST_STATE_NM.ff&quot;
+##  ..  .. ..- attr(*, &quot;pagesize&quot;)= int 65536
+##  ..  .. ..- attr(*, &quot;finalizer&quot;)= chr &quot;close&quot;
+##  ..  .. ..- attr(*, &quot;finonexit&quot;)= logi TRUE
+##  ..  .. ..- attr(*, &quot;readonly&quot;)= logi FALSE
+##  ..  .. ..- attr(*, &quot;caching&quot;)= chr &quot;mmnoflush&quot;
+##  ..  ..- attr(*, &quot;virtual&quot;)= list()
+##  ..  .. ..- attr(*, &quot;Length&quot;)= int 4529
+##  ..  .. ..- attr(*, &quot;Symmetric&quot;)= logi FALSE
+##  ..  .. ..- attr(*, &quot;Levels&quot;)= chr [1:52] &quot;Alabama&quot; &quot;Alaska&quot; &quot;Arizona&quot; &quot;Arkansas&quot; ...
+##  ..  .. ..- attr(*, &quot;ramclass&quot;)= chr &quot;factor&quot;
+##  .. .. - attr(*, &quot;class&quot;) =  chr [1:2] &quot;ff_vector&quot; &quot;ff&quot;
+##  .. $ CANCELLATION_CODE: list()
+##  ..  ..- attr(*, &quot;physical&quot;)=Class &#39;ff_pointer&#39; &lt;externalptr&gt; 
+##  ..  .. ..- attr(*, &quot;vmode&quot;)= chr &quot;integer&quot;
+##  ..  .. ..- attr(*, &quot;maxlength&quot;)= int 4529
+##  ..  .. ..- attr(*, &quot;pattern&quot;)= chr &quot;ffdf&quot;
+##  ..  .. ..- attr(*, &quot;filename&quot;)= chr &quot;/home/umatter/Dropbox/Teaching/HSG/BigData/BigData/ffdb/subs1.ff$CANCELLATION_CODE.ff&quot;
+##  ..  .. ..- attr(*, &quot;pagesize&quot;)= int 65536
+##  ..  .. ..- attr(*, &quot;finalizer&quot;)= chr &quot;close&quot;
+##  ..  .. ..- attr(*, &quot;finonexit&quot;)= logi TRUE
+##  ..  .. ..- attr(*, &quot;readonly&quot;)= logi FALSE
+##  ..  .. ..- attr(*, &quot;caching&quot;)= chr &quot;mmnoflush&quot;
+##  ..  ..- attr(*, &quot;virtual&quot;)= list()
+##  ..  .. ..- attr(*, &quot;Length&quot;)= int 4529
+##  ..  .. ..- attr(*, &quot;Symmetric&quot;)= logi FALSE
+##  ..  .. ..- attr(*, &quot;Levels&quot;)= chr [1:4] &quot;&quot; &quot;A&quot; &quot;B&quot; &quot;C&quot;
+##  ..  .. ..- attr(*, &quot;ramclass&quot;)= chr &quot;factor&quot;
+##  .. .. - attr(*, &quot;class&quot;) =  chr [1:2] &quot;ff_vector&quot; &quot;ff&quot;
+##  $ row.names:  NULL
+## - attributes: List of 2
+##  .. $ names: chr [1:2] &quot;virtual&quot; &quot;physical&quot;
+##  .. $ class: chr &quot;ffdf&quot;</code></pre>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="inspect-difference-to-in-memory-operation.html#cb337-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(subs1.ff)</span></code></pre></div>
+<pre><code>## [1] 4529    7</code></pre>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb339-1"><a href="inspect-difference-to-in-memory-operation.html#cb339-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dimnames</span>(subs1.ff)</span></code></pre></div>
+<pre><code>## [[1]]
+## NULL
+## 
+## [[2]]
+## [1] &quot;FL_DATE&quot;           &quot;AIRLINE_ID&quot;       
+## [3] &quot;ORIGIN_CITY_NAME&quot;  &quot;ORIGIN_STATE_NM&quot;  
+## [5] &quot;DEST_CITY_NAME&quot;    &quot;DEST_STATE_NM&quot;    
+## [7] &quot;CANCELLATION_CODE&quot;</code></pre>
+<p>If we want to store an <code>ff_files</code> dataset in a format more accessible for other users (such as CSV), we can do so as follows. This last step is also quite common in practice. The initial raw dataset is very large; thus we perform all the theoretically very memory-intensive tasks of preparing the analytic dataset via <code>ff</code> and then store the (often much smaller) analytic dataset in a more accessible CSV file in order to later read it into RAM and run more computationally intensive analyses directly in RAM.</p>
+<div class="sourceCode" id="cb341"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb341-1"><a href="inspect-difference-to-in-memory-operation.html#cb341-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  Export subs1.ff into CSV and TXT files:</span></span>
+<span id="cb341-2"><a href="inspect-difference-to-in-memory-operation.html#cb341-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv.ffdf</span>(subs1.ff, <span class="st">&quot;subset1.csv&quot;</span>)</span></code></pre></div>
 </div>
-<div id="fork-this-courses-repository" class="section level3 hasAnchor" number="17.1.3">
-<h3><span class="header-section-number">A.1.3</span> Fork this course’s repository<a href="appendix-a.html#fork-this-courses-repository" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ol style="list-style-type: decimal">
-<li><p>Go to <a href="https://github.com/umatter/BigData"><code>https://github.com/umatter/BigData</code></a>, click on the ‘Fork’ button in the upper-right corner (follow the instructions).</p></li>
-<li><p>Clone the forked repository (see the cloning of a repository above for details). Assuming you called your forked repository <code>BigData-forked</code>, you run the following command in the terminal (replacing <code>&lt;yourgithubusername&gt;</code>:</p></li>
-</ol>
-<pre><code>git clone https://github.com/`&lt;yourgithubusername&gt;`/BigData-forked.git</code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li>Switch into the newly created directory:</li>
-</ol>
-<pre><code>cd BigData-forked</code></pre>
-<ol start="4" style="list-style-type: decimal">
-<li>Set a remote connection to the <em>original</em> repository</li>
-</ol>
-<pre><code>git remote add upstream https://github.com/umatter/BigData.git</code></pre>
-<p>You can verify the remotes of your local clone of your forked repository as follows</p>
-<pre><code>git remote -v</code></pre>
-<p>You should see something like</p>
-<pre><code>origin  https://github.com/&lt;yourgithubusername&gt;/BigData-forked.git (fetch)
-origin  https://github.com/&lt;yourgithubusername&gt;/BigData-forked.git (push)
-upstream    https://github.com/umatter/BigData.git (fetch)
-upstream    https://github.com/umatter/BigData.git (push)</code></pre>
-<ol start="5" style="list-style-type: decimal">
-<li>Fetch changes from the original repository. New material has been added to the original course repository and you want to merge it with your forked repository. In order to do so, you first fetch the changes from the original repository:</li>
-</ol>
-<pre><code>git fetch upstream</code></pre>
-<ol start="6" style="list-style-type: decimal">
-<li>Make sure you are on the master branch of your local repository:</li>
-</ol>
-<pre><code>git checkout master</code></pre>
-<ol start="7" style="list-style-type: decimal">
-<li>Merge the changes fetched from the original repo with the master of your (local clone of the) forked repo.</li>
-</ol>
-<pre><code>git merge upstream/master</code></pre>
-<ol start="8" style="list-style-type: decimal">
-<li>Push the changes to your forked repository on GitHub.</li>
-</ol>
-<pre><code>git push</code></pre>
-<p>Now your forked repo on GitHub also contains the commits (changes) in the original repository. If you make changes to the files in your forked repo. you can add, commit, and push them as in any repository. Example: open <code>README.md</code> in a text editor (e.g. RStudio), add <code># HELLO WORLD</code> to the last line of <code>README.md</code>, and save the changes. Then:</p>
-<pre><code>git add README.md
-git commit -m &quot;hello world&quot;
-git push</code></pre>
+<div id="arrow-big-data-preparation-tutorial" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> <code>arrow</code> Big Data preparation tutorial<a href="inspect-difference-to-in-memory-operation.html#arrow-big-data-preparation-tutorial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>We begin by initializing our R session as in the short <code>arrow</code> introduction above.</p>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="inspect-difference-to-in-memory-operation.html#cb342-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP ----------------</span></span>
+<span id="cb342-2"><a href="inspect-difference-to-in-memory-operation.html#cb342-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb342-3"><a href="inspect-difference-to-in-memory-operation.html#cb342-3" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb342-4"><a href="inspect-difference-to-in-memory-operation.html#cb342-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arrow)</span>
+<span id="cb342-5"><a href="inspect-difference-to-in-memory-operation.html#cb342-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb342-6"><a href="inspect-difference-to-in-memory-operation.html#cb342-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pryr) <span class="co"># for profiling</span></span>
+<span id="cb342-7"><a href="inspect-difference-to-in-memory-operation.html#cb342-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb342-8"><a href="inspect-difference-to-in-memory-operation.html#cb342-8" aria-hidden="true" tabindex="-1"></a><span class="co"># fix vars</span></span>
+<span id="cb342-9"><a href="inspect-difference-to-in-memory-operation.html#cb342-9" aria-hidden="true" tabindex="-1"></a>FLIGHTS_DATA <span class="ot">&lt;-</span> <span class="st">&quot;data/flights_sep_oct15.txt&quot;</span></span>
+<span id="cb342-10"><a href="inspect-difference-to-in-memory-operation.html#cb342-10" aria-hidden="true" tabindex="-1"></a>AIRLINES_DATA <span class="ot">&lt;-</span> <span class="st">&quot;data/airline_id.csv&quot;</span></span>
+<span id="cb342-11"><a href="inspect-difference-to-in-memory-operation.html#cb342-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb342-12"><a href="inspect-difference-to-in-memory-operation.html#cb342-12" aria-hidden="true" tabindex="-1"></a><span class="co"># import the data</span></span>
+<span id="cb342-13"><a href="inspect-difference-to-in-memory-operation.html#cb342-13" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> <span class="fu">read_csv_arrow</span>(FLIGHTS_DATA,</span>
+<span id="cb342-14"><a href="inspect-difference-to-in-memory-operation.html#cb342-14" aria-hidden="true" tabindex="-1"></a>                     <span class="at">as_data_frame =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb342-15"><a href="inspect-difference-to-in-memory-operation.html#cb342-15" aria-hidden="true" tabindex="-1"></a>airlines <span class="ot">&lt;-</span> <span class="fu">read_csv_arrow</span>(AIRLINES_DATA,</span>
+<span id="cb342-16"><a href="inspect-difference-to-in-memory-operation.html#cb342-16" aria-hidden="true" tabindex="-1"></a>                     <span class="at">as_data_frame =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p>Note how the data from the csv files is not actually read into RAM yet. The created objects <code>flights</code> and <code>airlines</code> are not data frames (yet) and occupy hardly any RAM.</p>
+<div class="sourceCode" id="cb343"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb343-1"><a href="inspect-difference-to-in-memory-operation.html#cb343-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(flights)</span></code></pre></div>
+<pre><code>## [1] &quot;Table&quot;        &quot;ArrowTabular&quot; &quot;ArrowObject&quot; 
+## [4] &quot;R6&quot;</code></pre>
+<div class="sourceCode" id="cb345"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb345-1"><a href="inspect-difference-to-in-memory-operation.html#cb345-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(airlines)</span></code></pre></div>
+<pre><code>## [1] &quot;Table&quot;        &quot;ArrowTabular&quot; &quot;ArrowObject&quot; 
+## [4] &quot;R6&quot;</code></pre>
+<div class="sourceCode" id="cb347"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb347-1"><a href="inspect-difference-to-in-memory-operation.html#cb347-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object_size</span>(flights)</span></code></pre></div>
+<pre><code>## 283.62 kB</code></pre>
+<div class="sourceCode" id="cb349"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb349-1"><a href="inspect-difference-to-in-memory-operation.html#cb349-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object_size</span>(airlines)</span></code></pre></div>
+<pre><code>## 283.62 kB</code></pre>
+<p>In analogy to the <code>ff</code> tutorial above, we go through the same data preparation steps. First, we rename the variables in <code>airlines</code> to ensure that the variable names are consistent with the <code>flights</code> data frame.</p>
+<div class="sourceCode" id="cb351"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb351-1"><a href="inspect-difference-to-in-memory-operation.html#cb351-1" aria-hidden="true" tabindex="-1"></a><span class="co"># step 1: </span></span>
+<span id="cb351-2"><a href="inspect-difference-to-in-memory-operation.html#cb351-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Rename &quot;Code&quot; variable from airlines.ff to &quot;AIRLINE_ID&quot; and &quot;Description&quot; into &quot;AIRLINE_NM&quot;.</span></span>
+<span id="cb351-3"><a href="inspect-difference-to-in-memory-operation.html#cb351-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(airlines) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;AIRLINE_ID&quot;</span>, <span class="st">&quot;AIRLINE_NM&quot;</span>)</span>
+<span id="cb351-4"><a href="inspect-difference-to-in-memory-operation.html#cb351-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(airlines)</span></code></pre></div>
+<pre><code>## [1] &quot;AIRLINE_ID&quot; &quot;AIRLINE_NM&quot;</code></pre>
+<p>In a second step, the two data frames are merged/joined. The <code>arrow</code> package follows <code>dplyr</code>-syntax regarding data preparation tasks. That is, we can directly build on functions like</p>
+<div class="sourceCode" id="cb353"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb353-1"><a href="inspect-difference-to-in-memory-operation.html#cb353-1" aria-hidden="true" tabindex="-1"></a><span class="co"># merge the two datasets via Arrow</span></span>
+<span id="cb353-2"><a href="inspect-difference-to-in-memory-operation.html#cb353-2" aria-hidden="true" tabindex="-1"></a>flights.data.ar <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(airlines, flights, <span class="at">by=</span><span class="st">&quot;AIRLINE_ID&quot;</span>)</span>
+<span id="cb353-3"><a href="inspect-difference-to-in-memory-operation.html#cb353-3" aria-hidden="true" tabindex="-1"></a><span class="fu">object_size</span>(flights.data.ar)</span></code></pre></div>
+<pre><code>## 647.74 kB</code></pre>
+<p>In a last step, we filter the resulting dataset for cancelled flights and select only some of the available variables.</p>
+<p>Now, we want to filter out some observations as well as select only specific variables for a subset of the overall dataset. As Arrow works with the <code>dplyr</code> backend, we can directly use the typical <code>dplyr</code>-syntax to combine selection of columns and filtering of rows.</p>
+<div class="sourceCode" id="cb355"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb355-1"><a href="inspect-difference-to-in-memory-operation.html#cb355-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset the ff_files object flights.data.ff:</span></span>
+<span id="cb355-2"><a href="inspect-difference-to-in-memory-operation.html#cb355-2" aria-hidden="true" tabindex="-1"></a>subs1.ar <span class="ot">&lt;-</span> </span>
+<span id="cb355-3"><a href="inspect-difference-to-in-memory-operation.html#cb355-3" aria-hidden="true" tabindex="-1"></a>        flights.data.ar <span class="sc">%&gt;%</span></span>
+<span id="cb355-4"><a href="inspect-difference-to-in-memory-operation.html#cb355-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">filter</span>(CANCELLED <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb355-5"><a href="inspect-difference-to-in-memory-operation.html#cb355-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">select</span>(FL_DATE,</span>
+<span id="cb355-6"><a href="inspect-difference-to-in-memory-operation.html#cb355-6" aria-hidden="true" tabindex="-1"></a>               AIRLINE_ID,</span>
+<span id="cb355-7"><a href="inspect-difference-to-in-memory-operation.html#cb355-7" aria-hidden="true" tabindex="-1"></a>               ORIGIN_CITY_NAME,</span>
+<span id="cb355-8"><a href="inspect-difference-to-in-memory-operation.html#cb355-8" aria-hidden="true" tabindex="-1"></a>               ORIGIN_STATE_NM,</span>
+<span id="cb355-9"><a href="inspect-difference-to-in-memory-operation.html#cb355-9" aria-hidden="true" tabindex="-1"></a>               DEST_CITY_NAME,</span>
+<span id="cb355-10"><a href="inspect-difference-to-in-memory-operation.html#cb355-10" aria-hidden="true" tabindex="-1"></a>               DEST_STATE_NM,</span>
+<span id="cb355-11"><a href="inspect-difference-to-in-memory-operation.html#cb355-11" aria-hidden="true" tabindex="-1"></a>               CANCELLATION_CODE)</span>
+<span id="cb355-12"><a href="inspect-difference-to-in-memory-operation.html#cb355-12" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb355-13"><a href="inspect-difference-to-in-memory-operation.html#cb355-13" aria-hidden="true" tabindex="-1"></a><span class="fu">object_size</span>(subs1.ar)</span></code></pre></div>
+<pre><code>## 591.21 kB</code></pre>
+<p>Again, this operation hardly affected RAM usage by R. Note, though, that in contrast to the <code>ff</code>-approach, arrow has actually not yet created the new subset <code>sub1.ar</code>. In fact, it has not even really imported the data or merged the two datasets. This is the effect of the <code>lazy evaluation</code> approach implemented in <code>arrow</code>. To further process the data in <code>sub1.ar</code> with other functions (outside of <code>arrow</code>), we need to actually trigger the evaluation of all the data preparation steps we have just instructed R to do. This is done via <code>collect()</code>.</p>
+<div class="sourceCode" id="cb357"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb357-1"><a href="inspect-difference-to-in-memory-operation.html#cb357-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_change</span>(subs1.ar.df <span class="ot">&lt;-</span> <span class="fu">collect</span>(subs1.ar))</span></code></pre></div>
+<pre><code>## 2.47 MB</code></pre>
+<div class="sourceCode" id="cb359"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb359-1"><a href="inspect-difference-to-in-memory-operation.html#cb359-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(subs1.ar.df)</span></code></pre></div>
+<pre><code>## [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="inspect-difference-to-in-memory-operation.html#cb361-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object_size</span>(subs1.ar.df)</span></code></pre></div>
+<pre><code>## 57.15 kB</code></pre>
+<p>Note how in this tutorial, the final subset is substantially smaller than the initial two datasets. Hence, in this case it is fine to actually load this into RAM as a data frame. However, this is not a necessary part of the workflow. Instead of calling <code>collect()</code>, you can then trigger the computation of all the data preparation steps via <code>compute()</code> and, for example, store the resulting <code>arrow</code> table to a CSV file.</p>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="inspect-difference-to-in-memory-operation.html#cb363-1" aria-hidden="true" tabindex="-1"></a>subs1.ar <span class="sc">%&gt;%</span> </span>
+<span id="cb363-2"><a href="inspect-difference-to-in-memory-operation.html#cb363-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">compute</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb363-3"><a href="inspect-difference-to-in-memory-operation.html#cb363-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">write_csv_arrow</span>(<span class="at">file=</span><span class="st">&quot;data/subs1.ar.csv&quot;</span>)</span></code></pre></div>
 </div>
+<div id="wrapping-up-5" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> Wrapping up<a href="inspect-difference-to-in-memory-operation.html#wrapping-up-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Typically, the raw/uncleaned data is the critical bottleneck in terms of data volume. Particularly as the selection and filtering of the overall dataset in the preparation of analytic datasets can only work properly with cleaned data.</li>
+<li><em>Out-of-memory</em> strategies are based on the concept of virtual memory and are key to cleaning large amounts of data locally.</li>
+<li>The <em><code>ff</code>-package</em> provides a high-level R interface to an out-of-memory approach. Most functions in <code>ff</code> and the corresponding <code>ffbase</code> package come with a syntax very similar to the basic R syntax for data cleaning and manipulation.</li>
+<li>The basic idea behind <code>ff</code> is to store the data in chunked format in an easily-accessible way on the hard disk and only keep the metadata of a dataset (e.g., variable names) in an R object in RAM while working on the dataset.</li>
+<li>The <code>arrow</code> package offers similar functionality based on a slightly different approach called <em>lazy evaluation</em> (only evaluate data manipulation/cleaning tasks once the data is pulled into R). Unlike <code>ff</code>, <code>arrow</code> closely follows the <code>dplyr</code>-syntax rather than basic R syntax for data cleaning tasks.</li>
+</ul>
+
 </div>
 </div>
             </section>
@@ -529,8 +726,8 @@ git push</code></pre>
           </div>
         </div>
       </div>
-<a href="large-scale-text-analysis-with-sparklyr.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="appendix-b.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="big-data-cleaning-and-transformation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="descriptive-statistics-and-aggregation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>

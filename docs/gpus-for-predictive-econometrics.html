@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>A Appendix A | Big Data Analytics</title>
+  <title>Chapter 14 GPUs for Predictive Econometrics | Big Data Analytics</title>
   <meta name="description" content="A guide to data science practitioners making the transition to Big Data." />
   <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="A Appendix A | Big Data Analytics" />
+  <meta property="og:title" content="Chapter 14 GPUs for Predictive Econometrics | Big Data Analytics" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://umatter.github.io/BigData/img/cover.jpg" />
   <meta property="og:description" content="A guide to data science practitioners making the transition to Big Data." />
   <meta name="github-repo" content="umatter/BigData" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="A Appendix A | Big Data Analytics" />
+  <meta name="twitter:title" content="Chapter 14 GPUs for Predictive Econometrics | Big Data Analytics" />
   
   <meta name="twitter:description" content="A guide to data science practitioners making the transition to Big Data." />
   <meta name="twitter:image" content="https://umatter.github.io/BigData/img/cover.jpg" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="large-scale-text-analysis-with-sparklyr.html"/>
-<link rel="next" href="appendix-b.html"/>
+<link rel="prev" href="bottle-necks-in-every-day-data-analytics-tasks.html"/>
+<link rel="next" href="regression-analysis-and-categorization-with-spark-and-r.html"/>
 <script src="libs/jquery/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
@@ -365,14 +365,14 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="13.4" data-path="bottle-necks-in-every-day-data-analytics-tasks.html"><a href="bottle-necks-in-every-day-data-analytics-tasks.html#case-study-efficient-fixed-effects-estimation"><i class="fa fa-check"></i><b>13.4</b> Case Study: Efficient Fixed Effects Estimation</a></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html"><i class="fa fa-check"></i><b>14</b> Econometrics with GPUs</a>
+<li class="chapter" data-level="14" data-path="gpus-for-predictive-econometrics.html"><a href="gpus-for-predictive-econometrics.html"><i class="fa fa-check"></i><b>14</b> GPUs for Predictive Econometrics</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#tensorflowkeras-example-predict-housing-prices"><i class="fa fa-check"></i><b>14.1</b> Tensorflow/Keras example: predict housing prices</a>
+<li class="chapter" data-level="14.1" data-path="gpus-for-predictive-econometrics.html"><a href="gpus-for-predictive-econometrics.html#tensorflowkeras-example-predict-housing-prices"><i class="fa fa-check"></i><b>14.1</b> Tensorflow/Keras example: predict housing prices</a>
 <ul>
-<li class="chapter" data-level="14.1.1" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#data-preparation"><i class="fa fa-check"></i><b>14.1.1</b> Data preparation</a></li>
-<li class="chapter" data-level="14.1.2" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#model-specification"><i class="fa fa-check"></i><b>14.1.2</b> Model specification</a></li>
-<li class="chapter" data-level="14.1.3" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#training-and-prediction"><i class="fa fa-check"></i><b>14.1.3</b> Training and prediction</a></li>
-<li class="chapter" data-level="14.1.4" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#a-word-of-caution"><i class="fa fa-check"></i><b>14.1.4</b> A word of caution</a></li>
+<li class="chapter" data-level="14.1.1" data-path="gpus-for-predictive-econometrics.html"><a href="gpus-for-predictive-econometrics.html#data-preparation"><i class="fa fa-check"></i><b>14.1.1</b> Data preparation</a></li>
+<li class="chapter" data-level="14.1.2" data-path="gpus-for-predictive-econometrics.html"><a href="gpus-for-predictive-econometrics.html#model-specification"><i class="fa fa-check"></i><b>14.1.2</b> Model specification</a></li>
+<li class="chapter" data-level="14.1.3" data-path="gpus-for-predictive-econometrics.html"><a href="gpus-for-predictive-econometrics.html#training-and-prediction"><i class="fa fa-check"></i><b>14.1.3</b> Training and prediction</a></li>
+<li class="chapter" data-level="14.1.4" data-path="gpus-for-predictive-econometrics.html"><a href="gpus-for-predictive-econometrics.html#a-word-of-caution"><i class="fa fa-check"></i><b>14.1.4</b> A word of caution</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="15" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html"><i class="fa fa-check"></i><b>15</b> Regression Analysis and Categorization with Spark and R</a>
@@ -441,96 +441,232 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="appendix-a" class="section level1 hasAnchor" number="17">
-<h1><span class="header-section-number">A</span> Appendix A<a href="appendix-a.html#appendix-a" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="github" class="section level2 hasAnchor" number="17.1">
-<h2><span class="header-section-number">A.1</span> GitHub<a href="appendix-a.html#github" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="initiate-a-new-repository" class="section level3 hasAnchor" number="17.1.1">
-<h3><span class="header-section-number">A.1.1</span> Initiate a new repository<a href="appendix-a.html#initiate-a-new-repository" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ol style="list-style-type: decimal">
-<li>Log in to your GitHub account and click on the plus-sign in the upper right corner. From the drop-down-menu select <code>New repository</code>.</li>
-<li>Give your repository a name, for example <code>bigdatastat</code>. Then, click on the big green button <code>Create repository</code>. You have just created a new repository.</li>
-<li>Open Rstudio and and navigate to a place on your hard-disk where you want to have the local copy of your repository.</li>
-<li>Then create the local repository as suggested by GitHub (see the page shown right after you have clicked on <code>Create repository</code>: “…or create a new repository on the command line”). In order to do so, you have to switch to the Terminal window in RStudio and type (or copy paste) the commands as given by GitHub. This should look similar to</li>
-</ol>
-<div class="sourceCode" id="cb659"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb659-1"><a href="appendix-a.html#cb659-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;# bigdatastat&quot;</span> <span class="op">&gt;&gt;</span> README.md</span>
-<span id="cb659-2"><a href="appendix-a.html#cb659-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span>
-<span id="cb659-3"><a href="appendix-a.html#cb659-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
-<span id="cb659-4"><a href="appendix-a.html#cb659-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;first commit&quot;</span></span>
-<span id="cb659-5"><a href="appendix-a.html#cb659-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin https://github.com/umatter/bigdatastat.git</span>
-<span id="cb659-6"><a href="appendix-a.html#cb659-6" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin master</span></code></pre></div>
-<ol start="5" style="list-style-type: decimal">
-<li>Refresh the page of your newly created GitHub repository. You should now see the result of your first commit.</li>
-<li>Open <code>README.md</code> in RStudio and add a few words describing what this repository is all about.</li>
-</ol>
+<div id="gpus-for-predictive-econometrics" class="section level1 hasAnchor" number="14">
+<h1><span class="header-section-number">Chapter 14</span> GPUs for Predictive Econometrics<a href="gpus-for-predictive-econometrics.html#gpus-for-predictive-econometrics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>GPUs have been used for a while in computational economics (see <span class="citation">Aldrich (<a href="#ref-aldrich_2014" role="doc-biblioref">2014</a>)</span> for an overview of early applications in economics). However, until recently most of the work building on GPUs in economics has focused on solving economic models numerically (see, e.g., <span class="citation">(<a href="#ref-aldrich_2011" role="doc-biblioref"><strong>aldrich_2011?</strong></a>)</span>) and more broadly on Monte Carlo simulation. Nowadays, a most common application of GPUs in economics is machine learning, in particular deep learning (machine learning based on artificial neural networks). Training deep learning models can be very computationally intensive and to an important part depends on tensor (matrix) multiplications. This is also an area where you might come across highly parallelized computing based on GPUs without even noticing it, as the now commonly used software to build and train deep neural nets (<a href="https://www.tensorflow.org/">tensorflow</a>, and the high-level <a href="https://keras.io/">Keras</a> API) can easily be run on a CPU or GPU without any further configuration/preparation (apart from the initial installation of these programs). In this Chapter, we look at a simple example of using GPUs with Keras in the context of predictive econometrics.</p>
+<!-- First, add a simple implementation of OLS in gpuR (if easily possible) -->
+<!-- Then, add additional section based on this: https://cran.r-project.org/web/packages/tfestimators/index.html -->
+<!-- make a simple point regarding how to run regression models on the GPU without having to implement it yourselve, then prepare the transition to directly using Tensorflow/Keras for predictive econometrics. -->
+<div id="tensorflowkeras-example-predict-housing-prices" class="section level2 hasAnchor" number="14.1">
+<h2><span class="header-section-number">14.1</span> Tensorflow/Keras example: predict housing prices<a href="gpus-for-predictive-econometrics.html#tensorflowkeras-example-predict-housing-prices" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In this example we train a simple sequential model with two hidden layers in order to predict the median value of owner-occupied homes (in USD 1,000) in the Boston area (data are from the 1970s). The original data and a detailed description can be found <a href="https://www.cs.toronto.edu/~delve/data/boston/bostonDetail.html">here</a>. The example follows closely <a href="https://keras.rstudio.com/articles/tutorial_basic_regression.html#the-boston-housing-prices-dataset">this keras tutorial</a> published by RStudio. See <a href="https://keras.rstudio.com/index.html">RStudio’s keras installation guide</a> for how to install keras (and tensorflow) and the corresponding R package <code>keras</code>.<a href="#fn56" class="footnote-ref" id="fnref56"><sup>56</sup></a> While the purpose of the example here is to demonstrate a typical (but very simple!) usage case of GPUs in machine learning, the same code should also run on a normal machine (without using GPUs) with a default installation of keras.</p>
+<p>Apart from <code>keras</code>, we load packages to prepare the data and visualize the output. Via <code>dataset_boston_housing()</code>, we load the dataset (shipped with the keras installation) in the format preferred by the <code>keras</code> library.</p>
+<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb594-1"><a href="gpus-for-predictive-econometrics.html#cb594-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb594-2"><a href="gpus-for-predictive-econometrics.html#cb594-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(keras)</span>
+<span id="cb594-3"><a href="gpus-for-predictive-econometrics.html#cb594-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb594-4"><a href="gpus-for-predictive-econometrics.html#cb594-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;ggplot2&#39;</code></pre>
+<pre><code>## The following object is masked _by_ &#39;.GlobalEnv&#39;:
+## 
+##     economics</code></pre>
+<pre><code>## The following object is masked from &#39;package:SparkR&#39;:
+## 
+##     expr</code></pre>
+<div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb598-1"><a href="gpus-for-predictive-econometrics.html#cb598-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tfdatasets)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;tfdatasets&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:SparkR&#39;:
+## 
+##     contains</code></pre>
+<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="gpus-for-predictive-econometrics.html#cb601-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load data</span></span>
+<span id="cb601-2"><a href="gpus-for-predictive-econometrics.html#cb601-2" aria-hidden="true" tabindex="-1"></a>boston_housing <span class="ot">&lt;-</span> <span class="fu">dataset_boston_housing</span>()</span></code></pre></div>
+<pre><code>## Loaded Tensorflow version 2.5.0</code></pre>
+<div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb603-1"><a href="gpus-for-predictive-econometrics.html#cb603-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(boston_housing)</span></code></pre></div>
+<pre><code>## List of 2
+##  $ train:List of 2
+##   ..$ x: num [1:404, 1:13] 1.2325 0.0218 4.8982 0.0396 3.6931 ...
+##   ..$ y: num [1:404(1d)] 15.2 42.3 50 21.1 17.7 18.5 11.3 15.6 15.6 14.4 ...
+##  $ test :List of 2
+##   ..$ x: num [1:102, 1:13] 18.0846 0.1233 0.055 1.2735 0.0715 ...
+##   ..$ y: num [1:102(1d)] 7.2 18.8 19 27 22.2 24.5 31.2 22.9 20.5 23.2 ...</code></pre>
+<div id="data-preparation" class="section level3 hasAnchor" number="14.1.1">
+<h3><span class="header-section-number">14.1.1</span> Data preparation<a href="gpus-for-predictive-econometrics.html#data-preparation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In a first step, we split the data into a training set and a test set. The latter is used to monitor the out-of-sample performance of the model fit. Testing the validity of an estimated model by looking at how it performs out-of-sample is of particular relevance when working with (deep) neural networks, as they can easily lead to over-fitting. Validity checks based on the test sample are, therefore, often an integral part of modelling with tensorflow/keras.</p>
+<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="gpus-for-predictive-econometrics.html#cb605-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assign training and test data/labels</span></span>
+<span id="cb605-2"><a href="gpus-for-predictive-econometrics.html#cb605-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(train_data, train_labels) <span class="sc">%&lt;-%</span> boston_housing<span class="sc">$</span>train</span>
+<span id="cb605-3"><a href="gpus-for-predictive-econometrics.html#cb605-3" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(test_data, test_labels) <span class="sc">%&lt;-%</span> boston_housing<span class="sc">$</span>test</span></code></pre></div>
+<p>In order to better understand and interpret the dataset we add the original variable names, and convert it to a <code>tibble</code>.</p>
+<div class="sourceCode" id="cb606"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb606-1"><a href="gpus-for-predictive-econometrics.html#cb606-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb606-2"><a href="gpus-for-predictive-econometrics.html#cb606-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb606-3"><a href="gpus-for-predictive-econometrics.html#cb606-3" aria-hidden="true" tabindex="-1"></a>column_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;CRIM&#39;</span>, <span class="st">&#39;ZN&#39;</span>, <span class="st">&#39;INDUS&#39;</span>, <span class="st">&#39;CHAS&#39;</span>, <span class="st">&#39;NOX&#39;</span>, <span class="st">&#39;RM&#39;</span>, <span class="st">&#39;AGE&#39;</span>, </span>
+<span id="cb606-4"><a href="gpus-for-predictive-econometrics.html#cb606-4" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&#39;DIS&#39;</span>, <span class="st">&#39;RAD&#39;</span>, <span class="st">&#39;TAX&#39;</span>, <span class="st">&#39;PTRATIO&#39;</span>, <span class="st">&#39;B&#39;</span>, <span class="st">&#39;LSTAT&#39;</span>)</span>
+<span id="cb606-5"><a href="gpus-for-predictive-econometrics.html#cb606-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb606-6"><a href="gpus-for-predictive-econometrics.html#cb606-6" aria-hidden="true" tabindex="-1"></a>train_df <span class="ot">&lt;-</span> train_data <span class="sc">%&gt;%</span> </span>
+<span id="cb606-7"><a href="gpus-for-predictive-econometrics.html#cb606-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>(<span class="at">.name_repair =</span> <span class="st">&quot;minimal&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb606-8"><a href="gpus-for-predictive-econometrics.html#cb606-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(column_names) <span class="sc">%&gt;%</span> </span>
+<span id="cb606-9"><a href="gpus-for-predictive-econometrics.html#cb606-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">label =</span> train_labels)</span>
+<span id="cb606-10"><a href="gpus-for-predictive-econometrics.html#cb606-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb606-11"><a href="gpus-for-predictive-econometrics.html#cb606-11" aria-hidden="true" tabindex="-1"></a>test_df <span class="ot">&lt;-</span> test_data <span class="sc">%&gt;%</span> </span>
+<span id="cb606-12"><a href="gpus-for-predictive-econometrics.html#cb606-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>(<span class="at">.name_repair =</span> <span class="st">&quot;minimal&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb606-13"><a href="gpus-for-predictive-econometrics.html#cb606-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(column_names) <span class="sc">%&gt;%</span> </span>
+<span id="cb606-14"><a href="gpus-for-predictive-econometrics.html#cb606-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">label =</span> test_labels)</span></code></pre></div>
+<p>Next, we have a close look at the data. Note the usage of the term ‘label’ for what is usually called the ‘dependent variable’ in econometrics.<a href="#fn57" class="footnote-ref" id="fnref57"><sup>57</sup></a> As the aim of the exercise is to predict median prices of homes, the output of the model will be a continuous value (‘labels’).</p>
+<div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="gpus-for-predictive-econometrics.html#cb607-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check training data dimensions and content</span></span>
+<span id="cb607-2"><a href="gpus-for-predictive-econometrics.html#cb607-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(train_data)</span></code></pre></div>
+<pre><code>##        V1              V2              V3       
+##  Min.   : 0.01   Min.   :  0.0   Min.   : 0.46  
+##  1st Qu.: 0.08   1st Qu.:  0.0   1st Qu.: 5.13  
+##  Median : 0.27   Median :  0.0   Median : 9.69  
+##  Mean   : 3.75   Mean   : 11.5   Mean   :11.10  
+##  3rd Qu.: 3.67   3rd Qu.: 12.5   3rd Qu.:18.10  
+##  Max.   :88.98   Max.   :100.0   Max.   :27.74  
+##        V4               V5              V6      
+##  Min.   :0.0000   Min.   :0.385   Min.   :3.56  
+##  1st Qu.:0.0000   1st Qu.:0.453   1st Qu.:5.88  
+##  Median :0.0000   Median :0.538   Median :6.20  
+##  Mean   :0.0619   Mean   :0.557   Mean   :6.27  
+##  3rd Qu.:0.0000   3rd Qu.:0.631   3rd Qu.:6.61  
+##  Max.   :1.0000   Max.   :0.871   Max.   :8.72  
+##        V7              V8              V9       
+##  Min.   :  2.9   Min.   : 1.13   Min.   : 1.00  
+##  1st Qu.: 45.5   1st Qu.: 2.08   1st Qu.: 4.00  
+##  Median : 78.5   Median : 3.14   Median : 5.00  
+##  Mean   : 69.0   Mean   : 3.74   Mean   : 9.44  
+##  3rd Qu.: 94.1   3rd Qu.: 5.12   3rd Qu.:24.00  
+##  Max.   :100.0   Max.   :10.71   Max.   :24.00  
+##       V10           V11            V12       
+##  Min.   :188   Min.   :12.6   Min.   :  0.3  
+##  1st Qu.:279   1st Qu.:17.2   1st Qu.:374.7  
+##  Median :330   Median :19.1   Median :391.2  
+##  Mean   :406   Mean   :18.5   Mean   :354.8  
+##  3rd Qu.:666   3rd Qu.:20.2   3rd Qu.:396.2  
+##  Max.   :711   Max.   :22.0   Max.   :396.9  
+##       V13       
+##  Min.   : 1.73  
+##  1st Qu.: 6.89  
+##  Median :11.39  
+##  Mean   :12.74  
+##  3rd Qu.:17.09  
+##  Max.   :37.97</code></pre>
+<div class="sourceCode" id="cb609"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb609-1"><a href="gpus-for-predictive-econometrics.html#cb609-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(train_data) <span class="co"># Display first 10 entries</span></span></code></pre></div>
+<pre><code>##         [,1] [,2]  [,3] [,4]  [,5]  [,6]  [,7]  [,8]
+## [1,] 1.23247  0.0  8.14    0 0.538 6.142  91.7 3.977
+## [2,] 0.02177 82.5  2.03    0 0.415 7.610  15.7 6.270
+## [3,] 4.89822  0.0 18.10    0 0.631 4.970 100.0 1.333
+## [4,] 0.03961  0.0  5.19    0 0.515 6.037  34.5 5.985
+## [5,] 3.69311  0.0 18.10    0 0.713 6.376  88.4 2.567
+## [6,] 0.28392  0.0  7.38    0 0.493 5.708  74.3 4.721
+##      [,9] [,10] [,11] [,12] [,13]
+## [1,]    4   307  21.0 396.9 18.72
+## [2,]    2   348  14.7 395.4  3.11
+## [3,]   24   666  20.2 375.5  3.26
+## [4,]    5   224  20.2 396.9  8.01
+## [5,]   24   666  20.2 391.4 14.65
+## [6,]    5   287  19.6 391.1 11.74</code></pre>
+<p>As the dataset contains variables ranging from per capita crime rate to indicators for highway access, the variables are obviously measured in different units and hence displayed on different scales. This is not per se a problem for the fitting procedure. However, fitting is more efficient when all features (variables) are normalized.</p>
+<div class="sourceCode" id="cb611"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb611-1"><a href="gpus-for-predictive-econometrics.html#cb611-1" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">feature_spec</span>(train_df, label <span class="sc">~</span> . ) <span class="sc">%&gt;%</span> </span>
+<span id="cb611-2"><a href="gpus-for-predictive-econometrics.html#cb611-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_numeric_column</span>(<span class="fu">all_numeric</span>(), <span class="at">normalizer_fn =</span> <span class="fu">scaler_standard</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb611-3"><a href="gpus-for-predictive-econometrics.html#cb611-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>()</span>
+<span id="cb611-4"><a href="gpus-for-predictive-econometrics.html#cb611-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb611-5"><a href="gpus-for-predictive-econometrics.html#cb611-5" aria-hidden="true" tabindex="-1"></a>layer <span class="ot">&lt;-</span> <span class="fu">layer_dense_features</span>(</span>
+<span id="cb611-6"><a href="gpus-for-predictive-econometrics.html#cb611-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">feature_columns =</span> <span class="fu">dense_features</span>(spec), </span>
+<span id="cb611-7"><a href="gpus-for-predictive-econometrics.html#cb611-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">dtype =</span> tf<span class="sc">$</span>float32</span>
+<span id="cb611-8"><a href="gpus-for-predictive-econometrics.html#cb611-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb611-9"><a href="gpus-for-predictive-econometrics.html#cb611-9" aria-hidden="true" tabindex="-1"></a><span class="fu">layer</span>(train_df)</span></code></pre></div>
 </div>
-<div id="clone-this-courses-repository" class="section level3 hasAnchor" number="17.1.2">
-<h3><span class="header-section-number">A.1.2</span> Clone this course’s repository<a href="appendix-a.html#clone-this-courses-repository" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ol style="list-style-type: decimal">
-<li>In RStudio, navigate to a folder on your hard-disk where you want to have a local copy of this course’s GitHub repository.</li>
-<li>Open a new browser window and go to <a href="www.github.com/umatter/BigData"><code>www.github.com/umatter/BigData</code></a>.</li>
-<li>Click on <code>Clone or download</code> and copy the link.</li>
-<li>In RStudio, switch to the Terminal, and type the following command (pasting the copied link).</li>
-</ol>
-<div class="sourceCode" id="cb660"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb660-1"><a href="appendix-a.html#cb660-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/umatter/BigData.git</span></code></pre></div>
-<p>You have now a local copy of the repository which is linked to the one on GitHub. You can see this by changing to the newly created directory, containing the local copy of the repository:</p>
-<div class="sourceCode" id="cb661"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb661-1"><a href="appendix-a.html#cb661-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> BigData</span></code></pre></div>
-<p>Whenever there are some updates to the course’s repository on GitHub, you can update your local copy with:</p>
-<div class="sourceCode" id="cb662"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb662-1"><a href="appendix-a.html#cb662-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull</span></code></pre></div>
-<p>(Make sure you are in the <code>BigData</code> folder when running <code>git pull</code>.)</p>
+<div id="model-specification" class="section level3 hasAnchor" number="14.1.2">
+<h3><span class="header-section-number">14.1.2</span> Model specification<a href="gpus-for-predictive-econometrics.html#model-specification" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We specify the model as a linear stack of layers: The input (all 13 explanatory variables), two densely connected hidden layers (each with a 64-dimensional output space), and finally the one-dimensional output layer (the ‘dependent variable’).</p>
+<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb612-1"><a href="gpus-for-predictive-econometrics.html#cb612-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the model</span></span>
+<span id="cb612-2"><a href="gpus-for-predictive-econometrics.html#cb612-2" aria-hidden="true" tabindex="-1"></a><span class="co"># model specification</span></span>
+<span id="cb612-3"><a href="gpus-for-predictive-econometrics.html#cb612-3" aria-hidden="true" tabindex="-1"></a>input <span class="ot">&lt;-</span> <span class="fu">layer_input_from_dataset</span>(train_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>label))</span>
+<span id="cb612-4"><a href="gpus-for-predictive-econometrics.html#cb612-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb612-5"><a href="gpus-for-predictive-econometrics.html#cb612-5" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> input <span class="sc">%&gt;%</span> </span>
+<span id="cb612-6"><a href="gpus-for-predictive-econometrics.html#cb612-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_dense_features</span>(<span class="fu">dense_features</span>(spec)) <span class="sc">%&gt;%</span> </span>
+<span id="cb612-7"><a href="gpus-for-predictive-econometrics.html#cb612-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_dense</span>(<span class="at">units =</span> <span class="dv">64</span>, <span class="at">activation =</span> <span class="st">&quot;relu&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb612-8"><a href="gpus-for-predictive-econometrics.html#cb612-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_dense</span>(<span class="at">units =</span> <span class="dv">64</span>, <span class="at">activation =</span> <span class="st">&quot;relu&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb612-9"><a href="gpus-for-predictive-econometrics.html#cb612-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_dense</span>(<span class="at">units =</span> <span class="dv">1</span>) </span>
+<span id="cb612-10"><a href="gpus-for-predictive-econometrics.html#cb612-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb612-11"><a href="gpus-for-predictive-econometrics.html#cb612-11" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">keras_model</span>(input, output)</span></code></pre></div>
+<p>In order to fit the model, we first have to compile it (configure it for training). At this step we set the configuration parameters that will guide the training/optimization procedure. We use the mean squared errors loss function (<code>mse</code>) typically used for regressions. We chose the <a href="http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf">RMSProp</a> optimizer to find the minimum loss.</p>
+<div class="sourceCode" id="cb613"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb613-1"><a href="gpus-for-predictive-econometrics.html#cb613-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compile the model  </span></span>
+<span id="cb613-2"><a href="gpus-for-predictive-econometrics.html#cb613-2" aria-hidden="true" tabindex="-1"></a>model <span class="sc">%&gt;%</span> </span>
+<span id="cb613-3"><a href="gpus-for-predictive-econometrics.html#cb613-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">compile</span>(</span>
+<span id="cb613-4"><a href="gpus-for-predictive-econometrics.html#cb613-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">loss =</span> <span class="st">&quot;mse&quot;</span>,</span>
+<span id="cb613-5"><a href="gpus-for-predictive-econometrics.html#cb613-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">optimizer =</span> <span class="fu">optimizer_rmsprop</span>(),</span>
+<span id="cb613-6"><a href="gpus-for-predictive-econometrics.html#cb613-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">metrics =</span> <span class="fu">list</span>(<span class="st">&quot;mean_absolute_error&quot;</span>)</span>
+<span id="cb613-7"><a href="gpus-for-predictive-econometrics.html#cb613-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<p>Now we can get a summary of the model we are about to fit to the data.</p>
+<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="gpus-for-predictive-econometrics.html#cb614-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get a summary of the model</span></span>
+<span id="cb614-2"><a href="gpus-for-predictive-econometrics.html#cb614-2" aria-hidden="true" tabindex="-1"></a>model</span></code></pre></div>
 </div>
-<div id="fork-this-courses-repository" class="section level3 hasAnchor" number="17.1.3">
-<h3><span class="header-section-number">A.1.3</span> Fork this course’s repository<a href="appendix-a.html#fork-this-courses-repository" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<ol style="list-style-type: decimal">
-<li><p>Go to <a href="https://github.com/umatter/BigData"><code>https://github.com/umatter/BigData</code></a>, click on the ‘Fork’ button in the upper-right corner (follow the instructions).</p></li>
-<li><p>Clone the forked repository (see the cloning of a repository above for details). Assuming you called your forked repository <code>BigData-forked</code>, you run the following command in the terminal (replacing <code>&lt;yourgithubusername&gt;</code>:</p></li>
-</ol>
-<pre><code>git clone https://github.com/`&lt;yourgithubusername&gt;`/BigData-forked.git</code></pre>
-<ol start="3" style="list-style-type: decimal">
-<li>Switch into the newly created directory:</li>
-</ol>
-<pre><code>cd BigData-forked</code></pre>
-<ol start="4" style="list-style-type: decimal">
-<li>Set a remote connection to the <em>original</em> repository</li>
-</ol>
-<pre><code>git remote add upstream https://github.com/umatter/BigData.git</code></pre>
-<p>You can verify the remotes of your local clone of your forked repository as follows</p>
-<pre><code>git remote -v</code></pre>
-<p>You should see something like</p>
-<pre><code>origin  https://github.com/&lt;yourgithubusername&gt;/BigData-forked.git (fetch)
-origin  https://github.com/&lt;yourgithubusername&gt;/BigData-forked.git (push)
-upstream    https://github.com/umatter/BigData.git (fetch)
-upstream    https://github.com/umatter/BigData.git (push)</code></pre>
-<ol start="5" style="list-style-type: decimal">
-<li>Fetch changes from the original repository. New material has been added to the original course repository and you want to merge it with your forked repository. In order to do so, you first fetch the changes from the original repository:</li>
-</ol>
-<pre><code>git fetch upstream</code></pre>
-<ol start="6" style="list-style-type: decimal">
-<li>Make sure you are on the master branch of your local repository:</li>
-</ol>
-<pre><code>git checkout master</code></pre>
-<ol start="7" style="list-style-type: decimal">
-<li>Merge the changes fetched from the original repo with the master of your (local clone of the) forked repo.</li>
-</ol>
-<pre><code>git merge upstream/master</code></pre>
-<ol start="8" style="list-style-type: decimal">
-<li>Push the changes to your forked repository on GitHub.</li>
-</ol>
-<pre><code>git push</code></pre>
-<p>Now your forked repo on GitHub also contains the commits (changes) in the original repository. If you make changes to the files in your forked repo. you can add, commit, and push them as in any repository. Example: open <code>README.md</code> in a text editor (e.g. RStudio), add <code># HELLO WORLD</code> to the last line of <code>README.md</code>, and save the changes. Then:</p>
-<pre><code>git add README.md
-git commit -m &quot;hello world&quot;
-git push</code></pre>
+<div id="training-and-prediction" class="section level3 hasAnchor" number="14.1.3">
+<h3><span class="header-section-number">14.1.3</span> Training and prediction<a href="gpus-for-predictive-econometrics.html#training-and-prediction" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Given the relatively simple model and small dataset, we set the maximum number of epochs to 500 and allow for early stopping in case the validation loss (based on test data) is not improving for a while.</p>
+<div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb615-1"><a href="gpus-for-predictive-econometrics.html#cb615-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set max. number of epochs</span></span>
+<span id="cb615-2"><a href="gpus-for-predictive-econometrics.html#cb615-2" aria-hidden="true" tabindex="-1"></a>epochs <span class="ot">&lt;-</span> <span class="dv">500</span></span></code></pre></div>
+<p>Finally, we fit the model while preserving the training history, and visualize the training progress.</p>
+<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="gpus-for-predictive-econometrics.html#cb616-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model and store training stats</span></span>
+<span id="cb616-2"><a href="gpus-for-predictive-econometrics.html#cb616-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb616-3"><a href="gpus-for-predictive-econometrics.html#cb616-3" aria-hidden="true" tabindex="-1"></a>history <span class="ot">&lt;-</span> model <span class="sc">%&gt;%</span> <span class="fu">fit</span>(</span>
+<span id="cb616-4"><a href="gpus-for-predictive-econometrics.html#cb616-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> train_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>label),</span>
+<span id="cb616-5"><a href="gpus-for-predictive-econometrics.html#cb616-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> train_df<span class="sc">$</span>label,</span>
+<span id="cb616-6"><a href="gpus-for-predictive-econometrics.html#cb616-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">epochs =</span> epochs,</span>
+<span id="cb616-7"><a href="gpus-for-predictive-econometrics.html#cb616-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">validation_split =</span> <span class="fl">0.2</span>,</span>
+<span id="cb616-8"><a href="gpus-for-predictive-econometrics.html#cb616-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="dv">0</span></span>
+<span id="cb616-9"><a href="gpus-for-predictive-econometrics.html#cb616-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb616-10"><a href="gpus-for-predictive-econometrics.html#cb616-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb616-11"><a href="gpus-for-predictive-econometrics.html#cb616-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb616-12"><a href="gpus-for-predictive-econometrics.html#cb616-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(history)</span></code></pre></div>
+</div>
+<div id="a-word-of-caution" class="section level3 hasAnchor" number="14.1.4">
+<h3><span class="header-section-number">14.1.4</span> A word of caution<a href="gpus-for-predictive-econometrics.html#a-word-of-caution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>From just comparing the number of threads of a modern CPU with the number of threads of a modern GPU, one might get the impression that parallel tasks should always be implemented for GPU computing. However, whether one approach or the other is faster can depend a lot on the overall task and the data at hand. Moreover, the parallel implementation of tasks can be done more or less well on either system. Really efficient parallel implementation of tasks can take a lot of coding time (particularly when done for GPUs).<a href="#fn58" class="footnote-ref" id="fnref58"><sup>58</sup></a>.</p>
+<!-- ADD WRAP UP HERE! -->
+<!-- ```{r echo=FALSE, warning=FALSE, message=FALSE} -->
+<!-- try(detach("package:lmtest", unload=TRUE, force = TRUE)) -->
+<!-- try(detach("package:data.table", unload=TRUE, force = TRUE)) -->
+<!-- try(detach("package:microbenchmark", unload=TRUE, force = TRUE)) -->
+<!-- try(detach("package:lfe", unload=TRUE, force = TRUE)) -->
+<!-- try(detach("package:foreign", unload = TRUE, force = TRUE)) -->
+<!-- try(detach("package:doSNOW", unload= TRUE, force = TRUE)) -->
+<!-- ``` -->
+<!-- ```{r echo=FALSE, message=FALSE, warning=FALSE} -->
+<!-- # remove all packages -->
+<!-- packages <- names(sessionInfo()$otherPkgs) -->
+<!-- packages <- packages[!packages %in% c("bookdown", "knitr", "rmarkdown")] -->
+<!-- lapply(packages, function(pkgs) -->
+<!--   detach( -->
+<!--     paste0('package:', pkgs), -->
+<!--     character.only = T, -->
+<!--     unload = T, -->
+<!--     force = T -->
+<!--   )) -->
+<!-- # close all connections -->
+<!-- #DIZtools::close_all_connections() -->
+<!-- # remove objects -->
+<!-- rm(list = ls()) -->
+<!-- gc()  -->
+<!-- ``` -->
+
 </div>
 </div>
+</div>
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-aldrich_2014" class="csl-entry">
+Aldrich, Eric M. 2014. <span>“Chapter 10 - GPU Computing in Economics.”</span> In <em>Handbook of Computational Economics Vol. 3</em>, edited by Karl Schmedders and Kenneth L. Judd, 3:557–98. Handbook of Computational Economics. Elsevier. https://doi.org/<a href="https://doi.org/10.1016/B978-0-444-52980-0.00010-4">https://doi.org/10.1016/B978-0-444-52980-0.00010-4</a>.
+</div>
+<div id="ref-matloff_2015" class="csl-entry">
+Matloff, Norman. 2015. <em>Parallel Computing for Data Science</em>. Boca Raton, FL: CRC Press.
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="56">
+<li id="fn56"><p>This might involve the installation of additional packages and software outside the R environment.<a href="gpus-for-predictive-econometrics.html#fnref56" class="footnote-back">↩︎</a></p></li>
+<li id="fn57"><p>Typical textbook examples in machine learning deal with classification (e.g. a logit model), while in microeconometrics the typical example is usually a linear model (continuous dependent variable).<a href="gpus-for-predictive-econometrics.html#fnref57" class="footnote-back">↩︎</a></p></li>
+<li id="fn58"><p>For a more detailed discussion of the relevant factors for well done parallelization (either on CPUs or GPUs), see <span class="citation">Matloff (<a href="#ref-matloff_2015" role="doc-biblioref">2015</a>)</span><a href="gpus-for-predictive-econometrics.html#fnref58" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="large-scale-text-analysis-with-sparklyr.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="appendix-b.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="bottle-necks-in-every-day-data-analytics-tasks.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="regression-analysis-and-categorization-with-spark-and-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>

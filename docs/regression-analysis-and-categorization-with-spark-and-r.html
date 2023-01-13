@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 14 Regression Analysis and Categorization with Spark and R | Big Data Analytics</title>
+  <title>Chapter 15 Regression Analysis and Categorization with Spark and R | Big Data Analytics</title>
   <meta name="description" content="A guide to data science practitioners making the transition to Big Data." />
   <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 14 Regression Analysis and Categorization with Spark and R | Big Data Analytics" />
+  <meta property="og:title" content="Chapter 15 Regression Analysis and Categorization with Spark and R | Big Data Analytics" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://umatter.github.io/BigData/img/cover.jpg" />
   <meta property="og:description" content="A guide to data science practitioners making the transition to Big Data." />
   <meta name="github-repo" content="umatter/BigData" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 14 Regression Analysis and Categorization with Spark and R | Big Data Analytics" />
+  <meta name="twitter:title" content="Chapter 15 Regression Analysis and Categorization with Spark and R | Big Data Analytics" />
   
   <meta name="twitter:description" content="A guide to data science practitioners making the transition to Big Data." />
   <meta name="twitter:image" content="https://umatter.github.io/BigData/img/cover.jpg" />
@@ -23,14 +23,14 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2022-12-09" />
+<meta name="date" content="2023-01-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="gpus-and-machine-learning.html"/>
+<link rel="prev" href="econometrics-with-gpus.html"/>
 <link rel="next" href="large-scale-text-analysis-with-sparklyr.html"/>
 <script src="libs/jquery/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -171,19 +171,19 @@ div.csl-indent {
 <li class="chapter" data-level="" data-path="s.html"><a href="s.html"><i class="fa fa-check"></i>Introduction</a></li>
 <li class="chapter" data-level="1" data-path="what-is-big-in-big-data.html"><a href="what-is-big-in-big-data.html"><i class="fa fa-check"></i><b>1</b> What is <em>big</em> in “Big Data”?</a></li>
 <li class="chapter" data-level="2" data-path="approaches-to-analyzing-big-data.html"><a href="approaches-to-analyzing-big-data.html"><i class="fa fa-check"></i><b>2</b> Approaches to analyzing Big Data</a></li>
-<li class="chapter" data-level="3" data-path="two-domains-of-big-data-analytics.html"><a href="two-domains-of-big-data-analytics.html"><i class="fa fa-check"></i><b>3</b> Two domains of Big Data Analytics</a>
+<li class="chapter" data-level="3" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html"><i class="fa fa-check"></i><b>3</b> The two domains of Big Data Analytics</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="two-domains-of-big-data-analytics.html"><a href="two-domains-of-big-data-analytics.html#a-practical-big-p-problem"><i class="fa fa-check"></i><b>3.1</b> A practical <em>big P</em> problem</a></li>
-<li class="chapter" data-level="3.2" data-path="two-domains-of-big-data-analytics.html"><a href="two-domains-of-big-data-analytics.html#a-practical-big-n-problem"><i class="fa fa-check"></i><b>3.2</b> A practical <em>big N</em> problem</a>
+<li class="chapter" data-level="3.1" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#a-practical-big-p-problem"><i class="fa fa-check"></i><b>3.1</b> A practical <em>big P</em> problem</a></li>
+<li class="chapter" data-level="3.2" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#a-practical-big-n-problem"><i class="fa fa-check"></i><b>3.2</b> A practical <em>big N</em> problem</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="two-domains-of-big-data-analytics.html"><a href="two-domains-of-big-data-analytics.html#ols-as-a-point-of-reference"><i class="fa fa-check"></i><b>3.2.1</b> OLS as a point of reference</a></li>
-<li class="chapter" data-level="3.2.2" data-path="two-domains-of-big-data-analytics.html"><a href="two-domains-of-big-data-analytics.html#the-uluru-algorithm-as-an-alternative-to-ols"><i class="fa fa-check"></i><b>3.2.2</b> The <em>Uluru</em> algorithm as an alternative to OLS</a></li>
+<li class="chapter" data-level="3.2.1" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#ols-as-a-point-of-reference"><i class="fa fa-check"></i><b>3.2.1</b> OLS as a point of reference</a></li>
+<li class="chapter" data-level="3.2.2" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#the-uluru-algorithm-as-an-alternative-to-ols"><i class="fa fa-check"></i><b>3.2.2</b> The <em>Uluru</em> algorithm as an alternative to OLS</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="two-domains-of-big-data-analytics.html"><a href="two-domains-of-big-data-analytics.html#conclusion"><i class="fa fa-check"></i><b>3.3</b> Conclusion</a></li>
+<li class="chapter" data-level="3.3" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#conclusion"><i class="fa fa-check"></i><b>3.3</b> Conclusion</a></li>
 </ul></li>
 <li class="part"><span><b>II Platform: Software and Computing Resources</b></span></li>
 <li class="chapter" data-level="" data-path="p.html"><a href="p.html"><i class="fa fa-check"></i>Introduction</a></li>
-<li class="chapter" data-level="4" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html"><i class="fa fa-check"></i><b>4</b> Software: Programming with (Big) Data</a>
+<li class="chapter" data-level="4" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html"><i class="fa fa-check"></i><b>4</b> Software: Programming with (big) data</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#domains-of-programming-with-big-data"><i class="fa fa-check"></i><b>4.1</b> Domains of programming with (big) data</a></li>
 <li class="chapter" data-level="4.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#measuring-r-performance"><i class="fa fa-check"></i><b>4.2</b> Measuring R performance</a></li>
@@ -211,7 +211,7 @@ div.csl-indent {
 <li class="chapter" data-level="5.1.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#data-compression"><i class="fa fa-check"></i><b>5.1.2</b> Data compression</a></li>
 </ul></li>
 <li class="chapter" data-level="5.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#random-access-memory-ram"><i class="fa fa-check"></i><b>5.2</b> Random access memory (RAM)</a></li>
-<li class="chapter" data-level="5.3" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#combining-ram-and-hard-disk-virtual-memory"><i class="fa fa-check"></i><b>5.3</b> Combining RAM and hard disk: virtual memory</a></li>
+<li class="chapter" data-level="5.3" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#combining-ram-and-hard-disk-virtual-memory"><i class="fa fa-check"></i><b>5.3</b> Combining RAM and hard disk: Virtual memory</a></li>
 <li class="chapter" data-level="5.4" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#cpu-and-parallelization"><i class="fa fa-check"></i><b>5.4</b> CPU and parallelization</a>
 <ul>
 <li class="chapter" data-level="5.4.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#naive-multi-session-approach"><i class="fa fa-check"></i><b>5.4.1</b> Naive multi-session approach</a></li>
@@ -223,11 +223,16 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="5.6" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#the-road-ahead-hardware-made-for-machine-learning"><i class="fa fa-check"></i><b>5.6</b> The road ahead: Hardware made for machine learning</a></li>
 <li class="chapter" data-level="5.7" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#wrapping-up-1"><i class="fa fa-check"></i><b>5.7</b> Wrapping up</a></li>
-<li class="chapter" data-level="5.8" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#still-insufficient-computing-resources"><i class="fa fa-check"></i><b>5.8</b> Still insufficient computing resources?</a></li>
+<li class="chapter" data-level="5.8" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#still-have-insufficient-computing-resources"><i class="fa fa-check"></i><b>5.8</b> Still have insufficient computing resources?</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="distributed-systems.html"><a href="distributed-systems.html"><i class="fa fa-check"></i><b>6</b> Distributed Systems</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="distributed-systems.html"><a href="distributed-systems.html#mapreduce"><i class="fa fa-check"></i><b>6.1</b> MapReduce</a></li>
+<li class="chapter" data-level="6.1" data-path="distributed-systems.html"><a href="distributed-systems.html#mapreduce"><i class="fa fa-check"></i><b>6.1</b> MapReduce</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="distributed-systems.html"><a href="distributed-systems.html#aside-mapreduce-concept-illustrated-in-r"><i class="fa fa-check"></i><b>6.1.1</b> Aside: MapReduce concept illustrated in R</a></li>
+<li class="chapter" data-level="6.1.2" data-path="distributed-systems.html"><a href="distributed-systems.html#mapper"><i class="fa fa-check"></i><b>6.1.2</b> Mapper</a></li>
+<li class="chapter" data-level="6.1.3" data-path="distributed-systems.html"><a href="distributed-systems.html#reducer"><i class="fa fa-check"></i><b>6.1.3</b> Reducer</a></li>
+</ul></li>
 <li class="chapter" data-level="6.2" data-path="distributed-systems.html"><a href="distributed-systems.html#apache-hadoop"><i class="fa fa-check"></i><b>6.2</b> Apache Hadoop</a>
 <ul>
 <li class="chapter" data-level="6.2.1" data-path="distributed-systems.html"><a href="distributed-systems.html#hadoop-word-count-example"><i class="fa fa-check"></i><b>6.2.1</b> Hadoop word count example</a></li>
@@ -245,7 +250,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="7.1" data-path="cloud-computing.html"><a href="cloud-computing.html#cloud-computing-basics-and-platforms"><i class="fa fa-check"></i><b>7.1</b> Cloud computing basics and platforms</a></li>
 <li class="chapter" data-level="7.2" data-path="cloud-computing.html"><a href="cloud-computing.html#transitioning-to-the-cloud"><i class="fa fa-check"></i><b>7.2</b> Transitioning to the cloud</a></li>
-<li class="chapter" data-level="7.3" data-path="cloud-computing.html"><a href="cloud-computing.html#scaling-up-in-the-cloud-virtual-servers"><i class="fa fa-check"></i><b>7.3</b> Scaling up in the cloud: virtual servers</a>
+<li class="chapter" data-level="7.3" data-path="cloud-computing.html"><a href="cloud-computing.html#scaling-up-in-the-cloud-virtual-servers"><i class="fa fa-check"></i><b>7.3</b> Scaling up in the cloud: Virtual servers</a>
 <ul>
 <li class="chapter" data-level="7.3.1" data-path="cloud-computing.html"><a href="cloud-computing.html#scaling-up-with-aws-ec2-and-rrstudio"><i class="fa fa-check"></i><b>7.3.1</b> Scaling up with AWS EC2 and R/RStudio</a></li>
 <li class="chapter" data-level="7.3.2" data-path="cloud-computing.html"><a href="cloud-computing.html#parallelization-with-an-ec2-instance"><i class="fa fa-check"></i><b>7.3.2</b> Parallelization with an EC2 instance</a></li>
@@ -267,9 +272,9 @@ div.csl-indent {
 <li class="chapter" data-level="8.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#efficient-local-data-storage"><i class="fa fa-check"></i><b>8.3</b> Efficient local data storage</a>
 <ul>
 <li class="chapter" data-level="8.3.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#rdbms-basics"><i class="fa fa-check"></i><b>8.3.1</b> RDBMS basics</a></li>
-<li class="chapter" data-level="8.3.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#efficient-data-access-indices-and-joins-in-sqlite"><i class="fa fa-check"></i><b>8.3.2</b> Efficient data access: indices and joins in SQLite</a></li>
+<li class="chapter" data-level="8.3.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#efficient-data-access-indices-and-joins-in-sqlite"><i class="fa fa-check"></i><b>8.3.2</b> Efficient data access: Indices and joins in SQLite</a></li>
 </ul></li>
-<li class="chapter" data-level="8.4" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#connecting-r-to-rdbms"><i class="fa fa-check"></i><b>8.4</b> Connecting R to RDBMS</a>
+<li class="chapter" data-level="8.4" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#connecting-r-to-an-rdbms"><i class="fa fa-check"></i><b>8.4</b> Connecting R to an RDBMS</a>
 <ul>
 <li class="chapter" data-level="8.4.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#creating-a-new-database-with-rsqlite"><i class="fa fa-check"></i><b>8.4.1</b> Creating a new database with <code>RSQLite</code></a></li>
 <li class="chapter" data-level="8.4.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#importing-data"><i class="fa fa-check"></i><b>8.4.2</b> Importing data</a></li>
@@ -291,7 +296,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="8.8" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#data-lakes-and-simple-storage-service"><i class="fa fa-check"></i><b>8.8</b> Data lakes and simple storage service</a>
 <ul>
-<li class="chapter" data-level="8.8.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#aws-s3-with-r-first-steps"><i class="fa fa-check"></i><b>8.8.1</b> AWS S3 with R: first steps</a></li>
+<li class="chapter" data-level="8.8.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#aws-s3-with-r-first-steps"><i class="fa fa-check"></i><b>8.8.1</b> AWS S3 with R: First steps</a></li>
 <li class="chapter" data-level="8.8.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#uploading-data-to-s3"><i class="fa fa-check"></i><b>8.8.2</b> Uploading data to S3</a></li>
 <li class="chapter" data-level="8.8.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#more-than-just-simple-storage-s3-aws-athena"><i class="fa fa-check"></i><b>8.8.3</b> More than just simple storage: S3 + AWS Athena</a></li>
 </ul></li>
@@ -299,88 +304,91 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="9" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html"><i class="fa fa-check"></i><b>9</b> Big Data Cleaning and Transformation</a>
 <ul>
-<li class="chapter" data-level="9.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#out-of-memory-strategies-and-lazy-evaluation-practical-basics"><i class="fa fa-check"></i><b>9.1</b> Out-of-memory strategies and lazy evaluation: practical basics</a>
+<li class="chapter" data-level="9.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#out-of-memory-strategies-and-lazy-evaluation-practical-basics"><i class="fa fa-check"></i><b>9.1</b> Out-of-memory strategies and lazy evaluation: Practical basics</a>
 <ul>
-<li class="chapter" data-level="9.1.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#chunking-data-with-the-ff-package"><i class="fa fa-check"></i><b>9.1.1</b> Chunking data with the <code>ff</code>-package</a></li>
+<li class="chapter" data-level="9.1.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#chunking-data-with-the-ff-package"><i class="fa fa-check"></i><b>9.1.1</b> Chunking data with the <code>ff</code> package</a></li>
 <li class="chapter" data-level="9.1.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#memory-mapping-with-bigmemory"><i class="fa fa-check"></i><b>9.1.2</b> Memory mapping with <code>bigmemory</code></a></li>
 <li class="chapter" data-level="9.1.3" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#connecting-to-apache-arrow"><i class="fa fa-check"></i><b>9.1.3</b> Connecting to Apache Arrow</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#ff-big-data-preparation-tutorial"><i class="fa fa-check"></i><b>9.2</b> <code>ff</code> Big Data Preparation Tutorial</a>
+<li class="chapter" data-level="9.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#ff-big-data-preparation-tutorial"><i class="fa fa-check"></i><b>9.2</b> <code>ff</code> Big Data preparation tutorial</a>
 <ul>
 <li class="chapter" data-level="9.2.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#set-up"><i class="fa fa-check"></i><b>9.2.1</b> Set up</a></li>
 <li class="chapter" data-level="9.2.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#data-import"><i class="fa fa-check"></i><b>9.2.2</b> Data import</a></li>
 <li class="chapter" data-level="9.2.3" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#inspect-imported-files"><i class="fa fa-check"></i><b>9.2.3</b> Inspect imported files</a></li>
 <li class="chapter" data-level="9.2.4" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#data-cleaning-and-transformation"><i class="fa fa-check"></i><b>9.2.4</b> Data cleaning and transformation</a></li>
-<li class="chapter" data-level="9.2.5" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#subsetting"><i class="fa fa-check"></i><b>9.2.5</b> Subsetting</a></li>
-<li class="chapter" data-level="9.2.6" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#saveloadexport-ff_files-files"><i class="fa fa-check"></i><b>9.2.6</b> Save/load/export ff_files-files</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#arrow-big-data-preparation-tutorial"><i class="fa fa-check"></i><b>9.3</b> <code>arrow</code> Big Data Preparation Tutorial</a></li>
-<li class="chapter" data-level="9.4" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#wrapping-up-5"><i class="fa fa-check"></i><b>9.4</b> Wrapping up</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html"><i class="fa fa-check"></i><b>10</b> Descriptive Statistics and Aggregation</a>
+<li class="chapter" data-level="10" data-path="inspect-difference-to-in-memory-operation.html"><a href="inspect-difference-to-in-memory-operation.html"><i class="fa fa-check"></i><b>10</b> Inspect difference to in-memory operation</a>
 <ul>
-<li class="chapter" data-level="10.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-the-split-apply-combine-strategy"><i class="fa fa-check"></i><b>10.1</b> Data aggregation: The ‘split-apply-combine’ strategy</a>
-<ul>
-<li class="chapter" data-level="10.1.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-with-chunked-data-files"><i class="fa fa-check"></i><b>10.1.1</b> Data aggregation with chunked data files</a></li>
-<li class="chapter" data-level="10.1.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#cross-tabulation-of-ff-vectors"><i class="fa fa-check"></i><b>10.1.2</b> Cross-tabulation of <code>ff</code> vectors</a></li>
+<li class="chapter" data-level="10.0.1" data-path="inspect-difference-to-in-memory-operation.html"><a href="inspect-difference-to-in-memory-operation.html#subsetting"><i class="fa fa-check"></i><b>10.0.1</b> Subsetting</a></li>
+<li class="chapter" data-level="10.0.2" data-path="inspect-difference-to-in-memory-operation.html"><a href="inspect-difference-to-in-memory-operation.html#saveloadexport-ff_files-files"><i class="fa fa-check"></i><b>10.0.2</b> Save/load/export ff_files files</a></li>
+<li class="chapter" data-level="10.1" data-path="inspect-difference-to-in-memory-operation.html"><a href="inspect-difference-to-in-memory-operation.html#arrow-big-data-preparation-tutorial"><i class="fa fa-check"></i><b>10.1</b> <code>arrow</code> Big Data preparation tutorial</a></li>
+<li class="chapter" data-level="10.2" data-path="inspect-difference-to-in-memory-operation.html"><a href="inspect-difference-to-in-memory-operation.html#wrapping-up-5"><i class="fa fa-check"></i><b>10.2</b> Wrapping up</a></li>
 </ul></li>
-<li class="chapter" data-level="10.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-arrow"><i class="fa fa-check"></i><b>10.2</b> High-speed in-memory data aggregation with <code>arrow</code></a></li>
-<li class="chapter" data-level="10.3" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>10.3</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
-<li class="chapter" data-level="10.4" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#wrapping-up-6"><i class="fa fa-check"></i><b>10.4</b> Wrapping up</a></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="big-data-visualization.html"><a href="big-data-visualization.html"><i class="fa fa-check"></i><b>11</b> (Big) Data Visualization</a>
+<li class="chapter" data-level="11" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html"><i class="fa fa-check"></i><b>11</b> Descriptive Statistics and Aggregation</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#challenges-of-big-data-visualization"><i class="fa fa-check"></i><b>11.1</b> Challenges of big data visualization</a></li>
-<li class="chapter" data-level="11.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#data-exploration-with-ggplot2"><i class="fa fa-check"></i><b>11.2</b> Data exploration with <code>ggplot2</code></a></li>
-<li class="chapter" data-level="11.3" data-path="big-data-visualization.html"><a href="big-data-visualization.html#visualize-time-and-space"><i class="fa fa-check"></i><b>11.3</b> Visualize Time and Space</a>
+<li class="chapter" data-level="11.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-the-split-apply-combine-strategy"><i class="fa fa-check"></i><b>11.1</b> Data aggregation: The ‘split-apply-combine’ strategy</a>
 <ul>
-<li class="chapter" data-level="11.3.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#preparations"><i class="fa fa-check"></i><b>11.3.1</b> Preparations</a></li>
-<li class="chapter" data-level="11.3.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#pick-up-and-drop-off-locations"><i class="fa fa-check"></i><b>11.3.2</b> Pick-up and drop-off locations</a></li>
+<li class="chapter" data-level="11.1.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-with-chunked-data-files"><i class="fa fa-check"></i><b>11.1.1</b> Data aggregation with chunked data files</a></li>
+<li class="chapter" data-level="11.1.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#cross-tabulation-of-ff-vectors"><i class="fa fa-check"></i><b>11.1.2</b> Cross-tabulation of <code>ff</code> vectors</a></li>
 </ul></li>
-<li class="chapter" data-level="11.4" data-path="big-data-visualization.html"><a href="big-data-visualization.html#wrapping-up-7"><i class="fa fa-check"></i><b>11.4</b> Wrapping up</a></li>
+<li class="chapter" data-level="11.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-arrow"><i class="fa fa-check"></i><b>11.2</b> High-speed in-memory data aggregation with <code>arrow</code></a></li>
+<li class="chapter" data-level="11.3" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>11.3</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
+<li class="chapter" data-level="11.4" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#wrapping-up-6"><i class="fa fa-check"></i><b>11.4</b> Wrapping up</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="big-data-visualization.html"><a href="big-data-visualization.html"><i class="fa fa-check"></i><b>12</b> (Big) Data Visualization</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#challenges-of-big-data-visualization"><i class="fa fa-check"></i><b>12.1</b> Challenges of Big Data visualization</a></li>
+<li class="chapter" data-level="12.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#data-exploration-with-ggplot2"><i class="fa fa-check"></i><b>12.2</b> Data exploration with <code>ggplot2</code></a></li>
+<li class="chapter" data-level="12.3" data-path="big-data-visualization.html"><a href="big-data-visualization.html#visualizing-time-and-space"><i class="fa fa-check"></i><b>12.3</b> Visualizing time and space</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#preparations"><i class="fa fa-check"></i><b>12.3.1</b> Preparations</a></li>
+<li class="chapter" data-level="12.3.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#pick-up-and-drop-off-locations"><i class="fa fa-check"></i><b>12.3.2</b> Pick-up and drop-off locations</a></li>
+</ul></li>
+<li class="chapter" data-level="12.4" data-path="big-data-visualization.html"><a href="big-data-visualization.html#wrapping-up-7"><i class="fa fa-check"></i><b>12.4</b> Wrapping up</a></li>
 </ul></li>
 <li class="part"><span><b>IV Application: Topics in Big Data Econometrics</b></span></li>
 <li class="chapter" data-level="" data-path="a.html"><a href="a.html"><i class="fa fa-check"></i>Introduction</a></li>
-<li class="chapter" data-level="12" data-path="bottle-necks-in-every-day-econometrics.html"><a href="bottle-necks-in-every-day-econometrics.html"><i class="fa fa-check"></i><b>12</b> Bottle Necks in Every-Day Econometrics</a>
+<li class="chapter" data-level="13" data-path="bottle-necks-in-every-day-data-analytics-tasks.html"><a href="bottle-necks-in-every-day-data-analytics-tasks.html"><i class="fa fa-check"></i><b>13</b> Bottle Necks in Every-Day Data Analytics Tasks</a>
 <ul>
-<li class="chapter" data-level="12.1" data-path="bottle-necks-in-every-day-econometrics.html"><a href="bottle-necks-in-every-day-econometrics.html#case-study-data-import-and-memory-allocation"><i class="fa fa-check"></i><b>12.1</b> Case study: Data Import and Memory Allocation</a></li>
-<li class="chapter" data-level="12.2" data-path="bottle-necks-in-every-day-econometrics.html"><a href="bottle-necks-in-every-day-econometrics.html#case-study-loops-memory-and-vectorization"><i class="fa fa-check"></i><b>12.2</b> Case Study: Loops, Memory, and Vectorization</a>
+<li class="chapter" data-level="13.1" data-path="bottle-necks-in-every-day-data-analytics-tasks.html"><a href="bottle-necks-in-every-day-data-analytics-tasks.html#case-study-data-import-and-memory-allocation"><i class="fa fa-check"></i><b>13.1</b> Case study: Data Import and Memory Allocation</a></li>
+<li class="chapter" data-level="13.2" data-path="bottle-necks-in-every-day-data-analytics-tasks.html"><a href="bottle-necks-in-every-day-data-analytics-tasks.html#case-study-loops-memory-and-vectorization"><i class="fa fa-check"></i><b>13.2</b> Case Study: Loops, Memory, and Vectorization</a>
 <ul>
-<li class="chapter" data-level="12.2.1" data-path="bottle-necks-in-every-day-econometrics.html"><a href="bottle-necks-in-every-day-econometrics.html#preparation"><i class="fa fa-check"></i><b>12.2.1</b> Preparation</a></li>
-<li class="chapter" data-level="12.2.2" data-path="bottle-necks-in-every-day-econometrics.html"><a href="bottle-necks-in-every-day-econometrics.html#naïve-approach-ignorant-of-r"><i class="fa fa-check"></i><b>12.2.2</b> Naïve Approach (ignorant of R)</a></li>
-<li class="chapter" data-level="12.2.3" data-path="bottle-necks-in-every-day-econometrics.html"><a href="bottle-necks-in-every-day-econometrics.html#improvement-1-pre-allocation-of-memory"><i class="fa fa-check"></i><b>12.2.3</b> Improvement 1: Pre-allocation of memory</a></li>
-<li class="chapter" data-level="12.2.4" data-path="bottle-necks-in-every-day-econometrics.html"><a href="bottle-necks-in-every-day-econometrics.html#improvement-2-exploit-vectorization"><i class="fa fa-check"></i><b>12.2.4</b> Improvement 2: Exploit vectorization</a></li>
+<li class="chapter" data-level="13.2.1" data-path="bottle-necks-in-every-day-data-analytics-tasks.html"><a href="bottle-necks-in-every-day-data-analytics-tasks.html#preparation"><i class="fa fa-check"></i><b>13.2.1</b> Preparation</a></li>
+<li class="chapter" data-level="13.2.2" data-path="bottle-necks-in-every-day-data-analytics-tasks.html"><a href="bottle-necks-in-every-day-data-analytics-tasks.html#naïve-approach-ignorant-of-r"><i class="fa fa-check"></i><b>13.2.2</b> Naïve Approach (ignorant of R)</a></li>
+<li class="chapter" data-level="13.2.3" data-path="bottle-necks-in-every-day-data-analytics-tasks.html"><a href="bottle-necks-in-every-day-data-analytics-tasks.html#improvement-1-pre-allocation-of-memory"><i class="fa fa-check"></i><b>13.2.3</b> Improvement 1: Pre-allocation of memory</a></li>
+<li class="chapter" data-level="13.2.4" data-path="bottle-necks-in-every-day-data-analytics-tasks.html"><a href="bottle-necks-in-every-day-data-analytics-tasks.html#improvement-2-exploit-vectorization"><i class="fa fa-check"></i><b>13.2.4</b> Improvement 2: Exploit vectorization</a></li>
 </ul></li>
-<li class="chapter" data-level="12.3" data-path="bottle-necks-in-every-day-econometrics.html"><a href="bottle-necks-in-every-day-econometrics.html#case-study-bootstrapping-and-parallel-processing"><i class="fa fa-check"></i><b>12.3</b> Case study: Bootstrapping and Parallel Processing</a>
+<li class="chapter" data-level="13.3" data-path="bottle-necks-in-every-day-data-analytics-tasks.html"><a href="bottle-necks-in-every-day-data-analytics-tasks.html#case-study-bootstrapping-and-parallel-processing"><i class="fa fa-check"></i><b>13.3</b> Case study: Bootstrapping and Parallel Processing</a>
 <ul>
-<li class="chapter" data-level="12.3.1" data-path="bottle-necks-in-every-day-econometrics.html"><a href="bottle-necks-in-every-day-econometrics.html#parallelization-with-an-ec2-instance-1"><i class="fa fa-check"></i><b>12.3.1</b> Parallelization with an EC2 instance</a></li>
+<li class="chapter" data-level="13.3.1" data-path="bottle-necks-in-every-day-data-analytics-tasks.html"><a href="bottle-necks-in-every-day-data-analytics-tasks.html#parallelization-with-an-ec2-instance-1"><i class="fa fa-check"></i><b>13.3.1</b> Parallelization with an EC2 instance</a></li>
 </ul></li>
-<li class="chapter" data-level="12.4" data-path="bottle-necks-in-every-day-econometrics.html"><a href="bottle-necks-in-every-day-econometrics.html#case-study-efficient-fixed-effects-estimation"><i class="fa fa-check"></i><b>12.4</b> Case Study: Efficient Fixed Effects Estimation</a></li>
+<li class="chapter" data-level="13.4" data-path="bottle-necks-in-every-day-data-analytics-tasks.html"><a href="bottle-necks-in-every-day-data-analytics-tasks.html#case-study-efficient-fixed-effects-estimation"><i class="fa fa-check"></i><b>13.4</b> Case Study: Efficient Fixed Effects Estimation</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="gpus-and-machine-learning.html"><a href="gpus-and-machine-learning.html"><i class="fa fa-check"></i><b>13</b> GPUs and Machine Learning</a>
+<li class="chapter" data-level="14" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html"><i class="fa fa-check"></i><b>14</b> Econometrics with GPUs</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="gpus-and-machine-learning.html"><a href="gpus-and-machine-learning.html#tensorflowkeras-example-predict-housing-prices"><i class="fa fa-check"></i><b>13.1</b> Tensorflow/Keras example: predict housing prices</a></li>
-<li class="chapter" data-level="13.2" data-path="gpus-and-machine-learning.html"><a href="gpus-and-machine-learning.html#data-preparation"><i class="fa fa-check"></i><b>13.2</b> Data preparation</a></li>
-<li class="chapter" data-level="13.3" data-path="gpus-and-machine-learning.html"><a href="gpus-and-machine-learning.html#model-specification"><i class="fa fa-check"></i><b>13.3</b> Model specification</a></li>
-<li class="chapter" data-level="13.4" data-path="gpus-and-machine-learning.html"><a href="gpus-and-machine-learning.html#training-and-prediction"><i class="fa fa-check"></i><b>13.4</b> Training and prediction</a>
+<li class="chapter" data-level="14.1" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#tensorflowkeras-example-predict-housing-prices"><i class="fa fa-check"></i><b>14.1</b> Tensorflow/Keras example: predict housing prices</a>
 <ul>
-<li class="chapter" data-level="13.4.1" data-path="gpus-and-machine-learning.html"><a href="gpus-and-machine-learning.html#a-word-of-caution"><i class="fa fa-check"></i><b>13.4.1</b> A word of caution</a></li>
+<li class="chapter" data-level="14.1.1" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#data-preparation"><i class="fa fa-check"></i><b>14.1.1</b> Data preparation</a></li>
+<li class="chapter" data-level="14.1.2" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#model-specification"><i class="fa fa-check"></i><b>14.1.2</b> Model specification</a></li>
+<li class="chapter" data-level="14.1.3" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#training-and-prediction"><i class="fa fa-check"></i><b>14.1.3</b> Training and prediction</a></li>
+<li class="chapter" data-level="14.1.4" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#a-word-of-caution"><i class="fa fa-check"></i><b>14.1.4</b> A word of caution</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html"><i class="fa fa-check"></i><b>14</b> Regression Analysis and Categorization with Spark and R</a>
+<li class="chapter" data-level="15" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html"><i class="fa fa-check"></i><b>15</b> Regression Analysis and Categorization with Spark and R</a>
 <ul>
-<li class="chapter" data-level="14.1" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#simple-regression-analysis"><i class="fa fa-check"></i><b>14.1</b> Simple regression analysis</a></li>
-<li class="chapter" data-level="14.2" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#machine-learning-for-classification"><i class="fa fa-check"></i><b>14.2</b> Machine learning for classification</a></li>
-<li class="chapter" data-level="14.3" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#building-machine-learning-pipelines-with-r-and-spark"><i class="fa fa-check"></i><b>14.3</b> Building machine learning pipelines with R and Spark</a>
+<li class="chapter" data-level="15.1" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#simple-linear-regression-analysis"><i class="fa fa-check"></i><b>15.1</b> Simple linear regression analysis</a></li>
+<li class="chapter" data-level="15.2" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#machine-learning-for-classification"><i class="fa fa-check"></i><b>15.2</b> Machine learning for classification</a></li>
+<li class="chapter" data-level="15.3" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#building-machine-learning-pipelines-with-r-and-spark"><i class="fa fa-check"></i><b>15.3</b> Building machine learning pipelines with R and Spark</a>
 <ul>
-<li class="chapter" data-level="14.3.1" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#set-up-and-data-import"><i class="fa fa-check"></i><b>14.3.1</b> Set up and data import</a></li>
-<li class="chapter" data-level="14.3.2" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#building-the-pipeline"><i class="fa fa-check"></i><b>14.3.2</b> Building the pipeline</a></li>
+<li class="chapter" data-level="15.3.1" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#set-up-and-data-import"><i class="fa fa-check"></i><b>15.3.1</b> Set up and data import</a></li>
+<li class="chapter" data-level="15.3.2" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#building-the-pipeline"><i class="fa fa-check"></i><b>15.3.2</b> Building the pipeline</a></li>
 </ul></li>
-<li class="chapter" data-level="14.4" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#wrapping-up-8"><i class="fa fa-check"></i><b>14.4</b> Wrapping up</a></li>
+<li class="chapter" data-level="15.4" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#wrapping-up-8"><i class="fa fa-check"></i><b>15.4</b> Wrapping up</a></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html"><i class="fa fa-check"></i><b>15</b> Large-scale Text Analysis with sparklyr</a>
+<li class="chapter" data-level="16" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html"><i class="fa fa-check"></i><b>16</b> Large-scale Text Analysis with sparklyr</a>
 <ul>
-<li class="chapter" data-level="15.1" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#getting-started-import-pre-processing-and-word-count"><i class="fa fa-check"></i><b>15.1</b> Getting started: import, pre-processing, and word count</a></li>
+<li class="chapter" data-level="16.1" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#getting-started-import-pre-processing-and-word-count"><i class="fa fa-check"></i><b>16.1</b> Getting started: import, pre-processing, and word count</a></li>
 </ul></li>
 <li class="appendix"><span><b>Appendix</b></span></li>
 <li class="chapter" data-level="A" data-path="appendix-a.html"><a href="appendix-a.html"><i class="fa fa-check"></i><b>A</b> Appendix A</a>
@@ -433,21 +441,22 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="regression-analysis-and-categorization-with-spark-and-r" class="section level1 hasAnchor" number="14">
-<h1><span class="header-section-number">Chapter 14</span> Regression Analysis and Categorization with Spark and R<a href="regression-analysis-and-categorization-with-spark-and-r.html#regression-analysis-and-categorization-with-spark-and-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="simple-regression-analysis" class="section level2 hasAnchor" number="14.1">
-<h2><span class="header-section-number">14.1</span> Simple regression analysis<a href="regression-analysis-and-categorization-with-spark-and-r.html#simple-regression-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="regression-analysis-and-categorization-with-spark-and-r" class="section level1 hasAnchor" number="15">
+<h1><span class="header-section-number">Chapter 15</span> Regression Analysis and Categorization with Spark and R<a href="regression-analysis-and-categorization-with-spark-and-r.html#regression-analysis-and-categorization-with-spark-and-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Regression analysis, particularly simple linear regression (OLS), is the backbone of applied econometrics. As discussed in previous chapters, regression analysis can be computationally very intensive with a dataset of many observations and variables, as it involves matrix operations on a very larger model matrix. Chapter 12 discusses in one case study the special case of a large model matrix due to fixed-effects dummy variables. In this Chapter, we first look at a generally applicable approach for estimating linear regression models with large data sets (when the model matrix cannot be hold in RAM). Building on the same <code>sparklyr</code>-framework as for the simple linear regression case, we then look at classification models such as logit and random forest. Finally, we look at how regression analysis and machine learning tasks can be organized in machine learning pipelines to be run, stored/reloaded and updated flexibly.</p>
+<div id="simple-linear-regression-analysis" class="section level2 hasAnchor" number="15.1">
+<h2><span class="header-section-number">15.1</span> Simple linear regression analysis<a href="regression-analysis-and-categorization-with-spark-and-r.html#simple-linear-regression-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Suppose we want to conduct a correlation study of what factors are associated with longer or shorter arrival delays in air travel. Via its built-in ‘MLib’ library, Spark provides several high-level functions to conduct regression analyses. When calling these functions via <code>sparklyr</code> (or <code>SparkR</code>), their usage is actually very similar to the usual R packages/functions commonly used to run regressions in R.</p>
 <p>As a simple point of reference, we first estimate a linear model with the usual R approach (all computed in the R environment). First, we load the data as a common <code>data.table</code>. We could also convert a copy of the entire <code>SparkDataFrame</code> object to a <code>data.frame</code> or <code>data.table</code> and get essentially the same outcome. However, collecting the data from the RDD structure would take much longer than parsing the csv with <code>fread</code>. In addition, we only import the first 300 rows. Running regression analysis with relatively large datasets in Spark on a small local machine might fail or be rather slow.<a href="#fn59" class="footnote-ref" id="fnref59"><sup>59</sup></a></p>
-<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb616-1" aria-hidden="true" tabindex="-1"></a><span class="co"># flights_r &lt;- collect(flights) # very slow!</span></span>
-<span id="cb616-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb616-2" aria-hidden="true" tabindex="-1"></a>flights_r <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="st">&quot;data/flights.csv&quot;</span>, <span class="at">nrows =</span> <span class="dv">300</span>) </span></code></pre></div>
+<div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb619-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb619-1" aria-hidden="true" tabindex="-1"></a><span class="co"># flights_r &lt;- collect(flights) # very slow!</span></span>
+<span id="cb619-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb619-2" aria-hidden="true" tabindex="-1"></a>flights_r <span class="ot">&lt;-</span> data.table<span class="sc">::</span><span class="fu">fread</span>(<span class="st">&quot;data/flights.csv&quot;</span>, <span class="at">nrows =</span> <span class="dv">300</span>) </span></code></pre></div>
 <p>Now we run a simple linear regression (OLS) and show the summary output.</p>
-<div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb617-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb617-1" aria-hidden="true" tabindex="-1"></a><span class="co"># specify the linear model</span></span>
-<span id="cb617-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb617-2" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> arr_delay <span class="sc">~</span> dep_delay <span class="sc">+</span> distance</span>
-<span id="cb617-3"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb617-3" aria-hidden="true" tabindex="-1"></a><span class="co"># fit the model with OLS</span></span>
-<span id="cb617-4"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb617-4" aria-hidden="true" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(model1, flights_r)</span>
-<span id="cb617-5"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb617-5" aria-hidden="true" tabindex="-1"></a><span class="co"># compute t-tests etc.</span></span>
-<span id="cb617-6"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb617-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit1)</span></code></pre></div>
+<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb620-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb620-1" aria-hidden="true" tabindex="-1"></a><span class="co"># specify the linear model</span></span>
+<span id="cb620-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb620-2" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span> arr_delay <span class="sc">~</span> dep_delay <span class="sc">+</span> distance</span>
+<span id="cb620-3"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb620-3" aria-hidden="true" tabindex="-1"></a><span class="co"># fit the model with OLS</span></span>
+<span id="cb620-4"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb620-4" aria-hidden="true" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(model1, flights_r)</span>
+<span id="cb620-5"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb620-5" aria-hidden="true" tabindex="-1"></a><span class="co"># compute t-tests etc.</span></span>
+<span id="cb620-6"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb620-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit1)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = model1, data = flights_r)
@@ -469,17 +478,17 @@ div.csl-indent {
 ## Multiple R-squared:  0.917,  Adjusted R-squared:  0.917 
 ## F-statistic: 1.65e+03 on 2 and 297 DF,  p-value: &lt;2e-16</code></pre>
 <p>Now we aim to compute essentially the same model estimate in <code>sparklyr</code>.<a href="#fn60" class="footnote-ref" id="fnref60"><sup>60</sup></a> In order to use Spark via the <code>sparklyr</code> package, we need to first load the package and establish a connection with Spark (similar to <code>SparkR::sparkR.session()</code>).</p>
-<div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb619-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb619-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sparklyr)</span>
-<span id="cb619-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb619-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb619-3"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb619-3" aria-hidden="true" tabindex="-1"></a><span class="co"># connect with default configuration</span></span>
-<span id="cb619-4"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb619-4" aria-hidden="true" tabindex="-1"></a>sc <span class="ot">&lt;-</span> <span class="fu">spark_connect</span>(<span class="at">master=</span><span class="st">&quot;local&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb622-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sparklyr)</span>
+<span id="cb622-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb622-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb622-3"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb622-3" aria-hidden="true" tabindex="-1"></a><span class="co"># connect with default configuration</span></span>
+<span id="cb622-4"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb622-4" aria-hidden="true" tabindex="-1"></a>sc <span class="ot">&lt;-</span> <span class="fu">spark_connect</span>(<span class="at">master=</span><span class="st">&quot;local&quot;</span>)</span></code></pre></div>
 <p>We then copy the data.table <code>flights_r</code> (previously loaded into our R session) to Spark. Again, working on a normal laptop this seems trivial, but the exact same command would allow us (when connected with Spark on a cluster computer in the cloud) to properly load and distribute the data.table on the cluster. Finally, we then fit the model with <code>ml_linear_regression()</code> and compute.</p>
-<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb620-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb620-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load data to spark</span></span>
-<span id="cb620-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb620-2" aria-hidden="true" tabindex="-1"></a>flights_spark <span class="ot">&lt;-</span> <span class="fu">copy_to</span>(sc, flights_r, <span class="st">&quot;flights_spark&quot;</span>)</span>
-<span id="cb620-3"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb620-3" aria-hidden="true" tabindex="-1"></a><span class="co"># fit the model</span></span>
-<span id="cb620-4"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb620-4" aria-hidden="true" tabindex="-1"></a>fit1_spark <span class="ot">&lt;-</span> <span class="fu">ml_linear_regression</span>(flights_spark, <span class="at">formula =</span> model1)</span>
-<span id="cb620-5"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb620-5" aria-hidden="true" tabindex="-1"></a><span class="co"># compute summary stats</span></span>
-<span id="cb620-6"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb620-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit1_spark)</span></code></pre></div>
+<div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb623-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb623-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load data to spark</span></span>
+<span id="cb623-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb623-2" aria-hidden="true" tabindex="-1"></a>flights_spark <span class="ot">&lt;-</span> <span class="fu">copy_to</span>(sc, flights_r, <span class="st">&quot;flights_spark&quot;</span>)</span>
+<span id="cb623-3"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb623-3" aria-hidden="true" tabindex="-1"></a><span class="co"># fit the model</span></span>
+<span id="cb623-4"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb623-4" aria-hidden="true" tabindex="-1"></a>fit1_spark <span class="ot">&lt;-</span> <span class="fu">ml_linear_regression</span>(flights_spark, <span class="at">formula =</span> model1)</span>
+<span id="cb623-5"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb623-5" aria-hidden="true" tabindex="-1"></a><span class="co"># compute summary stats</span></span>
+<span id="cb623-6"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb623-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(fit1_spark)</span></code></pre></div>
 <pre><code>Deviance Residuals:
     Min      1Q  Median      3Q     Max 
 -42.386  -9.965  -1.911   9.866  48.024 
@@ -491,10 +500,10 @@ Coefficients:
 R-Squared: 0.9172
 Root Mean Squared Error: 15.42</code></pre>
 <p>Alternatively, we can use the <code>spark_apply()</code> function to run the regression analysis in R via the original R <code>lm()</code>-function.<a href="#fn61" class="footnote-ref" id="fnref61"><sup>61</sup></a></p>
-<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb622-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fit the model</span></span>
-<span id="cb622-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb622-2" aria-hidden="true" tabindex="-1"></a><span class="fu">spark_apply</span>(flights_spark, <span class="cf">function</span>(df) broom<span class="sc">::</span><span class="fu">tidy</span>(<span class="fu">lm</span>(arr_delay <span class="sc">~</span> dep_delay <span class="sc">+</span> distance, df)),</span>
-<span id="cb622-3"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb622-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">names =</span> <span class="fu">c</span>(<span class="st">&quot;term&quot;</span>, <span class="st">&quot;estimate&quot;</span>, <span class="st">&quot;std.error&quot;</span>, <span class="st">&quot;statistic&quot;</span>, <span class="st">&quot;p.value&quot;</span>)</span>
-<span id="cb622-4"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb622-4" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
+<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb625-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb625-1" aria-hidden="true" tabindex="-1"></a><span class="co"># fit the model</span></span>
+<span id="cb625-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb625-2" aria-hidden="true" tabindex="-1"></a><span class="fu">spark_apply</span>(flights_spark, <span class="cf">function</span>(df) broom<span class="sc">::</span><span class="fu">tidy</span>(<span class="fu">lm</span>(arr_delay <span class="sc">~</span> dep_delay <span class="sc">+</span> distance, df)),</span>
+<span id="cb625-3"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb625-3" aria-hidden="true" tabindex="-1"></a>        <span class="at">names =</span> <span class="fu">c</span>(<span class="st">&quot;term&quot;</span>, <span class="st">&quot;estimate&quot;</span>, <span class="st">&quot;std.error&quot;</span>, <span class="st">&quot;statistic&quot;</span>, <span class="st">&quot;p.value&quot;</span>)</span>
+<span id="cb625-4"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb625-4" aria-hidden="true" tabindex="-1"></a>    )</span></code></pre></div>
 <pre><code># Source: spark&lt;?&gt; [?? x 5]
   term         estimate std.error statistic   p.value
   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
@@ -502,22 +511,22 @@ Root Mean Squared Error: 15.42</code></pre>
 2 dep_delay    0.990      0.0173    57.3    1.63e-162
 3 distance     0.000114   0.00124    0.0920 9.27e-  1</code></pre>
 <p>Finally, the <code>parsnip</code> package (together with the <code>tidymodels</code> package) provides a simple interface to run the same model (or similar specifications) on different “engines” (estimators/fitting algorithms), and several of the <code>parsnip</code> models are also supported in <code>sparklyr</code>. This significantly facilitates the transition from local testing (with a small subset of the data) to running the estimation on the entire data set on spark.</p>
-<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb624-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
-<span id="cb624-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb624-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(parsnip)</span>
-<span id="cb624-3"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb624-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb624-4"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb624-4" aria-hidden="true" tabindex="-1"></a><span class="co"># simple local linear regression example from above</span></span>
-<span id="cb624-5"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb624-5" aria-hidden="true" tabindex="-1"></a><span class="co"># via tidymodels/parsnip</span></span>
-<span id="cb624-6"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb624-6" aria-hidden="true" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> <span class="fu">fit</span>(<span class="fu">linear_reg</span>(<span class="at">engine=</span><span class="st">&quot;lm&quot;</span>), model1, <span class="at">data=</span>flights_r)</span>
-<span id="cb624-7"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb624-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(fit1)</span></code></pre></div>
+<div class="sourceCode" id="cb627"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb627-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb627-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidymodels)</span>
+<span id="cb627-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb627-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(parsnip)</span>
+<span id="cb627-3"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb627-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb627-4"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb627-4" aria-hidden="true" tabindex="-1"></a><span class="co"># simple local linear regression example from above</span></span>
+<span id="cb627-5"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb627-5" aria-hidden="true" tabindex="-1"></a><span class="co"># via tidymodels/parsnip</span></span>
+<span id="cb627-6"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb627-6" aria-hidden="true" tabindex="-1"></a>fit1 <span class="ot">&lt;-</span> <span class="fu">fit</span>(<span class="fu">linear_reg</span>(<span class="at">engine=</span><span class="st">&quot;lm&quot;</span>), model1, <span class="at">data=</span>flights_r)</span>
+<span id="cb627-7"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb627-7" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(fit1)</span></code></pre></div>
 <pre><code># A tibble: 3 × 5
   term         estimate std.error statistic   p.value
   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
 1 (Intercept) -0.183      1.68      -0.109  9.13e-  1
 2 dep_delay    0.990      0.0173    57.3    1.63e-162
 3 distance     0.000114   0.00124    0.0920 9.27e-  1</code></pre>
-<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb626-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb626-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run the same on Spark </span></span>
-<span id="cb626-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb626-2" aria-hidden="true" tabindex="-1"></a>fit1_spark <span class="ot">&lt;-</span> <span class="fu">fit</span>(<span class="fu">linear_reg</span>(<span class="at">engine=</span><span class="st">&quot;spark&quot;</span>), model1, <span class="at">data=</span>flights_spark)</span>
-<span id="cb626-3"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb626-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(fit1_spark)</span></code></pre></div>
+<div class="sourceCode" id="cb629"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb629-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb629-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run the same on Spark </span></span>
+<span id="cb629-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb629-2" aria-hidden="true" tabindex="-1"></a>fit1_spark <span class="ot">&lt;-</span> <span class="fu">fit</span>(<span class="fu">linear_reg</span>(<span class="at">engine=</span><span class="st">&quot;spark&quot;</span>), model1, <span class="at">data=</span>flights_spark)</span>
+<span id="cb629-3"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb629-3" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(fit1_spark)</span></code></pre></div>
 <pre><code># A tibble: 3 × 5
   term         estimate std.error statistic   p.value
   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
@@ -526,59 +535,59 @@ Root Mean Squared Error: 15.42</code></pre>
 3 distance     0.000114   0.00124    0.0920 9.27e-  1</code></pre>
 <p>We will further build on this interface in the next section where we look at different machine learning procedures for a classification problem.</p>
 </div>
-<div id="machine-learning-for-classification" class="section level2 hasAnchor" number="14.2">
-<h2><span class="header-section-number">14.2</span> Machine learning for classification<a href="regression-analysis-and-categorization-with-spark-and-r.html#machine-learning-for-classification" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="machine-learning-for-classification" class="section level2 hasAnchor" number="15.2">
+<h2><span class="header-section-number">15.2</span> Machine learning for classification<a href="regression-analysis-and-categorization-with-spark-and-r.html#machine-learning-for-classification" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Building on <code>sparklyr</code>, <code>tidymodels</code>, and <code>parsnip</code>, we test a set of machine learning models on the classification problem discussed in <span class="citation">Varian (<a href="#ref-varian_2014" role="doc-biblioref">2014</a>)</span>: predicting Titanic survivors. The data for this exercise can be downloaded from here: <a href="http://doi.org/10.3886/E113925V1">http://doi.org/10.3886/E113925V1</a>.</p>
 <p>We import and prepare the data in R.</p>
-<div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb628-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb628-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load into R, # select variables of interest, remove missing</span></span>
-<span id="cb628-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb628-2" aria-hidden="true" tabindex="-1"></a>titanic_r <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/titanic3.csv&quot;</span>)</span>
-<span id="cb628-3"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb628-3" aria-hidden="true" tabindex="-1"></a>titanic_r <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(titanic_r[, <span class="fu">c</span>(<span class="st">&quot;survived&quot;</span>,</span>
-<span id="cb628-4"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb628-4" aria-hidden="true" tabindex="-1"></a>                           <span class="st">&quot;pclass&quot;</span>,</span>
-<span id="cb628-5"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb628-5" aria-hidden="true" tabindex="-1"></a>                           <span class="st">&quot;sex&quot;</span>,</span>
-<span id="cb628-6"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb628-6" aria-hidden="true" tabindex="-1"></a>                           <span class="st">&quot;age&quot;</span>,</span>
-<span id="cb628-7"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb628-7" aria-hidden="true" tabindex="-1"></a>                           <span class="st">&quot;sibsp&quot;</span>,</span>
-<span id="cb628-8"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb628-8" aria-hidden="true" tabindex="-1"></a>                           <span class="st">&quot;parch&quot;</span>)])</span>
-<span id="cb628-9"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb628-9" aria-hidden="true" tabindex="-1"></a>titanic_r<span class="sc">$</span>survived <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(titanic_r<span class="sc">$</span>survived<span class="sc">==</span><span class="dv">1</span>, <span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb631"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb631-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb631-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load into R, # select variables of interest, remove missing</span></span>
+<span id="cb631-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb631-2" aria-hidden="true" tabindex="-1"></a>titanic_r <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/titanic3.csv&quot;</span>)</span>
+<span id="cb631-3"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb631-3" aria-hidden="true" tabindex="-1"></a>titanic_r <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(titanic_r[, <span class="fu">c</span>(<span class="st">&quot;survived&quot;</span>,</span>
+<span id="cb631-4"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb631-4" aria-hidden="true" tabindex="-1"></a>                           <span class="st">&quot;pclass&quot;</span>,</span>
+<span id="cb631-5"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb631-5" aria-hidden="true" tabindex="-1"></a>                           <span class="st">&quot;sex&quot;</span>,</span>
+<span id="cb631-6"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb631-6" aria-hidden="true" tabindex="-1"></a>                           <span class="st">&quot;age&quot;</span>,</span>
+<span id="cb631-7"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb631-7" aria-hidden="true" tabindex="-1"></a>                           <span class="st">&quot;sibsp&quot;</span>,</span>
+<span id="cb631-8"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb631-8" aria-hidden="true" tabindex="-1"></a>                           <span class="st">&quot;parch&quot;</span>)])</span>
+<span id="cb631-9"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb631-9" aria-hidden="true" tabindex="-1"></a>titanic_r<span class="sc">$</span>survived <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(titanic_r<span class="sc">$</span>survived<span class="sc">==</span><span class="dv">1</span>, <span class="st">&quot;yes&quot;</span>, <span class="st">&quot;no&quot;</span>)</span></code></pre></div>
 <p>In order to assess the performance of the classifiers later on, we split the sample into training and test data sets. We do so with the help of the <code>rsample</code> package, which provides a number of high-level functions to facilitate this kind of pre-processing.</p>
-<div class="sourceCode" id="cb629"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb629-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb629-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rsample)</span>
-<span id="cb629-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb629-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb629-3"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb629-3" aria-hidden="true" tabindex="-1"></a><span class="co"># split into training and test set</span></span>
-<span id="cb629-4"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb629-4" aria-hidden="true" tabindex="-1"></a>titanic_r <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(titanic_r)</span>
-<span id="cb629-5"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb629-5" aria-hidden="true" tabindex="-1"></a>ti_training <span class="ot">&lt;-</span> <span class="fu">training</span>(titanic_r)</span>
-<span id="cb629-6"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb629-6" aria-hidden="true" tabindex="-1"></a>ti_testing <span class="ot">&lt;-</span> <span class="fu">testing</span>(titanic_r)</span></code></pre></div>
+<div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb632-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb632-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rsample)</span>
+<span id="cb632-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb632-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb632-3"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb632-3" aria-hidden="true" tabindex="-1"></a><span class="co"># split into training and test set</span></span>
+<span id="cb632-4"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb632-4" aria-hidden="true" tabindex="-1"></a>titanic_r <span class="ot">&lt;-</span> <span class="fu">initial_split</span>(titanic_r)</span>
+<span id="cb632-5"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb632-5" aria-hidden="true" tabindex="-1"></a>ti_training <span class="ot">&lt;-</span> <span class="fu">training</span>(titanic_r)</span>
+<span id="cb632-6"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb632-6" aria-hidden="true" tabindex="-1"></a>ti_testing <span class="ot">&lt;-</span> <span class="fu">testing</span>(titanic_r)</span></code></pre></div>
 <p>For the training and assessment of the classifiers, we transfer the two data sets to the spark cluster.</p>
-<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb630-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb630-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load data to spark</span></span>
-<span id="cb630-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb630-2" aria-hidden="true" tabindex="-1"></a>ti_training_spark <span class="ot">&lt;-</span> <span class="fu">copy_to</span>(sc, ti_training, <span class="st">&quot;ti_training_spark&quot;</span>)</span>
-<span id="cb630-3"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb630-3" aria-hidden="true" tabindex="-1"></a>ti_testing_spark <span class="ot">&lt;-</span> <span class="fu">copy_to</span>(sc, ti_testing, <span class="st">&quot;ti_testing_spark&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb633"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb633-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb633-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load data to spark</span></span>
+<span id="cb633-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb633-2" aria-hidden="true" tabindex="-1"></a>ti_training_spark <span class="ot">&lt;-</span> <span class="fu">copy_to</span>(sc, ti_training, <span class="st">&quot;ti_training_spark&quot;</span>)</span>
+<span id="cb633-3"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb633-3" aria-hidden="true" tabindex="-1"></a>ti_testing_spark <span class="ot">&lt;-</span> <span class="fu">copy_to</span>(sc, ti_testing, <span class="st">&quot;ti_testing_spark&quot;</span>)</span></code></pre></div>
 <p>Now we can set up a ‘horse race’ between different ML approaches to find the best performing model. Overall, we will consider the following models/algorithms:</p>
 <ul>
 <li>Logistic regression</li>
 <li>Boosted trees</li>
 <li>Random forest</li>
 </ul>
-<div class="sourceCode" id="cb631"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb631-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb631-1" aria-hidden="true" tabindex="-1"></a><span class="co"># models to be used</span></span>
-<span id="cb631-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb631-2" aria-hidden="true" tabindex="-1"></a>models <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">logit=</span><span class="fu">logistic_reg</span>(<span class="at">engine=</span><span class="st">&quot;spark&quot;</span>, <span class="at">mode =</span> <span class="st">&quot;classification&quot;</span>),</span>
-<span id="cb631-3"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb631-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">btree=</span><span class="fu">boost_tree</span>(<span class="at">engine =</span> <span class="st">&quot;spark&quot;</span>, <span class="at">mode =</span> <span class="st">&quot;classification&quot;</span>),</span>
-<span id="cb631-4"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb631-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">rforest=</span><span class="fu">rand_forest</span>(<span class="at">engine =</span> <span class="st">&quot;spark&quot;</span>, <span class="at">mode =</span> <span class="st">&quot;classification&quot;</span>))</span>
-<span id="cb631-5"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb631-5" aria-hidden="true" tabindex="-1"></a><span class="co"># train/fit the models</span></span>
-<span id="cb631-6"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb631-6" aria-hidden="true" tabindex="-1"></a>fits <span class="ot">&lt;-</span> <span class="fu">lapply</span>(models, fit, <span class="at">formula=</span>survived<span class="sc">~</span>., <span class="at">data=</span>ti_training_spark)</span></code></pre></div>
+<div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb634-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb634-1" aria-hidden="true" tabindex="-1"></a><span class="co"># models to be used</span></span>
+<span id="cb634-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb634-2" aria-hidden="true" tabindex="-1"></a>models <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">logit=</span><span class="fu">logistic_reg</span>(<span class="at">engine=</span><span class="st">&quot;spark&quot;</span>, <span class="at">mode =</span> <span class="st">&quot;classification&quot;</span>),</span>
+<span id="cb634-3"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb634-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">btree=</span><span class="fu">boost_tree</span>(<span class="at">engine =</span> <span class="st">&quot;spark&quot;</span>, <span class="at">mode =</span> <span class="st">&quot;classification&quot;</span>),</span>
+<span id="cb634-4"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb634-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">rforest=</span><span class="fu">rand_forest</span>(<span class="at">engine =</span> <span class="st">&quot;spark&quot;</span>, <span class="at">mode =</span> <span class="st">&quot;classification&quot;</span>))</span>
+<span id="cb634-5"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb634-5" aria-hidden="true" tabindex="-1"></a><span class="co"># train/fit the models</span></span>
+<span id="cb634-6"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb634-6" aria-hidden="true" tabindex="-1"></a>fits <span class="ot">&lt;-</span> <span class="fu">lapply</span>(models, fit, <span class="at">formula=</span>survived<span class="sc">~</span>., <span class="at">data=</span>ti_training_spark)</span></code></pre></div>
 <p>The fitted models (trained algorithms) can now be assessed with the help of the test data set. To this end, we use the high-level <code>accuracy</code> function provided in the <code>yardstick</code> package in order to compute the <a href="https://en.wikipedia.org/wiki/Accuracy_and_precision">accuracy</a> of the fitted models. We proceed in three steps. First, we use the fitted models to predict the outcomes (we classify cases into survived/not survived) of the <em>test set</em>. Then we fetch the predictions from the Spark cluster, format the variables, and add the actual outcomes as an additional column.</p>
-<div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb632-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb632-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run predictions</span></span>
-<span id="cb632-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb632-2" aria-hidden="true" tabindex="-1"></a>predictions <span class="ot">&lt;-</span> <span class="fu">lapply</span>(fits, predict, <span class="at">new_data=</span>ti_testing_spark)</span>
-<span id="cb632-3"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb632-3" aria-hidden="true" tabindex="-1"></a><span class="co"># fetch predictions from Spark, format, add actual outcomes</span></span>
-<span id="cb632-4"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb632-4" aria-hidden="true" tabindex="-1"></a>pred_outcomes <span class="ot">&lt;-</span> </span>
-<span id="cb632-5"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb632-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">lapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(predictions), <span class="cf">function</span>(i){</span>
-<span id="cb632-6"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb632-6" aria-hidden="true" tabindex="-1"></a>          x_r <span class="ot">&lt;-</span> <span class="fu">collect</span>(predictions[[i]]) <span class="co"># fetch from spark cluster (load into local R environment)</span></span>
-<span id="cb632-7"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb632-7" aria-hidden="true" tabindex="-1"></a>          x_r<span class="sc">$</span>pred_class <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(x_r<span class="sc">$</span>pred_class) <span class="co"># format for predictions</span></span>
-<span id="cb632-8"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb632-8" aria-hidden="true" tabindex="-1"></a>          x_r<span class="sc">$</span>survived <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(ti_testing<span class="sc">$</span>survived) <span class="co"># add true outcomes</span></span>
-<span id="cb632-9"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb632-9" aria-hidden="true" tabindex="-1"></a>          <span class="fu">return</span>(x_r)</span>
-<span id="cb632-10"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb632-10" aria-hidden="true" tabindex="-1"></a>     </span>
-<span id="cb632-11"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb632-11" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<div class="sourceCode" id="cb635"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb635-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb635-1" aria-hidden="true" tabindex="-1"></a><span class="co"># run predictions</span></span>
+<span id="cb635-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb635-2" aria-hidden="true" tabindex="-1"></a>predictions <span class="ot">&lt;-</span> <span class="fu">lapply</span>(fits, predict, <span class="at">new_data=</span>ti_testing_spark)</span>
+<span id="cb635-3"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb635-3" aria-hidden="true" tabindex="-1"></a><span class="co"># fetch predictions from Spark, format, add actual outcomes</span></span>
+<span id="cb635-4"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb635-4" aria-hidden="true" tabindex="-1"></a>pred_outcomes <span class="ot">&lt;-</span> </span>
+<span id="cb635-5"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb635-5" aria-hidden="true" tabindex="-1"></a>     <span class="fu">lapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(predictions), <span class="cf">function</span>(i){</span>
+<span id="cb635-6"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb635-6" aria-hidden="true" tabindex="-1"></a>          x_r <span class="ot">&lt;-</span> <span class="fu">collect</span>(predictions[[i]]) <span class="co"># fetch from spark cluster (load into local R environment)</span></span>
+<span id="cb635-7"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb635-7" aria-hidden="true" tabindex="-1"></a>          x_r<span class="sc">$</span>pred_class <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(x_r<span class="sc">$</span>pred_class) <span class="co"># format for predictions</span></span>
+<span id="cb635-8"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb635-8" aria-hidden="true" tabindex="-1"></a>          x_r<span class="sc">$</span>survived <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(ti_testing<span class="sc">$</span>survived) <span class="co"># add true outcomes</span></span>
+<span id="cb635-9"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb635-9" aria-hidden="true" tabindex="-1"></a>          <span class="fu">return</span>(x_r)</span>
+<span id="cb635-10"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb635-10" aria-hidden="true" tabindex="-1"></a>     </span>
+<span id="cb635-11"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb635-11" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
 <p>Finally, we compute the accuracy of the models, stack the results, and display them (ordered from best-performing to worst-performing.)</p>
-<div class="sourceCode" id="cb633"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb633-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb633-1" aria-hidden="true" tabindex="-1"></a>acc <span class="ot">&lt;-</span> <span class="fu">lapply</span>(pred_outcomes, accuracy, <span class="at">truth=</span><span class="st">&quot;survived&quot;</span>, <span class="at">estimate=</span><span class="st">&quot;pred_class&quot;</span>)</span>
-<span id="cb633-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb633-2" aria-hidden="true" tabindex="-1"></a>acc <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(acc)</span>
-<span id="cb633-3"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb633-3" aria-hidden="true" tabindex="-1"></a>acc<span class="sc">$</span>model <span class="ot">&lt;-</span> <span class="fu">names</span>(fits)</span>
-<span id="cb633-4"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb633-4" aria-hidden="true" tabindex="-1"></a>acc[<span class="fu">order</span>(acc<span class="sc">$</span>.estimate, <span class="at">decreasing =</span> <span class="cn">TRUE</span>),]</span></code></pre></div>
+<div class="sourceCode" id="cb636"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb636-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb636-1" aria-hidden="true" tabindex="-1"></a>acc <span class="ot">&lt;-</span> <span class="fu">lapply</span>(pred_outcomes, accuracy, <span class="at">truth=</span><span class="st">&quot;survived&quot;</span>, <span class="at">estimate=</span><span class="st">&quot;pred_class&quot;</span>)</span>
+<span id="cb636-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb636-2" aria-hidden="true" tabindex="-1"></a>acc <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(acc)</span>
+<span id="cb636-3"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb636-3" aria-hidden="true" tabindex="-1"></a>acc<span class="sc">$</span>model <span class="ot">&lt;-</span> <span class="fu">names</span>(fits)</span>
+<span id="cb636-4"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb636-4" aria-hidden="true" tabindex="-1"></a>acc[<span class="fu">order</span>(acc<span class="sc">$</span>.estimate, <span class="at">decreasing =</span> <span class="cn">TRUE</span>),]</span></code></pre></div>
 <pre><code># A tibble: 3 × 4
   .metric  .estimator .estimate model  
   &lt;chr&gt;    &lt;chr&gt;          &lt;dbl&gt; &lt;chr&gt;  
@@ -586,7 +595,7 @@ Root Mean Squared Error: 15.42</code></pre>
 2 accuracy binary         0.790 btree  
 3 accuracy binary         0.779 logit  </code></pre>
 <p>In this simple example, all models perform similarly well. However, none of them really performs outstandingly. In a next step, we might want to learn about which variables are considered more or less important for the predictions. Here, the <code>tidy()</code>-function is very useful. As long as the model types are comparable (here <code>btree</code> and <code>rforest</code>), <code>tidy()</code> delivers essentially the same type of summary for different models.</p>
-<div class="sourceCode" id="cb635"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb635-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb635-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(fits[[<span class="st">&quot;btree&quot;</span>]])</span></code></pre></div>
+<div class="sourceCode" id="cb638"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb638-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb638-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(fits[[<span class="st">&quot;btree&quot;</span>]])</span></code></pre></div>
 <pre><code># A tibble: 5 × 2
   feature  importance
   &lt;chr&gt;         &lt;dbl&gt;
@@ -595,7 +604,7 @@ Root Mean Squared Error: 15.42</code></pre>
 3 pclass       0.143 
 4 sibsp        0.120 
 5 parch        0.0987</code></pre>
-<div class="sourceCode" id="cb637"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb637-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb637-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(fits[[<span class="st">&quot;rforest&quot;</span>]])</span></code></pre></div>
+<div class="sourceCode" id="cb640"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb640-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb640-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tidy</span>(fits[[<span class="st">&quot;rforest&quot;</span>]])</span></code></pre></div>
 <pre><code># A tibble: 5 × 2
   feature  importance
   &lt;chr&gt;         &lt;dbl&gt;
@@ -605,71 +614,71 @@ Root Mean Squared Error: 15.42</code></pre>
 4 sibsp        0.0595
 5 parch        0.0290</code></pre>
 <p>Finally, we clean up and disconnect from the Spark cluster.</p>
-<div class="sourceCode" id="cb639"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb639-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb639-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spark_disconnect</span>(sc)</span></code></pre></div>
+<div class="sourceCode" id="cb642"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb642-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb642-1" aria-hidden="true" tabindex="-1"></a><span class="fu">spark_disconnect</span>(sc)</span></code></pre></div>
 </div>
-<div id="building-machine-learning-pipelines-with-r-and-spark" class="section level2 hasAnchor" number="14.3">
-<h2><span class="header-section-number">14.3</span> Building machine learning pipelines with R and Spark<a href="regression-analysis-and-categorization-with-spark-and-r.html#building-machine-learning-pipelines-with-r-and-spark" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="building-machine-learning-pipelines-with-r-and-spark" class="section level2 hasAnchor" number="15.3">
+<h2><span class="header-section-number">15.3</span> Building machine learning pipelines with R and Spark<a href="regression-analysis-and-categorization-with-spark-and-r.html#building-machine-learning-pipelines-with-r-and-spark" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Spark provides a framework to implement machine learning pipelines called <a href="https://spark.apache.org/docs/latest/ml-pipeline.html">ML Pipelines</a> with the aim of facilitating the combination of various preparatory steps and ML algorithms into a pipeline/workflow. <code>sparklyr</code> provides a straightforward interface to ML Pipelines that allows implementing and testing the entire ML workflow in R and then easily deploying the final pipeline to a Spark cluster or more generally to the production environment. In the following example, we will revisit the e-commerce purchase prediction model (Google Analytics data from the Google Merchandise Shop) introduced in Chapter 1. That is, we want to prepare the Google Analytics data and then use a LASSO to find a set of important predictors for purchase decisions, all built into a ML pipeline.</p>
-<div id="set-up-and-data-import" class="section level3 hasAnchor" number="14.3.1">
-<h3><span class="header-section-number">14.3.1</span> Set up and data import<a href="regression-analysis-and-categorization-with-spark-and-r.html#set-up-and-data-import" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="set-up-and-data-import" class="section level3 hasAnchor" number="15.3.1">
+<h3><span class="header-section-number">15.3.1</span> Set up and data import<a href="regression-analysis-and-categorization-with-spark-and-r.html#set-up-and-data-import" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>All of the key ingredients are provided in <code>sparklyr</code>. However, I recommend using the ‘piping’ syntax provided in <code>dplyr</code> to implement the ML pipeline. In this context, using this syntax is particularly helpful to make the code easy to read and understand.</p>
-<div class="sourceCode" id="cb640"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb640-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb640-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb640-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb640-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sparklyr)</span>
-<span id="cb640-3"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb640-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb640-4"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb640-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb640-5"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb640-5" aria-hidden="true" tabindex="-1"></a><span class="co"># fix vars</span></span>
-<span id="cb640-6"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb640-6" aria-hidden="true" tabindex="-1"></a>INPUT_DATA <span class="ot">&lt;-</span> <span class="st">&quot;data/ga.csv&quot;</span></span></code></pre></div>
+<div class="sourceCode" id="cb643"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb643-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb643-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb643-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb643-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(sparklyr)</span>
+<span id="cb643-3"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb643-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb643-4"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb643-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb643-5"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb643-5" aria-hidden="true" tabindex="-1"></a><span class="co"># fix vars</span></span>
+<span id="cb643-6"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb643-6" aria-hidden="true" tabindex="-1"></a>INPUT_DATA <span class="ot">&lt;-</span> <span class="st">&quot;data/ga.csv&quot;</span></span></code></pre></div>
 <p>Recall that the Google Analytics data set is small subset of the overall data generated by Google Analytics on a moderately sized e-commerce site. Hence, it makes perfectly sense to first implement and test the pipeline locally (on a local Spark installation), before deploying it on an actual Spark cluster in the cloud. In a first step, we thus copy the imported data to the local Spark instance.</p>
-<div class="sourceCode" id="cb641"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb641-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb641-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import to local R session, prepare raw data</span></span>
-<span id="cb641-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb641-2" aria-hidden="true" tabindex="-1"></a>ga <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(<span class="fu">read.csv</span>(INPUT_DATA))</span>
-<span id="cb641-3"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb641-3" aria-hidden="true" tabindex="-1"></a><span class="co">#ga$purchase &lt;- as.factor(ifelse(ga$purchase==1, &quot;yes&quot;, &quot;no&quot;))</span></span>
-<span id="cb641-4"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb641-4" aria-hidden="true" tabindex="-1"></a><span class="co"># connect to, and copy the data to the local cluster</span></span>
-<span id="cb641-5"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb641-5" aria-hidden="true" tabindex="-1"></a>sc <span class="ot">&lt;-</span> <span class="fu">spark_connect</span>(<span class="at">master =</span> <span class="st">&quot;local&quot;</span>)</span>
-<span id="cb641-6"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb641-6" aria-hidden="true" tabindex="-1"></a>ga_spark <span class="ot">&lt;-</span> <span class="fu">copy_to</span>(sc, ga, <span class="st">&quot;ga_spark&quot;</span>, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb644"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb644-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb644-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import to local R session, prepare raw data</span></span>
+<span id="cb644-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb644-2" aria-hidden="true" tabindex="-1"></a>ga <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(<span class="fu">read.csv</span>(INPUT_DATA))</span>
+<span id="cb644-3"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb644-3" aria-hidden="true" tabindex="-1"></a><span class="co">#ga$purchase &lt;- as.factor(ifelse(ga$purchase==1, &quot;yes&quot;, &quot;no&quot;))</span></span>
+<span id="cb644-4"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb644-4" aria-hidden="true" tabindex="-1"></a><span class="co"># connect to, and copy the data to the local cluster</span></span>
+<span id="cb644-5"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb644-5" aria-hidden="true" tabindex="-1"></a>sc <span class="ot">&lt;-</span> <span class="fu">spark_connect</span>(<span class="at">master =</span> <span class="st">&quot;local&quot;</span>)</span>
+<span id="cb644-6"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb644-6" aria-hidden="true" tabindex="-1"></a>ga_spark <span class="ot">&lt;-</span> <span class="fu">copy_to</span>(sc, ga, <span class="st">&quot;ga_spark&quot;</span>, <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 </div>
-<div id="building-the-pipeline" class="section level3 hasAnchor" number="14.3.2">
-<h3><span class="header-section-number">14.3.2</span> Building the pipeline<a href="regression-analysis-and-categorization-with-spark-and-r.html#building-the-pipeline" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="building-the-pipeline" class="section level3 hasAnchor" number="15.3.2">
+<h3><span class="header-section-number">15.3.2</span> Building the pipeline<a href="regression-analysis-and-categorization-with-spark-and-r.html#building-the-pipeline" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The pipeline object is initiated via <code>ml_pipeline()</code>, in which we refer to the connection to the local Spark cluster. We then add the model specification (the formula) with <code>ft_r_formula()</code> to the pipeline. <code>ft_r_formula</code> essentially transforms the data in accordance with the common specification syntax in R (here: <code>purchase ~ .</code>). Among other things, this takes care of properly setting up the model matrix. Finally, we add the model via <code>ml_logistic_regression()</code>. We can set the penalization parameters via <code>elastic_net_param</code> (with <code>alpha=1</code>, we get the lasso).</p>
-<div class="sourceCode" id="cb642"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb642-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb642-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ml pipeline</span></span>
-<span id="cb642-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb642-2" aria-hidden="true" tabindex="-1"></a>ga_pipeline <span class="ot">&lt;-</span> </span>
-<span id="cb642-3"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb642-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">ml_pipeline</span>(sc) <span class="sc">%&gt;%</span></span>
-<span id="cb642-4"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb642-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">ft_string_indexer</span>(<span class="at">input_col=</span><span class="st">&quot;city&quot;</span>, </span>
-<span id="cb642-5"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb642-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">output_col=</span><span class="st">&quot;city_output&quot;</span>,</span>
-<span id="cb642-6"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb642-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">handle_invalid =</span> <span class="st">&quot;skip&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb642-7"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb642-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">ft_string_indexer</span>(<span class="at">input_col=</span><span class="st">&quot;country&quot;</span>, </span>
-<span id="cb642-8"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb642-8" aria-hidden="true" tabindex="-1"></a>                       <span class="at">output_col=</span><span class="st">&quot;country_output&quot;</span>,</span>
-<span id="cb642-9"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb642-9" aria-hidden="true" tabindex="-1"></a>                       <span class="at">handle_invalid =</span> <span class="st">&quot;skip&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb642-10"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb642-10" aria-hidden="true" tabindex="-1"></a>     <span class="fu">ft_string_indexer</span>(<span class="at">input_col=</span><span class="st">&quot;source&quot;</span>, </span>
-<span id="cb642-11"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb642-11" aria-hidden="true" tabindex="-1"></a>                       <span class="at">output_col=</span><span class="st">&quot;source_output&quot;</span>,</span>
-<span id="cb642-12"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb642-12" aria-hidden="true" tabindex="-1"></a>                       <span class="at">handle_invalid =</span> <span class="st">&quot;skip&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb642-13"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb642-13" aria-hidden="true" tabindex="-1"></a>     <span class="fu">ft_string_indexer</span>(<span class="at">input_col=</span><span class="st">&quot;browser&quot;</span>, </span>
-<span id="cb642-14"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb642-14" aria-hidden="true" tabindex="-1"></a>                       <span class="at">output_col=</span><span class="st">&quot;browser_output&quot;</span>,</span>
-<span id="cb642-15"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb642-15" aria-hidden="true" tabindex="-1"></a>                       <span class="at">handle_invalid =</span> <span class="st">&quot;skip&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb642-16"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb642-16" aria-hidden="true" tabindex="-1"></a>     <span class="fu">ft_r_formula</span>(purchase <span class="sc">~</span> .) <span class="sc">%&gt;%</span> </span>
-<span id="cb642-17"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb642-17" aria-hidden="true" tabindex="-1"></a>     <span class="fu">ml_logistic_regression</span>(<span class="at">elastic_net_param =</span> <span class="fu">list</span>(<span class="at">alpha=</span><span class="dv">1</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb645"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb645-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb645-1" aria-hidden="true" tabindex="-1"></a><span class="co"># ml pipeline</span></span>
+<span id="cb645-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb645-2" aria-hidden="true" tabindex="-1"></a>ga_pipeline <span class="ot">&lt;-</span> </span>
+<span id="cb645-3"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb645-3" aria-hidden="true" tabindex="-1"></a>     <span class="fu">ml_pipeline</span>(sc) <span class="sc">%&gt;%</span></span>
+<span id="cb645-4"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb645-4" aria-hidden="true" tabindex="-1"></a>     <span class="fu">ft_string_indexer</span>(<span class="at">input_col=</span><span class="st">&quot;city&quot;</span>, </span>
+<span id="cb645-5"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb645-5" aria-hidden="true" tabindex="-1"></a>                       <span class="at">output_col=</span><span class="st">&quot;city_output&quot;</span>,</span>
+<span id="cb645-6"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb645-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">handle_invalid =</span> <span class="st">&quot;skip&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb645-7"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb645-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">ft_string_indexer</span>(<span class="at">input_col=</span><span class="st">&quot;country&quot;</span>, </span>
+<span id="cb645-8"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb645-8" aria-hidden="true" tabindex="-1"></a>                       <span class="at">output_col=</span><span class="st">&quot;country_output&quot;</span>,</span>
+<span id="cb645-9"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb645-9" aria-hidden="true" tabindex="-1"></a>                       <span class="at">handle_invalid =</span> <span class="st">&quot;skip&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb645-10"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb645-10" aria-hidden="true" tabindex="-1"></a>     <span class="fu">ft_string_indexer</span>(<span class="at">input_col=</span><span class="st">&quot;source&quot;</span>, </span>
+<span id="cb645-11"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb645-11" aria-hidden="true" tabindex="-1"></a>                       <span class="at">output_col=</span><span class="st">&quot;source_output&quot;</span>,</span>
+<span id="cb645-12"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb645-12" aria-hidden="true" tabindex="-1"></a>                       <span class="at">handle_invalid =</span> <span class="st">&quot;skip&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb645-13"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb645-13" aria-hidden="true" tabindex="-1"></a>     <span class="fu">ft_string_indexer</span>(<span class="at">input_col=</span><span class="st">&quot;browser&quot;</span>, </span>
+<span id="cb645-14"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb645-14" aria-hidden="true" tabindex="-1"></a>                       <span class="at">output_col=</span><span class="st">&quot;browser_output&quot;</span>,</span>
+<span id="cb645-15"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb645-15" aria-hidden="true" tabindex="-1"></a>                       <span class="at">handle_invalid =</span> <span class="st">&quot;skip&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb645-16"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb645-16" aria-hidden="true" tabindex="-1"></a>     <span class="fu">ft_r_formula</span>(purchase <span class="sc">~</span> .) <span class="sc">%&gt;%</span> </span>
+<span id="cb645-17"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb645-17" aria-hidden="true" tabindex="-1"></a>     <span class="fu">ml_logistic_regression</span>(<span class="at">elastic_net_param =</span> <span class="fu">list</span>(<span class="at">alpha=</span><span class="dv">1</span>))</span></code></pre></div>
 <p>Finally, we create a cross-validator object to train the model with a k-fold cross-validation and fit the model.
 For the sake of the example, we use only a 30-fold cross validation (to be run in parallel on 8 cores).</p>
-<div class="sourceCode" id="cb643"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb643-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb643-1" aria-hidden="true" tabindex="-1"></a><span class="co"># specify the hyperparameter grid</span></span>
-<span id="cb643-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb643-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (parameter values to be considered in optimization)</span></span>
-<span id="cb643-3"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb643-3" aria-hidden="true" tabindex="-1"></a>ga_params <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">logistic_regression=</span><span class="fu">list</span>(<span class="at">max_iter=</span><span class="dv">80</span>))</span>
-<span id="cb643-4"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb643-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb643-5"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb643-5" aria-hidden="true" tabindex="-1"></a><span class="co"># create the cross-validator object</span></span>
-<span id="cb643-6"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb643-6" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb643-7"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb643-7" aria-hidden="true" tabindex="-1"></a>cv_lasso <span class="ot">&lt;-</span> <span class="fu">ml_cross_validator</span>(sc,</span>
-<span id="cb643-8"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb643-8" aria-hidden="true" tabindex="-1"></a>                         <span class="at">estimator=</span>ga_pipeline,</span>
-<span id="cb643-9"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb643-9" aria-hidden="true" tabindex="-1"></a>                         <span class="at">estimator_param_maps =</span> ga_params,</span>
-<span id="cb643-10"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb643-10" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">ml_binary_classification_evaluator</span>(sc),</span>
-<span id="cb643-11"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb643-11" aria-hidden="true" tabindex="-1"></a>                         <span class="at">num_folds =</span> <span class="dv">30</span>, </span>
-<span id="cb643-12"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb643-12" aria-hidden="true" tabindex="-1"></a>                         <span class="at">parallelism =</span> <span class="dv">8</span>)</span>
-<span id="cb643-13"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb643-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb643-14"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb643-14" aria-hidden="true" tabindex="-1"></a><span class="co"># train/fit the model</span></span>
-<span id="cb643-15"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb643-15" aria-hidden="true" tabindex="-1"></a>cv_lasso_fit <span class="ot">&lt;-</span> <span class="fu">ml_fit</span>(cv_lasso, ga_spark) </span>
-<span id="cb643-16"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb643-16" aria-hidden="true" tabindex="-1"></a><span class="co"># note: this takes several minutes to run on a local machine (one node, 8 cores)</span></span></code></pre></div>
+<div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb646-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb646-1" aria-hidden="true" tabindex="-1"></a><span class="co"># specify the hyperparameter grid</span></span>
+<span id="cb646-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb646-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (parameter values to be considered in optimization)</span></span>
+<span id="cb646-3"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb646-3" aria-hidden="true" tabindex="-1"></a>ga_params <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">logistic_regression=</span><span class="fu">list</span>(<span class="at">max_iter=</span><span class="dv">80</span>))</span>
+<span id="cb646-4"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb646-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb646-5"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb646-5" aria-hidden="true" tabindex="-1"></a><span class="co"># create the cross-validator object</span></span>
+<span id="cb646-6"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb646-6" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb646-7"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb646-7" aria-hidden="true" tabindex="-1"></a>cv_lasso <span class="ot">&lt;-</span> <span class="fu">ml_cross_validator</span>(sc,</span>
+<span id="cb646-8"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb646-8" aria-hidden="true" tabindex="-1"></a>                         <span class="at">estimator=</span>ga_pipeline,</span>
+<span id="cb646-9"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb646-9" aria-hidden="true" tabindex="-1"></a>                         <span class="at">estimator_param_maps =</span> ga_params,</span>
+<span id="cb646-10"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb646-10" aria-hidden="true" tabindex="-1"></a>                         <span class="fu">ml_binary_classification_evaluator</span>(sc),</span>
+<span id="cb646-11"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb646-11" aria-hidden="true" tabindex="-1"></a>                         <span class="at">num_folds =</span> <span class="dv">30</span>, </span>
+<span id="cb646-12"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb646-12" aria-hidden="true" tabindex="-1"></a>                         <span class="at">parallelism =</span> <span class="dv">8</span>)</span>
+<span id="cb646-13"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb646-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb646-14"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb646-14" aria-hidden="true" tabindex="-1"></a><span class="co"># train/fit the model</span></span>
+<span id="cb646-15"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb646-15" aria-hidden="true" tabindex="-1"></a>cv_lasso_fit <span class="ot">&lt;-</span> <span class="fu">ml_fit</span>(cv_lasso, ga_spark) </span>
+<span id="cb646-16"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb646-16" aria-hidden="true" tabindex="-1"></a><span class="co"># note: this takes several minutes to run on a local machine (one node, 8 cores)</span></span></code></pre></div>
 <p>Finally, we can inspect and further process the results, in particular the model’s performance.</p>
-<div class="sourceCode" id="cb644"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb644-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb644-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pipeline summary </span></span>
-<span id="cb644-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb644-2" aria-hidden="true" tabindex="-1"></a>cv_lasso_fit</span>
-<span id="cb644-3"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb644-3" aria-hidden="true" tabindex="-1"></a><span class="co"># average performance</span></span>
-<span id="cb644-4"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb644-4" aria-hidden="true" tabindex="-1"></a>cv_lasso_fit<span class="sc">$</span>avg_metrics_df</span></code></pre></div>
+<div class="sourceCode" id="cb647"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb647-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb647-1" aria-hidden="true" tabindex="-1"></a><span class="co"># pipeline summary </span></span>
+<span id="cb647-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb647-2" aria-hidden="true" tabindex="-1"></a>cv_lasso_fit</span>
+<span id="cb647-3"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb647-3" aria-hidden="true" tabindex="-1"></a><span class="co"># average performance</span></span>
+<span id="cb647-4"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb647-4" aria-hidden="true" tabindex="-1"></a>cv_lasso_fit<span class="sc">$</span>avg_metrics_df</span></code></pre></div>
 <pre><code>CrossValidatorModel (Transformer)
 &lt;cross_validator__38371a42_6189_4a7f_aa4b_fd6d1d763208&gt; 
  (Parameters -- Tuning)
@@ -739,17 +748,17 @@ For the sake of the example, we use only a 30-fold cross validation (to be run i
 <pre><code>  areaUnderROC max_iter_1
 1    0.8666304         80</code></pre>
 <p>Before closing the connection to the Spark cluster, we can save the entire pipeline to further work with it later on.</p>
-<div class="sourceCode" id="cb647"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb647-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb647-1" aria-hidden="true" tabindex="-1"></a><span class="co"># save the entire pipeline/fit</span></span>
-<span id="cb647-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb647-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ml_save</span>(</span>
-<span id="cb647-3"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb647-3" aria-hidden="true" tabindex="-1"></a>  cv_lasso_fit,</span>
-<span id="cb647-4"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb647-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;ga_cv_lasso_fit&quot;</span>,</span>
-<span id="cb647-5"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb647-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">overwrite =</span> <span class="cn">TRUE</span></span>
-<span id="cb647-6"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb647-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb650"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb650-1"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb650-1" aria-hidden="true" tabindex="-1"></a><span class="co"># save the entire pipeline/fit</span></span>
+<span id="cb650-2"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb650-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ml_save</span>(</span>
+<span id="cb650-3"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb650-3" aria-hidden="true" tabindex="-1"></a>  cv_lasso_fit,</span>
+<span id="cb650-4"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb650-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">&quot;ga_cv_lasso_fit&quot;</span>,</span>
+<span id="cb650-5"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb650-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">overwrite =</span> <span class="cn">TRUE</span></span>
+<span id="cb650-6"><a href="regression-analysis-and-categorization-with-spark-and-r.html#cb650-6" aria-hidden="true" tabindex="-1"></a>)</span></code></pre></div>
 <p>To reload the pipeline later on, run <code>ml_load(sc, "ga_cv_lasso_fit")</code>.</p>
 </div>
 </div>
-<div id="wrapping-up-8" class="section level2 hasAnchor" number="14.4">
-<h2><span class="header-section-number">14.4</span> Wrapping up<a href="regression-analysis-and-categorization-with-spark-and-r.html#wrapping-up-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="wrapping-up-8" class="section level2 hasAnchor" number="15.4">
+<h2><span class="header-section-number">15.4</span> Wrapping up<a href="regression-analysis-and-categorization-with-spark-and-r.html#wrapping-up-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>The key take-aways from this chapter are:</p>
 <ul>
 <li>When running econometric analysis such as linear or logistic regressions with massive amounts of data, <code>sparklyr</code> provides all basic functions you need.</li>
@@ -797,7 +806,7 @@ Varian, Hal R. 2014. <span>“Big Data: New Tricks for Econometrics.”</span> <
           </div>
         </div>
       </div>
-<a href="gpus-and-machine-learning.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="econometrics-with-gpus.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="large-scale-text-analysis-with-sparklyr.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
