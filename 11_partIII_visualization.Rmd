@@ -1,0 +1,660 @@
+
+
+# (Big) Data Visualization
+\index{Data visualization}
+
+Visualizing certain characteristics and patterns in large datasets is primarily challenging for two reasons. First, depending on the type of plot, plotting raw data consisting of many observations can take a long time (and lead to large figure files). Second, patterns might be harder to recognize due to the sheer amount of data displayed in a plot. Both of these challenges are particularly related to the visualization of raw data for explorative or descriptive purposes. Visualizations of already-computed aggregations or estimates is typically very similar whether working with large or small datasets.
+
+The following sections thus particularly highlight the issue of generating plots based on the raw data, including many observations, and with the aim of exploring the data in order to discover patterns in the data that then can be further investigated in more sophisticated statistical analyses. We will do so in three steps. First, we will look into a few important conceptual aspects where generating plots with a large number of observations becomes difficult, and then look at potentially helpful tools to address these difficulties. Based on these insights, the next section presents a data exploration tutorial based on the already familiar TLC taxi trips dataset, looking into different approaches to visualize relations between variables. Finally, the last section of this chapter covers an area of data visualization that has become more and more relevant in applied economic research with the availability of highly detailed observational data on economic and social activities (due to the digitization of many aspects of modern life): the plotting of geo-spatial information on economic activity.
+
+All illustrations of concepts and visualization examples in this chapter build on the Grammar of Graphics\index{Grammar of Graphics} [@wilkinson2005grammar] concept implemented in the `ggplot2` package\index{ggplot2 package} [@ggplot2]. The choice of this plotting package/framework is motivated by the large variety of plot-types covered in `ggplot2`\index{ggplot2 package} (ranging from simple scatterplots\index{Scatterplot} to hexbin-plots\index{Hexbin-plot} and geographic maps), as well as the flexibility to build and modify plots step by step (an aspect that is particularly interesting when exploring large datasets visually).
+
+
+## Challenges of Big Data visualization
+
+Generating a plot in an interactive R session means generating a new object in the R environment (RAM), which can (in the case of large datasets) take up a considerable amount of memory. Moreover, depending on how the plot function is called, RStudio will directly render the plot in the Plots tab (which again needs memory and processing). Consider the following simple example, in which we plot two vectors of random numbers against each other.^[We will use `bench`\index{bench package} and the `fs` package \index{fs package} [@fs] for profiling.]
+
+```{r warning=FALSE, out.width="75%", fig.align='center'}
+# load package
+library(ggplot2) # for plotting
+library(pryr) # for profiling
+library(bench) # for profiling
+library(fs) # for profiling
+
+# random numbers generation
+x <- rnorm(10^6, mean=5)
+y <- 1 + 1.4*x + rnorm(10^6)
+plotdata <- data.frame(x=x, y=y)
+object_size(plotdata)
+
+# generate scatter plot
+splot <-
+     ggplot(plotdata, aes(x=x, y=y))+
+     geom_point()
+object_size(splot)
+
+```
+
+The plot object, not surprisingly, takes up an additional slice of RAM of the size of the original dataset, plus some overhead. Now when we instruct ggplot to generate/plot the visualization on canvas, even more memory is needed. Moreover, rather a lot of data processing is needed to place one million points on the canvas (also, note that one million observations would not be considered a lot in the context of this book...).
+
+```{r out.width="75%", fig.align='center'}
+mem_used()
+system.time(print(splot))
+mem_used()
+```
+
+First, to generate this one plot, an average modern laptop needs about 13.6 seconds. This would not be very comfortable in an interactive session to explore the data visually. Second, and even more striking, before the plot was generated, `mem_used()`\index{mem\_used()} indicated the total amount of memory (in MBs) used by R was around 160MB, while right after plotting to the canvas, R had used around 270MB. Note that this is larger than the dataset and the ggplot-object by an order of magnitude. Creating the same plot based on 100 million observations would likely crash or freeze your R session. Finally, when we output the plot to a file (for example, a pdf), the generated vector-based graphic\index{Vector-based graphics} file is also rather large.
+
+```{r out.width="75%", fig.align='center'}
+ggsave("splot.pdf", device="pdf", width = 5, height = 5)
+file_size("splot.pdf")
+```
+
+Hence generating plots visualizing large amounts of raw data tends to use up a lot of computing time, memory, and (ultimately) storage space for the generated plot file.  There are a couple of solutions to address these performance issues. 
+
+*Avoid fancy symbols (costly rendering)*
+It turns out that one aspect of the problem is the particular symbols/characters used in ggplot (and other plot functions in R) for the points in such a scatter-plot. Thus, one solution is to override the default set of characters directly when calling `ggplot()`\index{ggplot()}. A reasonable choice of character for this purpose is simply the full point (`.`).
+
+```{r out.width="75%", fig.align='center'}
+# generate scatter plot
+splot2 <-
+     ggplot(plotdata, aes(x=x, y=y))+
+     geom_point(pch=".")
+```
+
+```{r out.width="75%", fig.align='center'}
+mem_used()
+system.time(print(splot2))
+mem_used()
+```
+The increase in memory due to the plot call is comparatively smaller, and plotting is substantially faster. 
+
+**Use rasterization (bitmap graphics) instead of vector graphics**
+\index{Rasterization}
+By default, most data visualization libraries, including `ggplot2`\index{ggplot2 package}, are implemented to generate vector-based graphics. Conceptually, this makes a lot of sense for any type of plot when the number of observations plotted is small or moderate. In simple terms, vector-based graphics define lines and shapes as vectors in a coordinate system. In the case of a scatter-plot, the x and y coordinates of every point need to be recorded. In contrast, bitmap files\index{Bitmap graphic (raster-based image)} contain image information in the form of a matrix (or several matrices if colors are involved), whereby each cell of the matrix represents a pixel and contains information about the pixel's color. While a vector-based representation of plot of few observations is likely more memory-efficient than a high-resolution bitmap\index{Bitmap graphic (raster-based image)} representation of the same plot, it might well be the other way around when we are plotting millions of observations.
+
+Thus, an alternative solution to save time and memory is to directly use a bitmap\index{Bitmap graphic (raster-based image)} format instead of a vector-based format\index{Vector-based graphics}. This could be done by plotting directly to a bitmap-format\index{Bitmap graphic (raster-based image)} file and then opening the file to look at the plot. However, this is somewhat clumsy as part of a data visualization workflow to explore the data. Luckily there is a ready-made solution by @kratochvil_etal2020 that builds on the idea of rasterizing scatter-plots, but that then displays the bitmap image\index{Bitmap graphic (raster-based image)} directly in R. The approach is implemented in the `scattermore`\index{scattermore package} package [@scattermore] and can straightforwardly be used in combination with `ggplot`\index{ggplot()}.
+
+
+```{r out.width="75%", fig.align='center'}
+# install.packages("scattermore")
+library(scattermore)
+# generate scatter plot
+splot3 <-
+     ggplot()+
+     geom_scattermore(aes(x=x, y=y), data=plotdata)
+
+# show plot in interactive session
+system.time(print(splot3))
+
+# plot to file
+ggsave("splot3.pdf",  device="pdf", width = 5, height = 5)
+file_size("splot3.pdf")
+```
+
+This approach is faster by an order of magnitude, and the resulting pdf takes up only a fraction of the storage space needed for `splot.pdf`, which is based on the classical `geom_points()`\index{geom\_point()} and a vector-based image\index{Vector-based graphics}. 
+
+**Use aggregates instead of raw data**
+Depending on what pattern/aspect of the data you want to inspect visually, you might not actually need to plot all observations directly but rather the result of aggregating the observations first. There are several options to do this, but in the context of scatter plots based on many observations, a two-dimensional bin plot can be a good starting point. The idea behind this approach is to divide the canvas into grid-cells (typically in the form of rectangles or hexagons), compute for each grid cell the number of observations/points that would fall into it (in a scatter plot), and then indicate the number of observations per grid cell via the cell's shading. Such a 2D bin plot\index{Bin plot} of the same data as above can be generated via `geom_hex()`\index{geom\_hex()}:
+
+```{r out.width="75%", fig.align='center'}
+# generate scatter plot
+splot4 <-
+     ggplot(plotdata, aes(x=x, y=y))+
+     geom_hex()
+```
+
+```{r out.width="75%", fig.align='center'}
+mem_used()
+system.time(print(splot4))
+mem_used()
+```
+
+Obviously, this approach is much faster and uses up much less memory than the `geom_point()`\index{geom\_point()} approach. Moreover, note that this approach to visualizing a potential relation between two variables based on many observations might even have another advantage over the approaches taken above. In all of the scatter plots, it was not visible whether the point cloud contains areas with substantially more observations (more density). There were simply too many points plotted over each other to recognize much more than the contour of the overall point cloud. With the 2D bin plot implemented with `geom_hex()`\index{geom\_hex()}, we recognize immediately that there are many more observations located in the center of the cloud than further away from the center. 
+
+
+## Data exploration with `ggplot2`
+\index{ggplot2 package}
+
+In this tutorial we will work with the TLC data used in the data aggregation session. The raw data consists of several monthly CSV\index{CSV (Comma Separated Values)} files and can be downloaded via the [TLC's website](https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page). Again, we work only with the first million observations.
+
+```{r warning=FALSE, echo=FALSE, message=FALSE}
+
+# SET UP----
+# see 05_aggregtion_visualization.Rmd for details
+# load packages
+library(data.table)
+library(ggplot2)
+
+# import data into RAM (needs around 200MB)
+taxi <- fread("data/tlc_trips.csv",
+              nrows = 1000000)
+
+# first, we remove the empty vars V8 and V9
+taxi$V8 <- NULL
+taxi$V9 <- NULL
+# clean the factor levels
+taxi$Payment_Type <- tolower(taxi$Payment_Type)
+taxi$Payment_Type <- factor(taxi$Payment_Type, levels = unique(taxi$Payment_Type))     
+
+```
+
+
+
+In order to better understand the large dataset at hand (particularly regarding the determinants of tips paid), we use `ggplot2`\index{ggplot2 package} to visualize some key aspects of the data.
+
+First, let's look at the raw relationship between fare paid and the tip paid. We set up the canvas with `ggplot`\index{ggplot2 package}.
+
+```{r out.width="75%", fig.align='center'}
+# load packages
+library(ggplot2)
+
+# set up the canvas
+taxiplot <- ggplot(taxi, aes(y=Tip_Amt, x= Fare_Amt)) 
+taxiplot
+```
+
+Now we visualize the co-distribution of the two variables with a simple scatter-plot. to speed things up, we use `geom_scattermore()`\index{geom\_scattermore()} but increase the point size.^[Note how the points look less nice than what `geom_point()`\index{geom\_point()} would produce. This is the disadvantage of using the bitmap\index{Bitmap graphic (raster-based image)} approach rather than the vector-based\index{Vector-based image} approach.]
+
+```{r out.width="75%", fig.align='center'}
+
+# simple x/y plot
+taxiplot + geom_scattermore(pointsize = 3)
+     
+```
+
+
+Note that this took quite a while, as R had to literally plot one million dots on the canvas. Moreover, many dots fall within the same area, making it impossible to recognize how much mass there actually is. This is typical for visualization exercises with large datasets. One way to improve this is by making the dots more transparent by setting the `alpha` parameter.
+
+```{r out.width="75%", fig.align='center'}
+
+# simple x/y plot
+taxiplot + geom_scattermore(pointsize = 3, alpha=0.2)
+     
+```
+
+Alternatively, we can compute two-dimensional bins. Here, we use `geom_bin2d()`\index{geom\_bin2d()} (an alternative to `geom_hex` used above) in which  the canvas is split into rectangles and the number of observations falling into each respective rectangle is computed. The visualization is then based on plotting the rectangles with counts greater than 0, and the shading of the rectangles indicates the count values.
+
+
+```{r out.width="75%", fig.align='center'}
+# two-dimensional bins
+taxiplot + geom_bin2d()
+```
+
+
+A large proportion of the tip/fare observations seem to be in the very lower-left corner of the pane, while most other trips seem to be evenly distributed. However, we fail to see smaller differences in this visualization. In order to reduce the dominance of the 2D bins with very high counts, we display the natural logarithm of counts and display the bins as points. 
+
+
+
+```{r out.width="75%", fig.align='center'}
+
+# two-dimensional bins
+taxiplot +
+     stat_bin_2d(geom="point",
+                 mapping= aes(size = log(after_stat(count)))) +
+     guides(fill = "none")
+     
+```
+
+
+We note that there are many cases with very low fare amounts, many cases with no or hardly any tip, and quite a lot of cases with very high tip amounts (in relation to the rather low fare amount). In the following, we dissect this picture by having a closer look at 'typical' tip amounts and whether they differ by type of payment.
+
+```{r out.width="75%", fig.align='center'}
+
+# compute frequency of per tip amount and payment method
+taxi[, n_same_tip:= .N, by= c("Tip_Amt", "Payment_Type")]
+frequencies <- unique(taxi[Payment_Type %in% c("credit", "cash"),
+                           c("n_same_tip",
+                             "Tip_Amt",
+                             "Payment_Type")][order(n_same_tip,
+                                                    decreasing = TRUE)])
+
+
+# plot top 20 frequent tip amounts
+fare <- ggplot(data = frequencies[1:20], aes(x = factor(Tip_Amt),
+                                             y = n_same_tip)) 
+fare + geom_bar(stat = "identity") 
+
+
+```
+
+Indeed, paying no tip at all is quite frequent, overall.^[Or, could there be another explanation for this pattern in the data?] The bar plot also indicates that there seem to be some 'focal points' in the amount of tip paid. Clearly, paying one USD or two USD is more common than paying fractions. However, fractions of dollars might be more likely if tips are paid in cash and customers simply add some loose change to the fare amount paid.
+
+```{r out.width="75%", fig.align='center'}
+fare + geom_bar(stat = "identity") + 
+     facet_wrap("Payment_Type") 
+     
+     
+```
+
+Clearly, it looks as if trips paid in cash tend not to be tipped (at least in this sub-sample).
+
+Let's try to tease this information out of the initial points plot. Trips paid in cash are often not tipped; we thus should indicate the payment method. Moreover, tips paid in full dollar amounts might indicate a habit. 
+
+```{r out.width="75%", fig.align='center'}
+# indicate natural numbers
+taxi[, dollar_paid := ifelse(Tip_Amt == round(Tip_Amt,0), "Full", "Fraction"),]
+
+
+# extended x/y plot
+taxiplot +
+     geom_scattermore(pointsize = 3, alpha=0.2, aes(color=Payment_Type)) +
+     facet_wrap("dollar_paid") + 
+     theme(legend.position="bottom")
+     
+```
+
+Now the picture is getting clearer. Paying a tip seems to follow certain rules of thumb. Certain fixed amounts tend to be paid independent of the fare amount (visible in the straight lines of dots on the right-hand panel). At the same time, the pattern in the left panel indicates another habit: computing the amount of the tip as a linear function of the total fare amount ('pay 10% tip'). A third habit might be to determine the amount of tip by 'rounding up' the total amount paid. In the following, we try to tease the latter out, only focusing on credit card payments.
+
+```{r out.width="75%", fig.align='center'}
+taxi[, rounded_up := ifelse(Fare_Amt + Tip_Amt == round(Fare_Amt + Tip_Amt, 0),
+                            "Rounded up",
+                            "Not rounded")]
+# extended x/y plot
+taxiplot +
+     geom_scattermore(data= taxi[Payment_Type == "credit"], 
+                      pointsize = 3, alpha=0.2, aes(color=rounded_up)) +
+     facet_wrap("dollar_paid") + 
+     theme(legend.position="bottom")
+
+```
+
+
+Now we can start modeling. A reasonable first shot is to model the tip amount as a linear function of the fare amount, conditional on no-zero tip amounts paid as fractions of a dollar.
+
+```{r message=FALSE, warning=FALSE, out.width="75%", fig.align='center'}
+modelplot <- ggplot(data= taxi[Payment_Type == "credit" &
+                               dollar_paid == "Fraction" & 
+                               0 < Tip_Amt],
+                    aes(x = Fare_Amt, y = Tip_Amt))
+modelplot +
+     geom_scattermore(pointsize = 3, alpha=0.2, color="darkgreen") +
+     geom_smooth(method = "lm", colour = "black")  + 
+     theme(legend.position="bottom")
+```
+
+
+Finally, we prepare the plot for reporting. `ggplot2`\index{ggplot2 package} provides several predefined 'themes' for plots that define all kinds of aspects of a plot (background color, line colors, font size, etc.). The easiest way to tweak the design of your final plot in a certain direction is to just add such a pre-defined theme at the end of your plot. Some of the pre-defined themes allow you to change a few aspects, such as the font type and the base size of all the texts in the plot (labels, tick numbers, etc.). Here, we use the `theme_bw()`, increase the font size, and switch to a serif-type font. `theme_bw()`\index{theme\_bw()} is one of the complete themes that ships with the basic `ggplot2`\index{ggplot2 package} installation.^[See [the ggplot2 documentation](https://ggplot2.tidyverse.org/reference/ggtheme.html) for a list of all pre-defined themes shipped with the basic installation.] Many more themes can be found in additional R packages (see, for example, the [`ggthemes` package](https://cran.r-project.org/web/packages/ggthemes/index.html)).
+
+```{r message=FALSE, warning=FALSE, out.width="75%", fig.align='center'}
+modelplot <- ggplot(data= taxi[Payment_Type == "credit" 
+                               & dollar_paid == "Fraction" 
+                               & 0 < Tip_Amt],
+                    aes(x = Fare_Amt, y = Tip_Amt))
+modelplot +
+     geom_scattermore(pointsize = 3, alpha=0.2, color="darkgreen") +
+     geom_smooth(method = "lm", colour = "black") +
+     ylab("Amount of tip paid (in USD)") +
+     xlab("Amount of fare paid (in USD)") +
+     theme_bw(base_size = 18, base_family = "serif")
+```
+
+
+
+
+:::: {.infobox data-latex=""}
+::: {.center data-latex=""}
+**Aside: modify and create themes**
+:::
+
+_Simple modifications of themes_
+
+Apart from using pre-defined themes as illustrated above, we can use the `theme()`\index{theme()} function to further modify the design of a plot. For example, we can print the axis labels ('axis titles') in bold.
+
+```{r message=FALSE, warning=FALSE, out.width="75%", fig.align='center'}
+modelplot <- ggplot(data= taxi[Payment_Type == "credit" 
+                               & dollar_paid == "Fraction" 
+                               & 0 < Tip_Amt],
+                    aes(x = Fare_Amt, y = Tip_Amt))
+modelplot +
+     geom_scattermore(pointsize = 3, alpha=0.2, color="darkgreen") +
+     geom_smooth(method = "lm", colour = "black") +
+     ylab("Amount of tip paid (in USD)") +
+     xlab("Amount of fare paid (in USD)") +
+     theme_bw(base_size = 18, base_family = "serif") +
+     theme(axis.title = element_text(face="bold"))
+  
+```
+
+There is a large list of plot design aspects that can be modified in this way (see `?theme()` for details). 
+
+_Create your own themes_
+
+Extensive design modifications via `theme()`\index{theme()} can involve many lines of code, making your plot code harder to read/understand. In practice, you might want to define your specific theme once and then apply this theme to all of your plots. In order to do so it makes sense to choose one of the existing themes as a basis and then modify its design aspects until you have the design you are looking for. Following the design choices in the examples above, we can create our own `theme_my_serif()` as follows.
+
+```{r, out.width="75%", fig.align='center', message=FALSE, warning=FALSE}
+# 'define' a new theme
+theme_my_serif <-      
+  theme_bw(base_size = 18, base_family = "serif") +
+  theme(axis.title = element_text(face="bold"))
+
+# apply it 
+modelplot +
+     geom_scattermore(pointsize = 3, alpha=0.2, color="darkgreen") +
+     geom_smooth(method = "lm", colour = "black") +
+     ylab("Amount of tip paid (in USD)") +
+     xlab("Amount of fare paid (in USD)") +
+  theme_my_serif
+```
+
+This practical approach does not require you to define every aspect of a theme. If you indeed want to completely define every aspect of a theme, you can set `complete=TRUE` when calling the theme function.
+
+```{r, out.width="75%", message=FALSE, warning=FALSE, fig.align='center'}
+# 'define' a new theme
+my_serif_theme <-      
+  theme_bw(base_size = 18, base_family = "serif") +
+  theme(axis.title = element_text(face="bold"), complete = TRUE)
+
+# apply it 
+modelplot +
+     geom_scattermore(pointsize = 3, alpha=0.2, color="darkgreen") +
+     geom_smooth(method = "lm", colour = "black") +
+     ylab("Amount of tip paid (in USD)") +
+     xlab("Amount of fare paid (in USD)") +
+  theme_my_serif
+```
+
+Note that since we have only defined one aspect (bold axis titles), the rest of the elements follow the default theme.
+
+
+_Implementing actual themes as functions_
+
+Importantly, the approach outlined above does not technically really create a new theme like `theme_bw()`\index{theme\_bw()}, as these pre-defined themes are implemented as functions. Note that we add the new theme to the plot simply with `+ theme_my_serif` (no parentheses). In practice this is the simplest approach, and it provides all the functionality you need in order to apply your own 'theme' to each of your plots. If you want to implement a theme as a function, the following blueprint can get you started.
+
+```{r, warning=FALSE, message=FALSE, out.width="75%", fig.align='center', eval=FALSE}
+# define own theme
+theme_my_serif <- 
+  function(base_size = 15,
+           base_family = "",
+           base_line_size = base_size/170,
+           base_rect_size = base_size/170){ 
+    # use theme_bw() as a basis but replace some design elements
+    theme_bw(base_size = base_size,
+             base_family = base_family,
+             base_line_size = base_size/170,
+             base_rect_size = base_size/170) %+replace%    
+    theme(
+      axis.title = element_text(face="bold")
+    )
+  }
+
+# apply the theme
+modelplot +
+     geom_scattermore(pointsize = 3, alpha=0.2, color="darkgreen") +
+     geom_smooth(method = "lm", colour = "black") +
+     ylab("Amount of tip paid (in USD)") +
+     xlab("Amount of fare paid (in USD)") +
+  theme_my_serif(base_size = 18, base_family="serif")
+```
+
+::::
+
+
+
+
+
+## Visualizing time and space
+
+
+The previous visualization exercises were focused on visually exploring patterns in the tipping behavior of people taking a NYC yellow cab ride. Based on the same dataset, we will explore the time and spatial dimensions of the TLC Yellow Cab data. That is, we explore where trips tend to start and end, depending on the time of the day. 
+
+### Preparations
+
+For the visualization of spatial data, we first load additional packages that give R some GIS\index{Geographic Information Systems (GIS)} features.
+
+
+```{r message=FALSE, warning=FALSE}
+# load GIS packages
+library(rgdal)
+library(rgeos)
+```
+
+Moreover, we download and import a so-called ['shape file'](https://en.wikipedia.org/wiki/Shapefile) (a geospatial data format) of New York City. This will be the basis for our visualization of the spatial dimension of taxi trips. The file is downloaded from [New York's Department of City Planning](https://www1.nyc.gov/site/planning/index.page) and indicates the city's community district borders.^[Similar files are provided online by most city authorities in developed countries. See, for example, GIS\index{Geographic Information Systems (GIS)} Data for the City and Canton of Zurich: https://maps.zh.ch/.] 
+
+```{r message=FALSE, warning=FALSE, tidy=FALSE, tidy.opts=list(arrow=TRUE, width.cutoff=60)}
+# download the zipped shapefile to a temporary file; unzip
+BASE_URL <- 
+"https://www1.nyc.gov/assets/planning/download/zip/data-maps/open-data/"
+FILE <- "nycd_19a.zip"
+URL <- paste0(BASE_URL, FILE)
+tmp_file <- tempfile()
+download.file(URL, tmp_file)
+file_path <- unzip(tmp_file, exdir= "data")
+# delete the temporary file
+unlink(tmp_file)
+
+```
+
+Now we can import the shape file and have a look at how the GIS\index{Geographic Information Systems (GIS)} data is structured.
+
+```{r message=FALSE, warning=FALSE}
+# read GIS data
+nyc_map <- readOGR(file_path[1], verbose = FALSE)
+# have a look at the GIS data
+summary(nyc_map)
+```
+
+Note that the coordinates are not in the usual longitude and latitude units. The original map uses a different projection than the TLC data of taxi trip records. Before plotting, we thus have to change the projection to be in line with the TLC data.
+
+```{r, tidy=TRUE, tidy.opts=list(arrow=TRUE, width.cutoff=60)}
+# transform the projection
+p <- CRS("+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0")
+nyc_map <- 
+  spTransform(nyc_map, p)
+# check result
+summary(nyc_map)
+```
+
+One last preparatory step is to convert the map data to a `data.frame` for plotting with `ggplot`.
+
+```{r warning=FALSE, message=FALSE}
+nyc_map <- fortify(nyc_map)
+```
+
+
+### Pick-up and drop-off locations
+
+Since trips might actually start or end outside of NYC, we first restrict the sample of trips to those within the boundary box of the map. For the sake of the exercise, we only select a random sample of `50000` trips from the remaining trip records.
+
+
+
+```{r}
+# taxi trips plot data
+taxi_trips <- taxi[Start_Lon <= max(nyc_map$long) & 
+                        Start_Lon >= min(nyc_map$long) &
+                        End_Lon <= max(nyc_map$long) &
+                        End_Lon >= min(nyc_map$long) &
+                        Start_Lat <= max(nyc_map$lat) & 
+                        Start_Lat >= min(nyc_map$lat) &
+                        End_Lat <= max(nyc_map$lat) &
+                        End_Lat >= min(nyc_map$lat) 
+                        ]
+taxi_trips <- taxi_trips[base::sample(1:nrow(taxi_trips), 50000)]
+
+```
+
+
+In order to visualize how the cab traffic is changing over the course of the day, we add an additional variable called `start_time` in which we store the time (hour) of the day a trip started. 
+
+```{r}
+taxi_trips$start_time <- lubridate::hour(taxi_trips$Trip_Pickup_DateTime)
+```
+
+Particularly, we want to look at differences between morning, afternoon, and evening/night.
+
+
+```{r}
+# define new variable for facets
+taxi_trips$time_of_day <- "Morning"
+taxi_trips[start_time > 12 & start_time < 17]$time_of_day <- "Afternoon"
+taxi_trips[start_time %in% c(17:24, 0:5)]$time_of_day <- "Evening/Night"
+taxi_trips$time_of_day  <- 
+  factor(taxi_trips$time_of_day,
+         levels = c("Morning", "Afternoon", "Evening/Night"))
+```
+
+We create the plot by first setting up the canvas with our taxi trip data. Then, we add the map as a first layer.
+
+```{r}
+# set up the canvas
+locations <- ggplot(taxi_trips, aes(x=long, y=lat))
+# add the map geometry
+locations <- locations + geom_map(data = nyc_map,
+                                  map = nyc_map,
+                                  aes(map_id = id))
+locations
+```
+
+Now we can start adding the pick-up and drop-off locations of cab trips. 
+
+
+```{r}
+# add pick-up locations to plot
+locations + 
+     geom_scattermore(aes(x=Start_Lon, y=Start_Lat),
+                color="orange",
+                pointsize = 1,
+                alpha = 0.2)
+
+```
+
+As is to be expected, most of the trips start in Manhattan. Now let's look at where trips end.
+
+```{r}
+# add drop-off locations to plot
+locations +
+     geom_scattermore(aes(x=End_Lon, y=End_Lat),
+                color="steelblue",
+                pointsize = 1,
+                alpha = 0.2) +
+     geom_scattermore(aes(x=Start_Lon, y=Start_Lat),
+                color="orange",
+                pointsize = 1,
+                alpha = 0.2)
+ 
+
+```
+
+In fact, more trips tend to end outside of Manhattan. And the destinations seem to be broader spread across the city then the pick-up locations. Most destinations are still in Manhattan, though.
+
+Now let's have a look at how this picture changes depending on the time of the day. 
+
+```{r fig.height=3, fig.width=9}
+
+# pick-up locations 
+locations +
+     geom_scattermore(aes(x=Start_Lon, y=Start_Lat),
+                color="orange",
+                pointsize =1,
+                alpha = 0.2) +
+     facet_wrap(vars(time_of_day))
+ 
+```
+
+```{r fig.height=3, fig.width=9}
+
+# drop-off locations 
+locations +
+     geom_scattermore(aes(x=End_Lon, y=End_Lat),
+                color="steelblue",
+                pointsize = 1,
+                alpha = 0.2) +
+     facet_wrap(vars(time_of_day))
+ 
+```
+
+
+Alternatively, we can plot the hours on a continuous scale.
+
+```{r}
+# drop-off locations 
+locations +
+     geom_scattermore(aes(x=End_Lon, y=End_Lat, color = start_time),
+                pointsize = 1,
+                alpha = 0.2) +
+     scale_colour_gradient2( low = "red", mid = "yellow", high = "red",
+                             midpoint = 12)
+ 
+```
+
+:::: {.infobox data-latex=""}
+::: {.center data-latex=""}
+**Aside: change color schemes**
+:::
+
+In the example above we use `scale_colour_gradient2()` to modify the color gradient used to visualize the start time of taxi trips. By default, ggplot would plot the following (default gradient color setting):
+
+```{r, warning=FALSE, message=FALSE, out.width="75%", fig.align='center'}
+# drop-off locations 
+locations +
+     geom_scattermore(aes(x=End_Lon, y=End_Lat, color = start_time ),
+                pointsize = 1,
+                alpha = 0.2) 
+ 
+```
+
+`ggplot2` offers various functions to modify the color scales used in a plot. In the case of the example above, we visualize values of a continuous variable. Hence we use a gradient color scale. In the case of categorical variables, we need to modify the default discrete color scale. 
+
+Recall the plot illustrating tipping behavior, where we highlight in which observations the client paid with credit card, cash, etc.
+
+```{r, out.width="75%", fig.align='center'}
+# indicate natural numbers
+taxi[, dollar_paid := ifelse(Tip_Amt == round(Tip_Amt,0),
+                             "Full",
+                             "Fraction"),]
+# extended x/y plot
+taxiplot +
+     geom_scattermore(alpha=0.2,
+                      pointsize=3,
+                      aes(color=Payment_Type)) +
+     facet_wrap("dollar_paid") + 
+     theme(legend.position="bottom")
+     
+```
+
+
+Since we do not further specify the discrete color scheme to be used, ggplot simply uses its default color scheme for this plot. We can change this as follows.
+
+```{r, out.width="75%", fig.align='center'}
+# indicate natural numbers
+taxi[, dollar_paid := ifelse(Tip_Amt == round(Tip_Amt,0),
+                             "Full",
+                             "Fraction"),]
+# extended x/y plot
+taxiplot +
+     geom_scattermore(alpha=0.2, pointsize = 3,
+                      aes(color=Payment_Type)) +
+     facet_wrap("dollar_paid") +
+     scale_color_discrete(type = c("red",
+                                   "steelblue",
+                                   "orange",
+                                   "purple")) + 
+     theme(legend.position="bottom")
+     
+```
+
+::::
+
+
+
+
+## Wrapping up
+
+ - *`ggplot`* offers a unified approach to generating a variety of plots common in the Big Data context: heatmaps, GIS-like maps, density plots, 2D-bin plots, etc.
+ - Building on the concept of the *Grammar of Graphics*\index{Grammar of Graphics} [@wilkinson2005grammar], `ggplot2`\index{ggplot2 package} follows the paradigm of creating plots layer-by-layer, which offers great flexibility regarding the visualization of complex (big) data.
+ - Standard plotting facilities in R (including in `ggplot`) are based on the concept of vector images\index{Vector-based graphics} (where each dot, line, and area is defined as in a coordinate system). While vector images have the advantage of flexible scaling (no reliance on a specific resolution), when plotting many observations, the computational load to generate and store/hold such graphics in memory can be substantial. 
+ - Plotting of large amounts of data can be made more efficient by relying on less complex shapes (e.g., for dots in a scatter-plot) or through *rasterization*\index{Rasterization} and conversion of the plot into a *bitmap-image (a raster-based image)*\index{Bitmap graphic (raster-based image)}. In contrast to vector images, raster images are created with a specific resolution that defines the size of a matrix of pixels that constitutes the image. If plotting a scatter-plot based on many observations, this data structure is much more memory-efficient than defining each dot in a vector image. 
+ - Specific types of plots, such as hex-bin plots and other 2D-bin plots, facilitate plotting large amounts of data independent of the type of image (vector or raster). Moreover, they can be useful to show/highlight specific patterns in large amounts of data that could not be seen in standard scatter plots.
+ 
+```{r echo=FALSE, warning=FALSE, message=FALSE, eval=FALSE}
+try(detach("package:ggplot2", unload=TRUE, force = TRUE))
+try(detach("package:data.table", unload=TRUE, force = TRUE))
+try(detach("package:scattermore", unload=TRUE, force = TRUE))
+try(detach("package:pryr", unload=TRUE, force = TRUE))
+try(detach("package:bench", unload = TRUE, force = TRUE))
+try(detach("package:fs", unload= TRUE, force = TRUE))
+try(detach("package:rgdal", unload= TRUE, force = TRUE))
+try(detach("package:rgeos", unload= TRUE, force = TRUE))
+
+```
+

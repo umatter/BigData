@@ -1,0 +1,449 @@
+
+
+# Big Data Cleaning and Transformation 
+
+Preceding the filtering/selection/aggregation of raw data, data cleaning and transformation typically have to be run on large volumes of raw data, before the observations and variables of interest can be further analyzed. Typical data cleaning tasks involve:
+
+- Normalization/standardization (across entities, categories, observation periods).
+- Coding of additional variables (indicators, strings to categorical, etc.).
+- Removing/adding covariates.
+- Merging/joining datasets.
+- Properly defining data types for each variable.
+
+All of these steps are very common tasks when working with data for analytics purposes, independent of the size of the dataset. However, as most of the techniques and software developed for such tasks is meant to process data in memory, performing these tasks on large datasets can be challenging. Data cleaning workflows you are perfectly familiar with might slow down substantially or crash due to a lack of memory (RAM), particularly if the data preparation step involves merging/joining two datasets. Other potential bottlenecks are the parsing of large files (CPU) or intensive reading from and writing to the hard disk\index{Hard disk} (Mass storage\index{Mass storage}).
+
+In practice, the most critical bottleneck of common data preparation tasks is often a lack of RAM\index{Random Access Memory (RAM)}. In the following, we thus explore two strategies that broadly build on the idea of *virtual memory*\index{Virtual memory} (using parts of the hard disk as RAM\index{Random Access Memory (RAM)}) and/or *lazy evaluation*\index{Lazy evaluation} (only loading/processing the part of a dataset really required).
+
+
+## Out-of-memory strategies and lazy evaluation: Practical basics
+\index{Out-of-memory strategy}
+Virtual memory is in simple words an approach to combining the RAM\index{Random Access Memory (RAM)} and mass storage components in order to cope with a lack of RAM\index{Random Access Memory (RAM)}. Modern operating systems come with a virtual memory manager that automatically handles the swapping between RAM\index{Random Access Memory (RAM)} and the hard-disk, when running processes that use up too much RAM\index{Random Access Memory (RAM)}. However, a virtual memory manager is not specifically developed to perform this task in the context of data analysis. Several strategies have thus been developed to build on the basic idea of *virtual memory*\index{Virtual memory} in the context of data analysis tasks.
+
+- *Chunked data files on disk*\index{Chunked data files}: The data analytics software 'partitions' the dataset, and maps and stores the chunks of raw data on disk. What is actually 'read' into RAM\index{Random Access Memory (RAM)} when importing the data file with this approach is the mapping to the partitions of the actual dataset (the data structure) and some metadata describing the dataset. In R, this approach is implemented in the `ff`\index{ff package} package [@ff]  and several packages building on `ff`\index{ff package}. In this approach, the usage of disk space and the linking between RAM\index{Random Access Memory (RAM)} and files on disk is very explicit (and clearly visible to the user).
+
+- *Memory mapped files and shared memory*\index{Memory mapped files}: The data analytics software uses segments of virtual memory for the dataset and allows different programs/processes to access it in the same memory segment. Thus, virtual memory is explicitly allocated for one or several specific data analytics tasks. In R, this approach is notably implemented in the `bigmemory`\index{bigmemory package} package [@bigmemory] and several packages building on `bigmemory`\index{bigmemory package}.
+
+
+A conceptually related but differently focused approach is the *lazy evaluation*\index{Lazy evaluation} implemented in Apache Arrow and the corresponding `arrow` package [@richardson_etal2022]. While Apache Arrow is basically a platform for in-memory columnar data, it is optimized for processing large amounts of data and working with datasets that actually do not fit into memory. The way this is done is that instructions on what to do with a dataset are not evaluated step-by-step on the spot but all together at the point of actually loading the data into R. That is, we can connect to a dataset via `arrow`, see its variables, etc., give instructions of which observations to filter out and which columns to select, all before we read the dataset into RAM\index{Random Access Memory (RAM)}. In comparison to the strategies outlined above, this approach is usually much faster but might still lead to a situation with a lack of memory. 
+
+In the following subsections we briefly look at how to set up an R session for data preparation purposes with any of these approaches (`ff`, `bigmemory`, `arrow`) and look at some of the conceptual basics behind the approaches.
+
+### Chunking data with the `ff` package
+
+We first install and load the `ff` and `ffbase`\index{ffbase package} [@ffbase] packages, as well as the `pryr` package. We use the familiar`flights.csv` dataset^[Data from the same source is also used in the code examples given in @bigmemory.]  For the sake of the example, we only use a fraction of the original dataset.^[The full raw data used there can be downloaded [here](http://stat-computing.org/dataexpo/2009/the-data.html).]  On disk, the dataset is about 30MB:
+
+```{r cleaning1}
+fs::file_size("data/flights.csv")
+```
+However, loading the entire dataset of several GBs would work just fine, using the `ff`-approach.
+
+
+When importing data via the `ff` package, we first have to set up a directory where `ff` can store the partitioned dataset (recall that this is explicitly/visibly done on disk). We call this new directory `ff_files`.
+
+```{r cleaning2, echo=FALSE}
+if (dir.exists("ff_files")){
+     unlink("ff_files", recursive = TRUE, force = TRUE)
+}
+
+```
+
+
+```{r cleaning3, message=FALSE, warning=FALSE}
+
+# SET UP --------------
+# install.packages(c("ff", "ffbase"))
+# you might have to install the ffbase package directly from GitHub:
+# devtools::install_github("edwindj/ffbase", subdir="pkg")
+# load packages
+library(ff)
+library(ffbase)
+library(data.table) # for comparison
+
+
+# create directory for ff chunks, and assign directory to ff 
+system("mkdir ff_files")
+options(fftempdir = "ff_files")
+
+```
+
+Now we can read in the data with `read.table.ffdf`\index{read.table.ffdf()}. In order to better understand the underlying concept, we also import the data into a common `data.table` object via `fread()`\index{fread()} and then look at the size of the objects resulting from the two 'import' approaches in the R environment with `object.size()`\index{object.size()}.
+
+```{r cleaning4}
+# usual in-memory csv import
+flights_dt <- fread("data/flights.csv")
+
+# out-of-memory approach
+flights <- 
+     read.table.ffdf(file="data/flights.csv",
+                     sep=",",
+                     VERBOSE=TRUE,
+                     header=TRUE,
+                     next.rows=100000,
+                     colClasses=NA)
+
+# compare object sizes
+object.size(flights) # out-of-memory approach
+object.size(flights_dt) # common data.table
+```
+
+Note that there are two substantial differences to what we have previously seen when using `fread()`\index{fread()}. It takes much longer to import a CSV\index{CSV (Comma Separated Values)} into the ff_files structure. However, the RAM\index{Random Access Memory (RAM)} allocated to it is much smaller. This is exactly what we would expect, keeping in mind what `read.table.ffdf()`\index{read.table.ffdf()} does in comparison to what `fread()`\index{fread()} does. Now we can actually have a look at the data chunks created by `ff`.
+
+```{r cleaning5}
+# show the files in the directory keeping the chunks
+head(list.files("ff_files"))
+
+```
+
+
+
+### Memory mapping with `bigmemory`
+
+The `bigmemory`\index{bigmemory package} package handles data in matrices and therefore only accepts data values of identical data type. Before importing data via the `bigmemory` package, we thus have to ensure that all variables in the raw data can be imported in a common type. 
+
+```{r cleaning7, message=FALSE, warning=FALSE}
+
+# SET UP ----------------
+
+# load packages
+library(bigmemory)
+library(biganalytics)
+
+# import the data
+flights <- read.big.matrix("data/flights.csv",
+                     type="integer",
+                     header=TRUE,
+                     backingfile="flights.bin",
+                     descriptorfile="flights.desc")
+```
+
+Note that, similar to the `ff` example, `read.big.matrix()`\index{read.big.matrix()} creates a local file `flights.bin` on disk that is linked to the `flights` object in RAM\index{Random Access Memory (RAM)}. From looking at the imported file, we see that various variable values have been discarded. This is because we have forced all variables to be of type `"integer"` when importing the dataset. 
+
+```{r strflights, linewidth=60}
+object.size(flights)
+str(flights)
+```
+
+Again, the object representing the dataset in R does not contain the actual data (it does not even take up a KB of memory).
+
+### Connecting to Apache Arrow
+\index{Apache Arrow}
+
+```{r message=FALSE, warning=FALSE}
+
+# SET UP ----------------
+
+# load packages
+library(arrow)
+
+# import the data
+flights <- read_csv_arrow("data/flights.csv",
+                     as_data_frame = FALSE)
+```
+
+Note the `as_data_frame=FALSE` in the function call. This instructs Arrow to establish a connection to the file and read some of the data (to understand what is in the file), but not actually import the whole CSV\index{CSV (Comma Separated Values)}.
+
+```{r}
+summary(flights)
+object.size(flights)
+```
+
+Again, we notice that the `flights` object is much smaller than the actual dataset on disk.
+
+
+
+
+## Big Data preparation tutorial with `ff`
+
+### Set up
+
+The following code and data examples build on @walkowiak_2016, Chapter 3.^[You can download the original datasets used in these examples from https://github.com/PacktPublishing/Big-Data-Analytics-with-R/tree/master/Chapter%203.] The set up for our analysis script involves the loading of the `ff` and `ffbase` packages, the initialization of fixed variables to hold the paths to the datasets, and the creation and assignment of a new local directory `ff_files` in which the binary flat file-partitioned chunks of the original datasets will be stored.
+
+```{r warning=FALSE, message=FALSE}
+
+## SET UP ------------------------
+
+# create and set directory for ff files
+system("mkdir ff_files")
+options(fftempdir = "ff_files")
+
+# load packages
+library(ff)
+library(ffbase)
+library(pryr)
+
+# fix vars
+FLIGHTS_DATA <- "data/flights_sep_oct15.txt"
+AIRLINES_DATA <- "data/airline_id.csv"
+
+```
+
+### Data import
+
+In a first step we read (or 'upload') the data into R. This step involves the creation of the binary chunked files as well as the mapping of these files and the metadata.  In comparison to the traditional `read.csv`\index{read.csv()} approach, you will notice two things. On the one hand the data import takes longer; on the other hand it uses up much less RAM\index{Random Access Memory (RAM)} than with `read.csv`\index{read.csv()}. 
+
+```{r}
+
+# DATA IMPORT ------------------
+
+# check memory used
+mem_used()
+
+# 1. Upload flights_sep_oct15.txt and airline_id.csv files from flat files. 
+
+system.time(flights.ff <- read.table.ffdf(file=FLIGHTS_DATA,
+                                          sep=",",
+                                          VERBOSE=TRUE,
+                                          header=TRUE,
+                                          next.rows=100000,
+                                          colClasses=NA))
+
+system.time(airlines.ff <- read.csv.ffdf(file= AIRLINES_DATA,
+                             VERBOSE=TRUE,
+                             header=TRUE,
+                             next.rows=100000,
+                             colClasses=NA))
+
+# check memory used
+mem_used()
+```
+
+
+Comparison with `read.table`\index{read.table()}
+
+```{r}
+
+# Using read.table()
+system.time(flights.table <- read.table(FLIGHTS_DATA, 
+                                        sep=",",
+                                        header=TRUE))
+system.time(airlines.table <- read.csv(AIRLINES_DATA,
+                                       header = TRUE))
+# check the memory used
+mem_used()
+
+```
+
+
+### Inspect imported files
+
+A particularly useful aspect of working with the `ff` package\index{ff package} and the packages building on it is that many of the simple R functions that work on normal data.frames in RAM also work on ff_files files. Hence, without actually having loaded the entire raw data of a large dataset into RAM\index{Random Access Memory (RAM)}, we can quickly get an overview of the key characteristics, such as the number of observations and the number of variables.
+
+```{r}
+# 2. Inspect the ff_files objects.
+## For flights.ff object:
+class(flights.ff)
+dim(flights.ff)
+## For airlines.ff object:
+class(airlines.ff)
+dim(airlines.ff)
+
+```
+
+### Data cleaning and transformation
+
+After inspecting the data, we go through several steps of cleaning and transformation, with the goal of then merging the two datasets. That is, we want to create a new dataset that contains detailed flight information but with additional information on the carriers/airlines. First, we want to rename some of the variables.
+
+
+```{r strairlines, linewidth=60}
+# step 1: 
+# Rename "Code" variable from airlines.ff 
+# to "AIRLINE_ID" and "Description" into "AIRLINE_NM".
+names(airlines.ff) <- c("AIRLINE_ID", "AIRLINE_NM")
+names(airlines.ff)
+str(airlines.ff[1:20,])
+```
+
+Now we can join the two datasets via the unique airline identifier `"AIRLINE_ID"`. Note that these kinds of operations would usually take up substantially more RAM\index{Random Access Memory (RAM)} on the spot, if both original datasets were also fully loaded into RAM. As illustrated by the `mem_change()`\index{mem\_change()} function, tfhis is not the case here. All that is needed is a small chunk of RAM\index{Random Access Memory (RAM)} to keep the metadata and mapping-information of the new `ff_files` object; all the actual data is cached on the hard disk.
+
+```{r}
+# merge of ff_files objects
+mem_change(flights.data.ff <- merge.ffdf(flights.ff,
+                                         airlines.ff,
+                                         by="AIRLINE_ID"))
+#The new object is only 551.2 KB in size
+class(flights.data.ff)
+dim(flights.data.ff)
+names(flights.data.ff)
+```
+
+
+### Inspect difference to in-memory operation
+
+In comparison to the `ff`-approach, performing the merge in memory needs more resources:
+
+```{r strairlinestable, linewidth=60}
+##For flights.table:
+names(airlines.table) <- c("AIRLINE_ID", "AIRLINE_NM")
+names(airlines.table)
+str(airlines.table[1:20,])
+
+# check memory usage of merge in RAM 
+mem_change(flights.data.table <- merge(flights.table,
+                                       airlines.table,
+                                       by="AIRLINE_ID"))
+#The new object is already 105.7 MB in size
+#A rapid spike in RAM use when processing
+```
+
+
+
+
+### Subsetting
+
+Now, we want to filter out some observations as well as select only specific variables for a subset of the overall dataset.
+
+```{r}
+mem_used()
+
+# Subset the ff_files object flights.data.ff:
+subs1.ff <- subset.ffdf(flights.data.ff, CANCELLED == 1, 
+                        select = c(FL_DATE, AIRLINE_ID, 
+                                   ORIGIN_CITY_NAME,
+                                   ORIGIN_STATE_NM,
+                                   DEST_CITY_NAME,
+                                   DEST_STATE_NM,
+                                   CANCELLATION_CODE))
+
+dim(subs1.ff)
+mem_used()
+
+```
+
+
+### Save/load/export `ff` files
+
+In order to better organize and easily reload the newly created `ff_files` files, we can explicitly save them to disk.
+
+```{r}
+# Save a newly created ff_files object to a data file:
+# (7 files (one for each column) created in the ffdb directory)
+save.ffdf(subs1.ff, overwrite = TRUE) 
+
+```
+
+
+
+If we want to reload a previously saved `ff_files` object, we do not have to go through the chunking of the raw data file again but can very quickly load the data mapping and metadata into RAM\index{Random Access Memory (RAM)} in order to further work with the data (stored on disk).
+
+```{r}
+# Loading previously saved ff_files files:
+rm(subs1.ff)
+#gc()
+load.ffdf("ffdb")
+# check the class and structure of the loaded data
+class(subs1.ff) 
+dim(subs1.ff)
+dimnames(subs1.ff)
+```
+
+
+If we want to store an `ff_files` dataset in a format more accessible for other users (such as CSV\index{CSV (Comma Separated Values)}), we can do so as follows. This last step is also quite common in practice. The initial raw dataset is very large; thus we perform all the theoretically very memory-intensive tasks of preparing the analytic dataset via `ff` and then store the (often much smaller) analytic dataset in a more accessible CSV\index{CSV (Comma Separated Values)} file in order to later read it into RAM\index{Random Access Memory (RAM)} and run more computationally intensive analyses directly in RAM\index{Random Access Memory (RAM)}.
+
+```{r message=FALSE}
+#  Export subs1.ff into CSV and TXT files:
+write.csv.ffdf(subs1.ff, "subset1.csv")
+
+```
+
+
+## Big Data preparation tutorial with `arrow` 
+\index{arrow package}
+
+We begin by initializing our R session as in the short `arrow` introduction above.
+
+```{r message=FALSE, warning=FALSE}
+
+# SET UP ----------------
+
+# load packages
+library(arrow)
+library(dplyr)
+library(pryr) # for profiling
+
+# fix vars
+FLIGHTS_DATA <- "data/flights_sep_oct15.txt"
+AIRLINES_DATA <- "data/airline_id.csv"
+
+# import the data
+flights <- read_csv_arrow(FLIGHTS_DATA,
+                     as_data_frame = FALSE)
+airlines <- read_csv_arrow(AIRLINES_DATA,
+                     as_data_frame = FALSE)
+```
+
+Note how the data from the CSV\index{CSV (Comma Separated Values)} files is not actually read into RAM\index{Random Access Memory (RAM)} yet. The created objects `flights` and `airlines` are not data frames (yet) and occupy hardly any RAM\index{Random Access Memory (RAM)}.
+
+```{r}
+class(flights)
+class(airlines)
+object_size(flights)
+object_size(airlines)
+```
+
+
+In analogy to the `ff` tutorial above, we go through the same data preparation steps. First, we rename the variables in `airlines` to ensure that the variable names are consistent with the `flights` data frame.
+
+```{r}
+# step 1: 
+# Rename "Code" variable from airlines.ff to "AIRLINE_ID"
+# and "Description" into "AIRLINE_NM".
+names(airlines) <- c("AIRLINE_ID", "AIRLINE_NM")
+names(airlines)
+```
+
+In a second step, the two data frames are merged/joined. The `arrow`\index{arrow package} package follows `dplyr`-syntax regarding data preparation tasks. That is, we can directly build on functions like 
+
+```{r}
+# merge the two datasets via Arrow
+flights.data.ar <- inner_join(airlines, flights, by="AIRLINE_ID")
+object_size(flights.data.ar)
+```
+
+In a last step, we filter the resulting dataset for cancelled flights and select only some of the available variables.
+
+Now, we want to filter out some observations as well as select only specific variables for a subset of the overall dataset. As Arrow works with the `dplyr`\index{dplyr package} backend, we can directly use the typical `dplyr`-syntax to combine selection of columns and filtering of rows.
+
+```{r}
+
+# Subset the ff_files object flights.data.ff:
+subs1.ar <- 
+        flights.data.ar %>%
+        filter(CANCELLED == 1) %>%
+        select(FL_DATE,
+               AIRLINE_ID,
+               ORIGIN_CITY_NAME,
+               ORIGIN_STATE_NM,
+               DEST_CITY_NAME,
+               DEST_STATE_NM,
+               CANCELLATION_CODE)
+        
+object_size(subs1.ar)
+```
+
+Again, this operation hardly affected RAM\index{Random Access Memory (RAM)} usage by R. Note, though, that in contrast to the `ff`-approach, arrow has actually not yet created the new subset `sub1.ar`. In fact, it has not even really imported the data or merged the two datasets. This is the effect of the lazy evaluation\index{Lazy evaluation} approach implemented in `arrow`\index{arrow package}. To further process the data in `sub1.ar` with other functions (outside of `arrow`\index{arrow package}), we need to actually trigger the evaluation of all the data preparation steps we have just instructed R to do. This is done via `collect()`\index{collect()}.
+
+```{r}
+mem_change(subs1.ar.df <- collect(subs1.ar))
+class(subs1.ar.df)
+object_size(subs1.ar.df)
+```
+
+Note how in this tutorial, the final subset is substantially smaller than the initial two datasets. Hence, in this case it is fine to actually load this into RAM as a data frame. However, this is not a necessary part of the workflow. Instead of calling `collect()`\index{collect()},  you can then trigger the computation of all the data preparation steps  via `compute()`\index{compute()} and, for example, store the resulting `arrow` table to a CSV\index{CSV (Comma Separated Values)} file. 
+
+```{r}
+subs1.ar %>% 
+        compute() %>% 
+        write_csv_arrow(file="data/subs1.ar.csv")
+```
+
+
+## Wrapping up
+
+ - Typically, the raw/uncleaned data is the critical bottleneck in terms of data volume. Particularly as the selection and filtering of the overall dataset in the preparation of analytic datasets can only work properly with cleaned data.
+ - *Out-of-memory* strategies\index{Out-of-memory strategy} are based on the concept of virtual memory\index{Virtual memory} and are key to cleaning large amounts of data locally.
+ - The *`ff` package*\index{ff package} provides a high-level R interface to an out-of-memory approach. Most functions in `ff` and the corresponding `ffbase`\index{ffbase package} package come with a syntax very similar to the basic R syntax for data cleaning and manipulation.
+ - The basic idea behind `ff` is to store the data in chunked format in an easily-accessible way on the hard disk\index{Hard disk} and only keep the metadata of a dataset (e.g., variable names) in an R object in RAM\index{Random Access Memory (RAM)} while working on the dataset.
+ - The `arrow` package offers similar functionality based on a slightly different approach called *lazy evaluation*\index{Lazy evaluation} (only evaluate data manipulation/cleaning tasks once the data is pulled into R). Unlike `ff`\index{ff package}, `arrow`\index{arrow package} closely follows the `dplyr`-syntax rather than basic R syntax for data cleaning tasks.
+ 
+
+
