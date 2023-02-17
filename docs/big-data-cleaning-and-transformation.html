@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapter 9 Big Data Cleaning and Transformation | Big Data Analytics</title>
   <meta name="description" content="A guide to data science practitioners making the transition to Big Data." />
-  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapter 9 Big Data Cleaning and Transformation | Big Data Analytics" />
   <meta property="og:type" content="book" />
@@ -23,7 +23,7 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2023-01-13" />
+<meta name="date" content="2023-02-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -31,7 +31,7 @@
   
   
 <link rel="prev" href="data-collection-and-data-storage.html"/>
-<link rel="next" href="inspect-difference-to-in-memory-operation.html"/>
+<link rel="next" href="descriptive-statistics-and-aggregation.html"/>
 <script src="libs/jquery/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
@@ -166,24 +166,34 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="c.html"><a href="c.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="c.html"><a href="c.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="c.html"><a href="c.html#background-and-goals-of-this-book"><i class="fa fa-check"></i>Background and goals of this book</a></li>
+<li class="chapter" data-level="" data-path="c.html"><a href="c.html#a-moving-target"><i class="fa fa-check"></i>A moving target</a></li>
+<li class="chapter" data-level="" data-path="c.html"><a href="c.html#content-and-organization-of-the-book"><i class="fa fa-check"></i>Content and organization of the book</a></li>
+<li class="chapter" data-level="" data-path="c.html"><a href="c.html#prerequisits-and-requirements"><i class="fa fa-check"></i>Prerequisits and requirements</a></li>
+<li class="chapter" data-level="" data-path="c.html"><a href="c.html#thanks"><i class="fa fa-check"></i>Thanks</a></li>
+</ul></li>
 <li class="part"><span><b>I Setting the Scene: Analyzing Big Data</b></span></li>
 <li class="chapter" data-level="" data-path="s.html"><a href="s.html"><i class="fa fa-check"></i>Introduction</a></li>
-<li class="chapter" data-level="1" data-path="what-is-big-in-big-data.html"><a href="what-is-big-in-big-data.html"><i class="fa fa-check"></i><b>1</b> What is <em>big</em> in “Big Data”?</a></li>
-<li class="chapter" data-level="2" data-path="approaches-to-analyzing-big-data.html"><a href="approaches-to-analyzing-big-data.html"><i class="fa fa-check"></i><b>2</b> Approaches to analyzing Big Data</a></li>
-<li class="chapter" data-level="3" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html"><i class="fa fa-check"></i><b>3</b> The two domains of Big Data Analytics</a>
+<li class="chapter" data-level="1" data-path="what-is-big-in-big-data.html"><a href="what-is-big-in-big-data.html"><i class="fa fa-check"></i><b>1</b> What is <em>Big</em> in “Big Data”?</a></li>
+<li class="chapter" data-level="2" data-path="approaches-to-analyzing-big-data.html"><a href="approaches-to-analyzing-big-data.html"><i class="fa fa-check"></i><b>2</b> Approaches to Analyzing Big Data</a></li>
+<li class="chapter" data-level="3" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html"><i class="fa fa-check"></i><b>3</b> The Two Domains of Big Data Analytics</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#a-practical-big-p-problem"><i class="fa fa-check"></i><b>3.1</b> A practical <em>big P</em> problem</a></li>
-<li class="chapter" data-level="3.2" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#a-practical-big-n-problem"><i class="fa fa-check"></i><b>3.2</b> A practical <em>big N</em> problem</a>
+<li class="chapter" data-level="3.1" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#a-practical-big-p-problem"><i class="fa fa-check"></i><b>3.1</b> A practical <em>big P</em> problem </a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#ols-as-a-point-of-reference"><i class="fa fa-check"></i><b>3.2.1</b> OLS as a point of reference</a></li>
-<li class="chapter" data-level="3.2.2" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#the-uluru-algorithm-as-an-alternative-to-ols"><i class="fa fa-check"></i><b>3.2.2</b> The <em>Uluru</em> algorithm as an alternative to OLS</a></li>
+<li class="chapter" data-level="3.1.1" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#simple-logistig-regression-naive-approach"><i class="fa fa-check"></i><b>3.1.1</b> Simple logistig regression (naive approach)</a></li>
+<li class="chapter" data-level="3.1.2" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#regularization-the-lasso-estimator"><i class="fa fa-check"></i><b>3.1.2</b> Regularization: the lasso estimator</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#conclusion"><i class="fa fa-check"></i><b>3.3</b> Conclusion</a></li>
+<li class="chapter" data-level="3.2" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#a-practical-big-n-problem"><i class="fa fa-check"></i><b>3.2</b> A practical <em>big N</em> problem </a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#ols-as-a-point-of-reference"><i class="fa fa-check"></i><b>3.2.1</b> OLS as a point of reference </a></li>
+<li class="chapter" data-level="3.2.2" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#the-uluru-algorithm-as-an-alternative-to-ols"><i class="fa fa-check"></i><b>3.2.2</b> The <em>Uluru</em> algorithm as an alternative to OLS </a></li>
+</ul></li>
 </ul></li>
 <li class="part"><span><b>II Platform: Software and Computing Resources</b></span></li>
 <li class="chapter" data-level="" data-path="p.html"><a href="p.html"><i class="fa fa-check"></i>Introduction</a></li>
-<li class="chapter" data-level="4" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html"><i class="fa fa-check"></i><b>4</b> Software: Programming with (big) data</a>
+<li class="chapter" data-level="4" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html"><i class="fa fa-check"></i><b>4</b> Software: Programming with (Big) Data</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#domains-of-programming-with-big-data"><i class="fa fa-check"></i><b>4.1</b> Domains of programming with (big) data</a></li>
 <li class="chapter" data-level="4.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#measuring-r-performance"><i class="fa fa-check"></i><b>4.2</b> Measuring R performance</a></li>
@@ -201,7 +211,8 @@ div.csl-indent {
 <li class="chapter" data-level="4.4.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#first-steps-in-sqlite"><i class="fa fa-check"></i><b>4.4.1</b> First steps in SQL(ite)</a></li>
 <li class="chapter" data-level="4.4.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#joins"><i class="fa fa-check"></i><b>4.4.2</b> Joins</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#wrapping-up"><i class="fa fa-check"></i><b>4.5</b> Wrapping up</a></li>
+<li class="chapter" data-level="4.5" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#with-a-little-help-from-my-friends-gpt-and-rsql-coding"><i class="fa fa-check"></i><b>4.5</b> With a little help from my friends: GPT and R/SQL coding</a></li>
+<li class="chapter" data-level="4.6" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#wrapping-up"><i class="fa fa-check"></i><b>4.6</b> Wrapping up</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html"><i class="fa fa-check"></i><b>5</b> Hardware: Computing Resources</a>
 <ul>
@@ -215,7 +226,8 @@ div.csl-indent {
 <li class="chapter" data-level="5.4" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#cpu-and-parallelization"><i class="fa fa-check"></i><b>5.4</b> CPU and parallelization</a>
 <ul>
 <li class="chapter" data-level="5.4.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#naive-multi-session-approach"><i class="fa fa-check"></i><b>5.4.1</b> Naive multi-session approach</a></li>
-<li class="chapter" data-level="5.4.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#multi-core-and-multi-node-approach"><i class="fa fa-check"></i><b>5.4.2</b> Multi-core and multi-node approach</a></li>
+<li class="chapter" data-level="5.4.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#multi-session-approach-with-futures"><i class="fa fa-check"></i><b>5.4.2</b> Multi-session approach with futures</a></li>
+<li class="chapter" data-level="5.4.3" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#multi-core-and-multi-node-approach"><i class="fa fa-check"></i><b>5.4.3</b> Multi-core and multi-node approach</a></li>
 </ul></li>
 <li class="chapter" data-level="5.5" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#gpus-for-scientific-computing"><i class="fa fa-check"></i><b>5.5</b> GPUs for scientific computing</a>
 <ul>
@@ -227,12 +239,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="6" data-path="distributed-systems.html"><a href="distributed-systems.html"><i class="fa fa-check"></i><b>6</b> Distributed Systems</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="distributed-systems.html"><a href="distributed-systems.html#mapreduce"><i class="fa fa-check"></i><b>6.1</b> MapReduce</a>
-<ul>
-<li class="chapter" data-level="6.1.1" data-path="distributed-systems.html"><a href="distributed-systems.html#aside-mapreduce-concept-illustrated-in-r"><i class="fa fa-check"></i><b>6.1.1</b> Aside: MapReduce concept illustrated in R</a></li>
-<li class="chapter" data-level="6.1.2" data-path="distributed-systems.html"><a href="distributed-systems.html#mapper"><i class="fa fa-check"></i><b>6.1.2</b> Mapper</a></li>
-<li class="chapter" data-level="6.1.3" data-path="distributed-systems.html"><a href="distributed-systems.html#reducer"><i class="fa fa-check"></i><b>6.1.3</b> Reducer</a></li>
-</ul></li>
+<li class="chapter" data-level="6.1" data-path="distributed-systems.html"><a href="distributed-systems.html#mapreduce"><i class="fa fa-check"></i><b>6.1</b> MapReduce</a></li>
 <li class="chapter" data-level="6.2" data-path="distributed-systems.html"><a href="distributed-systems.html#apache-hadoop"><i class="fa fa-check"></i><b>6.2</b> Apache Hadoop</a>
 <ul>
 <li class="chapter" data-level="6.2.1" data-path="distributed-systems.html"><a href="distributed-systems.html#hadoop-word-count-example"><i class="fa fa-check"></i><b>6.2.1</b> Hadoop word count example</a></li>
@@ -252,8 +259,7 @@ div.csl-indent {
 <li class="chapter" data-level="7.2" data-path="cloud-computing.html"><a href="cloud-computing.html#transitioning-to-the-cloud"><i class="fa fa-check"></i><b>7.2</b> Transitioning to the cloud</a></li>
 <li class="chapter" data-level="7.3" data-path="cloud-computing.html"><a href="cloud-computing.html#scaling-up-in-the-cloud-virtual-servers"><i class="fa fa-check"></i><b>7.3</b> Scaling up in the cloud: Virtual servers</a>
 <ul>
-<li class="chapter" data-level="7.3.1" data-path="cloud-computing.html"><a href="cloud-computing.html#scaling-up-with-aws-ec2-and-rrstudio"><i class="fa fa-check"></i><b>7.3.1</b> Scaling up with AWS EC2 and R/RStudio</a></li>
-<li class="chapter" data-level="7.3.2" data-path="cloud-computing.html"><a href="cloud-computing.html#parallelization-with-an-ec2-instance"><i class="fa fa-check"></i><b>7.3.2</b> Parallelization with an EC2 instance</a></li>
+<li class="chapter" data-level="7.3.1" data-path="cloud-computing.html"><a href="cloud-computing.html#parallelization-with-an-ec2-instance"><i class="fa fa-check"></i><b>7.3.1</b> Parallelization with an EC2 instance</a></li>
 </ul></li>
 <li class="chapter" data-level="7.4" data-path="cloud-computing.html"><a href="cloud-computing.html#scaling-up-with-gpus"><i class="fa fa-check"></i><b>7.4</b> Scaling up with GPUs</a>
 <ul>
@@ -264,7 +270,7 @@ div.csl-indent {
 <li class="chapter" data-level="7.6" data-path="cloud-computing.html"><a href="cloud-computing.html#wrapping-up-3"><i class="fa fa-check"></i><b>7.6</b> Wrapping up</a></li>
 </ul></li>
 <li class="part"><span><b>III Components of Big Data Analytics</b></span></li>
-<li class="chapter" data-level="" data-path="introduction-to-part-ii.html"><a href="introduction-to-part-ii.html"><i class="fa fa-check"></i>Introduction to Part II</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a></li>
 <li class="chapter" data-level="8" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html"><i class="fa fa-check"></i><b>8</b> Data Collection and Data Storage</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#gathering-and-compilation-of-raw-data"><i class="fa fa-check"></i><b>8.1</b> Gathering and compilation of raw data</a></li>
@@ -298,7 +304,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="8.8.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#aws-s3-with-r-first-steps"><i class="fa fa-check"></i><b>8.8.1</b> AWS S3 with R: First steps</a></li>
 <li class="chapter" data-level="8.8.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#uploading-data-to-s3"><i class="fa fa-check"></i><b>8.8.2</b> Uploading data to S3</a></li>
-<li class="chapter" data-level="8.8.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#more-than-just-simple-storage-s3-aws-athena"><i class="fa fa-check"></i><b>8.8.3</b> More than just simple storage: S3 + AWS Athena</a></li>
+<li class="chapter" data-level="8.8.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#more-than-just-simple-storage-s3-amazon-athena"><i class="fa fa-check"></i><b>8.8.3</b> More than just simple storage: S3 + Amazon Athena</a></li>
 </ul></li>
 <li class="chapter" data-level="8.9" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#wrapping-up-4"><i class="fa fa-check"></i><b>8.9</b> Wrapping up</a></li>
 </ul></li>
@@ -310,116 +316,121 @@ div.csl-indent {
 <li class="chapter" data-level="9.1.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#memory-mapping-with-bigmemory"><i class="fa fa-check"></i><b>9.1.2</b> Memory mapping with <code>bigmemory</code></a></li>
 <li class="chapter" data-level="9.1.3" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#connecting-to-apache-arrow"><i class="fa fa-check"></i><b>9.1.3</b> Connecting to Apache Arrow</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#ff-big-data-preparation-tutorial"><i class="fa fa-check"></i><b>9.2</b> <code>ff</code> Big Data preparation tutorial</a>
+<li class="chapter" data-level="9.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#big-data-preparation-tutorial-with-ff"><i class="fa fa-check"></i><b>9.2</b> Big Data preparation tutorial with <code>ff</code></a>
 <ul>
 <li class="chapter" data-level="9.2.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#set-up"><i class="fa fa-check"></i><b>9.2.1</b> Set up</a></li>
 <li class="chapter" data-level="9.2.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#data-import"><i class="fa fa-check"></i><b>9.2.2</b> Data import</a></li>
 <li class="chapter" data-level="9.2.3" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#inspect-imported-files"><i class="fa fa-check"></i><b>9.2.3</b> Inspect imported files</a></li>
 <li class="chapter" data-level="9.2.4" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#data-cleaning-and-transformation"><i class="fa fa-check"></i><b>9.2.4</b> Data cleaning and transformation</a></li>
+<li class="chapter" data-level="9.2.5" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#inspect-difference-to-in-memory-operation"><i class="fa fa-check"></i><b>9.2.5</b> Inspect difference to in-memory operation</a></li>
+<li class="chapter" data-level="9.2.6" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#subsetting"><i class="fa fa-check"></i><b>9.2.6</b> Subsetting</a></li>
+<li class="chapter" data-level="9.2.7" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#saveloadexport-ff-files"><i class="fa fa-check"></i><b>9.2.7</b> Save/load/export <code>ff</code> files</a></li>
 </ul></li>
+<li class="chapter" data-level="9.3" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#big-data-preparation-tutorial-with-arrow"><i class="fa fa-check"></i><b>9.3</b> Big Data preparation tutorial with <code>arrow</code></a></li>
+<li class="chapter" data-level="9.4" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#wrapping-up-5"><i class="fa fa-check"></i><b>9.4</b> Wrapping up</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="inspect-difference-to-in-memory-operation.html"><a href="inspect-difference-to-in-memory-operation.html"><i class="fa fa-check"></i><b>10</b> Inspect difference to in-memory operation</a>
+<li class="chapter" data-level="10" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html"><i class="fa fa-check"></i><b>10</b> Descriptive Statistics and Aggregation</a>
 <ul>
-<li class="chapter" data-level="10.0.1" data-path="inspect-difference-to-in-memory-operation.html"><a href="inspect-difference-to-in-memory-operation.html#subsetting"><i class="fa fa-check"></i><b>10.0.1</b> Subsetting</a></li>
-<li class="chapter" data-level="10.0.2" data-path="inspect-difference-to-in-memory-operation.html"><a href="inspect-difference-to-in-memory-operation.html#saveloadexport-ff_files-files"><i class="fa fa-check"></i><b>10.0.2</b> Save/load/export ff_files files</a></li>
-<li class="chapter" data-level="10.1" data-path="inspect-difference-to-in-memory-operation.html"><a href="inspect-difference-to-in-memory-operation.html#arrow-big-data-preparation-tutorial"><i class="fa fa-check"></i><b>10.1</b> <code>arrow</code> Big Data preparation tutorial</a></li>
-<li class="chapter" data-level="10.2" data-path="inspect-difference-to-in-memory-operation.html"><a href="inspect-difference-to-in-memory-operation.html#wrapping-up-5"><i class="fa fa-check"></i><b>10.2</b> Wrapping up</a></li>
+<li class="chapter" data-level="10.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-the-split-apply-combine-strategy"><i class="fa fa-check"></i><b>10.1</b> Data aggregation: The ‘split-apply-combine’ strategy</a></li>
+<li class="chapter" data-level="10.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-with-chunked-data-files"><i class="fa fa-check"></i><b>10.2</b> Data aggregation with chunked data files</a></li>
+<li class="chapter" data-level="10.3" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-arrow"><i class="fa fa-check"></i><b>10.3</b> High-speed in-memory data aggregation with <code>arrow</code></a></li>
+<li class="chapter" data-level="10.4" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>10.4</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
+<li class="chapter" data-level="10.5" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#wrapping-up-6"><i class="fa fa-check"></i><b>10.5</b> Wrapping up</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html"><i class="fa fa-check"></i><b>11</b> Descriptive Statistics and Aggregation</a>
+<li class="chapter" data-level="11" data-path="big-data-visualization.html"><a href="big-data-visualization.html"><i class="fa fa-check"></i><b>11</b> (Big) Data Visualization</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-the-split-apply-combine-strategy"><i class="fa fa-check"></i><b>11.1</b> Data aggregation: The ‘split-apply-combine’ strategy</a>
+<li class="chapter" data-level="11.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#challenges-of-big-data-visualization"><i class="fa fa-check"></i><b>11.1</b> Challenges of Big Data visualization</a></li>
+<li class="chapter" data-level="11.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#data-exploration-with-ggplot2"><i class="fa fa-check"></i><b>11.2</b> Data exploration with <code>ggplot2</code></a></li>
+<li class="chapter" data-level="11.3" data-path="big-data-visualization.html"><a href="big-data-visualization.html#visualizing-time-and-space"><i class="fa fa-check"></i><b>11.3</b> Visualizing time and space</a>
 <ul>
-<li class="chapter" data-level="11.1.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-with-chunked-data-files"><i class="fa fa-check"></i><b>11.1.1</b> Data aggregation with chunked data files</a></li>
-<li class="chapter" data-level="11.1.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#cross-tabulation-of-ff-vectors"><i class="fa fa-check"></i><b>11.1.2</b> Cross-tabulation of <code>ff</code> vectors</a></li>
+<li class="chapter" data-level="11.3.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#preparations"><i class="fa fa-check"></i><b>11.3.1</b> Preparations</a></li>
+<li class="chapter" data-level="11.3.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#pick-up-and-drop-off-locations"><i class="fa fa-check"></i><b>11.3.2</b> Pick-up and drop-off locations</a></li>
 </ul></li>
-<li class="chapter" data-level="11.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-arrow"><i class="fa fa-check"></i><b>11.2</b> High-speed in-memory data aggregation with <code>arrow</code></a></li>
-<li class="chapter" data-level="11.3" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>11.3</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
-<li class="chapter" data-level="11.4" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#wrapping-up-6"><i class="fa fa-check"></i><b>11.4</b> Wrapping up</a></li>
-</ul></li>
-<li class="chapter" data-level="12" data-path="big-data-visualization.html"><a href="big-data-visualization.html"><i class="fa fa-check"></i><b>12</b> (Big) Data Visualization</a>
-<ul>
-<li class="chapter" data-level="12.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#challenges-of-big-data-visualization"><i class="fa fa-check"></i><b>12.1</b> Challenges of Big Data visualization</a></li>
-<li class="chapter" data-level="12.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#data-exploration-with-ggplot2"><i class="fa fa-check"></i><b>12.2</b> Data exploration with <code>ggplot2</code></a></li>
-<li class="chapter" data-level="12.3" data-path="big-data-visualization.html"><a href="big-data-visualization.html#visualizing-time-and-space"><i class="fa fa-check"></i><b>12.3</b> Visualizing time and space</a>
-<ul>
-<li class="chapter" data-level="12.3.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#preparations"><i class="fa fa-check"></i><b>12.3.1</b> Preparations</a></li>
-<li class="chapter" data-level="12.3.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#pick-up-and-drop-off-locations"><i class="fa fa-check"></i><b>12.3.2</b> Pick-up and drop-off locations</a></li>
-</ul></li>
-<li class="chapter" data-level="12.4" data-path="big-data-visualization.html"><a href="big-data-visualization.html#wrapping-up-7"><i class="fa fa-check"></i><b>12.4</b> Wrapping up</a></li>
+<li class="chapter" data-level="11.4" data-path="big-data-visualization.html"><a href="big-data-visualization.html#wrapping-up-7"><i class="fa fa-check"></i><b>11.4</b> Wrapping up</a></li>
 </ul></li>
 <li class="part"><span><b>IV Application: Topics in Big Data Econometrics</b></span></li>
 <li class="chapter" data-level="" data-path="a.html"><a href="a.html"><i class="fa fa-check"></i>Introduction</a></li>
-<li class="chapter" data-level="13" data-path="bottle-necks-in-every-day-data-analytics-tasks.html"><a href="bottle-necks-in-every-day-data-analytics-tasks.html"><i class="fa fa-check"></i><b>13</b> Bottle Necks in Every-Day Data Analytics Tasks</a>
+<li class="chapter" data-level="12" data-path="bottlenecks-in-everyday-data-analytics-tasks.html"><a href="bottlenecks-in-everyday-data-analytics-tasks.html"><i class="fa fa-check"></i><b>12</b> Bottlenecks in Everyday Data Analytics Tasks</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="bottle-necks-in-every-day-data-analytics-tasks.html"><a href="bottle-necks-in-every-day-data-analytics-tasks.html#case-study-data-import-and-memory-allocation"><i class="fa fa-check"></i><b>13.1</b> Case study: Data Import and Memory Allocation</a></li>
-<li class="chapter" data-level="13.2" data-path="bottle-necks-in-every-day-data-analytics-tasks.html"><a href="bottle-necks-in-every-day-data-analytics-tasks.html#case-study-loops-memory-and-vectorization"><i class="fa fa-check"></i><b>13.2</b> Case Study: Loops, Memory, and Vectorization</a>
+<li class="chapter" data-level="12.1" data-path="bottlenecks-in-everyday-data-analytics-tasks.html"><a href="bottlenecks-in-everyday-data-analytics-tasks.html#case-study-efficient-fixed-effects-estimation"><i class="fa fa-check"></i><b>12.1</b> Case study: Efficient fixed effects estimation</a></li>
+<li class="chapter" data-level="12.2" data-path="bottlenecks-in-everyday-data-analytics-tasks.html"><a href="bottlenecks-in-everyday-data-analytics-tasks.html#case-study-loops-memory-and-vectorization"><i class="fa fa-check"></i><b>12.2</b> Case study: Loops, memory, and vectorization</a>
 <ul>
-<li class="chapter" data-level="13.2.1" data-path="bottle-necks-in-every-day-data-analytics-tasks.html"><a href="bottle-necks-in-every-day-data-analytics-tasks.html#preparation"><i class="fa fa-check"></i><b>13.2.1</b> Preparation</a></li>
-<li class="chapter" data-level="13.2.2" data-path="bottle-necks-in-every-day-data-analytics-tasks.html"><a href="bottle-necks-in-every-day-data-analytics-tasks.html#naïve-approach-ignorant-of-r"><i class="fa fa-check"></i><b>13.2.2</b> Naïve Approach (ignorant of R)</a></li>
-<li class="chapter" data-level="13.2.3" data-path="bottle-necks-in-every-day-data-analytics-tasks.html"><a href="bottle-necks-in-every-day-data-analytics-tasks.html#improvement-1-pre-allocation-of-memory"><i class="fa fa-check"></i><b>13.2.3</b> Improvement 1: Pre-allocation of memory</a></li>
-<li class="chapter" data-level="13.2.4" data-path="bottle-necks-in-every-day-data-analytics-tasks.html"><a href="bottle-necks-in-every-day-data-analytics-tasks.html#improvement-2-exploit-vectorization"><i class="fa fa-check"></i><b>13.2.4</b> Improvement 2: Exploit vectorization</a></li>
+<li class="chapter" data-level="12.2.1" data-path="bottlenecks-in-everyday-data-analytics-tasks.html"><a href="bottlenecks-in-everyday-data-analytics-tasks.html#naïve-approach-ignorant-of-r"><i class="fa fa-check"></i><b>12.2.1</b> Naïve approach (ignorant of R)</a></li>
+<li class="chapter" data-level="12.2.2" data-path="bottlenecks-in-everyday-data-analytics-tasks.html"><a href="bottlenecks-in-everyday-data-analytics-tasks.html#improvement-1-pre-allocation-of-memory"><i class="fa fa-check"></i><b>12.2.2</b> Improvement 1: Pre-allocation of memory</a></li>
+<li class="chapter" data-level="12.2.3" data-path="bottlenecks-in-everyday-data-analytics-tasks.html"><a href="bottlenecks-in-everyday-data-analytics-tasks.html#improvement-2-exploit-vectorization"><i class="fa fa-check"></i><b>12.2.3</b> Improvement 2: Exploit vectorization</a></li>
 </ul></li>
-<li class="chapter" data-level="13.3" data-path="bottle-necks-in-every-day-data-analytics-tasks.html"><a href="bottle-necks-in-every-day-data-analytics-tasks.html#case-study-bootstrapping-and-parallel-processing"><i class="fa fa-check"></i><b>13.3</b> Case study: Bootstrapping and Parallel Processing</a>
+<li class="chapter" data-level="12.3" data-path="bottlenecks-in-everyday-data-analytics-tasks.html"><a href="bottlenecks-in-everyday-data-analytics-tasks.html#case-study-bootstrapping-and-parallel-processing"><i class="fa fa-check"></i><b>12.3</b> Case study: Bootstrapping and parallel processing</a>
 <ul>
-<li class="chapter" data-level="13.3.1" data-path="bottle-necks-in-every-day-data-analytics-tasks.html"><a href="bottle-necks-in-every-day-data-analytics-tasks.html#parallelization-with-an-ec2-instance-1"><i class="fa fa-check"></i><b>13.3.1</b> Parallelization with an EC2 instance</a></li>
-</ul></li>
-<li class="chapter" data-level="13.4" data-path="bottle-necks-in-every-day-data-analytics-tasks.html"><a href="bottle-necks-in-every-day-data-analytics-tasks.html#case-study-efficient-fixed-effects-estimation"><i class="fa fa-check"></i><b>13.4</b> Case Study: Efficient Fixed Effects Estimation</a></li>
-</ul></li>
-<li class="chapter" data-level="14" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html"><i class="fa fa-check"></i><b>14</b> Econometrics with GPUs</a>
-<ul>
-<li class="chapter" data-level="14.1" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#tensorflowkeras-example-predict-housing-prices"><i class="fa fa-check"></i><b>14.1</b> Tensorflow/Keras example: predict housing prices</a>
-<ul>
-<li class="chapter" data-level="14.1.1" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#data-preparation"><i class="fa fa-check"></i><b>14.1.1</b> Data preparation</a></li>
-<li class="chapter" data-level="14.1.2" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#model-specification"><i class="fa fa-check"></i><b>14.1.2</b> Model specification</a></li>
-<li class="chapter" data-level="14.1.3" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#training-and-prediction"><i class="fa fa-check"></i><b>14.1.3</b> Training and prediction</a></li>
-<li class="chapter" data-level="14.1.4" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#a-word-of-caution"><i class="fa fa-check"></i><b>14.1.4</b> A word of caution</a></li>
+<li class="chapter" data-level="12.3.1" data-path="bottlenecks-in-everyday-data-analytics-tasks.html"><a href="bottlenecks-in-everyday-data-analytics-tasks.html#parallelization-with-an-ec2-instance-1"><i class="fa fa-check"></i><b>12.3.1</b> Parallelization with an EC2 instance</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html"><i class="fa fa-check"></i><b>15</b> Regression Analysis and Categorization with Spark and R</a>
+<li class="chapter" data-level="13" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html"><i class="fa fa-check"></i><b>13</b> Econometrics with GPUs</a>
 <ul>
-<li class="chapter" data-level="15.1" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#simple-linear-regression-analysis"><i class="fa fa-check"></i><b>15.1</b> Simple linear regression analysis</a></li>
-<li class="chapter" data-level="15.2" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#machine-learning-for-classification"><i class="fa fa-check"></i><b>15.2</b> Machine learning for classification</a></li>
-<li class="chapter" data-level="15.3" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#building-machine-learning-pipelines-with-r-and-spark"><i class="fa fa-check"></i><b>15.3</b> Building machine learning pipelines with R and Spark</a>
+<li class="chapter" data-level="13.1" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#ols-on-gpus"><i class="fa fa-check"></i><b>13.1</b> OLS on GPUs</a></li>
+<li class="chapter" data-level="13.2" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#a-word-of-caution"><i class="fa fa-check"></i><b>13.2</b> A word of caution</a></li>
+<li class="chapter" data-level="13.3" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#higher-level-interfaces-for-basic-econometrics-with-gpus"><i class="fa fa-check"></i><b>13.3</b> Higher-level interfaces for basic econometrics with GPUs</a></li>
+<li class="chapter" data-level="13.4" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#tensorflowkeras-example-predict-housing-prices"><i class="fa fa-check"></i><b>13.4</b> TensorFlow/Keras example: predict housing prices</a>
 <ul>
-<li class="chapter" data-level="15.3.1" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#set-up-and-data-import"><i class="fa fa-check"></i><b>15.3.1</b> Set up and data import</a></li>
-<li class="chapter" data-level="15.3.2" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#building-the-pipeline"><i class="fa fa-check"></i><b>15.3.2</b> Building the pipeline</a></li>
+<li class="chapter" data-level="13.4.1" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#data-preparation"><i class="fa fa-check"></i><b>13.4.1</b> Data preparation</a></li>
+<li class="chapter" data-level="13.4.2" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#model-specification"><i class="fa fa-check"></i><b>13.4.2</b> Model specification</a></li>
+<li class="chapter" data-level="13.4.3" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#training-and-prediction"><i class="fa fa-check"></i><b>13.4.3</b> Training and prediction</a></li>
 </ul></li>
-<li class="chapter" data-level="15.4" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#wrapping-up-8"><i class="fa fa-check"></i><b>15.4</b> Wrapping up</a></li>
+<li class="chapter" data-level="13.5" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#wrapping-up-8"><i class="fa fa-check"></i><b>13.5</b> Wrapping up</a></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html"><i class="fa fa-check"></i><b>16</b> Large-scale Text Analysis with sparklyr</a>
+<li class="chapter" data-level="14" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html"><i class="fa fa-check"></i><b>14</b> Regression Analysis and Categorization with Spark and R</a>
 <ul>
-<li class="chapter" data-level="16.1" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#getting-started-import-pre-processing-and-word-count"><i class="fa fa-check"></i><b>16.1</b> Getting started: import, pre-processing, and word count</a></li>
-</ul></li>
-<li class="appendix"><span><b>Appendix</b></span></li>
-<li class="chapter" data-level="A" data-path="appendix-a.html"><a href="appendix-a.html"><i class="fa fa-check"></i><b>A</b> Appendix A</a>
+<li class="chapter" data-level="14.1" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#simple-linear-regression-analysis"><i class="fa fa-check"></i><b>14.1</b> Simple linear regression analysis</a></li>
+<li class="chapter" data-level="14.2" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#machine-learning-for-classification"><i class="fa fa-check"></i><b>14.2</b> Machine learning for classification</a></li>
+<li class="chapter" data-level="14.3" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#building-machine-learning-pipelines-with-r-and-spark"><i class="fa fa-check"></i><b>14.3</b> Building machine learning pipelines with R and Spark</a>
 <ul>
-<li class="chapter" data-level="A.1" data-path="appendix-a.html"><a href="appendix-a.html#github"><i class="fa fa-check"></i><b>A.1</b> GitHub</a>
+<li class="chapter" data-level="14.3.1" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#set-up-and-data-import"><i class="fa fa-check"></i><b>14.3.1</b> Set up and data import</a></li>
+<li class="chapter" data-level="14.3.2" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#building-the-pipeline"><i class="fa fa-check"></i><b>14.3.2</b> Building the pipeline</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#wrapping-up-9"><i class="fa fa-check"></i><b>14.4</b> Wrapping up</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html"><i class="fa fa-check"></i><b>15</b> Large-scale Text Analysis with sparklyr</a>
 <ul>
-<li class="chapter" data-level="A.1.1" data-path="appendix-a.html"><a href="appendix-a.html#initiate-a-new-repository"><i class="fa fa-check"></i><b>A.1.1</b> Initiate a new repository</a></li>
-<li class="chapter" data-level="A.1.2" data-path="appendix-a.html"><a href="appendix-a.html#clone-this-courses-repository"><i class="fa fa-check"></i><b>A.1.2</b> Clone this course’s repository</a></li>
-<li class="chapter" data-level="A.1.3" data-path="appendix-a.html"><a href="appendix-a.html#fork-this-courses-repository"><i class="fa fa-check"></i><b>A.1.3</b> Fork this course’s repository</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="B" data-path="appendix-b.html"><a href="appendix-b.html"><i class="fa fa-check"></i><b>B</b> Appendix B</a>
+<li class="chapter" data-level="15.1" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#getting-started-import-pre-processing-and-word-count"><i class="fa fa-check"></i><b>15.1</b> Getting started: Import, pre-processing, and word count</a></li>
+<li class="chapter" data-level="15.2" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#tutorial-political-slant"><i class="fa fa-check"></i><b>15.2</b> Tutorial: political slant</a>
 <ul>
-<li class="chapter" data-level="B.1" data-path="appendix-b.html"><a href="appendix-b.html#data-types-and-memorystorage"><i class="fa fa-check"></i><b>B.1</b> Data types and memory/storage</a>
+<li class="chapter" data-level="15.2.1" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#data-download-and-import"><i class="fa fa-check"></i><b>15.2.1</b> Data download and import</a></li>
+<li class="chapter" data-level="15.2.2" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#cleaning-speeches-data"><i class="fa fa-check"></i><b>15.2.2</b> Cleaning speeches data</a></li>
+<li class="chapter" data-level="15.2.3" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#create-a-bigrams-count-per-party"><i class="fa fa-check"></i><b>15.2.3</b> Create a bigrams count per party</a></li>
+<li class="chapter" data-level="15.2.4" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#find-partisan-phrases"><i class="fa fa-check"></i><b>15.2.4</b> Find “partisan” phrases</a></li>
+<li class="chapter" data-level="15.2.5" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#results-most-partisan-phrases-by-congress"><i class="fa fa-check"></i><b>15.2.5</b> Results: most partisan phrases by congress</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#natural-language-processing-at-scale"><i class="fa fa-check"></i><b>15.3</b> Natural Language Processing at Scale</a>
 <ul>
-<li class="chapter" data-level="B.1.1" data-path="appendix-b.html"><a href="appendix-b.html#example-in-r-data-types-and-information-storage"><i class="fa fa-check"></i><b>B.1.1</b> Example in R: Data types and information storage</a></li>
+<li class="chapter" data-level="15.3.1" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#preparatory-steps"><i class="fa fa-check"></i><b>15.3.1</b> Preparatory steps</a></li>
+<li class="chapter" data-level="15.3.2" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#sentiment-annotation"><i class="fa fa-check"></i><b>15.3.2</b> Sentiment annotation</a></li>
 </ul></li>
-<li class="chapter" data-level="B.2" data-path="appendix-b.html"><a href="appendix-b.html#data-structures"><i class="fa fa-check"></i><b>B.2</b> Data structures</a>
+<li class="chapter" data-level="15.4" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#aggregation-and-visualization"><i class="fa fa-check"></i><b>15.4</b> Aggregation and visualization</a></li>
+<li class="chapter" data-level="15.5" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#sparklyr-and-lazy-evaluation"><i class="fa fa-check"></i><b>15.5</b> <code>sparklyr</code> and lazy evaluation</a></li>
+</ul></li>
+<li class="part"><span><b>V Appendices</b></span></li>
+<li class="chapter" data-level="" data-path="appendix-a-github.html"><a href="appendix-a-github.html"><i class="fa fa-check"></i>Appendix A: GitHub</a>
 <ul>
-<li class="chapter" data-level="B.2.1" data-path="appendix-b.html"><a href="appendix-b.html#vectors-vs-factors-in-r"><i class="fa fa-check"></i><b>B.2.1</b> Vectors vs Factors in R</a></li>
-<li class="chapter" data-level="B.2.2" data-path="appendix-b.html"><a href="appendix-b.html#matricesarrays"><i class="fa fa-check"></i><b>B.2.2</b> Matrices/Arrays</a></li>
-<li class="chapter" data-level="B.2.3" data-path="appendix-b.html"><a href="appendix-b.html#data-frames-tibbles-and-data-tables"><i class="fa fa-check"></i><b>B.2.3</b> Data frames, tibbles, and data tables</a></li>
-<li class="chapter" data-level="B.2.4" data-path="appendix-b.html"><a href="appendix-b.html#lists"><i class="fa fa-check"></i><b>B.2.4</b> Lists</a></li>
+<li class="chapter" data-level="" data-path="appendix-a-github.html"><a href="appendix-a-github.html#initiate-a-new-repository"><i class="fa fa-check"></i>Initiate a new repository</a></li>
+<li class="chapter" data-level="" data-path="appendix-a-github.html"><a href="appendix-a-github.html#clone-this-books-repository"><i class="fa fa-check"></i>Clone this book’s repository</a></li>
+<li class="chapter" data-level="" data-path="appendix-a-github.html"><a href="appendix-a-github.html#fork-this-books-repository"><i class="fa fa-check"></i>Fork this book’s repository</a></li>
 </ul></li>
-<li class="chapter" data-level="B.3" data-path="appendix-b.html"><a href="appendix-b.html#r-tools-to-investigate-structures-and-types"><i class="fa fa-check"></i><b>B.3</b> R-tools to investigate structures and types</a></li>
-</ul></li>
-<li class="chapter" data-level="C" data-path="appendix-c.html"><a href="appendix-c.html"><i class="fa fa-check"></i><b>C</b> Appendix C</a>
+<li class="chapter" data-level="" data-path="appendix-b-r-basics.html"><a href="appendix-b-r-basics.html"><i class="fa fa-check"></i>Appendix B: R Basics</a>
 <ul>
-<li class="chapter" data-level="C.1" data-path="appendix-c.html"><a href="appendix-c.html#install-hadoop-on-ubuntu-linux"><i class="fa fa-check"></i><b>C.1</b> Install Hadoop (on Ubuntu Linux)</a></li>
-<li class="chapter" data-level="C.2" data-path="appendix-c.html"><a href="appendix-c.html#manually-set-up-a-database-server-in-the-cloud"><i class="fa fa-check"></i><b>C.2</b> Manually set up a database server in the cloud</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-r-basics.html"><a href="appendix-b-r-basics.html#data-types-and-memorystorage"><i class="fa fa-check"></i>Data types and memory/storage</a>
+<ul>
+<li class="chapter" data-level="" data-path="appendix-b-r-basics.html"><a href="appendix-b-r-basics.html#example-data-types-and-information-storage"><i class="fa fa-check"></i>Example: Data types and information storage</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="appendix-b-r-basics.html"><a href="appendix-b-r-basics.html#data-structures"><i class="fa fa-check"></i>Data structures</a>
+<ul>
+<li class="chapter" data-level="" data-path="appendix-b-r-basics.html"><a href="appendix-b-r-basics.html#vectors-vs-factors-in-r"><i class="fa fa-check"></i>Vectors vs Factors in R</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-r-basics.html"><a href="appendix-b-r-basics.html#matricesarrays"><i class="fa fa-check"></i>Matrices/Arrays</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-r-basics.html"><a href="appendix-b-r-basics.html#data-frames-tibbles-and-data-tables"><i class="fa fa-check"></i>Data frames, tibbles, and data tables</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-r-basics.html"><a href="appendix-b-r-basics.html#lists"><i class="fa fa-check"></i>Lists</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix-b-r-basics.html"><a href="appendix-b-r-basics.html#r-tools-to-investigate-structures-and-types"><i class="fa fa-check"></i>R-tools to investigate structures and types</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix-c-install-hadoop.html"><a href="appendix-c-install-hadoop.html"><i class="fa fa-check"></i>Appendix C: Install Hadoop</a></li>
+<li class="part"><span><b>VI References and Index</b></span></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://umatter.github.io" target="blank">umatter.github.io</a></li>
@@ -455,134 +466,100 @@ div.csl-indent {
 <p>In practice, the most critical bottleneck of common data preparation tasks is often a lack of RAM. In the following, we thus explore two strategies that broadly build on the idea of <em>virtual memory</em> (using parts of the hard disk as RAM) and/or <em>lazy evaluation</em> (only loading/processing the part of a dataset really required).</p>
 <div id="out-of-memory-strategies-and-lazy-evaluation-practical-basics" class="section level2 hasAnchor" number="9.1">
 <h2><span class="header-section-number">9.1</span> Out-of-memory strategies and lazy evaluation: Practical basics<a href="big-data-cleaning-and-transformation.html#out-of-memory-strategies-and-lazy-evaluation-practical-basics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Virtual memory is in simple words an approach to combining the RAM and mass storage components in order to cope with a lack of RAM. Modern operating systems come with a virtual memory manager that automatically handles the swapping between RAM and the hard-disk, when running processes that use up too much RAM. However, a virtual memory manager is not specifically developed to perform this task in the context of data analysis. Several strategies have thus been developed to build on the basic idea of <em>virtual memory</em> in the context of data analysis tasks.</p>
+<p>
+Virtual memory is in simple words an approach to combining the RAM and mass storage components in order to cope with a lack of RAM. Modern operating systems come with a virtual memory manager that automatically handles the swapping between RAM and the hard-disk, when running processes that use up too much RAM. However, a virtual memory manager is not specifically developed to perform this task in the context of data analysis. Several strategies have thus been developed to build on the basic idea of <em>virtual memory</em> in the context of data analysis tasks.</p>
 <ul>
-<li><p><em>Chunked data files on disk</em>: The data analytics software ‘partitions’ the dataset, and maps and stores the chunks of raw data on disk. What is actually ‘read’ into RAM when importing the data file with this approach is the mapping to the partitions of the actual dataset (the data structure) and some metadata describing the dataset. In R, this approach is implemented in the <code>ff</code> package and several packages building on <code>ff</code>. In this approach, the usage of disk space and the linking between RAM and files on disk is very explicit (and clearly visible to the user).</p></li>
-<li><p><em>Memory mapped files and shared memory</em>: The data analytics software uses segments of virtual memory for the dataset and allows different programs/processes to access it in the same memory segment. Thus, virtual memory is explicitly allocated for one or several specific data analytics tasks. In R, this approach is notably implemented in the <code>bigmemory</code> package and several packages building on <code>bigmemory</code>.</p></li>
+<li><p><em>Chunked data files on disk</em>: The data analytics software ‘partitions’ the dataset, and maps and stores the chunks of raw data on disk. What is actually ‘read’ into RAM when importing the data file with this approach is the mapping to the partitions of the actual dataset (the data structure) and some metadata describing the dataset. In R, this approach is implemented in the <code>ff</code> package <span class="citation">(<a href="#ref-ff" role="doc-biblioref">Adler et al. 2022</a>)</span> and several packages building on <code>ff</code>. In this approach, the usage of disk space and the linking between RAM and files on disk is very explicit (and clearly visible to the user).</p></li>
+<li><p><em>Memory mapped files and shared memory</em>: The data analytics software uses segments of virtual memory for the dataset and allows different programs/processes to access it in the same memory segment. Thus, virtual memory is explicitly allocated for one or several specific data analytics tasks. In R, this approach is notably implemented in the <code>bigmemory</code> package <span class="citation">(<a href="#ref-bigmemory" role="doc-biblioref">Kane, Emerson, and Weston 2013</a>)</span> and several packages building on <code>bigmemory</code>.</p></li>
 </ul>
-<p>A conceptually related but differently focused approach is the <em>lazy evaluation</em> implemented in Apache Arrow and the corresponding <code>arrow</code> package <span class="citation">(<a href="#ref-richardson_etal2022" role="doc-biblioref">Richardson et al. 2022</a>)</span>. While Apache Arrow is basically a platform for in-memory columnar data, it is optimized for processing large amounts of data and working with datasets that actually do not fit into memory. The way this is done is that instructions on what to do with a dataset are not evaluated step-by-step on the spot but all together at the point of actually loading the data into R. That is, we can connect to a dataset via <code>arrow</code>, see its variables, etc., give instructions of which observations to filter out and which columns to select, all before we actually start reading the data into RAM. In comparison to the strategies outlined above, this approach is usually much faster but might still lead to a situation with a lack of memory.</p>
+<p>A conceptually related but differently focused approach is the <em>lazy evaluation</em> implemented in Apache Arrow and the corresponding <code>arrow</code> package <span class="citation">(<a href="#ref-richardson_etal2022" role="doc-biblioref">Richardson et al. 2022</a>)</span>. While Apache Arrow is basically a platform for in-memory columnar data, it is optimized for processing large amounts of data and working with datasets that actually do not fit into memory. The way this is done is that instructions on what to do with a dataset are not evaluated step-by-step on the spot but all together at the point of actually loading the data into R. That is, we can connect to a dataset via <code>arrow</code>, see its variables, etc., give instructions of which observations to filter out and which columns to select, all before we read the dataset into RAM. In comparison to the strategies outlined above, this approach is usually much faster but might still lead to a situation with a lack of memory.</p>
 <p>In the following subsections we briefly look at how to set up an R session for data preparation purposes with any of these approaches (<code>ff</code>, <code>bigmemory</code>, <code>arrow</code>) and look at some of the conceptual basics behind the approaches.</p>
 <div id="chunking-data-with-the-ff-package" class="section level3 hasAnchor" number="9.1.1">
 <h3><span class="header-section-number">9.1.1</span> Chunking data with the <code>ff</code> package<a href="big-data-cleaning-and-transformation.html#chunking-data-with-the-ff-package" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>We first install and load the <code>ff</code> and <code>ffbase</code> packages, as well as the <code>pryr</code> package. We use the familiar<code>flights.csv</code> dataset<a href="#fn45" class="footnote-ref" id="fnref45"><sup>45</sup></a> For the sake of the example, we only use a fraction of the original dataset.<a href="#fn46" class="footnote-ref" id="fnref46"><sup>46</sup></a> On disk, the dataset is about 30MB:</p>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="big-data-cleaning-and-transformation.html#cb261-1" aria-hidden="true" tabindex="-1"></a>fs<span class="sc">::</span><span class="fu">file_size</span>(<span class="st">&quot;data/flights.csv&quot;</span>)</span></code></pre></div>
+<p>We first install and load the <code>ff</code> and <code>ffbase</code> <span class="citation">(<a href="#ref-ffbase" role="doc-biblioref">de Jonge, Wijffels, and van der Laan 2023</a>)</span> packages, as well as the <code>pryr</code> package. We use the familiar<code>flights.csv</code> dataset<a href="#fn54" class="footnote-ref" id="fnref54"><sup>54</sup></a> For the sake of the example, we only use a fraction of the original dataset.<a href="#fn55" class="footnote-ref" id="fnref55"><sup>55</sup></a> On disk, the dataset is about 30MB:</p>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="big-data-cleaning-and-transformation.html#cb258-1" aria-hidden="true" tabindex="-1"></a>fs<span class="sc">::</span><span class="fu">file_size</span>(<span class="st">&quot;data/flights.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## 29.5M</code></pre>
 <p>However, loading the entire dataset of several GBs would work just fine, using the <code>ff</code>-approach.</p>
 <p>When importing data via the <code>ff</code> package, we first have to set up a directory where <code>ff</code> can store the partitioned dataset (recall that this is explicitly/visibly done on disk). We call this new directory <code>ff_files</code>.</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="big-data-cleaning-and-transformation.html#cb263-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP --------------</span></span>
-<span id="cb263-2"><a href="big-data-cleaning-and-transformation.html#cb263-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb263-3"><a href="big-data-cleaning-and-transformation.html#cb263-3" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c(&quot;ff&quot;, &quot;ffbase&quot;))</span></span>
-<span id="cb263-4"><a href="big-data-cleaning-and-transformation.html#cb263-4" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb263-5"><a href="big-data-cleaning-and-transformation.html#cb263-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ff)</span>
-<span id="cb263-6"><a href="big-data-cleaning-and-transformation.html#cb263-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ffbase)</span>
-<span id="cb263-7"><a href="big-data-cleaning-and-transformation.html#cb263-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table) <span class="co"># for comparison</span></span>
-<span id="cb263-8"><a href="big-data-cleaning-and-transformation.html#cb263-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb263-9"><a href="big-data-cleaning-and-transformation.html#cb263-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb263-10"><a href="big-data-cleaning-and-transformation.html#cb263-10" aria-hidden="true" tabindex="-1"></a><span class="co"># create directory for ff chunks, and assign directory to ff </span></span>
-<span id="cb263-11"><a href="big-data-cleaning-and-transformation.html#cb263-11" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;mkdir ff_files&quot;</span>)</span>
-<span id="cb263-12"><a href="big-data-cleaning-and-transformation.html#cb263-12" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">fftempdir =</span> <span class="st">&quot;ff_files&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="big-data-cleaning-and-transformation.html#cb260-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP --------------</span></span>
+<span id="cb260-2"><a href="big-data-cleaning-and-transformation.html#cb260-2" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(c(&quot;ff&quot;, &quot;ffbase&quot;))</span></span>
+<span id="cb260-3"><a href="big-data-cleaning-and-transformation.html#cb260-3" aria-hidden="true" tabindex="-1"></a><span class="co"># you might have to install the ffbase package directly from GitHub:</span></span>
+<span id="cb260-4"><a href="big-data-cleaning-and-transformation.html#cb260-4" aria-hidden="true" tabindex="-1"></a><span class="co"># devtools::install_github(&quot;edwindj/ffbase&quot;, subdir=&quot;pkg&quot;)</span></span>
+<span id="cb260-5"><a href="big-data-cleaning-and-transformation.html#cb260-5" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb260-6"><a href="big-data-cleaning-and-transformation.html#cb260-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ff)</span>
+<span id="cb260-7"><a href="big-data-cleaning-and-transformation.html#cb260-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ffbase)</span>
+<span id="cb260-8"><a href="big-data-cleaning-and-transformation.html#cb260-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table) <span class="co"># for comparison</span></span>
+<span id="cb260-9"><a href="big-data-cleaning-and-transformation.html#cb260-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb260-10"><a href="big-data-cleaning-and-transformation.html#cb260-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb260-11"><a href="big-data-cleaning-and-transformation.html#cb260-11" aria-hidden="true" tabindex="-1"></a><span class="co"># create directory for ff chunks, and assign directory to ff </span></span>
+<span id="cb260-12"><a href="big-data-cleaning-and-transformation.html#cb260-12" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;mkdir ff_files&quot;</span>)</span>
+<span id="cb260-13"><a href="big-data-cleaning-and-transformation.html#cb260-13" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">fftempdir =</span> <span class="st">&quot;ff_files&quot;</span>)</span></code></pre></div>
 <p>Now we can read in the data with <code>read.table.ffdf</code>. In order to better understand the underlying concept, we also import the data into a common <code>data.table</code> object via <code>fread()</code> and then look at the size of the objects resulting from the two ‘import’ approaches in the R environment with <code>object.size()</code>.</p>
-<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="big-data-cleaning-and-transformation.html#cb264-1" aria-hidden="true" tabindex="-1"></a><span class="co"># usual in-memory csv import</span></span>
-<span id="cb264-2"><a href="big-data-cleaning-and-transformation.html#cb264-2" aria-hidden="true" tabindex="-1"></a>flights_dt <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;data/flights.csv&quot;</span>)</span>
-<span id="cb264-3"><a href="big-data-cleaning-and-transformation.html#cb264-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb264-4"><a href="big-data-cleaning-and-transformation.html#cb264-4" aria-hidden="true" tabindex="-1"></a><span class="co"># out-of-memory approach</span></span>
-<span id="cb264-5"><a href="big-data-cleaning-and-transformation.html#cb264-5" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> </span>
-<span id="cb264-6"><a href="big-data-cleaning-and-transformation.html#cb264-6" aria-hidden="true" tabindex="-1"></a>     <span class="fu">read.table.ffdf</span>(<span class="at">file=</span><span class="st">&quot;data/flights.csv&quot;</span>,</span>
-<span id="cb264-7"><a href="big-data-cleaning-and-transformation.html#cb264-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">sep=</span><span class="st">&quot;,&quot;</span>,</span>
-<span id="cb264-8"><a href="big-data-cleaning-and-transformation.html#cb264-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">VERBOSE=</span><span class="cn">TRUE</span>,</span>
-<span id="cb264-9"><a href="big-data-cleaning-and-transformation.html#cb264-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">header=</span><span class="cn">TRUE</span>,</span>
-<span id="cb264-10"><a href="big-data-cleaning-and-transformation.html#cb264-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">next.rows=</span><span class="dv">100000</span>,</span>
-<span id="cb264-11"><a href="big-data-cleaning-and-transformation.html#cb264-11" aria-hidden="true" tabindex="-1"></a>                     <span class="at">colClasses=</span><span class="cn">NA</span>)</span></code></pre></div>
-<pre><code>## read.table.ffdf 1..100000 (100000)  csv-read=0.479sec ffdf-write=0.054sec
-## read.table.ffdf 100001..200000 (100000)  csv-read=0.44sec ffdf-write=0.037sec
-## read.table.ffdf 200001..300000 (100000)  csv-read=0.599sec ffdf-write=0.037sec
-## read.table.ffdf 300001..336776 (36776)  csv-read=0.248sec ffdf-write=0.023sec
-##  csv-read=1.766sec  ffdf-write=0.151sec  TOTAL=1.917sec</code></pre>
-<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="big-data-cleaning-and-transformation.html#cb266-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compare object sizes</span></span>
-<span id="cb266-2"><a href="big-data-cleaning-and-transformation.html#cb266-2" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(flights) <span class="co"># out-of-memory approach</span></span></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="big-data-cleaning-and-transformation.html#cb261-1" aria-hidden="true" tabindex="-1"></a><span class="co"># usual in-memory csv import</span></span>
+<span id="cb261-2"><a href="big-data-cleaning-and-transformation.html#cb261-2" aria-hidden="true" tabindex="-1"></a>flights_dt <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;data/flights.csv&quot;</span>)</span>
+<span id="cb261-3"><a href="big-data-cleaning-and-transformation.html#cb261-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb261-4"><a href="big-data-cleaning-and-transformation.html#cb261-4" aria-hidden="true" tabindex="-1"></a><span class="co"># out-of-memory approach</span></span>
+<span id="cb261-5"><a href="big-data-cleaning-and-transformation.html#cb261-5" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> </span>
+<span id="cb261-6"><a href="big-data-cleaning-and-transformation.html#cb261-6" aria-hidden="true" tabindex="-1"></a>     <span class="fu">read.table.ffdf</span>(<span class="at">file=</span><span class="st">&quot;data/flights.csv&quot;</span>,</span>
+<span id="cb261-7"><a href="big-data-cleaning-and-transformation.html#cb261-7" aria-hidden="true" tabindex="-1"></a>                     <span class="at">sep=</span><span class="st">&quot;,&quot;</span>,</span>
+<span id="cb261-8"><a href="big-data-cleaning-and-transformation.html#cb261-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">VERBOSE=</span><span class="cn">TRUE</span>,</span>
+<span id="cb261-9"><a href="big-data-cleaning-and-transformation.html#cb261-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">header=</span><span class="cn">TRUE</span>,</span>
+<span id="cb261-10"><a href="big-data-cleaning-and-transformation.html#cb261-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">next.rows=</span><span class="dv">100000</span>,</span>
+<span id="cb261-11"><a href="big-data-cleaning-and-transformation.html#cb261-11" aria-hidden="true" tabindex="-1"></a>                     <span class="at">colClasses=</span><span class="cn">NA</span>)</span></code></pre></div>
+<pre><code>## read.table.ffdf 1..100000 (100000)  csv-read=0.448sec ffdf-write=0.06sec
+## read.table.ffdf 100001..200000 (100000)  csv-read=0.404sec ffdf-write=0.065sec
+## read.table.ffdf 200001..300000 (100000)  csv-read=0.46sec ffdf-write=0.048sec
+## read.table.ffdf 300001..336776 (36776)  csv-read=0.18sec ffdf-write=0.031sec
+##  csv-read=1.492sec  ffdf-write=0.204sec  TOTAL=1.696sec</code></pre>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="big-data-cleaning-and-transformation.html#cb263-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compare object sizes</span></span>
+<span id="cb263-2"><a href="big-data-cleaning-and-transformation.html#cb263-2" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(flights) <span class="co"># out-of-memory approach</span></span></code></pre></div>
 <pre><code>## 949976 bytes</code></pre>
-<div class="sourceCode" id="cb268"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb268-1"><a href="big-data-cleaning-and-transformation.html#cb268-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(flights_dt) <span class="co"># common data.table</span></span></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="big-data-cleaning-and-transformation.html#cb265-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(flights_dt) <span class="co"># common data.table</span></span></code></pre></div>
 <pre><code>## 32569024 bytes</code></pre>
 <p>Note that there are two substantial differences to what we have previously seen when using <code>fread()</code>. It takes much longer to import a CSV into the ff_files structure. However, the RAM allocated to it is much smaller. This is exactly what we would expect, keeping in mind what <code>read.table.ffdf()</code> does in comparison to what <code>fread()</code> does. Now we can actually have a look at the data chunks created by <code>ff</code>.</p>
-<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="big-data-cleaning-and-transformation.html#cb270-1" aria-hidden="true" tabindex="-1"></a><span class="co"># show the files in the directory keeping the chunks</span></span>
-<span id="cb270-2"><a href="big-data-cleaning-and-transformation.html#cb270-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">list.files</span>(<span class="st">&quot;ff_files&quot;</span>))</span></code></pre></div>
-<pre><code>## [1] &quot;ffdf1735127b78ac.ff&quot; &quot;ffdf173515e2e23b.ff&quot;
-## [3] &quot;ffdf173517fda940.ff&quot; &quot;ffdf173522c57e16.ff&quot;
-## [5] &quot;ffdf1735236d210c.ff&quot; &quot;ffdf17352acbc430.ff&quot;</code></pre>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="big-data-cleaning-and-transformation.html#cb267-1" aria-hidden="true" tabindex="-1"></a><span class="co"># show the files in the directory keeping the chunks</span></span>
+<span id="cb267-2"><a href="big-data-cleaning-and-transformation.html#cb267-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">list.files</span>(<span class="st">&quot;ff_files&quot;</span>))</span></code></pre></div>
+<pre><code>## [1] &quot;ffdfa12aa17192c4a.ff&quot; &quot;ffdfa12aa18207a6c.ff&quot;
+## [3] &quot;ffdfa12aa36cbd084.ff&quot; &quot;ffdfa12aa38baee55.ff&quot;
+## [5] &quot;ffdfa12aa408c4156.ff&quot; &quot;ffdfa12aa42f60f38.ff&quot;</code></pre>
 </div>
 <div id="memory-mapping-with-bigmemory" class="section level3 hasAnchor" number="9.1.2">
 <h3><span class="header-section-number">9.1.2</span> Memory mapping with <code>bigmemory</code><a href="big-data-cleaning-and-transformation.html#memory-mapping-with-bigmemory" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>The <code>bigmemory</code> package handles data in matrices and therefore only accepts data values of identical data type. Before importing data via the <code>bigmemory</code> package, we thus have to ensure that all variables in the raw data can be imported in a common type.</p>
-<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="big-data-cleaning-and-transformation.html#cb272-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP ----------------</span></span>
-<span id="cb272-2"><a href="big-data-cleaning-and-transformation.html#cb272-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb272-3"><a href="big-data-cleaning-and-transformation.html#cb272-3" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb272-4"><a href="big-data-cleaning-and-transformation.html#cb272-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bigmemory)</span>
-<span id="cb272-5"><a href="big-data-cleaning-and-transformation.html#cb272-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(biganalytics)</span>
-<span id="cb272-6"><a href="big-data-cleaning-and-transformation.html#cb272-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb272-7"><a href="big-data-cleaning-and-transformation.html#cb272-7" aria-hidden="true" tabindex="-1"></a><span class="co"># import the data</span></span>
-<span id="cb272-8"><a href="big-data-cleaning-and-transformation.html#cb272-8" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> <span class="fu">read.big.matrix</span>(<span class="st">&quot;data/flights.csv&quot;</span>,</span>
-<span id="cb272-9"><a href="big-data-cleaning-and-transformation.html#cb272-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">type=</span><span class="st">&quot;integer&quot;</span>,</span>
-<span id="cb272-10"><a href="big-data-cleaning-and-transformation.html#cb272-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">header=</span><span class="cn">TRUE</span>,</span>
-<span id="cb272-11"><a href="big-data-cleaning-and-transformation.html#cb272-11" aria-hidden="true" tabindex="-1"></a>                     <span class="at">backingfile=</span><span class="st">&quot;flights.bin&quot;</span>,</span>
-<span id="cb272-12"><a href="big-data-cleaning-and-transformation.html#cb272-12" aria-hidden="true" tabindex="-1"></a>                     <span class="at">descriptorfile=</span><span class="st">&quot;flights.desc&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="big-data-cleaning-and-transformation.html#cb269-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP ----------------</span></span>
+<span id="cb269-2"><a href="big-data-cleaning-and-transformation.html#cb269-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb269-3"><a href="big-data-cleaning-and-transformation.html#cb269-3" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb269-4"><a href="big-data-cleaning-and-transformation.html#cb269-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bigmemory)</span>
+<span id="cb269-5"><a href="big-data-cleaning-and-transformation.html#cb269-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(biganalytics)</span>
+<span id="cb269-6"><a href="big-data-cleaning-and-transformation.html#cb269-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb269-7"><a href="big-data-cleaning-and-transformation.html#cb269-7" aria-hidden="true" tabindex="-1"></a><span class="co"># import the data</span></span>
+<span id="cb269-8"><a href="big-data-cleaning-and-transformation.html#cb269-8" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> <span class="fu">read.big.matrix</span>(<span class="st">&quot;data/flights.csv&quot;</span>,</span>
+<span id="cb269-9"><a href="big-data-cleaning-and-transformation.html#cb269-9" aria-hidden="true" tabindex="-1"></a>                     <span class="at">type=</span><span class="st">&quot;integer&quot;</span>,</span>
+<span id="cb269-10"><a href="big-data-cleaning-and-transformation.html#cb269-10" aria-hidden="true" tabindex="-1"></a>                     <span class="at">header=</span><span class="cn">TRUE</span>,</span>
+<span id="cb269-11"><a href="big-data-cleaning-and-transformation.html#cb269-11" aria-hidden="true" tabindex="-1"></a>                     <span class="at">backingfile=</span><span class="st">&quot;flights.bin&quot;</span>,</span>
+<span id="cb269-12"><a href="big-data-cleaning-and-transformation.html#cb269-12" aria-hidden="true" tabindex="-1"></a>                     <span class="at">descriptorfile=</span><span class="st">&quot;flights.desc&quot;</span>)</span></code></pre></div>
 <p>Note that, similar to the <code>ff</code> example, <code>read.big.matrix()</code> creates a local file <code>flights.bin</code> on disk that is linked to the <code>flights</code> object in RAM. From looking at the imported file, we see that various variable values have been discarded. This is because we have forced all variables to be of type <code>"integer"</code> when importing the dataset.</p>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="big-data-cleaning-and-transformation.html#cb273-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(flights)</span></code></pre></div>
-<pre><code>##                       min        max       mean
-## year             2013.000   2013.000   2013.000
-## month               1.000     12.000      6.549
-## day                 1.000     31.000     15.711
-## dep_time            1.000   2400.000   1349.110
-## sched_dep_time    106.000   2359.000   1344.255
-## dep_delay         -43.000   1301.000     12.639
-## arr_time            1.000   2400.000   1502.055
-## sched_arr_time      1.000   2359.000   1536.380
-## arr_delay         -86.000   1272.000      6.895
-## carrier             9.000      9.000      9.000
-## flight              1.000   8500.000   1971.924
-## tailnum                                        
-## origin                                         
-## dest                                           
-## air_time           20.000    695.000    150.686
-## distance           17.000   4983.000   1039.913
-## hour                1.000     23.000     13.180
-## minute              0.000     59.000     26.230
-## time_hour        2013.000   2014.000   2013.000
-##                       NAs
-## year                0.000
-## month               0.000
-## day                 0.000
-## dep_time         8255.000
-## sched_dep_time      0.000
-## dep_delay        8255.000
-## arr_time         8713.000
-## sched_arr_time      0.000
-## arr_delay        9430.000
-## carrier        318316.000
-## flight              0.000
-## tailnum        336776.000
-## origin         336776.000
-## dest           336776.000
-## air_time         9430.000
-## distance            0.000
-## hour                0.000
-## minute              0.000
-## time_hour           0.000</code></pre>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="big-data-cleaning-and-transformation.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(flights)</span></code></pre></div>
+<div class="sourceCode" id="cb270"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb270-1"><a href="big-data-cleaning-and-transformation.html#cb270-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(flights)</span></code></pre></div>
 <pre><code>## 696 bytes</code></pre>
+<div class="sourceCode" id="cb272"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb272-1"><a href="big-data-cleaning-and-transformation.html#cb272-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(flights)</span></code></pre></div>
+<pre><code>## Formal class &#39;big.matrix&#39; [package &quot;bigmemory&quot;] with 1
+slot
+## ..@ address:&lt;externalptr&gt;</code></pre>
 <p>Again, the object representing the dataset in R does not contain the actual data (it does not even take up a KB of memory).</p>
 </div>
 <div id="connecting-to-apache-arrow" class="section level3 hasAnchor" number="9.1.3">
 <h3><span class="header-section-number">9.1.3</span> Connecting to Apache Arrow<a href="big-data-cleaning-and-transformation.html#connecting-to-apache-arrow" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="big-data-cleaning-and-transformation.html#cb277-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP ----------------</span></span>
-<span id="cb277-2"><a href="big-data-cleaning-and-transformation.html#cb277-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb277-3"><a href="big-data-cleaning-and-transformation.html#cb277-3" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb277-4"><a href="big-data-cleaning-and-transformation.html#cb277-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arrow)</span>
-<span id="cb277-5"><a href="big-data-cleaning-and-transformation.html#cb277-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb277-6"><a href="big-data-cleaning-and-transformation.html#cb277-6" aria-hidden="true" tabindex="-1"></a><span class="co"># import the data</span></span>
-<span id="cb277-7"><a href="big-data-cleaning-and-transformation.html#cb277-7" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> <span class="fu">read_csv_arrow</span>(<span class="st">&quot;data/flights.csv&quot;</span>,</span>
-<span id="cb277-8"><a href="big-data-cleaning-and-transformation.html#cb277-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">as_data_frame =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p></p>
+<div class="sourceCode" id="cb274"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb274-1"><a href="big-data-cleaning-and-transformation.html#cb274-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP ----------------</span></span>
+<span id="cb274-2"><a href="big-data-cleaning-and-transformation.html#cb274-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb274-3"><a href="big-data-cleaning-and-transformation.html#cb274-3" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb274-4"><a href="big-data-cleaning-and-transformation.html#cb274-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arrow)</span>
+<span id="cb274-5"><a href="big-data-cleaning-and-transformation.html#cb274-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb274-6"><a href="big-data-cleaning-and-transformation.html#cb274-6" aria-hidden="true" tabindex="-1"></a><span class="co"># import the data</span></span>
+<span id="cb274-7"><a href="big-data-cleaning-and-transformation.html#cb274-7" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> <span class="fu">read_csv_arrow</span>(<span class="st">&quot;data/flights.csv&quot;</span>,</span>
+<span id="cb274-8"><a href="big-data-cleaning-and-transformation.html#cb274-8" aria-hidden="true" tabindex="-1"></a>                     <span class="at">as_data_frame =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <p>Note the <code>as_data_frame=FALSE</code> in the function call. This instructs Arrow to establish a connection to the file and read some of the data (to understand what is in the file), but not actually import the whole CSV.</p>
-<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="big-data-cleaning-and-transformation.html#cb278-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(flights)</span></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="big-data-cleaning-and-transformation.html#cb275-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(flights)</span></code></pre></div>
 <pre><code>##                Length Class        Mode       
 ## year           336776 ChunkedArray environment
 ## month          336776 ChunkedArray environment
@@ -603,126 +580,129 @@ div.csl-indent {
 ## hour           336776 ChunkedArray environment
 ## minute         336776 ChunkedArray environment
 ## time_hour      336776 ChunkedArray environment</code></pre>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="big-data-cleaning-and-transformation.html#cb280-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(flights)</span></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="big-data-cleaning-and-transformation.html#cb277-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(flights)</span></code></pre></div>
 <pre><code>## 488 bytes</code></pre>
 <p>Again, we notice that the <code>flights</code> object is much smaller than the actual dataset on disk.</p>
 </div>
 </div>
-<div id="ff-big-data-preparation-tutorial" class="section level2 hasAnchor" number="9.2">
-<h2><span class="header-section-number">9.2</span> <code>ff</code> Big Data preparation tutorial<a href="big-data-cleaning-and-transformation.html#ff-big-data-preparation-tutorial" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="big-data-preparation-tutorial-with-ff" class="section level2 hasAnchor" number="9.2">
+<h2><span class="header-section-number">9.2</span> Big Data preparation tutorial with <code>ff</code><a href="big-data-cleaning-and-transformation.html#big-data-preparation-tutorial-with-ff" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="set-up" class="section level3 hasAnchor" number="9.2.1">
 <h3><span class="header-section-number">9.2.1</span> Set up<a href="big-data-cleaning-and-transformation.html#set-up" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>The following examples are based on <span class="citation">Walkowiak (<a href="#ref-walkowiak_2016" role="doc-biblioref">2016</a>)</span>, Chapter 3. You can download the original datasets used in these examples from <a href="https://github.com/PacktPublishing/Big-Data-Analytics-with-R/tree/master/Chapter%203">the book’s GitHub repository</a>. The set up for our analysis script involves the loading of the <code>ff</code> and <code>ffbase</code> packages, the initialization of fixed variables to hold the paths to the datasets, and the creation and assignment of a new local directory <code>ff_files</code> in which the binary flat file-partitioned chunks of the original datasets will be stored.</p>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="big-data-cleaning-and-transformation.html#cb282-1" aria-hidden="true" tabindex="-1"></a><span class="do">## SET UP ------------------------</span></span>
-<span id="cb282-2"><a href="big-data-cleaning-and-transformation.html#cb282-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb282-3"><a href="big-data-cleaning-and-transformation.html#cb282-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create and set directory for ff files</span></span>
-<span id="cb282-4"><a href="big-data-cleaning-and-transformation.html#cb282-4" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;mkdir ff_files&quot;</span>)</span>
-<span id="cb282-5"><a href="big-data-cleaning-and-transformation.html#cb282-5" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">fftempdir =</span> <span class="st">&quot;ff_files&quot;</span>)</span>
-<span id="cb282-6"><a href="big-data-cleaning-and-transformation.html#cb282-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb282-7"><a href="big-data-cleaning-and-transformation.html#cb282-7" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb282-8"><a href="big-data-cleaning-and-transformation.html#cb282-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ff)</span>
-<span id="cb282-9"><a href="big-data-cleaning-and-transformation.html#cb282-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ffbase)</span>
-<span id="cb282-10"><a href="big-data-cleaning-and-transformation.html#cb282-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pryr)</span>
-<span id="cb282-11"><a href="big-data-cleaning-and-transformation.html#cb282-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb282-12"><a href="big-data-cleaning-and-transformation.html#cb282-12" aria-hidden="true" tabindex="-1"></a><span class="co"># fix vars</span></span>
-<span id="cb282-13"><a href="big-data-cleaning-and-transformation.html#cb282-13" aria-hidden="true" tabindex="-1"></a>FLIGHTS_DATA <span class="ot">&lt;-</span> <span class="st">&quot;data/flights_sep_oct15.txt&quot;</span></span>
-<span id="cb282-14"><a href="big-data-cleaning-and-transformation.html#cb282-14" aria-hidden="true" tabindex="-1"></a>AIRLINES_DATA <span class="ot">&lt;-</span> <span class="st">&quot;data/airline_id.csv&quot;</span></span></code></pre></div>
+<p>The following code and data examples build on <span class="citation">Walkowiak (<a href="#ref-walkowiak_2016" role="doc-biblioref">2016</a>)</span>, Chapter 3.<a href="#fn56" class="footnote-ref" id="fnref56"><sup>56</sup></a> The set up for our analysis script involves the loading of the <code>ff</code> and <code>ffbase</code> packages, the initialization of fixed variables to hold the paths to the datasets, and the creation and assignment of a new local directory <code>ff_files</code> in which the binary flat file-partitioned chunks of the original datasets will be stored.</p>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="big-data-cleaning-and-transformation.html#cb279-1" aria-hidden="true" tabindex="-1"></a><span class="do">## SET UP ------------------------</span></span>
+<span id="cb279-2"><a href="big-data-cleaning-and-transformation.html#cb279-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb279-3"><a href="big-data-cleaning-and-transformation.html#cb279-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create and set directory for ff files</span></span>
+<span id="cb279-4"><a href="big-data-cleaning-and-transformation.html#cb279-4" aria-hidden="true" tabindex="-1"></a><span class="fu">system</span>(<span class="st">&quot;mkdir ff_files&quot;</span>)</span>
+<span id="cb279-5"><a href="big-data-cleaning-and-transformation.html#cb279-5" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">fftempdir =</span> <span class="st">&quot;ff_files&quot;</span>)</span>
+<span id="cb279-6"><a href="big-data-cleaning-and-transformation.html#cb279-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb279-7"><a href="big-data-cleaning-and-transformation.html#cb279-7" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb279-8"><a href="big-data-cleaning-and-transformation.html#cb279-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ff)</span>
+<span id="cb279-9"><a href="big-data-cleaning-and-transformation.html#cb279-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ffbase)</span>
+<span id="cb279-10"><a href="big-data-cleaning-and-transformation.html#cb279-10" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pryr)</span>
+<span id="cb279-11"><a href="big-data-cleaning-and-transformation.html#cb279-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb279-12"><a href="big-data-cleaning-and-transformation.html#cb279-12" aria-hidden="true" tabindex="-1"></a><span class="co"># fix vars</span></span>
+<span id="cb279-13"><a href="big-data-cleaning-and-transformation.html#cb279-13" aria-hidden="true" tabindex="-1"></a>FLIGHTS_DATA <span class="ot">&lt;-</span> <span class="st">&quot;data/flights_sep_oct15.txt&quot;</span></span>
+<span id="cb279-14"><a href="big-data-cleaning-and-transformation.html#cb279-14" aria-hidden="true" tabindex="-1"></a>AIRLINES_DATA <span class="ot">&lt;-</span> <span class="st">&quot;data/airline_id.csv&quot;</span></span></code></pre></div>
 </div>
 <div id="data-import" class="section level3 hasAnchor" number="9.2.2">
 <h3><span class="header-section-number">9.2.2</span> Data import<a href="big-data-cleaning-and-transformation.html#data-import" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>In a first step we read (or ‘upload’) the data into R. This step involves the creation of the binary chunked files as well as the mapping of these files and the metadata. In comparison to the traditional <code>read.csv</code> approach, you will notice two things. On the one hand the data import takes longer; on the other hand it uses up much less RAM than with <code>read.csv</code>.</p>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="big-data-cleaning-and-transformation.html#cb283-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DATA IMPORT ------------------</span></span>
-<span id="cb283-2"><a href="big-data-cleaning-and-transformation.html#cb283-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb283-3"><a href="big-data-cleaning-and-transformation.html#cb283-3" aria-hidden="true" tabindex="-1"></a><span class="co"># check memory used</span></span>
-<span id="cb283-4"><a href="big-data-cleaning-and-transformation.html#cb283-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_used</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="big-data-cleaning-and-transformation.html#cb280-1" aria-hidden="true" tabindex="-1"></a><span class="co"># DATA IMPORT ------------------</span></span>
+<span id="cb280-2"><a href="big-data-cleaning-and-transformation.html#cb280-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb280-3"><a href="big-data-cleaning-and-transformation.html#cb280-3" aria-hidden="true" tabindex="-1"></a><span class="co"># check memory used</span></span>
+<span id="cb280-4"><a href="big-data-cleaning-and-transformation.html#cb280-4" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_used</span>()</span></code></pre></div>
 <pre><code>## 1.78 GB</code></pre>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="big-data-cleaning-and-transformation.html#cb285-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Upload flights_sep_oct15.txt and airline_id.csv files from flat files. </span></span>
-<span id="cb285-2"><a href="big-data-cleaning-and-transformation.html#cb285-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb285-3"><a href="big-data-cleaning-and-transformation.html#cb285-3" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(flights.ff <span class="ot">&lt;-</span> <span class="fu">read.table.ffdf</span>(<span class="at">file=</span>FLIGHTS_DATA,</span>
-<span id="cb285-4"><a href="big-data-cleaning-and-transformation.html#cb285-4" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">sep=</span><span class="st">&quot;,&quot;</span>,</span>
-<span id="cb285-5"><a href="big-data-cleaning-and-transformation.html#cb285-5" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">VERBOSE=</span><span class="cn">TRUE</span>,</span>
-<span id="cb285-6"><a href="big-data-cleaning-and-transformation.html#cb285-6" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">header=</span><span class="cn">TRUE</span>,</span>
-<span id="cb285-7"><a href="big-data-cleaning-and-transformation.html#cb285-7" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">next.rows=</span><span class="dv">100000</span>,</span>
-<span id="cb285-8"><a href="big-data-cleaning-and-transformation.html#cb285-8" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">colClasses=</span><span class="cn">NA</span>))</span></code></pre></div>
-<pre><code>## read.table.ffdf 1..100000 (100000)  csv-read=0.634sec ffdf-write=0.086sec
-## read.table.ffdf 100001..200000 (100000)  csv-read=0.63sec ffdf-write=0.067sec
-## read.table.ffdf 200001..300000 (100000)  csv-read=0.678sec ffdf-write=0.071sec
-## read.table.ffdf 300001..400000 (100000)  csv-read=0.626sec ffdf-write=0.063sec
-## read.table.ffdf 400001..500000 (100000)  csv-read=0.695sec ffdf-write=0.07sec
-## read.table.ffdf 500001..600000 (100000)  csv-read=0.774sec ffdf-write=0.061sec
-## read.table.ffdf 600001..700000 (100000)  csv-read=0.725sec ffdf-write=0.075sec
-## read.table.ffdf 700001..800000 (100000)  csv-read=0.752sec ffdf-write=0.071sec
-## read.table.ffdf 800001..900000 (100000)  csv-read=0.657sec ffdf-write=0.069sec
-## read.table.ffdf 900001..951111 (51111)  csv-read=0.345sec ffdf-write=0.049sec
-##  csv-read=6.516sec  ffdf-write=0.682sec  TOTAL=7.198sec</code></pre>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="big-data-cleaning-and-transformation.html#cb282-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. Upload flights_sep_oct15.txt and airline_id.csv files from flat files. </span></span>
+<span id="cb282-2"><a href="big-data-cleaning-and-transformation.html#cb282-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb282-3"><a href="big-data-cleaning-and-transformation.html#cb282-3" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(flights.ff <span class="ot">&lt;-</span> <span class="fu">read.table.ffdf</span>(<span class="at">file=</span>FLIGHTS_DATA,</span>
+<span id="cb282-4"><a href="big-data-cleaning-and-transformation.html#cb282-4" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">sep=</span><span class="st">&quot;,&quot;</span>,</span>
+<span id="cb282-5"><a href="big-data-cleaning-and-transformation.html#cb282-5" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">VERBOSE=</span><span class="cn">TRUE</span>,</span>
+<span id="cb282-6"><a href="big-data-cleaning-and-transformation.html#cb282-6" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">header=</span><span class="cn">TRUE</span>,</span>
+<span id="cb282-7"><a href="big-data-cleaning-and-transformation.html#cb282-7" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">next.rows=</span><span class="dv">100000</span>,</span>
+<span id="cb282-8"><a href="big-data-cleaning-and-transformation.html#cb282-8" aria-hidden="true" tabindex="-1"></a>                                          <span class="at">colClasses=</span><span class="cn">NA</span>))</span></code></pre></div>
+<pre><code>## read.table.ffdf 1..100000 (100000)  csv-read=0.578sec ffdf-write=0.098sec
+## read.table.ffdf 100001..200000 (100000)  csv-read=0.656sec ffdf-write=0.069sec
+## read.table.ffdf 200001..300000 (100000)  csv-read=0.584sec ffdf-write=0.07sec
+## read.table.ffdf 300001..400000 (100000)  csv-read=0.577sec ffdf-write=0.067sec
+## read.table.ffdf 400001..500000 (100000)  csv-read=0.6sec ffdf-write=0.091sec
+## read.table.ffdf 500001..600000 (100000)  csv-read=0.659sec ffdf-write=0.069sec
+## read.table.ffdf 600001..700000 (100000)  csv-read=0.722sec ffdf-write=0.093sec
+## read.table.ffdf 700001..800000 (100000)  csv-read=0.644sec ffdf-write=0.072sec
+## read.table.ffdf 800001..900000 (100000)  csv-read=0.575sec ffdf-write=0.069sec
+## read.table.ffdf 900001..951111 (51111)  csv-read=0.326sec ffdf-write=0.051sec
+##  csv-read=5.921sec  ffdf-write=0.749sec  TOTAL=6.67sec</code></pre>
 <pre><code>##    user  system elapsed 
-##   6.315   0.786   7.201</code></pre>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="big-data-cleaning-and-transformation.html#cb288-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(airlines.ff <span class="ot">&lt;-</span> <span class="fu">read.csv.ffdf</span>(<span class="at">file=</span> AIRLINES_DATA,</span>
-<span id="cb288-2"><a href="big-data-cleaning-and-transformation.html#cb288-2" aria-hidden="true" tabindex="-1"></a>                             <span class="at">VERBOSE=</span><span class="cn">TRUE</span>,</span>
-<span id="cb288-3"><a href="big-data-cleaning-and-transformation.html#cb288-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">header=</span><span class="cn">TRUE</span>,</span>
-<span id="cb288-4"><a href="big-data-cleaning-and-transformation.html#cb288-4" aria-hidden="true" tabindex="-1"></a>                             <span class="at">next.rows=</span><span class="dv">100000</span>,</span>
-<span id="cb288-5"><a href="big-data-cleaning-and-transformation.html#cb288-5" aria-hidden="true" tabindex="-1"></a>                             <span class="at">colClasses=</span><span class="cn">NA</span>))</span></code></pre></div>
-<pre><code>## read.table.ffdf 1..1607 (1607)  csv-read=0.006sec ffdf-write=0.004sec
-##  csv-read=0.006sec  ffdf-write=0.004sec  TOTAL=0.01sec</code></pre>
+##   5.782   0.764   6.674</code></pre>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb285-1"><a href="big-data-cleaning-and-transformation.html#cb285-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(airlines.ff <span class="ot">&lt;-</span> <span class="fu">read.csv.ffdf</span>(<span class="at">file=</span> AIRLINES_DATA,</span>
+<span id="cb285-2"><a href="big-data-cleaning-and-transformation.html#cb285-2" aria-hidden="true" tabindex="-1"></a>                             <span class="at">VERBOSE=</span><span class="cn">TRUE</span>,</span>
+<span id="cb285-3"><a href="big-data-cleaning-and-transformation.html#cb285-3" aria-hidden="true" tabindex="-1"></a>                             <span class="at">header=</span><span class="cn">TRUE</span>,</span>
+<span id="cb285-4"><a href="big-data-cleaning-and-transformation.html#cb285-4" aria-hidden="true" tabindex="-1"></a>                             <span class="at">next.rows=</span><span class="dv">100000</span>,</span>
+<span id="cb285-5"><a href="big-data-cleaning-and-transformation.html#cb285-5" aria-hidden="true" tabindex="-1"></a>                             <span class="at">colClasses=</span><span class="cn">NA</span>))</span></code></pre></div>
+<pre><code>## read.table.ffdf 1..1607 (1607)  csv-read=0.005sec ffdf-write=0.004sec
+##  csv-read=0.005sec  ffdf-write=0.004sec  TOTAL=0.009sec</code></pre>
 <pre><code>##    user  system elapsed 
-##   0.009   0.000   0.011</code></pre>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="big-data-cleaning-and-transformation.html#cb291-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check memory used</span></span>
-<span id="cb291-2"><a href="big-data-cleaning-and-transformation.html#cb291-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_used</span>()</span></code></pre></div>
+##   0.009   0.000   0.010</code></pre>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="big-data-cleaning-and-transformation.html#cb288-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check memory used</span></span>
+<span id="cb288-2"><a href="big-data-cleaning-and-transformation.html#cb288-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_used</span>()</span></code></pre></div>
 <pre><code>## 1.78 GB</code></pre>
 <p>Comparison with <code>read.table</code></p>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="big-data-cleaning-and-transformation.html#cb293-1" aria-hidden="true" tabindex="-1"></a><span class="do">##Using read.table()</span></span>
-<span id="cb293-2"><a href="big-data-cleaning-and-transformation.html#cb293-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(flights.table <span class="ot">&lt;-</span> <span class="fu">read.table</span>(FLIGHTS_DATA, </span>
-<span id="cb293-3"><a href="big-data-cleaning-and-transformation.html#cb293-3" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">sep=</span><span class="st">&quot;,&quot;</span>,</span>
-<span id="cb293-4"><a href="big-data-cleaning-and-transformation.html#cb293-4" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">header=</span><span class="cn">TRUE</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="big-data-cleaning-and-transformation.html#cb290-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Using read.table()</span></span>
+<span id="cb290-2"><a href="big-data-cleaning-and-transformation.html#cb290-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(flights.table <span class="ot">&lt;-</span> <span class="fu">read.table</span>(FLIGHTS_DATA, </span>
+<span id="cb290-3"><a href="big-data-cleaning-and-transformation.html#cb290-3" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">sep=</span><span class="st">&quot;,&quot;</span>,</span>
+<span id="cb290-4"><a href="big-data-cleaning-and-transformation.html#cb290-4" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">header=</span><span class="cn">TRUE</span>))</span></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   5.660   0.582   6.335</code></pre>
-<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="big-data-cleaning-and-transformation.html#cb295-1" aria-hidden="true" tabindex="-1"></a><span class="co">#gc()</span></span>
-<span id="cb295-2"><a href="big-data-cleaning-and-transformation.html#cb295-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb295-3"><a href="big-data-cleaning-and-transformation.html#cb295-3" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(airlines.table <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(AIRLINES_DATA,</span>
-<span id="cb295-4"><a href="big-data-cleaning-and-transformation.html#cb295-4" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">header =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+##   5.274   0.618   5.985</code></pre>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="big-data-cleaning-and-transformation.html#cb292-1" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(airlines.table <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(AIRLINES_DATA,</span>
+<span id="cb292-2"><a href="big-data-cleaning-and-transformation.html#cb292-2" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">header =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
 <pre><code>##    user  system elapsed 
-##   0.002   0.000   0.003</code></pre>
-<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="big-data-cleaning-and-transformation.html#cb297-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check memory used</span></span>
-<span id="cb297-2"><a href="big-data-cleaning-and-transformation.html#cb297-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_used</span>()</span></code></pre></div>
+##   0.001   0.001   0.002</code></pre>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="big-data-cleaning-and-transformation.html#cb294-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check the memory used</span></span>
+<span id="cb294-2"><a href="big-data-cleaning-and-transformation.html#cb294-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_used</span>()</span></code></pre></div>
 <pre><code>## 1.93 GB</code></pre>
 </div>
 <div id="inspect-imported-files" class="section level3 hasAnchor" number="9.2.3">
 <h3><span class="header-section-number">9.2.3</span> Inspect imported files<a href="big-data-cleaning-and-transformation.html#inspect-imported-files" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>A particularly useful aspect of working with the ff package and the packages building on it is that many of the simple R functions that work on normal data.frames in RAM also work on ff_files files. Hence, without actually having loaded the entire raw data of a large dataset into RAM, we can quickly get an overview of the key characteristics, such as the number of observations and the number of variables.</p>
-<div class="sourceCode" id="cb299"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb299-1"><a href="big-data-cleaning-and-transformation.html#cb299-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Inspect the ff_files objects.</span></span>
-<span id="cb299-2"><a href="big-data-cleaning-and-transformation.html#cb299-2" aria-hidden="true" tabindex="-1"></a><span class="do">## For flights.ff object:</span></span>
-<span id="cb299-3"><a href="big-data-cleaning-and-transformation.html#cb299-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(flights.ff)</span></code></pre></div>
+<p>A particularly useful aspect of working with the <code>ff</code> package and the packages building on it is that many of the simple R functions that work on normal data.frames in RAM also work on ff_files files. Hence, without actually having loaded the entire raw data of a large dataset into RAM, we can quickly get an overview of the key characteristics, such as the number of observations and the number of variables.</p>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="big-data-cleaning-and-transformation.html#cb296-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2. Inspect the ff_files objects.</span></span>
+<span id="cb296-2"><a href="big-data-cleaning-and-transformation.html#cb296-2" aria-hidden="true" tabindex="-1"></a><span class="do">## For flights.ff object:</span></span>
+<span id="cb296-3"><a href="big-data-cleaning-and-transformation.html#cb296-3" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(flights.ff)</span></code></pre></div>
 <pre><code>## [1] &quot;ffdf&quot;</code></pre>
-<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="big-data-cleaning-and-transformation.html#cb301-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(flights.ff)</span></code></pre></div>
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="big-data-cleaning-and-transformation.html#cb298-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(flights.ff)</span></code></pre></div>
 <pre><code>## [1] 951111     28</code></pre>
-<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="big-data-cleaning-and-transformation.html#cb303-1" aria-hidden="true" tabindex="-1"></a><span class="do">## For airlines.ff object:</span></span>
-<span id="cb303-2"><a href="big-data-cleaning-and-transformation.html#cb303-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(airlines.ff)</span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="big-data-cleaning-and-transformation.html#cb300-1" aria-hidden="true" tabindex="-1"></a><span class="do">## For airlines.ff object:</span></span>
+<span id="cb300-2"><a href="big-data-cleaning-and-transformation.html#cb300-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(airlines.ff)</span></code></pre></div>
 <pre><code>## [1] &quot;ffdf&quot;</code></pre>
-<div class="sourceCode" id="cb305"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb305-1"><a href="big-data-cleaning-and-transformation.html#cb305-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(airlines.ff)</span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="big-data-cleaning-and-transformation.html#cb302-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(airlines.ff)</span></code></pre></div>
 <pre><code>## [1] 1607    2</code></pre>
 </div>
 <div id="data-cleaning-and-transformation" class="section level3 hasAnchor" number="9.2.4">
 <h3><span class="header-section-number">9.2.4</span> Data cleaning and transformation<a href="big-data-cleaning-and-transformation.html#data-cleaning-and-transformation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>After inspecting the data, we go through several steps of cleaning and transformation, with the goal of then merging the two datasets. That is, we want to create a new dataset that contains detailed flight information but with additional information on the carriers/airlines. First, we want to rename some of the variables.</p>
-<div class="sourceCode" id="cb307"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb307-1"><a href="big-data-cleaning-and-transformation.html#cb307-1" aria-hidden="true" tabindex="-1"></a><span class="co"># step 1: </span></span>
-<span id="cb307-2"><a href="big-data-cleaning-and-transformation.html#cb307-2" aria-hidden="true" tabindex="-1"></a><span class="do">## Rename &quot;Code&quot; variable from airlines.ff to &quot;AIRLINE_ID&quot; and &quot;Description&quot; into &quot;AIRLINE_NM&quot;.</span></span>
-<span id="cb307-3"><a href="big-data-cleaning-and-transformation.html#cb307-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(airlines.ff) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;AIRLINE_ID&quot;</span>, <span class="st">&quot;AIRLINE_NM&quot;</span>)</span>
-<span id="cb307-4"><a href="big-data-cleaning-and-transformation.html#cb307-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(airlines.ff)</span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="big-data-cleaning-and-transformation.html#cb304-1" aria-hidden="true" tabindex="-1"></a><span class="co"># step 1: </span></span>
+<span id="cb304-2"><a href="big-data-cleaning-and-transformation.html#cb304-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename &quot;Code&quot; variable from airlines.ff </span></span>
+<span id="cb304-3"><a href="big-data-cleaning-and-transformation.html#cb304-3" aria-hidden="true" tabindex="-1"></a><span class="co"># to &quot;AIRLINE_ID&quot; and &quot;Description&quot; into &quot;AIRLINE_NM&quot;.</span></span>
+<span id="cb304-4"><a href="big-data-cleaning-and-transformation.html#cb304-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(airlines.ff) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;AIRLINE_ID&quot;</span>, <span class="st">&quot;AIRLINE_NM&quot;</span>)</span>
+<span id="cb304-5"><a href="big-data-cleaning-and-transformation.html#cb304-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(airlines.ff)</span></code></pre></div>
 <pre><code>## [1] &quot;AIRLINE_ID&quot; &quot;AIRLINE_NM&quot;</code></pre>
-<div class="sourceCode" id="cb309"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb309-1"><a href="big-data-cleaning-and-transformation.html#cb309-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(airlines.ff[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>,])</span></code></pre></div>
-<pre><code>## &#39;data.frame&#39;:    20 obs. of  2 variables:
-##  $ AIRLINE_ID: int  19031 19032 19033 19034 19035 19036 19037 19038 19039 19040 ...
-##  $ AIRLINE_NM: Factor w/ 1607 levels &quot;40-Mile Air: Q5&quot;,..: 945 1025 503 721 64 725 1194 99 1395 276 ...</code></pre>
-<p>Now we can join the two datasets via the unique airline identifier <code>"AIRLINE_ID"</code>. Note that these kinds of operations would usually take up substantially more RAM on the spot, if both original datasets were also fully loaded into RAM. As illustrated by the <code>mem_change()</code> function, this is not the case here. All that is needed is a small chunk of RAM to keep the metadata and mapping-information of the new <code>ff_files</code> object; all the actual data is cached on the hard disk.</p>
-<div class="sourceCode" id="cb311"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb311-1"><a href="big-data-cleaning-and-transformation.html#cb311-1" aria-hidden="true" tabindex="-1"></a><span class="co"># merge of ff_files objects</span></span>
-<span id="cb311-2"><a href="big-data-cleaning-and-transformation.html#cb311-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_change</span>(flights.data.ff <span class="ot">&lt;-</span> <span class="fu">merge.ffdf</span>(flights.ff, airlines.ff, <span class="at">by=</span><span class="st">&quot;AIRLINE_ID&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="big-data-cleaning-and-transformation.html#cb306-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(airlines.ff[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>,])</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;: 20 obs. of 2 variables:
+## $ AIRLINE_ID: int 19031 19032 19033 19034 19035 19036
+19037 19038 19039 19040 ...
+## $ AIRLINE_NM: Factor w/ 1607 levels &quot;40-Mile Air:
+Q5&quot;,..: 945 1025 503 721 64 725 1194 99 1395 276 ...</code></pre>
+<p>Now we can join the two datasets via the unique airline identifier <code>"AIRLINE_ID"</code>. Note that these kinds of operations would usually take up substantially more RAM on the spot, if both original datasets were also fully loaded into RAM. As illustrated by the <code>mem_change()</code> function, tfhis is not the case here. All that is needed is a small chunk of RAM to keep the metadata and mapping-information of the new <code>ff_files</code> object; all the actual data is cached on the hard disk.</p>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb308-1"><a href="big-data-cleaning-and-transformation.html#cb308-1" aria-hidden="true" tabindex="-1"></a><span class="co"># merge of ff_files objects</span></span>
+<span id="cb308-2"><a href="big-data-cleaning-and-transformation.html#cb308-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_change</span>(flights.data.ff <span class="ot">&lt;-</span> <span class="fu">merge.ffdf</span>(flights.ff,</span>
+<span id="cb308-3"><a href="big-data-cleaning-and-transformation.html#cb308-3" aria-hidden="true" tabindex="-1"></a>                                         airlines.ff,</span>
+<span id="cb308-4"><a href="big-data-cleaning-and-transformation.html#cb308-4" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">by=</span><span class="st">&quot;AIRLINE_ID&quot;</span>))</span></code></pre></div>
 <pre><code>## 774 kB</code></pre>
-<div class="sourceCode" id="cb313"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb313-1"><a href="big-data-cleaning-and-transformation.html#cb313-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The new object is only 551.2 KB in size</span></span>
-<span id="cb313-2"><a href="big-data-cleaning-and-transformation.html#cb313-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(flights.data.ff)</span></code></pre></div>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb310-1"><a href="big-data-cleaning-and-transformation.html#cb310-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The new object is only 551.2 KB in size</span></span>
+<span id="cb310-2"><a href="big-data-cleaning-and-transformation.html#cb310-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(flights.data.ff)</span></code></pre></div>
 <pre><code>## [1] &quot;ffdf&quot;</code></pre>
-<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb315-1"><a href="big-data-cleaning-and-transformation.html#cb315-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(flights.data.ff)</span></code></pre></div>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb312-1"><a href="big-data-cleaning-and-transformation.html#cb312-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(flights.data.ff)</span></code></pre></div>
 <pre><code>## [1] 951111     29</code></pre>
-<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb317-1"><a href="big-data-cleaning-and-transformation.html#cb317-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(flights.data.ff)</span></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb314-1"><a href="big-data-cleaning-and-transformation.html#cb314-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(flights.data.ff)</span></code></pre></div>
 <pre><code>##  [1] &quot;YEAR&quot;              &quot;MONTH&quot;            
 ##  [3] &quot;DAY_OF_MONTH&quot;      &quot;DAY_OF_WEEK&quot;      
 ##  [5] &quot;FL_DATE&quot;           &quot;UNIQUE_CARRIER&quot;   
@@ -739,12 +719,170 @@ div.csl-indent {
 ## [27] &quot;AIR_TIME&quot;          &quot;DISTANCE&quot;         
 ## [29] &quot;AIRLINE_NM&quot;</code></pre>
 </div>
+<div id="inspect-difference-to-in-memory-operation" class="section level3 hasAnchor" number="9.2.5">
+<h3><span class="header-section-number">9.2.5</span> Inspect difference to in-memory operation<a href="big-data-cleaning-and-transformation.html#inspect-difference-to-in-memory-operation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In comparison to the <code>ff</code>-approach, performing the merge in memory needs more resources:</p>
+<div class="sourceCode" id="cb316"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb316-1"><a href="big-data-cleaning-and-transformation.html#cb316-1" aria-hidden="true" tabindex="-1"></a><span class="do">##For flights.table:</span></span>
+<span id="cb316-2"><a href="big-data-cleaning-and-transformation.html#cb316-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(airlines.table) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;AIRLINE_ID&quot;</span>, <span class="st">&quot;AIRLINE_NM&quot;</span>)</span>
+<span id="cb316-3"><a href="big-data-cleaning-and-transformation.html#cb316-3" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(airlines.table)</span></code></pre></div>
+<pre><code>## [1] &quot;AIRLINE_ID&quot; &quot;AIRLINE_NM&quot;</code></pre>
+<div class="sourceCode" id="cb318"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb318-1"><a href="big-data-cleaning-and-transformation.html#cb318-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(airlines.table[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>,])</span></code></pre></div>
+<pre><code>## &#39;data.frame&#39;: 20 obs. of 2 variables:
+## $ AIRLINE_ID: int 19031 19032 19033 19034 19035 19036
+19037 19038 19039 19040 ...
+## $ AIRLINE_NM: chr &quot;Mackey International Inc.: MAC&quot; &quot;Munz
+Northern Airlines Inc.: XY&quot; &quot;Cochise Airlines Inc.: COC&quot;
+&quot;Golden Gate Airlines Inc.: GSA&quot; ...</code></pre>
+<div class="sourceCode" id="cb320"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb320-1"><a href="big-data-cleaning-and-transformation.html#cb320-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check memory usage of merge in RAM </span></span>
+<span id="cb320-2"><a href="big-data-cleaning-and-transformation.html#cb320-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_change</span>(flights.data.table <span class="ot">&lt;-</span> <span class="fu">merge</span>(flights.table,</span>
+<span id="cb320-3"><a href="big-data-cleaning-and-transformation.html#cb320-3" aria-hidden="true" tabindex="-1"></a>                                       airlines.table,</span>
+<span id="cb320-4"><a href="big-data-cleaning-and-transformation.html#cb320-4" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">by=</span><span class="st">&quot;AIRLINE_ID&quot;</span>))</span></code></pre></div>
+<pre><code>## 161 MB</code></pre>
+<div class="sourceCode" id="cb322"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb322-1"><a href="big-data-cleaning-and-transformation.html#cb322-1" aria-hidden="true" tabindex="-1"></a><span class="co">#The new object is already 105.7 MB in size</span></span>
+<span id="cb322-2"><a href="big-data-cleaning-and-transformation.html#cb322-2" aria-hidden="true" tabindex="-1"></a><span class="co">#A rapid spike in RAM use when processing</span></span></code></pre></div>
+</div>
+<div id="subsetting" class="section level3 hasAnchor" number="9.2.6">
+<h3><span class="header-section-number">9.2.6</span> Subsetting<a href="big-data-cleaning-and-transformation.html#subsetting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Now, we want to filter out some observations as well as select only specific variables for a subset of the overall dataset.</p>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb323-1"><a href="big-data-cleaning-and-transformation.html#cb323-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_used</span>()</span></code></pre></div>
+<pre><code>## 2.09 GB</code></pre>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb325-1"><a href="big-data-cleaning-and-transformation.html#cb325-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset the ff_files object flights.data.ff:</span></span>
+<span id="cb325-2"><a href="big-data-cleaning-and-transformation.html#cb325-2" aria-hidden="true" tabindex="-1"></a>subs1.ff <span class="ot">&lt;-</span> <span class="fu">subset.ffdf</span>(flights.data.ff, CANCELLED <span class="sc">==</span> <span class="dv">1</span>, </span>
+<span id="cb325-3"><a href="big-data-cleaning-and-transformation.html#cb325-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">select =</span> <span class="fu">c</span>(FL_DATE, AIRLINE_ID, </span>
+<span id="cb325-4"><a href="big-data-cleaning-and-transformation.html#cb325-4" aria-hidden="true" tabindex="-1"></a>                                   ORIGIN_CITY_NAME,</span>
+<span id="cb325-5"><a href="big-data-cleaning-and-transformation.html#cb325-5" aria-hidden="true" tabindex="-1"></a>                                   ORIGIN_STATE_NM,</span>
+<span id="cb325-6"><a href="big-data-cleaning-and-transformation.html#cb325-6" aria-hidden="true" tabindex="-1"></a>                                   DEST_CITY_NAME,</span>
+<span id="cb325-7"><a href="big-data-cleaning-and-transformation.html#cb325-7" aria-hidden="true" tabindex="-1"></a>                                   DEST_STATE_NM,</span>
+<span id="cb325-8"><a href="big-data-cleaning-and-transformation.html#cb325-8" aria-hidden="true" tabindex="-1"></a>                                   CANCELLATION_CODE))</span>
+<span id="cb325-9"><a href="big-data-cleaning-and-transformation.html#cb325-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb325-10"><a href="big-data-cleaning-and-transformation.html#cb325-10" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(subs1.ff)</span></code></pre></div>
+<pre><code>## [1] 4529    7</code></pre>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb327-1"><a href="big-data-cleaning-and-transformation.html#cb327-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_used</span>()</span></code></pre></div>
+<pre><code>## 2.09 GB</code></pre>
+</div>
+<div id="saveloadexport-ff-files" class="section level3 hasAnchor" number="9.2.7">
+<h3><span class="header-section-number">9.2.7</span> Save/load/export <code>ff</code> files<a href="big-data-cleaning-and-transformation.html#saveloadexport-ff-files" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In order to better organize and easily reload the newly created <code>ff_files</code> files, we can explicitly save them to disk.</p>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb329-1"><a href="big-data-cleaning-and-transformation.html#cb329-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save a newly created ff_files object to a data file:</span></span>
+<span id="cb329-2"><a href="big-data-cleaning-and-transformation.html#cb329-2" aria-hidden="true" tabindex="-1"></a><span class="co"># (7 files (one for each column) created in the ffdb directory)</span></span>
+<span id="cb329-3"><a href="big-data-cleaning-and-transformation.html#cb329-3" aria-hidden="true" tabindex="-1"></a><span class="fu">save.ffdf</span>(subs1.ff, <span class="at">overwrite =</span> <span class="cn">TRUE</span>) </span></code></pre></div>
+<p>If we want to reload a previously saved <code>ff_files</code> object, we do not have to go through the chunking of the raw data file again but can very quickly load the data mapping and metadata into RAM in order to further work with the data (stored on disk).</p>
+<div class="sourceCode" id="cb330"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb330-1"><a href="big-data-cleaning-and-transformation.html#cb330-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Loading previously saved ff_files files:</span></span>
+<span id="cb330-2"><a href="big-data-cleaning-and-transformation.html#cb330-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(subs1.ff)</span>
+<span id="cb330-3"><a href="big-data-cleaning-and-transformation.html#cb330-3" aria-hidden="true" tabindex="-1"></a><span class="co">#gc()</span></span>
+<span id="cb330-4"><a href="big-data-cleaning-and-transformation.html#cb330-4" aria-hidden="true" tabindex="-1"></a><span class="fu">load.ffdf</span>(<span class="st">&quot;ffdb&quot;</span>)</span>
+<span id="cb330-5"><a href="big-data-cleaning-and-transformation.html#cb330-5" aria-hidden="true" tabindex="-1"></a><span class="co"># check the class and structure of the loaded data</span></span>
+<span id="cb330-6"><a href="big-data-cleaning-and-transformation.html#cb330-6" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(subs1.ff) </span></code></pre></div>
+<pre><code>## [1] &quot;ffdf&quot;</code></pre>
+<div class="sourceCode" id="cb332"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb332-1"><a href="big-data-cleaning-and-transformation.html#cb332-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(subs1.ff)</span></code></pre></div>
+<pre><code>## [1] 4529    7</code></pre>
+<div class="sourceCode" id="cb334"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb334-1"><a href="big-data-cleaning-and-transformation.html#cb334-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dimnames</span>(subs1.ff)</span></code></pre></div>
+<pre><code>## [[1]]
+## NULL
+## 
+## [[2]]
+## [1] &quot;FL_DATE&quot;           &quot;AIRLINE_ID&quot;       
+## [3] &quot;ORIGIN_CITY_NAME&quot;  &quot;ORIGIN_STATE_NM&quot;  
+## [5] &quot;DEST_CITY_NAME&quot;    &quot;DEST_STATE_NM&quot;    
+## [7] &quot;CANCELLATION_CODE&quot;</code></pre>
+<p>If we want to store an <code>ff_files</code> dataset in a format more accessible for other users (such as CSV), we can do so as follows. This last step is also quite common in practice. The initial raw dataset is very large; thus we perform all the theoretically very memory-intensive tasks of preparing the analytic dataset via <code>ff</code> and then store the (often much smaller) analytic dataset in a more accessible CSV file in order to later read it into RAM and run more computationally intensive analyses directly in RAM.</p>
+<div class="sourceCode" id="cb336"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb336-1"><a href="big-data-cleaning-and-transformation.html#cb336-1" aria-hidden="true" tabindex="-1"></a><span class="co">#  Export subs1.ff into CSV and TXT files:</span></span>
+<span id="cb336-2"><a href="big-data-cleaning-and-transformation.html#cb336-2" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv.ffdf</span>(subs1.ff, <span class="st">&quot;subset1.csv&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="big-data-preparation-tutorial-with-arrow" class="section level2 hasAnchor" number="9.3">
+<h2><span class="header-section-number">9.3</span> Big Data preparation tutorial with <code>arrow</code><a href="big-data-cleaning-and-transformation.html#big-data-preparation-tutorial-with-arrow" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p></p>
+<p>We begin by initializing our R session as in the short <code>arrow</code> introduction above.</p>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb337-1"><a href="big-data-cleaning-and-transformation.html#cb337-1" aria-hidden="true" tabindex="-1"></a><span class="co"># SET UP ----------------</span></span>
+<span id="cb337-2"><a href="big-data-cleaning-and-transformation.html#cb337-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb337-3"><a href="big-data-cleaning-and-transformation.html#cb337-3" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb337-4"><a href="big-data-cleaning-and-transformation.html#cb337-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arrow)</span>
+<span id="cb337-5"><a href="big-data-cleaning-and-transformation.html#cb337-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb337-6"><a href="big-data-cleaning-and-transformation.html#cb337-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pryr) <span class="co"># for profiling</span></span>
+<span id="cb337-7"><a href="big-data-cleaning-and-transformation.html#cb337-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb337-8"><a href="big-data-cleaning-and-transformation.html#cb337-8" aria-hidden="true" tabindex="-1"></a><span class="co"># fix vars</span></span>
+<span id="cb337-9"><a href="big-data-cleaning-and-transformation.html#cb337-9" aria-hidden="true" tabindex="-1"></a>FLIGHTS_DATA <span class="ot">&lt;-</span> <span class="st">&quot;data/flights_sep_oct15.txt&quot;</span></span>
+<span id="cb337-10"><a href="big-data-cleaning-and-transformation.html#cb337-10" aria-hidden="true" tabindex="-1"></a>AIRLINES_DATA <span class="ot">&lt;-</span> <span class="st">&quot;data/airline_id.csv&quot;</span></span>
+<span id="cb337-11"><a href="big-data-cleaning-and-transformation.html#cb337-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb337-12"><a href="big-data-cleaning-and-transformation.html#cb337-12" aria-hidden="true" tabindex="-1"></a><span class="co"># import the data</span></span>
+<span id="cb337-13"><a href="big-data-cleaning-and-transformation.html#cb337-13" aria-hidden="true" tabindex="-1"></a>flights <span class="ot">&lt;-</span> <span class="fu">read_csv_arrow</span>(FLIGHTS_DATA,</span>
+<span id="cb337-14"><a href="big-data-cleaning-and-transformation.html#cb337-14" aria-hidden="true" tabindex="-1"></a>                     <span class="at">as_data_frame =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb337-15"><a href="big-data-cleaning-and-transformation.html#cb337-15" aria-hidden="true" tabindex="-1"></a>airlines <span class="ot">&lt;-</span> <span class="fu">read_csv_arrow</span>(AIRLINES_DATA,</span>
+<span id="cb337-16"><a href="big-data-cleaning-and-transformation.html#cb337-16" aria-hidden="true" tabindex="-1"></a>                     <span class="at">as_data_frame =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p>Note how the data from the CSV files is not actually read into RAM yet. The created objects <code>flights</code> and <code>airlines</code> are not data frames (yet) and occupy hardly any RAM.</p>
+<div class="sourceCode" id="cb338"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb338-1"><a href="big-data-cleaning-and-transformation.html#cb338-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(flights)</span></code></pre></div>
+<pre><code>## [1] &quot;Table&quot;        &quot;ArrowTabular&quot; &quot;ArrowObject&quot; 
+## [4] &quot;R6&quot;</code></pre>
+<div class="sourceCode" id="cb340"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb340-1"><a href="big-data-cleaning-and-transformation.html#cb340-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(airlines)</span></code></pre></div>
+<pre><code>## [1] &quot;Table&quot;        &quot;ArrowTabular&quot; &quot;ArrowObject&quot; 
+## [4] &quot;R6&quot;</code></pre>
+<div class="sourceCode" id="cb342"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb342-1"><a href="big-data-cleaning-and-transformation.html#cb342-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object_size</span>(flights)</span></code></pre></div>
+<pre><code>## 283.62 kB</code></pre>
+<div class="sourceCode" id="cb344"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb344-1"><a href="big-data-cleaning-and-transformation.html#cb344-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object_size</span>(airlines)</span></code></pre></div>
+<pre><code>## 283.62 kB</code></pre>
+<p>In analogy to the <code>ff</code> tutorial above, we go through the same data preparation steps. First, we rename the variables in <code>airlines</code> to ensure that the variable names are consistent with the <code>flights</code> data frame.</p>
+<div class="sourceCode" id="cb346"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb346-1"><a href="big-data-cleaning-and-transformation.html#cb346-1" aria-hidden="true" tabindex="-1"></a><span class="co"># step 1: </span></span>
+<span id="cb346-2"><a href="big-data-cleaning-and-transformation.html#cb346-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Rename &quot;Code&quot; variable from airlines.ff to &quot;AIRLINE_ID&quot;</span></span>
+<span id="cb346-3"><a href="big-data-cleaning-and-transformation.html#cb346-3" aria-hidden="true" tabindex="-1"></a><span class="co"># and &quot;Description&quot; into &quot;AIRLINE_NM&quot;.</span></span>
+<span id="cb346-4"><a href="big-data-cleaning-and-transformation.html#cb346-4" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(airlines) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;AIRLINE_ID&quot;</span>, <span class="st">&quot;AIRLINE_NM&quot;</span>)</span>
+<span id="cb346-5"><a href="big-data-cleaning-and-transformation.html#cb346-5" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(airlines)</span></code></pre></div>
+<pre><code>## [1] &quot;AIRLINE_ID&quot; &quot;AIRLINE_NM&quot;</code></pre>
+<p>In a second step, the two data frames are merged/joined. The <code>arrow</code> package follows <code>dplyr</code>-syntax regarding data preparation tasks. That is, we can directly build on functions like</p>
+<div class="sourceCode" id="cb348"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb348-1"><a href="big-data-cleaning-and-transformation.html#cb348-1" aria-hidden="true" tabindex="-1"></a><span class="co"># merge the two datasets via Arrow</span></span>
+<span id="cb348-2"><a href="big-data-cleaning-and-transformation.html#cb348-2" aria-hidden="true" tabindex="-1"></a>flights.data.ar <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(airlines, flights, <span class="at">by=</span><span class="st">&quot;AIRLINE_ID&quot;</span>)</span>
+<span id="cb348-3"><a href="big-data-cleaning-and-transformation.html#cb348-3" aria-hidden="true" tabindex="-1"></a><span class="fu">object_size</span>(flights.data.ar)</span></code></pre></div>
+<pre><code>## 647.74 kB</code></pre>
+<p>In a last step, we filter the resulting dataset for cancelled flights and select only some of the available variables.</p>
+<p>Now, we want to filter out some observations as well as select only specific variables for a subset of the overall dataset. As Arrow works with the <code>dplyr</code> backend, we can directly use the typical <code>dplyr</code>-syntax to combine selection of columns and filtering of rows.</p>
+<div class="sourceCode" id="cb350"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb350-1"><a href="big-data-cleaning-and-transformation.html#cb350-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Subset the ff_files object flights.data.ff:</span></span>
+<span id="cb350-2"><a href="big-data-cleaning-and-transformation.html#cb350-2" aria-hidden="true" tabindex="-1"></a>subs1.ar <span class="ot">&lt;-</span> </span>
+<span id="cb350-3"><a href="big-data-cleaning-and-transformation.html#cb350-3" aria-hidden="true" tabindex="-1"></a>        flights.data.ar <span class="sc">%&gt;%</span></span>
+<span id="cb350-4"><a href="big-data-cleaning-and-transformation.html#cb350-4" aria-hidden="true" tabindex="-1"></a>        <span class="fu">filter</span>(CANCELLED <span class="sc">==</span> <span class="dv">1</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb350-5"><a href="big-data-cleaning-and-transformation.html#cb350-5" aria-hidden="true" tabindex="-1"></a>        <span class="fu">select</span>(FL_DATE,</span>
+<span id="cb350-6"><a href="big-data-cleaning-and-transformation.html#cb350-6" aria-hidden="true" tabindex="-1"></a>               AIRLINE_ID,</span>
+<span id="cb350-7"><a href="big-data-cleaning-and-transformation.html#cb350-7" aria-hidden="true" tabindex="-1"></a>               ORIGIN_CITY_NAME,</span>
+<span id="cb350-8"><a href="big-data-cleaning-and-transformation.html#cb350-8" aria-hidden="true" tabindex="-1"></a>               ORIGIN_STATE_NM,</span>
+<span id="cb350-9"><a href="big-data-cleaning-and-transformation.html#cb350-9" aria-hidden="true" tabindex="-1"></a>               DEST_CITY_NAME,</span>
+<span id="cb350-10"><a href="big-data-cleaning-and-transformation.html#cb350-10" aria-hidden="true" tabindex="-1"></a>               DEST_STATE_NM,</span>
+<span id="cb350-11"><a href="big-data-cleaning-and-transformation.html#cb350-11" aria-hidden="true" tabindex="-1"></a>               CANCELLATION_CODE)</span>
+<span id="cb350-12"><a href="big-data-cleaning-and-transformation.html#cb350-12" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb350-13"><a href="big-data-cleaning-and-transformation.html#cb350-13" aria-hidden="true" tabindex="-1"></a><span class="fu">object_size</span>(subs1.ar)</span></code></pre></div>
+<pre><code>## 591.21 kB</code></pre>
+<p>Again, this operation hardly affected RAM usage by R. Note, though, that in contrast to the <code>ff</code>-approach, arrow has actually not yet created the new subset <code>sub1.ar</code>. In fact, it has not even really imported the data or merged the two datasets. This is the effect of the lazy evaluation approach implemented in <code>arrow</code>. To further process the data in <code>sub1.ar</code> with other functions (outside of <code>arrow</code>), we need to actually trigger the evaluation of all the data preparation steps we have just instructed R to do. This is done via <code>collect()</code>.</p>
+<div class="sourceCode" id="cb352"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb352-1"><a href="big-data-cleaning-and-transformation.html#cb352-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_change</span>(subs1.ar.df <span class="ot">&lt;-</span> <span class="fu">collect</span>(subs1.ar))</span></code></pre></div>
+<pre><code>## 2.47 MB</code></pre>
+<div class="sourceCode" id="cb354"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb354-1"><a href="big-data-cleaning-and-transformation.html#cb354-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(subs1.ar.df)</span></code></pre></div>
+<pre><code>## [1] &quot;tbl_df&quot;     &quot;tbl&quot;        &quot;data.frame&quot;</code></pre>
+<div class="sourceCode" id="cb356"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb356-1"><a href="big-data-cleaning-and-transformation.html#cb356-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object_size</span>(subs1.ar.df)</span></code></pre></div>
+<pre><code>## 57.15 kB</code></pre>
+<p>Note how in this tutorial, the final subset is substantially smaller than the initial two datasets. Hence, in this case it is fine to actually load this into RAM as a data frame. However, this is not a necessary part of the workflow. Instead of calling <code>collect()</code>, you can then trigger the computation of all the data preparation steps via <code>compute()</code> and, for example, store the resulting <code>arrow</code> table to a CSV file.</p>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="big-data-cleaning-and-transformation.html#cb358-1" aria-hidden="true" tabindex="-1"></a>subs1.ar <span class="sc">%&gt;%</span> </span>
+<span id="cb358-2"><a href="big-data-cleaning-and-transformation.html#cb358-2" aria-hidden="true" tabindex="-1"></a>        <span class="fu">compute</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb358-3"><a href="big-data-cleaning-and-transformation.html#cb358-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">write_csv_arrow</span>(<span class="at">file=</span><span class="st">&quot;data/subs1.ar.csv&quot;</span>)</span></code></pre></div>
+</div>
+<div id="wrapping-up-5" class="section level2 hasAnchor" number="9.4">
+<h2><span class="header-section-number">9.4</span> Wrapping up<a href="big-data-cleaning-and-transformation.html#wrapping-up-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Typically, the raw/uncleaned data is the critical bottleneck in terms of data volume. Particularly as the selection and filtering of the overall dataset in the preparation of analytic datasets can only work properly with cleaned data.</li>
+<li><em>Out-of-memory</em> strategies are based on the concept of virtual memory and are key to cleaning large amounts of data locally.</li>
+<li>The <em><code>ff</code> package</em> provides a high-level R interface to an out-of-memory approach. Most functions in <code>ff</code> and the corresponding <code>ffbase</code> package come with a syntax very similar to the basic R syntax for data cleaning and manipulation.</li>
+<li>The basic idea behind <code>ff</code> is to store the data in chunked format in an easily-accessible way on the hard disk and only keep the metadata of a dataset (e.g., variable names) in an R object in RAM while working on the dataset.</li>
+<li>The <code>arrow</code> package offers similar functionality based on a slightly different approach called <em>lazy evaluation</em> (only evaluate data manipulation/cleaning tasks once the data is pulled into R). Unlike <code>ff</code>, <code>arrow</code> closely follows the <code>dplyr</code>-syntax rather than basic R syntax for data cleaning tasks.</li>
+</ul>
+
 </div>
 </div>
 <h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-kane_etal2013" class="csl-entry">
-Kane, Michael, John W. Emerson, and Stephen Weston. 2013. <span>“Scalable Strategies for Computing with Massive Data.”</span> <em>Journal of Statistical Software</em> 55 (14): 1–19. <a href="https://doi.org/10.18637/jss.v055.i14">https://doi.org/10.18637/jss.v055.i14</a>.
+<div id="ref-ff" class="csl-entry">
+Adler, Daniel, Christian Gläser, Oleg Nenadic, Jens Oehlschlägel, Martijn Schuemie, and Walter Zucchini. 2022. <em>Ff: Memory-Efficient Storage of Large Data on Disk and Fast Access Functions</em>. <a href="https://CRAN.R-project.org/package=ff">https://CRAN.R-project.org/package=ff</a>.
+</div>
+<div id="ref-ffbase" class="csl-entry">
+de Jonge, Edwin, Jan Wijffels, and Jan van der Laan. 2023. <em>Ffbase: Basic Statistical Functions for Package ’Ff’</em>. <a href="https://github.com/edwindj/ffbase">https://github.com/edwindj/ffbase</a>.
+</div>
+<div id="ref-bigmemory" class="csl-entry">
+Kane, Michael J., John Emerson, and Stephen Weston. 2013. <span>“Scalable Strategies for Computing with Massive Data.”</span> <em>Journal of Statistical Software</em> 55 (14): 1–19. <a href="https://www.jstatsoft.org/article/view/v055i14">https://www.jstatsoft.org/article/view/v055i14</a>.
 </div>
 <div id="ref-richardson_etal2022" class="csl-entry">
 Richardson, Neal, Ian Cook, Nic Crane, Dewey Dunnington, Romain François, Jonathan Keane, Dragoș Moldovan-Grünfeld, Jeroen Ooms, and Apache Arrow. 2022. <em>Arrow: Integration to ’Apache’ ’Arrow’</em>.
@@ -755,9 +893,10 @@ Walkowiak, Simkon. 2016. <em>Big Data Analytics with r</em>. Birmingham, UK: PAC
 </div>
 <div class="footnotes">
 <hr />
-<ol start="45">
-<li id="fn45"><p>Data from the same source is also used in the code examples given in <span class="citation">Kane, Emerson, and Weston (<a href="#ref-kane_etal2013" role="doc-biblioref">2013</a>)</span>.<a href="big-data-cleaning-and-transformation.html#fnref45" class="footnote-back">↩︎</a></p></li>
-<li id="fn46"><p>The full raw data used there can be downloaded <a href="http://stat-computing.org/dataexpo/2009/the-data.html">here</a>.<a href="big-data-cleaning-and-transformation.html#fnref46" class="footnote-back">↩︎</a></p></li>
+<ol start="54">
+<li id="fn54"><p>Data from the same source is also used in the code examples given in <span class="citation">Kane, Emerson, and Weston (<a href="#ref-bigmemory" role="doc-biblioref">2013</a>)</span>.<a href="big-data-cleaning-and-transformation.html#fnref54" class="footnote-back">↩︎</a></p></li>
+<li id="fn55"><p>The full raw data used there can be downloaded <a href="http://stat-computing.org/dataexpo/2009/the-data.html">here</a>.<a href="big-data-cleaning-and-transformation.html#fnref55" class="footnote-back">↩︎</a></p></li>
+<li id="fn56"><p>You can download the original datasets used in these examples from <a href="https://github.com/PacktPublishing/Big-Data-Analytics-with-R/tree/master/Chapter%203" class="uri">https://github.com/PacktPublishing/Big-Data-Analytics-with-R/tree/master/Chapter%203</a>.<a href="big-data-cleaning-and-transformation.html#fnref56" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -766,7 +905,7 @@ Walkowiak, Simkon. 2016. <em>Big Data Analytics with r</em>. Birmingham, UK: PAC
         </div>
       </div>
 <a href="data-collection-and-data-storage.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="inspect-difference-to-in-memory-operation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="descriptive-statistics-and-aggregation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>

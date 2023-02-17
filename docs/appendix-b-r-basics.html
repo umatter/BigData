@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Introduction | Big Data Analytics</title>
+  <title>Appendix B: R Basics | Big Data Analytics</title>
   <meta name="description" content="A guide to data science practitioners making the transition to Big Data." />
   <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Introduction | Big Data Analytics" />
+  <meta property="og:title" content="Appendix B: R Basics | Big Data Analytics" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://umatter.github.io/BigData/img/cover.jpg" />
   <meta property="og:description" content="A guide to data science practitioners making the transition to Big Data." />
   <meta name="github-repo" content="umatter/BigData" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Introduction | Big Data Analytics" />
+  <meta name="twitter:title" content="Appendix B: R Basics | Big Data Analytics" />
   
   <meta name="twitter:description" content="A guide to data science practitioners making the transition to Big Data." />
   <meta name="twitter:image" content="https://umatter.github.io/BigData/img/cover.jpg" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="big-data-visualization.html"/>
-<link rel="next" href="bottlenecks-in-everyday-data-analytics-tasks.html"/>
+<link rel="prev" href="appendix-a-github.html"/>
+<link rel="next" href="appendix-c-install-hadoop.html"/>
 <script src="libs/jquery/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
@@ -452,27 +452,226 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="a" class="section level1 unnumbered hasAnchor">
-<h1>Introduction<a href="a.html#a" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<blockquote>
-<p>“There has also been an intellectual convergence across fields—machine learning and computer science, modern computational and Bayesian statistics, and data-driven social sciences and economics—that has raised the breadth and quality of applied analysis elsewhere. The machine learners have taught us how to automate and scale, the economists bring tools for causal and structural modeling, and the statisticians make sure that everyone remembers to keep track of uncertainty.”<span class="citation">(<a href="#ref-taddy2020business" role="doc-biblioref">Taddy 2019, ix</a>)</span></p>
-</blockquote>
-<p>Far from being a comprehensive overview of Big Data Analytics applications in applied econometrics, the goal of this part of the book is to connect the conceptual and practical material covered thus far with analytics settings and point you to potentially interesting approaches and tools that may be useful in your specific field of applying Big Data Analytics. While all of the examples, case studies, and tutorials presented in this part are in the context of economic research or business analytics, the approaches and tools discussed are often easily transferable to other domains of applying Big Data Analytics.</p>
-<p>First, Chapter 12 presents a few brief case studies pointing to a small exemplary selection of common bottlenecks in everyday data analytics tasks, such as the estimation of fixed effects models. The purpose of this chapter is to review some of the key concepts discussed in the previous two parts, whereby each of the case studies refers to some of the previously discussed perspectives on/approaches to big data: realizing why an analytics task is a burden for the available resources and considering an alternative statistical procedure, writing efficient R code for simple computations, and scaling up the computing resources. You can easily skip this chapter if you are already well familiar with the topics covered in the previous parts. Chapters 13–15 cover specific topic domains in the realm of applied Big Data Analytics that are common in modern econometrics: training machine learning models in predictive econometrics using GPUs (Chapter 13), estimating linear and generalized linear models (e.g., classification models) with large scale datasets (Chapter 14), and performing large-scale text analysis (Chapter 15).</p>
+<div id="appendix-b-r-basics" class="section level1 unnumbered hasAnchor">
+<h1>Appendix B: R Basics<a href="appendix-b-r-basics.html#appendix-b-r-basics" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>This appendix provides an overview of various key R properties, including data types and data structures.</p>
+<div id="data-types-and-memorystorage" class="section level2 unnumbered hasAnchor">
+<h2>Data types and memory/storage<a href="appendix-b-r-basics.html#data-types-and-memorystorage" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Data loaded into RAM can be interpreted differently by R depending on the data <em>type</em>. Some operators or functions in R only accept data of a specific type as arguments. For example, we can store the numeric values <code>1.5</code> and <code>3</code> in the variables <code>a</code> and <code>b</code>, respectively.</p>
+<div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb619-1"><a href="appendix-b-r-basics.html#cb619-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fl">1.5</span></span>
+<span id="cb619-2"><a href="appendix-b-r-basics.html#cb619-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb619-3"><a href="appendix-b-r-basics.html#cb619-3" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> b</span></code></pre></div>
+<pre><code>## [1] 4.5</code></pre>
+<p>R interprets this data as type <code>double</code> (class ‘numeric’):</p>
+<div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb621-1"><a href="appendix-b-r-basics.html#cb621-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(a)</span></code></pre></div>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb623-1"><a href="appendix-b-r-basics.html#cb623-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(a)</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb625-1"><a href="appendix-b-r-basics.html#cb625-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(a)</span></code></pre></div>
+<pre><code>## 56 bytes</code></pre>
+<p>If, however, we define <code>a</code> and <code>b</code> as follows, R will interpret the values stored in <code>a</code> and <code>b</code> as text (<code>character</code>).</p>
+<div class="sourceCode" id="cb627"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb627-1"><a href="appendix-b-r-basics.html#cb627-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="st">&quot;1.5&quot;</span></span>
+<span id="cb627-2"><a href="appendix-b-r-basics.html#cb627-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="st">&quot;3&quot;</span></span>
+<span id="cb627-3"><a href="appendix-b-r-basics.html#cb627-3" aria-hidden="true" tabindex="-1"></a>a <span class="sc">+</span> b</span></code></pre></div>
+<div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb628-1"><a href="appendix-b-r-basics.html#cb628-1" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(a)</span></code></pre></div>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb630-1"><a href="appendix-b-r-basics.html#cb630-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(a)</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb632-1"><a href="appendix-b-r-basics.html#cb632-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(a)</span></code></pre></div>
+<pre><code>## 56 bytes</code></pre>
+<p>Note that the symbols <code>1.5</code> take up more or less memory depending on the data-type they are stored in. This directly links to how data/information is stored/represented in binary code, which in turn is reflected in how much memory is used to store these symbols in an object as well as what we can do with it.</p>
+<div id="example-data-types-and-information-storage" class="section level3 unnumbered hasAnchor">
+<h3>Example: Data types and information storage<a href="appendix-b-r-basics.html#example-data-types-and-information-storage" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Given the fact that computers only understand <code>0</code>s and <code>1</code>s, different approaches are taken to map these digital values to other symbols or images (text, decimal numbers, pictures, etc.) that we humans can more easily make sense of. Regarding text and numbers, these mappings involve <em>character encodings</em> (in which combinations of <code>0</code>s and <code>1</code>s represent a character in a specific alphabet) and <em>data types</em>.</p>
+<p>Let’s illustrate the main concepts with the simple numerical example from above. When we see the decimal number <code>139</code> written somewhere, we know that it means ‘one-hundred-and-thirty-nine’. The fact that our computer is able to print <code>139</code> on the screen means that our computer can somehow map a sequence of <code>0</code>s and <code>1</code>s to the symbols <code>1</code>, <code>3</code>, and <code>9</code>. Depending on what we want to do with the data value <code>139</code> on our computer, there are different ways of how the computer can represent this value internally. Inter alia, we could load it into RAM as a <em>string</em> (‘text’/‘character’) or as an <em>integer</em> (‘natural number’) or <em>double</em> (numeric, floating point number). All of them can be printed on screen but only the latter two can be used for arithmetic computations. This concept can easily be illustrated in R.</p>
+<p>We initiate a new variable with the value <code>139</code>. By using this syntax, R by default initiates the variable as an object of type <code>double</code>. We then can use this variable in arithmetic operations.</p>
+<div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb634-1"><a href="appendix-b-r-basics.html#cb634-1" aria-hidden="true" tabindex="-1"></a>my_number <span class="ot">&lt;-</span> <span class="dv">139</span></span>
+<span id="cb634-2"><a href="appendix-b-r-basics.html#cb634-2" aria-hidden="true" tabindex="-1"></a><span class="co"># check the class</span></span>
+<span id="cb634-3"><a href="appendix-b-r-basics.html#cb634-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(my_number)</span></code></pre></div>
+<pre><code>## [1] &quot;double&quot;</code></pre>
+<div class="sourceCode" id="cb636"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb636-1"><a href="appendix-b-r-basics.html#cb636-1" aria-hidden="true" tabindex="-1"></a><span class="co"># arithmetic</span></span>
+<span id="cb636-2"><a href="appendix-b-r-basics.html#cb636-2" aria-hidden="true" tabindex="-1"></a>my_number<span class="sc">*</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 278</code></pre>
+<p>When we change the <em>data type</em> to ‘character’ (string) such operations are not possible.</p>
+<div class="sourceCode" id="cb638"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb638-1"><a href="appendix-b-r-basics.html#cb638-1" aria-hidden="true" tabindex="-1"></a><span class="co"># change and check type/class</span></span>
+<span id="cb638-2"><a href="appendix-b-r-basics.html#cb638-2" aria-hidden="true" tabindex="-1"></a>my_number_string <span class="ot">&lt;-</span> <span class="fu">as.character</span>(my_number)</span>
+<span id="cb638-3"><a href="appendix-b-r-basics.html#cb638-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(my_number_string)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb640"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb640-1"><a href="appendix-b-r-basics.html#cb640-1" aria-hidden="true" tabindex="-1"></a><span class="co"># try to multiply</span></span>
+<span id="cb640-2"><a href="appendix-b-r-basics.html#cb640-2" aria-hidden="true" tabindex="-1"></a>my_number_string<span class="sc">*</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## Error in my_number_string * 2: non-numeric argument to binary operator</code></pre>
+<p>If we change the variable to type <code>integer</code>, we can still use math operators.</p>
+<div class="sourceCode" id="cb642"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb642-1"><a href="appendix-b-r-basics.html#cb642-1" aria-hidden="true" tabindex="-1"></a><span class="co"># change and check type/class</span></span>
+<span id="cb642-2"><a href="appendix-b-r-basics.html#cb642-2" aria-hidden="true" tabindex="-1"></a>my_number_int <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(my_number)</span>
+<span id="cb642-3"><a href="appendix-b-r-basics.html#cb642-3" aria-hidden="true" tabindex="-1"></a><span class="fu">typeof</span>(my_number_int)</span></code></pre></div>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<div class="sourceCode" id="cb644"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb644-1"><a href="appendix-b-r-basics.html#cb644-1" aria-hidden="true" tabindex="-1"></a><span class="co"># arithmetics</span></span>
+<span id="cb644-2"><a href="appendix-b-r-basics.html#cb644-2" aria-hidden="true" tabindex="-1"></a>my_number_int<span class="sc">*</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>## [1] 278</code></pre>
+<p>Having all variables in the correct type is important for data analytics with various sample sizes.
+However, because different data types must be represented differently internally, different types may take up more or less memory, affecting performance when dealing with massive amounts of data.</p>
+<p>We can illustrate this point with <code>object.size()</code>:</p>
+<div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb646-1"><a href="appendix-b-r-basics.html#cb646-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(<span class="st">&quot;139&quot;</span>)</span></code></pre></div>
+<pre><code>## 112 bytes</code></pre>
+<div class="sourceCode" id="cb648"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb648-1"><a href="appendix-b-r-basics.html#cb648-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(<span class="dv">139</span>)</span></code></pre></div>
+<pre><code>## 56 bytes</code></pre>
 </div>
-<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-taddy2020business" class="csl-entry">
-———. 2019. <em>Business Data Science</em>. New York: McGraw-Hill.
 </div>
+<div id="data-structures" class="section level2 unnumbered hasAnchor">
+<h2>Data structures<a href="appendix-b-r-basics.html#data-structures" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>For the time being, we have only looked at individual bytes of data. A single data set can contain gigabytes of data and both text and numeric values. R has several classes of objects that provide different data structures. The data types and data structures used to store data can both affect how much memory is required to hold a dataset in RAM.</p>
+<div id="vectors-vs-factors-in-r" class="section level3 unnumbered hasAnchor">
+<h3>Vectors vs Factors in R<a href="appendix-b-r-basics.html#vectors-vs-factors-in-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Vectors are collections of values of the same type. They can contain either all numeric values or all character values.</p>
+<!-- ```{r numvec, echo=FALSE, out.width = "5%", fig.align='center', fig.cap= "(ref:capnumvec)", purl=FALSE} -->
+<!-- include_graphics("img/02_numvec.png") -->
+<!-- ``` -->
+<!-- (ref:capnumvec) Illustration of a numeric vector (symbolic). Figure by @murrell_2009 (licensed under CC BY-NC-SA 3.0 NZ). -->
+<p>For example, we can initiate a character vector containing information on the home towns of persons participating in a survey.</p>
+<div class="sourceCode" id="cb650"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb650-1"><a href="appendix-b-r-basics.html#cb650-1" aria-hidden="true" tabindex="-1"></a>hometown <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;St.Gallen&quot;</span>, <span class="st">&quot;Basel&quot;</span>, <span class="st">&quot;St.Gallen&quot;</span>)</span>
+<span id="cb650-2"><a href="appendix-b-r-basics.html#cb650-2" aria-hidden="true" tabindex="-1"></a>hometown</span></code></pre></div>
+<pre><code>## [1] &quot;St.Gallen&quot; &quot;Basel&quot;     &quot;St.Gallen&quot;</code></pre>
+<div class="sourceCode" id="cb652"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb652-1"><a href="appendix-b-r-basics.html#cb652-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(hometown)</span></code></pre></div>
+<pre><code>## 200 bytes</code></pre>
+<p>Unlike in the data types example above, storing these values as type <code>numeric</code> to save memory is unlikely to be practical.
+R would be unable to convert these strings into floating point numbers. Alternatively, we could consider a correspondence table in which each unique town name in the data set is assigned a numeric (id) code. We would save memory this way, but it would require more effort to work with the data. Fortunately, the data structure ‘factor’ in basic R already implements this idea in a user-friendly manner.</p>
+<p>Factors are sets of categories. Thus, the values are drawn from a fixed set of possible values.</p>
+<!-- ```{r factor, echo=FALSE, out.width = "5%", fig.align='center', fig.cap= "(ref:capfactor)", purl=FALSE} -->
+<!-- include_graphics("img/02_factor.png") -->
+<!-- ``` -->
+<!-- (ref:capfactor) Illustration of a factor (symbolic). Figure by @murrell_2009 (licensed under CC BY-NC-SA 3.0 NZ). -->
+<p>Considering the same example as above, we can store the same information in an object of type class <code>factor</code>.</p>
+<div class="sourceCode" id="cb654"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb654-1"><a href="appendix-b-r-basics.html#cb654-1" aria-hidden="true" tabindex="-1"></a>hometown_f <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;St.Gallen&quot;</span>, <span class="st">&quot;Basel&quot;</span>, <span class="st">&quot;St.Gallen&quot;</span>))</span>
+<span id="cb654-2"><a href="appendix-b-r-basics.html#cb654-2" aria-hidden="true" tabindex="-1"></a>hometown_f</span></code></pre></div>
+<pre><code>## [1] St.Gallen Basel     St.Gallen
+## Levels: Basel St.Gallen</code></pre>
+<div class="sourceCode" id="cb656"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb656-1"><a href="appendix-b-r-basics.html#cb656-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(hometown_f)</span></code></pre></div>
+<pre><code>## 584 bytes</code></pre>
+<p>At first glance, the fact that <code>hometown f</code> consumes more memory than its character vector sibling appears strange.
+But we’ve seen this kind of ‘paradox’ before. Once again, the more sophisticated approach has an overhead (here not in terms of computing time but in terms of structure encoded in an object). <code>hometown_f</code> has more structure (i.e., a number-to-‘factor level’/category label mapping).
+This additional structure is also data that must be saved somewhere. This disadvantage, as in previous examples of overhead costs, diminishes with larger data sets:</p>
+<div class="sourceCode" id="cb658"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb658-1"><a href="appendix-b-r-basics.html#cb658-1" aria-hidden="true" tabindex="-1"></a><span class="co"># create a large character vector</span></span>
+<span id="cb658-2"><a href="appendix-b-r-basics.html#cb658-2" aria-hidden="true" tabindex="-1"></a>hometown_large <span class="ot">&lt;-</span> <span class="fu">rep</span>(hometown, <span class="at">times =</span> <span class="dv">1000</span>)</span>
+<span id="cb658-3"><a href="appendix-b-r-basics.html#cb658-3" aria-hidden="true" tabindex="-1"></a><span class="co"># and the same content as factor</span></span>
+<span id="cb658-4"><a href="appendix-b-r-basics.html#cb658-4" aria-hidden="true" tabindex="-1"></a>hometown_large_f <span class="ot">&lt;-</span> <span class="fu">factor</span>(hometown_large)</span>
+<span id="cb658-5"><a href="appendix-b-r-basics.html#cb658-5" aria-hidden="true" tabindex="-1"></a><span class="co"># compare size</span></span>
+<span id="cb658-6"><a href="appendix-b-r-basics.html#cb658-6" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(hometown_large)</span></code></pre></div>
+<pre><code>## 24168 bytes</code></pre>
+<div class="sourceCode" id="cb660"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb660-1"><a href="appendix-b-r-basics.html#cb660-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(hometown_large_f)</span></code></pre></div>
+<pre><code>## 12568 bytes</code></pre>
+</div>
+<div id="matricesarrays" class="section level3 unnumbered hasAnchor">
+<h3>Matrices/Arrays<a href="appendix-b-r-basics.html#matricesarrays" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Matrices are two-dimensional collections of values, arrays higher-dimensional collections of values, of the same type.</p>
+<!-- ```{r matrix, echo=FALSE, out.width = "10%", fig.align='center', fig.cap= "(ref:capmatrix)", purl=FALSE} -->
+<!-- include_graphics("img/02_matrix.png") -->
+<!-- ``` -->
+<!-- (ref:capmatrix) Illustration of a numeric matrix (symbolic). Figure by @murrell_2009 (licensed under CC BY-NC-SA 3.0 NZ). -->
+<p>For example, we can initiate a three-row/two-column numeric matrix as follows.</p>
+<div class="sourceCode" id="cb662"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb662-1"><a href="appendix-b-r-basics.html#cb662-1" aria-hidden="true" tabindex="-1"></a>my_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>), <span class="at">nrow =</span> <span class="dv">3</span>)</span>
+<span id="cb662-2"><a href="appendix-b-r-basics.html#cb662-2" aria-hidden="true" tabindex="-1"></a>my_matrix</span></code></pre></div>
+<pre><code>##      [,1] [,2]
+## [1,]    1    4
+## [2,]    2    5
+## [3,]    3    6</code></pre>
+<p>And a three-dimensional numeric array as follows.</p>
+<div class="sourceCode" id="cb664"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb664-1"><a href="appendix-b-r-basics.html#cb664-1" aria-hidden="true" tabindex="-1"></a>my_array <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">6</span>), <span class="at">dim =</span> <span class="dv">3</span>)</span>
+<span id="cb664-2"><a href="appendix-b-r-basics.html#cb664-2" aria-hidden="true" tabindex="-1"></a>my_array</span></code></pre></div>
+<pre><code>## [1] 1 2 3</code></pre>
+</div>
+<div id="data-frames-tibbles-and-data-tables" class="section level3 unnumbered hasAnchor">
+<h3>Data frames, tibbles, and data tables<a href="appendix-b-r-basics.html#data-frames-tibbles-and-data-tables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Remember that in R, data frames are the most common way to represent a (table-like) data set. Each column can contain a vector of a specific data type (or a factor), but all columns must be the same length. In the context of data analysis, each row of a data frame contains an observation, and each column contains a characteristic of that observation.</p>
+<!-- ```{r df, echo=FALSE, out.width = "10%", fig.align='center', fig.cap= "(ref:capdf)", purl=FALSE} -->
+<!-- include_graphics("img/02_df.png") -->
+<!-- ``` -->
+<!-- (ref:capdf) Illustration of a data frame (symbolic). Figure by @murrell_2009 (licensed under CC BY-NC-SA 3.0 NZ). -->
+<p>The previous implementation of data frames in R made it difficult to work with large data sets.<a href="#fn80" class="footnote-ref" id="fnref80"><sup>80</sup></a> Several newer R implementations of the data-frame concept were introduced with the aim to speed up data processing. One is known as <code>tibble</code>, and it is implemented and used in the <code>tidyverse</code> packages. The other is known as <code>data table</code> and it is implemented in the <code>data table</code>-package. Most of the shortcomings of the original ‘data.frame’ implementation, however, have been addressed in subsequent R versions, making traditional <code>data.frames</code>, <code>tibbles</code>, and <code>data.tables</code> more similarly suitable for working with large datasets (for in-memory processing).</p>
+<p>Here is how we define a <code>data.table</code> in R:</p>
+<div class="sourceCode" id="cb666"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb666-1"><a href="appendix-b-r-basics.html#cb666-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load package</span></span>
+<span id="cb666-2"><a href="appendix-b-r-basics.html#cb666-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb666-3"><a href="appendix-b-r-basics.html#cb666-3" aria-hidden="true" tabindex="-1"></a><span class="co"># initiate a data.table</span></span>
+<span id="cb666-4"><a href="appendix-b-r-basics.html#cb666-4" aria-hidden="true" tabindex="-1"></a>dt <span class="ot">&lt;-</span> <span class="fu">data.table</span>(<span class="at">person =</span> <span class="fu">c</span>(<span class="st">&quot;Alice&quot;</span>, <span class="st">&quot;Ben&quot;</span>),</span>
+<span id="cb666-5"><a href="appendix-b-r-basics.html#cb666-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">30</span>),</span>
+<span id="cb666-6"><a href="appendix-b-r-basics.html#cb666-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">gender =</span> <span class="fu">c</span>(<span class="st">&quot;f&quot;</span>, <span class="st">&quot;m&quot;</span>))</span>
+<span id="cb666-7"><a href="appendix-b-r-basics.html#cb666-7" aria-hidden="true" tabindex="-1"></a>dt</span></code></pre></div>
+<pre><code>##    person age gender
+## 1:  Alice  50      f
+## 2:    Ben  30      m</code></pre>
+</div>
+<div id="lists" class="section level3 unnumbered hasAnchor">
+<h3>Lists<a href="appendix-b-r-basics.html#lists" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Similar to data frames and data tables, lists can contain different types of data in each element. For example, a list could contain different other lists, data frames, and vectors with differing numbers of elements.</p>
+<!-- ```{r list, echo=FALSE, out.width = "10%", fig.align='center', fig.cap= "(ref:caplist)", purl=FALSE} -->
+<!-- include_graphics("img/02_list.png") -->
+<!-- ``` -->
+<!-- (ref:caplist) Illustration of a data frame (symbolic). Figure by @murrell_2009 (licensed under CC BY-NC-SA 3.0 NZ). -->
+<p>This flexibility can easily be demonstrated by combining some of the data structures created in the examples above:</p>
+<div class="sourceCode" id="cb668"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb668-1"><a href="appendix-b-r-basics.html#cb668-1" aria-hidden="true" tabindex="-1"></a>my_list <span class="ot">&lt;-</span> <span class="fu">list</span>(my_array, my_matrix, dt)</span>
+<span id="cb668-2"><a href="appendix-b-r-basics.html#cb668-2" aria-hidden="true" tabindex="-1"></a>my_list</span></code></pre></div>
+<pre><code>## [[1]]
+## [1] 1 2 3
+## 
+## [[2]]
+##      [,1] [,2]
+## [1,]    1    4
+## [2,]    2    5
+## [3,]    3    6
+## 
+## [[3]]
+##    person age gender
+## 1:  Alice  50      f
+## 2:    Ben  30      m</code></pre>
+</div>
+</div>
+<div id="r-tools-to-investigate-structures-and-types" class="section level2 unnumbered hasAnchor">
+<h2>R-tools to investigate structures and types<a href="appendix-b-r-basics.html#r-tools-to-investigate-structures-and-types" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table>
+<colgroup>
+<col width="12%" />
+<col width="15%" />
+<col width="71%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>package</th>
+<th>function</th>
+<th>purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>utils</code></td>
+<td><code>str()</code></td>
+<td>Compactly display the structure of an arbitrary R object.</td>
+</tr>
+<tr class="even">
+<td><code>base</code></td>
+<td><code>class()</code></td>
+<td>Prints the class(es) of an R object.</td>
+</tr>
+<tr class="odd">
+<td><code>base</code></td>
+<td><code>typeof()</code></td>
+<td>Determines the (R-internal) type or storage mode of an object.</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="80">
+<li id="fn80"><p>This was not an issue in the early days of R because data sets that were rather large by today’s standards (in the Gigabytes) could not have been handled properly by normal computers anyway (due to a lack of RAM).<a href="appendix-b-r-basics.html#fnref80" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="big-data-visualization.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="bottlenecks-in-everyday-data-analytics-tasks.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="appendix-a-github.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="appendix-c-install-hadoop.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>

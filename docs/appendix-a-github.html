@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Introduction | Big Data Analytics</title>
+  <title>Appendix A: GitHub | Big Data Analytics</title>
   <meta name="description" content="A guide to data science practitioners making the transition to Big Data." />
   <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Introduction | Big Data Analytics" />
+  <meta property="og:title" content="Appendix A: GitHub | Big Data Analytics" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://umatter.github.io/BigData/img/cover.jpg" />
   <meta property="og:description" content="A guide to data science practitioners making the transition to Big Data." />
   <meta name="github-repo" content="umatter/BigData" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Introduction | Big Data Analytics" />
+  <meta name="twitter:title" content="Appendix A: GitHub | Big Data Analytics" />
   
   <meta name="twitter:description" content="A guide to data science practitioners making the transition to Big Data." />
   <meta name="twitter:image" content="https://umatter.github.io/BigData/img/cover.jpg" />
@@ -30,8 +30,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="big-data-visualization.html"/>
-<link rel="next" href="bottlenecks-in-everyday-data-analytics-tasks.html"/>
+<link rel="prev" href="large-scale-text-analysis-with-sparklyr.html"/>
+<link rel="next" href="appendix-b-r-basics.html"/>
 <script src="libs/jquery/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook/css/style.css" rel="stylesheet" />
@@ -452,18 +452,88 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="a" class="section level1 unnumbered hasAnchor">
-<h1>Introduction<a href="a.html#a" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<blockquote>
-<p>“There has also been an intellectual convergence across fields—machine learning and computer science, modern computational and Bayesian statistics, and data-driven social sciences and economics—that has raised the breadth and quality of applied analysis elsewhere. The machine learners have taught us how to automate and scale, the economists bring tools for causal and structural modeling, and the statisticians make sure that everyone remembers to keep track of uncertainty.”<span class="citation">(<a href="#ref-taddy2020business" role="doc-biblioref">Taddy 2019, ix</a>)</span></p>
-</blockquote>
-<p>Far from being a comprehensive overview of Big Data Analytics applications in applied econometrics, the goal of this part of the book is to connect the conceptual and practical material covered thus far with analytics settings and point you to potentially interesting approaches and tools that may be useful in your specific field of applying Big Data Analytics. While all of the examples, case studies, and tutorials presented in this part are in the context of economic research or business analytics, the approaches and tools discussed are often easily transferable to other domains of applying Big Data Analytics.</p>
-<p>First, Chapter 12 presents a few brief case studies pointing to a small exemplary selection of common bottlenecks in everyday data analytics tasks, such as the estimation of fixed effects models. The purpose of this chapter is to review some of the key concepts discussed in the previous two parts, whereby each of the case studies refers to some of the previously discussed perspectives on/approaches to big data: realizing why an analytics task is a burden for the available resources and considering an alternative statistical procedure, writing efficient R code for simple computations, and scaling up the computing resources. You can easily skip this chapter if you are already well familiar with the topics covered in the previous parts. Chapters 13–15 cover specific topic domains in the realm of applied Big Data Analytics that are common in modern econometrics: training machine learning models in predictive econometrics using GPUs (Chapter 13), estimating linear and generalized linear models (e.g., classification models) with large scale datasets (Chapter 14), and performing large-scale text analysis (Chapter 15).</p>
+<div id="appendix-a-github" class="section level1 unnumbered hasAnchor">
+<h1>Appendix A: GitHub<a href="appendix-a-github.html#appendix-a-github" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p></p>
+<p>GitHub can be a very useful platform to arrange, store, and share the code of your analytics projects even if it is typically used for collaborative software development. If you are unfamiliar with Git or GitHub, the steps below will assist you in getting started.</p>
+<div id="initiate-a-new-repository" class="section level2 unnumbered hasAnchor">
+<h2>Initiate a new repository<a href="appendix-a-github.html#initiate-a-new-repository" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>Log in to your GitHub account and click on the plus-sign in the upper right corner. From the drop-down-menu select <code>New repository</code>.</li>
+<li>Give your repository a name, for example <code>bigdatastat</code>. Then, click on the big green button <code>Create repository</code>. You have just created a new repository.</li>
+<li>Open Rstudio and and navigate to a place on your hard-disk where you want to have the local copy of your repository.</li>
+<li>Then create the local repository as suggested by GitHub (see the page shown right after you have clicked on <code>Create repository</code>: “…or create a new repository on the command line”). In order to do so, you have to switch to the Terminal window in RStudio and type (or copy paste) the commands as given by GitHub. This should look similar to the following code chunk:</li>
+</ol>
+<div class="sourceCode" id="cb605"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb605-1"><a href="appendix-a-github.html#cb605-1" aria-hidden="true" tabindex="-1"></a><span class="bu">echo</span> <span class="st">&quot;# bigdatastat&quot;</span> <span class="op">&gt;&gt;</span> README.md</span>
+<span id="cb605-2"><a href="appendix-a-github.html#cb605-2" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> init</span>
+<span id="cb605-3"><a href="appendix-a-github.html#cb605-3" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> add README.md</span>
+<span id="cb605-4"><a href="appendix-a-github.html#cb605-4" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> commit <span class="at">-m</span> <span class="st">&quot;first commit&quot;</span></span>
+<span id="cb605-5"><a href="appendix-a-github.html#cb605-5" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> remote add origin <span class="dt">\</span></span>
+<span id="cb605-6"><a href="appendix-a-github.html#cb605-6" aria-hidden="true" tabindex="-1"></a>https://github.com/YOUR-GITHUB-ACCOUNTNAME/bigdatastat.git</span>
+<span id="cb605-7"><a href="appendix-a-github.html#cb605-7" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> push <span class="at">-u</span> origin master</span></code></pre></div>
+<p>Mind replacing <code>YOUR-GITHUB-ACCOUNTNAME</code> with your GitHub account name, before running the code above.</p>
+<ol start="5" style="list-style-type: decimal">
+<li>Refresh the page of your newly created GitHub repository. You should now see the result of your first commit.</li>
+<li>Open <code>README.md</code> in RStudio and add a few words describing what this repository is all about.</li>
+</ol>
 </div>
-<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div id="refs" class="references csl-bib-body hanging-indent">
-<div id="ref-taddy2020business" class="csl-entry">
-———. 2019. <em>Business Data Science</em>. New York: McGraw-Hill.
+<div id="clone-this-books-repository" class="section level2 unnumbered hasAnchor">
+<h2>Clone this book’s repository<a href="appendix-a-github.html#clone-this-books-repository" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>In RStudio, navigate to a folder on your hard-disk where you want to have a local copy of this book’s GitHub repository.</li>
+<li>Open a new browser window and go to <a href="https://github.com/umatter/BigData" class="uri">https://github.com/umatter/BigData</a>.</li>
+<li>Click on <code>Clone or download</code> and copy the link.</li>
+<li>In RStudio, switch to the Terminal, and type the following command (pasting the copied link).</li>
+</ol>
+<div class="sourceCode" id="cb606"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb606-1"><a href="appendix-a-github.html#cb606-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/umatter/BigData.git</span></code></pre></div>
+<p>You have now a local copy of the repository which is linked to the one on GitHub. You can see this by changing to the newly created directory, containing the local copy of the repository:</p>
+<div class="sourceCode" id="cb607"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb607-1"><a href="appendix-a-github.html#cb607-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> BigData</span></code></pre></div>
+<p>Whenever there are some updates to the book’s repository on GitHub, you can update your local copy with:</p>
+<div class="sourceCode" id="cb608"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb608-1"><a href="appendix-a-github.html#cb608-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> pull</span></code></pre></div>
+<p>(Make sure you are in the <code>BigData</code> folder when running <code>git pull</code>.)</p>
+</div>
+<div id="fork-this-books-repository" class="section level2 unnumbered hasAnchor">
+<h2>Fork this book’s repository<a href="appendix-a-github.html#fork-this-books-repository" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li><p>Go to <a href="https://github.com/umatter/BigData" class="uri">https://github.com/umatter/BigData</a>, click on the ‘Fork’ button in the upper-right corner (follow the instructions).</p></li>
+<li><p>Clone the forked repository (see the cloning of a repository above for details). Assuming you called your forked repository <code>BigData-forked</code>, you run the following command in the terminal (replacing <code>&lt;yourgithubusername&gt;</code>:</p></li>
+</ol>
+<pre><code>git clone https://github.com/`&lt;yourgithubusername&gt;`/BigData-forked.git</code></pre>
+<ol start="3" style="list-style-type: decimal">
+<li>Switch into the newly created directory:</li>
+</ol>
+<pre><code>cd BigData-forked</code></pre>
+<ol start="4" style="list-style-type: decimal">
+<li>Set a remote connection to the <em>original</em> repository</li>
+</ol>
+<pre><code>git remote add upstream https://github.com/umatter/BigData.git</code></pre>
+<p>You can verify the remotes of your local clone of your forked repository as follows</p>
+<pre><code>git remote -v</code></pre>
+<p>You should see something like</p>
+<pre><code>origin  https://github.com/&lt;yourgithubusername&gt;/BigData-forked.git (fetch)
+origin  https://github.com/&lt;yourgithubusername&gt;/BigData-forked.git (push)
+upstream    https://github.com/umatter/BigData.git (fetch)
+upstream    https://github.com/umatter/BigData.git (push)</code></pre>
+<ol start="5" style="list-style-type: decimal">
+<li>Fetch changes from the original repository. New material has been added to the original book repository and you want to merge it with your forked repository. In order to do so, you first fetch the changes from the original repository:</li>
+</ol>
+<pre><code>git fetch upstream</code></pre>
+<ol start="6" style="list-style-type: decimal">
+<li>Make sure you are on the master branch of your local repository:</li>
+</ol>
+<pre><code>git checkout master</code></pre>
+<ol start="7" style="list-style-type: decimal">
+<li>Merge the changes fetched from the original repo with the master of your (local clone of the) forked repo.</li>
+</ol>
+<pre><code>git merge upstream/master</code></pre>
+<ol start="8" style="list-style-type: decimal">
+<li>Push the changes to your forked repository on GitHub.</li>
+</ol>
+<pre><code>git push</code></pre>
+<p>Now your forked repo on GitHub also contains the commits (changes) in the original repository. If you make changes to the files in your forked repo. you can add, commit, and push them as in any repository. Example: open <code>README.md</code> in a text editor (e.g. RStudio), add <code># HELLO WORLD</code> to the last line of <code>README.md</code>, and save the changes. Then:</p>
+<pre><code>git add README.md
+git commit -m &quot;hello world&quot;
+git push</code></pre>
 </div>
 </div>
             </section>
@@ -471,8 +541,8 @@ div.csl-indent {
           </div>
         </div>
       </div>
-<a href="big-data-visualization.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="bottlenecks-in-everyday-data-analytics-tasks.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="large-scale-text-analysis-with-sparklyr.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="appendix-b-r-basics.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook/js/app.min.js"></script>

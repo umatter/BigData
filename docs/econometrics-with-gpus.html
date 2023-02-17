@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 14 Econometrics with GPUs | Big Data Analytics</title>
+  <title>Chapter 13 Econometrics with GPUs | Big Data Analytics</title>
   <meta name="description" content="A guide to data science practitioners making the transition to Big Data." />
-  <meta name="generator" content="bookdown 0.30 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 14 Econometrics with GPUs | Big Data Analytics" />
+  <meta property="og:title" content="Chapter 13 Econometrics with GPUs | Big Data Analytics" />
   <meta property="og:type" content="book" />
   <meta property="og:image" content="https://umatter.github.io/BigData/img/cover.jpg" />
   <meta property="og:description" content="A guide to data science practitioners making the transition to Big Data." />
   <meta name="github-repo" content="umatter/BigData" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 14 Econometrics with GPUs | Big Data Analytics" />
+  <meta name="twitter:title" content="Chapter 13 Econometrics with GPUs | Big Data Analytics" />
   
   <meta name="twitter:description" content="A guide to data science practitioners making the transition to Big Data." />
   <meta name="twitter:image" content="https://umatter.github.io/BigData/img/cover.jpg" />
@@ -23,14 +23,14 @@
 <meta name="author" content="Ulrich Matter" />
 
 
-<meta name="date" content="2023-01-13" />
+<meta name="date" content="2023-02-15" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="bottle-necks-in-every-day-data-analytics-tasks.html"/>
+<link rel="prev" href="bottlenecks-in-everyday-data-analytics-tasks.html"/>
 <link rel="next" href="regression-analysis-and-categorization-with-spark-and-r.html"/>
 <script src="libs/jquery/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
@@ -166,24 +166,34 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="" data-path="preface.html"><a href="preface.html#prerequisites"><i class="fa fa-check"></i>Prerequisites</a></li>
 </ul></li>
-<li class="chapter" data-level="" data-path="c.html"><a href="c.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="" data-path="c.html"><a href="c.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="c.html"><a href="c.html#background-and-goals-of-this-book"><i class="fa fa-check"></i>Background and goals of this book</a></li>
+<li class="chapter" data-level="" data-path="c.html"><a href="c.html#a-moving-target"><i class="fa fa-check"></i>A moving target</a></li>
+<li class="chapter" data-level="" data-path="c.html"><a href="c.html#content-and-organization-of-the-book"><i class="fa fa-check"></i>Content and organization of the book</a></li>
+<li class="chapter" data-level="" data-path="c.html"><a href="c.html#prerequisits-and-requirements"><i class="fa fa-check"></i>Prerequisits and requirements</a></li>
+<li class="chapter" data-level="" data-path="c.html"><a href="c.html#thanks"><i class="fa fa-check"></i>Thanks</a></li>
+</ul></li>
 <li class="part"><span><b>I Setting the Scene: Analyzing Big Data</b></span></li>
 <li class="chapter" data-level="" data-path="s.html"><a href="s.html"><i class="fa fa-check"></i>Introduction</a></li>
-<li class="chapter" data-level="1" data-path="what-is-big-in-big-data.html"><a href="what-is-big-in-big-data.html"><i class="fa fa-check"></i><b>1</b> What is <em>big</em> in “Big Data”?</a></li>
-<li class="chapter" data-level="2" data-path="approaches-to-analyzing-big-data.html"><a href="approaches-to-analyzing-big-data.html"><i class="fa fa-check"></i><b>2</b> Approaches to analyzing Big Data</a></li>
-<li class="chapter" data-level="3" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html"><i class="fa fa-check"></i><b>3</b> The two domains of Big Data Analytics</a>
+<li class="chapter" data-level="1" data-path="what-is-big-in-big-data.html"><a href="what-is-big-in-big-data.html"><i class="fa fa-check"></i><b>1</b> What is <em>Big</em> in “Big Data”?</a></li>
+<li class="chapter" data-level="2" data-path="approaches-to-analyzing-big-data.html"><a href="approaches-to-analyzing-big-data.html"><i class="fa fa-check"></i><b>2</b> Approaches to Analyzing Big Data</a></li>
+<li class="chapter" data-level="3" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html"><i class="fa fa-check"></i><b>3</b> The Two Domains of Big Data Analytics</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#a-practical-big-p-problem"><i class="fa fa-check"></i><b>3.1</b> A practical <em>big P</em> problem</a></li>
-<li class="chapter" data-level="3.2" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#a-practical-big-n-problem"><i class="fa fa-check"></i><b>3.2</b> A practical <em>big N</em> problem</a>
+<li class="chapter" data-level="3.1" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#a-practical-big-p-problem"><i class="fa fa-check"></i><b>3.1</b> A practical <em>big P</em> problem </a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#ols-as-a-point-of-reference"><i class="fa fa-check"></i><b>3.2.1</b> OLS as a point of reference</a></li>
-<li class="chapter" data-level="3.2.2" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#the-uluru-algorithm-as-an-alternative-to-ols"><i class="fa fa-check"></i><b>3.2.2</b> The <em>Uluru</em> algorithm as an alternative to OLS</a></li>
+<li class="chapter" data-level="3.1.1" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#simple-logistig-regression-naive-approach"><i class="fa fa-check"></i><b>3.1.1</b> Simple logistig regression (naive approach)</a></li>
+<li class="chapter" data-level="3.1.2" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#regularization-the-lasso-estimator"><i class="fa fa-check"></i><b>3.1.2</b> Regularization: the lasso estimator</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#conclusion"><i class="fa fa-check"></i><b>3.3</b> Conclusion</a></li>
+<li class="chapter" data-level="3.2" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#a-practical-big-n-problem"><i class="fa fa-check"></i><b>3.2</b> A practical <em>big N</em> problem </a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#ols-as-a-point-of-reference"><i class="fa fa-check"></i><b>3.2.1</b> OLS as a point of reference </a></li>
+<li class="chapter" data-level="3.2.2" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#the-uluru-algorithm-as-an-alternative-to-ols"><i class="fa fa-check"></i><b>3.2.2</b> The <em>Uluru</em> algorithm as an alternative to OLS </a></li>
+</ul></li>
 </ul></li>
 <li class="part"><span><b>II Platform: Software and Computing Resources</b></span></li>
 <li class="chapter" data-level="" data-path="p.html"><a href="p.html"><i class="fa fa-check"></i>Introduction</a></li>
-<li class="chapter" data-level="4" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html"><i class="fa fa-check"></i><b>4</b> Software: Programming with (big) data</a>
+<li class="chapter" data-level="4" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html"><i class="fa fa-check"></i><b>4</b> Software: Programming with (Big) Data</a>
 <ul>
 <li class="chapter" data-level="4.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#domains-of-programming-with-big-data"><i class="fa fa-check"></i><b>4.1</b> Domains of programming with (big) data</a></li>
 <li class="chapter" data-level="4.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#measuring-r-performance"><i class="fa fa-check"></i><b>4.2</b> Measuring R performance</a></li>
@@ -201,7 +211,8 @@ div.csl-indent {
 <li class="chapter" data-level="4.4.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#first-steps-in-sqlite"><i class="fa fa-check"></i><b>4.4.1</b> First steps in SQL(ite)</a></li>
 <li class="chapter" data-level="4.4.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#joins"><i class="fa fa-check"></i><b>4.4.2</b> Joins</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#wrapping-up"><i class="fa fa-check"></i><b>4.5</b> Wrapping up</a></li>
+<li class="chapter" data-level="4.5" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#with-a-little-help-from-my-friends-gpt-and-rsql-coding"><i class="fa fa-check"></i><b>4.5</b> With a little help from my friends: GPT and R/SQL coding</a></li>
+<li class="chapter" data-level="4.6" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#wrapping-up"><i class="fa fa-check"></i><b>4.6</b> Wrapping up</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html"><i class="fa fa-check"></i><b>5</b> Hardware: Computing Resources</a>
 <ul>
@@ -215,7 +226,8 @@ div.csl-indent {
 <li class="chapter" data-level="5.4" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#cpu-and-parallelization"><i class="fa fa-check"></i><b>5.4</b> CPU and parallelization</a>
 <ul>
 <li class="chapter" data-level="5.4.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#naive-multi-session-approach"><i class="fa fa-check"></i><b>5.4.1</b> Naive multi-session approach</a></li>
-<li class="chapter" data-level="5.4.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#multi-core-and-multi-node-approach"><i class="fa fa-check"></i><b>5.4.2</b> Multi-core and multi-node approach</a></li>
+<li class="chapter" data-level="5.4.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#multi-session-approach-with-futures"><i class="fa fa-check"></i><b>5.4.2</b> Multi-session approach with futures</a></li>
+<li class="chapter" data-level="5.4.3" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#multi-core-and-multi-node-approach"><i class="fa fa-check"></i><b>5.4.3</b> Multi-core and multi-node approach</a></li>
 </ul></li>
 <li class="chapter" data-level="5.5" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#gpus-for-scientific-computing"><i class="fa fa-check"></i><b>5.5</b> GPUs for scientific computing</a>
 <ul>
@@ -227,12 +239,7 @@ div.csl-indent {
 </ul></li>
 <li class="chapter" data-level="6" data-path="distributed-systems.html"><a href="distributed-systems.html"><i class="fa fa-check"></i><b>6</b> Distributed Systems</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="distributed-systems.html"><a href="distributed-systems.html#mapreduce"><i class="fa fa-check"></i><b>6.1</b> MapReduce</a>
-<ul>
-<li class="chapter" data-level="6.1.1" data-path="distributed-systems.html"><a href="distributed-systems.html#aside-mapreduce-concept-illustrated-in-r"><i class="fa fa-check"></i><b>6.1.1</b> Aside: MapReduce concept illustrated in R</a></li>
-<li class="chapter" data-level="6.1.2" data-path="distributed-systems.html"><a href="distributed-systems.html#mapper"><i class="fa fa-check"></i><b>6.1.2</b> Mapper</a></li>
-<li class="chapter" data-level="6.1.3" data-path="distributed-systems.html"><a href="distributed-systems.html#reducer"><i class="fa fa-check"></i><b>6.1.3</b> Reducer</a></li>
-</ul></li>
+<li class="chapter" data-level="6.1" data-path="distributed-systems.html"><a href="distributed-systems.html#mapreduce"><i class="fa fa-check"></i><b>6.1</b> MapReduce</a></li>
 <li class="chapter" data-level="6.2" data-path="distributed-systems.html"><a href="distributed-systems.html#apache-hadoop"><i class="fa fa-check"></i><b>6.2</b> Apache Hadoop</a>
 <ul>
 <li class="chapter" data-level="6.2.1" data-path="distributed-systems.html"><a href="distributed-systems.html#hadoop-word-count-example"><i class="fa fa-check"></i><b>6.2.1</b> Hadoop word count example</a></li>
@@ -252,8 +259,7 @@ div.csl-indent {
 <li class="chapter" data-level="7.2" data-path="cloud-computing.html"><a href="cloud-computing.html#transitioning-to-the-cloud"><i class="fa fa-check"></i><b>7.2</b> Transitioning to the cloud</a></li>
 <li class="chapter" data-level="7.3" data-path="cloud-computing.html"><a href="cloud-computing.html#scaling-up-in-the-cloud-virtual-servers"><i class="fa fa-check"></i><b>7.3</b> Scaling up in the cloud: Virtual servers</a>
 <ul>
-<li class="chapter" data-level="7.3.1" data-path="cloud-computing.html"><a href="cloud-computing.html#scaling-up-with-aws-ec2-and-rrstudio"><i class="fa fa-check"></i><b>7.3.1</b> Scaling up with AWS EC2 and R/RStudio</a></li>
-<li class="chapter" data-level="7.3.2" data-path="cloud-computing.html"><a href="cloud-computing.html#parallelization-with-an-ec2-instance"><i class="fa fa-check"></i><b>7.3.2</b> Parallelization with an EC2 instance</a></li>
+<li class="chapter" data-level="7.3.1" data-path="cloud-computing.html"><a href="cloud-computing.html#parallelization-with-an-ec2-instance"><i class="fa fa-check"></i><b>7.3.1</b> Parallelization with an EC2 instance</a></li>
 </ul></li>
 <li class="chapter" data-level="7.4" data-path="cloud-computing.html"><a href="cloud-computing.html#scaling-up-with-gpus"><i class="fa fa-check"></i><b>7.4</b> Scaling up with GPUs</a>
 <ul>
@@ -264,7 +270,7 @@ div.csl-indent {
 <li class="chapter" data-level="7.6" data-path="cloud-computing.html"><a href="cloud-computing.html#wrapping-up-3"><i class="fa fa-check"></i><b>7.6</b> Wrapping up</a></li>
 </ul></li>
 <li class="part"><span><b>III Components of Big Data Analytics</b></span></li>
-<li class="chapter" data-level="" data-path="introduction-to-part-ii.html"><a href="introduction-to-part-ii.html"><i class="fa fa-check"></i>Introduction to Part II</a></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a></li>
 <li class="chapter" data-level="8" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html"><i class="fa fa-check"></i><b>8</b> Data Collection and Data Storage</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#gathering-and-compilation-of-raw-data"><i class="fa fa-check"></i><b>8.1</b> Gathering and compilation of raw data</a></li>
@@ -298,7 +304,7 @@ div.csl-indent {
 <ul>
 <li class="chapter" data-level="8.8.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#aws-s3-with-r-first-steps"><i class="fa fa-check"></i><b>8.8.1</b> AWS S3 with R: First steps</a></li>
 <li class="chapter" data-level="8.8.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#uploading-data-to-s3"><i class="fa fa-check"></i><b>8.8.2</b> Uploading data to S3</a></li>
-<li class="chapter" data-level="8.8.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#more-than-just-simple-storage-s3-aws-athena"><i class="fa fa-check"></i><b>8.8.3</b> More than just simple storage: S3 + AWS Athena</a></li>
+<li class="chapter" data-level="8.8.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#more-than-just-simple-storage-s3-amazon-athena"><i class="fa fa-check"></i><b>8.8.3</b> More than just simple storage: S3 + Amazon Athena</a></li>
 </ul></li>
 <li class="chapter" data-level="8.9" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#wrapping-up-4"><i class="fa fa-check"></i><b>8.9</b> Wrapping up</a></li>
 </ul></li>
@@ -310,116 +316,121 @@ div.csl-indent {
 <li class="chapter" data-level="9.1.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#memory-mapping-with-bigmemory"><i class="fa fa-check"></i><b>9.1.2</b> Memory mapping with <code>bigmemory</code></a></li>
 <li class="chapter" data-level="9.1.3" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#connecting-to-apache-arrow"><i class="fa fa-check"></i><b>9.1.3</b> Connecting to Apache Arrow</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#ff-big-data-preparation-tutorial"><i class="fa fa-check"></i><b>9.2</b> <code>ff</code> Big Data preparation tutorial</a>
+<li class="chapter" data-level="9.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#big-data-preparation-tutorial-with-ff"><i class="fa fa-check"></i><b>9.2</b> Big Data preparation tutorial with <code>ff</code></a>
 <ul>
 <li class="chapter" data-level="9.2.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#set-up"><i class="fa fa-check"></i><b>9.2.1</b> Set up</a></li>
 <li class="chapter" data-level="9.2.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#data-import"><i class="fa fa-check"></i><b>9.2.2</b> Data import</a></li>
 <li class="chapter" data-level="9.2.3" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#inspect-imported-files"><i class="fa fa-check"></i><b>9.2.3</b> Inspect imported files</a></li>
 <li class="chapter" data-level="9.2.4" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#data-cleaning-and-transformation"><i class="fa fa-check"></i><b>9.2.4</b> Data cleaning and transformation</a></li>
+<li class="chapter" data-level="9.2.5" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#inspect-difference-to-in-memory-operation"><i class="fa fa-check"></i><b>9.2.5</b> Inspect difference to in-memory operation</a></li>
+<li class="chapter" data-level="9.2.6" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#subsetting"><i class="fa fa-check"></i><b>9.2.6</b> Subsetting</a></li>
+<li class="chapter" data-level="9.2.7" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#saveloadexport-ff-files"><i class="fa fa-check"></i><b>9.2.7</b> Save/load/export <code>ff</code> files</a></li>
 </ul></li>
+<li class="chapter" data-level="9.3" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#big-data-preparation-tutorial-with-arrow"><i class="fa fa-check"></i><b>9.3</b> Big Data preparation tutorial with <code>arrow</code></a></li>
+<li class="chapter" data-level="9.4" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#wrapping-up-5"><i class="fa fa-check"></i><b>9.4</b> Wrapping up</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="inspect-difference-to-in-memory-operation.html"><a href="inspect-difference-to-in-memory-operation.html"><i class="fa fa-check"></i><b>10</b> Inspect difference to in-memory operation</a>
+<li class="chapter" data-level="10" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html"><i class="fa fa-check"></i><b>10</b> Descriptive Statistics and Aggregation</a>
 <ul>
-<li class="chapter" data-level="10.0.1" data-path="inspect-difference-to-in-memory-operation.html"><a href="inspect-difference-to-in-memory-operation.html#subsetting"><i class="fa fa-check"></i><b>10.0.1</b> Subsetting</a></li>
-<li class="chapter" data-level="10.0.2" data-path="inspect-difference-to-in-memory-operation.html"><a href="inspect-difference-to-in-memory-operation.html#saveloadexport-ff_files-files"><i class="fa fa-check"></i><b>10.0.2</b> Save/load/export ff_files files</a></li>
-<li class="chapter" data-level="10.1" data-path="inspect-difference-to-in-memory-operation.html"><a href="inspect-difference-to-in-memory-operation.html#arrow-big-data-preparation-tutorial"><i class="fa fa-check"></i><b>10.1</b> <code>arrow</code> Big Data preparation tutorial</a></li>
-<li class="chapter" data-level="10.2" data-path="inspect-difference-to-in-memory-operation.html"><a href="inspect-difference-to-in-memory-operation.html#wrapping-up-5"><i class="fa fa-check"></i><b>10.2</b> Wrapping up</a></li>
+<li class="chapter" data-level="10.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-the-split-apply-combine-strategy"><i class="fa fa-check"></i><b>10.1</b> Data aggregation: The ‘split-apply-combine’ strategy</a></li>
+<li class="chapter" data-level="10.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-with-chunked-data-files"><i class="fa fa-check"></i><b>10.2</b> Data aggregation with chunked data files</a></li>
+<li class="chapter" data-level="10.3" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-arrow"><i class="fa fa-check"></i><b>10.3</b> High-speed in-memory data aggregation with <code>arrow</code></a></li>
+<li class="chapter" data-level="10.4" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>10.4</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
+<li class="chapter" data-level="10.5" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#wrapping-up-6"><i class="fa fa-check"></i><b>10.5</b> Wrapping up</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html"><i class="fa fa-check"></i><b>11</b> Descriptive Statistics and Aggregation</a>
+<li class="chapter" data-level="11" data-path="big-data-visualization.html"><a href="big-data-visualization.html"><i class="fa fa-check"></i><b>11</b> (Big) Data Visualization</a>
 <ul>
-<li class="chapter" data-level="11.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-the-split-apply-combine-strategy"><i class="fa fa-check"></i><b>11.1</b> Data aggregation: The ‘split-apply-combine’ strategy</a>
+<li class="chapter" data-level="11.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#challenges-of-big-data-visualization"><i class="fa fa-check"></i><b>11.1</b> Challenges of Big Data visualization</a></li>
+<li class="chapter" data-level="11.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#data-exploration-with-ggplot2"><i class="fa fa-check"></i><b>11.2</b> Data exploration with <code>ggplot2</code></a></li>
+<li class="chapter" data-level="11.3" data-path="big-data-visualization.html"><a href="big-data-visualization.html#visualizing-time-and-space"><i class="fa fa-check"></i><b>11.3</b> Visualizing time and space</a>
 <ul>
-<li class="chapter" data-level="11.1.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-with-chunked-data-files"><i class="fa fa-check"></i><b>11.1.1</b> Data aggregation with chunked data files</a></li>
-<li class="chapter" data-level="11.1.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#cross-tabulation-of-ff-vectors"><i class="fa fa-check"></i><b>11.1.2</b> Cross-tabulation of <code>ff</code> vectors</a></li>
+<li class="chapter" data-level="11.3.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#preparations"><i class="fa fa-check"></i><b>11.3.1</b> Preparations</a></li>
+<li class="chapter" data-level="11.3.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#pick-up-and-drop-off-locations"><i class="fa fa-check"></i><b>11.3.2</b> Pick-up and drop-off locations</a></li>
 </ul></li>
-<li class="chapter" data-level="11.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-arrow"><i class="fa fa-check"></i><b>11.2</b> High-speed in-memory data aggregation with <code>arrow</code></a></li>
-<li class="chapter" data-level="11.3" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>11.3</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
-<li class="chapter" data-level="11.4" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#wrapping-up-6"><i class="fa fa-check"></i><b>11.4</b> Wrapping up</a></li>
-</ul></li>
-<li class="chapter" data-level="12" data-path="big-data-visualization.html"><a href="big-data-visualization.html"><i class="fa fa-check"></i><b>12</b> (Big) Data Visualization</a>
-<ul>
-<li class="chapter" data-level="12.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#challenges-of-big-data-visualization"><i class="fa fa-check"></i><b>12.1</b> Challenges of Big Data visualization</a></li>
-<li class="chapter" data-level="12.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#data-exploration-with-ggplot2"><i class="fa fa-check"></i><b>12.2</b> Data exploration with <code>ggplot2</code></a></li>
-<li class="chapter" data-level="12.3" data-path="big-data-visualization.html"><a href="big-data-visualization.html#visualizing-time-and-space"><i class="fa fa-check"></i><b>12.3</b> Visualizing time and space</a>
-<ul>
-<li class="chapter" data-level="12.3.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#preparations"><i class="fa fa-check"></i><b>12.3.1</b> Preparations</a></li>
-<li class="chapter" data-level="12.3.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#pick-up-and-drop-off-locations"><i class="fa fa-check"></i><b>12.3.2</b> Pick-up and drop-off locations</a></li>
-</ul></li>
-<li class="chapter" data-level="12.4" data-path="big-data-visualization.html"><a href="big-data-visualization.html#wrapping-up-7"><i class="fa fa-check"></i><b>12.4</b> Wrapping up</a></li>
+<li class="chapter" data-level="11.4" data-path="big-data-visualization.html"><a href="big-data-visualization.html#wrapping-up-7"><i class="fa fa-check"></i><b>11.4</b> Wrapping up</a></li>
 </ul></li>
 <li class="part"><span><b>IV Application: Topics in Big Data Econometrics</b></span></li>
 <li class="chapter" data-level="" data-path="a.html"><a href="a.html"><i class="fa fa-check"></i>Introduction</a></li>
-<li class="chapter" data-level="13" data-path="bottle-necks-in-every-day-data-analytics-tasks.html"><a href="bottle-necks-in-every-day-data-analytics-tasks.html"><i class="fa fa-check"></i><b>13</b> Bottle Necks in Every-Day Data Analytics Tasks</a>
+<li class="chapter" data-level="12" data-path="bottlenecks-in-everyday-data-analytics-tasks.html"><a href="bottlenecks-in-everyday-data-analytics-tasks.html"><i class="fa fa-check"></i><b>12</b> Bottlenecks in Everyday Data Analytics Tasks</a>
 <ul>
-<li class="chapter" data-level="13.1" data-path="bottle-necks-in-every-day-data-analytics-tasks.html"><a href="bottle-necks-in-every-day-data-analytics-tasks.html#case-study-data-import-and-memory-allocation"><i class="fa fa-check"></i><b>13.1</b> Case study: Data Import and Memory Allocation</a></li>
-<li class="chapter" data-level="13.2" data-path="bottle-necks-in-every-day-data-analytics-tasks.html"><a href="bottle-necks-in-every-day-data-analytics-tasks.html#case-study-loops-memory-and-vectorization"><i class="fa fa-check"></i><b>13.2</b> Case Study: Loops, Memory, and Vectorization</a>
+<li class="chapter" data-level="12.1" data-path="bottlenecks-in-everyday-data-analytics-tasks.html"><a href="bottlenecks-in-everyday-data-analytics-tasks.html#case-study-efficient-fixed-effects-estimation"><i class="fa fa-check"></i><b>12.1</b> Case study: Efficient fixed effects estimation</a></li>
+<li class="chapter" data-level="12.2" data-path="bottlenecks-in-everyday-data-analytics-tasks.html"><a href="bottlenecks-in-everyday-data-analytics-tasks.html#case-study-loops-memory-and-vectorization"><i class="fa fa-check"></i><b>12.2</b> Case study: Loops, memory, and vectorization</a>
 <ul>
-<li class="chapter" data-level="13.2.1" data-path="bottle-necks-in-every-day-data-analytics-tasks.html"><a href="bottle-necks-in-every-day-data-analytics-tasks.html#preparation"><i class="fa fa-check"></i><b>13.2.1</b> Preparation</a></li>
-<li class="chapter" data-level="13.2.2" data-path="bottle-necks-in-every-day-data-analytics-tasks.html"><a href="bottle-necks-in-every-day-data-analytics-tasks.html#naïve-approach-ignorant-of-r"><i class="fa fa-check"></i><b>13.2.2</b> Naïve Approach (ignorant of R)</a></li>
-<li class="chapter" data-level="13.2.3" data-path="bottle-necks-in-every-day-data-analytics-tasks.html"><a href="bottle-necks-in-every-day-data-analytics-tasks.html#improvement-1-pre-allocation-of-memory"><i class="fa fa-check"></i><b>13.2.3</b> Improvement 1: Pre-allocation of memory</a></li>
-<li class="chapter" data-level="13.2.4" data-path="bottle-necks-in-every-day-data-analytics-tasks.html"><a href="bottle-necks-in-every-day-data-analytics-tasks.html#improvement-2-exploit-vectorization"><i class="fa fa-check"></i><b>13.2.4</b> Improvement 2: Exploit vectorization</a></li>
+<li class="chapter" data-level="12.2.1" data-path="bottlenecks-in-everyday-data-analytics-tasks.html"><a href="bottlenecks-in-everyday-data-analytics-tasks.html#naïve-approach-ignorant-of-r"><i class="fa fa-check"></i><b>12.2.1</b> Naïve approach (ignorant of R)</a></li>
+<li class="chapter" data-level="12.2.2" data-path="bottlenecks-in-everyday-data-analytics-tasks.html"><a href="bottlenecks-in-everyday-data-analytics-tasks.html#improvement-1-pre-allocation-of-memory"><i class="fa fa-check"></i><b>12.2.2</b> Improvement 1: Pre-allocation of memory</a></li>
+<li class="chapter" data-level="12.2.3" data-path="bottlenecks-in-everyday-data-analytics-tasks.html"><a href="bottlenecks-in-everyday-data-analytics-tasks.html#improvement-2-exploit-vectorization"><i class="fa fa-check"></i><b>12.2.3</b> Improvement 2: Exploit vectorization</a></li>
 </ul></li>
-<li class="chapter" data-level="13.3" data-path="bottle-necks-in-every-day-data-analytics-tasks.html"><a href="bottle-necks-in-every-day-data-analytics-tasks.html#case-study-bootstrapping-and-parallel-processing"><i class="fa fa-check"></i><b>13.3</b> Case study: Bootstrapping and Parallel Processing</a>
+<li class="chapter" data-level="12.3" data-path="bottlenecks-in-everyday-data-analytics-tasks.html"><a href="bottlenecks-in-everyday-data-analytics-tasks.html#case-study-bootstrapping-and-parallel-processing"><i class="fa fa-check"></i><b>12.3</b> Case study: Bootstrapping and parallel processing</a>
 <ul>
-<li class="chapter" data-level="13.3.1" data-path="bottle-necks-in-every-day-data-analytics-tasks.html"><a href="bottle-necks-in-every-day-data-analytics-tasks.html#parallelization-with-an-ec2-instance-1"><i class="fa fa-check"></i><b>13.3.1</b> Parallelization with an EC2 instance</a></li>
-</ul></li>
-<li class="chapter" data-level="13.4" data-path="bottle-necks-in-every-day-data-analytics-tasks.html"><a href="bottle-necks-in-every-day-data-analytics-tasks.html#case-study-efficient-fixed-effects-estimation"><i class="fa fa-check"></i><b>13.4</b> Case Study: Efficient Fixed Effects Estimation</a></li>
-</ul></li>
-<li class="chapter" data-level="14" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html"><i class="fa fa-check"></i><b>14</b> Econometrics with GPUs</a>
-<ul>
-<li class="chapter" data-level="14.1" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#tensorflowkeras-example-predict-housing-prices"><i class="fa fa-check"></i><b>14.1</b> Tensorflow/Keras example: predict housing prices</a>
-<ul>
-<li class="chapter" data-level="14.1.1" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#data-preparation"><i class="fa fa-check"></i><b>14.1.1</b> Data preparation</a></li>
-<li class="chapter" data-level="14.1.2" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#model-specification"><i class="fa fa-check"></i><b>14.1.2</b> Model specification</a></li>
-<li class="chapter" data-level="14.1.3" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#training-and-prediction"><i class="fa fa-check"></i><b>14.1.3</b> Training and prediction</a></li>
-<li class="chapter" data-level="14.1.4" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#a-word-of-caution"><i class="fa fa-check"></i><b>14.1.4</b> A word of caution</a></li>
+<li class="chapter" data-level="12.3.1" data-path="bottlenecks-in-everyday-data-analytics-tasks.html"><a href="bottlenecks-in-everyday-data-analytics-tasks.html#parallelization-with-an-ec2-instance-1"><i class="fa fa-check"></i><b>12.3.1</b> Parallelization with an EC2 instance</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html"><i class="fa fa-check"></i><b>15</b> Regression Analysis and Categorization with Spark and R</a>
+<li class="chapter" data-level="13" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html"><i class="fa fa-check"></i><b>13</b> Econometrics with GPUs</a>
 <ul>
-<li class="chapter" data-level="15.1" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#simple-linear-regression-analysis"><i class="fa fa-check"></i><b>15.1</b> Simple linear regression analysis</a></li>
-<li class="chapter" data-level="15.2" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#machine-learning-for-classification"><i class="fa fa-check"></i><b>15.2</b> Machine learning for classification</a></li>
-<li class="chapter" data-level="15.3" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#building-machine-learning-pipelines-with-r-and-spark"><i class="fa fa-check"></i><b>15.3</b> Building machine learning pipelines with R and Spark</a>
+<li class="chapter" data-level="13.1" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#ols-on-gpus"><i class="fa fa-check"></i><b>13.1</b> OLS on GPUs</a></li>
+<li class="chapter" data-level="13.2" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#a-word-of-caution"><i class="fa fa-check"></i><b>13.2</b> A word of caution</a></li>
+<li class="chapter" data-level="13.3" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#higher-level-interfaces-for-basic-econometrics-with-gpus"><i class="fa fa-check"></i><b>13.3</b> Higher-level interfaces for basic econometrics with GPUs</a></li>
+<li class="chapter" data-level="13.4" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#tensorflowkeras-example-predict-housing-prices"><i class="fa fa-check"></i><b>13.4</b> TensorFlow/Keras example: predict housing prices</a>
 <ul>
-<li class="chapter" data-level="15.3.1" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#set-up-and-data-import"><i class="fa fa-check"></i><b>15.3.1</b> Set up and data import</a></li>
-<li class="chapter" data-level="15.3.2" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#building-the-pipeline"><i class="fa fa-check"></i><b>15.3.2</b> Building the pipeline</a></li>
+<li class="chapter" data-level="13.4.1" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#data-preparation"><i class="fa fa-check"></i><b>13.4.1</b> Data preparation</a></li>
+<li class="chapter" data-level="13.4.2" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#model-specification"><i class="fa fa-check"></i><b>13.4.2</b> Model specification</a></li>
+<li class="chapter" data-level="13.4.3" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#training-and-prediction"><i class="fa fa-check"></i><b>13.4.3</b> Training and prediction</a></li>
 </ul></li>
-<li class="chapter" data-level="15.4" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#wrapping-up-8"><i class="fa fa-check"></i><b>15.4</b> Wrapping up</a></li>
+<li class="chapter" data-level="13.5" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#wrapping-up-8"><i class="fa fa-check"></i><b>13.5</b> Wrapping up</a></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html"><i class="fa fa-check"></i><b>16</b> Large-scale Text Analysis with sparklyr</a>
+<li class="chapter" data-level="14" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html"><i class="fa fa-check"></i><b>14</b> Regression Analysis and Categorization with Spark and R</a>
 <ul>
-<li class="chapter" data-level="16.1" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#getting-started-import-pre-processing-and-word-count"><i class="fa fa-check"></i><b>16.1</b> Getting started: import, pre-processing, and word count</a></li>
-</ul></li>
-<li class="appendix"><span><b>Appendix</b></span></li>
-<li class="chapter" data-level="A" data-path="appendix-a.html"><a href="appendix-a.html"><i class="fa fa-check"></i><b>A</b> Appendix A</a>
+<li class="chapter" data-level="14.1" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#simple-linear-regression-analysis"><i class="fa fa-check"></i><b>14.1</b> Simple linear regression analysis</a></li>
+<li class="chapter" data-level="14.2" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#machine-learning-for-classification"><i class="fa fa-check"></i><b>14.2</b> Machine learning for classification</a></li>
+<li class="chapter" data-level="14.3" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#building-machine-learning-pipelines-with-r-and-spark"><i class="fa fa-check"></i><b>14.3</b> Building machine learning pipelines with R and Spark</a>
 <ul>
-<li class="chapter" data-level="A.1" data-path="appendix-a.html"><a href="appendix-a.html#github"><i class="fa fa-check"></i><b>A.1</b> GitHub</a>
+<li class="chapter" data-level="14.3.1" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#set-up-and-data-import"><i class="fa fa-check"></i><b>14.3.1</b> Set up and data import</a></li>
+<li class="chapter" data-level="14.3.2" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#building-the-pipeline"><i class="fa fa-check"></i><b>14.3.2</b> Building the pipeline</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#wrapping-up-9"><i class="fa fa-check"></i><b>14.4</b> Wrapping up</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html"><i class="fa fa-check"></i><b>15</b> Large-scale Text Analysis with sparklyr</a>
 <ul>
-<li class="chapter" data-level="A.1.1" data-path="appendix-a.html"><a href="appendix-a.html#initiate-a-new-repository"><i class="fa fa-check"></i><b>A.1.1</b> Initiate a new repository</a></li>
-<li class="chapter" data-level="A.1.2" data-path="appendix-a.html"><a href="appendix-a.html#clone-this-courses-repository"><i class="fa fa-check"></i><b>A.1.2</b> Clone this course’s repository</a></li>
-<li class="chapter" data-level="A.1.3" data-path="appendix-a.html"><a href="appendix-a.html#fork-this-courses-repository"><i class="fa fa-check"></i><b>A.1.3</b> Fork this course’s repository</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="B" data-path="appendix-b.html"><a href="appendix-b.html"><i class="fa fa-check"></i><b>B</b> Appendix B</a>
+<li class="chapter" data-level="15.1" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#getting-started-import-pre-processing-and-word-count"><i class="fa fa-check"></i><b>15.1</b> Getting started: Import, pre-processing, and word count</a></li>
+<li class="chapter" data-level="15.2" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#tutorial-political-slant"><i class="fa fa-check"></i><b>15.2</b> Tutorial: political slant</a>
 <ul>
-<li class="chapter" data-level="B.1" data-path="appendix-b.html"><a href="appendix-b.html#data-types-and-memorystorage"><i class="fa fa-check"></i><b>B.1</b> Data types and memory/storage</a>
+<li class="chapter" data-level="15.2.1" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#data-download-and-import"><i class="fa fa-check"></i><b>15.2.1</b> Data download and import</a></li>
+<li class="chapter" data-level="15.2.2" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#cleaning-speeches-data"><i class="fa fa-check"></i><b>15.2.2</b> Cleaning speeches data</a></li>
+<li class="chapter" data-level="15.2.3" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#create-a-bigrams-count-per-party"><i class="fa fa-check"></i><b>15.2.3</b> Create a bigrams count per party</a></li>
+<li class="chapter" data-level="15.2.4" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#find-partisan-phrases"><i class="fa fa-check"></i><b>15.2.4</b> Find “partisan” phrases</a></li>
+<li class="chapter" data-level="15.2.5" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#results-most-partisan-phrases-by-congress"><i class="fa fa-check"></i><b>15.2.5</b> Results: most partisan phrases by congress</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#natural-language-processing-at-scale"><i class="fa fa-check"></i><b>15.3</b> Natural Language Processing at Scale</a>
 <ul>
-<li class="chapter" data-level="B.1.1" data-path="appendix-b.html"><a href="appendix-b.html#example-in-r-data-types-and-information-storage"><i class="fa fa-check"></i><b>B.1.1</b> Example in R: Data types and information storage</a></li>
+<li class="chapter" data-level="15.3.1" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#preparatory-steps"><i class="fa fa-check"></i><b>15.3.1</b> Preparatory steps</a></li>
+<li class="chapter" data-level="15.3.2" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#sentiment-annotation"><i class="fa fa-check"></i><b>15.3.2</b> Sentiment annotation</a></li>
 </ul></li>
-<li class="chapter" data-level="B.2" data-path="appendix-b.html"><a href="appendix-b.html#data-structures"><i class="fa fa-check"></i><b>B.2</b> Data structures</a>
+<li class="chapter" data-level="15.4" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#aggregation-and-visualization"><i class="fa fa-check"></i><b>15.4</b> Aggregation and visualization</a></li>
+<li class="chapter" data-level="15.5" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#sparklyr-and-lazy-evaluation"><i class="fa fa-check"></i><b>15.5</b> <code>sparklyr</code> and lazy evaluation</a></li>
+</ul></li>
+<li class="part"><span><b>V Appendices</b></span></li>
+<li class="chapter" data-level="" data-path="appendix-a-github.html"><a href="appendix-a-github.html"><i class="fa fa-check"></i>Appendix A: GitHub</a>
 <ul>
-<li class="chapter" data-level="B.2.1" data-path="appendix-b.html"><a href="appendix-b.html#vectors-vs-factors-in-r"><i class="fa fa-check"></i><b>B.2.1</b> Vectors vs Factors in R</a></li>
-<li class="chapter" data-level="B.2.2" data-path="appendix-b.html"><a href="appendix-b.html#matricesarrays"><i class="fa fa-check"></i><b>B.2.2</b> Matrices/Arrays</a></li>
-<li class="chapter" data-level="B.2.3" data-path="appendix-b.html"><a href="appendix-b.html#data-frames-tibbles-and-data-tables"><i class="fa fa-check"></i><b>B.2.3</b> Data frames, tibbles, and data tables</a></li>
-<li class="chapter" data-level="B.2.4" data-path="appendix-b.html"><a href="appendix-b.html#lists"><i class="fa fa-check"></i><b>B.2.4</b> Lists</a></li>
+<li class="chapter" data-level="" data-path="appendix-a-github.html"><a href="appendix-a-github.html#initiate-a-new-repository"><i class="fa fa-check"></i>Initiate a new repository</a></li>
+<li class="chapter" data-level="" data-path="appendix-a-github.html"><a href="appendix-a-github.html#clone-this-books-repository"><i class="fa fa-check"></i>Clone this book’s repository</a></li>
+<li class="chapter" data-level="" data-path="appendix-a-github.html"><a href="appendix-a-github.html#fork-this-books-repository"><i class="fa fa-check"></i>Fork this book’s repository</a></li>
 </ul></li>
-<li class="chapter" data-level="B.3" data-path="appendix-b.html"><a href="appendix-b.html#r-tools-to-investigate-structures-and-types"><i class="fa fa-check"></i><b>B.3</b> R-tools to investigate structures and types</a></li>
-</ul></li>
-<li class="chapter" data-level="C" data-path="appendix-c.html"><a href="appendix-c.html"><i class="fa fa-check"></i><b>C</b> Appendix C</a>
+<li class="chapter" data-level="" data-path="appendix-b-r-basics.html"><a href="appendix-b-r-basics.html"><i class="fa fa-check"></i>Appendix B: R Basics</a>
 <ul>
-<li class="chapter" data-level="C.1" data-path="appendix-c.html"><a href="appendix-c.html#install-hadoop-on-ubuntu-linux"><i class="fa fa-check"></i><b>C.1</b> Install Hadoop (on Ubuntu Linux)</a></li>
-<li class="chapter" data-level="C.2" data-path="appendix-c.html"><a href="appendix-c.html#manually-set-up-a-database-server-in-the-cloud"><i class="fa fa-check"></i><b>C.2</b> Manually set up a database server in the cloud</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-r-basics.html"><a href="appendix-b-r-basics.html#data-types-and-memorystorage"><i class="fa fa-check"></i>Data types and memory/storage</a>
+<ul>
+<li class="chapter" data-level="" data-path="appendix-b-r-basics.html"><a href="appendix-b-r-basics.html#example-data-types-and-information-storage"><i class="fa fa-check"></i>Example: Data types and information storage</a></li>
 </ul></li>
+<li class="chapter" data-level="" data-path="appendix-b-r-basics.html"><a href="appendix-b-r-basics.html#data-structures"><i class="fa fa-check"></i>Data structures</a>
+<ul>
+<li class="chapter" data-level="" data-path="appendix-b-r-basics.html"><a href="appendix-b-r-basics.html#vectors-vs-factors-in-r"><i class="fa fa-check"></i>Vectors vs Factors in R</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-r-basics.html"><a href="appendix-b-r-basics.html#matricesarrays"><i class="fa fa-check"></i>Matrices/Arrays</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-r-basics.html"><a href="appendix-b-r-basics.html#data-frames-tibbles-and-data-tables"><i class="fa fa-check"></i>Data frames, tibbles, and data tables</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-r-basics.html"><a href="appendix-b-r-basics.html#lists"><i class="fa fa-check"></i>Lists</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix-b-r-basics.html"><a href="appendix-b-r-basics.html#r-tools-to-investigate-structures-and-types"><i class="fa fa-check"></i>R-tools to investigate structures and types</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix-c-install-hadoop.html"><a href="appendix-c-install-hadoop.html"><i class="fa fa-check"></i>Appendix C: Install Hadoop</a></li>
+<li class="part"><span><b>VI References and Index</b></span></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
 <li class="divider"></li>
 <li><a href="https://umatter.github.io" target="blank">umatter.github.io</a></li>
@@ -441,38 +452,76 @@ div.csl-indent {
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="econometrics-with-gpus" class="section level1 hasAnchor" number="14">
-<h1><span class="header-section-number">Chapter 14</span> Econometrics with GPUs<a href="econometrics-with-gpus.html#econometrics-with-gpus" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>GPUs have been used for a while in computational economics (see <span class="citation">Aldrich (<a href="#ref-aldrich_2014" role="doc-biblioref">2014</a>)</span> for an overview of early applications in economics). However, until recently most of the work building on GPUs in economics has focused on solving economic models numerically (see, e.g., <span class="citation">Aldrich et al. (<a href="#ref-aldrich_etal2011" role="doc-biblioref">2011</a>)</span>) and more broadly on Monte Carlo simulation. Nowadays, a most common application of GPUs in economics is machine learning, in particular deep learning (machine learning based on artificial neural networks). Training deep learning models can be very computationally intensive and to an important part depends on tensor (matrix) multiplications. This is also an area where you might come across highly parallelized computing based on GPUs without even noticing it, as the now commonly used software to build and train deep neural nets (<a href="https://www.tensorflow.org/">tensorflow</a>, and the high-level <a href="https://keras.io/">Keras</a> API) can easily be run on a CPU or GPU without any further configuration/preparation (apart from the initial installation of these programs). In this Chapter, we look at a simple example of using GPUs with Keras in the context of predictive econometrics.</p>
-<!-- First, add a simple implementation of OLS in gpuR (if easily possible) -->
-<!-- Then, add additional section based on this: https://cran.r-project.org/web/packages/tfestimators/index.html -->
-<!-- make a simple point regarding how to run regression models on the GPU without having to implement it yourselve, then prepare the transition to directly using Tensorflow/Keras for predictive econometrics. -->
-<div id="tensorflowkeras-example-predict-housing-prices" class="section level2 hasAnchor" number="14.1">
-<h2><span class="header-section-number">14.1</span> Tensorflow/Keras example: predict housing prices<a href="econometrics-with-gpus.html#tensorflowkeras-example-predict-housing-prices" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>In this example we train a simple sequential model with two hidden layers in order to predict the median value of owner-occupied homes (in USD 1,000) in the Boston area (data are from the 1970s). The original data and a detailed description can be found <a href="https://www.cs.toronto.edu/~delve/data/boston/bostonDetail.html">here</a>. The example follows closely <a href="https://keras.rstudio.com/articles/tutorial_basic_regression.html#the-boston-housing-prices-dataset">this keras tutorial</a> published by RStudio. See <a href="https://keras.rstudio.com/index.html">RStudio’s keras installation guide</a> for how to install keras (and tensorflow) and the corresponding R package <code>keras</code>.<a href="#fn56" class="footnote-ref" id="fnref56"><sup>56</sup></a> While the purpose of the example here is to demonstrate a typical (but very simple!) usage case of GPUs in machine learning, the same code should also run on a normal machine (without using GPUs) with a default installation of keras.</p>
-<p>Apart from <code>keras</code>, we load packages to prepare the data and visualize the output. Via <code>dataset_boston_housing()</code>, we load the dataset (shipped with the keras installation) in the format preferred by the <code>keras</code> library.</p>
-<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb596-1"><a href="econometrics-with-gpus.html#cb596-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
-<span id="cb596-2"><a href="econometrics-with-gpus.html#cb596-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(keras)</span>
-<span id="cb596-3"><a href="econometrics-with-gpus.html#cb596-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
-<span id="cb596-4"><a href="econometrics-with-gpus.html#cb596-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
-<pre><code>## 
-## Attaching package: &#39;ggplot2&#39;</code></pre>
-<pre><code>## The following object is masked _by_ &#39;.GlobalEnv&#39;:
-## 
-##     economics</code></pre>
-<pre><code>## The following object is masked from &#39;package:SparkR&#39;:
-## 
-##     expr</code></pre>
-<div class="sourceCode" id="cb600"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb600-1"><a href="econometrics-with-gpus.html#cb600-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tfdatasets)</span></code></pre></div>
-<pre><code>## 
-## Attaching package: &#39;tfdatasets&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:SparkR&#39;:
-## 
-##     contains</code></pre>
-<div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb603-1"><a href="econometrics-with-gpus.html#cb603-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load data</span></span>
-<span id="cb603-2"><a href="econometrics-with-gpus.html#cb603-2" aria-hidden="true" tabindex="-1"></a>boston_housing <span class="ot">&lt;-</span> <span class="fu">dataset_boston_housing</span>()</span></code></pre></div>
-<pre><code>## Loaded Tensorflow version 2.5.0</code></pre>
-<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="econometrics-with-gpus.html#cb605-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(boston_housing)</span></code></pre></div>
+<div id="econometrics-with-gpus" class="section level1 hasAnchor" number="13">
+<h1><span class="header-section-number">Chapter 13</span> Econometrics with GPUs<a href="econometrics-with-gpus.html#econometrics-with-gpus" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>GPUs have been used for a while in computational economics (see <span class="citation">Aldrich (<a href="#ref-aldrich_2014" role="doc-biblioref">2014</a>)</span> for an overview of early applications in economics). However, until recently most of the work building on GPUs in economics has focused on solving economic models numerically (see, e.g., <span class="citation">Aldrich et al. (<a href="#ref-aldrich_etal2011" role="doc-biblioref">2011</a>)</span>) and more broadly on Monte Carlo simulation. In this chapter, we first look at very basic GPU computation with R, before having a look at the nowadays most common application of GPUs in applied econometrics: machine learning with neural networks.</p>
+<div id="ols-on-gpus" class="section level2 hasAnchor" number="13.1">
+<h2><span class="header-section-number">13.1</span> OLS on GPUs<a href="econometrics-with-gpus.html#ols-on-gpus" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>In a first simple tutorial, we have a look at how GPUs can be used to speed up basic econometric functions, such as the implementation of the OLS estimator. To this end, we will build on the <code>gpuR</code> package introduced in Chapter 5. To keep the example code simple, we follow the same basic set up to implement and test our own OLS estimator function as in Chapter 3. That is, we first generate a sample based on (pseudo-)random numbers. To this end, we first define the sample size parameters <code>n</code> (the number of observations in our pseudo-sample) and <code>p</code> (the number of variables describing each of these observations) and then initialize the dataset <code>X</code>.</p>
+<div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb518-1"><a href="econometrics-with-gpus.html#cb518-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb518-2"><a href="econometrics-with-gpus.html#cb518-2" aria-hidden="true" tabindex="-1"></a><span class="co"># set parameter values</span></span>
+<span id="cb518-3"><a href="econometrics-with-gpus.html#cb518-3" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100000</span></span>
+<span id="cb518-4"><a href="econometrics-with-gpus.html#cb518-4" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="dv">4</span> </span>
+<span id="cb518-5"><a href="econometrics-with-gpus.html#cb518-5" aria-hidden="true" tabindex="-1"></a><span class="co"># generate a design matrix (~ our &#39;dataset&#39;) </span></span>
+<span id="cb518-6"><a href="econometrics-with-gpus.html#cb518-6" aria-hidden="true" tabindex="-1"></a><span class="co"># with p variables and n observations</span></span>
+<span id="cb518-7"><a href="econometrics-with-gpus.html#cb518-7" aria-hidden="true" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="fu">rnorm</span>(n<span class="sc">*</span>p, <span class="at">mean =</span> <span class="dv">10</span>), <span class="at">ncol =</span> p)</span>
+<span id="cb518-8"><a href="econometrics-with-gpus.html#cb518-8" aria-hidden="true" tabindex="-1"></a><span class="co"># add column for intercept</span></span>
+<span id="cb518-9"><a href="econometrics-with-gpus.html#cb518-9" aria-hidden="true" tabindex="-1"></a><span class="co">#X &lt;- cbind(rep(1, n), X)</span></span></code></pre></div>
+<p>Following exactly the same code as in Chapter 3, we can now define what the real linear model that we have in mind looks like and compute the output <code>y</code> of this model, given the input <code>X</code>.</p>
+<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="econometrics-with-gpus.html#cb519-1" aria-hidden="true" tabindex="-1"></a><span class="co"># MC model</span></span>
+<span id="cb519-2"><a href="econometrics-with-gpus.html#cb519-2" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span>  <span class="fl">1.5</span><span class="sc">*</span>X[,<span class="dv">1</span>] <span class="sc">+</span> <span class="dv">4</span><span class="sc">*</span>X[,<span class="dv">2</span>] <span class="sc">-</span> <span class="fl">3.5</span><span class="sc">*</span>X[,<span class="dv">3</span>] <span class="sc">+</span> <span class="fl">0.5</span><span class="sc">*</span>X[,<span class="dv">4</span>] <span class="sc">+</span> <span class="fu">rnorm</span>(n)</span></code></pre></div>
+<p>Now we re-implement our <code>beta_ols</code> function from Chapter 3 such that the OLS estimation is run on our local GPU. Recall that when computing on the GPU, we have the choice between keeping the data objects that go into the computation in RAM, or we can transfer the corresponding objects to GPU memory (which will further speed up the GPU computation). In the implementation of our <code>beta_ols_gpu</code>, I have added a parameter that allows switching between these two approaches. While setting <code>gpu_memory=TRUE</code> is likely faster, it might fail due to a lack of GPU memory (in all common desktop and laptop computers, RAM will be substantially larger than the GPU’s own memory). Hence, <code>gpu_memory</code> is set to <code>FALSE</code> by default.</p>
+<div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb520-1"><a href="econometrics-with-gpus.html#cb520-1" aria-hidden="true" tabindex="-1"></a>beta_ols_gpu <span class="ot">&lt;-</span> </span>
+<span id="cb520-2"><a href="econometrics-with-gpus.html#cb520-2" aria-hidden="true" tabindex="-1"></a>     <span class="cf">function</span>(X, y, <span class="at">gpu_memory=</span><span class="cn">FALSE</span>) {</span>
+<span id="cb520-3"><a href="econometrics-with-gpus.html#cb520-3" aria-hidden="true" tabindex="-1"></a>          <span class="fu">require</span>(gpuR)</span>
+<span id="cb520-4"><a href="econometrics-with-gpus.html#cb520-4" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb520-5"><a href="econometrics-with-gpus.html#cb520-5" aria-hidden="true" tabindex="-1"></a>          <span class="cf">if</span> (<span class="sc">!</span>gpu_memory){</span>
+<span id="cb520-6"><a href="econometrics-with-gpus.html#cb520-6" aria-hidden="true" tabindex="-1"></a>               <span class="co"># point GPU to matrix (matrix stored in non-GPU memory)</span></span>
+<span id="cb520-7"><a href="econometrics-with-gpus.html#cb520-7" aria-hidden="true" tabindex="-1"></a>               vclX <span class="ot">&lt;-</span> <span class="fu">vclMatrix</span>(X, <span class="at">type =</span> <span class="st">&quot;float&quot;</span>)</span>
+<span id="cb520-8"><a href="econometrics-with-gpus.html#cb520-8" aria-hidden="true" tabindex="-1"></a>               vcly <span class="ot">&lt;-</span> <span class="fu">vclVector</span>(y, <span class="at">type =</span> <span class="st">&quot;float&quot;</span>)</span>
+<span id="cb520-9"><a href="econometrics-with-gpus.html#cb520-9" aria-hidden="true" tabindex="-1"></a>               <span class="co"># compute cross products and inverse</span></span>
+<span id="cb520-10"><a href="econometrics-with-gpus.html#cb520-10" aria-hidden="true" tabindex="-1"></a>               XXi <span class="ot">&lt;-</span> <span class="fu">solve</span>(<span class="fu">crossprod</span>(vclX,vclX))</span>
+<span id="cb520-11"><a href="econometrics-with-gpus.html#cb520-11" aria-hidden="true" tabindex="-1"></a>               Xy <span class="ot">&lt;-</span> <span class="fu">crossprod</span>(vclX, vcly) </span>
+<span id="cb520-12"><a href="econometrics-with-gpus.html#cb520-12" aria-hidden="true" tabindex="-1"></a>          } <span class="cf">else</span> {</span>
+<span id="cb520-13"><a href="econometrics-with-gpus.html#cb520-13" aria-hidden="true" tabindex="-1"></a>               <span class="co"># point GPU to matrix (matrix stored in non-GPU memory)</span></span>
+<span id="cb520-14"><a href="econometrics-with-gpus.html#cb520-14" aria-hidden="true" tabindex="-1"></a>               gpuX <span class="ot">&lt;-</span> <span class="fu">gpuMatrix</span>(X, <span class="at">type =</span> <span class="st">&quot;float&quot;</span>)</span>
+<span id="cb520-15"><a href="econometrics-with-gpus.html#cb520-15" aria-hidden="true" tabindex="-1"></a>               gpuy <span class="ot">&lt;-</span> <span class="fu">gpuVector</span>(y, <span class="at">type =</span> <span class="st">&quot;float&quot;</span>)</span>
+<span id="cb520-16"><a href="econometrics-with-gpus.html#cb520-16" aria-hidden="true" tabindex="-1"></a>               <span class="co"># compute cross products and inverse</span></span>
+<span id="cb520-17"><a href="econometrics-with-gpus.html#cb520-17" aria-hidden="true" tabindex="-1"></a>               XXi <span class="ot">&lt;-</span> <span class="fu">solve</span>(<span class="fu">crossprod</span>(gpuX,gpuX))</span>
+<span id="cb520-18"><a href="econometrics-with-gpus.html#cb520-18" aria-hidden="true" tabindex="-1"></a>               Xy <span class="ot">&lt;-</span> <span class="fu">t</span>(gpuX)  <span class="sc">%*%</span> gpuy</span>
+<span id="cb520-19"><a href="econometrics-with-gpus.html#cb520-19" aria-hidden="true" tabindex="-1"></a>          }</span>
+<span id="cb520-20"><a href="econometrics-with-gpus.html#cb520-20" aria-hidden="true" tabindex="-1"></a>          beta_hat <span class="ot">&lt;-</span> <span class="fu">as.vector</span>(XXi  <span class="sc">%*%</span> Xy)</span>
+<span id="cb520-21"><a href="econometrics-with-gpus.html#cb520-21" aria-hidden="true" tabindex="-1"></a>          <span class="fu">return</span>(beta_hat)</span>
+<span id="cb520-22"><a href="econometrics-with-gpus.html#cb520-22" aria-hidden="true" tabindex="-1"></a>     }</span></code></pre></div>
+<p>Now we can verify whether the implemented GPU-run OLS estimator works as expected.</p>
+<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="econometrics-with-gpus.html#cb521-1" aria-hidden="true" tabindex="-1"></a><span class="fu">beta_ols_gpu</span>(X,y)</span></code></pre></div>
+<pre><code>## [1]  1.5037  3.9997 -3.5036  0.5003</code></pre>
+<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="econometrics-with-gpus.html#cb523-1" aria-hidden="true" tabindex="-1"></a><span class="fu">beta_ols_gpu</span>(X,y, <span class="at">gpu_memory =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<pre><code>## [1]  1.5033  3.9991 -3.5029  0.5005</code></pre>
+<p>Note how the coefficient estimates are very close to the true values. We can rest assured that our implementation of a GPU-based OLS estimator works fairly well. Also note how simple the basic implementation of functions to compute matrix-based operations on the GPU is through the <code>gpuR</code> package.</p>
+</div>
+<div id="a-word-of-caution" class="section level2 hasAnchor" number="13.2">
+<h2><span class="header-section-number">13.2</span> A word of caution<a href="econometrics-with-gpus.html#a-word-of-caution" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>From just comparing the number of threads of a modern CPU with the number of threads of a modern GPU, one might get the impression that parallelizable tasks should always be implemented for GPU computing. However, whether one approach or the other is faster can depend a lot on the overall task and the data at hand. Moreover, the parallel implementation of tasks can be done more or less well on either system. Really efficient parallel implementation of tasks can take a lot of coding time (particularly when done for GPUs).<a href="#fn67" class="footnote-ref" id="fnref67"><sup>67</sup></a></p>
+<p>As it turns out, the GPU OLS implementation above is actually a good example of a potential pitfall. While, as demonstrated in Chapter 4, matrix operations per se are likely much faster on GPUs than CPUs, the simple <code>beta_ols_gpu()</code> function implemented above involves more than the simple matrix operations. The model matrix as well as the vector of the dependent variable first had to be prepared for these operations (either a pointer for the GPU to the object in RAM had to be created, or the objects had to be transferred to GPU memory). Finally, the computed values need to be transferred back to a normal R-object (at least if we want to make the output consistent with our simple <code>beta_ols()</code> implementation from Chapter 3). All of these steps create an additional overhead in terms of computing time.<a href="#fn68" class="footnote-ref" id="fnref68"><sup>68</sup></a> Depending on the problem at hand, this overhead resulting from preparatory steps before running the actual computations on the GPU might be dwarfed by the efficiency-gain if the computing task is much more demanding then what is involved in OLS. The section on TensorFlow/Keras below points to exactly such a setting, where GPUs are typically much faster than CPUs.</p>
+</div>
+<div id="higher-level-interfaces-for-basic-econometrics-with-gpus" class="section level2 hasAnchor" number="13.3">
+<h2><span class="header-section-number">13.3</span> Higher-level interfaces for basic econometrics with GPUs<a href="econometrics-with-gpus.html#higher-level-interfaces-for-basic-econometrics-with-gpus" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The <a href="https://cran.r-project.org/web/views/HighPerformanceComputing.html">CRAN Task View on High-Performance and Parallel Computing with R</a> lists several projects that provide easy-to-use interfaces to canned implementations of regression and machine learning algorithms running on GPUs. For example, the <code>tfestimators</code> package provides an R interface to use the TensorFlow Estimators framework by <span class="citation">Cheng et al. (<a href="#ref-cheng_etal2017" role="doc-biblioref">2017</a>)</span>. The package provides various canned estimators to be run on GPUs (through TensorFlow).<a href="#fn69" class="footnote-ref" id="fnref69"><sup>69</sup></a> Note, however, that this framework is only compatible with TensorFlow version 1. As we will build on the latest version of TensorFlow (version 2) in the following example (and as most applications now build on version 2), we will not go into details of how to work with <code>tfestimators</code>. However, there are excellent vignettes provided with the package that help you get started.<a href="#fn70" class="footnote-ref" id="fnref70"><sup>70</sup></a></p>
+</div>
+<div id="tensorflowkeras-example-predict-housing-prices" class="section level2 hasAnchor" number="13.4">
+<h2><span class="header-section-number">13.4</span> TensorFlow/Keras example: predict housing prices<a href="econometrics-with-gpus.html#tensorflowkeras-example-predict-housing-prices" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The most common application of GPUs in modern econometrics is machine learning, in particular deep learning (a type of machine learning based on artificial neural networks). Training deep learning models can be very computationally intensive and to an important part depends on tensor (matrix) multiplications. This is also an area where you might come across highly parallelized computing based on GPUs without even noticing it, as the now commonly used software to build and train deep neural nets (<a href="https://www.tensorflow.org/">TensorFlow</a>; <span class="citation">Abadi et al. (<a href="#ref-tensorflow2015-whitepaper" role="doc-biblioref">2015</a>)</span>, and the high-level <a href="https://keras.io/">Keras</a> API; <span class="citation">Chollet et al. (<a href="#ref-chollet2015keras" role="doc-biblioref">2015</a>)</span>) can easily be run on a CPU or GPU without any further configuration/preparation (apart from the initial installation of these programs). In this chapter, we look at a simple example of using GPUs with Keras in the context of predictive econometrics.</p>
+<p>In this example we train a simple sequential model with two hidden layers to predict the median value of owner-occupied homes (in USD 1,000) in the Boston area (data is from the 1970s). The original data and a detailed description can be found here: <a href="https://www.cs.toronto.edu/~delve/data/boston/bostonDetail.html" class="uri">https://www.cs.toronto.edu/~delve/data/boston/bostonDetail.html</a>. The example follows closely <a href="https://keras.rstudio.com/articles/tutorial_basic_regression.html#the-boston-housing-prices-dataset">this Keras tutorial</a> published by RStudio. See <a href="https://keras.rstudio.com/index.html">RStudio’s Keras installation guide</a> for how to install Keras (and TensorFlow) and the corresponding R package <code>keras</code> <span class="citation">(<a href="#ref-keras" role="doc-biblioref">Allaire and Chollet 2022</a>)</span>.<a href="#fn71" class="footnote-ref" id="fnref71"><sup>71</sup></a> While the purpose of the example here is to demonstrate a typical (but very simple!) use case of GPUs in machine learning, the same code should also run on a normal machine (without using GPUs) with a default installation of Keras.</p>
+<p>Apart from <code>keras</code>, we load packages to prepare the data and visualize the output. Via <code>dataset_boston_housing()</code>, we load the dataset (shipped with the Keras installation) in the format preferred by the <code>keras</code> library.</p>
+<div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb525-1"><a href="econometrics-with-gpus.html#cb525-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb525-2"><a href="econometrics-with-gpus.html#cb525-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(keras)</span>
+<span id="cb525-3"><a href="econometrics-with-gpus.html#cb525-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb525-4"><a href="econometrics-with-gpus.html#cb525-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb525-5"><a href="econometrics-with-gpus.html#cb525-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tfdatasets)</span>
+<span id="cb525-6"><a href="econometrics-with-gpus.html#cb525-6" aria-hidden="true" tabindex="-1"></a><span class="co"># load data</span></span>
+<span id="cb525-7"><a href="econometrics-with-gpus.html#cb525-7" aria-hidden="true" tabindex="-1"></a>boston_housing <span class="ot">&lt;-</span> <span class="fu">dataset_boston_housing</span>()</span>
+<span id="cb525-8"><a href="econometrics-with-gpus.html#cb525-8" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(boston_housing)</span></code></pre></div>
 <pre><code>## List of 2
 ##  $ train:List of 2
 ##   ..$ x: num [1:404, 1:13] 1.2325 0.0218 4.8982 0.0396 3.6931 ...
@@ -480,176 +529,122 @@ div.csl-indent {
 ##  $ test :List of 2
 ##   ..$ x: num [1:102, 1:13] 18.0846 0.1233 0.055 1.2735 0.0715 ...
 ##   ..$ y: num [1:102(1d)] 7.2 18.8 19 27 22.2 24.5 31.2 22.9 20.5 23.2 ...</code></pre>
-<div id="data-preparation" class="section level3 hasAnchor" number="14.1.1">
-<h3><span class="header-section-number">14.1.1</span> Data preparation<a href="econometrics-with-gpus.html#data-preparation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>In a first step, we split the data into a training set and a test set. The latter is used to monitor the out-of-sample performance of the model fit. Testing the validity of an estimated model by looking at how it performs out-of-sample is of particular relevance when working with (deep) neural networks, as they can easily lead to over-fitting. Validity checks based on the test sample are, therefore, often an integral part of modelling with tensorflow/keras.</p>
-<div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="econometrics-with-gpus.html#cb607-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assign training and test data/labels</span></span>
-<span id="cb607-2"><a href="econometrics-with-gpus.html#cb607-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(train_data, train_labels) <span class="sc">%&lt;-%</span> boston_housing<span class="sc">$</span>train</span>
-<span id="cb607-3"><a href="econometrics-with-gpus.html#cb607-3" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(test_data, test_labels) <span class="sc">%&lt;-%</span> boston_housing<span class="sc">$</span>test</span></code></pre></div>
-<p>In order to better understand and interpret the dataset we add the original variable names, and convert it to a <code>tibble</code>.</p>
-<div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb608-1"><a href="econometrics-with-gpus.html#cb608-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb608-2"><a href="econometrics-with-gpus.html#cb608-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb608-3"><a href="econometrics-with-gpus.html#cb608-3" aria-hidden="true" tabindex="-1"></a>column_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;CRIM&#39;</span>, <span class="st">&#39;ZN&#39;</span>, <span class="st">&#39;INDUS&#39;</span>, <span class="st">&#39;CHAS&#39;</span>, <span class="st">&#39;NOX&#39;</span>, <span class="st">&#39;RM&#39;</span>, <span class="st">&#39;AGE&#39;</span>, </span>
-<span id="cb608-4"><a href="econometrics-with-gpus.html#cb608-4" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&#39;DIS&#39;</span>, <span class="st">&#39;RAD&#39;</span>, <span class="st">&#39;TAX&#39;</span>, <span class="st">&#39;PTRATIO&#39;</span>, <span class="st">&#39;B&#39;</span>, <span class="st">&#39;LSTAT&#39;</span>)</span>
-<span id="cb608-5"><a href="econometrics-with-gpus.html#cb608-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb608-6"><a href="econometrics-with-gpus.html#cb608-6" aria-hidden="true" tabindex="-1"></a>train_df <span class="ot">&lt;-</span> train_data <span class="sc">%&gt;%</span> </span>
-<span id="cb608-7"><a href="econometrics-with-gpus.html#cb608-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>(<span class="at">.name_repair =</span> <span class="st">&quot;minimal&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb608-8"><a href="econometrics-with-gpus.html#cb608-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(column_names) <span class="sc">%&gt;%</span> </span>
-<span id="cb608-9"><a href="econometrics-with-gpus.html#cb608-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">label =</span> train_labels)</span>
-<span id="cb608-10"><a href="econometrics-with-gpus.html#cb608-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb608-11"><a href="econometrics-with-gpus.html#cb608-11" aria-hidden="true" tabindex="-1"></a>test_df <span class="ot">&lt;-</span> test_data <span class="sc">%&gt;%</span> </span>
-<span id="cb608-12"><a href="econometrics-with-gpus.html#cb608-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>(<span class="at">.name_repair =</span> <span class="st">&quot;minimal&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb608-13"><a href="econometrics-with-gpus.html#cb608-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(column_names) <span class="sc">%&gt;%</span> </span>
-<span id="cb608-14"><a href="econometrics-with-gpus.html#cb608-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">label =</span> test_labels)</span></code></pre></div>
-<p>Next, we have a close look at the data. Note the usage of the term ‘label’ for what is usually called the ‘dependent variable’ in econometrics.<a href="#fn57" class="footnote-ref" id="fnref57"><sup>57</sup></a> As the aim of the exercise is to predict median prices of homes, the output of the model will be a continuous value (‘labels’).</p>
-<div class="sourceCode" id="cb609"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb609-1"><a href="econometrics-with-gpus.html#cb609-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check training data dimensions and content</span></span>
-<span id="cb609-2"><a href="econometrics-with-gpus.html#cb609-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(train_data)</span></code></pre></div>
-<pre><code>##        V1              V2              V3       
-##  Min.   : 0.01   Min.   :  0.0   Min.   : 0.46  
-##  1st Qu.: 0.08   1st Qu.:  0.0   1st Qu.: 5.13  
-##  Median : 0.27   Median :  0.0   Median : 9.69  
-##  Mean   : 3.75   Mean   : 11.5   Mean   :11.10  
-##  3rd Qu.: 3.67   3rd Qu.: 12.5   3rd Qu.:18.10  
-##  Max.   :88.98   Max.   :100.0   Max.   :27.74  
-##        V4               V5              V6      
-##  Min.   :0.0000   Min.   :0.385   Min.   :3.56  
-##  1st Qu.:0.0000   1st Qu.:0.453   1st Qu.:5.88  
-##  Median :0.0000   Median :0.538   Median :6.20  
-##  Mean   :0.0619   Mean   :0.557   Mean   :6.27  
-##  3rd Qu.:0.0000   3rd Qu.:0.631   3rd Qu.:6.61  
-##  Max.   :1.0000   Max.   :0.871   Max.   :8.72  
-##        V7              V8              V9       
-##  Min.   :  2.9   Min.   : 1.13   Min.   : 1.00  
-##  1st Qu.: 45.5   1st Qu.: 2.08   1st Qu.: 4.00  
-##  Median : 78.5   Median : 3.14   Median : 5.00  
-##  Mean   : 69.0   Mean   : 3.74   Mean   : 9.44  
-##  3rd Qu.: 94.1   3rd Qu.: 5.12   3rd Qu.:24.00  
-##  Max.   :100.0   Max.   :10.71   Max.   :24.00  
-##       V10           V11            V12       
-##  Min.   :188   Min.   :12.6   Min.   :  0.3  
-##  1st Qu.:279   1st Qu.:17.2   1st Qu.:374.7  
-##  Median :330   Median :19.1   Median :391.2  
-##  Mean   :406   Mean   :18.5   Mean   :354.8  
-##  3rd Qu.:666   3rd Qu.:20.2   3rd Qu.:396.2  
-##  Max.   :711   Max.   :22.0   Max.   :396.9  
-##       V13       
-##  Min.   : 1.73  
-##  1st Qu.: 6.89  
-##  Median :11.39  
-##  Mean   :12.74  
-##  3rd Qu.:17.09  
-##  Max.   :37.97</code></pre>
-<div class="sourceCode" id="cb611"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb611-1"><a href="econometrics-with-gpus.html#cb611-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(train_data) <span class="co"># Display first 10 entries</span></span></code></pre></div>
-<pre><code>##         [,1] [,2]  [,3] [,4]  [,5]  [,6]  [,7]  [,8]
-## [1,] 1.23247  0.0  8.14    0 0.538 6.142  91.7 3.977
-## [2,] 0.02177 82.5  2.03    0 0.415 7.610  15.7 6.270
-## [3,] 4.89822  0.0 18.10    0 0.631 4.970 100.0 1.333
-## [4,] 0.03961  0.0  5.19    0 0.515 6.037  34.5 5.985
-## [5,] 3.69311  0.0 18.10    0 0.713 6.376  88.4 2.567
-## [6,] 0.28392  0.0  7.38    0 0.493 5.708  74.3 4.721
-##      [,9] [,10] [,11] [,12] [,13]
-## [1,]    4   307  21.0 396.9 18.72
-## [2,]    2   348  14.7 395.4  3.11
-## [3,]   24   666  20.2 375.5  3.26
-## [4,]    5   224  20.2 396.9  8.01
-## [5,]   24   666  20.2 391.4 14.65
-## [6,]    5   287  19.6 391.1 11.74</code></pre>
-<p>As the dataset contains variables ranging from per capita crime rate to indicators for highway access, the variables are obviously measured in different units and hence displayed on different scales. This is not per se a problem for the fitting procedure. However, fitting is more efficient when all features (variables) are normalized.</p>
-<div class="sourceCode" id="cb613"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb613-1"><a href="econometrics-with-gpus.html#cb613-1" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">feature_spec</span>(train_df, label <span class="sc">~</span> . ) <span class="sc">%&gt;%</span> </span>
-<span id="cb613-2"><a href="econometrics-with-gpus.html#cb613-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_numeric_column</span>(<span class="fu">all_numeric</span>(), <span class="at">normalizer_fn =</span> <span class="fu">scaler_standard</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb613-3"><a href="econometrics-with-gpus.html#cb613-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>()</span>
-<span id="cb613-4"><a href="econometrics-with-gpus.html#cb613-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb613-5"><a href="econometrics-with-gpus.html#cb613-5" aria-hidden="true" tabindex="-1"></a>layer <span class="ot">&lt;-</span> <span class="fu">layer_dense_features</span>(</span>
-<span id="cb613-6"><a href="econometrics-with-gpus.html#cb613-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">feature_columns =</span> <span class="fu">dense_features</span>(spec), </span>
-<span id="cb613-7"><a href="econometrics-with-gpus.html#cb613-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">dtype =</span> tf<span class="sc">$</span>float32</span>
-<span id="cb613-8"><a href="econometrics-with-gpus.html#cb613-8" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb613-9"><a href="econometrics-with-gpus.html#cb613-9" aria-hidden="true" tabindex="-1"></a><span class="fu">layer</span>(train_df)</span></code></pre></div>
+<div id="data-preparation" class="section level3 hasAnchor" number="13.4.1">
+<h3><span class="header-section-number">13.4.1</span> Data preparation<a href="econometrics-with-gpus.html#data-preparation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In a first step, we split the data into a training set and a test set. The latter is used to monitor the out-of-sample performance of the model fit. Testing the validity of an estimated model by looking at how it performs out-of-sample is of particular relevance when working with (deep) neural networks, as they can easily lead to over-fitting. Validity checks based on the test sample are, therefore, often an integral part of modeling with TensorFlow/Keras.</p>
+<div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb527-1"><a href="econometrics-with-gpus.html#cb527-1" aria-hidden="true" tabindex="-1"></a><span class="co"># assign training and test data/labels</span></span>
+<span id="cb527-2"><a href="econometrics-with-gpus.html#cb527-2" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(train_data, train_labels) <span class="sc">%&lt;-%</span> boston_housing<span class="sc">$</span>train</span>
+<span id="cb527-3"><a href="econometrics-with-gpus.html#cb527-3" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(test_data, test_labels) <span class="sc">%&lt;-%</span> boston_housing<span class="sc">$</span>test</span></code></pre></div>
+<p>In order to better understand and interpret the dataset, we add the original variable names and convert it to a <code>tibble</code>.</p>
+<div class="sourceCode" id="cb528"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb528-1"><a href="econometrics-with-gpus.html#cb528-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb528-2"><a href="econometrics-with-gpus.html#cb528-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb528-3"><a href="econometrics-with-gpus.html#cb528-3" aria-hidden="true" tabindex="-1"></a>column_names <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;CRIM&#39;</span>, <span class="st">&#39;ZN&#39;</span>, <span class="st">&#39;INDUS&#39;</span>, <span class="st">&#39;CHAS&#39;</span>, <span class="st">&#39;NOX&#39;</span>, <span class="st">&#39;RM&#39;</span>, <span class="st">&#39;AGE&#39;</span>, </span>
+<span id="cb528-4"><a href="econometrics-with-gpus.html#cb528-4" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&#39;DIS&#39;</span>, <span class="st">&#39;RAD&#39;</span>, <span class="st">&#39;TAX&#39;</span>, <span class="st">&#39;PTRATIO&#39;</span>, <span class="st">&#39;B&#39;</span>, <span class="st">&#39;LSTAT&#39;</span>)</span>
+<span id="cb528-5"><a href="econometrics-with-gpus.html#cb528-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb528-6"><a href="econometrics-with-gpus.html#cb528-6" aria-hidden="true" tabindex="-1"></a>train_df <span class="ot">&lt;-</span> train_data <span class="sc">%&gt;%</span> </span>
+<span id="cb528-7"><a href="econometrics-with-gpus.html#cb528-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>(<span class="at">.name_repair =</span> <span class="st">&quot;minimal&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb528-8"><a href="econometrics-with-gpus.html#cb528-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(column_names) <span class="sc">%&gt;%</span> </span>
+<span id="cb528-9"><a href="econometrics-with-gpus.html#cb528-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">label =</span> train_labels)</span>
+<span id="cb528-10"><a href="econometrics-with-gpus.html#cb528-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb528-11"><a href="econometrics-with-gpus.html#cb528-11" aria-hidden="true" tabindex="-1"></a>test_df <span class="ot">&lt;-</span> test_data <span class="sc">%&gt;%</span> </span>
+<span id="cb528-12"><a href="econometrics-with-gpus.html#cb528-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>(<span class="at">.name_repair =</span> <span class="st">&quot;minimal&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb528-13"><a href="econometrics-with-gpus.html#cb528-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">setNames</span>(column_names) <span class="sc">%&gt;%</span> </span>
+<span id="cb528-14"><a href="econometrics-with-gpus.html#cb528-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">label =</span> test_labels)</span></code></pre></div>
+<p>Next, we have a close look at the data. Note the usage of the term ‘label’ for what is usually called the ‘dependent variable’ in econometrics.<a href="#fn72" class="footnote-ref" id="fnref72"><sup>72</sup></a> As the aim of the exercise is to predict median prices of homes, the output of the model will be a continuous value (‘labels’).</p>
+<div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb529-1"><a href="econometrics-with-gpus.html#cb529-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check training data dimensions and content</span></span>
+<span id="cb529-2"><a href="econometrics-with-gpus.html#cb529-2" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(train_df)</span></code></pre></div>
+<pre><code>## [1] 404  14</code></pre>
+<div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb531-1"><a href="econometrics-with-gpus.html#cb531-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(train_df) </span></code></pre></div>
+<pre><code>## # A tibble: 6 × 14
+##     CRIM    ZN INDUS  CHAS   NOX    RM   AGE   DIS
+##    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 1.23     0    8.14     0 0.538  6.14  91.7  3.98
+## 2 0.0218  82.5  2.03     0 0.415  7.61  15.7  6.27
+## 3 4.90     0   18.1      0 0.631  4.97 100    1.33
+## 4 0.0396   0    5.19     0 0.515  6.04  34.5  5.99
+## 5 3.69     0   18.1      0 0.713  6.38  88.4  2.57
+## 6 0.284    0    7.38     0 0.493  5.71  74.3  4.72
+## # … with 6 more variables: RAD &lt;dbl&gt;, TAX &lt;dbl&gt;,
+## #   PTRATIO &lt;dbl&gt;, B &lt;dbl&gt;, LSTAT &lt;dbl&gt;,
+## #   label &lt;dbl[1d]&gt;</code></pre>
+<p>As the dataset contains variables ranging from per capita crime rate to indicators for highway access, the variables are obviously measured in different units and hence displayed on different scales. This is not a problem per se for the fitting procedure. However, fitting is more efficient when all features (variables) are normalized.</p>
+<div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb533-1"><a href="econometrics-with-gpus.html#cb533-1" aria-hidden="true" tabindex="-1"></a>spec <span class="ot">&lt;-</span> <span class="fu">feature_spec</span>(train_df, label <span class="sc">~</span> . ) <span class="sc">%&gt;%</span></span>
+<span id="cb533-2"><a href="econometrics-with-gpus.html#cb533-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">step_numeric_column</span>(<span class="fu">all_numeric</span>(), <span class="at">normalizer_fn =</span> <span class="fu">scaler_standard</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb533-3"><a href="econometrics-with-gpus.html#cb533-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fit</span>()</span></code></pre></div>
 </div>
-<div id="model-specification" class="section level3 hasAnchor" number="14.1.2">
-<h3><span class="header-section-number">14.1.2</span> Model specification<a href="econometrics-with-gpus.html#model-specification" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>We specify the model as a linear stack of layers: The input (all 13 explanatory variables), two densely connected hidden layers (each with a 64-dimensional output space), and finally the one-dimensional output layer (the ‘dependent variable’).</p>
-<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="econometrics-with-gpus.html#cb614-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the model</span></span>
-<span id="cb614-2"><a href="econometrics-with-gpus.html#cb614-2" aria-hidden="true" tabindex="-1"></a><span class="co"># model specification</span></span>
-<span id="cb614-3"><a href="econometrics-with-gpus.html#cb614-3" aria-hidden="true" tabindex="-1"></a>input <span class="ot">&lt;-</span> <span class="fu">layer_input_from_dataset</span>(train_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>label))</span>
-<span id="cb614-4"><a href="econometrics-with-gpus.html#cb614-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb614-5"><a href="econometrics-with-gpus.html#cb614-5" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> input <span class="sc">%&gt;%</span> </span>
-<span id="cb614-6"><a href="econometrics-with-gpus.html#cb614-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_dense_features</span>(<span class="fu">dense_features</span>(spec)) <span class="sc">%&gt;%</span> </span>
-<span id="cb614-7"><a href="econometrics-with-gpus.html#cb614-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_dense</span>(<span class="at">units =</span> <span class="dv">64</span>, <span class="at">activation =</span> <span class="st">&quot;relu&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb614-8"><a href="econometrics-with-gpus.html#cb614-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_dense</span>(<span class="at">units =</span> <span class="dv">64</span>, <span class="at">activation =</span> <span class="st">&quot;relu&quot;</span>) <span class="sc">%&gt;%</span></span>
-<span id="cb614-9"><a href="econometrics-with-gpus.html#cb614-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_dense</span>(<span class="at">units =</span> <span class="dv">1</span>) </span>
-<span id="cb614-10"><a href="econometrics-with-gpus.html#cb614-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb614-11"><a href="econometrics-with-gpus.html#cb614-11" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">keras_model</span>(input, output)</span></code></pre></div>
+<div id="model-specification" class="section level3 hasAnchor" number="13.4.2">
+<h3><span class="header-section-number">13.4.2</span> Model specification<a href="econometrics-with-gpus.html#model-specification" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>We specify the model as a linear stack of layers: the input (all 13 explanatory variables), two densely connected hidden layers (each with a 64-dimensional output space), and finally the one-dimensional output layer (the ‘dependent variable’).</p>
+<div class="sourceCode" id="cb534"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb534-1"><a href="econometrics-with-gpus.html#cb534-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create the model</span></span>
+<span id="cb534-2"><a href="econometrics-with-gpus.html#cb534-2" aria-hidden="true" tabindex="-1"></a><span class="co"># model specification</span></span>
+<span id="cb534-3"><a href="econometrics-with-gpus.html#cb534-3" aria-hidden="true" tabindex="-1"></a>input <span class="ot">&lt;-</span> <span class="fu">layer_input_from_dataset</span>(train_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>label))</span>
+<span id="cb534-4"><a href="econometrics-with-gpus.html#cb534-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb534-5"><a href="econometrics-with-gpus.html#cb534-5" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> input <span class="sc">%&gt;%</span> </span>
+<span id="cb534-6"><a href="econometrics-with-gpus.html#cb534-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_dense_features</span>(<span class="fu">dense_features</span>(spec)) <span class="sc">%&gt;%</span> </span>
+<span id="cb534-7"><a href="econometrics-with-gpus.html#cb534-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_dense</span>(<span class="at">units =</span> <span class="dv">64</span>, <span class="at">activation =</span> <span class="st">&quot;relu&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb534-8"><a href="econometrics-with-gpus.html#cb534-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_dense</span>(<span class="at">units =</span> <span class="dv">64</span>, <span class="at">activation =</span> <span class="st">&quot;relu&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb534-9"><a href="econometrics-with-gpus.html#cb534-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">layer_dense</span>(<span class="at">units =</span> <span class="dv">1</span>) </span>
+<span id="cb534-10"><a href="econometrics-with-gpus.html#cb534-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb534-11"><a href="econometrics-with-gpus.html#cb534-11" aria-hidden="true" tabindex="-1"></a>model <span class="ot">&lt;-</span> <span class="fu">keras_model</span>(input, output)</span></code></pre></div>
 <p>In order to fit the model, we first have to compile it (configure it for training). At this step we set the configuration parameters that will guide the training/optimization procedure. We use the mean squared errors loss function (<code>mse</code>) typically used for regressions. We chose the <a href="http://www.cs.toronto.edu/~tijmen/csc321/slides/lecture_slides_lec6.pdf">RMSProp</a> optimizer to find the minimum loss.</p>
-<div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb615-1"><a href="econometrics-with-gpus.html#cb615-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compile the model  </span></span>
-<span id="cb615-2"><a href="econometrics-with-gpus.html#cb615-2" aria-hidden="true" tabindex="-1"></a>model <span class="sc">%&gt;%</span> </span>
-<span id="cb615-3"><a href="econometrics-with-gpus.html#cb615-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">compile</span>(</span>
-<span id="cb615-4"><a href="econometrics-with-gpus.html#cb615-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">loss =</span> <span class="st">&quot;mse&quot;</span>,</span>
-<span id="cb615-5"><a href="econometrics-with-gpus.html#cb615-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">optimizer =</span> <span class="fu">optimizer_rmsprop</span>(),</span>
-<span id="cb615-6"><a href="econometrics-with-gpus.html#cb615-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">metrics =</span> <span class="fu">list</span>(<span class="st">&quot;mean_absolute_error&quot;</span>)</span>
-<span id="cb615-7"><a href="econometrics-with-gpus.html#cb615-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<div class="sourceCode" id="cb535"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb535-1"><a href="econometrics-with-gpus.html#cb535-1" aria-hidden="true" tabindex="-1"></a><span class="co"># compile the model  </span></span>
+<span id="cb535-2"><a href="econometrics-with-gpus.html#cb535-2" aria-hidden="true" tabindex="-1"></a>model <span class="sc">%&gt;%</span> </span>
+<span id="cb535-3"><a href="econometrics-with-gpus.html#cb535-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">compile</span>(</span>
+<span id="cb535-4"><a href="econometrics-with-gpus.html#cb535-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">loss =</span> <span class="st">&quot;mse&quot;</span>,</span>
+<span id="cb535-5"><a href="econometrics-with-gpus.html#cb535-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">optimizer =</span> <span class="fu">optimizer_rmsprop</span>(),</span>
+<span id="cb535-6"><a href="econometrics-with-gpus.html#cb535-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">metrics =</span> <span class="fu">list</span>(<span class="st">&quot;mean_absolute_error&quot;</span>)</span>
+<span id="cb535-7"><a href="econometrics-with-gpus.html#cb535-7" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
 <p>Now we can get a summary of the model we are about to fit to the data.</p>
-<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="econometrics-with-gpus.html#cb616-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get a summary of the model</span></span>
-<span id="cb616-2"><a href="econometrics-with-gpus.html#cb616-2" aria-hidden="true" tabindex="-1"></a>model</span></code></pre></div>
+<div class="sourceCode" id="cb536"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb536-1"><a href="econometrics-with-gpus.html#cb536-1" aria-hidden="true" tabindex="-1"></a><span class="co"># get a summary of the model</span></span>
+<span id="cb536-2"><a href="econometrics-with-gpus.html#cb536-2" aria-hidden="true" tabindex="-1"></a>model</span></code></pre></div>
 </div>
-<div id="training-and-prediction" class="section level3 hasAnchor" number="14.1.3">
-<h3><span class="header-section-number">14.1.3</span> Training and prediction<a href="econometrics-with-gpus.html#training-and-prediction" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Given the relatively simple model and small dataset, we set the maximum number of epochs to 500 and allow for early stopping in case the validation loss (based on test data) is not improving for a while.</p>
-<div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb617-1"><a href="econometrics-with-gpus.html#cb617-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set max. number of epochs</span></span>
-<span id="cb617-2"><a href="econometrics-with-gpus.html#cb617-2" aria-hidden="true" tabindex="-1"></a>epochs <span class="ot">&lt;-</span> <span class="dv">500</span></span></code></pre></div>
+<div id="training-and-prediction" class="section level3 hasAnchor" number="13.4.3">
+<h3><span class="header-section-number">13.4.3</span> Training and prediction<a href="econometrics-with-gpus.html#training-and-prediction" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Given the relatively simple model and small dataset, we set the maximum number of epochs to 500.</p>
+<div class="sourceCode" id="cb537"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb537-1"><a href="econometrics-with-gpus.html#cb537-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Set max. number of epochs</span></span>
+<span id="cb537-2"><a href="econometrics-with-gpus.html#cb537-2" aria-hidden="true" tabindex="-1"></a>epochs <span class="ot">&lt;-</span> <span class="dv">500</span></span></code></pre></div>
 <p>Finally, we fit the model while preserving the training history, and visualize the training progress.</p>
-<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb618-1"><a href="econometrics-with-gpus.html#cb618-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model and store training stats</span></span>
-<span id="cb618-2"><a href="econometrics-with-gpus.html#cb618-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb618-3"><a href="econometrics-with-gpus.html#cb618-3" aria-hidden="true" tabindex="-1"></a>history <span class="ot">&lt;-</span> model <span class="sc">%&gt;%</span> <span class="fu">fit</span>(</span>
-<span id="cb618-4"><a href="econometrics-with-gpus.html#cb618-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> train_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>label),</span>
-<span id="cb618-5"><a href="econometrics-with-gpus.html#cb618-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> train_df<span class="sc">$</span>label,</span>
-<span id="cb618-6"><a href="econometrics-with-gpus.html#cb618-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">epochs =</span> epochs,</span>
-<span id="cb618-7"><a href="econometrics-with-gpus.html#cb618-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">validation_split =</span> <span class="fl">0.2</span>,</span>
-<span id="cb618-8"><a href="econometrics-with-gpus.html#cb618-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="dv">0</span></span>
-<span id="cb618-9"><a href="econometrics-with-gpus.html#cb618-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb618-10"><a href="econometrics-with-gpus.html#cb618-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb618-11"><a href="econometrics-with-gpus.html#cb618-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb618-12"><a href="econometrics-with-gpus.html#cb618-12" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(history)</span></code></pre></div>
+<div class="sourceCode" id="cb538"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb538-1"><a href="econometrics-with-gpus.html#cb538-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Fit the model and store training stats</span></span>
+<span id="cb538-2"><a href="econometrics-with-gpus.html#cb538-2" aria-hidden="true" tabindex="-1"></a>history <span class="ot">&lt;-</span> model <span class="sc">%&gt;%</span> <span class="fu">fit</span>(</span>
+<span id="cb538-3"><a href="econometrics-with-gpus.html#cb538-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> train_df <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="sc">-</span>label),</span>
+<span id="cb538-4"><a href="econometrics-with-gpus.html#cb538-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> train_df<span class="sc">$</span>label,</span>
+<span id="cb538-5"><a href="econometrics-with-gpus.html#cb538-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">epochs =</span> epochs,</span>
+<span id="cb538-6"><a href="econometrics-with-gpus.html#cb538-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">validation_split =</span> <span class="fl">0.2</span>,</span>
+<span id="cb538-7"><a href="econometrics-with-gpus.html#cb538-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">verbose =</span> <span class="dv">0</span></span>
+<span id="cb538-8"><a href="econometrics-with-gpus.html#cb538-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb538-9"><a href="econometrics-with-gpus.html#cb538-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(history)</span></code></pre></div>
+<p><img src="bigdata_files/figure-html/unnamed-chunk-276-1.png" /><!-- --></p>
 </div>
-<div id="a-word-of-caution" class="section level3 hasAnchor" number="14.1.4">
-<h3><span class="header-section-number">14.1.4</span> A word of caution<a href="econometrics-with-gpus.html#a-word-of-caution" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>From just comparing the number of threads of a modern CPU with the number of threads of a modern GPU, one might get the impression that parallel tasks should always be implemented for GPU computing. However, whether one approach or the other is faster can depend a lot on the overall task and the data at hand. Moreover, the parallel implementation of tasks can be done more or less well on either system. Really efficient parallel implementation of tasks can take a lot of coding time (particularly when done for GPUs).<a href="#fn58" class="footnote-ref" id="fnref58"><sup>58</sup></a>.</p>
-<!-- ADD WRAP UP HERE! -->
-<!-- ```{r echo=FALSE, warning=FALSE, message=FALSE} -->
-<!-- try(detach("package:lmtest", unload=TRUE, force = TRUE)) -->
-<!-- try(detach("package:data.table", unload=TRUE, force = TRUE)) -->
-<!-- try(detach("package:microbenchmark", unload=TRUE, force = TRUE)) -->
-<!-- try(detach("package:lfe", unload=TRUE, force = TRUE)) -->
-<!-- try(detach("package:foreign", unload = TRUE, force = TRUE)) -->
-<!-- try(detach("package:doSNOW", unload= TRUE, force = TRUE)) -->
-<!-- ``` -->
-<!-- ```{r echo=FALSE, message=FALSE, warning=FALSE} -->
-<!-- # remove all packages -->
-<!-- packages <- names(sessionInfo()$otherPkgs) -->
-<!-- packages <- packages[!packages %in% c("bookdown", "knitr", "rmarkdown")] -->
-<!-- lapply(packages, function(pkgs) -->
-<!--   detach( -->
-<!--     paste0('package:', pkgs), -->
-<!--     character.only = T, -->
-<!--     unload = T, -->
-<!--     force = T -->
-<!--   )) -->
-<!-- # close all connections -->
-<!-- #DIZtools::close_all_connections() -->
-<!-- # remove objects -->
-<!-- rm(list = ls()) -->
-<!-- gc()  -->
-<!-- ``` -->
+</div>
+<div id="wrapping-up-8" class="section level2 hasAnchor" number="13.5">
+<h2><span class="header-section-number">13.5</span> Wrapping up<a href="econometrics-with-gpus.html#wrapping-up-8" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li><code>gpuR</code> provides a straightforward interface for applied econometrics run on GPUs. While working with <code>gpuR</code>, be aware of the necessary computationl overhead to run commands on the GPU via this interface. For example, implementing the OLS estimator with <code>gpuR</code> is a good exercise but does not really pay off in terms of performance.</li>
+<li>There are several ongoing projects in the R world to bring GPU computation closer to basic data analytics tasks, providing high-level interfaces to work with GPUs (see the <a href="https://cran.r-project.org/web/views/HighPerformanceComputing.html">CRAN Task View on High-Performance and Parallel Computing with R</a> for some of those).</li>
+<li>A typical application of GPU computation in applied econometrics is the training of neural nets, particularly deep neural nets (deep learning). The <code>keras</code> and <code>tensorflow</code> packages provide excellent R interfaces to work with the deep learning libraries TensorFlow and Keras. Both of those libraries are implemented to directly work with GPUs.</li>
+</ul>
 
-</div>
 </div>
 </div>
 <h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-tensorflow2015-whitepaper" class="csl-entry">
+Abadi, Martín, Ashish Agarwal, Paul Barham, Eugene Brevdo, Zhifeng Chen, Craig Citro, Greg S. Corrado, et al. 2015. <span>“<span>TensorFlow</span>: Large-Scale Machine Learning on Heterogeneous Systems.”</span> <a href="https://www.tensorflow.org/">https://www.tensorflow.org/</a>.
+</div>
 <div id="ref-aldrich_2014" class="csl-entry">
-Aldrich, Eric M. 2014. <span>“Chapter 10 - GPU Computing in Economics.”</span> In <em>Handbook of Computational Economics Vol. 3</em>, edited by Karl Schmedders and Kenneth L. Judd, 3:557–98. Handbook of Computational Economics. Elsevier. https://doi.org/<a href="https://doi.org/10.1016/B978-0-444-52980-0.00010-4">https://doi.org/10.1016/B978-0-444-52980-0.00010-4</a>.
+Aldrich, Eric M. 2014. <span>“<span class="nocase">Chapter 10 - GPU Computing in Economics</span>.”</span> In <em>Handbook of Computational Economics Vol. 3</em>, edited by Karl Schmedders and Kenneth L. Judd, 3:557–98. Handbook of Computational Economics. Elsevier. https://doi.org/<a href="https://doi.org/10.1016/B978-0-444-52980-0.00010-4">https://doi.org/10.1016/B978-0-444-52980-0.00010-4</a>.
 </div>
 <div id="ref-aldrich_etal2011" class="csl-entry">
-Aldrich, Eric M., Jes√∫s Fern√°ndez-Villaverde, A. Ronald Gallant, and Juan F. Rubio-Ram√≠rez. 2011. <span>“Tapping the Supercomputer Under Your Desk: Solving Dynamic Equilibrium Models with Graphics Processors.”</span> <em>Journal of Economic Dynamics and Control</em> 35 (3): 386–93. https://doi.org/<a href="https://doi.org/10.1016/j.jedc.2010.10.001">https://doi.org/10.1016/j.jedc.2010.10.001</a>.
+Aldrich, Eric M., Jesus Fernandez-Villaverde, A. Ronald Gallant, and Juan F. Rubio-Ramirez. 2011. <span>“<span class="nocase">Tapping the supercomputer under your desk: Solving dynamic equilibrium models with graphics processors</span>.”</span> <em>Journal of Economic Dynamics and Control</em> 35 (3): 386–93. https://doi.org/<a href="https://doi.org/10.1016/j.jedc.2010.10.001">https://doi.org/10.1016/j.jedc.2010.10.001</a>.
+</div>
+<div id="ref-keras" class="csl-entry">
+Allaire, JJ, and François Chollet. 2022. <em>Keras: R Interface to ’Keras’</em>. <a href="https://CRAN.R-project.org/package=keras">https://CRAN.R-project.org/package=keras</a>.
+</div>
+<div id="ref-cheng_etal2017" class="csl-entry">
+Cheng, Heng-Tze, Zakaria Haque, Lichan Hong, Mustafa Ispir, Clemens Mewald, Illia Polosukhin, Georgios Roumpos, et al. 2017. <span>“<span class="nocase">TensorFlow Estimators: Managing Simplicity vs. Flexibility in High-Level Machine Learning Frameworks</span>.”</span> In <em>Proceedings of the 23rd ACM SIGKDD International Conference on Knowledge Discovery and Data Mining</em>, 1763–71. KDD ’17. New York, NY, USA: Association for Computing Machinery. <a href="https://doi.org/10.1145/3097983.3098171">https://doi.org/10.1145/3097983.3098171</a>.
+</div>
+<div id="ref-chollet2015keras" class="csl-entry">
+Chollet, François et al. 2015. <span>“Keras.”</span> <a href="https://keras.io" class="uri">https://keras.io</a>.
 </div>
 <div id="ref-matloff_2015" class="csl-entry">
 Matloff, Norman. 2015. <em>Parallel Computing for Data Science</em>. Boca Raton, FL: CRC Press.
@@ -657,10 +652,13 @@ Matloff, Norman. 2015. <em>Parallel Computing for Data Science</em>. Boca Raton,
 </div>
 <div class="footnotes">
 <hr />
-<ol start="56">
-<li id="fn56"><p>This might involve the installation of additional packages and software outside the R environment.<a href="econometrics-with-gpus.html#fnref56" class="footnote-back">↩︎</a></p></li>
-<li id="fn57"><p>Typical textbook examples in machine learning deal with classification (e.g. a logit model), while in microeconometrics the typical example is usually a linear model (continuous dependent variable).<a href="econometrics-with-gpus.html#fnref57" class="footnote-back">↩︎</a></p></li>
-<li id="fn58"><p>For a more detailed discussion of the relevant factors for well done parallelization (either on CPUs or GPUs), see <span class="citation">Matloff (<a href="#ref-matloff_2015" role="doc-biblioref">2015</a>)</span><a href="econometrics-with-gpus.html#fnref58" class="footnote-back">↩︎</a></p></li>
+<ol start="67">
+<li id="fn67"><p>For a more detailed discussion of the relevant factors for well-designed parallelization (either on CPUs or GPUs), see <span class="citation">Matloff (<a href="#ref-matloff_2015" role="doc-biblioref">2015</a>)</span>.<a href="econometrics-with-gpus.html#fnref67" class="footnote-back">↩︎</a></p></li>
+<li id="fn68"><p>You can easily verify this by comparing the performance of <code>beta_ols()</code> (the simple CPU-based implementation) with the here implemented <code>beta_ols_gpu()</code> through the <code>bench::mark()</code> function.<a href="econometrics-with-gpus.html#fnref68" class="footnote-back">↩︎</a></p></li>
+<li id="fn69"><p>See <a href="https://cran.r-project.org/web/packages/tfestimators/vignettes/estimator_basics.html" class="uri">https://cran.r-project.org/web/packages/tfestimators/vignettes/estimator_basics.html</a> for an introduction to the basic usage of the package.<a href="econometrics-with-gpus.html#fnref69" class="footnote-back">↩︎</a></p></li>
+<li id="fn70"><p>See <a href="https://cran.r-project.org/web/packages/tfestimators/" class="uri">https://cran.r-project.org/web/packages/tfestimators/</a>.<a href="econometrics-with-gpus.html#fnref70" class="footnote-back">↩︎</a></p></li>
+<li id="fn71"><p>This might involve the installation of additional packages and software outside the R environment. The following examples were run with TensorFlow version <code>tensorflow_gpu-2.9.3</code>.<a href="econometrics-with-gpus.html#fnref71" class="footnote-back">↩︎</a></p></li>
+<li id="fn72"><p>Typical textbook examples in machine learning deal with classification (e.g., a logit model), while in microeconometrics the typical example is usually a linear model (continuous dependent variable).<a href="econometrics-with-gpus.html#fnref72" class="footnote-back">↩︎</a></p></li>
 </ol>
 </div>
             </section>
@@ -668,7 +666,7 @@ Matloff, Norman. 2015. <em>Parallel Computing for Data Science</em>. Boca Raton,
           </div>
         </div>
       </div>
-<a href="bottle-necks-in-every-day-data-analytics-tasks.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="bottlenecks-in-everyday-data-analytics-tasks.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="regression-analysis-and-categorization-with-spark-and-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
