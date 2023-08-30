@@ -1,10 +1,7 @@
 ---
 knit: "bookdown::render_book"
 title: "Big Data Analytics"
-subtitle: "A guide to data science practitioners making the transition to Big Data"
 author: "Ulrich Matter"
-date: "`r Sys.Date()`"
-description: "A guide to data science practitioners making the transition to Big Data."
 github-repo: "umatter/BigData"
 url: "https://umatter.github.io/BigData"
 documentclass: style/krantz        
@@ -20,7 +17,7 @@ monofontoptions: "Scale=0.7"
 site: bookdown::bookdown_site
 bibliography: [references/bigdata.bib, references/packages.bib]
 biblio-style: apalike
-cover-image: img/cover.jpg
+cover-image: img/cover_print.jpg
 ---
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
@@ -48,26 +45,23 @@ options(ggplot2.discrete.colour= c("#000000", "#E69F00", "#56B4E9", "#009E73", "
 # Welcome {-}
 
 
-```{r fig.align='center', out.height="300px", echo=FALSE, include=identical(knitr:::pandoc_to(), 'html')}
-knitr::include_graphics('img/cover.jpg', dpi = NA)
-```
 
-This textbook provides an introduction to Big Data Analytics in the context of empirical economic research. The book covers the computational constraints underlying Big Data Analytics and how to handle them in the statistical computing environment R (local and in the cloud). Revisiting basic statistical/econometric concepts, the book looks at each step of dealing with large data sets in empirical economic research (storage/import, transformation, visualization, aggregation, analysis).
+<div style="display: flex;">
+<img src="img/cover_print.jpg"  style="margin-right: 10px;">
+  <div>
+
+This is the website of the 1st edition of "Big Data Analytics". The book provides an introduction to Big Data Analytics for academics and practitioners. You will learn about the computational constraints underlying Big Data Analytics and how to handle them in the statistical computing environment R (local and in the cloud). The book covers each step of dealing with large data sets in applied data science (storage/import, transformation, visualization, aggregation, analysis).
+
+The website is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a> and is free to access. To order a physical copy of the book, please visit the [publisher's website](https://www.routledge.com/Big-Data-Analytics-A-Guide-to-Data-Science-Practitioners-Making-the-Transition/Matter/p/book/9781032458144) or [Amazon](https://www.amazon.com/Data-Analytics-Chapman-Hall-Science/dp/1032458143/ref=tmm_pap_swatch_0?_encoding=UTF8&qid=1693251784&sr=8-1).
+  </div>
+</div>
+
+<br>
+
+>“This book is a superb practical guide for data scientists and graduate students in business and economics interested in data analytics. The combination of a clear introduction to the concepts and techniques of big data analytics with examples of how to code these tools makes this book both accessible and practical. I highly recommend this book to anyone seeking to prepare themselves for the ever-evolving world of data analytics in business and economics research.”
+- <em>Oded Netzer</em>, Vice Dean for Research, Columbia Business School
 
 
-## License {-}
-
-<a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons Licence" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png" /></a>
-
-This work, as a whole, is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.
-
-
-# Preface {.unnumbered}
-
-
-## Prerequisites {.unnumbered}
-
-This book builds extensively on programming in R. The reader is expected to already be familiar with R and basic programming concepts such as loops, control statements and functions. In addition, the book presupposes some familiarity with undergraduate and basic graduate statistics/econometrics.
 
 
 `r if (knitr::is_latex_output()) '-->'`

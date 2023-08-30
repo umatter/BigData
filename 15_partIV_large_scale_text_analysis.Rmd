@@ -1,17 +1,17 @@
 # Large-scale Text Analysis with sparklyr
-\index{Text analysis}
+\index{Text Analysis}
 
-Text analysis/natural language processing (NLP)\index{Natural Language Processing (NLP)} often involves rather large amounts of data and is particularly challenging for in-memory processing. `sparklyr` provides several easy-to-use functions to run some of the computationally most demanding text data handling on a Spark cluster. In this chapter we explore these functions and the corresponding workflows to do text analysis on an AWS EMR cluster running Spark. Thereby we focus on the first few key components of a modern NLP pipeline\index{NLP pipeline}. Figure \@ref(fig:nlppipeline) presents an overview of the main components of such a pipeline. 
+Text analysis/natural language processing (NLP)\index{Natural Language Processing (NLP)} often involves rather large amounts of data and is particularly challenging for in-memory processing. `sparklyr` provides several easy-to-use functions to run some of the computationally most demanding text data handling on a Spark cluster. In this chapter we explore these functions and the corresponding workflows to do text analysis on an AWS EMR cluster running Spark. Thereby we focus on the first few key components of a modern NLP pipeline\index{NLP Pipeline}. Figure \@ref(fig:nlppipeline) presents an overview of the main components of such a pipeline. 
 
 
 ```{r nlppipeline, echo=FALSE, out.width = "99%", fig.align='center', fig.cap= "(ref:nlppipeline)", purl=FALSE}
 include_graphics("img/05_nlp_pipeline.jpg")
 ```
 
-(ref:nlppipeline) Illustration of a NLP (Natural Language Processing)\index{Natural Language Processing (NLP)} pipeline\index{NLP pipeline}.
+(ref:nlppipeline) Illustration of an NLP (Natural Language Processing)\index{Natural Language Processing (NLP)} pipeline\index{NLP Pipeline}.
 
 
-Up until the deployment of an NLP\index{Natural Language Processing (NLP)}  model, all the steps involved constitute the typical workflow of economic research projects based on text data. Conveniently, all these first crucial steps of analyzing text data are covered in a few high-level functions provided in the `sparklyr` package\index{sparklyr package}. Implementing these steps and running them based on massive amounts of text data on an AWS EMR\index{AWS EMR} cluster is thus straightforward.
+Up until the deployment of an NLP\index{Natural Language Processing (NLP)}  model, all the steps involved constitute the typical workflow of economic research projects based on text data. Conveniently, all these first crucial steps of analyzing text data are covered in a few high-level functions provided in the `sparklyr` package\index{sparklyr Package}. Implementing these steps and running them based on massive amounts of text data on an AWS EMR\index{AWS EMR} cluster are thus straightforward.
 
 To get familiar with the basic syntax, the following subsection covers the first steps in such a pipeline based on a very simple text example.
 
@@ -19,10 +19,10 @@ To get familiar with the basic syntax, the following subsection covers the first
 
 
 ## Getting started: Import, pre-processing, and word count
-\index{Word count}
-The following example briefly guides the reader through some of the most common first steps when processing text data for NLP. In the code example, we process Friedrich Schiller's "Wilhelm Tell" (English edition; Project Gutenberg Book ID 2782), which we download from [Project Gutenberg](https://www.gutenberg.org/) by means of the `gutenbergr` package\index{gutenbergr package} [@gutenbergr]. The example can easily be extended to process many more books.
+\index{Word Count}
+The following example briefly guides the reader through some of the most common first steps when processing text data for NLP. In the code example, we process Friedrich Schiller's "Wilhelm Tell" (English edition; Project Gutenberg Book ID 2782), which we download from [Project Gutenberg](https://www.gutenberg.org/) by means of the `gutenbergr` package\index{gutenbergr Package} [@gutenbergr]. The example can easily be extended to process many more books.
 
-The example is set up to work straightforwardly on an AWS EMR\index{AWS EMR} cluster. However, given the relatively small amount of data processed here, you can also run it locally. If you want to run it on EMR, simply follow the steps in Chapter 6.4 to set up the cluster and log in to RStudio on the master node. The `sparklyr`\index{sparklyr package} package is already installed on EMR (if you use the bootstrap-script introduced in Chapter 6.4 for the setup of the cluster), but other packages might still have to be installed.
+The example is set up to work straightforwardly on an AWS EMR\index{AWS EMR} cluster. However, given the relatively small amount of data processed here, you can also run it locally. If you want to run it on EMR, simply follow the steps in Chapter 6.4 to set up the cluster and log in to RStudio on the master node. The `sparklyr`\index{sparklyr Package} package is already installed on EMR (if you use the bootstrap-script introduced in Chapter 6.4 for the set-up of the cluster), but other packages might still have to be installed.
 
 We first load the packages and connect the RStudio session to the cluster (if you run this locally, use `spark_connect(master="local")`).
 
@@ -82,7 +82,7 @@ tell_spark <- copy_to(sc, tell,
 
 ```
 
-The text data will be processed in a `SparkDataFrame`\index{SparkDataFrame} column behind the `tbl_spakr` object. First, we remove empty lines of text, select the column containing all the text, and then remove all non-numeric and non-alphabetical characters. The last step is an important text cleaning step as we want to avoid special characters being considered words or parts of words later on.
+The text data will be processed in a `SparkDataFrame`\index{SparkDataFrame} column behind the `tell_spark` object. First, we remove empty lines of text, select the column containing all the text, and then remove all non-numeric and non-alphabetical characters. The last step is an important text cleaning step as we want to avoid special characters being considered words or parts of words later on.
 
 ```{r warning=FALSE, message=FALSE}
 # data cleaning
@@ -127,7 +127,7 @@ all_tell_words <- select(all_tell_words, word)
 all_tell_words <- filter(all_tell_words, 2<nchar(word))
 ```
 
-Based on this cleaned set of words, we can compute the word count\index{Word count} for the entire book.
+Based on this cleaned set of words, we can compute the word count\index{Word Count} for the entire book.
 
 ```{r warning=FALSE, message=FALSE}
 # get word count and store result in Spark memory
@@ -146,11 +146,11 @@ spark_disconnect(sc)
 ## Tutorial: political slant
 
 
-The tutorial below shows how to use `sparklyr`\index{sparklyr package} (in conjunction with AWS EMR\index{AWS EMR}) to run the entire raw text processing of  academic research projects in economics. We will replicate the data preparation and computation of the *slant measure* for congressional speeches suggested by @gentzkow_shapiro2010 in the tutorial. To keep things simple, we'll use the data compiled by @gentzkow_etal2019 and made available at https://data.stanford.edu/congress_text. 
+The tutorial below shows how to use `sparklyr`\index{sparklyr Package} (in conjunction with AWS EMR\index{AWS EMR}) to run the entire raw text processing of  academic research projects in economics. We will replicate the data preparation and computation of the *slant measure* for congressional speeches suggested by @gentzkow_shapiro2010 in the tutorial. To keep things simple, we'll use the data compiled by @gentzkow_etal2019 and made available at https://data.stanford.edu/congress_text. 
 
 ### Data download and import
 
-To begin, we download the corresponding zip-file to the EMR\index{AWS EMR} master node (if using EMR) or to your local RStudio\index{RStudio} working directory if using a local Spark\index{Apache Spark} installation. The unzipped folder contains text data from all speeches delivered from the 97th to the 114th US Congress, among other things. We will primarily work with the raw speeches text data\index{Text data}, which is stored in files with the naming pattern `"speeches CONGRESS.txt,"` where `CONGRESS` is the number of the corresponding US Congress. To make things easier, we put all of the `speeches`-files in a subdirectory called `'speeches`. The following section simply illustrates one method for downloading and rearranging the data files. The following code chunks require that all files containing the text of speeches be stored in `data/text/speeches` and all speaker information be stored in `data/text/speakers`.  
+To begin, we download the corresponding zip-file to the EMR\index{AWS EMR} master node (if using EMR) or to your local RStudio\index{RStudio} working directory if using a local Spark\index{Apache Spark} installation. The unzipped folder contains text data from all speeches delivered from the 97th to the 114th US Congress, among other things. We will primarily work with the raw speeches text data\index{Text Data}, which is stored in files with the naming pattern `"speeches CONGRESS.txt,"` where `CONGRESS` is the number of the corresponding US Congress. To make things easier, we put all of the `speeches`-files in a subdirectory called `'speeches'`. The following section simply illustrates one method for downloading and rearranging the data files. The following code chunks require that all files containing the text of speeches be stored in `data/text/speeches` and all speaker information be stored in `data/text/speakers`.  
 
 ```{r eval=FALSE}
 # download and unzip the raw text data
@@ -189,7 +189,7 @@ system("mv vocabulary/vocab.txt data/text/")
 ```
 
 
-We begin by loading the corresponding packages, defining some fix variables, and connecting the R session to the Spark cluster, using the same basic pipeline structure as in the previous section's introductory example. Typically, you would first test these steps on a local Spark installation before feeding in more data to process on a Spark cluster in the cloud. In the following example, we only process the congressional speeches from the 97th to the 114th US Congress. The original source provides data for almost the entire history of Congress (see https://data.stanford.edu/congress_text for details). Recall that for local tests/working with the local Spark installation, you can connect your R session with `sc <- spark_connect(master = "local")`\index{spark\_connect()}. Since even the limited speeches set we work with locally is several GBs in size, we set the memory available to our local Spark node to 16GB. This can be done by fetching the config file via `spark_config()`\index{spark\_config()} and then setting the `driver-memory` accordingly before initializing the Spark connection with the adapted configuration object (see `config = conf` in the `spark_connect()`\index{spark\_connect()} command).
+We begin by loading the corresponding packages, defining some fixed variables, and connecting the R session to the Spark cluster, using the same basic pipeline structure as in the previous section's introductory example. Typically, you would first test these steps on a local Spark installation before feeding in more data to process on a Spark cluster in the cloud. In the following example, we only process the congressional speeches from the 97th to the 114th US Congress. The original source provides data for almost the entire history of Congress (see https://data.stanford.edu/congress_text for details). Recall that for local tests/working with the local Spark installation, you can connect your R session with `sc <- spark_connect(master = "local")`\index{spark\_connect()}. Since even the limited speeches set we work with locally is several GBs in size, we set the memory available to our local Spark node to 16GB. This can be done by fetching the config file via `spark_config()`\index{spark\_config()} and then setting the `driver-memory` accordingly before initializing the Spark connection with the adapted configuration object (see `config = conf` in the `spark_connect()`\index{spark\_connect()} command).
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 # SET UP ----------------
@@ -232,7 +232,7 @@ speakers <- spark_read_csv(sc,
 
 ### Cleaning speeches data
 
-The intermediate goal of the data preparation steps is to determine the number of bigrams\index{Bigram} per party. That is, we want to know how frequently members of a particular political party have used a two-word phrase.As a first step, we must combine the speeches and speaker data to obtain the party label per speech, and then clean the raw text to extract words, and create and count bigrams\index{Bigram}. Congressional speeches frequently include references to dates, bill numbers, years, and so on. This introduces a slew of tokens\index{Token} made up entirely of digits, single characters, and special characters.The cleaning steps that follow are intended to remove the majority of those. 
+The intermediate goal of the data preparation steps is to determine the number of bigrams\index{Bigram} per party. That is, we want to know how frequently members of a particular political party have used a two-word phrase. As a first step, we must combine the speeches and speaker data to obtain the party label per speech and then clean the raw text to extract words and create and count bigrams\index{Bigram}. Congressional speeches frequently include references to dates, bill numbers, years, and so on. This introduces a slew of tokens\index{Token} made up entirely of digits, single characters, and special characters. The cleaning steps that follow are intended to remove the majority of those. 
 
 
 ```{r}
@@ -265,7 +265,7 @@ speeches <-
 
 ### Create a bigrams count per party
 
-Based on the cleaned text, we now split the text into words (tokenization)\index{Tokenization}, remove stopwords\index{stopwords}, and create a list of bigrams\index{Bigram} (2-word phrases). Finally, we unnest the bigram list and keep the party and bigram\index{Bigram} column. The resulting spark table contains a row for each bigram mentioned in any of the speeches along the information of whether the speech in which the bigram\index{Bigram} was mentioned was given by a Democrat or a Republican.
+Based on the cleaned text, we now split the text into words (tokenization)\index{Tokenization}, remove stopwords\index{Stopwords}, and create a list of bigrams\index{Bigram} (2-word phrases). Finally, we unnest the bigram list and keep the party and bigram\index{Bigram} column. The resulting Spark table contains a row for each bigram mentioned in any of the speeches along with the information of whether the speech in which the bigram\index{Bigram} was mentioned was given by a Democrat or a Republican.
 
 ```{r}
 
@@ -292,7 +292,7 @@ bigrams <-
 
 ```
 
-Before counting the bigrams\index{Bigram count} by party, we need an additional context-specific cleaning step in which we remove procedural phrases from the speech bigrams\index{Bigram}.
+Before counting the bigrams\index{Bigram Count} by party, we need an additional context-specific cleaning step in which we remove procedural phrases from the speech bigrams\index{Bigram}.
 
 ```{r}
 # load the procedural phrases list
@@ -308,7 +308,7 @@ bigrams <- inner_join(bigrams, valid_vocab, by= c("bigram"="V1"))
 
 ### Find "partisan" phrases
 
-At this point, we have all pieces in place in order to compute the bigram count\index{Bigram count} (how often a certain bigram\index{Bigram} was mentioned by a member of either party). As this is an important intermediate result, we evaluate the entire operation for all the data and cache it in spark memory through `compute()`\index{compute()}. Note that if you run this code on your local machine, it can take a while to process.
+At this point, we have all pieces in place in order to compute the bigram count\index{Bigram Count} (how often a certain bigram\index{Bigram} was mentioned by a member of either party). As this is an important intermediate result, we evaluate the entire operation for all the data and cache it in Spark memory through `compute()`\index{compute()}. Note that if you run this code on your local machine, it can take a while to process.
 
 ```{r}
 # BIGRAM COUNT PER PARTY ---------------
@@ -338,7 +338,7 @@ freqs_r <-
 ```
 
 
-Based on the computed bigram frequencies, we can compute the chi-squared test\index{Chi-squared test} as follows.
+Based on the computed bigram frequencies, we can compute the chi-squared test\index{Chi-Squared Test} as follows.
 
 ```{r warning=FALSE, message=FALSE}
 pol_bigrams <-
@@ -353,9 +353,9 @@ pol_bigrams <-
 ```
 
 
-### Results: most partisan phrases by congress
+### Results: Most partisan phrases by congress
 
-In order to present a first glimpse at the results we first select the 2,000 most partisan phrases per Congress according to the procedure above. To do so, we need to first create an index column in the corresponding spark table.^[Recall that Spark\index{Apache Spark} is made to operate on distributed systems\index{Distributed system}. Since the entire dataset is distributed (as subsets) across the cluster, it is not as straightforward to fetch the first N entries of a dataset as compared to a situation in which the entire dataset is stored in one data frame residing in RAM\index{Random Access Memory (RAM)}.] We then collect the 2,000 most partisan bigrams.^[The output of the entire pipeline is not at all large anymore at this stage, thus we can confidently call `collect()`\index{collect()} to download the results (output data) from the Spark cluster into our local R memory (or the master node's R memory when working in the cloud).] 
+In order to present a first glimpse at the results we first select the 2,000 most partisan phrases per Congress according to the procedure above. To do so, we need to first create an index column in the corresponding Spark table.^[Recall that Spark\index{Apache Spark} is made to operate on distributed systems\index{Distributed System}. Since the entire dataset is distributed (as subsets) across the cluster, it is not as straightforward to fetch the first N entries of a dataset as compared to a situation in which the entire dataset is stored in one data frame residing in RAM\index{Random Access Memory (RAM)}.] We then collect the 2,000 most partisan bigrams.^[The output of the entire pipeline is not at all large anymore at this stage; thus we can confidently call `collect()`\index{collect()} to download the results (output data) from the Spark cluster into our local R memory (or the master node's R memory when working in the cloud).] 
 
 ```{r message=FALSE, warning=FALSE}
 # create output data frame
@@ -372,7 +372,7 @@ output <- pol_bigrams  %>%
 spark_disconnect(sc)
 ```
 
-From the subset of the 2,000 most partisan bigrams, we then generate a table of the top 5 most partisan bigrams\index{Bigram} per congress.
+From the subset of the 2,000 most partisan bigrams, we then generate a table of the top 5 most partisan bigrams\index{Bigram} per Congress.
 
 ```{r warning=FALSE, message=FALSE}
 # packages to prepare and plot
@@ -408,11 +408,11 @@ ggplot(topten, mapping=aes(x=as.integer(congress), y=log(x2), color=Party)) +
 
 ## Natural Language Processing at Scale
 
-The examples above merely scratch the surface of what is possible these days in the realm of text analysis. With increasing availability of big data and the recent boost in deep learning, Natural Language Processing (NLP)\index{Natural Language Processing (NLP)}  put forward several very powerful (and very large) language models for various text prediction tasks. Due to the improvement of these models when trained on massive amounts of text data and the rather generic application of many of these large models, it has become common practice to directly work with a pre-trained model. That is, we do not actually train the algorithm based on our own training dataset, but rather build on a model that has been trained on a large text corpus and then has been made available to the public. In this section, we look at one straightforward way to build on such models with `sparklyr`\index{sparklyr package}. 
+The examples above merely scratch the surface of what is possible these days in the realm of text analysis. With increasing availability of Big Data and the recent boost in deep learning, Natural Language Processing (NLP)\index{Natural Language Processing (NLP)}  put forward several very powerful (and very large) language models for various text prediction tasks. Due to the improvement of these models when trained on massive amounts of text data and the rather generic application of many of these large models, it has become common practice to work directly with a pre-trained model. That is, we do not actually train the algorithm based on our own training dataset but rather build on a model that has been trained on a large text corpus and then has been made available to the public. In this section, we look at one straightforward way to build on such models with `sparklyr`\index{sparklyr Package}. 
 
 ### Preparatory steps
 
-Specifically, we look at a few brief example based on the `sparknlp` package\index{sparknlp package} [@sparknlp] providing a `sparklyr`\index{sparklyr package} extension for using the [John Snow Labs Spark NLP](https://www.johnsnowlabs.com/spark-nlp) library. The package can be directly installed from GitHub: `devtools::install_github("r-spark/sparknlp")` To begin, we load the corresponding packages and initialize a pre-trained NLP pipeline\index{NLP pipeline} for entity recognition, which we will then apply to the congressional speeches data. Note that the `sparknlp`\index{sparknlp package} package needs to be loaded before we connect the R session to the Spark cluster. In the following code chunk we thus first load the package and initiate the session by connecting again to the local spark node. In addition to loading the `sparklyr`\index{sparklyr package} and `dplyr` packages\index{dplyr package}, we also load the `sparklyr.nested` package\index{sparklyr.nested package} [@sparklyr.nested]. The latter is useful when working with `sparknlp`'s\index{sparknlp package} pipelines because the results are often returned as nested lists (in Spark table columns).
+Specifically, we look at a few brief examples based on the `sparknlp` package\index{sparknlp Package} [@sparknlp] providing a `sparklyr`\index{sparklyr Package} extension for using the [John Snow Labs Spark NLP](https://www.johnsnowlabs.com/spark-nlp) library. The package can be directly installed from GitHub: `devtools::install_github("r-spark/sparknlp")` To begin, we load the corresponding packages and initialize a pre-trained NLP pipeline\index{NLP Pipeline} for sentiment analysis, which we will then apply to the congressional speeches data. Note that the `sparknlp`\index{sparknlp Package} package needs to be loaded before we connect the R session to the Spark cluster. In the following code chunk we thus first load the package and initiate the session by connecting again to the local Spark node. In addition to loading the `sparklyr`\index{sparklyr Package} and `dplyr` packages\index{dplyr Package}, we also load the `sparklyr.nested` package\index{sparklyr.nested Package} [@sparklyr.nested]. The latter is useful when working with `sparknlp`'s\index{sparknlp Package} pipelines because the results are often returned as nested lists (in Spark table columns).
 
 ```{r eval=TRUE, message=FALSE}
 # load packages
@@ -429,7 +429,7 @@ sc <- spark_connect(master = "local",
                     config = conf)
 ```
 
-The goal of this brief example of `sparknlp`\index{sparknlp package} is to demonstrate how we can easily tap into very powerful pre-trained models to categorize text.To keep things simple, we return to the previous context (congressional speeches) and reload the speeches dataset. To make the following chunks of code run smoothly and relativel fast on a local Spark installation (for test purposes), we use `sample_n()`\index{sample\_n()} for a random draw of 10,000 speeches. 
+The goal of this brief example of `sparknlp`\index{sparknlp Package} is to demonstrate how we can easily tap into very powerful pre-trained models to categorize text.To keep things simple, we return to the previous context (congressional speeches) and reload the speeches dataset. To make the following chunks of code run smoothly and relatively fast on a local Spark installation (for test purposes), we use `sample_n()`\index{sample\_n()} for a random draw of 10,000 speeches. 
 
 ```{r}
 # LOAD --------------------
@@ -450,7 +450,7 @@ speeches <-
 
 ### Sentiment annotation
 
-In this short tutorial, we'll examine the tone (sentiment) of the congressional speeches. Sentiment analysis is a fairly common task in NLP, but it is frequently a computationally demanding task with numerous preparatory steps. `sparknlp`\index{sparknlp package} provides a straightforward interface for creating the necessary NLP pipeline\index{NLP pipeline} in R and massively scaling the analysis on Spark. Let's begin by loading the pretrained NLP pipeline\index{NLP pipeline} for sentiment analysis provided in `sparknlp`\index{sparknlp package}. 
+In this short tutorial, we'll examine the tone (sentiment) of the congressional speeches. Sentiment analysis is a fairly common task in NLP, but it is frequently a computationally demanding task with numerous preparatory steps. `sparknlp`\index{sparknlp Package} provides a straightforward interface for creating the necessary NLP pipeline\index{NLP Pipeline} in R and massively scaling the analysis on Spark. Let's begin by loading the pretrained NLP pipeline\index{NLP Pipeline} for sentiment analysis provided in `sparknlp`\index{sparknlp Package}. 
 
 ```{r}
 # load the nlp pipeline for sentiment analysis
@@ -482,7 +482,7 @@ sentiments <-
 
 ## Aggregation and visualization
 
-Finally, we compute the proportion of sentences with a positive sentiment per speech and export the aggregate sentiment analysis result to the R environment for further processing.^[Note that even if we run this NLP pipeline\index{NLP pipeline} for the entire text dataset of congressional speeches, the final aggregate output will easily fit into the RAM\index{Random Access Memory (RAM)} of a standard PC.] 
+Finally, we compute the proportion of sentences with a positive sentiment per speech and export the aggregate sentiment analysis result to the R environment for further processing.^[Note that even if we run this NLP pipeline\index{NLP Pipeline} for the entire text dataset of congressional speeches, the final aggregate output will easily fit into the RAM\index{Random Access Memory (RAM)} of a standard PC.] 
 
 
 ```{r}
@@ -528,8 +528,8 @@ ggplot(sa, aes(x=as.integer(congress),
 ```
 
 ## `sparklyr` and lazy evaluation
-\index{Lazy evaluation}
-When running the code examples above, you may have noticed that the execution times vary significantly between the different code chunks, and maybe not always in the expected way. When using Apache Spark\index{Apache Spark} via the `sparklyr`/`dplyr`-interface as we did above, the evaluation of the code is intentionally (very) lazy\index{Lazy evaluation}. That is, unless a line of code really requires data to be processed (for example, due to printing the results to the console or explicitly due to calling `collect()`), Spark will not be triggered to run the actual processing of the entire data involved.When working with extremely large datasets, it makes sense to modify one's workflow to accommodate this behavior. A reasonable workflow would then be to write down the pipeline so that the heavy load processing happens at the very end (which can then take several minutes, but you will have time for other things to do.) 
+\index{Lazy Evaluation}
+When running the code examples above, you may have noticed that the execution times vary significantly between the different code chunks, and maybe not always in the expected way. When using Apache Spark\index{Apache Spark} via the `sparklyr`/`dplyr`-interface as we did above, the evaluation of the code is intentionally (very) lazy\index{Lazy Evaluation}. That is, unless a line of code really requires data to be processed (for example, due to printing the results to the console or explicitly due to calling `collect()`), Spark will not be triggered to run the actual processing of the entire data involved. When working with extremely large datasets, it makes sense to modify one's workflow to accommodate this behavior. A reasonable workflow would then be to write down the pipeline so that the heavy load processing happens at the very end (which can then take several minutes, but you will have time for other things to do.) 
 
 The following short example taken from the script developed above illustrates this point. The arguably computationally most intensive part of the previous section was the sentiment annotation via `nlp_annotate()`\index{nlp\_annotate()}:
 
@@ -542,7 +542,7 @@ speeches_a <-
 )
 ```
 
-Remember that the pre-trained pipeline used in this example includes many steps, such as breaking down speeches into sentences and words, cleaning the text, and predicting the sentiment of each sentence. When you run the code above, you'll notice that this was not the most time-consuming part to compute. That chunk of code runs in less than a second on my machine (with a local Spark node). Because we do not request the sentiment analysis results at this point, the pipeline is not actually run. It is only executed when we request it. For example, by adding the `compute()`\index{compute()} call at the end.
+Remember that the pre-trained pipeline used in this example includes many steps, such as breaking down speeches into sentences and words, cleaning the text, and predicting the sentiment of each sentence. When you run the code above, you'll notice that this was not the most time-consuming part to compute. That chunk of code runs in less than a second on my machine (with a local Spark node). Because we do not request the sentiment analysis results at this point, the pipeline is not actually run. It is only executed when we request it, for example, by adding the `compute()`\index{compute()} call at the end.
 
 ```{r}
 system.time(
@@ -554,7 +554,7 @@ speeches_a <-
 )
 ```
 
-As you can see, this takes an order of magnitude longer, which makes perfect sense given that the pipeline is now running for the entire dataset fed into it. Unless you require the intermediate results (for example, for inspection), it makes thus sense to only process the big workload at the end of your `sparklyr`-analytics script.
+As you can see, this takes an order of magnitude longer, which makes perfect sense given that the pipeline is now running for the entire dataset fed into it. Unless you require the intermediate results (for example, for inspection), it thus makes sense to only process the big workload at the end of your `sparklyr`-analytics script.
 
 
 ```{r echo=FALSE}

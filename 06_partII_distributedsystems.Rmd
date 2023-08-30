@@ -1,7 +1,7 @@
 
 # Distributed Systems
 
-When we connect several computers in a network to jointly process large amounts of data, such a computing system is commonly referred to as a "distributed system". From a technical standpoint the key difference between a distributed system and the more familiar parallel system\index{Parallel system} (e.g., our desktop computer with its multicore CPU) is that in distributed systems the different components do not share the same memory (and storage). Figure \@ref(fig:distributedsystems) illustrates this point.\index{Distributed system}
+When we connect several computers in a network to jointly process large amounts of data, such a computing system is commonly referred to as a "distributed system". From a technical standpoint the key difference between a distributed system and the more familiar parallel system\index{Parallel System} (e.g., our desktop computer with its multi core CPU) is that in distributed systems the different components do not share the same memory (and storage). Figure \@ref(fig:distributedsystems) illustrates this point.\index{Distributed System}
 
 
 
@@ -9,10 +9,10 @@ When we connect several computers in a network to jointly process large amounts 
 include_graphics("img/distributed_system.jpg")
 ```
 
-(ref:distributedsystems) Panel A illustrates a distributed system\index{Distributed system}, in contrast to the illustration of a parallel system\index{Parallel system} in Panel B.
+(ref:distributedsystems) Panel A illustrates a distributed system\index{Distributed System}, in contrast to the illustration of a parallel system\index{Parallel System} in Panel B.
 
 
-In a distributed system\index{Distributed system}, the dataset is literally split up into pieces that then reside separately on different nodes. This requires an additional layer of software (that coordinates the distribution/loading of data as well as the simultaneous processing) and different approaches (different programming models) to defining computing/data analytics tasks. Below, we will look at each of these aspects in turn.
+In a distributed system\index{Distributed System}, the dataset is literally split up into pieces that then reside separately on different nodes. This requires an additional layer of software (that coordinates the distribution/loading of data as well as the simultaneous processing) and different approaches (different programming models) to defining computing/data analytics tasks. Below, we will look at each of these aspects in turn.
 
 
 
@@ -21,11 +21,11 @@ In a distributed system\index{Distributed system}, the dataset is literally spli
 ## MapReduce
 \index{MapReduce}
 
-A broadly used programming model for processing big data on distributed systems is called MapReduce\index{MapReduce}. It essentially consists of two procedures and is conceptually very close to the "split-apply-combine"\index{split-apply-combine} strategy in data analysis. First, the Map function sorts/filters the data (on each node/computer). Then, a Reduce function aggregates the sorted/filtered data. Thereby, all of these processes are orchestrated to run across many nodes of a cluster computer. Finally, the master node collects the results and returns them to the user.
+A broadly used programming model for processing Big Data on distributed systems is called MapReduce\index{MapReduce}. It essentially consists of two procedures and is conceptually very close to the "split-apply-combine"\index{Split-Apply-Combine} strategy in data analysis. First, the Map function sorts/filters the data (on each node/computer). Then, a Reduce function aggregates the sorted/filtered data. Thereby, all of these processes are orchestrated to run across many nodes of a cluster computer. Finally, the master node collects the results and returns them to the user.
 
 Let us illustrate the basic idea behind MapReduce\index{MapReduce} with a simple example. Suppose you are working on a text mining task in which all the raw text in thousands of digitized books (stored as text files) need to be processed. In a first step, you want to compute word frequencies (count the number of occurrences of specific words in all books combined). 
 
-For simplicity, let us only focus on the following very simple and often referred to MapReduce word count example^[See, e.g., https://commons.wikimedia.org/wiki/File:WordCountFlow.JPG for an illustration of the same example]:
+For simplicity, let us only focus on the following very simple and often referred to MapReduce word count example^[See, e.g., https://commons.wikimedia.org/wiki/File:WordCountFlow.JPG for an illustration of the same example.]:
 
 <center>
 Text in book 1:
@@ -107,7 +107,7 @@ Apple Apple Plum"
 
 *Mapper*
 
-The Mapper first splits the text into lines, and then splits the lines into key–value pairs, assigning to each key the value `1`. For the first step we use `strsplit()`\index{strsplit()}, which takes a character string as input and splits it into a list of sub-strings according to the matches of a sub-string (here `"\n"`, indicating the end of a line).
+The Mapper first splits the text into lines and then splits the lines into key–value pairs, assigning to each key the value `1`. For the first step we use `strsplit()`\index{strsplit()}, which takes a character string as input and splits it into a list of sub-strings according to the matches of a sub-string (here `"\n"`, indicating the end of a line).
 
 ```{r}
 # Mapper splits input into lines
@@ -192,7 +192,7 @@ sums[1:2]
 ## Apache Hadoop
 \index{Apache Hadoop}
 
-Hadoop MapReduce is the most widely known and used implementation of the MapReduce framework. A decade ago, Big Data Analytics with really large datasets often involved directly interacting with/ working in Hadoop to run MapReduce jobs. However, over the last few years various higher-level interfaces have been developed that make the usage of MapReduce\index{MapReduce}/Hadoop\index{Apache Hadoop} for data analysts much more easily accessible. The purpose of this section is thus to give a lightweight introduction to the underlying basics that power some of the code examples and tutorials discussed in the data analytics chapters toward the end of this book.  
+Hadoop MapReduce is the most widely known and used implementation of the MapReduce framework. A decade ago, Big Data Analytics with really large datasets often involved directly interacting with/working in Hadoop to run MapReduce jobs. However, over the last few years various higher-level interfaces have been developed that make the usage of MapReduce\index{MapReduce}/Hadoop\index{Apache Hadoop} by data analysts much more easily accessible. The purpose of this section is thus to give a lightweight introduction to the underlying basics that power some of the code examples and tutorials discussed in the data analytics chapters toward the end of this book.  
 
 <!-- ```{r hadoop, echo=FALSE, out.width = "90%", fig.align='center', purl=FALSE} -->
 <!-- include_graphics("img/hadoop.png") -->
@@ -205,7 +205,7 @@ Hadoop MapReduce is the most widely known and used implementation of the MapRedu
 To get an idea of what running a Hadoop job looks like, we run the same simple word count example introduced above on a local Hadoop installation. The example presupposes a local installation of Hadoop version 2.10.1 (see Appendix C for details) and can easily be run on a completely normal desktop/laptop computer running Ubuntu Linux. As a side remark, this actually illustrates an important aspect of developing MapReduce\index{MapReduce}scripts in Hadoop\index{Apache Hadoop} (and many of the software packages building on it): the code can easily be developed and tested locally on a small machine and only later transferred to the actual Hadoop cluster to be run on the full dataset.
 
 
-The basic Hadoop\index{Apache Hadoop}installation comes with a few templates for very typical map/reduce programs.^[More sophisticated programs need to be custom made, written in Java\index{Java}.] Below we replicate the same word-count example as shown in simple R code above. 
+The basic Hadoop\index{Apache Hadoop} installation comes with a few templates for very typical map/reduce programs.^[More sophisticated programs need to be custom made, written in Java\index{Java}.] Below we replicate the same word-count example as shown in simple R code above. 
 
 In a first step, we create an input directory where we store the input file(s) to feed to Hadoop.
 
@@ -245,7 +245,7 @@ What looks rather simple in this example can get very complex once you want to w
 ## Apache Spark
 \index{Apache Spark}
 
-Spark [@Spark] is a data analytics engine specifically designed for processing large amounts of data on cluster computers. It partially builds on the broader Apache Hadoop framework for handling storage and resource management, but it is often faster than Hadoop MapReduce by an order of magnitude. In addition, it offers way more easy-to-use high-level interfaces for typical analytics tasks than Hadoop.  In contrast to Hadoop\index{Apache Hadoop}, Spark\index{Apache Spark}
+Spark [@Spark] is a data analytics engine specifically designed for processing large amounts of data on cluster computers. It partially builds on the broader Apache Hadoop framework for handling storage and resource management, but it is often faster than Hadoop MapReduce by an order of magnitude. In addition, it offers many more easy-to-use high-level interfaces for typical analytics tasks than Hadoop.  In contrast to Hadoop\index{Apache Hadoop}, Spark\index{Apache Spark}
  is specifically made for interactively developing and running data analytics scripts and is therefore more easily accessible to people with an applied econometrics background but no substantial knowledge in MapReduce and/or cluster computing. In particular, it comes with several high-level operators that make it rather easy to implement analytics tasks. As we will see in later chapters, it is very easy to use interactively from within R (and other languages like Python\index{Python}, SQL\index{Structured Query Language (SQL)}, and Scala\index{Scala}). This makes the platform much more accessible and worthwhile for empirical economic research, even for relatively simple econometric analyses. 
 
 The following figure illustrates the basic components of Spark\index{Apache Spark}. The main functionality includes memory management, task scheduling, and the implementation of Spark's capabilities to handle and manipulate data distributed across many nodes in parallel. Several built-in libraries extend the core implementation, covering specific domains of practical data analytics tasks (querying structured data via SQL, processing streams of data, machine learning, and network/graph analysis). The last two provide various common functions/algorithms frequently used in data analytics/applied econometrics, such as generalized linear regression, summary statistics, and principal component analysis.
@@ -264,37 +264,25 @@ At the heart of Big Data Analytics with Spark\index{Apache Spark}
 
 ## Spark with R 
 
-There are two prominent packages for using Spark\index{Apache Spark} in connection with R: `SparkR`\index{SparkR package} [@SparkR] and RStudio's `sparklyr`\index{sparklyr package} [@sparklyr]. The former is in some ways closer to Spark's Python API; the latter is closer to the `dplyr`-type of data handling (and is compatible with the `tidyverse` [@tidyverse]).^[See [this blog post](https://cosminsanda.com/posts/a-compelling-case-for-sparkr/) for a more detailed comparison and discussion of advantages of either package.] For the very simple introductory examples below, either package could have been used equally well. For the general introduction we focus on `SparkR`\index{SparkR package} and later have a look at a simple regression example based on `sparklyr`.
+There are two prominent packages for using Spark\index{Apache Spark} in connection with R: `SparkR`\index{SparkR Package} [@SparkR] and RStudio's `sparklyr`\index{sparklyr Package} [@sparklyr]. The former is in some ways closer to Spark's Python API; the latter is closer to the `dplyr`-type of data handling (and is compatible with the `tidyverse` [@tidyverse]).^[See https://cosminsanda.com/posts/a-compelling-case-for-sparkr/ for a more detailed comparison and discussion of advantages of either package.] For the very simple introductory examples below, either package could have been used equally well. For the general introduction we focus on `SparkR`\index{SparkR Package} and later have a look at a simple regression example based on `sparklyr`.
 
-To install and use Spark from the R shell, only a few preparatory steps are needed. The following examples are based on installing/running Spark on a Linux machine with the `SparkR`\index{SparkR package} package. `SparkR`\index{SparkR package} depends on Java (version 8). Thus, we first should make sure the right Java version is installed. If several Java versions are installed, we might have to select version 8 manually via the following terminal command (Linux): 
-
-<!-- <!-- in Mac OS (after doing this: https://stackoverflow.com/questions/21964709/how-to-set-or-change-the-default-java-jdk-version-on-os-x) -->
-<!-- ```{bash eval = FALSE} -->
-<!-- cd  -->
-<!-- source .bash_profile -->
-<!-- j8 -->
-<!-- ``` -->
-
-<!-- ```{r} -->
-<!-- system("cd -->
-<!--        source .bash_profile -->
-<!--        j8") -->
-
-<!-- ``` -->
+To install and use Spark from the R shell, only a few preparatory steps are needed. The following examples are based on installing/running Spark on a Linux machine with the `SparkR`\index{SparkR Package} package. `SparkR`\index{SparkR Package} depends on Java (version 8). Thus, we first should make sure the right Java version is installed. If several Java versions are installed, we might have to select version 8 manually via the following terminal command (Linux): 
 
 
-```{bash echo=FALSE, eval=FALSE}
+```{bash eval=FALSE}
+
 # might have to switch to java version 8 first
 sudo update-alternatives --config java 
+
 ```
 
-With the right version of Java running, we can install `SparkR`\index{SparkR package} from GitHub (needs the `devtools` package [@devtools]) `devtools::install_github("cran/SparkR")`. After installing `SparkR`\index{SparkR package}, the call `SparkR::install.spark()` will download and install Apache Spark to a local directory.^[Note that after the installation, the location of Spark is printed to the R console. Alternatively, you can also first install the `sparklyr` package and then run `sparklyr::spark_install()` to install Spark. In the data analysis examples later in the book, we will work both with `SparkR`\index{SparkR package} and `sparklyr`.] Now we can start an interactive SparkR session from the terminal with
+With the right version of Java running, we can install `SparkR`\index{SparkR Package} from GitHub (needs the `devtools` package [@devtools]) `devtools::install_github("cran/SparkR")`. After installing `SparkR`\index{SparkR Package}, the call `SparkR::install.spark()` will download and install Apache Spark to a local directory.^[Note that after the installation, the location of Spark is printed to the R console. Alternatively, you can also first install the `sparklyr` package and then run `sparklyr::spark_install()` to install Spark. In the data analysis examples later in the book, we will work both with `SparkR`\index{SparkR Package} and `sparklyr`.] Now we can start an interactive SparkR session from the terminal with
 
 ```{bash, eval=FALSE}
 $ SPARK-HOME/bin/sparkR
 ```
 
-where `SPARK-HOME` is a placeholder for the path to your local Spark installation (printed to the console after running `SparkR::install.spark()`). Or simply run SparkR from within RStudio by loading `SparkR`\index{SparkR package} and initiating Spark with `sparkR.session()`.
+where `SPARK-HOME` is a placeholder for the path to your local Spark installation (printed to the console after running `SparkR::install.spark()`). Or simply run SparkR from within RStudio by loading `SparkR`\index{SparkR Package} and initiating Spark with `sparkR.session()`.
 
 ```{r warning=FALSE, message=FALSE, eval=FALSE}
 # to install use
@@ -325,11 +313,11 @@ sparkR.session(sparkHome = "/home/umatter/.cache/spark/spark-3.1.2-bin-hadoop2.7
 
 
 
-By default this starts a local standalone session (no connection to a cluster computer needed). While the examples below are all intended to run on a local machine, it is straightforward to connect to a remote Spark cluster and run the same examples there.^[Simply set the `master` argument of `sparkR.session()` to the URL of the Spark master node of the remote cluster. Importantly, the local Spark and Hadoop versions should match the corresponding versions on the remote cluster.]
+By default this starts a local stand-alone session (no connection to a cluster computer needed). While the examples below are all intended to run on a local machine, it is straightforward to connect to a remote Spark cluster and run the same examples there.^[Simply set the `master` argument of `sparkR.session()` to the URL of the Spark master node of the remote cluster. Importantly, the local Spark and Hadoop versions should match the corresponding versions on the remote cluster.]
 
 ### Data import and summary statistics
 
-First, we want to have a brief look at how to perform the first few steps of a typical econometric analysis: import data and compute summary statistics. We will analyze the already familiar `flights.csv` dataset. The basic Spark installation provides direct support to import common data formats such as CSV and JSON via the `read.df()` function (for many additional formats, specific Spark libraries are available). To import`flights.csv`, we set the `source` argument to `"csv"`.
+First, we want to have a brief look at how to perform the first few steps of a typical econometric analysis: import data and compute summary statistics. We will analyze the already familiar `flights.csv` dataset. The basic Spark installation provides direct support to import common data formats such as CSV and JSON via the `read.df()` function (for many additional formats, specific Spark libraries are available). To import `flights.csv`, we set the `source` argument to `"csv"`.
 
 ```{r}
 
@@ -355,7 +343,7 @@ flights$distance <- cast(flights$distance, "double")
 ```
 
 
-Suppose we only want to compute average arrival delays per carrier for flights with a distance over 1000 miles. Variable selection and filtering of observations is implemented in `select()` and `filter()` (as in the `dplyr` package\index{dplyr package}). 
+Suppose we only want to compute average arrival delays per carrier for flights with a distance over 1000 miles. Variable selection and filtering of observations is implemented in `select()` and `filter()` (as in the `dplyr` package\index{dplyr Package}). 
 
 
 ```{r}
@@ -365,7 +353,7 @@ long_flights <- filter(long_flights, long_flights$distance >= 1000)
 head(long_flights)
 ```
 
-Now we summarize the arrival delays for the subset of long flights by carrier. This is the 'split-apply-combine' approach applied in `SparkR`\index{SparkR package}.
+Now we summarize the arrival delays for the subset of long flights by carrier. This is the 'split-apply-combine' approach applied in `SparkR`\index{SparkR Package}.
 
 ```{r}
 # aggregation: mean delay per carrier
@@ -508,9 +496,9 @@ head(long_flights2)
 
 ## Wrapping up
 
-- At the core of a vertical scaling strategy are so-called *distributed systems*\index{Distributed system} – several computers connected in a network to jointly process large amounts of data.
-- In contrast to standard parallel-computing, the different computing nodes in a distributed system do not share the same physical memory. Each of the nodes/computers in the system has its own CPU\index{Central Processing Unit (CPU)}, hard disk\index{Hard disk}, and RAM\index{Random Access Memory (RAM)}. This architecture requires a different computing paradigm to run the same data analytics job across all nodes (in parallel).
-- A commonly use paradigm to do this is MapReduce\index{MapReduce}, which is implemented in software called Apache Hadoop.
+- At the core of a vertical scaling strategy are so-called *distributed systems*\index{Distributed System} – several computers connected in a network to jointly process large amounts of data.
+- In contrast to standard parallel-computing, the different computing nodes in a distributed system do not share the same physical memory. Each of the nodes/computers in the system has its own CPU\index{Central Processing Unit (CPU)}, hard disk\index{Hard Disk}, and RAM\index{Random Access Memory (RAM)}. This architecture requires a different computing paradigm to run the same data analytics job across all nodes (in parallel).
+- A commonly used paradigm to do this is MapReduce\index{MapReduce}, which is implemented in software called Apache Hadoop.
 - The core idea of MapReduce is to split a problem/computing task on a large dataset into several components, each of which focuses on a smaller subset of the dataset. The task components are then distributed across the cluster, so that each component is handled by one computer in the network. Finally, each node returns its result to the master node (the computer coordinating all activities in the cluster), where the partial results are combined into the overall result.
 - A typical example of a MapReduce\index{MapReduce} job is the computation of term frequencies in a large body of text. Here, each node computes the number of occurrences of specific words in a subset of the overall body of text; the individual results are then summed up per unique word.
 - Apache Hadoop is a collection of open-source software tools to work with massive amounts of data on a distributed system (a network of computers). Part of Hadoop is the Hadoop MapReduce implementation to run MapReduce\index{MapReduce} jobs on a Hadoop\index{Apache Hadoop} cluster.

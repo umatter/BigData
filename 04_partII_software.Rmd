@@ -1,7 +1,7 @@
 # (PART) Platform: Software and Computing Resources {-} 
 
 # Introduction {#p .unnumbered}  
-\index{Computing resources}
+\index{Computing Resources}
 
 
 > "Are tomorrow’s bigger computers going to solve the problem? For some people,
@@ -13,7 +13,7 @@ latter group, you might want to get used to working with databases now."
 
 At the center of Figure \@ref(fig:components) you see an illustration of the key components of a standard local computing environment to process digital data. In this book, these components typically serve the purpose of computing a statistic, given a large dataset as input. In this part of the book, you will get familiar with how each of these components plays a role in the context of Big Data Analytics and how you can recognize and resolve potential problems caused by large datasets/large working loads for either of these components. The three most relevant of these components are:
 
-- *Mass storage*.\index{Mass storage} This is the type of computer memory we use to store data over the long term. The mass storage device in our local computing environment (e.g., our PC/laptop) is generally referred to as the *hard drive* or *hard disk*\index{Hard disk}. 
+- *Mass storage*.\index{Mass Storage} This is the type of computer memory we use to store data over the long term. The mass storage device in our local computing environment (e.g., our PC/laptop) is generally referred to as the *hard drive* or *hard disk*\index{Hard Disk}. 
 
 - *RAM*.\index{Random Access Memory (RAM)} In order to work with data (e.g., in R), it first has to be loaded into the *memory*\index{Memory} of our computer – more specifically, into the random access memory (*RAM*). Typically, data is only loaded in the RAM for as long as we are working with it. 
 
@@ -32,18 +32,18 @@ include_graphics("img/II_computing_environment.png")
 (ref:components) Software, local computing resources, and cloud resources. 
 
 
-However, before we discuss these *hardware* issues\index{Hardware} in Chapter 5, Chapter 4 focuses on the software we will work with to make use of these hardware components in the most efficient way. This perspective is symbolized in the left part of Figure \@ref(fig:components). There will be three main software components with which we work in what follows. The first is the terminal (i.e., bash): instead of using graphical user interfaces to interact with our local computing environment, we will rather use the terminal^[To be consistent with the cloud computing services (particularly EC2) introduced later on, the sections involving terminal commands assume you work with Ubuntu Linux\index{Linux}. However, the corrsponding code chunks are essentially identical for users working on a Mac/OSX-machine. In case you are working on a Windows machine, starting with Windows 10, you will have essentially the same tool available called the *Windows Terminal*. In older Windows versions the Linux terminal equivalent is called PowerShell or command prompt, which use a slightly different syntax, but provide similar functionality. See https://www.geeksforgeeks.org/linux-vs-windows-commands/ for an overview of how to get started with the Windows command promt, including a detailed listing of commands next to their corresponing Linux command equivalents.] to install software, download files, inspect files, and inspect hardware performance. For those of you not yet used to working with the terminal, do not worry! There are no prerequisites in knowledge about working with the terminal, and most of the use cases in this book are very simple and well explained. At this point, just note that there will be two types of code chunks (code examples) shown in what follows: either they show code that should be run in the terminal (in RStudio, such code should thus be entered in the tab/window called *Terminal*)\index{Terminal}, or *R* code (in RStudio, this code should be entered in the Tab/window called *Console*).\index{Console (R)}
+However, before we discuss these *hardware* issues\index{Hardware} in Chapter 5, Chapter 4 focuses on the software we will work with to make use of these hardware components in the most efficient way. This perspective is symbolized in the left part of Figure \@ref(fig:components). There will be three main software components with which we work in what follows. The first is the terminal (i.e., bash): instead of using graphical user interfaces to interact with our local computing environment, we will rather use the terminal^[To be consistent with the cloud computing services (particularly EC2) introduced later on, the sections involving terminal commands assume you work with Ubuntu Linux\index{Linux}. However, the corrsponding code chunks are essentially identical for users working on a Mac/OSX-machine. In case you are working on a Windows machine, starting with Windows 10, you will have essentially the same tool available called the *Windows Terminal*. In older Windows versions the Linux terminal equivalent is called PowerShell or command prompt, which use a slightly different syntax, but provide similar functionality. See https://www.geeksforgeeks.org/linux-vs-windows-commands/ for an overview of how to get started with the Windows command prompt, including a detailed listing of commands next to their corresponding Linux command equivalents.] to install software, download files, inspect files, and inspect hardware performance. For those of you not yet used to working with the terminal, do not worry! There are no prerequisites in knowledge about working with the terminal, and most of the use cases in this book are very simple and well explained. At this point, just note that there will be two types of code chunks (code examples) shown in what follows: either they show code that should be run in the terminal (in RStudio, such code should thus be entered in the tab/window called *Terminal*)\index{Terminal}, or *R* code (in RStudio, this code should be entered in the Tab/window called *Console*).\index{Console (R)}
 
 R\index{R} [@rfoundation2021] will be the main language used throughout this book. It will be the primary language to gather, import, clean, visualize, and analyze data. However, as you will already see in some of the examples in this part of the book, we will often not necessarily use base R, but rather use R as a high-level interface to more specialized software and services. On the one hand this means we will install and use several specialized R packages designed to manipulate large datasets that are in fact written in other (faster) languages, such as C\index{C}. On the other hand, it will mean that we use R commands to communicate with other lower-level software systems that are particularly designed to handle large amounts of data (such as data warehouses, or software to run analytics scripts on cluster computers). The point is that even if the final computation is not actually done in R\index{R}, all you need to know to get the particular job done are the corresponding R commands to trigger this final computation.
 
-There is one more indispensable software tool on which we will build throughout the book: Structured Query Language (SQL)\index{Structured Query Language (SQL)}, or to be precise, different variants of SQL in different contexts. The main reason for this is twofold: First, even if you primarily interact with some of the lower-level big data software tools from within R, it is often more comfortable (or, in some cases, even necessary) to send some of the instructions in the form of SQL commands (wrapped in an R function); second, while many of you might have only heard of SQL in the context of traditional relational database systems, SQL variants are nowadays actually used to interact with a variety of the most important big data systems, ranging from Apache Spark (a unified analytics platform for large-scale data processing) to Apache Druid (a column-based distributed data store) and AWS Athena (a cloud-based, serverless query service for simple storage/data lakes). Hence, if you work in data analytics/data science and want to seriously engage with big data, knowing your way around SQL\index{Structured Query Language (SQL)} is a very important asset.
+There is one more indispensable software tool on which we will build throughout the book, Structured Query Language (SQL)\index{Structured Query Language (SQL)}, or to be precise, different variants of SQL in different contexts. The main reason for this is twofold: First, even if you primarily interact with some of the lower-level Big Data software tools from within R, it is often more comfortable (or, in some cases, even necessary) to send some of the instructions in the form of SQL commands (wrapped in an R function); second, while many of you might have only heard of SQL in the context of traditional relational database systems, SQL variants are nowadays actually used to interact with a variety of the most important Big Data systems, ranging from Apache Spark (a unified analytics platform for large-scale data processing) to Apache Druid (a column-based distributed data store) and AWS Athena (a cloud-based, serverless query service for simple storage/data lakes). Hence, if you work in data analytics/data science and want to seriously engage with Big Data, knowing your way around SQL\index{Structured Query Language (SQL)} is a very important asset.
 
 Finally, Chapters 6 and 7 consider the situation where all of the tweaks to use the local computing resources most efficiently are still not enough to get the job done (one or several components are still overwhelmed and/or it simply takes too much time to run the analysis). From the hardware perspective, there are two basic strategies to cope with such a situation:
 
-- *Scale out ('horizontal scaling')*: Distribute the workload over several computers (or separate components of a system).\index{Scale out} 
-- *Scale up ('vertical scaling')*\index{Scale up}: Extend the physical capacity of the affected component by building a system with a large amount of RAM shared between applications. This sounds like a trivial solution ('if RAM\index{Random Access Memory (RAM)} is too small, buy more RAM...'), but in practice it can be very expensive. 
+- *Scale out ('horizontal scaling')*: Distribute the workload over several computers (or separate components of a system).\index{Scale Out} 
+- *Scale up ('vertical scaling')*\index{Scale Up}: Extend the physical capacity of the affected component by building a system with a large amount of RAM shared between applications. This sounds like a trivial solution ('if RAM\index{Random Access Memory (RAM)} is too small, buy more RAM...'), but in practice it can be very expensive. 
 
-Nowadays, either of these approaches is typically taken with the help of cloud resources (illustrated in the right part of Figure \@ref(fig:components)). How this is basically done is introduced in Chapter 7. Regarding *vertical scaling*, you will see that the transition from a local computing environment to the cloud (involving some or all of the core computing components) is rather straightforward to learn. However, *horizontal scaling* for really massive datasets involves some new hardware and software concepts related to what are generally called *distributed systems*\index{Distributed system}. To this end, we first introduce the most relevant concepts related to distributed systems in Chapter 6.
+Nowadays, either of these approaches is typically taken with the help of cloud resources (illustrated in the right part of Figure \@ref(fig:components)). How this is basically done is introduced in Chapter 7. Regarding *vertical scaling*, you will see that the transition from a local computing environment to the cloud (involving some or all of the core computing components) is rather straightforward to learn. However, *horizontal scaling* for really massive datasets involves some new hardware and software concepts related to what are generally called *distributed systems*\index{Distributed System}. To this end, we first introduce the most relevant concepts related to distributed systems in Chapter 6.
 
 
 
@@ -80,13 +80,13 @@ When writing a data analysis script in R to process large amounts of data, it ge
 package | function | purpose
 -------------- | -------------------- | ---------------------------------------------
 `utils`  | `object.size()` | Provides an estimate of the memory that is being used to store an R object.
-`pryr`\index{pryr package}   | `object_size()`\index{object\_size()} | Works similarly to `object.size()`\index{object.size()}, but counts more accurately and includes the size of environments.
+`pryr`\index{pryr Package}   | `object_size()`\index{object\_size()} | Works similarly to `object.size()`\index{object.size()}, but counts more accurately and includes the size of environments.
 `pryr` | `mem_used()`\index{mem\_used()}     | Returns the total amount of memory (in megabytes) currently used by R.
 `pryr` | `mem_change()`\index{mem\_change()}   | Shows the change in memory (in megabytes) before and after running code.
 `base`   | `system.time()`\index{system.time()} | Returns CPU (and other) times that an R expression used.
-`microbenchmark`\index{microbenchmark package} | `microbenchmark()`\index{microbenchmark()} | Highly accurate timing of R expression evaluation.
-`bench`\index{bench package} |  `mark()`\index{mark()} | Benchmark a series of functions.
-`profvis`\index{profvis package}| `profvis()`\index{profvis()}  | Profiles an R expression and visualizes the profiling data (usage of memory, time elapsed, etc.).
+`microbenchmark`\index{microbenchmark Package} | `microbenchmark()`\index{microbenchmark()} | Highly accurate timing of R expression evaluation.
+`bench`\index{bench Package} |  `mark()`\index{mark()} | Benchmark a series of functions.
+`profvis`\index{profvis Package}| `profvis()`\index{profvis()}  | Profiles an R expression and visualizes the profiling data (usage of memory, time elapsed, etc.).
 
 
 Most of these functions are used in an interactive way in the R console. They serve either of two purposes that are central to profiling and improving your code's performance. First, in order to assess the performance of your R code you probably want to know how long it takes to run your entire script or a specific part of your script. The `system.time()`\index{system.time()} [@rfoundation2021] function provides an easy way to check this. This function is loaded by default with R; there is no need to install an additional package. Simply wrap it around the line(s) of code that you want to assess.
@@ -99,7 +99,7 @@ system.time(for (i in 1:100) {i + 5})
 
 Note that each time you run this line of code, the returned amount of time varies slightly. This has to do with the fact that the actual time needed to run a line of code can depend on various other processes happening at the same time on your computer.
 
-The `microbenchmark`\index{microbenchmark package} [@microbenchmark] and `bench`\index{bench package} [@bench] packages provide additional functions to measure execution time in more sophisticated ways. In particular, they account for the fact that the processing time for the same code might vary and automatically run the code several times in order to return statistics about the processing time. In addition, `microbenchmark()`\index{microbenchmark()} provides highly detailed and highly accurate timing of R expression evaluation. The function is particularly useful to accurately find even minor room for improvement when testing a data analysis script on a smaller sub-sample (which might scale when working on a large dataset). For example, suppose you need to run a for-loop over millions of iterations, and there are different ways to implement the body of the loop (which does not take too much time to process in one iteration). Note that the function actually evaluates the R expression in question many times and returns a statistical summary of the timings.
+The `microbenchmark`\index{microbenchmark Package} [@microbenchmark] and `bench`\index{bench Package} [@bench] packages provide additional functions to measure execution time in more sophisticated ways. In particular, they account for the fact that the processing time for the same code might vary and automatically run the code several times in order to return statistics about the processing time. In addition, `microbenchmark()`\index{microbenchmark()} provides highly detailed and highly accurate timing of R expression evaluation. The function is particularly useful to accurately find even minor room for improvement when testing a data analysis script on a smaller sub-sample (which might scale when working on a large dataset). For example, suppose you need to run a for-loop over millions of iterations, and there are different ways to implement the body of the loop (which does not take too much time to process in one iteration). Note that the function actually evaluates the R expression in question many times and returns a statistical summary of the timings.
 
 ```{r}
 # load package
@@ -118,7 +118,7 @@ object.size(hello)
 
 
 
-This is useful to implementing your script with a generally less memory-intensive approach. For example, for a specific task it might not matter whether a particular variable is stored as a `character`\index{character} vector or a `factor`\index{factor}. But storing it as `character` turns out to be more memory intensive (why?).
+This is useful to implementing your script with a generally less memory-intensive approach. For example, for a specific task it might not matter whether a particular variable is stored as a `character`\index{Character} vector or a `factor`\index{Factor}. But storing it as `character` turns out to be more memory intensive (why?).
 
 ```{r}
 # initialize a large string vector containing letters
@@ -133,7 +133,7 @@ object.size(large_string) - object.size(large_factor)
 ```
 
 
-`pryr::mem_change()`\index{pryr package} [@pryr] is useful to track how different parts of your script affect the overall memory occupied by R.
+`pryr::mem_change()`\index{pryr Package} [@pryr] is useful to track how different parts of your script affect the overall memory occupied by R.
 
 ```{r}
 # load package
@@ -191,14 +191,14 @@ benchmarking[, 4:9]
 
 ```
 
-In addition, the `bench` package\index{bench package} [@bench]  provides a simple way to visualize these outputs:
+In addition, the `bench` package\index{bench Package} [@bench]  provides a simple way to visualize these outputs:
 
 
 ```{r warning=FALSE, fig.width=7, fig.height=5, message=FALSE, out.width="75%", fig.align='center'}
 plot(benchmarking, type = "boxplot")
 ```
 
-Finally, to analyze the performance of your entire script/program, the `profvis` package\index{profvis package} [@profvis] provides visual summaries to quickly detect the most prominent bottlenecks. You can either call this via the `profvis()`\index{profvis()} function with the code section to be profiled as argument, or via the RStudio user interface by clicking on the Code Tools menu in the editor window and selecting "Profile selected lines". 
+Finally, to analyze the performance of your entire script/program, the `profvis` package\index{profvis Package} [@profvis] provides visual summaries to quickly detect the most prominent bottlenecks. You can either call this via the `profvis()`\index{profvis()} function with the code section to be profiled as argument, or via the RStudio user interface by clicking on the Code Tools menu in the editor window and selecting "Profile selected lines". 
 
 ```{r eval=FALSE}
 # load package
@@ -233,11 +233,11 @@ head(result2)
 This subsection touches upon several prominent aspects of writing efficient/fast R code.^[This is not intended to be a definitive guide to writing efficient R code in every aspect. Instead the subsection aims at covering most of the typical pitfalls to avoid and to provide a number of easy-to-remember tricks to keep in mind when writing R code for computationally intensive tasks.]
 
 ### Memory allocation and growing objects
-\index{Memory allocation}
+\index{Memory Allocation}
 
 R tends to "grow" already-initialized objects in memory when they are modified. At the initiation of the object, a small amount of memory is occupied at some location in memory. In simple terms, once the object grows, it might not have enough space where it is currently located. Hence, it needs to be "moved" to another location in memory with more space available. This moving, or "re-allocation" of memory, needs time and slows down the overall process.
 
-This potential is most practically illustrated with a `for`-loop\index{for-loop} in which each iteration's result is stored as an element of a vector (the object in question). To avoid growing this object, you need to instruct R to pre-allocate the memory necessary to contain the final result. If we don't do this, each iteration of the loop causes R to re-allocate memory because the number of elements in the vector/list is changing. In simple terms, this means that R needs to execute more steps in each iteration. 
+This potential is most practically illustrated with a `for`-loop\index{For-Loop} in which each iteration's result is stored as an element of a vector (the object in question). To avoid growing this object, you need to instruct R to pre-allocate the memory necessary to contain the final result. If we don't do this, each iteration of the loop causes R to re-allocate memory because the number of elements in the vector/list is changing. In simple terms, this means that R needs to execute more steps in each iteration. 
 
 In the following example, we compare the performance of two functions, one taking this principle into account, the other not. The functions take a numeric vector as input and return the square root of each element of the numeric vector.
 
@@ -374,7 +374,7 @@ One approach is to use an `apply`-type function instead of loops. Note, though, 
 
 Consider, for example, `lapply()`\index{lapply()}, a function that takes a vector (atomic or list) as input and applies a function `FUN` to each of its elements. It is a straightforward alternative to `for`-loops in many situations (and it automatically takes care of the "growing objects" problem discussed above). The following example shows how we can get the same result by either writing a loop or using `lapply()`. The aim of the code example is to import the [Health News in Twitter Dataset](https://archive.ics.uci.edu/ml/datasets/Health+News+in+Twitter) by @karami_etal2017. The raw data consists of several text files that need to be imported to R consecutively. 
 
-The text-files are located in `data/twitter_texts/`. For either approach of importing all of these files, we first need a list of the paths to all of the files. We can get this with `list.files()`\index{list.files()}. Also, for either approach we will make use of the `fread` function\index{fread()} in the `data.table` package\index{data.table package} [@data.table].
+The text-files are located in `data/twitter_texts/`. For either approach of importing all of these files, we first need a list of the paths to all of the files. We can get this with `list.files()`\index{list.files()}. Also, for either approach we will make use of the `fread` function\index{fread()} in the `data.table` package\index{data.table Package} [@data.table].
 
 ```{r eval = FALSE, echo=FALSE, message=FALSE, purl=FALSE}
 # For replication purposes only
@@ -400,7 +400,7 @@ textfiles <- list.files("data/twitter_texts", full.names = TRUE)
 
 ```
 
-Now we can read in all the text files with a `for`-loop\index{for-loop} as follows.
+Now we can read in all the text files with a `for`-loop\index{For-Loop} as follows.
 
 ```{r message=FALSE, warning=FALSE}
 # prepare loop
@@ -465,18 +465,18 @@ The take-away message: Instead of writing simple loops, use `apply`-type functio
 <!-- https://stackoverflow.com/questions/62047104/r-cbind-is-very-slow -->
 
 
-### Avoid unnecessary copying
+### Avoiding unnecessary copying
 
 
 The "growing objects" problem discussed above is only one aspect that can lead to inefficient use of memory when working with R. Another potential problem of using up more memory than necessary during an execution of an R-script is how R handles objects/variables and their names. 
 
-Consider the following line of code.
+Consider the following line of code:
 
 ```{r}
 a <- runif(10000)
 ```
 
-what is usually said to describe what is happening here is something along the lines of "we initialize a variable called `a` and assign a numeric vector with 10,000 random numbers. What in fact happens is that the name `a` is assigned to the integer vector (which in turn exists at a specific memory address). Thus, values do not have names but *names have values*. This has important consequences for memory allocation and performance. For example, because `a` is in fact just a name attached to a value, the following does not involve any copying of values. It simply "binds" another name, `b`, to the same value to which `a` is already bound.
+What is usually said to describe what is happening here is something along the lines of "we initialize a variable called `a` and assign a numeric vector with 10,000 random numbers. What in fact happens is that the name `a` is assigned to the integer vector (which in turn exists at a specific memory address). Thus, values do not have names but *names have values*. This has important consequences for memory allocation and performance. For example, because `a` is in fact just a name attached to a value, the following does not involve any copying of values. It simply "binds" another name, `b`, to the same value to which `a` is already bound.
 
 ```{r}
 b <- a
@@ -489,7 +489,7 @@ object_size(a)
 mem_change(c <- a)
 ```
 
-Second, by means of the `lobstr`-package\index{lobstr package} [@lobstr], we can see that the values to which `a` and `b` are bound are stored at the same memory address. Hence, they are the same values.
+Second, by means of the `lobstr`-package\index{lobstr Package} [@lobstr], we can see that the values to which `a` and `b` are bound are stored at the same memory address. Hence, they are the same values.
 
 ```{r warning=FALSE, eval=TRUE, warning=FALSE, message=FALSE}
 # load packages
@@ -524,9 +524,9 @@ mem_change(d[1] <- 0)
 ```
 
 ### Releasing memory
-\index{Releasing memory}
+\index{Releasing Memory}
 
-Closely related to the issue of copy-upon-modify\index{Copy-upon-modify} is the issue of "releasing" memory via "garbage collection"\index{Garbage collection}. If your program uses up a lot of (too much) memory (typical for working with large datasets), all processes on your computer might substantially slow down (we will look more closely into why this is the case in the next chapter). Hence, you might want to remove/delete an object once you do not need it anymore. This can be done with the `rm()` function.
+Closely related to the issue of copy-upon-modify\index{Copy-Upon-Modify} is the issue of "releasing" memory via "garbage collection"\index{Garbage Collection}. If your program uses up a lot of (too much) memory (typical for working with large datasets), all processes on your computer might substantially slow down (we will look more closely into why this is the case in the next chapter). Hence, you might want to remove/delete an object once you do not need it anymore. This can be done with the `rm()` function.
 
 ```{r}
 mem_change(large_vector <- runif(10^8))
@@ -538,7 +538,7 @@ mem_change(rm(large_vector))
 
 ### Beyond R
 
-So far, we have explored idiosyncrasies of R we should be aware of when writing programs to handle and analyze large datasets. While this has shown that R has many advantages for working with data, it also revealed some aspects of R that might result in low performance compared other programming languages. A simple generic explanation for this is that R is an [interpreted language](https://en.wikipedia.org/wiki/Interpreted_language), meaning that when we execute R code, it is processed (statement by statement) by an 'interpreter' that translates the code into machine code (without the user giving any specific instructions). In contrast, when writing code in a 'compiled language', we first have to explicitly compile the code (into machine code) and then run the compiled program. Running code that is already compiled is typically much faster than running R code that has to be interpreted before it can actually be processed by the CPU. 
+So far, we have explored idiosyncrasies of R we should be aware of when writing programs to handle and analyze large datasets. While this has shown that R has many advantages for working with data, it also revealed some aspects of R that might result in low performance compared to other programming languages. A simple generic explanation for this is that R is an interpreted language, meaning that when we execute R code, it is processed (statement by statement) by an 'interpreter' that translates the code into machine code (without the user giving any specific instructions). In contrast, when writing code in a 'compiled language', we first have to explicitly compile the code (into machine code) and then run the compiled program. Running code that is already compiled is typically much faster than running R code that has to be interpreted before it can actually be processed by the CPU. 
 
 For advanced programmers, R offers various options to directly make use of compiled programs (for example, written in C, C++, or FORTRAN). In fact, several of the core R functions installed with the basic R distribution are implemented in one of these lower-level programming languages, and the R function we call simply interacts with these functions. 
 
@@ -566,7 +566,7 @@ While the use of functions implemented in a lower-level language is a common tec
 ## SQL basics
 \index{Structured Query Language (SQL)}
 
-Structured Query Language (SQL) has become a bread-and-butter tool for data analysts and data scientists due to its broad application in systems used to store large amounts of data. While traditionally only encountered in the context of structured data stored in relational database management systems, some versions of it are now also used to query data from data warehouse systems (e.g. Amazon Redshift) and even to query massive amounts (terabytes or even petabytes) of data stored in data lakes (e.g., Amazon Athena). In all of these applications, SQL's purpose (from the data analytics perspective) is to provide a convenient and efficient way to query data from mass storage for analysis. Instead of importing a CSV file into R and then filtering it in order to get to the analytic dataset, we use SQL to express how the analytic dataset should look like (which variables and rows should be included).
+Structured Query Language (SQL) has become a bread-and-butter tool for data analysts and data scientists due to its broad application in systems used to store large amounts of data. While traditionally only encountered in the context of structured data stored in relational database management systems, some versions of it are now also used to query data from data warehouse systems (e.g. Amazon Redshift) and even to query massive amounts (terabytes or even petabytes) of data stored in data lakes (e.g., Amazon Athena). In all of these applications, SQL's purpose (from the data analytics perspective) is to provide a convenient and efficient way to query data from mass storage for analysis. Instead of importing a CSV file into R and then filtering it in order to get to the analytic dataset, we use SQL to express how the analytic dataset should look (which variables and rows should be included).
 
 The latter point is very important to keep in mind when already having experience with a language like R and learning SQL for the first time. In R we write code to instruct the computer what to do with the data. For example, we tell it to import a csv file called `economics.csv` as a `data.table`; then we instruct it to remove observations that are older than a certain date according to the `date` column; then we instruct it to compute the average of the `unemploy` column values for each year based on the `date` column and then return the result as a separate data frame:
 
@@ -750,7 +750,7 @@ simple_query
 
 So far, we have only considered queries involving one table of data. However, SQL provides a very efficient way to join data from various tables. Again, the way of writing SQL code is the same: You describe what the final table should look like and from where the data is to be selected. 
 
-Let's extend the previous example by importing an additional table to our `mydb.sqlite`. The additional data is stored in the file `inflation.csv` in the book's data folder and contains information on the US annual inflation rate measured in percent.^[Like the data stored in `economics.csv`, the data stored in `inflation.csv` is provided by the Federal Reserve Bank's (FRED)[https://fred.stlouisfed.org/] website.]
+Let's extend the previous example by importing an additional table to our `mydb.sqlite`. The additional data is stored in the file `inflation.csv` in the book's data folder and contains information on the US annual inflation rate measured in percent.^[Like the data stored in `economics.csv`, the data stored in `inflation.csv` is provided by the Federal Reserve Bank's FRED website (https://fred.stlouisfed.org/).]
 
 ```{r sql17, echo=FALSE, message=FALSE, purl=FALSE}
 library(DBI)
@@ -832,9 +832,9 @@ When done working with the database, we can exit SQLite by typing `.quit` into t
 
 Whether you are already an experienced programmer in R and SQL or whether you are rather new to coding, recent developments in Large Language Models (LLMs)\index{Large Language Models (LLMs)} might provide an interesting way of making your coding workflow more efficient. At the writing of this book, OpenAI's ChatGPT was still in its testing phase but has already created a big hype in various topic domains. In very simple terms ChatGPT\index{ChatGPT} and its predecessors GPT-2, GPT-3\index{GPT-3} are pre-trained large-scale machine learning models that have been trained on millions of websites' text content (including code from open repositories such as GitHub). Applying these models for predictions is different from other machine learning settings. Instead of feeding new datasets into the trained model, you interact with the model via a prompt (like a chat function). That is, among other things you can pose a question to the model in plain English and get an often very reasonable answer, or you can instruct via the prompt to generate some type of text output for you (given your instructions, and potentially additional input). As the model is trained on natural language texts as well as (documented) computer code, you can ask it to write code for you, for example in SQL or R. 
 
-While there are many tools that build on LLMs such as GPT-3 already out there and even more still being developed, I want to explicitly point you to two of those: [`gptstudio`](https://github.com/MichelNivard/GPTstudio)\index{gptstudio package}, an addin for Rstudio, providing an easy-to-use interface with some of OpenAI's APIs, and [GitHub Copilot](https://github.com/features/copilot)\index{GitHub Copilot}. The latter is a professionally developed tool to support your software development workflow by, for example, auto-completing the code you are writing. To use GitHub Copilot you need a paid subscription. With a subscription the tool can then be installed as an extension to different code editors (for example Visual Studio Code). However, at the time of writing this book no GitHub Copilot extension for RStudio was available. `gptstudio`\index{gptstudio package} is a much simpler but free alternative to GitHub Copilot and it is explicitly made for RStudio.^[The installation instructions in the README file on https://github.com/MichelNivard/GPTstudio are straightforward.] You will, however, need an OpenAI account and a corresponding OpenAI API key (to get these simply follow the instructions here: https://github.com/MichelNivard/GPTstudio) in order to use the gptstudio-addin. You will be charged for the queries that `gptstudio`\index{gptstudio package} sends to the OpenAI-API, however there are no fixed costs associated with this setup.
+While there are many tools that build on LLMs such as GPT-3 already out there and even more still being developed, I want to explicitly point you to two of those: [`gptstudio`](https://github.com/MichelNivard/GPTstudio)\index{gptstudio Package}, an add-in for Rstudio, providing an easy-to-use interface with some of OpenAI's APIs, and [GitHub Copilot](https://github.com/features/copilot)\index{GitHub Copilot}. The latter is a professionally developed tool to support your software development workflow by, for example, auto-completing the code you are writing. To use GitHub Copilot you need a paid subscription. With a subscription the tool can then be installed as an extension to different code editors (for example Visual Studio Code). However, at the time of writing this book no GitHub Copilot extension for RStudio was available. `gptstudio`\index{gptstudio Package} is a much simpler but free alternative to GitHub Copilot and it is explicitly made for RStudio.^[The installation instructions in the README file on https://github.com/MichelNivard/GPTstudio are straightforward.] You will, however, need an OpenAI account and a corresponding OpenAI API key (to get these simply follow the instructions here: https://github.com/MichelNivard/GPTstudio) in order to use the gptstudio-add-in. You will be charged for the queries that `gptstudio`\index{gptstudio Package} sends to the OpenAI-API; however there are no fixed costs associated with this setup.
 
-Just to give you an idea of how you could use `gptstudio`\index{gptstudio package} for your coding workflow, consider the following example. After installing the addin and creating your OpenAI account and API key, you can initiate the chat function of the addin as follows.
+Just to give you an idea of how you could use `gptstudio`\index{gptstudio Package} for your coding workflow, consider the following example. After installing the add-in and creating your OpenAI account and API key, you can initiate the chat function of the add-in as follows.
 
 ```{r eval=FALSE}
 # replace "YOUR-API-KEY" with 
@@ -870,7 +870,7 @@ include_graphics("img/gpt_sql_response.png")
 
 (ref:gptoutput) GPTStudio: an SQL query written by OpenAI's GPT-3 model (text-davinci-003).
 
-Two things are worth noting here: first, the query is syntactically correct and would essentially work; second, when comparing the query or the query's results with our previously manually written query, we notice that the AI's query is not semantically correct. Our database's unemployment variable is called `unemploy` and it is measured in thousands. The GPT model, of course, had no way of obtaining this information from our instructions. As a result, it simply used variable names and values for the filtering that seemed most reasonable given our input. The take-away message here is to be aware of giving the model very clear instructions when creating code in this manner, especially in terms of the broader context (here the database and schema you are working with). To check the model's code for syntax errors, simply test whether the code runs through or not. However, model-generated code can easily introduce semantic errors, which can be very problematic.
+Two things are worth noting here: first, the query is syntactically correct and would essentially work; second, when comparing the query or the query's results with our previous manually written query, we notice that the AI's query is not semantically correct. Our database's unemployment variable is called `unemploy`, and it is measured in thousands. The GPT model, of course, had no way of obtaining this information from our instructions. As a result, it simply used variable names and values for the filtering that seemed most reasonable given our input. The take-away message here is to be aware of giving the model very clear instructions when creating code in this manner, especially in terms of the broader context (here the database and schema you are working with). To check the model's code for syntax errors, simply test whether the code runs through or not. However, model-generated code can easily introduce semantic errors, which can be very problematic.
 
 
 ## Wrapping up

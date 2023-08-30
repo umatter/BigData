@@ -1,10 +1,7 @@
 # Big Data Analytics
 
 
-## About
-
-Lecture Materials for the course Big Data Analytics 
-
+This repository contains the source of the [Big Data Analytics book](https://umatter.github.io/BigData/). The book is built using [bookdown]().
 ## Prerequisites
 
 Compilation depends on `bookdown` and `knitr`
@@ -23,7 +20,8 @@ install.packages("pacman")
 # get a list of all rmd files (slides and notes)
 notes_files <- list.files("materials/notes", pattern = "\\.Rmd", full.names =TRUE)
 slides_files <- list.files("materials/slides", pattern = "\\.Rmd", full.names = TRUE)
-all_files <- c(notes_files, slides_files)
+book_files <- list.files( pattern = "\\.Rmd", full.names = TRUE)
+all_files <- c(notes_files, slides_files, book_files)
 
 # parse the rmds, extract a list of package dependencies
 rmds <- lapply(all_files, readLines)

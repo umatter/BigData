@@ -6,25 +6,25 @@
 
 >"Men at some time are masters of their fates. 
 The fault, dear Brutus, is not in our stars, 
-But in ourselves, that we are underlings."[@shakespeare2020julius]
+but in ourselves, that we are underlings."[@shakespeare2020julius]
 
-Working with the complexity and size of big data is rarely as overwhelming and intimidating as when collecting and preparing the data for analysis.
+Working with the complexity and size of Big Data is rarely as overwhelming and intimidating as when collecting and preparing the data for analysis.
 Even when working with small datasets, collecting and preparing data for analysis can easily consume more than two-thirds of an analytics project's time.
 Larger datasets make the time-consuming tasks preceding the actual statistical analysis even more difficult, as the common tools and workflows for dealing with large datasets at the beginning of a project become overwhelmed and rendered useless. 
 
-In this part we aim to tackle these challenges by combining the conceptual basics of part I with the platform basics in part II and look at each practical step involved in analyzing Big Data in the context of applied econometrics/business analytics. Thereby, the focus is primarily on how to handle Big Data in order to gather, prepare, combine, filter, visualize, and summarize it for analytics purposes. That is, we cover all core practical tasks necessary before running more sophisticated econometric analyses or machine learning algorithms on the data. Each of these core tasks is summarized in a separate chapter, whereby the sequence of chapters follows a typical workflow/process in applied data science, usually referred to as *data pipeline*\index{Data pipeline}. 
+In this part we aim to tackle these challenges by combining the conceptual basics of part I with the platform basics in part II and look at each practical step involved in analyzing Big Data in the context of applied econometrics/business analytics. Thereby, the focus is primarily on how to handle Big Data in order to gather, prepare, combine, filter, visualize, and summarize it for analytics purposes. That is, we cover all core practical tasks necessary before running more sophisticated econometric analyses or machine learning algorithms on the data. Each of these core tasks is summarized in a separate chapter, whereby the sequence of chapters follows a typical workflow/process in applied data science, usually referred to as *data pipeline*\index{Data Pipeline}. 
 
-The data pipeline`sparklyr` concept is useful to illustrate and organize the process from gathering/extracting the raw data from various data sources to the final analytics output. The concept of data pipelines thus helps us to structure all steps involved in a meaningful way. Figure \@ref(fig:datapipeline) illustrates the data pipeline idea, which is consistent with the order and content of how the chapters in this book cover all the tasks involved in the first steps of a Big Data Analytics project. Initial, intermediate, and final data entities are displayed as nodes in the flow diagram, and tasks/activities between these entities are displayed as arrows.   
+The data pipeline concept is useful to illustrate and organize the process from gathering/extracting the raw data from various data sources to the final analytics output. The concept of data pipelines thus helps us to structure all steps involved in a meaningful way. Figure \@ref(fig:datapipeline) illustrates the data pipeline idea, which is consistent with the order and content of how the chapters in this book cover all the tasks involved in the first steps of a Big Data Analytics project. Initial, intermediate and final data entities are displayed as nodes in the flow diagram, and tasks/activities between these entities are displayed as arrows.   
 
 ```{r datapipeline, echo=FALSE, out.width = "99%", fig.align='center', fig.cap= "(ref:datapipeline)", purl=FALSE}
 include_graphics("img/data_pipeline.png")
 ```
 
-(ref:datapipeline) Illustration of a generic data pipeline`sparklyr` in a data analytics project.
+(ref:datapipeline) Illustration of a generic data pipeline in a data analytics project.
 
-In many domains of modern data science, data pipelines also involve loops, indicating that certain parts of the overall process are iterative and repeated several times to further optimize and maintain the final data product. Such a perspective is typical in a context where the final data product is a dashboard or a (component of a) web application that is at some point deployed and runs in production. For the perspective of this book, we intentionally follow an acyclical concept of the data pipeline`sparklyr`, representative of data projects in business analytics and applied economic research, in which raw data needs to be collected, processed, and analyzed with the aim of delivering statistical insights summarized in a report or presentation. In that sense, each chapter in this part builds on the previous one, and I recommend going through these chapters sequentially.
+In many domains of modern data science, data pipelines also involve loops, indicating that certain parts of the overall process are iterative and repeated several times to further optimize and maintain the final data product. Such a perspective is typical in a context where the final data product is a dashboard or a (component of a) web application that is at some point deployed and runs in production. For the perspective of this book, we intentionally follow an acyclical concept of the data pipeline, representative of data projects in business analytics and applied economic research, in which raw data needs to be collected, processed, and analyzed with the aim of delivering statistical insights summarized in a report or presentation. In that sense, each chapter in this part builds on the previous one, and I recommend going through these chapters sequentially.
 
-Note though that in your work it might make sense to slightly re-arrange some parts of the workflow suggested by the generic data pipeline`sparklyr` illustrated here. In particular, you might want to first systematically collect and store all of the needed data and then only selectively load and transform/clean parts of this data for analysis (an approach usually referred to as  *Extract-Load-Transform (ELT)*\index{Extract-Load-Transform (ELT)}, or, in contrast, you might want to directly clean all the gathered data and store all of the cleaned/prepared data in a cleanly structured database before turning to any analytics steps (as the pipeline illustration above would suggest, and which is typically referred to as *Extract-Transform-Load (ETL)*\index{Extract-Transform-Load (ETL)}).
+Note, though, that in your work it might make sense to slightly re-arrange some parts of the workflow suggested by the generic data pipeline illustrated here. In particular, you might want to first systematically collect and store all of the needed data and then only selectively load and transform/clean parts of this data for analysis (an approach usually referred to as  *Extract-Load-Transform (ELT)*\index{Extract-Load-Transform (ELT)}, or, in contrast, you might want to directly clean all the gathered data and store all of the cleaned/prepared data in a cleanly structured database before turning to any analytics steps (as the pipeline illustration above would suggest, and which is typically referred to as *Extract-Transform-Load (ETL)*\index{Extract-Transform-Load (ETL)}).
 
 
 
@@ -37,7 +37,7 @@ In traditional business analytics, a company's raw/unstructured data was typical
 
 Nowadays, with data analysts and data scientists being increasingly familiar with data technologies and how to handle raw/unstructured data, a more flexible process called *Extract-Load-Transform (ELT)*\index{Extract-Load-Transform (ELT)} is followed. In ELT, raw data is extracted and then ingested into/stored in more flexible frameworks than traditional SQL databases that allow for more diverse data structures, such as data warehouses, or do not require the data to be structured, such as data lakes. The transformation of the data for analytics purposes is then done on demand and practically often involves the same person later analyzing the data. 
 
-Importantly, for the perspective on data analytics in this book, either process involves the components illustrated in the pipeline above in one way or another. However, the order of the individual steps varies between ETL\index{Extract-Transform-Load (ETL)}. and ELT\index{Extract-Load-Transform (ELT)}. 
+Importantly, for the perspective on data analytics in this book, either process involves the components illustrated in the pipeline above in one way or another. However, the order of the individual steps varies between ETL\index{Extract-Transform-Load (ETL)} and ELT\index{Extract-Load-Transform (ELT)}. 
 
 
 ::::
@@ -48,9 +48,9 @@ Importantly, for the perspective on data analytics in this book, either process 
 
 
 # Data Collection and Data Storage
-\index{Data storage}
+\index{Data Storage}
 
-The first steps of a data analytics project typically deal with the question of how to collect, organize, and store the raw data for further processing. In this chapter, we cover several approaches of how to practically implement these steps in the context of observational data, as they commonly occur in applied econometrics and business analytics. Thereby, the focus lies on several important aspects of how to implement these steps locally, and then introduces several useful cloud tools to store and query large amounts of data for analytics purposes. 
+The first steps of a data analytics project typically deal with the question of how to collect, organize, and store the raw data for further processing. In this chapter, we cover several approaches to how to practically implement these steps in the context of observational data, as they commonly occur in applied econometrics and business analytics. Thereby, the focus lies on several important aspects of how to implement these steps locally and then introduces several useful cloud tools to store and query large amounts of data for analytics purposes. 
 
 
 ## Gathering and compilation of raw data
@@ -158,9 +158,9 @@ for (i in 1:length(data_urls)) {
 
 ## Stack/combine raw source files
 
-In a next step, we parse and combine the downloaded data. Depending on how you want to further work with the gathered data, one or another storage format might be more convenient. For the sake of illustration (and the following examples building on the downloaded data), we store the downloaded data in one CSV file. To this end, we make use of the `arrow` package\index{arrow package} [@richardson_etal2022], an R interface to the Apache Arrow\index{Apache Arrow} C++\index{C++} library (a platform to work with large-scale columnar data). The aim of the exercise is to combine the downloaded Parquet\index{Parquet} files into one compressed CSV\index{CSV (Comma Separated Values)} file, which will be more easily accessible for some of the libraries used in further examples.
+In a next step, we parse and combine the downloaded data. Depending on how you want to further work with the gathered data, one or another storage format might be more convenient. For the sake of illustration (and the following examples building on the downloaded data), we store the downloaded data in one CSV file. To this end, we make use of the `arrow` package\index{arrow Package} [@richardson_etal2022], an R interface to the Apache Arrow\index{Apache Arrow} C++\index{C++} library (a platform to work with large-scale columnar data). The aim of the exercise is to combine the downloaded Parquet\index{Parquet} files into one compressed CSV\index{CSV (Comma Separated Values)} file, which will be more easily accessible for some of the libraries used in further examples.
 
-We start by installing the `arrow` package\index{arrow package}  in the following way.
+We start by installing the `arrow` package\index{arrow Package}  in the following way.
 
 ```{r eval=FALSE}
 # install arrow
@@ -169,7 +169,7 @@ install.packages("arrow") # might take a while
 
 ```
 
-The setting `LIBARROW_MINIMAL= "false"` ensures that the installation of arrow is not restricted to the very basic functionality of the package. Specifically, for our context it will be important that the `arrow`\index{arrow package}  installation allows for the reading of compressed files.
+The setting `LIBARROW_MINIMAL= "false"` ensures that the installation of arrow is not restricted to the very basic functionality of the package. Specifically, for our context it will be important that the `arrow`\index{arrow Package}  installation allows for the reading of compressed files.
 
 ```{r message=FALSE, warning=FALSE}
 
@@ -202,16 +202,16 @@ write_csv_arrow(combined_data,
                 include_header = TRUE)
 
 ```
-Note that in the code example above we use `purr::lift_dl()`\index{lift\_dl()} (`lift_dl(concat_tables)(all_data)`) to facilitate the code. The `arrow` function `concat_tables`\index{concat\_tables()} combines several table objects into one table.
+Note that in the code example above we use `purr::lift_dl()`\index{lift\_dl()} to facilitate the code. The `arrow` function `concat_tables`\index{concat\_tables()} combines several table objects into one table.
 
 
 
 :::: {.infobox data-latex=""}
 ::: {.center data-latex=""}
-**Aside: CSV import and memory allocation, read.csv vs fread**
+**Aside: CSV import and memory allocation, read.csv vs. fread**
 :::
 
-\index{CSV import}
+\index{CSV Import}
 
 The time needed for the simple step of importing rather large CSV files can vary substantially in R, depending on the function/package used. The reason is that there are different ways to allocate RAM when reading data from a CSV file. Depending on the amount of data to be read in, one or another approach might be faster. We first investigate the RAM\index{Random Access Memory (RAM)} allocation in R with `mem_change()`\index{mem\_change()} and `mem_used()`\index{mem\_used()}.
 
@@ -238,7 +238,7 @@ flights <- flights[,-1:-3]
 mem_used()
 ```
 
-The last result is rather interesting. The object `flights` must have been larger right after importing it than at the end of the script. We have thrown out several variables, after all. Why does R still use that much memory? R does not by default 'clean up' memory unless it is really necessary (meaning no more memory is available). In this case, R has still way more memory available from the operating system, thus there is no need to 'collect the garbage' yet. However, we can force R to collect the garbage on the spot with `gc()`. This can be helpful to better keep track of the memory needed by an analytics script.
+The last result is rather interesting. The object `flights` must have been larger right after importing it than at the end of the script. We have thrown out several variables, after all. Why does R still use that much memory? R does not by default 'clean up' memory unless it is really necessary (meaning no more memory is available). In this case, R still has much more memory available from the operating system; thus there is no need to 'collect the garbage' yet. However, we can force R to collect the garbage on the spot with `gc()`. This can be helpful to better keep track of the memory needed by an analytics script.
 
 ```{r}
 gc()
@@ -275,7 +275,7 @@ Estimated number of rows: 30960501 / 92.03 = 336403
  bytes/max(mean-2*sd,min) clamped between [1.1*estn, 2.0*estn]
 ```
 
-This is the result of the abovementioned preparatory step in the form of sampling. The `fread` CSV parser first estimates how large the dataset likely is, and then creates an additional allocation (in this case of `370043 rows`). Only after this are the rows actually imported into RAM. The summary of the time allocated for the different steps shown at the bottom of the output nicely illustrates that the preparatory steps of memory mapping\index{Memory mapping} and allocation are rather fast compared with the time needed to actually read the data into RAM. Given the size of the dataset, `fread`'s\index{fread()} approach to memory allocation results in a much faster import of the dataset than `read.csv`'s\index{read.csv()} approach.
+This is the result of the above-mentioned preparatory step in the form of sampling. The `fread` CSV parser first estimates how large the dataset likely is and then creates an additional allocation (in this case of `370043 rows`). Only after this are the rows actually imported into RAM. The summary of the time allocated for the different steps shown at the bottom of the output nicely illustrates that the preparatory steps of memory mapping\index{Memory Mapping} and allocation are rather fast compared with the time needed to actually read the data into RAM. Given the size of the dataset, `fread`'s\index{fread()} approach to memory allocation results in a much faster import of the dataset than `read.csv`'s\index{read.csv()} approach.
 
 
 
@@ -303,15 +303,15 @@ Various tools have been developed over the last few years to improve the efficie
 
 The relational database system follows the relational data model, in which the data is organized in several tables that are connected via some unique data record identifiers (keys). Such systems, for example, SQLite\index{SQLite} introduced in Chapter 3, have been used for a long time in all kinds of business and analytics contexts. They are well-tried and stable and have a large and diverse user base. There are many technicalities involved in how they work under the hood, but for our purposes three characteristics are most relevant:
 
- 1. All common RDBMSs\index{Relational Database Management Systems (RDBMSs)}, like SQLite\index{SQLite} and MySQL\index{MySQL}, are *row-based* databases\index{Row-based databases}. That is, data is thought of as observations/data records stored in rows of a table. One record consists of one row. 
+ 1. All common RDBMSs\index{Relational Database Management Systems (RDBMSs)}, like SQLite\index{SQLite} and MySQL\index{MySQL}, are *row-based* databases\index{Row-Based Databases}. That is, data is thought of as observations/data records stored in rows of a table. One record consists of one row. 
  2. They are typically made for storing clean data in a *clearly defined set of tables*, with clearly defined properties. The organizing of data in various tables has (at least for our perspective here) the aim of avoiding redundancies and thereby using the available storage space more efficiently.
  3. Rows are *indexed* according to the unique identifiers of tables (or one or several other variables in a table). This allows for fast querying of specific records and efficient merging/joining of tables.
  
-While these particular features work very well also with large amounts of data, particularly for exploration and data preparation (joining tables), in the age of big data they might be more relevant for operational databases (in the backend of web applications, or simply the operational database of a business) than for the specific purpose of data analytics. 
+While these particular features work very well also with large amounts of data, particularly for exploration and data preparation (joining tables), in the age of Big Data they might be more relevant for operational databases (in the back-end of web applications, or simply the operational database of a business) than for the specific purpose of data analytics. 
 
 On the one hand, the data basis of an analytics project might be simpler in terms of the number of tables involved. On the other hand, Big Data, as we have seen, might come in less structured and/or more complex forms than traditional table-like/row-based data. *NoSQL*\index{NoSQL} databases have been developed for the purposes of storing more complex/less structured data, which might not necessarily be described as a set of tables connected via keys, and for the purpose of fast analysis of large amounts of data. Again, three main characteristics of these types of databases are of particular relevance here:
 
- 1. Typically, *NoSQL*\index{NoSQL} databases are not row-based, but follow a *column-based*\index{Column-based databases}, document-based, key-value-based, or graph-based data model. In what follows, the column-based model is most relevant.
+ 1. Typically, *NoSQL*\index{NoSQL} databases are not row-based, but follow a *column-based*\index{Column-Based Databases}, document-based, key-value-based, or graph-based data model. In what follows, the column-based model is most relevant.
  2. *NoSQL* databases are designed for horizontal scaling. That is, scaling such a database out over many nodes of a computing cluster is usually straightforward.
  3. They are optimized to give quick answers based on summarizing large amounts of data, such as frequency counts and averages (sometimes by using approximations rather than exact computations.)
 
@@ -328,12 +328,12 @@ include_graphics("img/column_v_rowbased.png")
 
 :::: {.infobox data-latex=""}
 ::: {.center data-latex=""}
-**Aside: Row-based vs column-based databases**
+**Aside: Row-based vs. column-based databases**
 :::
 
 
 
-Conceptually, in a *row-based database*\index{Row-based databases} individual values (cells) are contained in rows, which means changing one value requires updating a row. Row-based databases (e.g., SQLite) are thus designed for efficient data reading and writing when users often access many columns but rather few observations. For example, for an operational database in the back-end of a web application such as an online shop, a row-based approach makes sense because hundreds or thousands of users (customers in that case) constantly add or query small amounts of data. In contrast, changing a value in *column-based* databases\index{Column-based databases} means changing a column. Accessing all values in a particular column is much faster in comparison to row-based databases. 
+Conceptually, in a *row-based database*\index{Row-Based Databases} individual values (cells) are contained in rows, which means changing one value requires updating a row. Row-based databases (e.g., SQLite) are thus designed for efficient data reading and writing when users often access many columns but rather few observations. For example, for an operational database in the back-end of a web application such as an online shop, a row-based approach makes sense because hundreds or thousands of users (customers in that case) constantly add or query small amounts of data. In contrast, changing a value in *column-based* databases\index{Column-Based Databases} means changing a column. Accessing all values in a particular column is much faster in comparison to row-based databases. 
 
 This means that column-based databases are useful when users tend to query rather few columns but massive numbers of observations, which is typically rather the case in an analytics context. Some well-known data warehouse and data lake systems are therefore based on this principle (e.g., Google BigQuery). However, if analytics tasks involve a lot of (out-of-memory) table joins, column-based solutions are likely to be slower than row-based solutions. 
 
@@ -347,7 +347,7 @@ In the following, we have a close look at using both column-based and row-based 
 
 RDBMSs\index{Relational Database Management Systems (RDBMSs)} have two key features that tackle the two efficiency concerns mentioned above:
 
-- The *relational data model*\index{Relational data model}: The overall dataset is split by columns (covariates) into tables in order to reduce the storage of redundant variable-value repetitions. The resulting database tables are then linked via key-variables (unique identifiers). Thus (simply put), each type of entity on which observations exist resides in its own database table. Within this table, each observation has it's unique ID. Keeping the data in such a structure is very efficient in terms of storage space used. 
+- The *relational data model*\index{Relational Data Model}: The overall dataset is split by columns (covariates) into tables in order to reduce the storage of redundant variable-value repetitions. The resulting database tables are then linked via key-variables (unique identifiers). Thus (simply put), each type of entity on which observations exist resides in its own database table. Within this table, each observation has its unique ID. Keeping the data in such a structure is very efficient in terms of storage space used. 
 
 - *Indexing*\index{Indexing (SQL)}: The key-columns of the database tables are indexed, meaning (in simple terms) ordered on disk. Indexing a table takes time, but it has to be performed only once (unless the content of the table changes). The resulting index is then stored on disk as part of the database. These indices substantially reduce the number of disk accesses required to query/find specific observations. Thus, they make the loading of specific parts of the data for analysis much more efficient.
 
@@ -384,7 +384,7 @@ library(DBI)
 con_air <- dbConnect(RSQLite::SQLite(), "data/air_final.sqlite")
 ```
 
-We check if everything worked out well via the `.tables` and `.schema` commands.
+We check whether everything worked out well via the `.tables` and `.schema` commands.
 
 
 ```{sql connection=con_air, eval = FALSE, purl=FALSE}
@@ -431,7 +431,7 @@ In this code example, the two CSVs have already been downloaded to the `material
 .schema carriers
 ```
 
-Now we can run our first query involving the relation between tables. The aim of the exercise is to query flights data (information on departure delays per flight number and date; from the `flights` table) for all `United Air Lines Inc.` flights (information from the `carriers` table) departing from `Newark Intl` airport (information from the `airports` table). In addition, we want the resulting table ordered by flight number. For the sake of the exercise, we only show the first 10 results of this query (`LIMIT 10`).
+Now we can run our first query involving the relation between tables. The aim of the exercise is to query flights data (information on departure delays per flight number and date, from the `flights` table) for all `United Air Lines Inc.` flights (information from the `carriers` table) departing from `Newark Intl` airport (information from the `airports` table). In addition, we want the resulting table ordered by flight number. For the sake of the exercise, we only show the first 10 results of this query (`LIMIT 10`).
 
 
 
@@ -457,7 +457,7 @@ flights_join
 ```
 
 
-Note that this query has been executed without indexing any of the tables first. Thus SQLite\index{SQLite} could not take any 'shortcuts' when matching the ID columns in order to join the tables for the query output. That is, SQLite\index{SQLite} had to scan the entire columns to find the matches. Now we index the respective ID columns and re-run the query.
+Note that this query has been executed without indexing any of the tables first. Thus SQLite\index{SQLite} could not take any 'shortcuts' when matching the ID columns in order to join the tables for the query output. That is, SQLite\index{SQLite} had to scan all the columns to find the matches. Now we index the respective ID columns and re-run the query.
 
 
 
@@ -493,18 +493,18 @@ doublejoin_example
 ```
 
 
-You can find the final `air.sqlite` database, including all the indices and tables as `materials/data/air_final.sqlite` in the course's code repository.
+You can find the final `air.sqlite` database, including all the indices and tables, as `materials/data/air_final.sqlite` in the book's code repository.
 
 ## Connecting R to an RDBMS
 \index{Relational Database Management Systems (RDBMSs)}
 
-The R-package `RSQLite`\index{RSQLite package} [@RSQLite] embeds SQLite\index{SQLite} in R. That is, it provides functions that allow us to use SQLite\index{SQLite} directly from within R. You will see that the combination of SQLite\index{SQLite} with R is a simple but very practical approach to working with very efficiently (and locally) stored datasets. In the following example, we explore how `RSQLite`\index{RSQLite package} can be used to set up and query the `air.sqlite` database shown in the example above.
+The R-package `RSQLite`\index{RSQLite Package} [@RSQLite] embeds SQLite\index{SQLite} in R. That is, it provides functions that allow us to use SQLite\index{SQLite} directly from within R. You will see that the combination of SQLite\index{SQLite} with R is a simple but very practical approach to working with very efficiently (and locally) stored datasets. In the following example, we explore how `RSQLite`\index{RSQLite Package} can be used to set up and query the `air.sqlite` database shown in the example above.
 
 
 ### Creating a new database with `RSQLite`
-\index{RSQLite package}
+\index{RSQLite Package}
 
-Similarly to the raw SQLite\index{SQLite} syntax, connecting to a database that does not exist yet actually creates this (empty database). Note that for all interactions with the database from within R, we need to refer to the connection (here: `con_air`).
+Similarly to the raw SQLite\index{SQLite} syntax, we connect to a database that does not exist yet actually creates this (empty database). Note that for all interactions with the database from within R, we need to refer to the connection (here: `con_air`).
 
 ```{r}
 # load packages
@@ -516,7 +516,7 @@ con_air <- dbConnect(SQLite(), "data/air.sqlite")
 
 ### Importing data
 
-With `RSQLite`\index{RSQLite package} we can easily add `data.frame`s as SQLite\index{SQLite} tables to the database.
+With `RSQLite`\index{RSQLite Package} we can easily add `data.frame`s as SQLite\index{SQLite} tables to the database.
 
 ```{r eval=FALSE}
 
@@ -532,9 +532,9 @@ dbWriteTable(con_air, "carriers", carriers)
 
 ```
 
-### Issue queries
+### Issuing queries
 
-Now we can query the database from within R. By default, `RSQLite`\index{RSQLite package} returns the query results as `data.frame`s. Queries are simply character strings written in SQLite\index{SQLite}.
+Now we can query the database from within R. By default, `RSQLite`\index{RSQLite Package} returns the query results as `data.frame`s. Queries are simply character strings written in SQLite\index{SQLite}.
 
 ```{r eval=FALSE}
 # define query
@@ -576,13 +576,13 @@ When done working with the database, we close the connection to the database wit
 
 As outlined in the previous section, RDBMSs\index{Relational Database Management Systems (RDBMSs)} are a very practical tool for storing the structured data of an analytics project locally in a database. A local SQLite\index{SQLite} database can easily be set up and accessed via R, allowing one to write the whole data pipeline – from data gathering to filtering, aggregating, and finally analyzing – in R. In contrast to directly working with CSV\index{CSV (Comma Separated Values)} files, using SQLite\index{SQLite} has the advantage of organizing the data access much more efficiently in terms of RAM\index{Random Access Memory (RAM)}. Only the final result of a query is really loaded fully into R's memory.
 
-If mass storage space is too sparse or if RAM is nevertheless not sufficient, even when organizing data access via SQLite, several cloud solutions come to the rescue. Although you could also rent a traditional web server and host a SQL database there, this is usually not worthwhile for a data analytics project. In the next section we thus look at three important cases of how to store data as part of an analytics project: *RDBMS in the cloud*, a serverless *data warehouse*\index{Data warehouse} solution for large datasets called *Google BigQuery*\index{Google BigQuery}, and a simple storage service to use as a *data lake*\index{Data lake} called *AWS S3*\index{Simple storage service (S3)}. All of these solutions are discussed from a data analytics perspective, and for all of these solutions we will look at how to make use of them from within R.
+If mass storage space is too sparse or if RAM is nevertheless not sufficient, even when organizing data access via SQLite, several cloud solutions come to the rescue. Although you could also rent a traditional web server and host a SQL database there, this is usually not worthwhile for a data analytics project. In the next section we thus look at three important cases of how to store data as part of an analytics project: *RDBMS in the cloud*, a serverless *data warehouse*\index{Data Warehouse} solution for large datasets called *Google BigQuery*\index{Google BigQuery}, and a simple storage service to use as a *data lake*\index{Data Lake} called *AWS S3*\index{Simple Storage Service (S3)}. All of these solutions are discussed from a data analytics perspective, and for all of these solutions we will look at how to make use of them from within R.
 
 
 
 ### Easy-to-use RDBMS in the cloud: AWS RDS
 
-Once we have set up RStudio Server on an EC2\index{EC2} instance, we can run the SQLite\index{SQLite} examples shown above on it. There are no additional steps needed to install SQLite\index{SQLite}. However, when using RDBMSs\index{Relational Database Management Systems (RDBMSs)} in the cloud, we typically have a more sophisticated implementation than SQLite\index{SQLite} in mind. Particularly, we want to set up an actual RDBMS\index{Relational Database Management Systems (RDBMSs)} server running in the cloud to which several clients can connect (e.g., via RStudio Server). 
+Once we have set up the RStudio server on an EC2\index{EC2} instance, we can run the SQLite\index{SQLite} examples shown above on it. There are no additional steps needed to install SQLite\index{SQLite}. However, when using RDBMSs\index{Relational Database Management Systems (RDBMSs)} in the cloud, we typically have a more sophisticated implementation than SQLite\index{SQLite} in mind. Particularly, we want to set up an actual RDBMS\index{Relational Database Management Systems (RDBMSs)} server running in the cloud to which several clients can connect (e.g., via RStudio Server). 
 
 AWS's Relational Database Service (RDS)\index{Relational Database Service (RDS)} provides an easy way to set up and run a SQL database in the cloud. The great advantage for users new to RDBMS/SQL\index{Relational Database Management Systems (RDBMSs)} is that you do not have to manually set up a server (e.g., an EC2\index{EC2} instance) and install/configure the SQL server. Instead, you can directly set up a fully functioning relational database in the cloud. 
 
@@ -604,7 +604,7 @@ include_graphics("img/aws_rds_easycreate.png")
 (ref:rdseasy) Easy creation of an RDS MySQL DB.
 
 
-Once the database instance is ready, you will see it in the databases overview. Click on the DB identifier (the name of your database shown in the list of databases), and click on modify (button in the upper-right corner). In the "Connectivity" panel under "Additional configuration", select *Publicly accessible* (this is necessary to interact with the DB from your local machine), and save the settings. Back on the overview page of your database, under "Connectivity & security", click on the link under the VPC security groups, scroll down and select the "Inbound rules" tab. Edit the inbound rule to allow any IP4 inbound traffic.^[Note that this is not generally recommendable. Only do this to get familiar with the service and to test some code.] 
+Once the database instance is ready, you will see it in the databases overview. Click on the DB identifier (the name of your database shown in the list of databases), and click on modify (button in the upper-right corner). In the "Connectivity" panel under "Additional configuration", select *Publicly accessible* (this is necessary to interact with the DB from your local machine), and save the settings. Back on the overview page of your database, under "Connectivity & security", click on the link under the VPC security groups, scroll down and select the "Inbound rules" tab. Edit the inbound rule to allow any IP4 inbound traffic.^[Note that this is not generally recommended. Only do this to get familiar with the service and to test some code.] 
 
 
 ```{r rdsinboundrules, echo=FALSE, out.width = "99%", fig.align='center', fig.cap= "(ref:rdsinboundrules)", purl=FALSE}
@@ -615,7 +615,7 @@ include_graphics("img/rds_inboundrules.png")
 
 
 
-<!-- Now we can connect to the instance via the `RMySQL`\index{RMySQL package} package [@RMySQL]. Before loading data, we first have to initialize a new database (in contrast, this is done automatically when connecting to a SQLite database). -->
+<!-- Now we can connect to the instance via the `RMySQL`\index{RMySQL Package} package [@RMySQL]. Before loading data, we first have to initialize a new database (in contrast, this is done automatically when connecting to a SQLite database). -->
 
 
 ```{r message=FALSE, warning=FALSE, echo=FALSE, eval=FALSE}
@@ -681,7 +681,7 @@ con_rds <- dbConnect(RMySQL::MySQL(),
 ```
 
 
-`RMySQL`\index{RMySQL} and `RSQLite` both build on the `DBI`\index{DBI package} package, which generalizes how we can interact with SQL-type databases via R. This makes it straightforward to apply what we have learned so far by interacting with our local SQLite\index{SQLite} database to interactions with other databases. As soon as the connection to the new database is established, we can essentially use the same R functions as before to create new tables and import data.
+`RMySQL`\index{RMySQL} and `RSQLite` both build on the `DBI`\index{DBI Package} package, which generalizes how we can interact with SQL-type databases via R. This makes it straightforward to apply what we have learned so far by interacting with our local SQLite\index{SQLite} database to interactions with other databases. As soon as the connection to the new database is established, we can essentially use the same R functions as before to create new tables and import data.
 
 
 ```{r eval=FALSE}
@@ -730,7 +730,7 @@ dbDisconnect(con_rds)
 
 As outlined in the discussion of row-based vs. column-based databases above, many data analytics tasks focus on few columns but many rows, hence making column-based databases the better option for large-scale analytics purposes. [Apache Druid](https://druid.apache.org/)\index{Apache Druid} [@Druid] is one such solution that has particular advantages for the data analytics perspective taken in this book. It can easily be run on a local machine (Linux and Mac/OSX), or on a cluster in the cloud, and it easily allows for connections to external data, for example, data stored on Google Cloud Storage. Moreover, it can be interfaced by `RDruid`\index{RDruid} [@RDruid] to run Druid queries from within R, or, yet again, Druid can be directly queried via SQL.
 
-To get started with Apache Druid\index{Apache Druid}, navigate to [https://druid.apache.org/](https://druid.apache.org/). Under [downloads](https://druid.apache.org/downloads.html) you will find a link to download the latest stable release (at the time of writing this book: 24.0.0). On the Apache Druid landing page, you will also find a link [Quickstart](https://druid.apache.org/docs/latest/tutorials/index.html) with all the details regarding the installation and set up. Importantly, as of the time of writing this book, only Linux and MacOSX are supported (Windows is not supported).
+To get started with Apache Druid\index{Apache Druid}, navigate to [https://druid.apache.org/](https://druid.apache.org/). Under [downloads](https://druid.apache.org/downloads.html) you will find a link to download the latest stable release (at the time of writing this book: 25.0.0). On the Apache Druid landing page, you will also find a link [Quickstart](https://druid.apache.org/docs/latest/tutorials/index.html) with all the details regarding the installation and set up. Importantly, as of the time of writing this book, only Linux and MacOSX are supported (Windows is not supported).
 
 
 ### Installation and start up
@@ -739,12 +739,12 @@ On Linux, follow these steps to set up Apache Druid on your machine. First, open
 
 ```{bash echo=FALSE, eval=FALSE}
 # download druid binary
-# (replace 24.0.0 with another version number to download another version)
-wget https://dlcdn.apache.org/druid/24.0.0/apache-druid-24.0.0-bin.tar.gz
+# (replace 25.0.0 with another version number to download another version)
+wget https://dlcdn.apache.org/druid/25.0.0/apache-druid-25.0.0-bin.tar.gz
 # unpack 
-tar -xzf apache-druid-24.0.0-bin.tar.gz
+tar -xzf apache-druid-25.0.0-bin.tar.gz
 # clean up
-rm apache-druid-24.0.0-bin.tar.gz
+rm apache-druid-25.0.0-bin.tar.gz
 
 ```
 
@@ -752,7 +752,7 @@ Using Druid in its most basic form is then straightforward. Simply navigate to t
 
 ```{bash, eval=FALSE}
 # navigate to local copy of druid
-cd apache-druid-24.0.0
+cd apache-druid-25.0.0
 # start up druid (basic/minimal settings)
 ./bin/start-micro-quickstart
 
@@ -768,11 +768,11 @@ Once all Druid services are running, open a new browser window and navigate to `
 include_graphics("img/druidstart.png")
 ```
 
-(ref:druidstart) Apache Druid GUI starting page. White boxes highlight buttons to the Druid services discussed in the main text (from left to right): the query editor (run Druid SQL queries on any of the loaded datasources directly here); the data load service (use this to import data from local files); and the Datasources console (lists all currently available data sources).
+(ref:druidstart) Apache Druid GUI starting page. White boxes highlight buttons for the Druid services discussed in the main text (from left to right): the query editor (run Druid SQL queries on any of the loaded data sources directly here); the data load service (use this to import data from local files); and the Datasources console (lists all currently available data sources).
 
 #### Load data into Druid
 
-In a first step, we will import the TLC taxi trips dataset from the locally stored CSV file. To do so, click on *Load data/Batch - classic*, then click on *Start new batch spec* and then select *Local disk*. On the right side of the Druid GUI, a menu will open. In the `Base directory` field, enter the path to the local directory in which you have stored the TLC taxi trips CSV file used in the examples above (`../data/`).^[Importantly, recall that with this set up, Druid is currently running from within the `apache-druid-24.0.0`-directory. Hence, unless you have copied your data into this directory, you will have to explicitly point to data files outside of this directory (via `../`).] In the `File filter` field, enter `tlc_trips.csv`.^[The Druid service to load data by default allows you to point to various files here via the wildcard character (`*`). As we have stored all the taxi trip example data in one CSV file, we can directly point to this one file.] Finally click on the *Apply* button. 
+In a first step, we will import the TLC taxi trips dataset from the locally stored CSV file. To do so, click on *Load data/Batch - classic*, then click on *Start new batch spec*, and then select *Local disk* and *Connect*. On the right side of the Druid GUI, a menu will open. In the `Base directory` field, enter the path to the local directory in which you have stored the TLC taxi trips CSV file used in the examples above (`../data/`).^[Importantly, recall that with this set up, Druid is currently running from within the `apache-druid-25.0.0`-directory. Hence, unless you have copied your data into this directory, you will have to explicitly point to data files outside of this directory (via `../`).] In the `File filter` field, enter `tlc_trips.csv`.^[The Druid service to load data by default allows you to point to various files here via the wildcard character (`*`). As we have stored all the taxi trip example data in one CSV file, we can directly point to this one file.] Finally click on the *Apply* button. 
 
 
 ```{r druidparse, echo=FALSE, out.width = "99%", fig.align='center', fig.cap= "(ref:druidparse)", purl=FALSE}
@@ -801,7 +801,7 @@ include_graphics("img/druiddatasources.png")
 
 #### Query Druid via the GUI SQL console
 
-Once the data is loaded into Druid, we can directly query it via the SQL console in Druid's GUI. To do this, navigate in Druid to *Query*. To illustrate the strengths of Druid as an analytic database, we run an extensive data aggregation query. Specifically, we count the number of cases (trips) per vendor and split the no. of trips per vendor further by payment type.
+Once the data is loaded into Druid, we can directly query it via the SQL console in Druid's GUI. To do this, navigate in Druid to *Query*. To illustrate the strengths of Druid as an analytic database, we run an extensive data aggregation query. Specifically, we count the number of cases (trips) per vendor and split the number of trips per vendor further by payment type.
 
 ```
 SELECT
@@ -812,7 +812,7 @@ FROM tlc_trips
 GROUP BY vendor_name, Payment_Type
 ```
 
-Note that for such simple queries, Druid SQL is essentially identical to the SQL dialects covered in previous chapters and subsections, which makes it rather simple for beginners to start productively engaging with Druid. SQL queries can directly be entered in the query tab, a click on *Run* will send the query to Druid, and the results are shown right below.
+Note that for such simple queries, Druid SQL is essentially identical to the SQL dialects covered in previous chapters and subsections, which makes it rather simple for beginners to start productively engaging with Druid. SQL queries can directly be entered in the query tab; a click on *Run* will send the query to Druid, and the results are shown right below.
 
 
 ```{r druidquery, echo=FALSE, out.width = "99%", fig.align='center', fig.cap= "(ref:druidquery)", purl=FALSE}
@@ -876,12 +876,12 @@ druid <-
 ```
 
 
-Now we can send queries to our local Druid installation. Importantly, Druid needs to be started up in order to make this work. In the example below we start up Druid from within R via `system("apache-druid-24.0.0/bin/start-micro-quickstart")` (make sure that the working directory is set correctly before running this). Then, we send the same query as in the Druid GUI example from above.
+Now we can send queries to our local Druid installation. Importantly, Druid needs to be started up in order to make this work. In the example below we start up Druid from within R via `system("apache-druid-25.0.0/bin/start-micro-quickstart")` (make sure that the working directory is set correctly before running this). Then, we send the same query as in the Druid GUI example from above.
 
 
 ```{r warning=FALSE, message=FALSE}
 # start Druid
-system("apache-druid-24.0.0/bin/start-micro-quickstart",
+system("apache-druid-25.0.0/bin/start-micro-quickstart",
        intern = FALSE, 
        wait = FALSE)
 Sys.sleep(30) # wait for Druid to start up
@@ -908,25 +908,25 @@ result
 
 
 ## Data warehouses 
-\index{Data warehouse}
+\index{Data Warehouse}
 
-Unlike  RDBMSs\index{Relational Database Management Systems (RDBMSs)}, the main purpose of data warehouses is usually analytics and not the provision of data for everyday operations. Generally, data warehouses contain well-organized and well-structured data, but are not as stringent as RMDBS when it comes to organizing data in relational tables. Typically, they build on a table-based logic, but allow for nesting structures and more flexible storage approaches. They are designed to contain large amounts of data (via horizontal scaling) and are usually column-based. From the perspective of Big Data Analytics taken in this book, there are several suitable and easily accessible data warehouse\index{Data warehouse} solutions provided in the cloud. In the following example, we will introduce one such solution called *Google BigQuery*\index{Google BigQuery}.
+Unlike  RDBMSs\index{Relational Database Management Systems (RDBMSs)}, the main purpose of data warehouses is usually analytics and not the provision of data for everyday operations. Generally, data warehouses contain well-organized and well-structured data, but are not as stringent as RMDBS when it comes to organizing data in relational tables. Typically, they build on a table-based logic, but allow for nesting structures and more flexible storage approaches. They are designed to contain large amounts of data (via horizontal scaling) and are usually column-based. From the perspective of Big Data Analytics taken in this book, there are several suitable and easily accessible data warehouse\index{Data Warehouse} solutions provided in the cloud. In the following example, we will introduce one such solution called *Google BigQuery*\index{Google BigQuery}.
 
 
 
 ### Data warehouse for analytics: Google BigQuery example
-\index{Data warehouse}
+\index{Data Warehouse}
 Google BigQuery is flexible regarding the upload and export of data and can be set up straightforwardly for a data analytics project with hardly any set up costs. The pricing schema is usage-based. Unless you store massive amounts of data on it, you will only be charged for the volume of data processed. Moreover, there is a straightforward R-interface to Google BigQuery\index{Google BigQuery} called [`bigrquery`](https://bigrquery.r-dbi.org/), which allows for the same R/SQL-syntax as R's interfaces to traditional relational databases. 
 
 
 
 **Get started with `bigrquery`**
 
-To get started with Google BigQuery\index{Google BigQuery} and `bigrquery`\index{bigrquery package} [@bigrquery], go to https://cloud.google.com/bigquery. Click on "Try Big Query" (if new to this) or "Go to console" (if used previously). Create a Google Cloud project to use BigQuery\index{Google BigQuery} with. Note that, as in general for Google Cloud\index{Google Cloud Platform (GCP)} services, you need to have a credit card registered with the project to do this. However, for learning and testing purposes, Google Cloud\index{Google Cloud Platform (GCP)} offers 1TB of free queries per month. All the examples shown below combined will not exceed this free tier. Finally, run `install.packages("bigrquery")` in R.
+To get started with Google BigQuery\index{Google BigQuery} and `bigrquery`\index{bigrquery Package} [@bigrquery], go to https://cloud.google.com/bigquery. Click on "Try Big Query" (if new to this) or "Go to console" (if used previously). Create a Google Cloud project to use BigQuery\index{Google BigQuery} with. Note that, as in general for Google Cloud\index{Google Cloud Platform (GCP)} services, you need to have a credit card registered with the project to do this. However, for learning and testing purposes, Google Cloud\index{Google Cloud Platform (GCP)} offers 1TB of free queries per month. All the examples shown below combined will not exceed this free tier. Finally, run `install.packages("bigrquery")` in R.
 
 To set up an R session to interface with BigQuery,\index{Google BigQuery} you need to indicate which Google BigQuery\index{Google BigQuery} project you want to use for the billing (the `BILLING` variable in the example below), as well as the Google BigQuery\index{Google BigQuery} project in which the data is stored that you want to query (the `PROJECT` variable below). This distinction is very useful because it easily allows you to query data from a large array of publicly available datasets on BigQuery. In the set up example code below, we use this option in order to access an existing and publicly available dataset (provided in the `bigquery-public-data` project) called `google_analytics_sample`. In fact, this dataset provides the raw Google Analytics data used in the Big-P example discussed in Chapter 2.
 
-Finally, all that is left to do is to connect to BigQuery\index{Google BigQuery} via the already familiar `dbConnect()`\index{dbConnect()} function provided in `DBI`.^[The `bigrquery` package provides a DBI-driver for BigQuery\index{Google BigQuery}. For more advanced usage of `bigrquery`\index{bigrquery package}, the package also provides lower-level functions to directly interact with the BigQuery API.] When first connecting to and querying BigQuery\index{Google BigQuery} with your Google Cloud\index{Google Cloud Platform (GCP)} account, a browser window will open, and you will be prompted to grant `bigrquery`\index{bigrquery package} access to your account/project. To do so, you will have to be logged in to your Google account\index{Google account}. See the **Important details** section on https://bigrquery.r-dbi.org/ for details on the authentication.  
+Finally, all that is left to do is to connect to BigQuery\index{Google BigQuery} via the already familiar `dbConnect()`\index{dbConnect()} function provided in `DBI`.^[The `bigrquery` package provides a DBI-driver for BigQuery\index{Google BigQuery}. For more advanced usage of `bigrquery`\index{bigrquery Package}, the package also provides lower-level functions to directly interact with the BigQuery API.] When first connecting to and querying BigQuery\index{Google BigQuery} with your Google Cloud\index{Google Cloud Platform (GCP)} account, a browser window will open, and you will be prompted to grant `bigrquery`\index{bigrquery Package} access to your account/project. To do so, you will have to be logged in to your Google account\index{Google Account}. See the **Important details** section on https://bigrquery.r-dbi.org/ for details on the authentication.  
 
 ```{r eval=FALSE, echo=FALSE}
 # documents raw data processing
@@ -1001,7 +1001,7 @@ Note the output displayed in the console. `bigrquery` indicates how much data vo
 
 **Upload data to BigQuery**
 
-Storing your entire raw dataset on BigQuery is straightforward with `bigrquery`\index{bigrquery package}. In the following simple example, we upload the previously gathered and locally stored TLC tax trips data. To do so, we first create and connect to a new dataset on BigQuery. To keep things simple, we initialize the new dataset in the same project used for the billing.
+Storing your entire raw dataset on BigQuery is straightforward with `bigrquery`\index{bigrquery Package}. In the following simple example, we upload the previously gathered and locally stored TLC taxi trips data. To do so, we first create and connect to a new dataset on BigQuery. To keep things simple, we initialize the new dataset in the same project used for the billing.
 
 ```{r eval=FALSE}
 # name of the dataset to be created
@@ -1207,13 +1207,13 @@ dbDisconnect(con)
 
 ```
 
-Note the wildcard-character (`*`) in the query is used to fetch data from several partitions of the overall dataset.
+Note the wildcard character (`*`) in the query is used to fetch data from several partitions of the overall dataset.
 
 
 
 ## Data lakes and simple storage service
-\index{Data lake}
-\index{Simple storage service (S3)}
+\index{Data Lake}
+\index{Simple Storage Service (S3)}
 
 Broadly speaking a data lake is where all your data resides (these days, this is typically somewhere in the cloud). The data is simply stored in whatever file format and in simple terms organized in folders and sub-folders. In the same data lake you might thus store CSV files, SQL database dumps, log files, image files, raw text, etc. In addition, you typically have many options to define access rights to files, including to easily make them accessible for download to the public. For a simple data analytics project in the context of economic research or business analytics, the data lake in the cloud concept is a useful tool to store all project-related raw data files. On the one hand you avoid running into troubles with occupying gigabytes or terabytes of your local hard disk with files that are relevant but only rarely imported/worked with. On the other hand you can properly organize all the raw data for reproducibility purposes and easily share the files with colleagues (and eventually the public). For example, you can use one main folder (one "bucket") for an entire analytics project, store all the raw data in one sub-folder (for reproduction purposes), and store all the final analytic datasets in another sub-folder for replication purposes and more frequent access as well as sharing across a team of co-workers.
 
@@ -1224,9 +1224,9 @@ Finally, we will look at a very interesting approach to combine the concept of a
 
 ### AWS S3 with R: First steps
 
-For the following first steps with AWS S3\index{Simple storage service (S3)} and R, you will need an AWS account (same as above for EC2) and IAM credentials from your AWS account with the right to access S3.^[There are many ways to create these credentials, and which ones to use. A very simple and reasonable instruction of how to do this can be found here: https://binaryguy.tech/aws/s3/create-iam-user-to-access-s3/.] Finally, you will have to install the `aws.s3` package\index{aws.s3 package} in R in order to access S3\index{Simple storage service (S3)} via R: `install.packages("aws.s3")`.
+For the following first steps with AWS S3\index{Simple Storage Service (S3)} and R, you will need an AWS account (the same as above for EC2) and IAM credentials from your AWS account with the right to access S3.^[There are many ways to create these credentials, and many ideas about which ones to use. A very simple and reasonable instruction how to do this can be found here: https://binaryguy.tech/aws/s3/create-iam-user-to-access-s3/.] Finally, you will have to install the `aws.s3` package\index{aws.s3 Package} in R in order to access S3\index{Simple Storage Service (S3)} via R: `install.packages("aws.s3")`.
 
-To initiate an R session in which you connect to S3\index{Simple storage service (S3)}, `aws.s3`\index{aws.s3 package} [@aws.s3] must be loaded and the following environment variables must be set:     
+To initiate an R session in which you connect to S3\index{Simple Storage Service (S3)}, `aws.s3`\index{aws.s3 Package} [@aws.s3] must be loaded and the following environment variables must be set:     
 
 - `AWS_ACCESS_KEY_ID`: your access key ID (of the keypair with rights to use S3)
 - `AWS_SECRET_KEY`: your access key (of the keypair with rights to use S3)
@@ -1244,7 +1244,7 @@ Sys.setenv("AWS_ACCESS_KEY_ID" = AWS_ACCESS_KEY_ID,
 ```
 
 
-In a first step, we create a project bucket (the main repository for our project) to store all the data of our analytics project. All the raw data can directly be placed in this main folder. Then, we add one sub-folder to this bucket:  `analytic_data` (for the cleaned/prepared datasets underlying the analyses in the project).^[Note that, technically, the explicit creation of folders is not necessary, as S3\index{Simple storage service (S3)} uses slashes (`/`) in file names on S3\index{Simple storage service (S3)} to make them appear to be in a particular folder. However, when using the AWS S3 console in the browser, defining folders explicitly can make more sense from the users' perspective.]
+In a first step, we create a project bucket (the main repository for our project) to store all the data of our analytics project. All the raw data can be placed directly in this main folder. Then, we add one sub-folder to this bucket:  `analytic_data` (for the cleaned/prepared datasets underlying the analyses in the project).^[Note that, technically, the explicit creation of folders is not necessary, as S3\index{Simple Storage Service (S3)} uses slashes (`/`) in file names on S3\index{Simple Storage Service (S3)} to make them appear to be in a particular folder. However, when using the AWS S3 console in the browser, defining folders explicitly can make more sense from the user's perspective.]
 
 ```{r eval=FALSE}
 
@@ -1261,7 +1261,7 @@ put_folder("analytic_data", BUCKET)
 
 ### Uploading data to S3
 
-Now we can start uploading the data to the bucket (and the sub-folder). For example, to remain within the context of the TLC taxi trips data, we upload the original Parquet\index{Parquet} files directly to the bucket, and the prepared CSV file to `analytic_data`. For large files (larger than 100MB) it is recommended to use the multipart option (upload of file in several parts; `multipart=TRUE`).
+Now we can start uploading the data to the bucket (and the sub-folder). For example, to remain within the context of the TLC taxi trips data, we upload the original Parquet\index{Parquet} files directly to the bucket and the prepared CSV file to `analytic_data`. For large files (larger than 100MB) it is recommended to use the multipart option (upload of file in several parts; `multipart=TRUE`).
 
 ```{r eval=FALSE}
 # upload to bucket
@@ -1298,13 +1298,13 @@ library(DBI)
 library(aws.s3)
 
 # credentials and region
-AWS_ACCESS_KEY_ID <- read.csv("_keys/umatter_accessKeys.csv")[,1]
-AWS_ACCESS_KEY <- read.csv("_keys/umatter_accessKeys.csv")[,2]
+AWS_ACCESS_KEY_ID <- read.csv("_keys/bda_book_accessKeys.csv")[,1]
+AWS_ACCESS_KEY <- read.csv("_keys/bda_book_accessKeys.csv")[,2]
 REGION <- "eu-central-1"
 
 ```
 
-There are several implementations of interfaces with Amazon Athena\index{Amazon Athena} in R. Here, we will rely on `AWR.Athena`\index{AWR.Athena package} [@AWR.Athena] (run `install.packages("AWR.Athena")`), which allows interacting with Amazon Athena\index{Amazon Athena} via the familiar `DBI` package\index{DBI package} [@DBI].
+There are several implementations of interfaces with Amazon Athena\index{Amazon Athena} in R. Here, we will rely on `AWR.Athena`\index{AWR.Athena Package} [@AWR.Athena] (run `install.packages("AWR.Athena")`), which allows interacting with Amazon Athena\index{Amazon Athena} via the familiar `DBI` package\index{DBI Package} [@DBI].
 
 ```{r eval=FALSE}
 # SET UP -------------------------
@@ -1335,7 +1335,7 @@ put_bucket(OUTPUT_BUCKET, region="us-east-1")
 ```
 
 
-Now we can connect to Amazon Athena\index{Amazon Athena} to query data from files in S3\index{Simple storage service (S3)} via the `RJDBC`\index{RJDBC package} package [@RJDBC].
+Now we can connect to Amazon Athena\index{Amazon Athena} to query data from files in S3\index{Simple Storage Service (S3)} via the `RJDBC`\index{RJDBC Package} package [@RJDBC].
 
 
 ```{r message=FALSE, warning=FALSE, tidy=TRUE, tidy.opts=list(arrow=TRUE, indent=2, width.cutoff=60) }
@@ -1363,7 +1363,7 @@ con <- dbConnect(athena,
 
 ```
 
-In order to query data stored in S3\index{Simple storage service (S3)} via Amazon Athena\index{Amazon Athena}, we need to create an *external table* in Athena, which will be based on data stored in S3.
+In order to query data stored in S3\index{Simple Storage Service (S3)} via Amazon Athena\index{Amazon Athena}, we need to create an *external table* in Athena, which will be based on data stored in S3.
 
 ```{r eval=FALSE}
 query_create_table <-
@@ -1418,14 +1418,14 @@ dbDisconnect(con)
 
 ## Wrapping up
 
-- It is good practice to set up all of the high-level *pipeline*\index{Data pipeline} in the same language (here: R). This substantially facilitates your workflow and makes your overall pipeline easier to maintain. Importantly, as illustrated in the sections above, this practice does not mean that all of the underlying data processing is actually done in R. We simply use R as the highest-level layer, and call a range of services under the hood to handle each of the pipeline components as efficiently as possible.
+- It is good practice to set up all of the high-level *pipeline*\index{Data Pipeline} in the same language (here R). This substantially facilitates your workflow and makes your overall pipeline easier to maintain. Importantly, as illustrated in the sections above, this practice does not mean that all of the underlying data processing is actually done in R. We simply use R as the highest-level layer and call a range of services under the hood to handle each of the pipeline components as efficiently as possible.
 - *Apache Arrow*\index{Apache Arrow}  allows you to combine and correct raw data without exceeding RAM; in addition it facilitates working with newer (big) data formats for columnar data storage systems (like *Apache Parquet*\index{Parquet}).
 - *RDBMSs*\index{Relational Database Management Systems (RDBMSs)} such as *SQLite*\index{SQLite} or *MySQL*\index{MySQL} and analytics databases such as *Druid*\index{Apache Druid} help you store and organize clean/structured data for analytics purposes locally or in the cloud.
-- *RDBMSs*\index{Relational Database Management Systems (RDBMSs)} like SQLite\index{SQLite} are *row-based*\index{Row-based databases} (changing a value means changing a row), while modern analytics databases are usually *column*-based\index{Column-based databases} (changing a value means modifying one column).
-- Row-based databases\index{Row-based databases} are recommended when your analytics workflow includes a lot of tables, table joins, and frequent filtering for specific observations with variables from several tables.
-Column-based databases\index{Column-based databases} are recommended for analytics workflows involving less frequent but large-scale data aggregation tasks.
-- *Data warehouse*\index{Data warehouse} solutions like *Google BigQuery*\index{Google BigQuery} are useful to store and query large (semi-)structured datasets, but are more flexible regarding hierarchical data and file formats than traditional RDBMSs\index{Relational Database Management Systems (RDBMSs)}. 
-- *Data lakes*\index{Data lake} and simple storage services\index{Simple storage service (S3)} are the all-purpose tools to store vast amounts of data in any format in the cloud. Typically, solutions like *AWS S3*\index{Simple storage service (S3)} are a great option to store all of the raw data related to a data analytics project. 
+- *RDBMSs*\index{Relational Database Management Systems (RDBMSs)} like SQLite\index{SQLite} are *row-based*\index{Row-Based Databases} (changing a value means changing a row), while modern analytics databases are usually *column*-based\index{Column-Based Databases} (changing a value means modifying one column).
+- Row-based databases\index{Row-Based Databases} are recommended when your analytics workflow includes a lot of tables, table joins, and frequent filtering for specific observations with variables from several tables.
+Column-based databases\index{Column-Based Databases} are recommended for analytics workflows involving less frequent but large-scale data aggregation tasks.
+- *Data warehouse*\index{Data Warehouse} solutions like *Google BigQuery*\index{Google BigQuery} are useful to store and query large (semi-)structured datasets but are more flexible regarding hierarchical data and file formats than traditional RDBMSs\index{Relational Database Management Systems (RDBMSs)}. 
+- *Data lakes*\index{Data Lake} and simple storage services\index{Simple Storage Service (S3)} are the all-purpose tools to store vast amounts of data in any format in the cloud. Typically, solutions like *AWS S3*\index{Simple Storage Service (S3)} are a great option to store all of the raw data related to a data analytics project. 
 
 ```{r echo=FALSE, warning=FALSE, message=FALSE}
 # note: the order of detaching matters 

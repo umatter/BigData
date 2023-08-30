@@ -3,11 +3,11 @@
 # Regression Analysis and Categorization with Spark and R
 \index{Apache Spark}
 
-Regression analysis, particularly simple linear regression\index{Regression} (OLS), is the backbone of applied econometrics. As discussed in previous chapters, regression analysis can be computationally very intensive with a dataset of many observations and variables, as it involves matrix operations on a very large model matrix. Chapter 12 discusses in one case study the special case of a large model matrix\index{Model matrix} due to fixed-effects\index{Fixed effects} dummy variables. In this chapter, we first look at a generally applicable approach for estimating linear regression models with large datasets (when the model matrix cannot be held in RAM\index{Random Access Memory (RAM)}). Building on the same `sparklyr`\index{sparklyr package} framework [@sparklyr] as for the simple linear regression\index{Regression} case, we then look at classification models, such as logit and random forest. Finally, we look at how regression analysis and machine learning tasks can be organized in machine learning\index{Machine learning} pipelines to be run, stored/reloaded, and updated flexibly.
+Regression analysis, particularly simple linear regression\index{Regression} (OLS), is the backbone of applied econometrics. As discussed in previous chapters, regression analysis can be computationally very intensive with a dataset of many observations and variables, as it involves matrix operations on a very large model matrix. Chapter 12 discusses in one case study the special case of a large model matrix\index{Model Matrix} due to fixed-effects\index{Fixed Effects} dummy variables. In this chapter, we first look at a generally applicable approach for estimating linear regression models with large datasets (when the model matrix cannot be held in RAM\index{Random Access Memory (RAM)}). Building on the same `sparklyr`\index{sparklyr Package} framework [@sparklyr] as for the simple linear regression\index{Regression} case, we then look at classification models, such as logit and random forest. Finally, we look at how regression analysis and machine learning tasks can be organized in machine learning\index{Machine Learning} pipelines to be run, stored/reloaded, and updated flexibly.
 
 ## Simple linear regression analysis 
 \index{Regression}
-Suppose we want to conduct a correlation study of what factors are associated with longer or shorter arrival delays in air travel. Via its built-in 'MLib' library, Spark\index{Apache Spark} provides several high-level functions to conduct regression analyses. When calling these functions via `sparklyr` (or `SparkR`)\index{sparklyr package}\index{SparkR package}, their usage is actually very similar to the usual R packages/functions commonly used to run regressions in R. 
+Suppose we want to conduct a correlation study of what factors are associated with longer or shorter arrival delays in air travel. Via its built-in 'MLib' library, Spark\index{Apache Spark} provides several high-level functions to conduct regression analyses. When calling these functions via `sparklyr` (or `SparkR`)\index{sparklyr Package}\index{SparkR Package}, their usage is actually very similar to the usual R packages/functions commonly used to run regressions in R. 
 
 As a simple point of reference, we first estimate a linear model with the usual R approach (all computed in the R environment). First, we load the data as a common `data.table`. We could also convert a copy of the entire `SparkDataFrame`\index{SparkDataFrame} object to a `data.frame` or `data.table` and get essentially the same outcome. However, collecting the data from the RDD structure would take much longer than parsing the CSV with `fread`\index{fread()}. In addition, we only import the first 300 rows. Running regression analysis with relatively large datasets in Spark on a small local machine might fail or be rather slow.^[Again, it is important to keep in mind that running Spark on a small local machine is only optimal for learning and testing code (based on relatively small samples). The whole framework is optimized to be run on cluster computers.]
 
@@ -27,7 +27,7 @@ fit1 <- lm(model1, flights_r)
 summary(fit1)
 ```
 
-Now we aim to compute essentially the same model estimate in `sparklyr`.^[Most regression models commonly used in traditional applied econometrics are provided in some form in `sparklyr`\index{sparklyr package} or `SparkR`\index{SparkR package}. See the package documentation for more details.] In order to use Spark via the `sparklyr` package, we need to first load the package and establish a connection with Spark (similar to `SparkR::sparkR.session()`\index{sparkR.session()}).
+Now we aim to compute essentially the same model estimate in `sparklyr`.^[Most regression models commonly used in traditional applied econometrics are provided in some form in `sparklyr`\index{sparklyr Package} or `SparkR`\index{SparkR Package}. See the package documentation for more details.] In order to use Spark via the `sparklyr` package, we need to first load the package and establish a connection with Spark (similar to `SparkR::sparkR.session()`\index{sparkR.session()}).
 
 ```{r message=FALSE, warning=FALSE, eval=FALSE}
 library(sparklyr)
@@ -89,7 +89,7 @@ spark_apply(flights_spark,
 ```
 
 
-Finally, the `parsnip` package\index{parsnip package} [@parsnip] (together with the `tidymodels` package\index{tidymodels package}; @tidymodels) provides a simple interface to run the same model (or similar specifications) on different "engines" (estimators/fitting algorithms), and several of the `parsnip` models are also supported in `sparklyr`\index{sparklyr package}. This significantly facilitates the transition from local testing (with a small subset of the data) to running the estimation on the entire dataset on spark.
+Finally, the `parsnip` package\index{parsnip Package} [@parsnip] (together with the `tidymodels` package\index{tidymodels Package}; @tidymodels) provides a simple interface to run the same model (or similar specifications) on different "engines" (estimators/fitting algorithms), and several of the `parsnip` models are also supported in `sparklyr`\index{sparklyr Package}. This significantly facilitates the transition from local testing (with a small subset of the data) to running the estimation on the entire dataset on spark.
 
 ```{r message=FALSE, warning=FALSE, eval=FALSE}
 library(tidymodels)
@@ -135,7 +135,7 @@ We will further build on this interface in the next section where we look at dif
 
 ## Machine learning for classification 
 
-Building on `sparklyr`\index{sparklyr package}, `tidymodels`\index{tidymodels package}, and `parsnip`\index{parsnip package}, we test a set of machine learning\index{Machine learning} models on the classification problem discussed in @varian_2014: predicting Titanic survivors. The data for this exercise can be downloaded from here: [http://doi.org/10.3886/E113925V1](http://doi.org/10.3886/E113925V1). 
+Building on `sparklyr`\index{sparklyr Package}, `tidymodels`\index{tidymodels Package}, and `parsnip`\index{parsnip Package}, we test a set of machine learning\index{Machine Learning} models on the classification problem discussed in @varian_2014, predicting Titanic survivors. The data for this exercise can be downloaded from here: [http://doi.org/10.3886/E113925V1](http://doi.org/10.3886/E113925V1). 
 
 We import and prepare the data in R.
 
@@ -151,7 +151,7 @@ titanic_r <- na.omit(titanic_r[, c("survived",
 titanic_r$survived <- ifelse(titanic_r$survived==1, "yes", "no")
 ```
 
-In order to assess the performance of the classifiers later on, we split the sample into training and test datasets. We do so with the help of the `rsample` package\index{rsample package} [@rsample], which provides a number of high-level functions to facilitate this kind of pre-processing.
+In order to assess the performance of the classifiers later on, we split the sample into training and test datasets. We do so with the help of the `rsample` package\index{rsample Package} [@rsample], which provides a number of high-level functions to facilitate this kind of pre-processing.
 
 ```{r eval=FALSE}
 library(rsample)
@@ -187,7 +187,7 @@ fits <- lapply(models, fit, formula=survived~., data=ti_training_spark)
 ```
 
 
-The fitted models (trained algorithms) can now be assessed with the help of the test dataset. To this end, we use the high-level `accuracy`\index{accuracy()} function provided in the `yardstick` package\index{yardstick package} [@yardstick] to compute the accuracy\index{Accuracy} of the fitted models. We proceed in three steps. First, we use the fitted models to predict the outcomes (we classify cases into survived/did not survive) of the *test set*. Then we fetch the predictions from the Spark\index{Apache Spark} cluster, format the variables, and add the actual outcomes as an additional column.
+The fitted models (trained algorithms) can now be assessed with the help of the test dataset. To this end, we use the high-level `accuracy`\index{accuracy()} function provided in the `yardstick` package\index{yardstick Package} [@yardstick] to compute the accuracy\index{Accuracy} of the fitted models. We proceed in three steps. First, we use the fitted models to predict the outcomes (we classify cases into survived/did not survive) of the *test set*. Then we fetch the predictions from the Spark\index{Apache Spark} cluster, format the variables, and add the actual outcomes as an additional column.
 
 ```{r eval=FALSE}
 # run predictions
@@ -264,15 +264,15 @@ spark_disconnect(sc)
 
 
 ## Building machine learning pipelines with R and Spark
-\index{Machine learning pipeline}
+\index{Machine Learning Pipeline}
 
-Spark\index{Apache Spark} provides a framework to implement machine learning pipelines called [ML Pipelines](https://spark.apache.org/docs/latest/ml-pipeline.html)\index{ML Pipelines}, with the aim of facilitating the combination of various preparatory steps and ML algorithms into a pipeline/workflow. `sparklyr`\index{sparklyr package} provides a straightforward interface to ML Pipelines\index{ML Pipelines} that allows implementing and testing the entire ML workflow in R and then easily deploying the final pipeline to a Spark cluster or more generally to the production environment. In the following example, we will revisit the e-commerce purchase prediction model (Google Analytics data from the Google Merchandise Shop) introduced in Chapter 1. That is, we want to prepare the Google Analytics\index{Google Analytics} data and then use lasso\index{Lasso} to find a set of important predictors for purchase decisions, all built into a machine learning pipeline\index{Machine learning pipeline.
+Spark\index{Apache Spark} provides a framework to implement machine learning pipelines called [ML Pipelines](https://spark.apache.org/docs/latest/ml-pipeline.html)\index{ML Pipelines}, with the aim of facilitating the combination of various preparatory steps and ML algorithms into a pipeline/workflow. `sparklyr`\index{sparklyr Package} provides a straightforward interface to ML Pipelines\index{ML Pipelines} that allows implementing and testing the entire ML workflow in R and then easily deploying the final pipeline to a Spark cluster or more generally to the production environment. In the following example, we will revisit the e-commerce purchase prediction model (Google Analytics data from the Google Merchandise Shop) introduced in Chapter 1. That is, we want to prepare the Google Analytics\index{Google Analytics} data and then use lasso\index{Lasso} to find a set of important predictors for purchase decisions, all built into a machine learning pipeline\index{Machine Learning Pipeline}.
 
 
 
 ### Set up and data import
 
-All of the key ingredients are provided in `sparklyr`\index{sparklyr package}. However, I recommend using the 'piping' syntax provided in `dplyr`\index{dplyr package} [@dplyr] to implement the machine learning pipeline\index{Machine learning pipeline}. In this context, using this syntax is particularly helpful to make the code easy to read and understand. 
+All of the key ingredients are provided in `sparklyr`\index{sparklyr Package}. However, I recommend using the 'piping' syntax provided in `dplyr`\index{dplyr Package} [@dplyr] to implement the machine learning pipeline\index{Machine Learning Pipeline}. In this context, using this syntax is particularly helpful to make the code easy to read and understand. 
 
 
 ```{r, message=FALSE, warning=FALSE, eval=FALSE}
@@ -323,7 +323,7 @@ ga_pipeline <-
      
 ```
 
-Finally, we create a cross-validator object to train the model with a k-fold cross-validation\index{Cross-validation} and fit the model.
+Finally, we create a cross-validator object to train the model with a k-fold cross-validation\index{Cross-Validation} and fit the model.
 For the sake of the example, we use only a 30-fold cross validation (to be run in parallel on 8 cores).
 
 ```{r eval=FALSE}
@@ -385,11 +385,11 @@ To reload the pipeline later on, run `ml_load(sc, "ga_cv_lasso_fit")`\index{ml\_
 
 The key take-aways from this chapter are:
 
--  When running econometric analysis such as linear or logistic regressions with massive amounts of data, `sparklyr`\index{sparklyr package} provides all the basic functions you need.
+-  When running econometric analysis such as linear or logistic regressions with massive amounts of data, `sparklyr`\index{sparklyr Package} provides all the basic functions you need.
 -  You can test your code on your local spark installation by connecting to the local 'cluster':  `spark_connect(master="local")`\index{spark\_connect()}. This allows you to test your entire regression analysis script locally (on a sub-sample) before running the exact same script via a connection to a large spark cluster on AWS EMR. To do so, simply connect to the cluster via `spark_connect(master = "yarn")` from RStudio server, following the setup introduced in Section 8.4.
-- The `rsample` package\index{rsample package} provides easy-to-use high-level functions to split your dataset into training and test datasets: See `?initial_split`, `?training`, and `?testing`.
-- The `parsnip`\index{parsnip package} and `broom` packages\index{broom package} [@broom] provide a way to easily standardize regression\index{Regression} output. This is very helpful if you want to verify your regression analysis implementation for Spark\index{Apache Spark} with the more familiar R regression frameworks such as `lm()`. For example, compare the standard R OLS\index{Ordinary Least Squares (OLS)} output with the linear regression output computed on a Spark cluster: `fit(linear_reg(engine="lm"), model1, data=flights_r)` for R's standard OLS; `fit(linear_reg(engine="spark"), model1, data=flights_r)` for Spark.
-- For more advanced users, `sparklyr`\index{sparklyr package} provides a straightforward way to efficiently implement entire Spark machine learning pipelines\index{Machine learning pipeline} in an R script via `ml_pipeline(sc)`\index{ml\_pipeline()} and the `dplyr`-style pipe operators `%>%`, including model specification, data preparation, and selection and specification of the estimator.
+- The `rsample` package\index{rsample Package} provides easy-to-use high-level functions to split your dataset into training and test datasets: See `?initial_split`, `?training`, and `?testing`.
+- The `parsnip`\index{parsnip Package} and `broom` packages\index{broom Package} [@broom] provide a way to easily standardize regression\index{Regression} output. This is very helpful if you want to verify your regression analysis implementation for Spark\index{Apache Spark} with the more familiar R regression frameworks such as `lm()`. For example, compare the standard R OLS\index{Ordinary Least Squares (OLS)} output with the linear regression output computed on a Spark cluster: `fit(linear_reg(engine="lm"), model1, data=flights_r)` for R's standard OLS; `fit(linear_reg(engine="spark"), model1, data=flights_r)` for Spark.
+- For more advanced users, `sparklyr`\index{sparklyr Package} provides a straightforward way to efficiently implement entire Spark machine learning pipelines\index{Machine Learning Pipeline} in an R script via `ml_pipeline(sc)`\index{ml\_pipeline()} and the `dplyr`-style pipe operators `%>%`, including model specification, data preparation, and selection and specification of the estimator.
 
 
 

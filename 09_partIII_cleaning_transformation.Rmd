@@ -2,7 +2,7 @@
 
 # Big Data Cleaning and Transformation 
 
-Preceding the filtering/selection/aggregation of raw data, data cleaning and transformation typically have to be run on large volumes of raw data, before the observations and variables of interest can be further analyzed. Typical data cleaning tasks involve:
+Preceding the filtering/selection/aggregation of raw data, data cleaning and transformation typically have to be run on large volumes of raw data before the observations and variables of interest can be further analyzed. Typical data cleaning tasks involve:
 
 - Normalization/standardization (across entities, categories, observation periods).
 - Coding of additional variables (indicators, strings to categorical, etc.).
@@ -10,27 +10,27 @@ Preceding the filtering/selection/aggregation of raw data, data cleaning and tra
 - Merging/joining datasets.
 - Properly defining data types for each variable.
 
-All of these steps are very common tasks when working with data for analytics purposes, independent of the size of the dataset. However, as most of the techniques and software developed for such tasks is meant to process data in memory, performing these tasks on large datasets can be challenging. Data cleaning workflows you are perfectly familiar with might slow down substantially or crash due to a lack of memory (RAM), particularly if the data preparation step involves merging/joining two datasets. Other potential bottlenecks are the parsing of large files (CPU) or intensive reading from and writing to the hard disk\index{Hard disk} (Mass storage\index{Mass storage}).
+All of these steps are very common tasks when working with data for analytics purposes, independent of the size of the dataset. However, as most of the techniques and software developed for such tasks is meant to process data in memory, performing these tasks on large datasets can be challenging. Data cleaning workflows you are perfectly familiar with might slow down substantially or crash due to a lack of memory (RAM), particularly if the data preparation step involves merging/joining two datasets. Other potential bottlenecks are the parsing of large files (CPU) or intensive reading from and writing to the hard disk\index{Hard Disk} (Mass storage\index{Mass Storage}).
 
-In practice, the most critical bottleneck of common data preparation tasks is often a lack of RAM\index{Random Access Memory (RAM)}. In the following, we thus explore two strategies that broadly build on the idea of *virtual memory*\index{Virtual memory} (using parts of the hard disk as RAM\index{Random Access Memory (RAM)}) and/or *lazy evaluation*\index{Lazy evaluation} (only loading/processing the part of a dataset really required).
+In practice, the most critical bottleneck of common data preparation tasks is often a lack of RAM\index{Random Access Memory (RAM)}. In the following, we thus explore two strategies that broadly build on the idea of *virtual memory*\index{Virtual Memory} (using parts of the hard disk as RAM\index{Random Access Memory (RAM)}) and/or *lazy evaluation*\index{Lazy Evaluation} (only loading/processing the part of a dataset really required).
 
 
 ## Out-of-memory strategies and lazy evaluation: Practical basics
-\index{Out-of-memory strategy}
-Virtual memory is in simple words an approach to combining the RAM\index{Random Access Memory (RAM)} and mass storage components in order to cope with a lack of RAM\index{Random Access Memory (RAM)}. Modern operating systems come with a virtual memory manager that automatically handles the swapping between RAM\index{Random Access Memory (RAM)} and the hard-disk, when running processes that use up too much RAM\index{Random Access Memory (RAM)}. However, a virtual memory manager is not specifically developed to perform this task in the context of data analysis. Several strategies have thus been developed to build on the basic idea of *virtual memory*\index{Virtual memory} in the context of data analysis tasks.
+\index{Out-Of-Memory Strategy}
+Virtual memory is in simple words an approach to combining the RAM\index{Random Access Memory (RAM)} and mass storage components in order to cope with a lack of RAM\index{Random Access Memory (RAM)}. Modern operating systems come with a virtual memory manager that automatically handles the swapping between RAM\index{Random Access Memory (RAM)} and the hard-disk, when running processes that use up too much RAM\index{Random Access Memory (RAM)}. However, a virtual memory manager is not specifically developed to perform this task in the context of data analysis. Several strategies have thus been developed to build on the basic idea of *virtual memory*\index{Virtual Memory} in the context of data analysis tasks.
 
-- *Chunked data files on disk*\index{Chunked data files}: The data analytics software 'partitions' the dataset, and maps and stores the chunks of raw data on disk. What is actually 'read' into RAM\index{Random Access Memory (RAM)} when importing the data file with this approach is the mapping to the partitions of the actual dataset (the data structure) and some metadata describing the dataset. In R, this approach is implemented in the `ff`\index{ff package} package [@ff]  and several packages building on `ff`\index{ff package}. In this approach, the usage of disk space and the linking between RAM\index{Random Access Memory (RAM)} and files on disk is very explicit (and clearly visible to the user).
+- *Chunked data files on disk*\index{Chunked Data Files}: The data analytics software 'partitions' the dataset, and maps and stores the chunks of raw data on disk. What is actually 'read' into RAM\index{Random Access Memory (RAM)} when importing the data file with this approach is the mapping to the partitions of the actual dataset (the data structure) and some metadata describing the dataset. In R, this approach is implemented in the `ff`\index{ff Package} package [@ff]  and several packages building on `ff`\index{ff Package}. In this approach, the usage of disk space and the linking between RAM\index{Random Access Memory (RAM)} and files on disk is very explicit (and clearly visible to the user).
 
-- *Memory mapped files and shared memory*\index{Memory mapped files}: The data analytics software uses segments of virtual memory for the dataset and allows different programs/processes to access it in the same memory segment. Thus, virtual memory is explicitly allocated for one or several specific data analytics tasks. In R, this approach is notably implemented in the `bigmemory`\index{bigmemory package} package [@bigmemory] and several packages building on `bigmemory`\index{bigmemory package}.
+- *Memory mapped files and shared memory*\index{Memory Mapped Files}: The data analytics software uses segments of virtual memory for the dataset and allows different programs/processes to access it in the same memory segment. Thus, virtual memory is explicitly allocated for one or several specific data analytics tasks. In R, this approach is notably implemented in the `bigmemory`\index{bigmemory Package} package [@bigmemory] and several packages building on `bigmemory`\index{bigmemory Package}.
 
 
-A conceptually related but differently focused approach is the *lazy evaluation*\index{Lazy evaluation} implemented in Apache Arrow and the corresponding `arrow` package [@richardson_etal2022]. While Apache Arrow is basically a platform for in-memory columnar data, it is optimized for processing large amounts of data and working with datasets that actually do not fit into memory. The way this is done is that instructions on what to do with a dataset are not evaluated step-by-step on the spot but all together at the point of actually loading the data into R. That is, we can connect to a dataset via `arrow`, see its variables, etc., give instructions of which observations to filter out and which columns to select, all before we read the dataset into RAM\index{Random Access Memory (RAM)}. In comparison to the strategies outlined above, this approach is usually much faster but might still lead to a situation with a lack of memory. 
+A conceptually related but differently focused approach is the *lazy evaluation*\index{Lazy Evaluation} implemented in Apache Arrow and the corresponding `arrow` package [@richardson_etal2022]. While Apache Arrow is basically a platform for in-memory columnar data, it is optimized for processing large amounts of data and working with datasets that actually do not fit into memory. The way this is done is that instructions on what to do with a dataset are not evaluated step-by-step on the spot but all together at the point of actually loading the data into R. That is, we can connect to a dataset via `arrow`, see its variables, etc., give instructions of which observations to filter out and which columns to select, all before we read the dataset into RAM\index{Random Access Memory (RAM)}. In comparison to the strategies outlined above, this approach is usually much faster but might still lead to a situation with a lack of memory. 
 
 In the following subsections we briefly look at how to set up an R session for data preparation purposes with any of these approaches (`ff`, `bigmemory`, `arrow`) and look at some of the conceptual basics behind the approaches.
 
 ### Chunking data with the `ff` package
 
-We first install and load the `ff` and `ffbase`\index{ffbase package} [@ffbase] packages, as well as the `pryr` package. We use the familiar`flights.csv` dataset^[Data from the same source is also used in the code examples given in @bigmemory.]  For the sake of the example, we only use a fraction of the original dataset.^[The full raw data used there can be downloaded [here](http://stat-computing.org/dataexpo/2009/the-data.html).]  On disk, the dataset is about 30MB:
+We first install and load the `ff` and `ffbase`\index{ffbase Package} [@ffbase] packages, as well as the `pryr` package. We use the familiar `flights.csv` dataset^[Data from the same source is also used in the code examples given in @bigmemory.]  For the sake of the example, we only use a fraction of the original dataset.^[The full raw data used there can be downloaded here: http://stat-computing.org/dataexpo/2009/the-data.html.]  On disk, the dataset is about 30MB:
 
 ```{r cleaning1}
 fs::file_size("data/flights.csv")
@@ -98,7 +98,7 @@ head(list.files("ff_files"))
 
 ### Memory mapping with `bigmemory`
 
-The `bigmemory`\index{bigmemory package} package handles data in matrices and therefore only accepts data values of identical data type. Before importing data via the `bigmemory` package, we thus have to ensure that all variables in the raw data can be imported in a common type. 
+The `bigmemory`\index{bigmemory Package} package handles data in matrices and therefore only accepts data values of identical data type. Before importing data via the `bigmemory` package, we thus have to ensure that all variables in the raw data can be imported in a common type. 
 
 ```{r cleaning7, message=FALSE, warning=FALSE}
 
@@ -226,7 +226,7 @@ mem_used()
 
 ### Inspect imported files
 
-A particularly useful aspect of working with the `ff` package\index{ff package} and the packages building on it is that many of the simple R functions that work on normal data.frames in RAM also work on ff_files files. Hence, without actually having loaded the entire raw data of a large dataset into RAM\index{Random Access Memory (RAM)}, we can quickly get an overview of the key characteristics, such as the number of observations and the number of variables.
+A particularly useful aspect of working with the `ff` package\index{ff Package} and the packages building on it is that many of the simple R functions that work on normal data.frames in RAM also work on ff_files files. Hence, without actually having loaded the entire raw data of a large dataset into RAM\index{Random Access Memory (RAM)}, we can quickly get an overview of the key characteristics, such as the number of observations and the number of variables.
 
 ```{r}
 # 2. Inspect the ff_files objects.
@@ -253,7 +253,7 @@ names(airlines.ff)
 str(airlines.ff[1:20,])
 ```
 
-Now we can join the two datasets via the unique airline identifier `"AIRLINE_ID"`. Note that these kinds of operations would usually take up substantially more RAM\index{Random Access Memory (RAM)} on the spot, if both original datasets were also fully loaded into RAM. As illustrated by the `mem_change()`\index{mem\_change()} function, tfhis is not the case here. All that is needed is a small chunk of RAM\index{Random Access Memory (RAM)} to keep the metadata and mapping-information of the new `ff_files` object; all the actual data is cached on the hard disk.
+Now we can join the two datasets via the unique airline identifier `"AIRLINE_ID"`. Note that these kinds of operations would usually take up substantially more RAM\index{Random Access Memory (RAM)} on the spot, if both original datasets were also fully loaded into RAM. As illustrated by the `mem_change()`\index{mem\_change()} function, this is not the case here. All that is needed is a small chunk of RAM\index{Random Access Memory (RAM)} to keep the metadata and mapping-information of the new `ff_files` object; all the actual data is cached on the hard disk.
 
 ```{r}
 # merge of ff_files objects
@@ -267,7 +267,7 @@ names(flights.data.ff)
 ```
 
 
-### Inspect difference to in-memory operation
+### Inspect difference in in-memory operation
 
 In comparison to the `ff`-approach, performing the merge in memory needs more resources:
 
@@ -296,13 +296,16 @@ Now, we want to filter out some observations as well as select only specific var
 mem_used()
 
 # Subset the ff_files object flights.data.ff:
-subs1.ff <- subset.ffdf(flights.data.ff, CANCELLED == 1, 
-                        select = c(FL_DATE, AIRLINE_ID, 
-                                   ORIGIN_CITY_NAME,
-                                   ORIGIN_STATE_NM,
-                                   DEST_CITY_NAME,
-                                   DEST_STATE_NM,
-                                   CANCELLATION_CODE))
+subs1.ff <- 
+     subset.ffdf(flights.data.ff, 
+                 CANCELLED == 1, 
+                 select = c(FL_DATE,
+                            AIRLINE_ID,
+                            ORIGIN_CITY_NAME,
+                            ORIGIN_STATE_NM,
+                            DEST_CITY_NAME,
+                            DEST_STATE_NM,
+                            CANCELLATION_CODE))
 
 dim(subs1.ff)
 mem_used()
@@ -347,7 +350,7 @@ write.csv.ffdf(subs1.ff, "subset1.csv")
 
 
 ## Big Data preparation tutorial with `arrow` 
-\index{arrow package}
+\index{arrow Package}
 
 We begin by initializing our R session as in the short `arrow` introduction above.
 
@@ -391,7 +394,7 @@ names(airlines) <- c("AIRLINE_ID", "AIRLINE_NM")
 names(airlines)
 ```
 
-In a second step, the two data frames are merged/joined. The `arrow`\index{arrow package} package follows `dplyr`-syntax regarding data preparation tasks. That is, we can directly build on functions like 
+In a second step, the two data frames are merged/joined. The `arrow`\index{arrow Package} package follows `dplyr`-syntax regarding data preparation tasks. That is, we can directly build on functions like 
 
 ```{r}
 # merge the two datasets via Arrow
@@ -401,7 +404,7 @@ object_size(flights.data.ar)
 
 In a last step, we filter the resulting dataset for cancelled flights and select only some of the available variables.
 
-Now, we want to filter out some observations as well as select only specific variables for a subset of the overall dataset. As Arrow works with the `dplyr`\index{dplyr package} backend, we can directly use the typical `dplyr`-syntax to combine selection of columns and filtering of rows.
+Now, we want to filter out some observations as well as select only specific variables for a subset of the overall dataset. As Arrow works with the `dplyr`\index{dplyr Package} back-end, we can directly use the typical `dplyr`-syntax to combine selection of columns and filtering of rows.
 
 ```{r}
 
@@ -420,7 +423,7 @@ subs1.ar <-
 object_size(subs1.ar)
 ```
 
-Again, this operation hardly affected RAM\index{Random Access Memory (RAM)} usage by R. Note, though, that in contrast to the `ff`-approach, arrow has actually not yet created the new subset `sub1.ar`. In fact, it has not even really imported the data or merged the two datasets. This is the effect of the lazy evaluation\index{Lazy evaluation} approach implemented in `arrow`\index{arrow package}. To further process the data in `sub1.ar` with other functions (outside of `arrow`\index{arrow package}), we need to actually trigger the evaluation of all the data preparation steps we have just instructed R to do. This is done via `collect()`\index{collect()}.
+Again, this operation hardly affected RAM\index{Random Access Memory (RAM)} usage by R. Note, though, that in contrast to the `ff`-approach, Arrow has actually not yet created the new subset `sub1.ar`. In fact, it has not even really imported the data or merged the two datasets. This is the effect of the lazy evaluation\index{Lazy Evaluation} approach implemented in `arrow`\index{arrow Package}. To further process the data in `sub1.ar` with other functions (outside of `arrow`\index{arrow Package}), we need to actually trigger the evaluation of all the data preparation steps we have just instructed R to do. This is done via `collect()`\index{collect()}.
 
 ```{r}
 mem_change(subs1.ar.df <- collect(subs1.ar))
@@ -439,11 +442,11 @@ subs1.ar %>%
 
 ## Wrapping up
 
- - Typically, the raw/uncleaned data is the critical bottleneck in terms of data volume. Particularly as the selection and filtering of the overall dataset in the preparation of analytic datasets can only work properly with cleaned data.
- - *Out-of-memory* strategies\index{Out-of-memory strategy} are based on the concept of virtual memory\index{Virtual memory} and are key to cleaning large amounts of data locally.
- - The *`ff` package*\index{ff package} provides a high-level R interface to an out-of-memory approach. Most functions in `ff` and the corresponding `ffbase`\index{ffbase package} package come with a syntax very similar to the basic R syntax for data cleaning and manipulation.
- - The basic idea behind `ff` is to store the data in chunked format in an easily-accessible way on the hard disk\index{Hard disk} and only keep the metadata of a dataset (e.g., variable names) in an R object in RAM\index{Random Access Memory (RAM)} while working on the dataset.
- - The `arrow` package offers similar functionality based on a slightly different approach called *lazy evaluation*\index{Lazy evaluation} (only evaluate data manipulation/cleaning tasks once the data is pulled into R). Unlike `ff`\index{ff package}, `arrow`\index{arrow package} closely follows the `dplyr`-syntax rather than basic R syntax for data cleaning tasks.
+ - Typically, the raw/uncleaned data is the critical bottleneck in terms of data volume, particularly as the selection and filtering of the overall dataset in the preparation of analytic datasets can only work properly with cleaned data.
+ - *Out-of-memory* strategies\index{Out-Of-Memory Strategy} are based on the concept of virtual memory\index{Virtual Memory} and are key to cleaning large amounts of data locally.
+ - The *`ff` package*\index{ff Package} provides a high-level R interface to an out-of-memory approach. Most functions in `ff` and the corresponding `ffbase`\index{ffbase Package} package come with a syntax very similar to the basic R syntax for data cleaning and manipulation.
+ - The basic idea behind `ff` is to store the data in chunked format in an easily accessible way on the hard disk\index{Hard Disk} and only keep the metadata of a dataset (e.g., variable names) in an R object in RAM\index{Random Access Memory (RAM)} while working on the dataset.
+ - The `arrow` package offers similar functionality based on a slightly different approach called *lazy evaluation*\index{Lazy Evaluation} (only evaluate data manipulation/cleaning tasks once the data is pulled into R). Unlike `ff`\index{ff Package}, `arrow`\index{arrow Package} closely follows the `dplyr` syntax rather than basic R syntax for data cleaning tasks.
  
 
 

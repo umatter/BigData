@@ -11,10 +11,10 @@ GitHub can be a very useful platform to arrange, store, and share the code of yo
 
 ## Initiate a new repository {.unnumbered}
 
-1. Log in to your GitHub account and click on the plus-sign in the upper right corner. From the drop-down-menu select `New repository`.
-2. Give your repository a name, for example `bigdatastat`. Then, click on the big green button `Create repository`. You have just created a new repository.
-3. Open Rstudio and and navigate to a place on your hard-disk where you want to have the local copy of your repository.
-4. Then create the local repository as suggested by GitHub (see the page shown right after you have clicked on `Create repository`: "…or create a new repository on the command line"). In order to do so, you have to switch to the Terminal window in RStudio and type (or copy paste) the commands as given by GitHub. This should look similar to the following code chunk:
+1. Log in to your GitHub account and click on the plus sign in the upper right corner. From the drop-down menu select `New repository`.
+2. Give your repository a name, for example, `bigdatastat`. Then, click on the big green button, `Create repository`. You have just created a new repository.
+3. Open Rstudio, and and navigate to a place on your hard-disk where you want to have the local copy of your repository.
+4. Then create the local repository as suggested by GitHub (see the page shown right after you have clicked on `Create repository`: "…or create a new repository on the command line"). In order to do so, you have to switch to the Terminal window in RStudio and type (or copy and paste) the commands as given by GitHub. This should look similar to the following code chunk:
 
 ```{bash eval = FALSE}
 echo "# bigdatastat" >> README.md
@@ -26,15 +26,15 @@ https://github.com/YOUR-GITHUB-ACCOUNTNAME/bigdatastat.git
 git push -u origin master
 ```
 
-Mind replacing `YOUR-GITHUB-ACCOUNTNAME` with your GitHub account name, before running the code above.
+Remember to replace `YOUR-GITHUB-ACCOUNTNAME` with your GitHub account name, before running the code above.
 
 5. Refresh the page of your newly created GitHub repository. You should now see the result of your first commit.
-6. Open `README.md` in RStudio and add a few words describing what this repository is all about.
+6. Open `README.md` in RStudio, and add a few words describing what this repository is all about.
 
 ## Clone this book's repository {.unnumbered}
 
 1. In RStudio, navigate to a folder on your hard-disk where you want to have a local copy of this book's GitHub repository.
-2. Open a new browser window and go to https://github.com/umatter/BigData.
+2. Open a new browser window, and go to https://github.com/umatter/BigData.
 3. Click on `Clone or download` and copy the link.
 4. In RStudio, switch to the Terminal, and type the following command (pasting the copied link).
 
@@ -42,7 +42,7 @@ Mind replacing `YOUR-GITHUB-ACCOUNTNAME` with your GitHub account name, before r
 git clone https://github.com/umatter/BigData.git
 ```
 
-You have now a local copy of the repository which is linked to the one on GitHub. You can see this by changing to the newly created directory, containing the local copy of the repository:
+You now have a local copy of the repository which is linked to the one on GitHub. You can see this by changing to the newly created directory, containing the local copy of the repository:
 ```{bash eval=FALSE}
 cd BigData
 ```
@@ -57,9 +57,9 @@ git pull
 
 ## Fork this book's repository {.unnumbered}
 
-1. Go to https://github.com/umatter/BigData, click on the 'Fork' button in the upper-right corner (follow the instructions).
+1. Go to https://github.com/umatter/BigData, and click on the 'Fork' button in the upper-right corner (follow the instructions).
 
-2. Clone the forked repository (see the cloning of a repository above for details). Assuming you called your forked repository `BigData-forked`, you run the following command in the terminal (replacing `<yourgithubusername>`:
+2. Clone the forked repository (see the cloning of a repository above for details). Assuming you called your forked repository `BigData-forked`, you run the following command in the terminal (replacing `<yourgithubusername>`):
 
 ```
 git clone https://github.com/`<yourgithubusername>`/BigData-forked.git
@@ -71,13 +71,13 @@ git clone https://github.com/`<yourgithubusername>`/BigData-forked.git
 cd BigData-forked
 ```
 
-4. Set a remote connection to the *original* repository 
+4. Set a remote connection to the *original* repository:
 
 ```
 git remote add upstream https://github.com/umatter/BigData.git
 ```
 
-You can verify the remotes of your local clone of your forked repository as follows
+You can verify the remotes of your local clone of your forked repository as follows:
 ```
 git remote -v
 ```
@@ -89,7 +89,7 @@ upstream	https://github.com/umatter/BigData.git (fetch)
 upstream	https://github.com/umatter/BigData.git (push)
 ```
 
-5. Fetch changes from the original repository. New material has been added to the original book repository and you want to merge it with your forked repository. In order to do so, you first fetch the changes from the original repository:
+5. Fetch changes from the original repository. New material has been added to the original book repository, and you want to merge it with your forked repository. In order to do so, you first fetch the changes from the original repository:
 
 ```
 git fetch upstream
@@ -101,19 +101,19 @@ git fetch upstream
 git checkout master
 ```
 
-7. Merge the changes fetched from the original repo with the master of your (local clone of the) forked repo.
+7. Merge the changes fetched from the original repo with the master of your (local clone of the) forked repository:
 
 ```
 git merge upstream/master
 ```
 
-8. Push the changes to your forked repository on GitHub.
+8. Push the changes to your forked repository on GitHub:
 
 ```
 git push
 ```
 
-Now your forked repo on GitHub also contains the commits (changes) in the original repository. If you make changes to the files in your forked repo. you can add, commit, and push them as in any repository. Example: open `README.md` in a text editor (e.g. RStudio), add `# HELLO WORLD` to the last line of `README.md`, and save the changes. Then:
+Now your forked repo on GitHub also contains the commits (changes) in the original repository. If you make changes to the files in your forked repo, you can add, commit, and push them as in any repository. Example: open `README.md` in a text editor (e.g. RStudio), add `# HELLO WORLD` to the last line of `README.md`, and save the changes. Then:
 
 ```
 git add README.md
@@ -221,9 +221,9 @@ object.size(139)
 
 ## Data structures {.unnumbered}
 
-For the time being, we have only looked at individual bytes of data. A single data set can contain gigabytes of data and both text and numeric values. R has several classes of objects that provide different data structures. The data types and data structures used to store data can both affect how much memory is required to hold a dataset in RAM. 
+For the time being, we have only looked at individual bytes of data. A single dataset can contain gigabytes of data and both text and numeric values. R has several classes of objects that provide different data structures. The data types and data structures used to store data can both affect how much memory is required to hold a dataset in RAM. 
 
-### Vectors vs Factors in R {.unnumbered}
+### Vectors vs. Factors in R {.unnumbered}
 Vectors are collections of values of the same type. They can contain either all numeric values or all character values. 
 
 
@@ -234,7 +234,7 @@ Vectors are collections of values of the same type. They can contain either all 
 <!-- (ref:capnumvec) Illustration of a numeric vector (symbolic). Figure by @murrell_2009 (licensed under CC BY-NC-SA 3.0 NZ). -->
 
 
-For example, we can initiate a character vector containing information on the home towns of persons participating in a survey.
+For example, we can initiate a character vector containing information on the hometowns of persons participating in a survey.
 ```{r}
 hometown <- c("St.Gallen", "Basel", "St.Gallen")
 hometown
@@ -242,7 +242,7 @@ object.size(hometown)
 ```
 
 Unlike in the data types example above, storing these values as type `numeric` to save memory is unlikely to be practical.
-R would be unable to convert these strings into floating point numbers. Alternatively, we could consider a correspondence table in which each unique town name in the data set is assigned a numeric (id) code. We would save memory this way, but it would require more effort to work with the data. Fortunately, the data structure 'factor' in basic R already implements this idea in a user-friendly manner. 
+R would be unable to convert these strings into floating point numbers. Alternatively, we could consider a correspondence table in which each unique town name in the dataset is assigned a numeric (id) code. We would save memory this way, but it would require more effort to work with the data. Fortunately, the data structure 'factor' in basic R already implements this idea in a user-friendly manner. 
 
 Factors are sets of categories. Thus, the values are drawn from a fixed set of possible values. 
 
@@ -264,7 +264,7 @@ object.size(hometown_f)
 
 At first glance, the fact that `hometown f` consumes more memory than its character vector sibling appears strange.
 But we've seen this kind of 'paradox' before. Once again, the more sophisticated approach has an overhead (here not in terms of computing time but in terms of structure encoded in an object). `hometown_f` has more structure (i.e., a number-to-'factor level'/category label mapping).
-This additional structure is also data that must be saved somewhere. This disadvantage, as in previous examples of overhead costs, diminishes with larger data sets: 
+This additional structure is also data that must be saved somewhere. This disadvantage, as in previous examples of overhead costs, diminishes with larger datasets: 
 
 ```{r}
 # create a large character vector
@@ -280,7 +280,7 @@ object.size(hometown_large_f)
 
 ### Matrices/Arrays {.unnumbered}
 
-Matrices are two-dimensional collections of values, arrays higher-dimensional collections of values, of the same type.
+Matrices are two-dimensional collections of values of the same type, arrays are higher-dimensional collections of values of the same type.
 
 
 <!-- ```{r matrix, echo=FALSE, out.width = "10%", fig.align='center', fig.cap= "(ref:capmatrix)", purl=FALSE} -->
@@ -309,7 +309,7 @@ my_array
 
 ### Data frames, tibbles, and data tables {.unnumbered}
 
-Remember that in R, data frames are the most common way to represent a (table-like) data set. Each column can contain a vector of a specific data type (or a factor), but all columns must be the same length. In the context of data analysis, each row of a data frame contains an observation, and each column contains a characteristic of that observation. 
+Remember that in R, data frames are the most common way to represent a (table-like) dataset. Each column can contain a vector of a specific data type (or a factor), but all columns must be the same length. In the context of data analysis, each row of a data frame contains an observation, and each column contains a characteristic of that observation. 
 
 
 
@@ -320,7 +320,7 @@ Remember that in R, data frames are the most common way to represent a (table-li
 
 <!-- (ref:capdf) Illustration of a data frame (symbolic). Figure by @murrell_2009 (licensed under CC BY-NC-SA 3.0 NZ). -->
 
-The previous implementation of data frames in R made it difficult to work with large data sets.^[This was not an issue in the early days of R because data sets that were rather large by today's standards (in the Gigabytes) could not have been handled properly by normal computers anyway (due to a lack of RAM).] Several newer R implementations of the data-frame concept were introduced with the aim to speed up data processing. One is known as `tibble`, and it is implemented and used in the `tidyverse` packages. The other is known as `data table` and it is implemented in the `data table`-package. Most of the shortcomings of the original 'data.frame' implementation, however, have been addressed in subsequent R versions, making traditional  `data.frames`, `tibbles`, and `data.tables`  more similarly suitable for working with large datasets (for in-memory processing). 
+The previous implementation of data frames in R made it difficult to work with large datasets.^[This was not an issue in the early days of R because datasets that were rather large by today's standards (in the Gigabytes) could not have been handled properly by normal computers anyway (due to a lack of RAM).] Several newer R implementations of the data-frame concept were introduced with the aim to speed up data processing. One is known as `tibble`, and it is implemented and used in the `tidyverse` packages. The other is known as `data table`, and it is implemented in the `data table`-package. Most of the shortcomings of the original 'data.frame' implementation, however, have been addressed in subsequent R versions, making traditional  `data.frames`, `tibbles`, and `data.tables`  more similarly suitable for working with large datasets (for in-memory processing). 
 
 Here is how we define a `data.table` in R:
 
@@ -337,7 +337,7 @@ dt
 
 
 ### Lists {.unnumbered}
-Similar to data frames and data tables, lists can contain different types of data in each element. For example, a list could contain different other lists, data frames, and vectors with differing numbers of elements.
+Similar to data frames and data tables, lists can contain different types of data in each element. For example, a list could contain several other lists, data frames, and vectors with differing numbers of elements.
 
 
 
@@ -370,7 +370,7 @@ package | function | purpose
 
 You might wish to install Hadoop locally on your computer in order to perform the Hadoop example in Chapter 6.
 The next few stages assist you in configuring everything. Please be aware that between the time I wrote this book and the time you read it, Hadoop may have undergone some changes. Consult https://hadoop.apache.org/ for further details on releases and to install the most recent version.
-However, the instructions for installing Hadoop in the following should be nearly comparable. Please take note that the steps below assume you are using *Ubuntu Linux*. 
+However, the instructions for installing Hadoop in the following should be nearly comparable. Please take note that the steps below assume you are using *Ubuntu Linux*. See the README file in https://github.com/umatter/bigdata for additional hints regarding the installation of software used in this book. 
 
 ```{bash eval=FALSE}
 # download binary
@@ -416,7 +416,7 @@ After running all of the steps above, run the following line in the terminal to 
 
 
 ```{r include=FALSE}
-system("rsync -r ~/Dropbox/Teaching/HSG/BigData/BigData/_bookdown_files/bigdata_files ~/Dropbox/Teaching/HSG/BigData/BigData/docs")
+system("rsync -r ~/Dropbox/Teaching/HSG/BigData/BigData/_bookdown_files/bigdata_files ~/Dropbox/Teaching/HSG/BigData/BigData/docs/bigdata_files")
 ```
 
 

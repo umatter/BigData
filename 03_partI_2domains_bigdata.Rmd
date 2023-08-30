@@ -29,23 +29,21 @@ actual predictive power when looking at out-of-sample predictions. Hence, in
 this kind of exercise we should *exclusively focus on out-of-sample predictions*
 when assessing the performance of candidate models.]
 Let us look at a real-life example. Suppose you work for Google's e-commerce
-platform
-[www.googlemerchandiseshop.com](https://shop.googlemerchandisestore.com), and
+platform (https://shop.googlemerchandisestore.com), and
 you are in charge of predicting purchases (i.e., the probability that a user
 actually buys something from your store in a given session) based on user and
 browser-session characteristics.^[We will in fact be working with a real-life
-Google Analytics\index{Google Analytics} dataset from
-www.googlemerchandiseshop.com; see here for details about the dataset:
+Google Analytics\index{Google Analytics} dataset from https://shop.googlemerchandisestore.com; see here for details about the dataset:
 https://www.blog.google/products/marketingplatform/analytics/introducing-google-analytics-sample/.]
 The dependent variable `purchase` is an indicator equal to `1` if the
 corresponding shop visit leads to a purchase and equal to `0` otherwise. All
 other variables contain information about the user and the session (Where is the
 user located? Which browser is (s)he using? etc.).
 
-### Simple logistig regression (naive approach)
+### Simple logistic regression (naive approach)
 
-As the dependent variable is binary, we will first estimate a simple logit model\index{Logit model}, in which
-we use the origins of the store visitors (how did a visitor end up in the shop)
+As the dependent variable is binary, we will first estimate a simple logit model\index{Logit Model}, in which
+we use the origins of the store visitors (how did a visitor end up in the shop?)
 as explanatory variables. Note that many of these variables are categorical, and
 the model matrix thus contains a lot of "dummies" (indicator variables). The
 plan in this (intentionally naive) first approach is to simply add a lot of
@@ -115,9 +113,9 @@ is to penalize model complexity (the cause of instability) during the estimation
 procedure.^[In simple terms, this is done by adding $\lambda\sum_k{|\beta_k|}$
 as a "cost" to the optimization problem.] In a second step, we can then select a
 final model from the sequence of candidate models based on, for example,
-"out-of-sample" prediction\index{out-of-sample prediction} in a k-fold cross
-validation.\index{Cross-validation}
-The `gamlr`\index{gamlr package} package [@gamlr] provides both parts of this procedure (lasso for the
+"out-of-sample" prediction\index{Out-Of-Sample Prediction} in a k-fold cross
+validation.\index{Cross-Validation}
+The `gamlr`\index{gamlr Package} package [@gamlr] provides both parts of this procedure (lasso for the
 sequence of candidate models, and selection of the "best" model based on k-fold
 cross-validation).
 ```{r warning=FALSE, message=FALSE}
@@ -133,18 +131,17 @@ matrix object. If this large model matrix is sparse (i.e, has a lot of `0`
 entries), there is a much more memory-efficient way to store it in an R object.
 R provides ways to represent such sparse matrices in a compressed way in
 specialized R objects (such as `CsparseMatrix` provided in the `Matrix`
-package\index{Matrix package} @Matrix). Instead of containing all $n\times m$ cells of the matrix, these
+package\index{Matrix Package} @Matrix). Instead of containing all $n\times m$ cells of the matrix, these
 objects only explicitly store the cells with non-zero values and the
 corresponding indices. Below, we make use of the high-level
 `sparse.model.matrix`\index{sparse.model.matrix()} function to generate the model matrix and store it in a
-sparse matrix object\index{Sparse matrix}. To illustrate the point of a more
+sparse matrix object\index{Sparse Matrix}. To illustrate the point of a more
 memory-efficient representation, we show that the traditional matrix object is
 about 7.5 times larger than the sparse version.
 ```{r}
 # create the sparse model matrix
 mm_sparse <- sparse.model.matrix(purchase~source, data = ga)
-# the sparse representation needs less than 15% of
-# the memory needed for the standard matrix representation:
+# compare the object's sizes
 as.numeric(object.size(mm)/object.size(mm_sparse))
 ```
 Finally, we run the lasso estimation with k-fold cross-validation.
@@ -153,7 +150,7 @@ Finally, we run the lasso estimation with k-fold cross-validation.
 cvpurchase <- cv.gamlr(mm_sparse, ga$purchase, family="binomial")
 ```
 We can then illustrate the performance of the selected final model – for
-example, with an ROC curve\index{ROC curve}. Note that both the `coef` method
+example, with an ROC curve\index{ROC Curve}. Note that both the `coef` method
 and the `predict` method for `gamlr` objects automatically select the 'best'
 model.
 ```{r, fig.align='center', out.width="75%"}
@@ -181,23 +178,21 @@ crashes or slows down significantly). The simplest statistical solution to such
 a problem is usually to just estimate the model based on a smaller sample.
 However, we might not want to do that for other reasons (i.e., if we require a big N for statistical power reasons). As an illustration of how an alternative statistical procedure can speed up the analysis of big N datasets, we look at a procedure to estimate linear
 models for situations where the classical OLS estimator\index{Ordinary Least Squares (OLS)} is computationally too
-demanding when analyzing large datasets: The *Uluru* algorithm\index{Uluru algorithm}
+demanding when analyzing large datasets, the *Uluru* algorithm\index{Uluru Algorithm}
 [@dhillon_2013].
 
 ### OLS as a point of reference \index{Ordinary Least Squares (OLS)}
 
-Recall the OLS estimator in matrix notation, given the linear model
+Recall the OLS estimator in matrix notation, given the linear model $\mathbf{y}=\mathbf{X}\beta + \epsilon$:
 
-$\mathbf{y}=\mathbf{X}\beta + \epsilon$:
-$$\hat{\beta}_{OLS} =
-(\mathbf{X}^\intercal\mathbf{X})^{-1}\mathbf{X}^{\intercal}\mathbf{y}$$.
+$$\hat{\beta}_{OLS} = (\mathbf{X}^\intercal\mathbf{X})^{-1}\mathbf{X}^{\intercal}\mathbf{y}.$$
 
 
 In order to compute $\hat{\beta}_{OLS}$, we have to compute
 $(\mathbf{X}^\intercal\mathbf{X})^{-1}$, which implies a computationally
 expensive matrix inversion.^[The computational complexity of this is larger than
 $O(n^{2})$. That is, for an input of size $n$, the time needed to compute (or
-the number of operations needed) is $n^2$.] If our dataset is large,
+the number of operations needed) is larger than $n^2$.] If our dataset is large,
 $\mathbf{X}$ is large, and the inversion can take up a lot of computation time.
 Moreover, the inversion and matrix multiplication to get $\hat{\beta}_{OLS}$
 needs a lot of memory. In practice, it might well be that the estimation of a
@@ -231,7 +226,7 @@ X <- cbind(rep(1, n), X)
 Now we define what the real linear model that we have in mind looks like and
 compute the output `y` of this model, given the input `X`.^[In reality we would
 not know this, of course. Acting as if we knew the real model is exactly the
-point of Monte Carlo studies. It allows us to analyze the properties of
+point of Monte Carlo studies. They allow us to analyze the properties of
 estimators by simulation.]
 ```{r}
 # MC model
@@ -243,7 +238,7 @@ Finally, we test our `beta_ols` function.
 beta_ols(X, y)
 ```
 
-### The *Uluru* algorithm\index{Uluru algorithm} as an alternative to OLS \index{Ordinary Least Squares (OLS)}
+### The *Uluru* algorithm\index{Uluru Algorithm} as an alternative to OLS \index{Ordinary Least Squares (OLS)}
 
 Following @dhillon_2013, we implement a procedure to compute
 
@@ -296,7 +291,7 @@ beta_uluru(X_subs, y_subs, X_rem, y_rem)
 ```
 This looks quite good already. Let's have a closer look with a little Monte
 Carlo study. The aim of the simulation study is to visualize the difference
-between the classical OLS\index{Ordinary Least Squares (OLS)} approach and the *Uluru* algorithm\index{Uluru algorithm} with regard to bias
+between the classical OLS\index{Ordinary Least Squares (OLS)} approach and the *Uluru* algorithm\index{Uluru Algorithm} with regard to bias
 and time complexity if we increase the sub-sample size in *Uluru*. For
 simplicity, we only look at the first estimated coefficient $\beta_{1}$.
 
@@ -362,8 +357,8 @@ include_graphics("img/uluru_comparison.png")
 
 The horizontal red line indicates the computation time for estimation via OLS;
 the green points indicate the computation time for the estimation via the
-*Ulruru* algorithm\index{Uluru algorithm}. Note that even for large sub-samples, the computation time
-is substantially lower than for OLS\index{Ordinary Least Squares (OLS)}.Finally, let's have a look at how close the results are to OLS.
+*Ulruru* algorithm\index{Uluru Algorithm}. Note that even for large sub-samples, the computation time
+is substantially lower than for OLS\index{Ordinary Least Squares (OLS)}. Finally, let's have a look at how close the results are to OLS.
 
 ```{r warning=FALSE, message=FALSE, eval=FALSE, fig.align='center'}
 ggplot(plotdata, aes(x = subs_size, y = beta1)) +
@@ -387,7 +382,7 @@ include_graphics("img/uluru_comparison2.png")
 The horizontal red line indicates the size of the estimated coefficient, when
 using OLS\index{Ordinary Least Squares (OLS)}. The horizontal green line indicates the size of the actual
 coefficient. The green points indicate the size of the same coefficient
-estimated by the *Uluru* algorithm\index{Uluru algorithm} for different sub-sample sizes. Note that
+estimated by the *Uluru* algorithm\index{Uluru Algorithm} for different sub-sample sizes. Note that
 even relatively small sub-samples already deliver estimates very close to the
 OLS\index{Ordinary Least Squares (OLS)} estimates.
 Taken together, the example illustrates that alternative statistical methods,

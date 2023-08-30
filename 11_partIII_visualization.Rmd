@@ -1,18 +1,18 @@
 
 
 # (Big) Data Visualization
-\index{Data visualization}
+\index{Data Visualization}
 
 Visualizing certain characteristics and patterns in large datasets is primarily challenging for two reasons. First, depending on the type of plot, plotting raw data consisting of many observations can take a long time (and lead to large figure files). Second, patterns might be harder to recognize due to the sheer amount of data displayed in a plot. Both of these challenges are particularly related to the visualization of raw data for explorative or descriptive purposes. Visualizations of already-computed aggregations or estimates is typically very similar whether working with large or small datasets.
 
-The following sections thus particularly highlight the issue of generating plots based on the raw data, including many observations, and with the aim of exploring the data in order to discover patterns in the data that then can be further investigated in more sophisticated statistical analyses. We will do so in three steps. First, we will look into a few important conceptual aspects where generating plots with a large number of observations becomes difficult, and then look at potentially helpful tools to address these difficulties. Based on these insights, the next section presents a data exploration tutorial based on the already familiar TLC taxi trips dataset, looking into different approaches to visualize relations between variables. Finally, the last section of this chapter covers an area of data visualization that has become more and more relevant in applied economic research with the availability of highly detailed observational data on economic and social activities (due to the digitization of many aspects of modern life): the plotting of geo-spatial information on economic activity.
+The following sections thus particularly highlight the issue of generating plots based on the raw data, including many observations, and with the aim of exploring the data in order to discover patterns in the data that then can be further investigated in more sophisticated statistical analyses. We will do so in three steps. First, we will look into a few important conceptual aspects where generating plots with a large number of observations becomes difficult, and then we will look at potentially helpful tools to address these difficulties. Based on these insights, the next section presents a data exploration tutorial based on the already familiar TLC taxi trips dataset, looking into different approaches to visualize relations between variables. Finally, the last section of this chapter covers an area of data visualization that has become more and more relevant in applied economic research with the availability of highly detailed observational data on economic and social activities (due to the digitization of many aspects of modern life): the plotting of geo-spatial information on economic activity.
 
-All illustrations of concepts and visualization examples in this chapter build on the Grammar of Graphics\index{Grammar of Graphics} [@wilkinson2005grammar] concept implemented in the `ggplot2` package\index{ggplot2 package} [@ggplot2]. The choice of this plotting package/framework is motivated by the large variety of plot-types covered in `ggplot2`\index{ggplot2 package} (ranging from simple scatterplots\index{Scatterplot} to hexbin-plots\index{Hexbin-plot} and geographic maps), as well as the flexibility to build and modify plots step by step (an aspect that is particularly interesting when exploring large datasets visually).
+All illustrations of concepts and visualization examples in this chapter build on the Grammar of Graphics\index{Grammar of Graphics} [@wilkinson2005grammar] concept implemented in the `ggplot2` package\index{ggplot2 Package} [@ggplot2]. The choice of this plotting package/framework is motivated by the large variety of plot-types covered in `ggplot2`\index{ggplot2 Package} (ranging from simple scatterplots\index{Scatterplot} to hexbin-plots\index{Hexbin-Plot} and geographic maps), as well as the flexibility to build and modify plots step by step (an aspect that is particularly interesting when exploring large datasets visually).
 
 
 ## Challenges of Big Data visualization
 
-Generating a plot in an interactive R session means generating a new object in the R environment (RAM), which can (in the case of large datasets) take up a considerable amount of memory. Moreover, depending on how the plot function is called, RStudio will directly render the plot in the Plots tab (which again needs memory and processing). Consider the following simple example, in which we plot two vectors of random numbers against each other.^[We will use `bench`\index{bench package} and the `fs` package \index{fs package} [@fs] for profiling.]
+Generating a plot in an interactive R session means generating a new object in the R environment (RAM), which can (in the case of large datasets) take up a considerable amount of memory. Moreover, depending on how the plot function is called, RStudio will directly render the plot in the Plots tab (which again needs memory and processing). Consider the following simple example, in which we plot two vectors of random numbers against each other.^[We will use `bench`\index{bench Package} and the `fs` package \index{fs Package} [@fs] for profiling.]
 
 ```{r warning=FALSE, out.width="75%", fig.align='center'}
 # load package
@@ -43,7 +43,7 @@ system.time(print(splot))
 mem_used()
 ```
 
-First, to generate this one plot, an average modern laptop needs about 13.6 seconds. This would not be very comfortable in an interactive session to explore the data visually. Second, and even more striking, before the plot was generated, `mem_used()`\index{mem\_used()} indicated the total amount of memory (in MBs) used by R was around 160MB, while right after plotting to the canvas, R had used around 270MB. Note that this is larger than the dataset and the ggplot-object by an order of magnitude. Creating the same plot based on 100 million observations would likely crash or freeze your R session. Finally, when we output the plot to a file (for example, a pdf), the generated vector-based graphic\index{Vector-based graphics} file is also rather large.
+First, to generate this one plot, an average modern laptop needs about 13.6 seconds. This would not be very comfortable in an interactive session to explore the data visually. Second, and even more striking, before the plot was generated, `mem_used()`\index{mem\_used()} indicated the total amount of memory (in MBs) used by R was around 160MB, while right after plotting to the canvas, R had used around 270MB. Note that this is larger than the dataset and the ggplot-object by an order of magnitude. Creating the same plot based on 100 million observations would likely crash or freeze your R session. Finally, when we output the plot to a file (for example, a pdf), the generated vector-based graphic\index{Vector-Based Graphics} file is also rather large.
 
 ```{r out.width="75%", fig.align='center'}
 ggsave("splot.pdf", device="pdf", width = 5, height = 5)
@@ -52,7 +52,7 @@ file_size("splot.pdf")
 
 Hence generating plots visualizing large amounts of raw data tends to use up a lot of computing time, memory, and (ultimately) storage space for the generated plot file.  There are a couple of solutions to address these performance issues. 
 
-*Avoid fancy symbols (costly rendering)*
+**Avoid fancy symbols (costly rendering)**
 It turns out that one aspect of the problem is the particular symbols/characters used in ggplot (and other plot functions in R) for the points in such a scatter-plot. Thus, one solution is to override the default set of characters directly when calling `ggplot()`\index{ggplot()}. A reasonable choice of character for this purpose is simply the full point (`.`).
 
 ```{r out.width="75%", fig.align='center'}
@@ -71,9 +71,9 @@ The increase in memory due to the plot call is comparatively smaller, and plotti
 
 **Use rasterization (bitmap graphics) instead of vector graphics**
 \index{Rasterization}
-By default, most data visualization libraries, including `ggplot2`\index{ggplot2 package}, are implemented to generate vector-based graphics. Conceptually, this makes a lot of sense for any type of plot when the number of observations plotted is small or moderate. In simple terms, vector-based graphics define lines and shapes as vectors in a coordinate system. In the case of a scatter-plot, the x and y coordinates of every point need to be recorded. In contrast, bitmap files\index{Bitmap graphic (raster-based image)} contain image information in the form of a matrix (or several matrices if colors are involved), whereby each cell of the matrix represents a pixel and contains information about the pixel's color. While a vector-based representation of plot of few observations is likely more memory-efficient than a high-resolution bitmap\index{Bitmap graphic (raster-based image)} representation of the same plot, it might well be the other way around when we are plotting millions of observations.
+By default, most data visualization libraries, including `ggplot2`\index{ggplot2 Package}, are implemented to generate vector-based graphics. Conceptually, this makes a lot of sense for any type of plot when the number of observations plotted is small or moderate. In simple terms, vector-based graphics define lines and shapes as vectors in a coordinate system. In the case of a scatter-plot, the x and y coordinates of every point need to be recorded. In contrast, bitmap files\index{Bitmap Graphic (Raster-Based Image)} contain image information in the form of a matrix (or several matrices if colors are involved), whereby each cell of the matrix represents a pixel and contains information about the pixel's color. While a vector-based representation of plot of few observations is likely more memory-efficient than a high-resolution bitmap\index{Bitmap Graphic (Raster-Based Image)} representation of the same plot, it might well be the other way around when we are plotting millions of observations.
 
-Thus, an alternative solution to save time and memory is to directly use a bitmap\index{Bitmap graphic (raster-based image)} format instead of a vector-based format\index{Vector-based graphics}. This could be done by plotting directly to a bitmap-format\index{Bitmap graphic (raster-based image)} file and then opening the file to look at the plot. However, this is somewhat clumsy as part of a data visualization workflow to explore the data. Luckily there is a ready-made solution by @kratochvil_etal2020 that builds on the idea of rasterizing scatter-plots, but that then displays the bitmap image\index{Bitmap graphic (raster-based image)} directly in R. The approach is implemented in the `scattermore`\index{scattermore package} package [@scattermore] and can straightforwardly be used in combination with `ggplot`\index{ggplot()}.
+Thus, an alternative solution to save time and memory is to directly use a bitmap\index{Bitmap Graphic (Raster-Based Image)} format instead of a vector-based format\index{Vector-Based Graphics}. This could be done by plotting directly to a bitmap-format\index{Bitmap Graphic (Raster-Based Image)} file and then opening the file to look at the plot. However, this is somewhat clumsy as part of a data visualization workflow to explore the data. Luckily there is a ready-made solution by @kratochvil_etal2020 that builds on the idea of rasterizing scatter-plots, but that then displays the bitmap image\index{Bitmap Graphic (Raster-Based Image)} directly in R. The approach is implemented in the `scattermore`\index{scattermore Package} package [@scattermore] and can straightforwardly be used in combination with `ggplot`\index{ggplot()}.
 
 
 ```{r out.width="75%", fig.align='center'}
@@ -92,10 +92,10 @@ ggsave("splot3.pdf",  device="pdf", width = 5, height = 5)
 file_size("splot3.pdf")
 ```
 
-This approach is faster by an order of magnitude, and the resulting pdf takes up only a fraction of the storage space needed for `splot.pdf`, which is based on the classical `geom_points()`\index{geom\_point()} and a vector-based image\index{Vector-based graphics}. 
+This approach is faster by an order of magnitude, and the resulting pdf takes up only a fraction of the storage space needed for `splot.pdf`, which is based on the classical `geom_points()`\index{geom\_point()} and a vector-based image\index{Vector-Based Graphics}. 
 
 **Use aggregates instead of raw data**
-Depending on what pattern/aspect of the data you want to inspect visually, you might not actually need to plot all observations directly but rather the result of aggregating the observations first. There are several options to do this, but in the context of scatter plots based on many observations, a two-dimensional bin plot can be a good starting point. The idea behind this approach is to divide the canvas into grid-cells (typically in the form of rectangles or hexagons), compute for each grid cell the number of observations/points that would fall into it (in a scatter plot), and then indicate the number of observations per grid cell via the cell's shading. Such a 2D bin plot\index{Bin plot} of the same data as above can be generated via `geom_hex()`\index{geom\_hex()}:
+Depending on what pattern/aspect of the data you want to inspect visually, you might not actually need to plot all observations directly but rather the result of aggregating the observations first. There are several options to do this, but in the context of scatter plots based on many observations, a two-dimensional bin plot can be a good starting point. The idea behind this approach is to divide the canvas into grid-cells (typically in the form of rectangles or hexagons), compute for each grid cell the number of observations/points that would fall into it (in a scatter plot), and then indicate the number of observations per grid cell via the cell's shading. Such a 2D bin plot\index{Bin Plot} of the same data as above can be generated via `geom_hex()`\index{geom\_hex()}:
 
 ```{r out.width="75%", fig.align='center'}
 # generate scatter plot
@@ -114,7 +114,7 @@ Obviously, this approach is much faster and uses up much less memory than the `g
 
 
 ## Data exploration with `ggplot2`
-\index{ggplot2 package}
+\index{ggplot2 Package}
 
 In this tutorial we will work with the TLC data used in the data aggregation session. The raw data consists of several monthly CSV\index{CSV (Comma Separated Values)} files and can be downloaded via the [TLC's website](https://www1.nyc.gov/site/tlc/about/tlc-trip-record-data.page). Again, we work only with the first million observations.
 
@@ -141,9 +141,9 @@ taxi$Payment_Type <- factor(taxi$Payment_Type, levels = unique(taxi$Payment_Type
 
 
 
-In order to better understand the large dataset at hand (particularly regarding the determinants of tips paid), we use `ggplot2`\index{ggplot2 package} to visualize some key aspects of the data.
+In order to better understand the large dataset at hand (particularly regarding the determinants of tips paid), we use `ggplot2`\index{ggplot2 Package} to visualize some key aspects of the data.
 
-First, let's look at the raw relationship between fare paid and the tip paid. We set up the canvas with `ggplot`\index{ggplot2 package}.
+First, let's look at the raw relationship between fare paid and the tip paid. We set up the canvas with `ggplot`\index{ggplot2 Package}.
 
 ```{r out.width="75%", fig.align='center'}
 # load packages
@@ -154,7 +154,7 @@ taxiplot <- ggplot(taxi, aes(y=Tip_Amt, x= Fare_Amt))
 taxiplot
 ```
 
-Now we visualize the co-distribution of the two variables with a simple scatter-plot. to speed things up, we use `geom_scattermore()`\index{geom\_scattermore()} but increase the point size.^[Note how the points look less nice than what `geom_point()`\index{geom\_point()} would produce. This is the disadvantage of using the bitmap\index{Bitmap graphic (raster-based image)} approach rather than the vector-based\index{Vector-based image} approach.]
+Now we visualize the co-distribution of the two variables with a simple scatter-plot. to speed things up, we use `geom_scattermore()`\index{geom\_scattermore()} but increase the point size.^[Note how the points look less nice than what `geom_point()`\index{geom\_point()} would produce. This is the disadvantage of using the bitmap\index{Bitmap Graphic (Raster-Based Image)} approach rather than the vector-based\index{Vector-Based Image} approach.]
 
 ```{r out.width="75%", fig.align='center'}
 
@@ -274,7 +274,7 @@ modelplot +
 ```
 
 
-Finally, we prepare the plot for reporting. `ggplot2`\index{ggplot2 package} provides several predefined 'themes' for plots that define all kinds of aspects of a plot (background color, line colors, font size, etc.). The easiest way to tweak the design of your final plot in a certain direction is to just add such a pre-defined theme at the end of your plot. Some of the pre-defined themes allow you to change a few aspects, such as the font type and the base size of all the texts in the plot (labels, tick numbers, etc.). Here, we use the `theme_bw()`, increase the font size, and switch to a serif-type font. `theme_bw()`\index{theme\_bw()} is one of the complete themes that ships with the basic `ggplot2`\index{ggplot2 package} installation.^[See [the ggplot2 documentation](https://ggplot2.tidyverse.org/reference/ggtheme.html) for a list of all pre-defined themes shipped with the basic installation.] Many more themes can be found in additional R packages (see, for example, the [`ggthemes` package](https://cran.r-project.org/web/packages/ggthemes/index.html)).
+Finally, we prepare the plot for reporting. `ggplot2`\index{ggplot2 Package} provides several predefined 'themes' for plots that define all kinds of aspects of a plot (background color, line colors, font size, etc.). The easiest way to tweak the design of your final plot in a certain direction is to just add such a pre-defined theme at the end of your plot. Some of the pre-defined themes allow you to change a few aspects, such as the font type and the base size of all the texts in the plot (labels, tick numbers, etc.). Here, we use the `theme_bw()`, increase the font size, and switch to a serif-type font. `theme_bw()`\index{theme\_bw()} is one of the complete themes that ships with the basic `ggplot2`\index{ggplot2 Package} installation.^[See the ggplot2 documentation (https://ggplot2.tidyverse.org/reference/ggtheme.html) for a list of all pre-defined themes shipped with the basic installation.] Many more themes can be found in additional R packages (see, for example, the [`ggthemes` package](https://cran.r-project.org/web/packages/ggthemes/index.html)).
 
 ```{r message=FALSE, warning=FALSE, out.width="75%", fig.align='center'}
 modelplot <- ggplot(data= taxi[Payment_Type == "credit" 
@@ -436,7 +436,7 @@ summary(nyc_map)
 
 Note that the coordinates are not in the usual longitude and latitude units. The original map uses a different projection than the TLC data of taxi trip records. Before plotting, we thus have to change the projection to be in line with the TLC data.
 
-```{r, tidy=TRUE, tidy.opts=list(arrow=TRUE, width.cutoff=60)}
+```{r, warning=FALSE, tidy=TRUE, tidy.opts=list(arrow=TRUE, width.cutoff=60)}
 # transform the projection
 p <- CRS("+proj=longlat +datum=WGS84 +no_defs +ellps=WGS84 +towgs84=0,0,0")
 nyc_map <- 
@@ -641,9 +641,9 @@ taxiplot +
 ## Wrapping up
 
  - *`ggplot`* offers a unified approach to generating a variety of plots common in the Big Data context: heatmaps, GIS-like maps, density plots, 2D-bin plots, etc.
- - Building on the concept of the *Grammar of Graphics*\index{Grammar of Graphics} [@wilkinson2005grammar], `ggplot2`\index{ggplot2 package} follows the paradigm of creating plots layer-by-layer, which offers great flexibility regarding the visualization of complex (big) data.
- - Standard plotting facilities in R (including in `ggplot`) are based on the concept of vector images\index{Vector-based graphics} (where each dot, line, and area is defined as in a coordinate system). While vector images have the advantage of flexible scaling (no reliance on a specific resolution), when plotting many observations, the computational load to generate and store/hold such graphics in memory can be substantial. 
- - Plotting of large amounts of data can be made more efficient by relying on less complex shapes (e.g., for dots in a scatter-plot) or through *rasterization*\index{Rasterization} and conversion of the plot into a *bitmap-image (a raster-based image)*\index{Bitmap graphic (raster-based image)}. In contrast to vector images, raster images are created with a specific resolution that defines the size of a matrix of pixels that constitutes the image. If plotting a scatter-plot based on many observations, this data structure is much more memory-efficient than defining each dot in a vector image. 
+ - Building on the concept of the *Grammar of Graphics*\index{Grammar of Graphics} [@wilkinson2005grammar], `ggplot2`\index{ggplot2 Package} follows the paradigm of creating plots layer-by-layer, which offers great flexibility regarding the visualization of complex (big) data.
+ - Standard plotting facilities in R (including in `ggplot`) are based on the concept of vector images\index{Vector-Based Graphics} (where each dot, line, and area is defined as in a coordinate system). While vector images have the advantage of flexible scaling (no reliance on a specific resolution), when plotting many observations, the computational load to generate and store/hold such graphics in memory can be substantial. 
+ - Plotting of large amounts of data can be made more efficient by relying on less complex shapes (e.g., for dots in a scatter-plot) or through *rasterization*\index{Rasterization} and conversion of the plot into a *bitmap-image (a raster-based image)*\index{Bitmap Graphic (Raster-Based Image)}. In contrast to vector images, raster images are created with a specific resolution that defines the size of a matrix of pixels that constitutes the image. If plotting a scatter-plot based on many observations, this data structure is much more memory-efficient than defining each dot in a vector image. 
  - Specific types of plots, such as hex-bin plots and other 2D-bin plots, facilitate plotting large amounts of data independent of the type of image (vector or raster). Moreover, they can be useful to show/highlight specific patterns in large amounts of data that could not be seen in standard scatter plots.
  
 ```{r echo=FALSE, warning=FALSE, message=FALSE, eval=FALSE}

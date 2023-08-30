@@ -2,23 +2,23 @@
 
 
 ## Data aggregation: The 'split-apply-combine' strategy
-\index{split-apply-combine}
+\index{Split-Apply-Combine}
 
-The 'split-apply-combine'\index{split-apply-combine} strategy plays an important role in many data analysis tasks, ranging from data preparation to summary statistics and model-fitting.^[Moreover, 'split-apply-combine' is closely related to a core strategy of Big Data Analytics with distributed systems\index{Distributed system} (MapReduce).] The strategy can be defined as "break up a problem into manageable pieces, operate on each piece independently, and then put all the pieces back together." [@wickham_2011, p. 1]
+The 'split-apply-combine'\index{Split-Apply-Combine} strategy plays an important role in many data analysis tasks, ranging from data preparation to summary statistics and model-fitting.^[Moreover, 'split-apply-combine' is closely related to a core strategy of Big Data Analytics with distributed systems\index{Distributed System} (MapReduce).] The strategy can be defined as "break up a problem into manageable pieces, operate on each piece independently, and then put all the pieces back together." [@wickham_2011, p. 1]
 
-Many R users are familiar with the basic concept of split-apply-combine implemented in the `plyr` package\index{plyr package} intended for normal in-memory operations (dataset fits into RAM). Here, we explore the options for split-apply-combine approaches to large datasets that do not fit into RAM. 
+Many R users are familiar with the basic concept of split-apply-combine implemented in the `plyr` package\index{plyr Package} intended for normal in-memory operations (dataset fits into RAM). Here, we explore the options for split-apply-combine approaches to large datasets that do not fit into RAM. 
 
 
 
 ## Data aggregation with chunked data files
-\index{ff package}
-In this tutorial we explore the world of New York's famous Yellow Cabs. In in a first step, we will focus on the `ff`-based approach to employ parts of the hard disk as 'virtual memory'. This means, all of the examples are easily scalable without risking too much memory pressure. Given the size of the entire TLC database (over 200GB), we will only use one million taxi trip records.^[Note that the code examples below could also be run based on the entire TLC database (provided that there is enough hard-disk space available). But, creating the `ff` chunked file structure for a 200GB CSV\index{CSV (Comma Separated Values)} would take hours or even days.]
+\index{ff Package}
+In this tutorial we explore the world of New York's famous Yellow Cabs. In a first step, we will focus on the `ff`-based approach to employ parts of the hard disk as 'virtual memory'. This means, that all of the examples are easily scalable without risking too much memory pressure. Given the size of the entire TLC database (over 200GB), we will only use one million taxi trip records.^[Note that the code examples below could also be run based on the entire TLC database (provided that there is enough hard-disk space available). But, creating the `ff` chunked file structure for a 200GB CSV\index{CSV (Comma Separated Values)} would take hours or even days.]
 
 
 
 **Data import**
 
-First, we read the raw taxi trip records into R with the `ff` package\index{ff package}.
+First, we read the raw taxi trip records into R with the `ff` package\index{ff Package}.
 
 ```{r message=FALSE}
 # load packages
@@ -65,9 +65,9 @@ levels(taxi$Payment_Type)
 
 **Aggregation with split-apply-combine**
 
-First, we will have a look at whether trips paid with credit card tend to involve lower tip amounts than trips paid by cash. In order to do so, we create a table that shows the average amount of tip paid for each payment-type category. 
+First, we will have a look at whether trips paid with credit card tend to involve lower tip amounts than trips paid in cash. In order to do so, we create a table that shows the average amount of tip paid for each payment-type category. 
 
-In simple words, this means we first split the dataset into subsets, each of which contains all observations belonging to a distinct payment type. Then, we compute the arithmetic mean of the tip-column of each of these subsets. Finally, we combine all of these results into one table (i.e., the split-apply-combine strategy). When working with `ff`, the `ffdfply()`\index{ffdply()} function in combination with the `doBy` package\index{doBy package} [@doBy] provides a user-friendly implementation of split-apply-combine\index{split-apply-combine} types of tasks. 
+In simple words, this means we first split the dataset into subsets, each of which contains all observations belonging to a distinct payment type. Then, we compute the arithmetic mean of the tip-column of each of these subsets. Finally, we combine all of these results into one table (i.e., the split-apply-combine strategy). When working with `ff`, the `ffdfply()`\index{ffdply()} function in combination with the `doBy` package\index{doBy Package} [@doBy] provides a user-friendly implementation of split-apply-combine\index{Split-Apply-Combine} types of tasks. 
 
 ```{r ffdfdply, linewidth=40, message=FALSE, warning=FALSE}
 
@@ -91,7 +91,7 @@ Note how the output describes the procedure step by step. Now we can have a look
 as.data.frame(tip_pcategory)
 ```
 
-The result contradicts against our initial hypothesis. However, the comparison is a little flawed. If trips paid by credit card also tend to be longer, the result is not too surprising. We should thus look at the share of tip (or percentage), given the overall amount paid for the trip.
+The result contradicts our initial hypothesis. However, the comparison is a little flawed. If trips paid by credit card also tend to be longer, the result is not too surprising. We should thus look at the share of tip (or percentage), given the overall amount paid for the trip.
 
 We add an additional variable `percent_tip` and then repeat the aggregation exercise for this variable.
 
@@ -115,15 +115,15 @@ as.data.frame(tip_pcategory)
 
 
 **Cross-tabulation of `ff` vectors**
-\index{Cross-tabulation}
+\index{Cross-Tabulation}
 
-Also in relative terms, trips paid by credit card tend to be tipped more. However, are there actually many trips paid by credit card? In order to figure this out, we count the number of trips per payment type by applying the `table.ff`\index{table.ff()} function provided in `ffbase`\index{ffbase package}. 
+Also in relative terms, trips paid by credit card tend to be tipped more. However, are there actually many trips paid by credit card? In order to figure this out, we count the number of trips per payment type by applying the `table.ff`\index{table.ff()} function provided in `ffbase`\index{ffbase Package}. 
 
 ```{r}
 table.ff(taxi$Payment_Type)
 ```
 
-So trips paid in cash are way more frequent than trips paid by credit card. Again using the `table.ff`\index{table.ff()} function, we investigate what factors might be correlated with payment types. First, we have a look at whether payment type is associated with the number of passengers in a trip.
+So trips paid in cash are much more frequent than trips paid by credit card. Again using the `table.ff`\index{table.ff()} function, we investigate what factors might be correlated with payment types. First, we have a look at whether payment type is associated with the number of passengers in a trip.
 
 ```{r}
 # select the subset of observations only containing trips paid by
@@ -143,7 +143,7 @@ names(dimnames(crosstab)) <- c("Passenger count", "Payment type")
 crosstab
 ```
 
-From the raw numbers it is hard to see whether there are significant differences between the categories cash and credit. We therefore use a visualization technique called a 'mosaic plot' (provided in the `vcd` package\index{vcd package}; see @vcd, @strucplot, and @shading) to visualize the cross-tabulation.
+From the raw numbers it is hard to see whether there are significant differences between the categories cash and credit. We therefore use a visualization technique called a 'mosaic plot' (provided in the `vcd` package\index{vcd Package}; see @vcd, @strucplot, and @shading) to visualize the cross-tabulation.
 
 ```{r warning=FALSE, message=FALSE, out.width="75%", fig.align='center'}
 # install.packages(vcd)
@@ -160,9 +160,9 @@ The plot suggests that trips involving more than one passenger tend to be paid b
 
 
 ## High-speed in-memory data aggregation with `arrow`
-\index{arrow package}
+\index{arrow Package}
 
-For large datasets that (at least in part) fit into RAM, the `arrow` package\index{arrow package} again provides an attractive alternative to `ff`.
+For large datasets that (at least in part) fit into RAM, the `arrow` package\index{arrow Package} again provides an attractive alternative to `ff`.
 
 **Data import**
 
@@ -183,7 +183,7 @@ __Data preparation and 'split-apply-combine'__
 
 We prepare/clean the data as in the `ff`-approach above. 
 
-As `arrow`\index{arrow package} builds on a `dplyr`\index{dplyr package} backend, basic computations can be easily done through the common `dplyr` syntax. Note, however, that not all of the `dplyr` functions are covered in `arrow`\index{arrow package} (as of the writing of this book).^[If a `dplyr`-like function is not implemented in `arrow`, the `arrow`\index{arrow package} data object is automatically pulled into R (meaning fully into RAM) and then processed there directly via native `dplyr`\index{dplyr package}. Such a situation might crash your R session due to a lack of RAM\index{Random Access Memory (RAM)}.]
+As `arrow`\index{arrow Package} builds on a `dplyr`\index{dplyr Package} back-end, basic computations can be easily done through the common `dplyr` syntax. Note, however, that not all of the `dplyr` functions are covered in `arrow`\index{arrow Package} (as of the writing of this book).^[If a `dplyr`-like function is not implemented in `arrow`, the `arrow`\index{arrow Package} data object is automatically pulled into R (meaning fully into RAM) and then processed there directly via native `dplyr`\index{dplyr Package}. Such a situation might crash your R session due to a lack of RAM\index{Random Access Memory (RAM)}.]
 
 
 ```{r}
@@ -231,9 +231,9 @@ pivot_wider(data=ct,
 
 ## High-speed in-memory data aggregation with `data.table`
 
-\index{data.table package}
+\index{data.table Package}
 
-For large datasets that still fit into RAM, the `data.table` package\index{data.table package} [@data.table] provides very fast and elegant functions to compute aggregate statistics.
+For large datasets that still fit into RAM, the `data.table` package\index{data.table Package} [@data.table] provides very fast and elegant functions to compute aggregate statistics.
 
 __Data import__
 
@@ -301,8 +301,8 @@ system("rm -r fftaxi")
 
 ## Wrapping up
 
- - Similar to the MapReduce idea in the context of distributed systems, the *split-apply-combine*\index{split-apply-combine} approach is key in many Big Data aggregation procedures on normal machines (laptop/desktop computers). The idea is to split the overall data into subsets based on a categorical variable, apply a function (e.g., mean) on each sub-set, and then combine the results into one object. Thus, the approach allows for parallelization\index{Parallelization} and working on separate data chunks.
- - As computing descriptive statistics on various subsets of a large dataset can be very memory-intensive, it is recommended to use out-of-memory strategies\index{Out-of-memory strategy}, lazy evaluation\index{Lazy evaluation}, or a classical SQL-database approach for this. 
+ - Similar to the MapReduce idea in the context of distributed systems, the *split-apply-combine*\index{Split-Apply-Combine} approach is key in many Big Data aggregation procedures on normal machines (laptop/desktop computers). The idea is to split the overall data into subsets based on a categorical variable, apply a function (e.g., mean) on each subset, and then combine the results into one object. Thus, the approach allows for parallelization\index{Parallelization} and working on separate data chunks.
+ - As computing descriptive statistics on various subsets of a large dataset can be very memory-intensive, it is recommended to use out-of-memory strategies\index{Out-Of-Memory Strategy}, lazy evaluation\index{Lazy Evaluation}, or a classical SQL-database approach for this. 
  - There are several options available such as `ffdply`\index{ffdply()}, running on chunked datasets; and `arrow` with `group_by()`\index{group\_by()}.
  
 
