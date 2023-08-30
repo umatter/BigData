@@ -1,0 +1,1201 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 4 Software: Programming with (Big) Data | Big Data Analytics</title>
+  <meta name="description" content="Chapter 4 Software: Programming with (Big) Data | Big Data Analytics" />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 4 Software: Programming with (Big) Data | Big Data Analytics" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://umatter.github.io/BigData/img/cover_print.jpg" />
+  
+  <meta name="github-repo" content="umatter/BigData" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 4 Software: Programming with (Big) Data | Big Data Analytics" />
+  
+  
+  <meta name="twitter:image" content="https://umatter.github.io/BigData/img/cover_print.jpg" />
+
+<meta name="author" content="Ulrich Matter" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="p.html"/>
+<link rel="next" href="hardware-computing-resources.html"/>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style/style_new.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Big Data Analytics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="c.html"><a href="c.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="c.html"><a href="c.html#background-and-goals-of-this-book"><i class="fa fa-check"></i>Background and goals of this book</a></li>
+<li class="chapter" data-level="" data-path="c.html"><a href="c.html#a-moving-target"><i class="fa fa-check"></i>A moving target</a></li>
+<li class="chapter" data-level="" data-path="c.html"><a href="c.html#content-and-organization-of-the-book"><i class="fa fa-check"></i>Content and organization of the book</a></li>
+<li class="chapter" data-level="" data-path="c.html"><a href="c.html#prerequisites-and-requirements"><i class="fa fa-check"></i>Prerequisites and requirements</a></li>
+<li class="chapter" data-level="" data-path="c.html"><a href="c.html#supplementary-materials-code-examples-datasets-and-documentation"><i class="fa fa-check"></i>Supplementary Materials: Code Examples, Datasets, and Documentation</a></li>
+<li class="chapter" data-level="" data-path="c.html"><a href="c.html#thanks"><i class="fa fa-check"></i>Thanks</a></li>
+</ul></li>
+<li class="part"><span><b>I Setting the Scene: Analyzing Big Data</b></span></li>
+<li class="chapter" data-level="" data-path="s.html"><a href="s.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1" data-path="what-is-big-in-big-data.html"><a href="what-is-big-in-big-data.html"><i class="fa fa-check"></i><b>1</b> What is <em>Big</em> in “Big Data”?</a></li>
+<li class="chapter" data-level="2" data-path="approaches-to-analyzing-big-data.html"><a href="approaches-to-analyzing-big-data.html"><i class="fa fa-check"></i><b>2</b> Approaches to Analyzing Big Data</a></li>
+<li class="chapter" data-level="3" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html"><i class="fa fa-check"></i><b>3</b> The Two Domains of Big Data Analytics</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#a-practical-big-p-problem"><i class="fa fa-check"></i><b>3.1</b> A practical <em>big P</em> problem </a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#simple-logistic-regression-naive-approach"><i class="fa fa-check"></i><b>3.1.1</b> Simple logistic regression (naive approach)</a></li>
+<li class="chapter" data-level="3.1.2" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#regularization-the-lasso-estimator"><i class="fa fa-check"></i><b>3.1.2</b> Regularization: the lasso estimator</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#a-practical-big-n-problem"><i class="fa fa-check"></i><b>3.2</b> A practical <em>big N</em> problem </a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#ols-as-a-point-of-reference"><i class="fa fa-check"></i><b>3.2.1</b> OLS as a point of reference </a></li>
+<li class="chapter" data-level="3.2.2" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#the-uluru-algorithm-as-an-alternative-to-ols"><i class="fa fa-check"></i><b>3.2.2</b> The <em>Uluru</em> algorithm as an alternative to OLS </a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Platform: Software and Computing Resources</b></span></li>
+<li class="chapter" data-level="" data-path="p.html"><a href="p.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="4" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html"><i class="fa fa-check"></i><b>4</b> Software: Programming with (Big) Data</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#domains-of-programming-with-big-data"><i class="fa fa-check"></i><b>4.1</b> Domains of programming with (big) data</a></li>
+<li class="chapter" data-level="4.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#measuring-r-performance"><i class="fa fa-check"></i><b>4.2</b> Measuring R performance</a></li>
+<li class="chapter" data-level="4.3" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#writing-efficient-r-code"><i class="fa fa-check"></i><b>4.3</b> Writing efficient R code</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#memory-allocation-and-growing-objects"><i class="fa fa-check"></i><b>4.3.1</b> Memory allocation and growing objects</a></li>
+<li class="chapter" data-level="4.3.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#vectorization-in-basic-r-functions"><i class="fa fa-check"></i><b>4.3.2</b> Vectorization in basic R functions</a></li>
+<li class="chapter" data-level="4.3.3" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#apply-type-functions-and-vectorization"><i class="fa fa-check"></i><b>4.3.3</b> <code>apply</code>-type functions and vectorization</a></li>
+<li class="chapter" data-level="4.3.4" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#avoiding-unnecessary-copying"><i class="fa fa-check"></i><b>4.3.4</b> Avoiding unnecessary copying</a></li>
+<li class="chapter" data-level="4.3.5" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#releasing-memory"><i class="fa fa-check"></i><b>4.3.5</b> Releasing memory</a></li>
+<li class="chapter" data-level="4.3.6" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#beyond-r"><i class="fa fa-check"></i><b>4.3.6</b> Beyond R</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#sql-basics"><i class="fa fa-check"></i><b>4.4</b> SQL basics</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#first-steps-in-sqlite"><i class="fa fa-check"></i><b>4.4.1</b> First steps in SQL(ite)</a></li>
+<li class="chapter" data-level="4.4.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#joins"><i class="fa fa-check"></i><b>4.4.2</b> Joins</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#with-a-little-help-from-my-friends-gpt-and-rsql-coding"><i class="fa fa-check"></i><b>4.5</b> With a little help from my friends: GPT and R/SQL coding</a></li>
+<li class="chapter" data-level="4.6" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#wrapping-up"><i class="fa fa-check"></i><b>4.6</b> Wrapping up</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html"><i class="fa fa-check"></i><b>5</b> Hardware: Computing Resources</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#mass-storage"><i class="fa fa-check"></i><b>5.1</b> Mass storage</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#avoiding-redundancies"><i class="fa fa-check"></i><b>5.1.1</b> Avoiding redundancies</a></li>
+<li class="chapter" data-level="5.1.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#data-compression"><i class="fa fa-check"></i><b>5.1.2</b> Data compression</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#random-access-memory-ram"><i class="fa fa-check"></i><b>5.2</b> Random access memory (RAM)</a></li>
+<li class="chapter" data-level="5.3" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#combining-ram-and-hard-disk-virtual-memory"><i class="fa fa-check"></i><b>5.3</b> Combining RAM and hard disk: Virtual memory</a></li>
+<li class="chapter" data-level="5.4" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#cpu-and-parallelization"><i class="fa fa-check"></i><b>5.4</b> CPU and parallelization</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#naive-multi-session-approach"><i class="fa fa-check"></i><b>5.4.1</b> Naive multi-session approach</a></li>
+<li class="chapter" data-level="5.4.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#multi-session-approach-with-futures"><i class="fa fa-check"></i><b>5.4.2</b> Multi-session approach with futures</a></li>
+<li class="chapter" data-level="5.4.3" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#multi-core-and-multi-node-approach"><i class="fa fa-check"></i><b>5.4.3</b> Multi-core and multi-node approach</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#gpus-for-scientific-computing"><i class="fa fa-check"></i><b>5.5</b> GPUs for scientific computing</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#gpus-in-r"><i class="fa fa-check"></i><b>5.5.1</b> GPUs in R</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#the-road-ahead-hardware-made-for-machine-learning"><i class="fa fa-check"></i><b>5.6</b> The road ahead: Hardware made for machine learning</a></li>
+<li class="chapter" data-level="5.7" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#wrapping-up-1"><i class="fa fa-check"></i><b>5.7</b> Wrapping up</a></li>
+<li class="chapter" data-level="5.8" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#still-have-insufficient-computing-resources"><i class="fa fa-check"></i><b>5.8</b> Still have insufficient computing resources?</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="distributed-systems.html"><a href="distributed-systems.html"><i class="fa fa-check"></i><b>6</b> Distributed Systems</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="distributed-systems.html"><a href="distributed-systems.html#mapreduce"><i class="fa fa-check"></i><b>6.1</b> MapReduce</a></li>
+<li class="chapter" data-level="6.2" data-path="distributed-systems.html"><a href="distributed-systems.html#apache-hadoop"><i class="fa fa-check"></i><b>6.2</b> Apache Hadoop</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="distributed-systems.html"><a href="distributed-systems.html#hadoop-word-count-example"><i class="fa fa-check"></i><b>6.2.1</b> Hadoop word count example</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="distributed-systems.html"><a href="distributed-systems.html#apache-spark"><i class="fa fa-check"></i><b>6.3</b> Apache Spark</a></li>
+<li class="chapter" data-level="6.4" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-r"><i class="fa fa-check"></i><b>6.4</b> Spark with R</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="distributed-systems.html"><a href="distributed-systems.html#data-import-and-summary-statistics"><i class="fa fa-check"></i><b>6.4.1</b> Data import and summary statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-sql"><i class="fa fa-check"></i><b>6.5</b> Spark with SQL</a></li>
+<li class="chapter" data-level="6.6" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-r-sql"><i class="fa fa-check"></i><b>6.6</b> Spark with R + SQL</a></li>
+<li class="chapter" data-level="6.7" data-path="distributed-systems.html"><a href="distributed-systems.html#wrapping-up-2"><i class="fa fa-check"></i><b>6.7</b> Wrapping up</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="cloud-computing.html"><a href="cloud-computing.html"><i class="fa fa-check"></i><b>7</b> Cloud Computing</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="cloud-computing.html"><a href="cloud-computing.html#cloud-computing-basics-and-platforms"><i class="fa fa-check"></i><b>7.1</b> Cloud computing basics and platforms</a></li>
+<li class="chapter" data-level="7.2" data-path="cloud-computing.html"><a href="cloud-computing.html#transitioning-to-the-cloud"><i class="fa fa-check"></i><b>7.2</b> Transitioning to the cloud</a></li>
+<li class="chapter" data-level="7.3" data-path="cloud-computing.html"><a href="cloud-computing.html#scaling-up-in-the-cloud-virtual-servers"><i class="fa fa-check"></i><b>7.3</b> Scaling up in the cloud: Virtual servers</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="cloud-computing.html"><a href="cloud-computing.html#parallelization-with-an-ec2-instance"><i class="fa fa-check"></i><b>7.3.1</b> Parallelization with an EC2 instance</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="cloud-computing.html"><a href="cloud-computing.html#scaling-up-with-gpus"><i class="fa fa-check"></i><b>7.4</b> Scaling up with GPUs</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="cloud-computing.html"><a href="cloud-computing.html#gpus-on-google-colab"><i class="fa fa-check"></i><b>7.4.1</b> GPUs on Google Colab</a></li>
+<li class="chapter" data-level="7.4.2" data-path="cloud-computing.html"><a href="cloud-computing.html#rstudio-and-ec2-with-gpus-on-aws"><i class="fa fa-check"></i><b>7.4.2</b> RStudio and EC2 with GPUs on AWS</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="cloud-computing.html"><a href="cloud-computing.html#scaling-out-mapreduce-in-the-cloud"><i class="fa fa-check"></i><b>7.5</b> Scaling out: MapReduce in the cloud</a></li>
+<li class="chapter" data-level="7.6" data-path="cloud-computing.html"><a href="cloud-computing.html#wrapping-up-3"><i class="fa fa-check"></i><b>7.6</b> Wrapping up</a></li>
+</ul></li>
+<li class="part"><span><b>III Components of Big Data Analytics</b></span></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="8" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html"><i class="fa fa-check"></i><b>8</b> Data Collection and Data Storage</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#gathering-and-compilation-of-raw-data"><i class="fa fa-check"></i><b>8.1</b> Gathering and compilation of raw data</a></li>
+<li class="chapter" data-level="8.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#stackcombine-raw-source-files"><i class="fa fa-check"></i><b>8.2</b> Stack/combine raw source files</a></li>
+<li class="chapter" data-level="8.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#efficient-local-data-storage"><i class="fa fa-check"></i><b>8.3</b> Efficient local data storage</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#rdbms-basics"><i class="fa fa-check"></i><b>8.3.1</b> RDBMS basics</a></li>
+<li class="chapter" data-level="8.3.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#efficient-data-access-indices-and-joins-in-sqlite"><i class="fa fa-check"></i><b>8.3.2</b> Efficient data access: Indices and joins in SQLite</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#connecting-r-to-an-rdbms"><i class="fa fa-check"></i><b>8.4</b> Connecting R to an RDBMS</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#creating-a-new-database-with-rsqlite"><i class="fa fa-check"></i><b>8.4.1</b> Creating a new database with <code>RSQLite</code></a></li>
+<li class="chapter" data-level="8.4.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#importing-data"><i class="fa fa-check"></i><b>8.4.2</b> Importing data</a></li>
+<li class="chapter" data-level="8.4.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#issuing-queries"><i class="fa fa-check"></i><b>8.4.3</b> Issuing queries</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#cloud-solutions-for-big-data-storage"><i class="fa fa-check"></i><b>8.5</b> Cloud solutions for (big) data storage</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#easy-to-use-rdbms-in-the-cloud-aws-rds"><i class="fa fa-check"></i><b>8.5.1</b> Easy-to-use RDBMS in the cloud: AWS RDS</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#column-based-analytics-databases"><i class="fa fa-check"></i><b>8.6</b> Column-based analytics databases</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#installation-and-start-up"><i class="fa fa-check"></i><b>8.6.1</b> Installation and start up</a></li>
+<li class="chapter" data-level="8.6.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#first-steps-via-druids-gui"><i class="fa fa-check"></i><b>8.6.2</b> First steps via Druid’s GUI</a></li>
+<li class="chapter" data-level="8.6.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#query-druid-from-r"><i class="fa fa-check"></i><b>8.6.3</b> Query Druid from R</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#data-warehouses"><i class="fa fa-check"></i><b>8.7</b> Data warehouses</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#data-warehouse-for-analytics-google-bigquery-example"><i class="fa fa-check"></i><b>8.7.1</b> Data warehouse for analytics: Google BigQuery example</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#data-lakes-and-simple-storage-service"><i class="fa fa-check"></i><b>8.8</b> Data lakes and simple storage service</a>
+<ul>
+<li class="chapter" data-level="8.8.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#aws-s3-with-r-first-steps"><i class="fa fa-check"></i><b>8.8.1</b> AWS S3 with R: First steps</a></li>
+<li class="chapter" data-level="8.8.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#uploading-data-to-s3"><i class="fa fa-check"></i><b>8.8.2</b> Uploading data to S3</a></li>
+<li class="chapter" data-level="8.8.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#more-than-just-simple-storage-s3-amazon-athena"><i class="fa fa-check"></i><b>8.8.3</b> More than just simple storage: S3 + Amazon Athena</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#wrapping-up-4"><i class="fa fa-check"></i><b>8.9</b> Wrapping up</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html"><i class="fa fa-check"></i><b>9</b> Big Data Cleaning and Transformation</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#out-of-memory-strategies-and-lazy-evaluation-practical-basics"><i class="fa fa-check"></i><b>9.1</b> Out-of-memory strategies and lazy evaluation: Practical basics</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#chunking-data-with-the-ff-package"><i class="fa fa-check"></i><b>9.1.1</b> Chunking data with the <code>ff</code> package</a></li>
+<li class="chapter" data-level="9.1.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#memory-mapping-with-bigmemory"><i class="fa fa-check"></i><b>9.1.2</b> Memory mapping with <code>bigmemory</code></a></li>
+<li class="chapter" data-level="9.1.3" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#connecting-to-apache-arrow"><i class="fa fa-check"></i><b>9.1.3</b> Connecting to Apache Arrow</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#big-data-preparation-tutorial-with-ff"><i class="fa fa-check"></i><b>9.2</b> Big Data preparation tutorial with <code>ff</code></a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#set-up"><i class="fa fa-check"></i><b>9.2.1</b> Set up</a></li>
+<li class="chapter" data-level="9.2.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#data-import"><i class="fa fa-check"></i><b>9.2.2</b> Data import</a></li>
+<li class="chapter" data-level="9.2.3" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#inspect-imported-files"><i class="fa fa-check"></i><b>9.2.3</b> Inspect imported files</a></li>
+<li class="chapter" data-level="9.2.4" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#data-cleaning-and-transformation"><i class="fa fa-check"></i><b>9.2.4</b> Data cleaning and transformation</a></li>
+<li class="chapter" data-level="9.2.5" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#inspect-difference-in-in-memory-operation"><i class="fa fa-check"></i><b>9.2.5</b> Inspect difference in in-memory operation</a></li>
+<li class="chapter" data-level="9.2.6" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#subsetting"><i class="fa fa-check"></i><b>9.2.6</b> Subsetting</a></li>
+<li class="chapter" data-level="9.2.7" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#saveloadexport-ff-files"><i class="fa fa-check"></i><b>9.2.7</b> Save/load/export <code>ff</code> files</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#big-data-preparation-tutorial-with-arrow"><i class="fa fa-check"></i><b>9.3</b> Big Data preparation tutorial with <code>arrow</code></a></li>
+<li class="chapter" data-level="9.4" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#wrapping-up-5"><i class="fa fa-check"></i><b>9.4</b> Wrapping up</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html"><i class="fa fa-check"></i><b>10</b> Descriptive Statistics and Aggregation</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-the-split-apply-combine-strategy"><i class="fa fa-check"></i><b>10.1</b> Data aggregation: The ‘split-apply-combine’ strategy</a></li>
+<li class="chapter" data-level="10.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-with-chunked-data-files"><i class="fa fa-check"></i><b>10.2</b> Data aggregation with chunked data files</a></li>
+<li class="chapter" data-level="10.3" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-arrow"><i class="fa fa-check"></i><b>10.3</b> High-speed in-memory data aggregation with <code>arrow</code></a></li>
+<li class="chapter" data-level="10.4" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>10.4</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
+<li class="chapter" data-level="10.5" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#wrapping-up-6"><i class="fa fa-check"></i><b>10.5</b> Wrapping up</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="big-data-visualization.html"><a href="big-data-visualization.html"><i class="fa fa-check"></i><b>11</b> (Big) Data Visualization</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#challenges-of-big-data-visualization"><i class="fa fa-check"></i><b>11.1</b> Challenges of Big Data visualization</a></li>
+<li class="chapter" data-level="11.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#data-exploration-with-ggplot2"><i class="fa fa-check"></i><b>11.2</b> Data exploration with <code>ggplot2</code></a></li>
+<li class="chapter" data-level="11.3" data-path="big-data-visualization.html"><a href="big-data-visualization.html#visualizing-time-and-space"><i class="fa fa-check"></i><b>11.3</b> Visualizing time and space</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#preparations"><i class="fa fa-check"></i><b>11.3.1</b> Preparations</a></li>
+<li class="chapter" data-level="11.3.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#pick-up-and-drop-off-locations"><i class="fa fa-check"></i><b>11.3.2</b> Pick-up and drop-off locations</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="big-data-visualization.html"><a href="big-data-visualization.html#wrapping-up-7"><i class="fa fa-check"></i><b>11.4</b> Wrapping up</a></li>
+</ul></li>
+<li class="part"><span><b>IV Application: Topics in Big Data Econometrics</b></span></li>
+<li class="chapter" data-level="" data-path="a.html"><a href="a.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="12" data-path="bottlenecks-in-everyday-data-analytics-tasks.html"><a href="bottlenecks-in-everyday-data-analytics-tasks.html"><i class="fa fa-check"></i><b>12</b> Bottlenecks in Everyday Data Analytics Tasks</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="bottlenecks-in-everyday-data-analytics-tasks.html"><a href="bottlenecks-in-everyday-data-analytics-tasks.html#case-study-efficient-fixed-effects-estimation"><i class="fa fa-check"></i><b>12.1</b> Case study: Efficient fixed effects estimation</a></li>
+<li class="chapter" data-level="12.2" data-path="bottlenecks-in-everyday-data-analytics-tasks.html"><a href="bottlenecks-in-everyday-data-analytics-tasks.html#case-study-loops-memory-and-vectorization"><i class="fa fa-check"></i><b>12.2</b> Case study: Loops, memory, and vectorization</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="bottlenecks-in-everyday-data-analytics-tasks.html"><a href="bottlenecks-in-everyday-data-analytics-tasks.html#naïve-approach-ignorant-of-r"><i class="fa fa-check"></i><b>12.2.1</b> Naïve approach (ignorant of R)</a></li>
+<li class="chapter" data-level="12.2.2" data-path="bottlenecks-in-everyday-data-analytics-tasks.html"><a href="bottlenecks-in-everyday-data-analytics-tasks.html#improvement-1-pre-allocation-of-memory"><i class="fa fa-check"></i><b>12.2.2</b> Improvement 1: Pre-allocation of memory</a></li>
+<li class="chapter" data-level="12.2.3" data-path="bottlenecks-in-everyday-data-analytics-tasks.html"><a href="bottlenecks-in-everyday-data-analytics-tasks.html#improvement-2-exploit-vectorization"><i class="fa fa-check"></i><b>12.2.3</b> Improvement 2: Exploit vectorization</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="bottlenecks-in-everyday-data-analytics-tasks.html"><a href="bottlenecks-in-everyday-data-analytics-tasks.html#case-study-bootstrapping-and-parallel-processing"><i class="fa fa-check"></i><b>12.3</b> Case study: Bootstrapping and parallel processing</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="bottlenecks-in-everyday-data-analytics-tasks.html"><a href="bottlenecks-in-everyday-data-analytics-tasks.html#parallelization-with-an-ec2-instance-1"><i class="fa fa-check"></i><b>12.3.1</b> Parallelization with an EC2 instance</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html"><i class="fa fa-check"></i><b>13</b> Econometrics with GPUs</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#ols-on-gpus"><i class="fa fa-check"></i><b>13.1</b> OLS on GPUs</a></li>
+<li class="chapter" data-level="13.2" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#a-word-of-caution"><i class="fa fa-check"></i><b>13.2</b> A word of caution</a></li>
+<li class="chapter" data-level="13.3" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#higher-level-interfaces-for-basic-econometrics-with-gpus"><i class="fa fa-check"></i><b>13.3</b> Higher-level interfaces for basic econometrics with GPUs</a></li>
+<li class="chapter" data-level="13.4" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#tensorflowkeras-example-predict-housing-prices"><i class="fa fa-check"></i><b>13.4</b> TensorFlow/Keras example: Predict housing prices</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#data-preparation"><i class="fa fa-check"></i><b>13.4.1</b> Data preparation</a></li>
+<li class="chapter" data-level="13.4.2" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#model-specification"><i class="fa fa-check"></i><b>13.4.2</b> Model specification</a></li>
+<li class="chapter" data-level="13.4.3" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#training-and-prediction"><i class="fa fa-check"></i><b>13.4.3</b> Training and prediction</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#wrapping-up-8"><i class="fa fa-check"></i><b>13.5</b> Wrapping up</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html"><i class="fa fa-check"></i><b>14</b> Regression Analysis and Categorization with Spark and R</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#simple-linear-regression-analysis"><i class="fa fa-check"></i><b>14.1</b> Simple linear regression analysis</a></li>
+<li class="chapter" data-level="14.2" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#machine-learning-for-classification"><i class="fa fa-check"></i><b>14.2</b> Machine learning for classification</a></li>
+<li class="chapter" data-level="14.3" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#building-machine-learning-pipelines-with-r-and-spark"><i class="fa fa-check"></i><b>14.3</b> Building machine learning pipelines with R and Spark</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#set-up-and-data-import"><i class="fa fa-check"></i><b>14.3.1</b> Set up and data import</a></li>
+<li class="chapter" data-level="14.3.2" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#building-the-pipeline"><i class="fa fa-check"></i><b>14.3.2</b> Building the pipeline</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#wrapping-up-9"><i class="fa fa-check"></i><b>14.4</b> Wrapping up</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html"><i class="fa fa-check"></i><b>15</b> Large-scale Text Analysis with sparklyr</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#getting-started-import-pre-processing-and-word-count"><i class="fa fa-check"></i><b>15.1</b> Getting started: Import, pre-processing, and word count</a></li>
+<li class="chapter" data-level="15.2" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#tutorial-political-slant"><i class="fa fa-check"></i><b>15.2</b> Tutorial: political slant</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#data-download-and-import"><i class="fa fa-check"></i><b>15.2.1</b> Data download and import</a></li>
+<li class="chapter" data-level="15.2.2" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#cleaning-speeches-data"><i class="fa fa-check"></i><b>15.2.2</b> Cleaning speeches data</a></li>
+<li class="chapter" data-level="15.2.3" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#create-a-bigrams-count-per-party"><i class="fa fa-check"></i><b>15.2.3</b> Create a bigrams count per party</a></li>
+<li class="chapter" data-level="15.2.4" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#find-partisan-phrases"><i class="fa fa-check"></i><b>15.2.4</b> Find “partisan” phrases</a></li>
+<li class="chapter" data-level="15.2.5" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#results-most-partisan-phrases-by-congress"><i class="fa fa-check"></i><b>15.2.5</b> Results: Most partisan phrases by congress</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#natural-language-processing-at-scale"><i class="fa fa-check"></i><b>15.3</b> Natural Language Processing at Scale</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#preparatory-steps"><i class="fa fa-check"></i><b>15.3.1</b> Preparatory steps</a></li>
+<li class="chapter" data-level="15.3.2" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#sentiment-annotation"><i class="fa fa-check"></i><b>15.3.2</b> Sentiment annotation</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#aggregation-and-visualization"><i class="fa fa-check"></i><b>15.4</b> Aggregation and visualization</a></li>
+<li class="chapter" data-level="15.5" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#sparklyr-and-lazy-evaluation"><i class="fa fa-check"></i><b>15.5</b> <code>sparklyr</code> and lazy evaluation</a></li>
+</ul></li>
+<li class="part"><span><b>V Appendices</b></span></li>
+<li class="chapter" data-level="" data-path="appendix-a-github.html"><a href="appendix-a-github.html"><i class="fa fa-check"></i>Appendix A: GitHub</a>
+<ul>
+<li class="chapter" data-level="" data-path="appendix-a-github.html"><a href="appendix-a-github.html#initiate-a-new-repository"><i class="fa fa-check"></i>Initiate a new repository</a></li>
+<li class="chapter" data-level="" data-path="appendix-a-github.html"><a href="appendix-a-github.html#clone-this-books-repository"><i class="fa fa-check"></i>Clone this book’s repository</a></li>
+<li class="chapter" data-level="" data-path="appendix-a-github.html"><a href="appendix-a-github.html#fork-this-books-repository"><i class="fa fa-check"></i>Fork this book’s repository</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix-b-r-basics.html"><a href="appendix-b-r-basics.html"><i class="fa fa-check"></i>Appendix B: R Basics</a>
+<ul>
+<li class="chapter" data-level="" data-path="appendix-b-r-basics.html"><a href="appendix-b-r-basics.html#data-types-and-memorystorage"><i class="fa fa-check"></i>Data types and memory/storage</a>
+<ul>
+<li class="chapter" data-level="" data-path="appendix-b-r-basics.html"><a href="appendix-b-r-basics.html#example-data-types-and-information-storage"><i class="fa fa-check"></i>Example: Data types and information storage</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix-b-r-basics.html"><a href="appendix-b-r-basics.html#data-structures"><i class="fa fa-check"></i>Data structures</a>
+<ul>
+<li class="chapter" data-level="" data-path="appendix-b-r-basics.html"><a href="appendix-b-r-basics.html#vectors-vs.-factors-in-r"><i class="fa fa-check"></i>Vectors vs. Factors in R</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-r-basics.html"><a href="appendix-b-r-basics.html#matricesarrays"><i class="fa fa-check"></i>Matrices/Arrays</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-r-basics.html"><a href="appendix-b-r-basics.html#data-frames-tibbles-and-data-tables"><i class="fa fa-check"></i>Data frames, tibbles, and data tables</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-r-basics.html"><a href="appendix-b-r-basics.html#lists"><i class="fa fa-check"></i>Lists</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix-b-r-basics.html"><a href="appendix-b-r-basics.html#r-tools-to-investigate-structures-and-types"><i class="fa fa-check"></i>R-tools to investigate structures and types</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix-c-install-hadoop.html"><a href="appendix-c-install-hadoop.html"><i class="fa fa-check"></i>Appendix C: Install Hadoop</a></li>
+<li class="part"><span><b>VI References and Index</b></span></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://umatter.github.io" target="blank">umatter.github.io</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Big Data Analytics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="software-programming-with-big-data" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapter 4</span> Software: Programming with (Big) Data<a href="software-programming-with-big-data.html#software-programming-with-big-data" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>The programming language and computing environment <em>R</em> <span class="citation">(<a href="#ref-rfoundation2021" role="doc-biblioref">R Core Team 2021</a>)</span> is particularly made for writing code in a data analytics context. However, the language was developed at a time when data analytics was primarily focused on moderately sized datasets that can easily be loaded/imported and worked with on a common PC. Depending on the field or industry you work in, this is not the case anymore. In this chapter, we will explore some of R’s (potential) weaknesses as well as learn how to avoid them and how to exploit some of R’s strengths when it comes to working with large datasets. The first part of this chapter is primarily focused on understanding code profiling and improving code with the aim of making computationally intensive data analytics scripts in R run faster. This chapter presupposes basic knowledge of R data structures and data types as well as experience with basic programming concepts such as loops.<a href="#fn10" class="footnote-ref" id="fnref10"><sup>10</sup></a> While very useful in writing analytics scripts, we will not look into topics like coding workflows, version control, and code sharing (e.g., by means of Git and GitHub<a href="#fn11" class="footnote-ref" id="fnref11"><sup>11</sup></a>). The assumption is that you bring some experience in writing analytics scripts already.</p>
+<p>While R is a very useful tool for many aspects of Big Data Analytics that we will cover in the following chapters, R alone is not enough for a basic Big Data Analytics toolbox. The second part of this chapter introduces the reader to the <em>Structured Query Language (SQL)</em>, a programming language designed for managing data in relational databases. Although the type of databases where SQL is traditionally encountered would not necessarily be considered part of Big Data Analytics today, some versions of SQL are now used with systems particularly designed for Big Data Analytics (such as Amazon Athena and Google BigQuery). Hence, with a good knowledge of R in combination with basic SQL skills, you will be able to productively engage with a large array of practical Big Data Analytics problems.</p>
+<div id="domains-of-programming-with-big-data" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Domains of programming with (big) data<a href="software-programming-with-big-data.html#domains-of-programming-with-big-data" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Programming tasks in the context of data analytics typically fall into one of the following broad categories:</p>
+<ul>
+<li>Procedures to import/export data.</li>
+<li>Procedures to clean and filter data.</li>
+<li>Implementing functions for statistical analysis.</li>
+</ul>
+<p>When writing a program to process large amounts of data in any of these areas, it is helpful to take into consideration the following design choices:</p>
+<ol style="list-style-type: decimal">
+<li>Which basic (already implemented) R functions are more or less suitable as building blocks for the program?<a href="#fn12" class="footnote-ref" id="fnref12"><sup>12</sup></a></li>
+<li>How can we exploit/avoid some of R’s lower-level characteristics in order to write more efficient code?</li>
+<li>Is there a need to interface with a lower-level programming language in order to speed up the code? (advanced topic)</li>
+</ol>
+<p>Finally, there is an additional important point to be made regarding the writing of code for <em>statistical analysis</em>: Independent of <em>how</em> we write a statistical procedure in R (or in any other language, for that matter), keep in mind that there might be an <em>alternative statistical procedure/algorithm</em> that is faster but delivers approximately the same result (as long as we use a sufficiently large sample).</p>
+</div>
+<div id="measuring-r-performance" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Measuring R performance<a href="software-programming-with-big-data.html#measuring-r-performance" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When writing a data analysis script in R to process large amounts of data, it generally makes sense to first test each crucial part of the script with a small sub-sample. In order to quickly recognize potential bottlenecks, there are a couple of R packages that help you keep track of exactly how long each component of your script needs to process as well as how much memory it uses. The table below lists some of the packages and functions that you should keep in mind when <em>“profiling”</em> and testing your code.</p>
+<table>
+<colgroup>
+<col width="17%" />
+<col width="25%" />
+<col width="56%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>package</th>
+<th>function</th>
+<th>purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>utils</code></td>
+<td><code>object.size()</code></td>
+<td>Provides an estimate of the memory that is being used to store an R object.</td>
+</tr>
+<tr class="even">
+<td><code>pryr</code></td>
+<td><code>object_size()</code></td>
+<td>Works similarly to <code>object.size()</code>, but counts more accurately and includes the size of environments.</td>
+</tr>
+<tr class="odd">
+<td><code>pryr</code></td>
+<td><code>mem_used()</code></td>
+<td>Returns the total amount of memory (in megabytes) currently used by R.</td>
+</tr>
+<tr class="even">
+<td><code>pryr</code></td>
+<td><code>mem_change()</code></td>
+<td>Shows the change in memory (in megabytes) before and after running code.</td>
+</tr>
+<tr class="odd">
+<td><code>base</code></td>
+<td><code>system.time()</code></td>
+<td>Returns CPU (and other) times that an R expression used.</td>
+</tr>
+<tr class="even">
+<td><code>microbenchmark</code></td>
+<td><code>microbenchmark()</code></td>
+<td>Highly accurate timing of R expression evaluation.</td>
+</tr>
+<tr class="odd">
+<td><code>bench</code></td>
+<td><code>mark()</code></td>
+<td>Benchmark a series of functions.</td>
+</tr>
+<tr class="even">
+<td><code>profvis</code></td>
+<td><code>profvis()</code></td>
+<td>Profiles an R expression and visualizes the profiling data (usage of memory, time elapsed, etc.).</td>
+</tr>
+</tbody>
+</table>
+<p>Most of these functions are used in an interactive way in the R console. They serve either of two purposes that are central to profiling and improving your code’s performance. First, in order to assess the performance of your R code you probably want to know how long it takes to run your entire script or a specific part of your script. The <code>system.time()</code> <span class="citation">(<a href="#ref-rfoundation2021" role="doc-biblioref">R Core Team 2021</a>)</span> function provides an easy way to check this. This function is loaded by default with R; there is no need to install an additional package. Simply wrap it around the line(s) of code that you want to assess.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="software-programming-with-big-data.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># how much time does it take to run this loop?</span></span>
+<span id="cb26-2"><a href="software-programming-with-big-data.html#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">system.time</span>(<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) {i <span class="sc">+</span> <span class="dv">5</span>})</span></code></pre></div>
+<pre><code>##    user  system elapsed 
+##   0.001   0.000   0.002</code></pre>
+<p>Note that each time you run this line of code, the returned amount of time varies slightly. This has to do with the fact that the actual time needed to run a line of code can depend on various other processes happening at the same time on your computer.</p>
+<p>The <code>microbenchmark</code> <span class="citation">(<a href="#ref-microbenchmark" role="doc-biblioref">Mersmann 2021</a>)</span> and <code>bench</code> <span class="citation">(<a href="#ref-bench" role="doc-biblioref">Hester and Vaughan 2021</a>)</span> packages provide additional functions to measure execution time in more sophisticated ways. In particular, they account for the fact that the processing time for the same code might vary and automatically run the code several times in order to return statistics about the processing time. In addition, <code>microbenchmark()</code> provides highly detailed and highly accurate timing of R expression evaluation. The function is particularly useful to accurately find even minor room for improvement when testing a data analysis script on a smaller sub-sample (which might scale when working on a large dataset). For example, suppose you need to run a for-loop over millions of iterations, and there are different ways to implement the body of the loop (which does not take too much time to process in one iteration). Note that the function actually evaluates the R expression in question many times and returns a statistical summary of the timings.</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="software-programming-with-big-data.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load package</span></span>
+<span id="cb28-2"><a href="software-programming-with-big-data.html#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(microbenchmark)</span>
+<span id="cb28-3"><a href="software-programming-with-big-data.html#cb28-3" aria-hidden="true" tabindex="-1"></a><span class="co"># how much time does it take to run this loop (exactly)?</span></span>
+<span id="cb28-4"><a href="software-programming-with-big-data.html#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">microbenchmark</span>(<span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>) {i <span class="sc">+</span> <span class="dv">5</span>})</span></code></pre></div>
+<pre><code>## Unit: milliseconds
+##                            expr   min    lq  mean
+##  for (i in 1:100) {     i + 5 } 1.126 1.209 1.284
+##  median    uq   max neval
+##   1.254 1.282 4.768   100</code></pre>
+<p>Second, a key aspect to improving the performance of data analysis scripts in R is to detect inefficient memory allocation as well as avoiding an R-object that is either growing too much or too large to handle in memory. To this end, you might want to monitor how much memory R occupies at different points in your script as well as how much memory is taken up by individual R objects. For example, <code>object.size()</code> returns the size of an R object, that is, the amount of memory it takes up in the R environment in bytes (<code>pryr::object_size()</code> counts slightly more accurately).</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="software-programming-with-big-data.html#cb30-1" aria-hidden="true" tabindex="-1"></a>hello <span class="ot">&lt;-</span> <span class="st">&quot;Hello, World!&quot;</span></span>
+<span id="cb30-2"><a href="software-programming-with-big-data.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(hello)</span></code></pre></div>
+<pre><code>## 120 bytes</code></pre>
+<p>This is useful to implementing your script with a generally less memory-intensive approach. For example, for a specific task it might not matter whether a particular variable is stored as a <code>character</code> vector or a <code>factor</code>. But storing it as <code>character</code> turns out to be more memory intensive (why?).</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="software-programming-with-big-data.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initialize a large string vector containing letters</span></span>
+<span id="cb32-2"><a href="software-programming-with-big-data.html#cb32-2" aria-hidden="true" tabindex="-1"></a>large_string <span class="ot">&lt;-</span> <span class="fu">rep</span>(LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">20</span>], <span class="dv">1000</span><span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb32-3"><a href="software-programming-with-big-data.html#cb32-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(large_string)</span></code></pre></div>
+<pre><code>## [1] &quot;A&quot; &quot;B&quot; &quot;C&quot; &quot;D&quot; &quot;E&quot; &quot;F&quot;</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="software-programming-with-big-data.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># store the same information as a factor in a new variable</span></span>
+<span id="cb34-2"><a href="software-programming-with-big-data.html#cb34-2" aria-hidden="true" tabindex="-1"></a>large_factor <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(large_string)</span>
+<span id="cb34-3"><a href="software-programming-with-big-data.html#cb34-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="software-programming-with-big-data.html#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="co"># is one bigger than the other?</span></span>
+<span id="cb34-5"><a href="software-programming-with-big-data.html#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="fu">object.size</span>(large_string) <span class="sc">-</span> <span class="fu">object.size</span>(large_factor)</span></code></pre></div>
+<pre><code>## 79999456 bytes</code></pre>
+<p><code>pryr::mem_change()</code> <span class="citation">(<a href="#ref-pryr" role="doc-biblioref">Wickham 2021</a>)</span> is useful to track how different parts of your script affect the overall memory occupied by R.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="software-programming-with-big-data.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load package</span></span>
+<span id="cb36-2"><a href="software-programming-with-big-data.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pryr)</span>
+<span id="cb36-3"><a href="software-programming-with-big-data.html#cb36-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-4"><a href="software-programming-with-big-data.html#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="co"># initialize a vector with 1000 (pseudo)-random numbers</span></span>
+<span id="cb36-5"><a href="software-programming-with-big-data.html#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_change</span>(</span>
+<span id="cb36-6"><a href="software-programming-with-big-data.html#cb36-6" aria-hidden="true" tabindex="-1"></a>        thousand_numbers <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1000</span>)</span>
+<span id="cb36-7"><a href="software-programming-with-big-data.html#cb36-7" aria-hidden="true" tabindex="-1"></a>        )</span></code></pre></div>
+<pre><code>## 7.98 kB</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="software-programming-with-big-data.html#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initialize a vector with 1M (pseudo)-random numbers</span></span>
+<span id="cb38-2"><a href="software-programming-with-big-data.html#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_change</span>(</span>
+<span id="cb38-3"><a href="software-programming-with-big-data.html#cb38-3" aria-hidden="true" tabindex="-1"></a>        a_million_numbers <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">1000</span><span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb38-4"><a href="software-programming-with-big-data.html#cb38-4" aria-hidden="true" tabindex="-1"></a>        )</span></code></pre></div>
+<pre><code>## 8 MB</code></pre>
+<p><code>bench::mark()</code> allows you to easily compare the performance of several different implementations of a code chunk both regarding timing and memory usage. The following code example illustrates this in a comparison of two approaches to computing the product of each element in a vector <code>x</code> with a factor <code>z</code>.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="software-programming-with-big-data.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb40-2"><a href="software-programming-with-big-data.html#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(bench)</span>
+<span id="cb40-3"><a href="software-programming-with-big-data.html#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="software-programming-with-big-data.html#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="co"># initialize variables</span></span>
+<span id="cb40-5"><a href="software-programming-with-big-data.html#cb40-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10000</span></span>
+<span id="cb40-6"><a href="software-programming-with-big-data.html#cb40-6" aria-hidden="true" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fl">1.5</span></span>
+<span id="cb40-7"><a href="software-programming-with-big-data.html#cb40-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-8"><a href="software-programming-with-big-data.html#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="co"># approach I: loop</span></span>
+<span id="cb40-9"><a href="software-programming-with-big-data.html#cb40-9" aria-hidden="true" tabindex="-1"></a>multiplication <span class="ot">&lt;-</span> </span>
+<span id="cb40-10"><a href="software-programming-with-big-data.html#cb40-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">function</span>(x,z) {</span>
+<span id="cb40-11"><a href="software-programming-with-big-data.html#cb40-11" aria-hidden="true" tabindex="-1"></a>                result <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb40-12"><a href="software-programming-with-big-data.html#cb40-12" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(x)) {result <span class="ot">&lt;-</span> <span class="fu">c</span>(result, x[i]<span class="sc">*</span>z)}</span>
+<span id="cb40-13"><a href="software-programming-with-big-data.html#cb40-13" aria-hidden="true" tabindex="-1"></a>                <span class="fu">return</span>(result)</span>
+<span id="cb40-14"><a href="software-programming-with-big-data.html#cb40-14" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb40-15"><a href="software-programming-with-big-data.html#cb40-15" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">multiplication</span>(x,z)</span>
+<span id="cb40-16"><a href="software-programming-with-big-data.html#cb40-16" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(result)</span></code></pre></div>
+<pre><code>## [1] 1.5 3.0 4.5 6.0 7.5 9.0</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="software-programming-with-big-data.html#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># approach II: &quot;R-style&quot;</span></span>
+<span id="cb42-2"><a href="software-programming-with-big-data.html#cb42-2" aria-hidden="true" tabindex="-1"></a>result2 <span class="ot">&lt;-</span> x <span class="sc">*</span> z </span>
+<span id="cb42-3"><a href="software-programming-with-big-data.html#cb42-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(result2)</span></code></pre></div>
+<pre><code>## [1] 1.5 3.0 4.5 6.0 7.5 9.0</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="software-programming-with-big-data.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># comparison</span></span>
+<span id="cb44-2"><a href="software-programming-with-big-data.html#cb44-2" aria-hidden="true" tabindex="-1"></a>benchmarking <span class="ot">&lt;-</span> </span>
+<span id="cb44-3"><a href="software-programming-with-big-data.html#cb44-3" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mark</span>(</span>
+<span id="cb44-4"><a href="software-programming-with-big-data.html#cb44-4" aria-hidden="true" tabindex="-1"></a>        result <span class="ot">&lt;-</span> <span class="fu">multiplication</span>(x,z),</span>
+<span id="cb44-5"><a href="software-programming-with-big-data.html#cb44-5" aria-hidden="true" tabindex="-1"></a>        result2 <span class="ot">&lt;-</span> x <span class="sc">*</span> z, </span>
+<span id="cb44-6"><a href="software-programming-with-big-data.html#cb44-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">min_iterations =</span> <span class="dv">50</span> </span>
+<span id="cb44-7"><a href="software-programming-with-big-data.html#cb44-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb44-8"><a href="software-programming-with-big-data.html#cb44-8" aria-hidden="true" tabindex="-1"></a>benchmarking[, <span class="dv">4</span><span class="sc">:</span><span class="dv">9</span>]</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 3
+##   `itr/sec` mem_alloc `gc/sec`
+##       &lt;dbl&gt; &lt;bch:byt&gt;    &lt;dbl&gt;
+## 1      12.2     382MB    15.5 
+## 2   76419.     78.2KB     7.64</code></pre>
+<p>In addition, the <code>bench</code> package <span class="citation">(<a href="#ref-bench" role="doc-biblioref">Hester and Vaughan 2021</a>)</span> provides a simple way to visualize these outputs:</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="software-programming-with-big-data.html#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(benchmarking, <span class="at">type =</span> <span class="st">&quot;boxplot&quot;</span>)</span></code></pre></div>
+<p><img src="bigdata_files/figure-html/unnamed-chunk-27-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p>Finally, to analyze the performance of your entire script/program, the <code>profvis</code> package <span class="citation">(<a href="#ref-profvis" role="doc-biblioref">Chang, Luraschi, and Mastny 2020</a>)</span> provides visual summaries to quickly detect the most prominent bottlenecks. You can either call this via the <code>profvis()</code> function with the code section to be profiled as argument, or via the RStudio user interface by clicking on the Code Tools menu in the editor window and selecting “Profile selected lines”.</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="software-programming-with-big-data.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load package</span></span>
+<span id="cb47-2"><a href="software-programming-with-big-data.html#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(profvis)</span>
+<span id="cb47-3"><a href="software-programming-with-big-data.html#cb47-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-4"><a href="software-programming-with-big-data.html#cb47-4" aria-hidden="true" tabindex="-1"></a><span class="co"># analyze performance of several lines of code</span></span>
+<span id="cb47-5"><a href="software-programming-with-big-data.html#cb47-5" aria-hidden="true" tabindex="-1"></a><span class="fu">profvis</span>({</span>
+<span id="cb47-6"><a href="software-programming-with-big-data.html#cb47-6" aria-hidden="true" tabindex="-1"></a>        x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10000</span></span>
+<span id="cb47-7"><a href="software-programming-with-big-data.html#cb47-7" aria-hidden="true" tabindex="-1"></a>        z <span class="ot">&lt;-</span> <span class="fl">1.5</span></span>
+<span id="cb47-8"><a href="software-programming-with-big-data.html#cb47-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-9"><a href="software-programming-with-big-data.html#cb47-9" aria-hidden="true" tabindex="-1"></a><span class="co"># approach I: loop</span></span>
+<span id="cb47-10"><a href="software-programming-with-big-data.html#cb47-10" aria-hidden="true" tabindex="-1"></a>multiplication <span class="ot">&lt;-</span> </span>
+<span id="cb47-11"><a href="software-programming-with-big-data.html#cb47-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">function</span>(x,z) {</span>
+<span id="cb47-12"><a href="software-programming-with-big-data.html#cb47-12" aria-hidden="true" tabindex="-1"></a>                result <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb47-13"><a href="software-programming-with-big-data.html#cb47-13" aria-hidden="true" tabindex="-1"></a>                <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(x)) {result <span class="ot">&lt;-</span> <span class="fu">c</span>(result, x[i]<span class="sc">*</span>z)}</span>
+<span id="cb47-14"><a href="software-programming-with-big-data.html#cb47-14" aria-hidden="true" tabindex="-1"></a>                <span class="fu">return</span>(result)</span>
+<span id="cb47-15"><a href="software-programming-with-big-data.html#cb47-15" aria-hidden="true" tabindex="-1"></a>        }</span>
+<span id="cb47-16"><a href="software-programming-with-big-data.html#cb47-16" aria-hidden="true" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">multiplication</span>(x,z)</span>
+<span id="cb47-17"><a href="software-programming-with-big-data.html#cb47-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb47-18"><a href="software-programming-with-big-data.html#cb47-18" aria-hidden="true" tabindex="-1"></a><span class="co"># approach II: &quot;R-style&quot;</span></span>
+<span id="cb47-19"><a href="software-programming-with-big-data.html#cb47-19" aria-hidden="true" tabindex="-1"></a>result2 <span class="ot">&lt;-</span> x <span class="sc">*</span> z </span>
+<span id="cb47-20"><a href="software-programming-with-big-data.html#cb47-20" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(result2) </span>
+<span id="cb47-21"><a href="software-programming-with-big-data.html#cb47-21" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+</div>
+<div id="writing-efficient-r-code" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Writing efficient R code<a href="software-programming-with-big-data.html#writing-efficient-r-code" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>This subsection touches upon several prominent aspects of writing efficient/fast R code.<a href="#fn13" class="footnote-ref" id="fnref13"><sup>13</sup></a></p>
+<div id="memory-allocation-and-growing-objects" class="section level3 hasAnchor" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Memory allocation and growing objects<a href="software-programming-with-big-data.html#memory-allocation-and-growing-objects" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p></p>
+<p>R tends to “grow” already-initialized objects in memory when they are modified. At the initiation of the object, a small amount of memory is occupied at some location in memory. In simple terms, once the object grows, it might not have enough space where it is currently located. Hence, it needs to be “moved” to another location in memory with more space available. This moving, or “re-allocation” of memory, needs time and slows down the overall process.</p>
+<p>This potential is most practically illustrated with a <code>for</code>-loop in which each iteration’s result is stored as an element of a vector (the object in question). To avoid growing this object, you need to instruct R to pre-allocate the memory necessary to contain the final result. If we don’t do this, each iteration of the loop causes R to re-allocate memory because the number of elements in the vector/list is changing. In simple terms, this means that R needs to execute more steps in each iteration.</p>
+<p>In the following example, we compare the performance of two functions, one taking this principle into account, the other not. The functions take a numeric vector as input and return the square root of each element of the numeric vector.</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="software-programming-with-big-data.html#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># naïve implementation</span></span>
+<span id="cb48-2"><a href="software-programming-with-big-data.html#cb48-2" aria-hidden="true" tabindex="-1"></a>sqrt_vector <span class="ot">&lt;-</span> </span>
+<span id="cb48-3"><a href="software-programming-with-big-data.html#cb48-3" aria-hidden="true" tabindex="-1"></a>     <span class="cf">function</span>(x) {</span>
+<span id="cb48-4"><a href="software-programming-with-big-data.html#cb48-4" aria-hidden="true" tabindex="-1"></a>          output <span class="ot">&lt;-</span> <span class="fu">c</span>()</span>
+<span id="cb48-5"><a href="software-programming-with-big-data.html#cb48-5" aria-hidden="true" tabindex="-1"></a>          <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(x)) {</span>
+<span id="cb48-6"><a href="software-programming-with-big-data.html#cb48-6" aria-hidden="true" tabindex="-1"></a>               output <span class="ot">&lt;-</span> <span class="fu">c</span>(output, x[i]<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>))</span>
+<span id="cb48-7"><a href="software-programming-with-big-data.html#cb48-7" aria-hidden="true" tabindex="-1"></a>          }</span>
+<span id="cb48-8"><a href="software-programming-with-big-data.html#cb48-8" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb48-9"><a href="software-programming-with-big-data.html#cb48-9" aria-hidden="true" tabindex="-1"></a>          <span class="fu">return</span>(output)</span>
+<span id="cb48-10"><a href="software-programming-with-big-data.html#cb48-10" aria-hidden="true" tabindex="-1"></a>     }</span>
+<span id="cb48-11"><a href="software-programming-with-big-data.html#cb48-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb48-12"><a href="software-programming-with-big-data.html#cb48-12" aria-hidden="true" tabindex="-1"></a><span class="co"># implementation with pre-allocation of memory</span></span>
+<span id="cb48-13"><a href="software-programming-with-big-data.html#cb48-13" aria-hidden="true" tabindex="-1"></a>sqrt_vector_faster <span class="ot">&lt;-</span> </span>
+<span id="cb48-14"><a href="software-programming-with-big-data.html#cb48-14" aria-hidden="true" tabindex="-1"></a>     <span class="cf">function</span>(x) {</span>
+<span id="cb48-15"><a href="software-programming-with-big-data.html#cb48-15" aria-hidden="true" tabindex="-1"></a>          output <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="cn">NA</span>, <span class="fu">length</span>(x))</span>
+<span id="cb48-16"><a href="software-programming-with-big-data.html#cb48-16" aria-hidden="true" tabindex="-1"></a>          <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(x)) {</span>
+<span id="cb48-17"><a href="software-programming-with-big-data.html#cb48-17" aria-hidden="true" tabindex="-1"></a>               output[i] <span class="ot">&lt;-</span>  x[i]<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>)</span>
+<span id="cb48-18"><a href="software-programming-with-big-data.html#cb48-18" aria-hidden="true" tabindex="-1"></a>          }</span>
+<span id="cb48-19"><a href="software-programming-with-big-data.html#cb48-19" aria-hidden="true" tabindex="-1"></a>          </span>
+<span id="cb48-20"><a href="software-programming-with-big-data.html#cb48-20" aria-hidden="true" tabindex="-1"></a>          <span class="fu">return</span>(output)</span>
+<span id="cb48-21"><a href="software-programming-with-big-data.html#cb48-21" aria-hidden="true" tabindex="-1"></a>     }</span></code></pre></div>
+<p>As a proof of concept we use <code>system.time()</code> to measure the difference in speed for various input sizes.<a href="#fn14" class="footnote-ref" id="fnref14"><sup>14</sup></a></p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="software-programming-with-big-data.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># the different sizes of the vectors we will put into the two functions</span></span>
+<span id="cb49-2"><a href="software-programming-with-big-data.html#cb49-2" aria-hidden="true" tabindex="-1"></a>input_sizes <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">100</span>, <span class="at">to =</span> <span class="dv">10000</span>, <span class="at">by =</span> <span class="dv">100</span>)</span>
+<span id="cb49-3"><a href="software-programming-with-big-data.html#cb49-3" aria-hidden="true" tabindex="-1"></a><span class="co"># create the input vectors</span></span>
+<span id="cb49-4"><a href="software-programming-with-big-data.html#cb49-4" aria-hidden="true" tabindex="-1"></a>inputs <span class="ot">&lt;-</span> <span class="fu">sapply</span>(input_sizes, rnorm)</span>
+<span id="cb49-5"><a href="software-programming-with-big-data.html#cb49-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb49-6"><a href="software-programming-with-big-data.html#cb49-6" aria-hidden="true" tabindex="-1"></a><span class="co"># compute outputs for each of the functions</span></span>
+<span id="cb49-7"><a href="software-programming-with-big-data.html#cb49-7" aria-hidden="true" tabindex="-1"></a>output_slower <span class="ot">&lt;-</span> </span>
+<span id="cb49-8"><a href="software-programming-with-big-data.html#cb49-8" aria-hidden="true" tabindex="-1"></a>     <span class="fu">sapply</span>(inputs, </span>
+<span id="cb49-9"><a href="software-programming-with-big-data.html#cb49-9" aria-hidden="true" tabindex="-1"></a>            <span class="cf">function</span>(x){ <span class="fu">system.time</span>(<span class="fu">sqrt_vector</span>(x))[<span class="st">&quot;elapsed&quot;</span>]</span>
+<span id="cb49-10"><a href="software-programming-with-big-data.html#cb49-10" aria-hidden="true" tabindex="-1"></a>                 }</span>
+<span id="cb49-11"><a href="software-programming-with-big-data.html#cb49-11" aria-hidden="true" tabindex="-1"></a>            )</span>
+<span id="cb49-12"><a href="software-programming-with-big-data.html#cb49-12" aria-hidden="true" tabindex="-1"></a>output_faster <span class="ot">&lt;-</span> </span>
+<span id="cb49-13"><a href="software-programming-with-big-data.html#cb49-13" aria-hidden="true" tabindex="-1"></a>     <span class="fu">sapply</span>(inputs, </span>
+<span id="cb49-14"><a href="software-programming-with-big-data.html#cb49-14" aria-hidden="true" tabindex="-1"></a>            <span class="cf">function</span>(x){ <span class="fu">system.time</span>(<span class="fu">sqrt_vector_faster</span>(x))[<span class="st">&quot;elapsed&quot;</span>]</span>
+<span id="cb49-15"><a href="software-programming-with-big-data.html#cb49-15" aria-hidden="true" tabindex="-1"></a>                 }</span>
+<span id="cb49-16"><a href="software-programming-with-big-data.html#cb49-16" aria-hidden="true" tabindex="-1"></a>            )</span></code></pre></div>
+<p>The following plot shows the difference in the performance of the two functions.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="software-programming-with-big-data.html#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb50-2"><a href="software-programming-with-big-data.html#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb50-3"><a href="software-programming-with-big-data.html#cb50-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-4"><a href="software-programming-with-big-data.html#cb50-4" aria-hidden="true" tabindex="-1"></a><span class="co"># initialize data frame for plot</span></span>
+<span id="cb50-5"><a href="software-programming-with-big-data.html#cb50-5" aria-hidden="true" tabindex="-1"></a>plotdata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">time_elapsed =</span> <span class="fu">c</span>(output_slower, output_faster),</span>
+<span id="cb50-6"><a href="software-programming-with-big-data.html#cb50-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">input_size =</span> <span class="fu">c</span>(input_sizes, input_sizes),</span>
+<span id="cb50-7"><a href="software-programming-with-big-data.html#cb50-7" aria-hidden="true" tabindex="-1"></a>                       <span class="at">Implementation=</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;sqrt_vector&quot;</span>,</span>
+<span id="cb50-8"><a href="software-programming-with-big-data.html#cb50-8" aria-hidden="true" tabindex="-1"></a>                                             <span class="fu">length</span>(output_slower)),</span>
+<span id="cb50-9"><a href="software-programming-with-big-data.html#cb50-9" aria-hidden="true" tabindex="-1"></a>                                         <span class="fu">rep</span>(<span class="st">&quot;sqrt_vector_faster&quot;</span>,</span>
+<span id="cb50-10"><a href="software-programming-with-big-data.html#cb50-10" aria-hidden="true" tabindex="-1"></a>                                             <span class="fu">length</span>(output_faster))))</span>
+<span id="cb50-11"><a href="software-programming-with-big-data.html#cb50-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-12"><a href="software-programming-with-big-data.html#cb50-12" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb50-13"><a href="software-programming-with-big-data.html#cb50-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plotdata, <span class="fu">aes</span>(<span class="at">x=</span>input_size, <span class="at">y=</span> time_elapsed)) <span class="sc">+</span></span>
+<span id="cb50-14"><a href="software-programming-with-big-data.html#cb50-14" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">colour=</span>Implementation)) <span class="sc">+</span></span>
+<span id="cb50-15"><a href="software-programming-with-big-data.html#cb50-15" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">18</span>) <span class="sc">+</span></span>
+<span id="cb50-16"><a href="software-programming-with-big-data.html#cb50-16" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>) <span class="sc">+</span></span>
+<span id="cb50-17"><a href="software-programming-with-big-data.html#cb50-17" aria-hidden="true" tabindex="-1"></a>     <span class="fu">ylab</span>(<span class="st">&quot;Time elapsed (in seconds)&quot;</span>) <span class="sc">+</span></span>
+<span id="cb50-18"><a href="software-programming-with-big-data.html#cb50-18" aria-hidden="true" tabindex="-1"></a>     <span class="fu">xlab</span>(<span class="st">&quot;No. of elements processed&quot;</span>) </span></code></pre></div>
+<p><img src="bigdata_files/figure-html/unnamed-chunk-31-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p>Clearly, the version with pre-allocation of memory (avoiding growing an object) is much faster overall. In addition, we see that the problem with the growing object in the naïve implementation tends to get worse with each iteration. The take-away message for the practitioner: If possible, always initialize the “container” object (list, matrix, etc.) for iteration results as an empty object of the final size/dimensions.</p>
+<p>The attentive reader and experienced R coder will have noticed by this point that both of the functions implemented above are not really smart practice to solve the problem at hand. If you consider yourself part of this group, the next subsection will make you more comfortable.</p>
+</div>
+<div id="vectorization-in-basic-r-functions" class="section level3 hasAnchor" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Vectorization in basic R functions<a href="software-programming-with-big-data.html#vectorization-in-basic-r-functions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p></p>
+<p>We can further improve the performance of this function by exploiting a particular characteristic of R: in R, ‘everything is a vector’, and many of the most basic R functions (such as math operators) are <em>vectorized</em>. In simple terms, this means that an operation is implemented to directly work on vectors in such a way that it can take advantage of the similarity of each of the vector’s elements. That is, R only has to figure out once how to apply a given function to a vector element in order to apply it to all elements of the vector. In a simple loop, however, R has to go through the same ‘preparatory’ steps again and again in each iteration.</p>
+<p>Following up on the problem from the previous subsection, we implement an additional function called <code>sqrt_vector_fastest</code> that exploits the fact that math operators in R are vectorized functions. We then re-run the same speed test as above with this function.</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="software-programming-with-big-data.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># implementation with vectorization</span></span>
+<span id="cb51-2"><a href="software-programming-with-big-data.html#cb51-2" aria-hidden="true" tabindex="-1"></a>sqrt_vector_fastest <span class="ot">&lt;-</span> </span>
+<span id="cb51-3"><a href="software-programming-with-big-data.html#cb51-3" aria-hidden="true" tabindex="-1"></a>     <span class="cf">function</span>(x) {</span>
+<span id="cb51-4"><a href="software-programming-with-big-data.html#cb51-4" aria-hidden="true" tabindex="-1"></a>               output <span class="ot">&lt;-</span>  x<span class="sc">^</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">2</span>)</span>
+<span id="cb51-5"><a href="software-programming-with-big-data.html#cb51-5" aria-hidden="true" tabindex="-1"></a>          <span class="fu">return</span>(output)</span>
+<span id="cb51-6"><a href="software-programming-with-big-data.html#cb51-6" aria-hidden="true" tabindex="-1"></a>     }</span>
+<span id="cb51-7"><a href="software-programming-with-big-data.html#cb51-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-8"><a href="software-programming-with-big-data.html#cb51-8" aria-hidden="true" tabindex="-1"></a><span class="co"># speed test</span></span>
+<span id="cb51-9"><a href="software-programming-with-big-data.html#cb51-9" aria-hidden="true" tabindex="-1"></a>output_fastest <span class="ot">&lt;-</span> </span>
+<span id="cb51-10"><a href="software-programming-with-big-data.html#cb51-10" aria-hidden="true" tabindex="-1"></a>     <span class="fu">sapply</span>(inputs, </span>
+<span id="cb51-11"><a href="software-programming-with-big-data.html#cb51-11" aria-hidden="true" tabindex="-1"></a>            <span class="cf">function</span>(x){ <span class="fu">system.time</span>(<span class="fu">sqrt_vector_fastest</span>(x))[<span class="st">&quot;elapsed&quot;</span>]</span>
+<span id="cb51-12"><a href="software-programming-with-big-data.html#cb51-12" aria-hidden="true" tabindex="-1"></a>                 }</span>
+<span id="cb51-13"><a href="software-programming-with-big-data.html#cb51-13" aria-hidden="true" tabindex="-1"></a>            )</span></code></pre></div>
+<p>Let’s have a look at whether this improves the function’s performance further.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="software-programming-with-big-data.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb52-2"><a href="software-programming-with-big-data.html#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb52-3"><a href="software-programming-with-big-data.html#cb52-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-4"><a href="software-programming-with-big-data.html#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="co"># initialize data frame for plot</span></span>
+<span id="cb52-5"><a href="software-programming-with-big-data.html#cb52-5" aria-hidden="true" tabindex="-1"></a>plotdata <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">time_elapsed =</span> <span class="fu">c</span>(output_faster, output_fastest),</span>
+<span id="cb52-6"><a href="software-programming-with-big-data.html#cb52-6" aria-hidden="true" tabindex="-1"></a>                       <span class="at">input_size =</span> <span class="fu">c</span>(input_sizes, input_sizes),</span>
+<span id="cb52-7"><a href="software-programming-with-big-data.html#cb52-7" aria-hidden="true" tabindex="-1"></a>                       <span class="at">Implementation=</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;sqrt_vector_faster&quot;</span>,</span>
+<span id="cb52-8"><a href="software-programming-with-big-data.html#cb52-8" aria-hidden="true" tabindex="-1"></a>                                             <span class="fu">length</span>(output_faster)),</span>
+<span id="cb52-9"><a href="software-programming-with-big-data.html#cb52-9" aria-hidden="true" tabindex="-1"></a>                                         <span class="fu">rep</span>(<span class="st">&quot;sqrt_vector_fastest&quot;</span>,</span>
+<span id="cb52-10"><a href="software-programming-with-big-data.html#cb52-10" aria-hidden="true" tabindex="-1"></a>                                             <span class="fu">length</span>(output_fastest))))</span>
+<span id="cb52-11"><a href="software-programming-with-big-data.html#cb52-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-12"><a href="software-programming-with-big-data.html#cb52-12" aria-hidden="true" tabindex="-1"></a><span class="co"># plot</span></span>
+<span id="cb52-13"><a href="software-programming-with-big-data.html#cb52-13" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(plotdata, <span class="fu">aes</span>(<span class="at">x=</span>time_elapsed, <span class="at">y=</span>Implementation)) <span class="sc">+</span></span>
+<span id="cb52-14"><a href="software-programming-with-big-data.html#cb52-14" aria-hidden="true" tabindex="-1"></a>     <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">colour=</span>Implementation),</span>
+<span id="cb52-15"><a href="software-programming-with-big-data.html#cb52-15" aria-hidden="true" tabindex="-1"></a>                          <span class="at">show.legend =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb52-16"><a href="software-programming-with-big-data.html#cb52-16" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">18</span>) <span class="sc">+</span></span>
+<span id="cb52-17"><a href="software-programming-with-big-data.html#cb52-17" aria-hidden="true" tabindex="-1"></a>     <span class="fu">xlab</span>(<span class="st">&quot;Time elapsed (in seconds)&quot;</span>)</span></code></pre></div>
+<p><img src="bigdata_files/figure-html/unnamed-chunk-33-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p>Clearly, the vectorized implementation is even faster. The take-away message: Make use of vectorized basic R functions where possible. At this point you might wonder: Why not always use vectorization over loops, when working with R? This question (and closely related similar questions) has been fiercely debated in the R online community over the last few years. Also the debate contains and has contained several (in my view) slightly misleading arguments. A simple answer to this question is: It is in fact not that simple to use <em>actual</em> vectorization for every kind of problem in R. There are a number of functions often mentioned to achieve “vectorization” easily in R; however, they do not actually implement actual vectorization in its original technical sense (the type just demonstrated here with the R math operators). Since this point is very prominent in debates about how to improve R code, the next subsection attempts to summarize the most important aspects to keep in mind.</p>
+</div>
+<div id="apply-type-functions-and-vectorization" class="section level3 hasAnchor" number="4.3.3">
+<h3><span class="header-section-number">4.3.3</span> <code>apply</code>-type functions and vectorization<a href="software-programming-with-big-data.html#apply-type-functions-and-vectorization" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p></p>
+<p>There are basically two ways to make use of some form of “vectorization” instead of writing loops.</p>
+<p>One approach is to use an <code>apply</code>-type function instead of loops. Note, though, that the <code>apply</code>-type functions primarily make the writing of code more efficient. They still run a loop under the hood. Nevertheless, some <code>apply</code>-type functions might still outperform explicit loops, as they might be better implemented.<a href="#fn15" class="footnote-ref" id="fnref15"><sup>15</sup></a></p>
+<p>Consider, for example, <code>lapply()</code>, a function that takes a vector (atomic or list) as input and applies a function <code>FUN</code> to each of its elements. It is a straightforward alternative to <code>for</code>-loops in many situations (and it automatically takes care of the “growing objects” problem discussed above). The following example shows how we can get the same result by either writing a loop or using <code>lapply()</code>. The aim of the code example is to import the <a href="https://archive.ics.uci.edu/ml/datasets/Health+News+in+Twitter">Health News in Twitter Dataset</a> by <span class="citation">Karami et al. (<a href="#ref-karami_etal2017" role="doc-biblioref">2017</a>)</span>. The raw data consists of several text files that need to be imported to R consecutively.</p>
+<p>The text-files are located in <code>data/twitter_texts/</code>. For either approach of importing all of these files, we first need a list of the paths to all of the files. We can get this with <code>list.files()</code>. Also, for either approach we will make use of the <code>fread</code> function in the <code>data.table</code> package <span class="citation">(<a href="#ref-data.table" role="doc-biblioref">Dowle and Srinivasan 2022</a>)</span>.</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="software-programming-with-big-data.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb53-2"><a href="software-programming-with-big-data.html#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb53-3"><a href="software-programming-with-big-data.html#cb53-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-4"><a href="software-programming-with-big-data.html#cb53-4" aria-hidden="true" tabindex="-1"></a><span class="co"># get a list of all file-paths</span></span>
+<span id="cb53-5"><a href="software-programming-with-big-data.html#cb53-5" aria-hidden="true" tabindex="-1"></a>textfiles <span class="ot">&lt;-</span> <span class="fu">list.files</span>(<span class="st">&quot;data/twitter_texts&quot;</span>, <span class="at">full.names =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p>Now we can read in all the text files with a <code>for</code>-loop as follows.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="software-programming-with-big-data.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="co"># prepare loop</span></span>
+<span id="cb54-2"><a href="software-programming-with-big-data.html#cb54-2" aria-hidden="true" tabindex="-1"></a>all_texts <span class="ot">&lt;-</span> <span class="fu">list</span>()</span>
+<span id="cb54-3"><a href="software-programming-with-big-data.html#cb54-3" aria-hidden="true" tabindex="-1"></a>n_files <span class="ot">&lt;-</span> <span class="fu">length</span>(textfiles)</span>
+<span id="cb54-4"><a href="software-programming-with-big-data.html#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(all_texts) <span class="ot">&lt;-</span> n_files</span>
+<span id="cb54-5"><a href="software-programming-with-big-data.html#cb54-5" aria-hidden="true" tabindex="-1"></a><span class="co"># read all files listed in textfiles</span></span>
+<span id="cb54-6"><a href="software-programming-with-big-data.html#cb54-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n_files) {</span>
+<span id="cb54-7"><a href="software-programming-with-big-data.html#cb54-7" aria-hidden="true" tabindex="-1"></a>     all_texts[[i]] <span class="ot">&lt;-</span> <span class="fu">fread</span>(textfiles[i])</span>
+<span id="cb54-8"><a href="software-programming-with-big-data.html#cb54-8" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div>
+<p>The imported files are now stored as <code>data.table</code>-objects in the list <code>all_texts</code>. With the following line of code we combine all of them in one <code>data.table</code>.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="software-programming-with-big-data.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="co"># combine all in one data.table</span></span>
+<span id="cb55-2"><a href="software-programming-with-big-data.html#cb55-2" aria-hidden="true" tabindex="-1"></a>twitter_text <span class="ot">&lt;-</span> <span class="fu">rbindlist</span>(all_texts)</span>
+<span id="cb55-3"><a href="software-programming-with-big-data.html#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="co"># check result</span></span>
+<span id="cb55-4"><a href="software-programming-with-big-data.html#cb55-4" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(twitter_text)</span></code></pre></div>
+<pre><code>## [1] 42422     3</code></pre>
+<p>Alternatively, we can make use of <code>lapply</code> as follows in order to achieve exactly the same.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="software-programming-with-big-data.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="co"># use lapply instead of loop</span></span>
+<span id="cb57-2"><a href="software-programming-with-big-data.html#cb57-2" aria-hidden="true" tabindex="-1"></a>all_texts <span class="ot">&lt;-</span> <span class="fu">lapply</span>(textfiles, fread)</span>
+<span id="cb57-3"><a href="software-programming-with-big-data.html#cb57-3" aria-hidden="true" tabindex="-1"></a><span class="co"># combine all in one data.table</span></span>
+<span id="cb57-4"><a href="software-programming-with-big-data.html#cb57-4" aria-hidden="true" tabindex="-1"></a>twitter_text <span class="ot">&lt;-</span> <span class="fu">rbindlist</span>(all_texts)</span>
+<span id="cb57-5"><a href="software-programming-with-big-data.html#cb57-5" aria-hidden="true" tabindex="-1"></a><span class="co"># check result</span></span>
+<span id="cb57-6"><a href="software-programming-with-big-data.html#cb57-6" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(twitter_text)</span></code></pre></div>
+<pre><code>## [1] 42422     3</code></pre>
+<p>Finally, we can make use of <code>Vectorization()</code> in order to “vectorize” our own import function (written for this example). Again, this does not make use of vectorization in its original technical sense.</p>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="software-programming-with-big-data.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="co"># initialize the import function</span></span>
+<span id="cb59-2"><a href="software-programming-with-big-data.html#cb59-2" aria-hidden="true" tabindex="-1"></a>import_file <span class="ot">&lt;-</span> </span>
+<span id="cb59-3"><a href="software-programming-with-big-data.html#cb59-3" aria-hidden="true" tabindex="-1"></a>     <span class="cf">function</span>(x) {</span>
+<span id="cb59-4"><a href="software-programming-with-big-data.html#cb59-4" aria-hidden="true" tabindex="-1"></a>          parsed_x <span class="ot">&lt;-</span> <span class="fu">fread</span>(x)</span>
+<span id="cb59-5"><a href="software-programming-with-big-data.html#cb59-5" aria-hidden="true" tabindex="-1"></a>          <span class="fu">return</span>(parsed_x)</span>
+<span id="cb59-6"><a href="software-programming-with-big-data.html#cb59-6" aria-hidden="true" tabindex="-1"></a>     }</span>
+<span id="cb59-7"><a href="software-programming-with-big-data.html#cb59-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-8"><a href="software-programming-with-big-data.html#cb59-8" aria-hidden="true" tabindex="-1"></a><span class="co"># &#39;vectorize&#39; it</span></span>
+<span id="cb59-9"><a href="software-programming-with-big-data.html#cb59-9" aria-hidden="true" tabindex="-1"></a>import_files <span class="ot">&lt;-</span> <span class="fu">Vectorize</span>(import_file, <span class="at">SIMPLIFY =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb59-10"><a href="software-programming-with-big-data.html#cb59-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb59-11"><a href="software-programming-with-big-data.html#cb59-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply the vectorized function</span></span>
+<span id="cb59-12"><a href="software-programming-with-big-data.html#cb59-12" aria-hidden="true" tabindex="-1"></a>all_texts <span class="ot">&lt;-</span> <span class="fu">import_files</span>(textfiles)</span>
+<span id="cb59-13"><a href="software-programming-with-big-data.html#cb59-13" aria-hidden="true" tabindex="-1"></a>twitter_text <span class="ot">&lt;-</span> <span class="fu">rbindlist</span>(all_texts)</span>
+<span id="cb59-14"><a href="software-programming-with-big-data.html#cb59-14" aria-hidden="true" tabindex="-1"></a><span class="co"># check the result</span></span>
+<span id="cb59-15"><a href="software-programming-with-big-data.html#cb59-15" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(twitter_text)</span></code></pre></div>
+<pre><code>## [1] 42422     3</code></pre>
+<p>The take-away message: Instead of writing simple loops, use <code>apply</code>-type functions to save time writing code (and make the code easier to read) and automatically avoid memory-allocation problems.</p>
+<!-- ## Speed improvement tutorials -->
+<!-- https://stackoverflow.com/questions/6807068/why-is-my-recursive-function-so-slow-in-r -->
+<!-- https://stackoverflow.com/questions/62047104/r-cbind-is-very-slow -->
+</div>
+<div id="avoiding-unnecessary-copying" class="section level3 hasAnchor" number="4.3.4">
+<h3><span class="header-section-number">4.3.4</span> Avoiding unnecessary copying<a href="software-programming-with-big-data.html#avoiding-unnecessary-copying" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>The “growing objects” problem discussed above is only one aspect that can lead to inefficient use of memory when working with R. Another potential problem of using up more memory than necessary during an execution of an R-script is how R handles objects/variables and their names.</p>
+<p>Consider the following line of code:</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="software-programming-with-big-data.html#cb61-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">10000</span>)</span></code></pre></div>
+<p>What is usually said to describe what is happening here is something along the lines of “we initialize a variable called <code>a</code> and assign a numeric vector with 10,000 random numbers. What in fact happens is that the name <code>a</code> is assigned to the integer vector (which in turn exists at a specific memory address). Thus, values do not have names but <em>names have values</em>. This has important consequences for memory allocation and performance. For example, because <code>a</code> is in fact just a name attached to a value, the following does not involve any copying of values. It simply”binds” another name, <code>b</code>, to the same value to which <code>a</code> is already bound.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="software-programming-with-big-data.html#cb62-1" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> a</span></code></pre></div>
+<p>We can prove this in two ways. First, if what I just stated was not true, the line above would actually lead to more memory being occupied by the current R session. However, this is not the case:</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="software-programming-with-big-data.html#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">object_size</span>(a)</span></code></pre></div>
+<pre><code>## 80.05 kB</code></pre>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="software-programming-with-big-data.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_change</span>(c <span class="ot">&lt;-</span> a)</span></code></pre></div>
+<pre><code>## -588 kB</code></pre>
+<p>Second, by means of the <code>lobstr</code>-package <span class="citation">(<a href="#ref-lobstr" role="doc-biblioref">Wickham 2022a</a>)</span>, we can see that the values to which <code>a</code> and <code>b</code> are bound are stored at the same memory address. Hence, they are the same values.</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="software-programming-with-big-data.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb67-2"><a href="software-programming-with-big-data.html#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lobstr)</span>
+<span id="cb67-3"><a href="software-programming-with-big-data.html#cb67-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-4"><a href="software-programming-with-big-data.html#cb67-4" aria-hidden="true" tabindex="-1"></a><span class="co"># check memory addresses of objects</span></span>
+<span id="cb67-5"><a href="software-programming-with-big-data.html#cb67-5" aria-hidden="true" tabindex="-1"></a><span class="fu">obj_addr</span>(a)</span></code></pre></div>
+<pre><code>## [1] &quot;0x55d688cfeec0&quot;</code></pre>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="software-programming-with-big-data.html#cb69-1" aria-hidden="true" tabindex="-1"></a><span class="fu">obj_addr</span>(b)</span></code></pre></div>
+<pre><code>## [1] &quot;0x55d688cfeec0&quot;</code></pre>
+<p>Now you probably wonder, what happens to <code>b</code> if we modify <code>a</code>. After all, if the values to which <code>b</code> is bound are changed when we write code concerning <code>a</code>, we might end up with very surprising output. The answer is, and this is key (!), once we modify <code>a</code>, the values need to be <em>copied</em> in order to ensure the integrity of <code>b</code>. Only at this point, our program will require more memory.</p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="software-programming-with-big-data.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check the first element&#39;s value</span></span>
+<span id="cb71-2"><a href="software-programming-with-big-data.html#cb71-2" aria-hidden="true" tabindex="-1"></a>a[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] 0.5262</code></pre>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="software-programming-with-big-data.html#cb73-1" aria-hidden="true" tabindex="-1"></a>b[<span class="dv">1</span>]</span></code></pre></div>
+<pre><code>## [1] 0.5262</code></pre>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="software-programming-with-big-data.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="co"># modify a, check memory change</span></span>
+<span id="cb75-2"><a href="software-programming-with-big-data.html#cb75-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_change</span>(a[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">0</span>)</span></code></pre></div>
+<pre><code>## 79 kB</code></pre>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="software-programming-with-big-data.html#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check memory addresses</span></span>
+<span id="cb77-2"><a href="software-programming-with-big-data.html#cb77-2" aria-hidden="true" tabindex="-1"></a><span class="fu">obj_addr</span>(a)</span></code></pre></div>
+<pre><code>## [1] &quot;0x55d671554530&quot;</code></pre>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="software-programming-with-big-data.html#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">obj_addr</span>(b)</span></code></pre></div>
+<pre><code>## [1] &quot;0x55d688cfeec0&quot;</code></pre>
+<p>Note that the entire vector needed to be copied for this. There is, of course, a lesson from all this regarding writing efficient code. Knowing how actual copying of values occurs helps avoid unnecessary copying. The larger an object, the more time it will take to copy it in memory. Objects with a single binding get modified in place (no copying):</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="software-programming-with-big-data.html#cb81-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_change</span>(d <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">10000</span>))</span></code></pre></div>
+<pre><code>## 80.3 kB</code></pre>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="software-programming-with-big-data.html#cb83-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_change</span>(d[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="dv">0</span>)</span></code></pre></div>
+<pre><code>## 584 B</code></pre>
+</div>
+<div id="releasing-memory" class="section level3 hasAnchor" number="4.3.5">
+<h3><span class="header-section-number">4.3.5</span> Releasing memory<a href="software-programming-with-big-data.html#releasing-memory" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p></p>
+<p>Closely related to the issue of copy-upon-modify is the issue of “releasing” memory via “garbage collection”. If your program uses up a lot of (too much) memory (typical for working with large datasets), all processes on your computer might substantially slow down (we will look more closely into why this is the case in the next chapter). Hence, you might want to remove/delete an object once you do not need it anymore. This can be done with the <code>rm()</code> function.</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="software-programming-with-big-data.html#cb85-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_change</span>(large_vector <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">10</span><span class="sc">^</span><span class="dv">8</span>))</span></code></pre></div>
+<pre><code>## 800 MB</code></pre>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="software-programming-with-big-data.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mem_change</span>(<span class="fu">rm</span>(large_vector))</span></code></pre></div>
+<pre><code>## -800 MB</code></pre>
+<p><code>rm()</code> removes objects that are currently accessible in the global R environment. However, some objects/values might technically not be visible/accessible anymore (for example, objects that have been created in a function which has since returned the function output). To also release memory occupied by these objects, you can call <code>gc()</code> (the garbage collector). While R will automatically collect the garbage once it is close to running out of memory, explicitly calling <code>gc</code> can still improve the performance of your script when working with large datasets. This is in particular the case when R is not the only data-intensive process running on your computer. For example, when running an R script involving the repeated querying of data from a local SQL database and the subsequent memory-intensive processing of this data in R, you can avoid using up too much memory by running <code>rm</code> and <code>gc</code> explicitly.<a href="#fn16" class="footnote-ref" id="fnref16"><sup>16</sup></a></p>
+</div>
+<div id="beyond-r" class="section level3 hasAnchor" number="4.3.6">
+<h3><span class="header-section-number">4.3.6</span> Beyond R<a href="software-programming-with-big-data.html#beyond-r" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>So far, we have explored idiosyncrasies of R we should be aware of when writing programs to handle and analyze large datasets. While this has shown that R has many advantages for working with data, it also revealed some aspects of R that might result in low performance compared to other programming languages. A simple generic explanation for this is that R is an interpreted language, meaning that when we execute R code, it is processed (statement by statement) by an ‘interpreter’ that translates the code into machine code (without the user giving any specific instructions). In contrast, when writing code in a ‘compiled language’, we first have to explicitly compile the code (into machine code) and then run the compiled program. Running code that is already compiled is typically much faster than running R code that has to be interpreted before it can actually be processed by the CPU.</p>
+<p>For advanced programmers, R offers various options to directly make use of compiled programs (for example, written in C, C++, or FORTRAN). In fact, several of the core R functions installed with the basic R distribution are implemented in one of these lower-level programming languages, and the R function we call simply interacts with these functions.</p>
+<p>We can actually investigate this by looking at the source code of an R function. If you simply type the name of a function (such as our <code>import_file()</code>) to the console, R prints the function’s source code to the console.</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="software-programming-with-big-data.html#cb89-1" aria-hidden="true" tabindex="-1"></a>import_file</span></code></pre></div>
+<pre><code>## function(x) {
+##           parsed_x &lt;- fread(x)
+##           return(parsed_x)
+##      }
+## &lt;bytecode: 0x55d689024050&gt;</code></pre>
+<p>However, if we do the same for function <code>sum</code>, we don’t see any actual source code.</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="software-programming-with-big-data.html#cb91-1" aria-hidden="true" tabindex="-1"></a>sum</span></code></pre></div>
+<pre><code>## function (..., na.rm = FALSE)  .Primitive(&quot;sum&quot;)</code></pre>
+<p>Instead <code>.Primitive()</code> indicates that <code>sum()</code> is actually referring to an internal function (in this case implemented in C).</p>
+<p>While the use of functions implemented in a lower-level language is a common technique to improve the speed of ‘R’ functions, it is particularly prominent in the context of functions/packages made to deal with large amounts of data (such as the <code>data.table</code> package).</p>
+</div>
+</div>
+<div id="sql-basics" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> SQL basics<a href="software-programming-with-big-data.html#sql-basics" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p></p>
+<p>Structured Query Language (SQL) has become a bread-and-butter tool for data analysts and data scientists due to its broad application in systems used to store large amounts of data. While traditionally only encountered in the context of structured data stored in relational database management systems, some versions of it are now also used to query data from data warehouse systems (e.g. Amazon Redshift) and even to query massive amounts (terabytes or even petabytes) of data stored in data lakes (e.g., Amazon Athena). In all of these applications, SQL’s purpose (from the data analytics perspective) is to provide a convenient and efficient way to query data from mass storage for analysis. Instead of importing a CSV file into R and then filtering it in order to get to the analytic dataset, we use SQL to express how the analytic dataset should look (which variables and rows should be included).</p>
+<p>The latter point is very important to keep in mind when already having experience with a language like R and learning SQL for the first time. In R we write code to instruct the computer what to do with the data. For example, we tell it to import a csv file called <code>economics.csv</code> as a <code>data.table</code>; then we instruct it to remove observations that are older than a certain date according to the <code>date</code> column; then we instruct it to compute the average of the <code>unemploy</code> column values for each year based on the <code>date</code> column and then return the result as a separate data frame:</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="software-programming-with-big-data.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import data</span></span>
+<span id="cb93-2"><a href="software-programming-with-big-data.html#cb93-2" aria-hidden="true" tabindex="-1"></a>econ <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/economics.csv&quot;</span>)</span>
+<span id="cb93-3"><a href="software-programming-with-big-data.html#cb93-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-4"><a href="software-programming-with-big-data.html#cb93-4" aria-hidden="true" tabindex="-1"></a><span class="co"># filter</span></span>
+<span id="cb93-5"><a href="software-programming-with-big-data.html#cb93-5" aria-hidden="true" tabindex="-1"></a>econ2 <span class="ot">&lt;-</span> econ[<span class="st">&quot;1968-01-01&quot;</span><span class="sc">&lt;=</span>econ<span class="sc">$</span>date,]</span>
+<span id="cb93-6"><a href="software-programming-with-big-data.html#cb93-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-7"><a href="software-programming-with-big-data.html#cb93-7" aria-hidden="true" tabindex="-1"></a><span class="co"># compute yearly averages (basic R approach)</span></span>
+<span id="cb93-8"><a href="software-programming-with-big-data.html#cb93-8" aria-hidden="true" tabindex="-1"></a>econ2<span class="sc">$</span>year <span class="ot">&lt;-</span> lubridate<span class="sc">::</span><span class="fu">year</span>(econ2<span class="sc">$</span>date)</span>
+<span id="cb93-9"><a href="software-programming-with-big-data.html#cb93-9" aria-hidden="true" tabindex="-1"></a>years <span class="ot">&lt;-</span> <span class="fu">unique</span>(econ2<span class="sc">$</span>year)</span>
+<span id="cb93-10"><a href="software-programming-with-big-data.html#cb93-10" aria-hidden="true" tabindex="-1"></a>averages <span class="ot">&lt;-</span> </span>
+<span id="cb93-11"><a href="software-programming-with-big-data.html#cb93-11" aria-hidden="true" tabindex="-1"></a>     <span class="fu">sapply</span>(years, <span class="at">FUN =</span> <span class="cf">function</span>(x){</span>
+<span id="cb93-12"><a href="software-programming-with-big-data.html#cb93-12" aria-hidden="true" tabindex="-1"></a>          <span class="fu">mean</span>(econ2[econ2<span class="sc">$</span>year<span class="sc">==</span>x,<span class="st">&quot;unemploy&quot;</span>])</span>
+<span id="cb93-13"><a href="software-programming-with-big-data.html#cb93-13" aria-hidden="true" tabindex="-1"></a>          })</span>
+<span id="cb93-14"><a href="software-programming-with-big-data.html#cb93-14" aria-hidden="true" tabindex="-1"></a>output <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">year=</span>years, <span class="at">average_unemploy=</span>averages)</span>
+<span id="cb93-15"><a href="software-programming-with-big-data.html#cb93-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-16"><a href="software-programming-with-big-data.html#cb93-16" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect the first few lines of the result</span></span>
+<span id="cb93-17"><a href="software-programming-with-big-data.html#cb93-17" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(output)</span></code></pre></div>
+<pre><code>##   year average_unemploy
+## 1 1968             2797
+## 2 1969             2830
+## 3 1970             4127
+## 4 1971             5022
+## 5 1972             4876
+## 6 1973             4359</code></pre>
+<p>In contrast, when using SQL we write code that describes what the final result is supposed to look like. The SQL engine processing the code then takes care of the rest and returns the result in the most efficient way.<a href="#fn17" class="footnote-ref" id="fnref17"><sup>17</sup></a></p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb95-1"><a href="software-programming-with-big-data.html#cb95-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> </span>
+<span id="cb95-2"><a href="software-programming-with-big-data.html#cb95-2" aria-hidden="true" tabindex="-1"></a>strftime(<span class="st">&#39;%Y&#39;</span>, `date`)  <span class="kw">AS</span> <span class="dt">year</span>,</span>
+<span id="cb95-3"><a href="software-programming-with-big-data.html#cb95-3" aria-hidden="true" tabindex="-1"></a><span class="fu">AVG</span>(unemploy) <span class="kw">AS</span> average_unemploy</span>
+<span id="cb95-4"><a href="software-programming-with-big-data.html#cb95-4" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> econ</span>
+<span id="cb95-5"><a href="software-programming-with-big-data.html#cb95-5" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> <span class="ot">&quot;1968-01-01&quot;</span><span class="op">&lt;=</span>`date`</span>
+<span id="cb95-6"><a href="software-programming-with-big-data.html#cb95-6" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="dt">year</span> <span class="kw">LIMIT</span> <span class="dv">6</span>;</span></code></pre></div>
+<pre><code>##   year average_unemploy
+## 1 1968             2797
+## 2 1969             2830
+## 3 1970             4127
+## 4 1971             5022
+## 5 1972             4876
+## 6 1973             4359</code></pre>
+<p>For the moment, we will only focus on the code and ignore the underlying hardware and database concepts (those will be discussed in more detail in Chapter 5).</p>
+<div id="first-steps-in-sqlite" class="section level3 hasAnchor" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> First steps in SQL(ite)<a href="software-programming-with-big-data.html#first-steps-in-sqlite" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>In order to get familiar with coding in SQL, we work with a free and easy-to-use version of SQL called <em>SQLite</em>. <a href="https://sqlite.org/index.html">SQLite</a> is a free full-featured SQL database engine widely used across platforms. It usually comes pre-installed with Windows and Mac/OSX distributions and has (from the user’s perspective) all the core features of more sophisticated SQL versions. Unlike the more sophisticated SQL systems, SQLite does not rely explicitly on a client/server model. That is, there is no need to set up your database on a server and then query it from a client interface. In fact, setting it up is straightforward. In the terminal, we can directly call SQLite as a command-line tool (on most modern computers, the command is now <code>sqlite3</code>, SQLite version 3).</p>
+<p>In this first code example, we set up an SQLite database using the command line. In the file structure of the book repository, we first switch to the data directory.</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb97-1"><a href="software-programming-with-big-data.html#cb97-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> data </span></code></pre></div>
+<p>With one simple command, we start up SQLite, create a new database called <code>mydb.sqlite</code>, and connect to the newly created database.<a href="#fn18" class="footnote-ref" id="fnref18"><sup>18</sup></a></p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb98-1"><a href="software-programming-with-big-data.html#cb98-1" aria-hidden="true" tabindex="-1"></a><span class="ex">sqlite3</span> mydb.sqlite</span></code></pre></div>
+<p>This created a new file <code>mydb.sqlite</code> in our <code>data</code> directory, which contains the newly created database. Also, we are now running <code>sqlite</code> in the terminal (indicated by the <code>sqlite&gt;</code> prompt. This means we can now type SQL code to the terminal to run queries and other SQL commands.</p>
+<p>At this point, the newly created database does not contain any data. There are no tables in it. We can see this by running the <code>.tables</code> command.</p>
+<div class="sourceCode" id="cb99"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb99-1"><a href="software-programming-with-big-data.html#cb99-1" aria-hidden="true" tabindex="-1"></a>.<span class="kw">tables</span></span></code></pre></div>
+<p>As expected, nothing is returned. Now, let’s create our first table and import the <code>economics.csv</code> dataset into it. In SQLite, it makes sense to first set up an empty table in which all column data types are defined before importing data from a CSV-file to it. If a CSV is directly imported to a new table (without type definitions), all columns will be set to <code>TEXT</code> (similar to <code>character</code> in R) by default. Setting the right data type for each variable follows essentially the same logic as setting the data types of a data frame’s columns in R (with the difference that in SQL this also affects how the data is stored on disk).<a href="#fn19" class="footnote-ref" id="fnref19"><sup>19</sup></a></p>
+<p>In a first step, we thus create a new table called <code>econ</code>.</p>
+<div class="sourceCode" id="cb100"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb100-1"><a href="software-programming-with-big-data.html#cb100-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Create the new table</span></span>
+<span id="cb100-2"><a href="software-programming-with-big-data.html#cb100-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> econ(</span>
+<span id="cb100-3"><a href="software-programming-with-big-data.html#cb100-3" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;date&quot;</span> <span class="dt">DATE</span>,</span>
+<span id="cb100-4"><a href="software-programming-with-big-data.html#cb100-4" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;pce&quot;</span> <span class="dt">REAL</span>,</span>
+<span id="cb100-5"><a href="software-programming-with-big-data.html#cb100-5" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;pop&quot;</span> <span class="dt">REAL</span>,</span>
+<span id="cb100-6"><a href="software-programming-with-big-data.html#cb100-6" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;psavert&quot;</span> <span class="dt">REAL</span>,</span>
+<span id="cb100-7"><a href="software-programming-with-big-data.html#cb100-7" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;uempmed&quot;</span> <span class="dt">REAL</span>,</span>
+<span id="cb100-8"><a href="software-programming-with-big-data.html#cb100-8" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;unemploy&quot;</span> <span class="dt">INTEGER</span></span>
+<span id="cb100-9"><a href="software-programming-with-big-data.html#cb100-9" aria-hidden="true" tabindex="-1"></a>);</span></code></pre></div>
+<p>Then, we can import the data from the csv file, by first switching to CSV mode via the command <code>.mode csv</code> and then importing the data to <code>econ</code> with <code>.import</code>. The <code>.import</code> command expects as a first argument the path to the CSV file on disk and as a second argument the name of the table to import the data to.</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb101-1"><a href="software-programming-with-big-data.html#cb101-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- prepare import</span></span>
+<span id="cb101-2"><a href="software-programming-with-big-data.html#cb101-2" aria-hidden="true" tabindex="-1"></a>.<span class="kw">mode</span> csv</span>
+<span id="cb101-3"><a href="software-programming-with-big-data.html#cb101-3" aria-hidden="true" tabindex="-1"></a><span class="co">-- import data from csv</span></span>
+<span id="cb101-4"><a href="software-programming-with-big-data.html#cb101-4" aria-hidden="true" tabindex="-1"></a>.import <span class="co">--skip 1 economics.csv econ</span></span></code></pre></div>
+<p>Now we can have a look at the new database table in SQLite. <code>.tables</code> shows that we now have one table called <code>econ</code> in our database, and <code>.schema</code> displays the structure of the new <code>econ</code> table.</p>
+<div class="sourceCode" id="cb102"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb102-1"><a href="software-programming-with-big-data.html#cb102-1" aria-hidden="true" tabindex="-1"></a>.<span class="kw">tables</span></span></code></pre></div>
+<div class="sourceCode" id="cb103"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb103-1"><a href="software-programming-with-big-data.html#cb103-1" aria-hidden="true" tabindex="-1"></a># econ</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb104-1"><a href="software-programming-with-big-data.html#cb104-1" aria-hidden="true" tabindex="-1"></a>.<span class="kw">schema</span> econ</span></code></pre></div>
+<pre><code># CREATE TABLE econ(
+# &quot;date&quot; DATE,
+# &quot;pce&quot; REAL,
+# &quot;pop&quot; REAL,
+# &quot;psavert&quot; REAL,
+# &quot;uempmed&quot; REAL,
+# &quot;unemploy&quot; INTEGER
+# );</code></pre>
+<p>With this, we can start querying data with SQLite. In order to make the query results easier to read, we first set two options regarding how query results are displayed on the terminal. <code>.header on</code> enables the display of the column names in the returned query results. And <code>.mode columns</code> arranges the query results in columns.</p>
+<div class="sourceCode" id="cb106"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb106-1"><a href="software-programming-with-big-data.html#cb106-1" aria-hidden="true" tabindex="-1"></a>.<span class="kw">header</span> <span class="kw">on</span></span></code></pre></div>
+<div class="sourceCode" id="cb107"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb107-1"><a href="software-programming-with-big-data.html#cb107-1" aria-hidden="true" tabindex="-1"></a>.<span class="kw">mode</span> <span class="kw">columns</span></span></code></pre></div>
+<p>In our first query, we select all (<code>*</code>) variable values of the observation of January 1968.</p>
+<div class="sourceCode" id="cb108"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb108-1"><a href="software-programming-with-big-data.html#cb108-1" aria-hidden="true" tabindex="-1"></a><span class="kw">select</span> <span class="op">*</span> <span class="kw">from</span> econ <span class="kw">where</span> <span class="dt">date</span> <span class="op">=</span> <span class="st">&#39;1968-01-01&#39;</span>;</span></code></pre></div>
+<pre><code>##         date   pce    pop psavert uempmed unemploy
+## 1 1968-01-01 531.5 199808    11.7     5.1     2878</code></pre>
+<div id="simple-queries" class="section level4 hasAnchor" number="4.4.1.1">
+<h4><span class="header-section-number">4.4.1.1</span> Simple queries<a href="software-programming-with-big-data.html#simple-queries" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Now let’s select all dates and unemployment values of observations with more than 15 million unemployed, ordered by date.</p>
+<div class="sourceCode" id="cb110"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb110-1"><a href="software-programming-with-big-data.html#cb110-1" aria-hidden="true" tabindex="-1"></a><span class="kw">select</span> <span class="dt">date</span>, </span>
+<span id="cb110-2"><a href="software-programming-with-big-data.html#cb110-2" aria-hidden="true" tabindex="-1"></a>unemploy <span class="kw">from</span> econ </span>
+<span id="cb110-3"><a href="software-programming-with-big-data.html#cb110-3" aria-hidden="true" tabindex="-1"></a><span class="kw">where</span> unemploy <span class="op">&gt;</span> <span class="dv">15000</span></span>
+<span id="cb110-4"><a href="software-programming-with-big-data.html#cb110-4" aria-hidden="true" tabindex="-1"></a><span class="kw">order</span> <span class="kw">by</span> <span class="dt">date</span>;</span></code></pre></div>
+<pre><code>##         date unemploy
+## 1 2009-09-01    15009
+## 2 2009-10-01    15352
+## 3 2009-11-01    15219
+## 4 2009-12-01    15098
+## 5 2010-01-01    15046
+## 6 2010-02-01    15113
+## 7 2010-03-01    15202
+## 8 2010-04-01    15325
+## 9 2010-11-01    15081</code></pre>
+</div>
+</div>
+<div id="joins" class="section level3 hasAnchor" number="4.4.2">
+<h3><span class="header-section-number">4.4.2</span> Joins<a href="software-programming-with-big-data.html#joins" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p></p>
+<p>So far, we have only considered queries involving one table of data. However, SQL provides a very efficient way to join data from various tables. Again, the way of writing SQL code is the same: You describe what the final table should look like and from where the data is to be selected.</p>
+<p>Let’s extend the previous example by importing an additional table to our <code>mydb.sqlite</code>. The additional data is stored in the file <code>inflation.csv</code> in the book’s data folder and contains information on the US annual inflation rate measured in percent.<a href="#fn20" class="footnote-ref" id="fnref20"><sup>20</sup></a></p>
+<div class="sourceCode" id="cb112"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb112-1"><a href="software-programming-with-big-data.html#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Create the new table</span></span>
+<span id="cb112-2"><a href="software-programming-with-big-data.html#cb112-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> inflation(</span>
+<span id="cb112-3"><a href="software-programming-with-big-data.html#cb112-3" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;date&quot;</span> <span class="dt">DATE</span>,</span>
+<span id="cb112-4"><a href="software-programming-with-big-data.html#cb112-4" aria-hidden="true" tabindex="-1"></a><span class="ot">&quot;inflation_percent&quot;</span> <span class="dt">REAL</span></span>
+<span id="cb112-5"><a href="software-programming-with-big-data.html#cb112-5" aria-hidden="true" tabindex="-1"></a>);</span>
+<span id="cb112-6"><a href="software-programming-with-big-data.html#cb112-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb112-7"><a href="software-programming-with-big-data.html#cb112-7" aria-hidden="true" tabindex="-1"></a><span class="co">-- prepare import</span></span>
+<span id="cb112-8"><a href="software-programming-with-big-data.html#cb112-8" aria-hidden="true" tabindex="-1"></a>.<span class="kw">mode</span> csv</span>
+<span id="cb112-9"><a href="software-programming-with-big-data.html#cb112-9" aria-hidden="true" tabindex="-1"></a><span class="co">-- import data from csv</span></span>
+<span id="cb112-10"><a href="software-programming-with-big-data.html#cb112-10" aria-hidden="true" tabindex="-1"></a>.import <span class="co">--skip 1 inflation.csv inflation</span></span>
+<span id="cb112-11"><a href="software-programming-with-big-data.html#cb112-11" aria-hidden="true" tabindex="-1"></a><span class="co">-- switch back to column mode </span></span>
+<span id="cb112-12"><a href="software-programming-with-big-data.html#cb112-12" aria-hidden="true" tabindex="-1"></a>.<span class="kw">mode</span> <span class="kw">columns</span></span></code></pre></div>
+<p>Note that the data stored in <code>econ</code> contains monthly observations, while <code>inflation</code> contains annual observations. We can thus only meaningfully combine the two datasets at the level of years. Again using the combination of datasets in R as a reference point, here is what we would like to achieve expressed in R. The aim is to get a table that serves as basis for a <a href="https://en.wikipedia.org/wiki/Phillips_curve">Phillips curve</a> plot, with annual observations and the variables <code>year</code>, <code>average_unemp_percent</code>, and <code>inflation_percent</code>.</p>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="software-programming-with-big-data.html#cb113-1" aria-hidden="true" tabindex="-1"></a><span class="co"># import data</span></span>
+<span id="cb113-2"><a href="software-programming-with-big-data.html#cb113-2" aria-hidden="true" tabindex="-1"></a>econ <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/economics.csv&quot;</span>)</span>
+<span id="cb113-3"><a href="software-programming-with-big-data.html#cb113-3" aria-hidden="true" tabindex="-1"></a>inflation <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/inflation.csv&quot;</span>)</span>
+<span id="cb113-4"><a href="software-programming-with-big-data.html#cb113-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb113-5"><a href="software-programming-with-big-data.html#cb113-5" aria-hidden="true" tabindex="-1"></a><span class="co"># prepare variable to match observations</span></span>
+<span id="cb113-6"><a href="software-programming-with-big-data.html#cb113-6" aria-hidden="true" tabindex="-1"></a>econ<span class="sc">$</span>year <span class="ot">&lt;-</span> lubridate<span class="sc">::</span><span class="fu">year</span>(econ<span class="sc">$</span>date)</span>
+<span id="cb113-7"><a href="software-programming-with-big-data.html#cb113-7" aria-hidden="true" tabindex="-1"></a>inflation<span class="sc">$</span>year <span class="ot">&lt;-</span> lubridate<span class="sc">::</span><span class="fu">year</span>(inflation<span class="sc">$</span>date)</span>
+<span id="cb113-8"><a href="software-programming-with-big-data.html#cb113-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb113-9"><a href="software-programming-with-big-data.html#cb113-9" aria-hidden="true" tabindex="-1"></a><span class="co"># create final output</span></span>
+<span id="cb113-10"><a href="software-programming-with-big-data.html#cb113-10" aria-hidden="true" tabindex="-1"></a>years <span class="ot">&lt;-</span> <span class="fu">unique</span>(econ<span class="sc">$</span>year)</span>
+<span id="cb113-11"><a href="software-programming-with-big-data.html#cb113-11" aria-hidden="true" tabindex="-1"></a>averages <span class="ot">&lt;-</span> <span class="fu">sapply</span>(years, <span class="at">FUN =</span> <span class="cf">function</span>(x) {</span>
+<span id="cb113-12"><a href="software-programming-with-big-data.html#cb113-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">mean</span>(econ[econ<span class="sc">$</span>year<span class="sc">==</span>x,<span class="st">&quot;unemploy&quot;</span>]<span class="sc">/</span>econ[econ<span class="sc">$</span>year<span class="sc">==</span>x,<span class="st">&quot;pop&quot;</span>])<span class="sc">*</span><span class="dv">100</span></span>
+<span id="cb113-13"><a href="software-programming-with-big-data.html#cb113-13" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb113-14"><a href="software-programming-with-big-data.html#cb113-14" aria-hidden="true" tabindex="-1"></a>} )</span>
+<span id="cb113-15"><a href="software-programming-with-big-data.html#cb113-15" aria-hidden="true" tabindex="-1"></a>unemp <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">year=</span>years,</span>
+<span id="cb113-16"><a href="software-programming-with-big-data.html#cb113-16" aria-hidden="true" tabindex="-1"></a>                     <span class="at">average_unemp_percent=</span>averages)</span>
+<span id="cb113-17"><a href="software-programming-with-big-data.html#cb113-17" aria-hidden="true" tabindex="-1"></a><span class="co"># combine via the year column</span></span>
+<span id="cb113-18"><a href="software-programming-with-big-data.html#cb113-18" aria-hidden="true" tabindex="-1"></a><span class="co"># keep all rows of econ</span></span>
+<span id="cb113-19"><a href="software-programming-with-big-data.html#cb113-19" aria-hidden="true" tabindex="-1"></a>output<span class="ot">&lt;-</span> <span class="fu">merge</span>(unemp, inflation[, <span class="fu">c</span>(<span class="st">&quot;year&quot;</span>, <span class="st">&quot;inflation_percent&quot;</span>)], <span class="at">by=</span><span class="st">&quot;year&quot;</span>)</span>
+<span id="cb113-20"><a href="software-programming-with-big-data.html#cb113-20" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect output</span></span>
+<span id="cb113-21"><a href="software-programming-with-big-data.html#cb113-21" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(output)</span></code></pre></div>
+<pre><code>##   year average_unemp_percent inflation_percent
+## 1 1967                 1.512             2.773
+## 2 1968                 1.394             4.272
+## 3 1969                 1.396             5.462
+## 4 1970                 2.013             5.838
+## 5 1971                 2.419             4.293
+## 6 1972                 2.324             3.272</code></pre>
+<p>Now let’s look at how the same table can be created in SQLite (the table output below only shows the first 6 rows of the resulting table).</p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb115-1"><a href="software-programming-with-big-data.html#cb115-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> </span>
+<span id="cb115-2"><a href="software-programming-with-big-data.html#cb115-2" aria-hidden="true" tabindex="-1"></a>strftime(<span class="st">&#39;%Y&#39;</span>, econ.<span class="dt">date</span>)  <span class="kw">AS</span> <span class="dt">year</span>,</span>
+<span id="cb115-3"><a href="software-programming-with-big-data.html#cb115-3" aria-hidden="true" tabindex="-1"></a><span class="fu">AVG</span>(unemploy<span class="op">/</span>pop)<span class="op">*</span><span class="dv">100</span> <span class="kw">AS</span> average_unemp_percent,</span>
+<span id="cb115-4"><a href="software-programming-with-big-data.html#cb115-4" aria-hidden="true" tabindex="-1"></a>inflation_percent</span>
+<span id="cb115-5"><a href="software-programming-with-big-data.html#cb115-5" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> econ <span class="kw">INNER</span> <span class="kw">JOIN</span> inflation <span class="kw">ON</span> <span class="dt">year</span> <span class="op">=</span> strftime(<span class="st">&#39;%Y&#39;</span>, inflation.<span class="dt">date</span>)</span>
+<span id="cb115-6"><a href="software-programming-with-big-data.html#cb115-6" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="dt">year</span></span></code></pre></div>
+<pre><code>##   year average_unemp_percent inflation_percent
+## 1 1967                 1.512             2.773
+## 2 1968                 1.394             4.272
+## 3 1969                 1.396             5.462
+## 4 1970                 2.013             5.838
+## 5 1971                 2.419             4.293
+## 6 1972                 2.324             3.272</code></pre>
+<p>When done working with the database, we can exit SQLite by typing <code>.quit</code> into the terminal and hit enter.</p>
+</div>
+</div>
+<div id="with-a-little-help-from-my-friends-gpt-and-rsql-coding" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> With a little help from my friends: GPT and R/SQL coding<a href="software-programming-with-big-data.html#with-a-little-help-from-my-friends-gpt-and-rsql-coding" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Whether you are already an experienced programmer in R and SQL or whether you are rather new to coding, recent developments in Large Language Models (LLMs) might provide an interesting way of making your coding workflow more efficient. At the writing of this book, OpenAI’s ChatGPT was still in its testing phase but has already created a big hype in various topic domains. In very simple terms ChatGPT and its predecessors GPT-2, GPT-3 are pre-trained large-scale machine learning models that have been trained on millions of websites’ text content (including code from open repositories such as GitHub). Applying these models for predictions is different from other machine learning settings. Instead of feeding new datasets into the trained model, you interact with the model via a prompt (like a chat function). That is, among other things you can pose a question to the model in plain English and get an often very reasonable answer, or you can instruct via the prompt to generate some type of text output for you (given your instructions, and potentially additional input). As the model is trained on natural language texts as well as (documented) computer code, you can ask it to write code for you, for example in SQL or R.</p>
+<p>While there are many tools that build on LLMs such as GPT-3 already out there and even more still being developed, I want to explicitly point you to two of those: <a href="https://github.com/MichelNivard/GPTstudio"><code>gptstudio</code></a>, an add-in for Rstudio, providing an easy-to-use interface with some of OpenAI’s APIs, and <a href="https://github.com/features/copilot">GitHub Copilot</a>. The latter is a professionally developed tool to support your software development workflow by, for example, auto-completing the code you are writing. To use GitHub Copilot you need a paid subscription. With a subscription the tool can then be installed as an extension to different code editors (for example Visual Studio Code). However, at the time of writing this book no GitHub Copilot extension for RStudio was available. <code>gptstudio</code> is a much simpler but free alternative to GitHub Copilot and it is explicitly made for RStudio.<a href="#fn21" class="footnote-ref" id="fnref21"><sup>21</sup></a> You will, however, need an OpenAI account and a corresponding OpenAI API key (to get these simply follow the instructions here: <a href="https://github.com/MichelNivard/GPTstudio" class="uri">https://github.com/MichelNivard/GPTstudio</a>) in order to use the gptstudio-add-in. You will be charged for the queries that <code>gptstudio</code> sends to the OpenAI-API; however there are no fixed costs associated with this setup.</p>
+<p>Just to give you an idea of how you could use <code>gptstudio</code> for your coding workflow, consider the following example. After installing the add-in and creating your OpenAI account and API key, you can initiate the chat function of the add-in as follows.</p>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="software-programming-with-big-data.html#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="co"># replace &quot;YOUR-API-KEY&quot; with </span></span>
+<span id="cb117-2"><a href="software-programming-with-big-data.html#cb117-2" aria-hidden="true" tabindex="-1"></a><span class="co"># your actual key</span></span>
+<span id="cb117-3"><a href="software-programming-with-big-data.html#cb117-3" aria-hidden="true" tabindex="-1"></a><span class="fu">Sys.setenv</span>(<span class="at">OPENAI_API_KEY =</span> <span class="st">&quot;YOUR-API-KEY&quot;</span>) </span>
+<span id="cb117-4"><a href="software-programming-with-big-data.html#cb117-4" aria-hidden="true" tabindex="-1"></a><span class="co"># open chat window</span></span>
+<span id="cb117-5"><a href="software-programming-with-big-data.html#cb117-5" aria-hidden="true" tabindex="-1"></a>gptstudio<span class="sc">:::</span><span class="fu">chat_gpt_addin</span>()</span></code></pre></div>
+<p>This will cause RStudio to launch a Viewer window. You can pose questions or write instructions to OpenAI’s GPT model in the prompt field and send the corresponding query by clicking the “Chat” button. In the example below, I simply ask the model to generate a SQL query for me. In fact, I ask it to construct a query that we have previously built and evaluated in the previous SQL examples. I want the model to specifically reproduce the following query:</p>
+<div class="sourceCode" id="cb118"><pre class="sourceCode sql"><code class="sourceCode sql"><span id="cb118-1"><a href="software-programming-with-big-data.html#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="kw">select</span> <span class="dt">date</span>, </span>
+<span id="cb118-2"><a href="software-programming-with-big-data.html#cb118-2" aria-hidden="true" tabindex="-1"></a>unemploy <span class="kw">from</span> econ </span>
+<span id="cb118-3"><a href="software-programming-with-big-data.html#cb118-3" aria-hidden="true" tabindex="-1"></a><span class="kw">where</span> unemploy <span class="op">&gt;</span> <span class="dv">15000</span></span>
+<span id="cb118-4"><a href="software-programming-with-big-data.html#cb118-4" aria-hidden="true" tabindex="-1"></a><span class="kw">order</span> <span class="kw">by</span> <span class="dt">date</span>;</span></code></pre></div>
+<p>Figure <a href="software-programming-with-big-data.html#fig:gptinput">4.1</a> shows a screenshot of my instruction to the model, and Figure <a href="software-programming-with-big-data.html#fig:gptoutput">4.2</a> presents the response from the model.</p>
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:gptinput"></span>
+<img src="img/gpt_SQL_prompt.png" alt="GPTStudio: instructing OpenAI’s GPT-3 model (text-davinci-003) to write an SQL query." width="99%" />
+<p class="caption">
+Figure 4.1: GPTStudio: instructing OpenAI’s GPT-3 model (text-davinci-003) to write an SQL query.
+</p>
+</div>
+
+<div class="figure" style="text-align: center"><span style="display:block;" id="fig:gptoutput"></span>
+<img src="img/gpt_sql_response.png" alt="GPTStudio: an SQL query written by OpenAI’s GPT-3 model (text-davinci-003)." width="99%" />
+<p class="caption">
+Figure 4.2: GPTStudio: an SQL query written by OpenAI’s GPT-3 model (text-davinci-003).
+</p>
+</div>
+
+<p>Two things are worth noting here: first, the query is syntactically correct and would essentially work; second, when comparing the query or the query’s results with our previous manually written query, we notice that the AI’s query is not semantically correct. Our database’s unemployment variable is called <code>unemploy</code>, and it is measured in thousands. The GPT model, of course, had no way of obtaining this information from our instructions. As a result, it simply used variable names and values for the filtering that seemed most reasonable given our input. The take-away message here is to be aware of giving the model very clear instructions when creating code in this manner, especially in terms of the broader context (here the database and schema you are working with). To check the model’s code for syntax errors, simply test whether the code runs through or not. However, model-generated code can easily introduce semantic errors, which can be very problematic.</p>
+</div>
+<div id="wrapping-up" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> Wrapping up<a href="software-programming-with-big-data.html#wrapping-up" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Find bottlenecks in your code before exposing it to the full dataset. To do so, use tools like <code>bench::mark()</code> and <code>profvis::profvis()</code> to see how long certain parts of your code need to process and how much memory they occupy.</li>
+<li>Be aware of R’s strengths and weaknesses when writing code for Big Data Analytics.Pre-allocate memory for objects in which you collect the results of loops, make use of R’s vectorization, and avoid unnecessary copying.</li>
+<li>Get familiar with SQL and the underlying concept of only loading those observations and variables into R that are really needed for your task. SQLite in combination with R is an excellent lightweight solution to do this.</li>
+</ul>
+
+</div>
+</div>
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-profvis" class="csl-entry">
+Chang, Winston, Javier Luraschi, and Timothy Mastny. 2020. <em>Profvis: Interactive Visualizations for Profiling r Code</em>. <a href="https://CRAN.R-project.org/package=profvis">https://CRAN.R-project.org/package=profvis</a>.
+</div>
+<div id="ref-data.table" class="csl-entry">
+Dowle, Matt, and Arun Srinivasan. 2022. <em>Data.table: Extension of ‘Data.frame‘</em>. <a href="https://CRAN.R-project.org/package=data.table">https://CRAN.R-project.org/package=data.table</a>.
+</div>
+<div id="ref-bench" class="csl-entry">
+Hester, Jim, and Davis Vaughan. 2021. <em>Bench: High Precision Timing of r Expressions</em>. <a href="https://CRAN.R-project.org/package=bench">https://CRAN.R-project.org/package=bench</a>.
+</div>
+<div id="ref-karami_etal2017" class="csl-entry">
+Karami, Amir, Aryya Gangopadhyay, Bin Zhou, and Hadi Kharrazi. 2017. <span>“Fuzzy Approach Topic Discovery in Health and Medical Corpora.”</span> <em>International Journal of Fuzzy Systems</em> 20: 1334–45.
+</div>
+<div id="ref-microbenchmark" class="csl-entry">
+Mersmann, Olaf. 2021. <em>Microbenchmark: Accurate Timing Functions</em>. <a href="https://CRAN.R-project.org/package=microbenchmark">https://CRAN.R-project.org/package=microbenchmark</a>.
+</div>
+<div id="ref-rfoundation2021" class="csl-entry">
+R Core Team. 2021. <em>R: A Language and Environment for Statistical Computing</em>. Vienna, Austria: R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>.
+</div>
+<div id="ref-pryr" class="csl-entry">
+———. 2021. <em>Pryr: Tools for Computing on the Language</em>. <a href="https://CRAN.R-project.org/package=pryr">https://CRAN.R-project.org/package=pryr</a>.
+</div>
+<div id="ref-lobstr" class="csl-entry">
+———. 2022a. <em>Lobstr: Visualize r Data Structures with Trees</em>. <a href="https://CRAN.R-project.org/package=lobstr">https://CRAN.R-project.org/package=lobstr</a>.
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="10">
+<li id="fn10"><p>Appendix B reviews the most relevant concepts regarding data types and data structures in R.<a href="software-programming-with-big-data.html#fnref10" class="footnote-back">↩︎</a></p></li>
+<li id="fn11"><p>However, in case you want to further explore how to use GitHub as part of your coding workflow, Appendix A provides a very short introduction to the topic.<a href="software-programming-with-big-data.html#fnref11" class="footnote-back">↩︎</a></p></li>
+<li id="fn12"><p>Throughout the rest of this book, I will point to specialized R packages and functions that are particularly designed to work with large amounts of data. Where necessary, we will also look more closely at the underlying concepts that explain why these specialized packages work better with large amounts of data than the standard approaches.<a href="software-programming-with-big-data.html#fnref12" class="footnote-back">↩︎</a></p></li>
+<li id="fn13"><p>This is not intended to be a definitive guide to writing efficient R code in every aspect. Instead the subsection aims at covering most of the typical pitfalls to avoid and to provide a number of easy-to-remember tricks to keep in mind when writing R code for computationally intensive tasks.<a href="software-programming-with-big-data.html#fnref13" class="footnote-back">↩︎</a></p></li>
+<li id="fn14"><p>We generate the numeric input by drawing vectors of (pseudo-)random numbers via <code>rnorm()</code>.<a href="software-programming-with-big-data.html#fnref14" class="footnote-back">↩︎</a></p></li>
+<li id="fn15"><p>If you know how to implement efficient for-loops in R (as you are certainly expected to at this point), there is not much to gain from using an <code>apply</code>-type function instead of a loop, apart from making your code easier to read (and faster to write).<a href="software-programming-with-big-data.html#fnref15" class="footnote-back">↩︎</a></p></li>
+<li id="fn16"><p>Note that running <code>gc()</code> takes some time, so you should not overdo it. As a rule of thumb, run <code>gc()</code> after removing a really large object.<a href="software-programming-with-big-data.html#fnref16" class="footnote-back">↩︎</a></p></li>
+<li id="fn17"><p>In particular, the user does not need to explicitly instruct SQL at which point in the process which part (filtering, selecting variables, aggregating, creating new variables etc.) of the query should be processed. SQL will automatically find the most efficient way to process the query.<a href="software-programming-with-big-data.html#fnref17" class="footnote-back">↩︎</a></p></li>
+<li id="fn18"><p>If there is already a database called <code>mydb.sqlite</code> in this folder, the same command would simply start up SQLite and connect to the existing database.<a href="software-programming-with-big-data.html#fnref18" class="footnote-back">↩︎</a></p></li>
+<li id="fn19"><p>The most commonly used data types in SQL all have a very similar R equivalent: <code>DATE</code> is like <code>Date</code> in R, <code>REAL</code> like <code>numeric/double</code>, <code>INTEGER</code> like <code>integer</code>, and <code>TEXT</code> like <code>character</code>.<a href="software-programming-with-big-data.html#fnref19" class="footnote-back">↩︎</a></p></li>
+<li id="fn20"><p>Like the data stored in <code>economics.csv</code>, the data stored in <code>inflation.csv</code> is provided by the Federal Reserve Bank’s FRED website (<a href="https://fred.stlouisfed.org/" class="uri">https://fred.stlouisfed.org/</a>).<a href="software-programming-with-big-data.html#fnref20" class="footnote-back">↩︎</a></p></li>
+<li id="fn21"><p>The installation instructions in the README file on <a href="https://github.com/MichelNivard/GPTstudio" class="uri">https://github.com/MichelNivard/GPTstudio</a> are straightforward.<a href="software-programming-with-big-data.html#fnref21" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="p.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="hardware-computing-resources.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 1
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": {},
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

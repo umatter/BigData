@@ -1,0 +1,789 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 10 Descriptive Statistics and Aggregation | Big Data Analytics</title>
+  <meta name="description" content="Chapter 10 Descriptive Statistics and Aggregation | Big Data Analytics" />
+  <meta name="generator" content="bookdown 0.32 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 10 Descriptive Statistics and Aggregation | Big Data Analytics" />
+  <meta property="og:type" content="book" />
+  <meta property="og:image" content="https://umatter.github.io/BigData/img/cover_print.jpg" />
+  
+  <meta name="github-repo" content="umatter/BigData" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 10 Descriptive Statistics and Aggregation | Big Data Analytics" />
+  
+  
+  <meta name="twitter:image" content="https://umatter.github.io/BigData/img/cover_print.jpg" />
+
+<meta name="author" content="Ulrich Matter" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="big-data-cleaning-and-transformation.html"/>
+<link rel="next" href="big-data-visualization.html"/>
+<script src="libs/jquery/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style/style_new.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Big Data Analytics</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Welcome</a></li>
+<li class="chapter" data-level="" data-path="c.html"><a href="c.html"><i class="fa fa-check"></i>Preface</a>
+<ul>
+<li class="chapter" data-level="" data-path="c.html"><a href="c.html#background-and-goals-of-this-book"><i class="fa fa-check"></i>Background and goals of this book</a></li>
+<li class="chapter" data-level="" data-path="c.html"><a href="c.html#a-moving-target"><i class="fa fa-check"></i>A moving target</a></li>
+<li class="chapter" data-level="" data-path="c.html"><a href="c.html#content-and-organization-of-the-book"><i class="fa fa-check"></i>Content and organization of the book</a></li>
+<li class="chapter" data-level="" data-path="c.html"><a href="c.html#prerequisites-and-requirements"><i class="fa fa-check"></i>Prerequisites and requirements</a></li>
+<li class="chapter" data-level="" data-path="c.html"><a href="c.html#supplementary-materials-code-examples-datasets-and-documentation"><i class="fa fa-check"></i>Supplementary Materials: Code Examples, Datasets, and Documentation</a></li>
+<li class="chapter" data-level="" data-path="c.html"><a href="c.html#thanks"><i class="fa fa-check"></i>Thanks</a></li>
+</ul></li>
+<li class="part"><span><b>I Setting the Scene: Analyzing Big Data</b></span></li>
+<li class="chapter" data-level="" data-path="s.html"><a href="s.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="1" data-path="what-is-big-in-big-data.html"><a href="what-is-big-in-big-data.html"><i class="fa fa-check"></i><b>1</b> What is <em>Big</em> in “Big Data”?</a></li>
+<li class="chapter" data-level="2" data-path="approaches-to-analyzing-big-data.html"><a href="approaches-to-analyzing-big-data.html"><i class="fa fa-check"></i><b>2</b> Approaches to Analyzing Big Data</a></li>
+<li class="chapter" data-level="3" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html"><i class="fa fa-check"></i><b>3</b> The Two Domains of Big Data Analytics</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#a-practical-big-p-problem"><i class="fa fa-check"></i><b>3.1</b> A practical <em>big P</em> problem </a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#simple-logistic-regression-naive-approach"><i class="fa fa-check"></i><b>3.1.1</b> Simple logistic regression (naive approach)</a></li>
+<li class="chapter" data-level="3.1.2" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#regularization-the-lasso-estimator"><i class="fa fa-check"></i><b>3.1.2</b> Regularization: the lasso estimator</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#a-practical-big-n-problem"><i class="fa fa-check"></i><b>3.2</b> A practical <em>big N</em> problem </a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#ols-as-a-point-of-reference"><i class="fa fa-check"></i><b>3.2.1</b> OLS as a point of reference </a></li>
+<li class="chapter" data-level="3.2.2" data-path="the-two-domains-of-big-data-analytics.html"><a href="the-two-domains-of-big-data-analytics.html#the-uluru-algorithm-as-an-alternative-to-ols"><i class="fa fa-check"></i><b>3.2.2</b> The <em>Uluru</em> algorithm as an alternative to OLS </a></li>
+</ul></li>
+</ul></li>
+<li class="part"><span><b>II Platform: Software and Computing Resources</b></span></li>
+<li class="chapter" data-level="" data-path="p.html"><a href="p.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="4" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html"><i class="fa fa-check"></i><b>4</b> Software: Programming with (Big) Data</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#domains-of-programming-with-big-data"><i class="fa fa-check"></i><b>4.1</b> Domains of programming with (big) data</a></li>
+<li class="chapter" data-level="4.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#measuring-r-performance"><i class="fa fa-check"></i><b>4.2</b> Measuring R performance</a></li>
+<li class="chapter" data-level="4.3" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#writing-efficient-r-code"><i class="fa fa-check"></i><b>4.3</b> Writing efficient R code</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#memory-allocation-and-growing-objects"><i class="fa fa-check"></i><b>4.3.1</b> Memory allocation and growing objects</a></li>
+<li class="chapter" data-level="4.3.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#vectorization-in-basic-r-functions"><i class="fa fa-check"></i><b>4.3.2</b> Vectorization in basic R functions</a></li>
+<li class="chapter" data-level="4.3.3" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#apply-type-functions-and-vectorization"><i class="fa fa-check"></i><b>4.3.3</b> <code>apply</code>-type functions and vectorization</a></li>
+<li class="chapter" data-level="4.3.4" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#avoiding-unnecessary-copying"><i class="fa fa-check"></i><b>4.3.4</b> Avoiding unnecessary copying</a></li>
+<li class="chapter" data-level="4.3.5" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#releasing-memory"><i class="fa fa-check"></i><b>4.3.5</b> Releasing memory</a></li>
+<li class="chapter" data-level="4.3.6" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#beyond-r"><i class="fa fa-check"></i><b>4.3.6</b> Beyond R</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#sql-basics"><i class="fa fa-check"></i><b>4.4</b> SQL basics</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#first-steps-in-sqlite"><i class="fa fa-check"></i><b>4.4.1</b> First steps in SQL(ite)</a></li>
+<li class="chapter" data-level="4.4.2" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#joins"><i class="fa fa-check"></i><b>4.4.2</b> Joins</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#with-a-little-help-from-my-friends-gpt-and-rsql-coding"><i class="fa fa-check"></i><b>4.5</b> With a little help from my friends: GPT and R/SQL coding</a></li>
+<li class="chapter" data-level="4.6" data-path="software-programming-with-big-data.html"><a href="software-programming-with-big-data.html#wrapping-up"><i class="fa fa-check"></i><b>4.6</b> Wrapping up</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html"><i class="fa fa-check"></i><b>5</b> Hardware: Computing Resources</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#mass-storage"><i class="fa fa-check"></i><b>5.1</b> Mass storage</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#avoiding-redundancies"><i class="fa fa-check"></i><b>5.1.1</b> Avoiding redundancies</a></li>
+<li class="chapter" data-level="5.1.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#data-compression"><i class="fa fa-check"></i><b>5.1.2</b> Data compression</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#random-access-memory-ram"><i class="fa fa-check"></i><b>5.2</b> Random access memory (RAM)</a></li>
+<li class="chapter" data-level="5.3" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#combining-ram-and-hard-disk-virtual-memory"><i class="fa fa-check"></i><b>5.3</b> Combining RAM and hard disk: Virtual memory</a></li>
+<li class="chapter" data-level="5.4" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#cpu-and-parallelization"><i class="fa fa-check"></i><b>5.4</b> CPU and parallelization</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#naive-multi-session-approach"><i class="fa fa-check"></i><b>5.4.1</b> Naive multi-session approach</a></li>
+<li class="chapter" data-level="5.4.2" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#multi-session-approach-with-futures"><i class="fa fa-check"></i><b>5.4.2</b> Multi-session approach with futures</a></li>
+<li class="chapter" data-level="5.4.3" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#multi-core-and-multi-node-approach"><i class="fa fa-check"></i><b>5.4.3</b> Multi-core and multi-node approach</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#gpus-for-scientific-computing"><i class="fa fa-check"></i><b>5.5</b> GPUs for scientific computing</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#gpus-in-r"><i class="fa fa-check"></i><b>5.5.1</b> GPUs in R</a></li>
+</ul></li>
+<li class="chapter" data-level="5.6" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#the-road-ahead-hardware-made-for-machine-learning"><i class="fa fa-check"></i><b>5.6</b> The road ahead: Hardware made for machine learning</a></li>
+<li class="chapter" data-level="5.7" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#wrapping-up-1"><i class="fa fa-check"></i><b>5.7</b> Wrapping up</a></li>
+<li class="chapter" data-level="5.8" data-path="hardware-computing-resources.html"><a href="hardware-computing-resources.html#still-have-insufficient-computing-resources"><i class="fa fa-check"></i><b>5.8</b> Still have insufficient computing resources?</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="distributed-systems.html"><a href="distributed-systems.html"><i class="fa fa-check"></i><b>6</b> Distributed Systems</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="distributed-systems.html"><a href="distributed-systems.html#mapreduce"><i class="fa fa-check"></i><b>6.1</b> MapReduce</a></li>
+<li class="chapter" data-level="6.2" data-path="distributed-systems.html"><a href="distributed-systems.html#apache-hadoop"><i class="fa fa-check"></i><b>6.2</b> Apache Hadoop</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="distributed-systems.html"><a href="distributed-systems.html#hadoop-word-count-example"><i class="fa fa-check"></i><b>6.2.1</b> Hadoop word count example</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="distributed-systems.html"><a href="distributed-systems.html#apache-spark"><i class="fa fa-check"></i><b>6.3</b> Apache Spark</a></li>
+<li class="chapter" data-level="6.4" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-r"><i class="fa fa-check"></i><b>6.4</b> Spark with R</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="distributed-systems.html"><a href="distributed-systems.html#data-import-and-summary-statistics"><i class="fa fa-check"></i><b>6.4.1</b> Data import and summary statistics</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-sql"><i class="fa fa-check"></i><b>6.5</b> Spark with SQL</a></li>
+<li class="chapter" data-level="6.6" data-path="distributed-systems.html"><a href="distributed-systems.html#spark-with-r-sql"><i class="fa fa-check"></i><b>6.6</b> Spark with R + SQL</a></li>
+<li class="chapter" data-level="6.7" data-path="distributed-systems.html"><a href="distributed-systems.html#wrapping-up-2"><i class="fa fa-check"></i><b>6.7</b> Wrapping up</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="cloud-computing.html"><a href="cloud-computing.html"><i class="fa fa-check"></i><b>7</b> Cloud Computing</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="cloud-computing.html"><a href="cloud-computing.html#cloud-computing-basics-and-platforms"><i class="fa fa-check"></i><b>7.1</b> Cloud computing basics and platforms</a></li>
+<li class="chapter" data-level="7.2" data-path="cloud-computing.html"><a href="cloud-computing.html#transitioning-to-the-cloud"><i class="fa fa-check"></i><b>7.2</b> Transitioning to the cloud</a></li>
+<li class="chapter" data-level="7.3" data-path="cloud-computing.html"><a href="cloud-computing.html#scaling-up-in-the-cloud-virtual-servers"><i class="fa fa-check"></i><b>7.3</b> Scaling up in the cloud: Virtual servers</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="cloud-computing.html"><a href="cloud-computing.html#parallelization-with-an-ec2-instance"><i class="fa fa-check"></i><b>7.3.1</b> Parallelization with an EC2 instance</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="cloud-computing.html"><a href="cloud-computing.html#scaling-up-with-gpus"><i class="fa fa-check"></i><b>7.4</b> Scaling up with GPUs</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="cloud-computing.html"><a href="cloud-computing.html#gpus-on-google-colab"><i class="fa fa-check"></i><b>7.4.1</b> GPUs on Google Colab</a></li>
+<li class="chapter" data-level="7.4.2" data-path="cloud-computing.html"><a href="cloud-computing.html#rstudio-and-ec2-with-gpus-on-aws"><i class="fa fa-check"></i><b>7.4.2</b> RStudio and EC2 with GPUs on AWS</a></li>
+</ul></li>
+<li class="chapter" data-level="7.5" data-path="cloud-computing.html"><a href="cloud-computing.html#scaling-out-mapreduce-in-the-cloud"><i class="fa fa-check"></i><b>7.5</b> Scaling out: MapReduce in the cloud</a></li>
+<li class="chapter" data-level="7.6" data-path="cloud-computing.html"><a href="cloud-computing.html#wrapping-up-3"><i class="fa fa-check"></i><b>7.6</b> Wrapping up</a></li>
+</ul></li>
+<li class="part"><span><b>III Components of Big Data Analytics</b></span></li>
+<li class="chapter" data-level="" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="8" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html"><i class="fa fa-check"></i><b>8</b> Data Collection and Data Storage</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#gathering-and-compilation-of-raw-data"><i class="fa fa-check"></i><b>8.1</b> Gathering and compilation of raw data</a></li>
+<li class="chapter" data-level="8.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#stackcombine-raw-source-files"><i class="fa fa-check"></i><b>8.2</b> Stack/combine raw source files</a></li>
+<li class="chapter" data-level="8.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#efficient-local-data-storage"><i class="fa fa-check"></i><b>8.3</b> Efficient local data storage</a>
+<ul>
+<li class="chapter" data-level="8.3.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#rdbms-basics"><i class="fa fa-check"></i><b>8.3.1</b> RDBMS basics</a></li>
+<li class="chapter" data-level="8.3.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#efficient-data-access-indices-and-joins-in-sqlite"><i class="fa fa-check"></i><b>8.3.2</b> Efficient data access: Indices and joins in SQLite</a></li>
+</ul></li>
+<li class="chapter" data-level="8.4" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#connecting-r-to-an-rdbms"><i class="fa fa-check"></i><b>8.4</b> Connecting R to an RDBMS</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#creating-a-new-database-with-rsqlite"><i class="fa fa-check"></i><b>8.4.1</b> Creating a new database with <code>RSQLite</code></a></li>
+<li class="chapter" data-level="8.4.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#importing-data"><i class="fa fa-check"></i><b>8.4.2</b> Importing data</a></li>
+<li class="chapter" data-level="8.4.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#issuing-queries"><i class="fa fa-check"></i><b>8.4.3</b> Issuing queries</a></li>
+</ul></li>
+<li class="chapter" data-level="8.5" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#cloud-solutions-for-big-data-storage"><i class="fa fa-check"></i><b>8.5</b> Cloud solutions for (big) data storage</a>
+<ul>
+<li class="chapter" data-level="8.5.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#easy-to-use-rdbms-in-the-cloud-aws-rds"><i class="fa fa-check"></i><b>8.5.1</b> Easy-to-use RDBMS in the cloud: AWS RDS</a></li>
+</ul></li>
+<li class="chapter" data-level="8.6" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#column-based-analytics-databases"><i class="fa fa-check"></i><b>8.6</b> Column-based analytics databases</a>
+<ul>
+<li class="chapter" data-level="8.6.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#installation-and-start-up"><i class="fa fa-check"></i><b>8.6.1</b> Installation and start up</a></li>
+<li class="chapter" data-level="8.6.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#first-steps-via-druids-gui"><i class="fa fa-check"></i><b>8.6.2</b> First steps via Druid’s GUI</a></li>
+<li class="chapter" data-level="8.6.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#query-druid-from-r"><i class="fa fa-check"></i><b>8.6.3</b> Query Druid from R</a></li>
+</ul></li>
+<li class="chapter" data-level="8.7" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#data-warehouses"><i class="fa fa-check"></i><b>8.7</b> Data warehouses</a>
+<ul>
+<li class="chapter" data-level="8.7.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#data-warehouse-for-analytics-google-bigquery-example"><i class="fa fa-check"></i><b>8.7.1</b> Data warehouse for analytics: Google BigQuery example</a></li>
+</ul></li>
+<li class="chapter" data-level="8.8" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#data-lakes-and-simple-storage-service"><i class="fa fa-check"></i><b>8.8</b> Data lakes and simple storage service</a>
+<ul>
+<li class="chapter" data-level="8.8.1" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#aws-s3-with-r-first-steps"><i class="fa fa-check"></i><b>8.8.1</b> AWS S3 with R: First steps</a></li>
+<li class="chapter" data-level="8.8.2" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#uploading-data-to-s3"><i class="fa fa-check"></i><b>8.8.2</b> Uploading data to S3</a></li>
+<li class="chapter" data-level="8.8.3" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#more-than-just-simple-storage-s3-amazon-athena"><i class="fa fa-check"></i><b>8.8.3</b> More than just simple storage: S3 + Amazon Athena</a></li>
+</ul></li>
+<li class="chapter" data-level="8.9" data-path="data-collection-and-data-storage.html"><a href="data-collection-and-data-storage.html#wrapping-up-4"><i class="fa fa-check"></i><b>8.9</b> Wrapping up</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html"><i class="fa fa-check"></i><b>9</b> Big Data Cleaning and Transformation</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#out-of-memory-strategies-and-lazy-evaluation-practical-basics"><i class="fa fa-check"></i><b>9.1</b> Out-of-memory strategies and lazy evaluation: Practical basics</a>
+<ul>
+<li class="chapter" data-level="9.1.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#chunking-data-with-the-ff-package"><i class="fa fa-check"></i><b>9.1.1</b> Chunking data with the <code>ff</code> package</a></li>
+<li class="chapter" data-level="9.1.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#memory-mapping-with-bigmemory"><i class="fa fa-check"></i><b>9.1.2</b> Memory mapping with <code>bigmemory</code></a></li>
+<li class="chapter" data-level="9.1.3" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#connecting-to-apache-arrow"><i class="fa fa-check"></i><b>9.1.3</b> Connecting to Apache Arrow</a></li>
+</ul></li>
+<li class="chapter" data-level="9.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#big-data-preparation-tutorial-with-ff"><i class="fa fa-check"></i><b>9.2</b> Big Data preparation tutorial with <code>ff</code></a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#set-up"><i class="fa fa-check"></i><b>9.2.1</b> Set up</a></li>
+<li class="chapter" data-level="9.2.2" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#data-import"><i class="fa fa-check"></i><b>9.2.2</b> Data import</a></li>
+<li class="chapter" data-level="9.2.3" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#inspect-imported-files"><i class="fa fa-check"></i><b>9.2.3</b> Inspect imported files</a></li>
+<li class="chapter" data-level="9.2.4" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#data-cleaning-and-transformation"><i class="fa fa-check"></i><b>9.2.4</b> Data cleaning and transformation</a></li>
+<li class="chapter" data-level="9.2.5" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#inspect-difference-in-in-memory-operation"><i class="fa fa-check"></i><b>9.2.5</b> Inspect difference in in-memory operation</a></li>
+<li class="chapter" data-level="9.2.6" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#subsetting"><i class="fa fa-check"></i><b>9.2.6</b> Subsetting</a></li>
+<li class="chapter" data-level="9.2.7" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#saveloadexport-ff-files"><i class="fa fa-check"></i><b>9.2.7</b> Save/load/export <code>ff</code> files</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#big-data-preparation-tutorial-with-arrow"><i class="fa fa-check"></i><b>9.3</b> Big Data preparation tutorial with <code>arrow</code></a></li>
+<li class="chapter" data-level="9.4" data-path="big-data-cleaning-and-transformation.html"><a href="big-data-cleaning-and-transformation.html#wrapping-up-5"><i class="fa fa-check"></i><b>9.4</b> Wrapping up</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html"><i class="fa fa-check"></i><b>10</b> Descriptive Statistics and Aggregation</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-the-split-apply-combine-strategy"><i class="fa fa-check"></i><b>10.1</b> Data aggregation: The ‘split-apply-combine’ strategy</a></li>
+<li class="chapter" data-level="10.2" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#data-aggregation-with-chunked-data-files"><i class="fa fa-check"></i><b>10.2</b> Data aggregation with chunked data files</a></li>
+<li class="chapter" data-level="10.3" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-arrow"><i class="fa fa-check"></i><b>10.3</b> High-speed in-memory data aggregation with <code>arrow</code></a></li>
+<li class="chapter" data-level="10.4" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table"><i class="fa fa-check"></i><b>10.4</b> High-speed in-memory data aggregation with <code>data.table</code></a></li>
+<li class="chapter" data-level="10.5" data-path="descriptive-statistics-and-aggregation.html"><a href="descriptive-statistics-and-aggregation.html#wrapping-up-6"><i class="fa fa-check"></i><b>10.5</b> Wrapping up</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="big-data-visualization.html"><a href="big-data-visualization.html"><i class="fa fa-check"></i><b>11</b> (Big) Data Visualization</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#challenges-of-big-data-visualization"><i class="fa fa-check"></i><b>11.1</b> Challenges of Big Data visualization</a></li>
+<li class="chapter" data-level="11.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#data-exploration-with-ggplot2"><i class="fa fa-check"></i><b>11.2</b> Data exploration with <code>ggplot2</code></a></li>
+<li class="chapter" data-level="11.3" data-path="big-data-visualization.html"><a href="big-data-visualization.html#visualizing-time-and-space"><i class="fa fa-check"></i><b>11.3</b> Visualizing time and space</a>
+<ul>
+<li class="chapter" data-level="11.3.1" data-path="big-data-visualization.html"><a href="big-data-visualization.html#preparations"><i class="fa fa-check"></i><b>11.3.1</b> Preparations</a></li>
+<li class="chapter" data-level="11.3.2" data-path="big-data-visualization.html"><a href="big-data-visualization.html#pick-up-and-drop-off-locations"><i class="fa fa-check"></i><b>11.3.2</b> Pick-up and drop-off locations</a></li>
+</ul></li>
+<li class="chapter" data-level="11.4" data-path="big-data-visualization.html"><a href="big-data-visualization.html#wrapping-up-7"><i class="fa fa-check"></i><b>11.4</b> Wrapping up</a></li>
+</ul></li>
+<li class="part"><span><b>IV Application: Topics in Big Data Econometrics</b></span></li>
+<li class="chapter" data-level="" data-path="a.html"><a href="a.html"><i class="fa fa-check"></i>Introduction</a></li>
+<li class="chapter" data-level="12" data-path="bottlenecks-in-everyday-data-analytics-tasks.html"><a href="bottlenecks-in-everyday-data-analytics-tasks.html"><i class="fa fa-check"></i><b>12</b> Bottlenecks in Everyday Data Analytics Tasks</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="bottlenecks-in-everyday-data-analytics-tasks.html"><a href="bottlenecks-in-everyday-data-analytics-tasks.html#case-study-efficient-fixed-effects-estimation"><i class="fa fa-check"></i><b>12.1</b> Case study: Efficient fixed effects estimation</a></li>
+<li class="chapter" data-level="12.2" data-path="bottlenecks-in-everyday-data-analytics-tasks.html"><a href="bottlenecks-in-everyday-data-analytics-tasks.html#case-study-loops-memory-and-vectorization"><i class="fa fa-check"></i><b>12.2</b> Case study: Loops, memory, and vectorization</a>
+<ul>
+<li class="chapter" data-level="12.2.1" data-path="bottlenecks-in-everyday-data-analytics-tasks.html"><a href="bottlenecks-in-everyday-data-analytics-tasks.html#naïve-approach-ignorant-of-r"><i class="fa fa-check"></i><b>12.2.1</b> Naïve approach (ignorant of R)</a></li>
+<li class="chapter" data-level="12.2.2" data-path="bottlenecks-in-everyday-data-analytics-tasks.html"><a href="bottlenecks-in-everyday-data-analytics-tasks.html#improvement-1-pre-allocation-of-memory"><i class="fa fa-check"></i><b>12.2.2</b> Improvement 1: Pre-allocation of memory</a></li>
+<li class="chapter" data-level="12.2.3" data-path="bottlenecks-in-everyday-data-analytics-tasks.html"><a href="bottlenecks-in-everyday-data-analytics-tasks.html#improvement-2-exploit-vectorization"><i class="fa fa-check"></i><b>12.2.3</b> Improvement 2: Exploit vectorization</a></li>
+</ul></li>
+<li class="chapter" data-level="12.3" data-path="bottlenecks-in-everyday-data-analytics-tasks.html"><a href="bottlenecks-in-everyday-data-analytics-tasks.html#case-study-bootstrapping-and-parallel-processing"><i class="fa fa-check"></i><b>12.3</b> Case study: Bootstrapping and parallel processing</a>
+<ul>
+<li class="chapter" data-level="12.3.1" data-path="bottlenecks-in-everyday-data-analytics-tasks.html"><a href="bottlenecks-in-everyday-data-analytics-tasks.html#parallelization-with-an-ec2-instance-1"><i class="fa fa-check"></i><b>12.3.1</b> Parallelization with an EC2 instance</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html"><i class="fa fa-check"></i><b>13</b> Econometrics with GPUs</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#ols-on-gpus"><i class="fa fa-check"></i><b>13.1</b> OLS on GPUs</a></li>
+<li class="chapter" data-level="13.2" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#a-word-of-caution"><i class="fa fa-check"></i><b>13.2</b> A word of caution</a></li>
+<li class="chapter" data-level="13.3" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#higher-level-interfaces-for-basic-econometrics-with-gpus"><i class="fa fa-check"></i><b>13.3</b> Higher-level interfaces for basic econometrics with GPUs</a></li>
+<li class="chapter" data-level="13.4" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#tensorflowkeras-example-predict-housing-prices"><i class="fa fa-check"></i><b>13.4</b> TensorFlow/Keras example: Predict housing prices</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#data-preparation"><i class="fa fa-check"></i><b>13.4.1</b> Data preparation</a></li>
+<li class="chapter" data-level="13.4.2" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#model-specification"><i class="fa fa-check"></i><b>13.4.2</b> Model specification</a></li>
+<li class="chapter" data-level="13.4.3" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#training-and-prediction"><i class="fa fa-check"></i><b>13.4.3</b> Training and prediction</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="econometrics-with-gpus.html"><a href="econometrics-with-gpus.html#wrapping-up-8"><i class="fa fa-check"></i><b>13.5</b> Wrapping up</a></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html"><i class="fa fa-check"></i><b>14</b> Regression Analysis and Categorization with Spark and R</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#simple-linear-regression-analysis"><i class="fa fa-check"></i><b>14.1</b> Simple linear regression analysis</a></li>
+<li class="chapter" data-level="14.2" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#machine-learning-for-classification"><i class="fa fa-check"></i><b>14.2</b> Machine learning for classification</a></li>
+<li class="chapter" data-level="14.3" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#building-machine-learning-pipelines-with-r-and-spark"><i class="fa fa-check"></i><b>14.3</b> Building machine learning pipelines with R and Spark</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#set-up-and-data-import"><i class="fa fa-check"></i><b>14.3.1</b> Set up and data import</a></li>
+<li class="chapter" data-level="14.3.2" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#building-the-pipeline"><i class="fa fa-check"></i><b>14.3.2</b> Building the pipeline</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="regression-analysis-and-categorization-with-spark-and-r.html"><a href="regression-analysis-and-categorization-with-spark-and-r.html#wrapping-up-9"><i class="fa fa-check"></i><b>14.4</b> Wrapping up</a></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html"><i class="fa fa-check"></i><b>15</b> Large-scale Text Analysis with sparklyr</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#getting-started-import-pre-processing-and-word-count"><i class="fa fa-check"></i><b>15.1</b> Getting started: Import, pre-processing, and word count</a></li>
+<li class="chapter" data-level="15.2" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#tutorial-political-slant"><i class="fa fa-check"></i><b>15.2</b> Tutorial: political slant</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#data-download-and-import"><i class="fa fa-check"></i><b>15.2.1</b> Data download and import</a></li>
+<li class="chapter" data-level="15.2.2" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#cleaning-speeches-data"><i class="fa fa-check"></i><b>15.2.2</b> Cleaning speeches data</a></li>
+<li class="chapter" data-level="15.2.3" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#create-a-bigrams-count-per-party"><i class="fa fa-check"></i><b>15.2.3</b> Create a bigrams count per party</a></li>
+<li class="chapter" data-level="15.2.4" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#find-partisan-phrases"><i class="fa fa-check"></i><b>15.2.4</b> Find “partisan” phrases</a></li>
+<li class="chapter" data-level="15.2.5" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#results-most-partisan-phrases-by-congress"><i class="fa fa-check"></i><b>15.2.5</b> Results: Most partisan phrases by congress</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#natural-language-processing-at-scale"><i class="fa fa-check"></i><b>15.3</b> Natural Language Processing at Scale</a>
+<ul>
+<li class="chapter" data-level="15.3.1" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#preparatory-steps"><i class="fa fa-check"></i><b>15.3.1</b> Preparatory steps</a></li>
+<li class="chapter" data-level="15.3.2" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#sentiment-annotation"><i class="fa fa-check"></i><b>15.3.2</b> Sentiment annotation</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#aggregation-and-visualization"><i class="fa fa-check"></i><b>15.4</b> Aggregation and visualization</a></li>
+<li class="chapter" data-level="15.5" data-path="large-scale-text-analysis-with-sparklyr.html"><a href="large-scale-text-analysis-with-sparklyr.html#sparklyr-and-lazy-evaluation"><i class="fa fa-check"></i><b>15.5</b> <code>sparklyr</code> and lazy evaluation</a></li>
+</ul></li>
+<li class="part"><span><b>V Appendices</b></span></li>
+<li class="chapter" data-level="" data-path="appendix-a-github.html"><a href="appendix-a-github.html"><i class="fa fa-check"></i>Appendix A: GitHub</a>
+<ul>
+<li class="chapter" data-level="" data-path="appendix-a-github.html"><a href="appendix-a-github.html#initiate-a-new-repository"><i class="fa fa-check"></i>Initiate a new repository</a></li>
+<li class="chapter" data-level="" data-path="appendix-a-github.html"><a href="appendix-a-github.html#clone-this-books-repository"><i class="fa fa-check"></i>Clone this book’s repository</a></li>
+<li class="chapter" data-level="" data-path="appendix-a-github.html"><a href="appendix-a-github.html#fork-this-books-repository"><i class="fa fa-check"></i>Fork this book’s repository</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix-b-r-basics.html"><a href="appendix-b-r-basics.html"><i class="fa fa-check"></i>Appendix B: R Basics</a>
+<ul>
+<li class="chapter" data-level="" data-path="appendix-b-r-basics.html"><a href="appendix-b-r-basics.html#data-types-and-memorystorage"><i class="fa fa-check"></i>Data types and memory/storage</a>
+<ul>
+<li class="chapter" data-level="" data-path="appendix-b-r-basics.html"><a href="appendix-b-r-basics.html#example-data-types-and-information-storage"><i class="fa fa-check"></i>Example: Data types and information storage</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix-b-r-basics.html"><a href="appendix-b-r-basics.html#data-structures"><i class="fa fa-check"></i>Data structures</a>
+<ul>
+<li class="chapter" data-level="" data-path="appendix-b-r-basics.html"><a href="appendix-b-r-basics.html#vectors-vs.-factors-in-r"><i class="fa fa-check"></i>Vectors vs. Factors in R</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-r-basics.html"><a href="appendix-b-r-basics.html#matricesarrays"><i class="fa fa-check"></i>Matrices/Arrays</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-r-basics.html"><a href="appendix-b-r-basics.html#data-frames-tibbles-and-data-tables"><i class="fa fa-check"></i>Data frames, tibbles, and data tables</a></li>
+<li class="chapter" data-level="" data-path="appendix-b-r-basics.html"><a href="appendix-b-r-basics.html#lists"><i class="fa fa-check"></i>Lists</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix-b-r-basics.html"><a href="appendix-b-r-basics.html#r-tools-to-investigate-structures-and-types"><i class="fa fa-check"></i>R-tools to investigate structures and types</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="appendix-c-install-hadoop.html"><a href="appendix-c-install-hadoop.html"><i class="fa fa-check"></i>Appendix C: Install Hadoop</a></li>
+<li class="part"><span><b>VI References and Index</b></span></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://umatter.github.io" target="blank">umatter.github.io</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Big Data Analytics</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="descriptive-statistics-and-aggregation" class="section level1 hasAnchor" number="10">
+<h1><span class="header-section-number">Chapter 10</span> Descriptive Statistics and Aggregation<a href="descriptive-statistics-and-aggregation.html#descriptive-statistics-and-aggregation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="data-aggregation-the-split-apply-combine-strategy" class="section level2 hasAnchor" number="10.1">
+<h2><span class="header-section-number">10.1</span> Data aggregation: The ‘split-apply-combine’ strategy<a href="descriptive-statistics-and-aggregation.html#data-aggregation-the-split-apply-combine-strategy" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p></p>
+<p>The ‘split-apply-combine’ strategy plays an important role in many data analysis tasks, ranging from data preparation to summary statistics and model-fitting.<a href="#fn57" class="footnote-ref" id="fnref57"><sup>57</sup></a> The strategy can be defined as “break up a problem into manageable pieces, operate on each piece independently, and then put all the pieces back together.” <span class="citation">(<a href="#ref-wickham_2011" role="doc-biblioref">Wickham 2011, 1</a>)</span></p>
+<p>Many R users are familiar with the basic concept of split-apply-combine implemented in the <code>plyr</code> package intended for normal in-memory operations (dataset fits into RAM). Here, we explore the options for split-apply-combine approaches to large datasets that do not fit into RAM.</p>
+</div>
+<div id="data-aggregation-with-chunked-data-files" class="section level2 hasAnchor" number="10.2">
+<h2><span class="header-section-number">10.2</span> Data aggregation with chunked data files<a href="descriptive-statistics-and-aggregation.html#data-aggregation-with-chunked-data-files" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>
+In this tutorial we explore the world of New York’s famous Yellow Cabs. In a first step, we will focus on the <code>ff</code>-based approach to employ parts of the hard disk as ‘virtual memory’. This means, that all of the examples are easily scalable without risking too much memory pressure. Given the size of the entire TLC database (over 200GB), we will only use one million taxi trip records.<a href="#fn58" class="footnote-ref" id="fnref58"><sup>58</sup></a></p>
+<p><strong>Data import</strong></p>
+<p>First, we read the raw taxi trip records into R with the <code>ff</code> package.</p>
+<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb360-1"><a href="descriptive-statistics-and-aggregation.html#cb360-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb360-2"><a href="descriptive-statistics-and-aggregation.html#cb360-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ff)</span>
+<span id="cb360-3"><a href="descriptive-statistics-and-aggregation.html#cb360-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ffbase)</span>
+<span id="cb360-4"><a href="descriptive-statistics-and-aggregation.html#cb360-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb360-5"><a href="descriptive-statistics-and-aggregation.html#cb360-5" aria-hidden="true" tabindex="-1"></a><span class="co"># set up the ff directory (for data file chunks)</span></span>
+<span id="cb360-6"><a href="descriptive-statistics-and-aggregation.html#cb360-6" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">dir.exists</span>(<span class="st">&quot;fftaxi&quot;</span>)){</span>
+<span id="cb360-7"><a href="descriptive-statistics-and-aggregation.html#cb360-7" aria-hidden="true" tabindex="-1"></a>     <span class="fu">system</span>(<span class="st">&quot;mkdir fftaxi&quot;</span>)</span>
+<span id="cb360-8"><a href="descriptive-statistics-and-aggregation.html#cb360-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb360-9"><a href="descriptive-statistics-and-aggregation.html#cb360-9" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">fftempdir =</span> <span class="st">&quot;fftaxi&quot;</span>)</span>
+<span id="cb360-10"><a href="descriptive-statistics-and-aggregation.html#cb360-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb360-11"><a href="descriptive-statistics-and-aggregation.html#cb360-11" aria-hidden="true" tabindex="-1"></a><span class="co"># import the first one million observations</span></span>
+<span id="cb360-12"><a href="descriptive-statistics-and-aggregation.html#cb360-12" aria-hidden="true" tabindex="-1"></a>taxi <span class="ot">&lt;-</span> <span class="fu">read.table.ffdf</span>(<span class="at">file =</span> <span class="st">&quot;data/tlc_trips.csv&quot;</span>,</span>
+<span id="cb360-13"><a href="descriptive-statistics-and-aggregation.html#cb360-13" aria-hidden="true" tabindex="-1"></a>                        <span class="at">sep =</span> <span class="st">&quot;,&quot;</span>,</span>
+<span id="cb360-14"><a href="descriptive-statistics-and-aggregation.html#cb360-14" aria-hidden="true" tabindex="-1"></a>                        <span class="at">header =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb360-15"><a href="descriptive-statistics-and-aggregation.html#cb360-15" aria-hidden="true" tabindex="-1"></a>                        <span class="at">next.rows =</span> <span class="dv">100000</span>,</span>
+<span id="cb360-16"><a href="descriptive-statistics-and-aggregation.html#cb360-16" aria-hidden="true" tabindex="-1"></a>                        <span class="co"># colClasses= col_classes,</span></span>
+<span id="cb360-17"><a href="descriptive-statistics-and-aggregation.html#cb360-17" aria-hidden="true" tabindex="-1"></a>                        <span class="at">nrows =</span> <span class="dv">1000000</span></span>
+<span id="cb360-18"><a href="descriptive-statistics-and-aggregation.html#cb360-18" aria-hidden="true" tabindex="-1"></a>                        )</span></code></pre></div>
+<p>Following the data documentation provided by TLC, we give the columns of our dataset more meaningful names and remove the empty columns (some covariates are only collected in later years).</p>
+<p>When inspecting the factor variables of the dataset, we notice that some of the values are not standardized/normalized, and the resulting factor levels are, therefore, somewhat ambiguous. We should clean this before getting into data aggregation tasks. Note the <code>ff</code>-specific syntax needed to recode the factor.</p>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="descriptive-statistics-and-aggregation.html#cb361-1" aria-hidden="true" tabindex="-1"></a><span class="co"># inspect the factor levels</span></span>
+<span id="cb361-2"><a href="descriptive-statistics-and-aggregation.html#cb361-2" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(taxi<span class="sc">$</span>Payment_Type)</span></code></pre></div>
+<pre><code>## [1] &quot;Cash&quot;      &quot;CASH&quot;      &quot;Credit&quot;    &quot;CREDIT&quot;   
+## [5] &quot;Dispute&quot;   &quot;No Charge&quot;</code></pre>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="descriptive-statistics-and-aggregation.html#cb363-1" aria-hidden="true" tabindex="-1"></a><span class="co"># recode them</span></span>
+<span id="cb363-2"><a href="descriptive-statistics-and-aggregation.html#cb363-2" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(taxi<span class="sc">$</span>Payment_Type) <span class="ot">&lt;-</span> <span class="fu">tolower</span>(<span class="fu">levels</span>(taxi<span class="sc">$</span>Payment_Type))</span>
+<span id="cb363-3"><a href="descriptive-statistics-and-aggregation.html#cb363-3" aria-hidden="true" tabindex="-1"></a>taxi<span class="sc">$</span>Payment_Type <span class="ot">&lt;-</span> <span class="fu">ff</span>(taxi<span class="sc">$</span>Payment_Type,</span>
+<span id="cb363-4"><a href="descriptive-statistics-and-aggregation.html#cb363-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">unique</span>(<span class="fu">levels</span>(taxi<span class="sc">$</span>Payment_Type)),</span>
+<span id="cb363-5"><a href="descriptive-statistics-and-aggregation.html#cb363-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">ramclass =</span> <span class="st">&quot;factor&quot;</span>)</span>
+<span id="cb363-6"><a href="descriptive-statistics-and-aggregation.html#cb363-6" aria-hidden="true" tabindex="-1"></a><span class="co"># check result</span></span>
+<span id="cb363-7"><a href="descriptive-statistics-and-aggregation.html#cb363-7" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(taxi<span class="sc">$</span>Payment_Type)</span></code></pre></div>
+<pre><code>## [1] &quot;cash&quot;      &quot;credit&quot;    &quot;dispute&quot;   &quot;no charge&quot;</code></pre>
+<p><strong>Aggregation with split-apply-combine</strong></p>
+<p>First, we will have a look at whether trips paid with credit card tend to involve lower tip amounts than trips paid in cash. In order to do so, we create a table that shows the average amount of tip paid for each payment-type category.</p>
+<p>In simple words, this means we first split the dataset into subsets, each of which contains all observations belonging to a distinct payment type. Then, we compute the arithmetic mean of the tip-column of each of these subsets. Finally, we combine all of these results into one table (i.e., the split-apply-combine strategy). When working with <code>ff</code>, the <code>ffdfply()</code> function in combination with the <code>doBy</code> package <span class="citation">(<a href="#ref-doBy" role="doc-biblioref">Højsgaard and Halekoh 2023</a>)</span> provides a user-friendly implementation of split-apply-combine types of tasks.</p>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="descriptive-statistics-and-aggregation.html#cb365-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb365-2"><a href="descriptive-statistics-and-aggregation.html#cb365-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(doBy)</span>
+<span id="cb365-3"><a href="descriptive-statistics-and-aggregation.html#cb365-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb365-4"><a href="descriptive-statistics-and-aggregation.html#cb365-4" aria-hidden="true" tabindex="-1"></a><span class="co"># split-apply-combine procedure on data file chunks</span></span>
+<span id="cb365-5"><a href="descriptive-statistics-and-aggregation.html#cb365-5" aria-hidden="true" tabindex="-1"></a>tip_pcategory <span class="ot">&lt;-</span> <span class="fu">ffdfdply</span>(taxi,</span>
+<span id="cb365-6"><a href="descriptive-statistics-and-aggregation.html#cb365-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">split =</span> taxi<span class="sc">$</span>Payment_Type,</span>
+<span id="cb365-7"><a href="descriptive-statistics-and-aggregation.html#cb365-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">BATCHBYTES =</span> <span class="dv">100000000</span>,</span>
+<span id="cb365-8"><a href="descriptive-statistics-and-aggregation.html#cb365-8" aria-hidden="true" tabindex="-1"></a>                          <span class="at">FUN =</span> <span class="cf">function</span>(x) {</span>
+<span id="cb365-9"><a href="descriptive-statistics-and-aggregation.html#cb365-9" aria-hidden="true" tabindex="-1"></a>                               <span class="fu">summaryBy</span>(Tip_Amt<span class="sc">~</span>Payment_Type,</span>
+<span id="cb365-10"><a href="descriptive-statistics-and-aggregation.html#cb365-10" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">data =</span> x,</span>
+<span id="cb365-11"><a href="descriptive-statistics-and-aggregation.html#cb365-11" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">FUN =</span> mean,</span>
+<span id="cb365-12"><a href="descriptive-statistics-and-aggregation.html#cb365-12" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">na.rm =</span> <span class="cn">TRUE</span>)})</span></code></pre></div>
+<p>Note how the output describes the procedure step by step. Now we can have a look at the resulting summary statistic in the form of a <code>data.frame</code>.</p>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="descriptive-statistics-and-aggregation.html#cb366-1" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(tip_pcategory)</span></code></pre></div>
+<pre><code>##   Payment_Type Tip_Amt.mean
+## 1         cash    0.0008162
+## 2       credit    2.1619737
+## 3      dispute    0.0035075
+## 4    no charge    0.0041056</code></pre>
+<p>The result contradicts our initial hypothesis. However, the comparison is a little flawed. If trips paid by credit card also tend to be longer, the result is not too surprising. We should thus look at the share of tip (or percentage), given the overall amount paid for the trip.</p>
+<p>We add an additional variable <code>percent_tip</code> and then repeat the aggregation exercise for this variable.</p>
+<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="descriptive-statistics-and-aggregation.html#cb368-1" aria-hidden="true" tabindex="-1"></a><span class="co"># add additional column with the share of tip</span></span>
+<span id="cb368-2"><a href="descriptive-statistics-and-aggregation.html#cb368-2" aria-hidden="true" tabindex="-1"></a>taxi<span class="sc">$</span>percent_tip <span class="ot">&lt;-</span> (taxi<span class="sc">$</span>Tip_Amt<span class="sc">/</span>taxi<span class="sc">$</span>Total_Amt)<span class="sc">*</span><span class="dv">100</span></span>
+<span id="cb368-3"><a href="descriptive-statistics-and-aggregation.html#cb368-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb368-4"><a href="descriptive-statistics-and-aggregation.html#cb368-4" aria-hidden="true" tabindex="-1"></a><span class="co"># recompute the aggregate stats</span></span>
+<span id="cb368-5"><a href="descriptive-statistics-and-aggregation.html#cb368-5" aria-hidden="true" tabindex="-1"></a>tip_pcategory <span class="ot">&lt;-</span> <span class="fu">ffdfdply</span>(taxi,</span>
+<span id="cb368-6"><a href="descriptive-statistics-and-aggregation.html#cb368-6" aria-hidden="true" tabindex="-1"></a>                          <span class="at">split =</span> taxi<span class="sc">$</span>Payment_Type,</span>
+<span id="cb368-7"><a href="descriptive-statistics-and-aggregation.html#cb368-7" aria-hidden="true" tabindex="-1"></a>                          <span class="at">BATCHBYTES =</span> <span class="dv">100000000</span>,</span>
+<span id="cb368-8"><a href="descriptive-statistics-and-aggregation.html#cb368-8" aria-hidden="true" tabindex="-1"></a>                          <span class="at">FUN =</span> <span class="cf">function</span>(x) {</span>
+<span id="cb368-9"><a href="descriptive-statistics-and-aggregation.html#cb368-9" aria-hidden="true" tabindex="-1"></a>                             <span class="co"># note the difference here</span></span>
+<span id="cb368-10"><a href="descriptive-statistics-and-aggregation.html#cb368-10" aria-hidden="true" tabindex="-1"></a>                               <span class="fu">summaryBy</span>(percent_tip<span class="sc">~</span>Payment_Type, </span>
+<span id="cb368-11"><a href="descriptive-statistics-and-aggregation.html#cb368-11" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">data =</span> x,</span>
+<span id="cb368-12"><a href="descriptive-statistics-and-aggregation.html#cb368-12" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">FUN =</span> mean,</span>
+<span id="cb368-13"><a href="descriptive-statistics-and-aggregation.html#cb368-13" aria-hidden="true" tabindex="-1"></a>                                         <span class="at">na.rm =</span> <span class="cn">TRUE</span>)})</span>
+<span id="cb368-14"><a href="descriptive-statistics-and-aggregation.html#cb368-14" aria-hidden="true" tabindex="-1"></a><span class="co"># show result as data frame</span></span>
+<span id="cb368-15"><a href="descriptive-statistics-and-aggregation.html#cb368-15" aria-hidden="true" tabindex="-1"></a><span class="fu">as.data.frame</span>(tip_pcategory)</span></code></pre></div>
+<pre><code>##   Payment_Type percent_tip.mean
+## 1         cash         0.005978
+## 2       credit        16.004173
+## 3      dispute         0.045660
+## 4    no charge         0.040433</code></pre>
+<p><strong>Cross-tabulation of <code>ff</code> vectors</strong>
+</p>
+<p>Also in relative terms, trips paid by credit card tend to be tipped more. However, are there actually many trips paid by credit card? In order to figure this out, we count the number of trips per payment type by applying the <code>table.ff</code> function provided in <code>ffbase</code>.</p>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="descriptive-statistics-and-aggregation.html#cb370-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table.ff</span>(taxi<span class="sc">$</span>Payment_Type)</span></code></pre></div>
+<pre><code>## 
+##      cash    credit   dispute no charge 
+##    781295    215424       536      2745</code></pre>
+<p>So trips paid in cash are much more frequent than trips paid by credit card. Again using the <code>table.ff</code> function, we investigate what factors might be correlated with payment types. First, we have a look at whether payment type is associated with the number of passengers in a trip.</p>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="descriptive-statistics-and-aggregation.html#cb372-1" aria-hidden="true" tabindex="-1"></a><span class="co"># select the subset of observations only containing trips paid by</span></span>
+<span id="cb372-2"><a href="descriptive-statistics-and-aggregation.html#cb372-2" aria-hidden="true" tabindex="-1"></a><span class="co"># credit card or cash</span></span>
+<span id="cb372-3"><a href="descriptive-statistics-and-aggregation.html#cb372-3" aria-hidden="true" tabindex="-1"></a>taxi_sub <span class="ot">&lt;-</span> <span class="fu">subset.ffdf</span>(taxi, Payment_Type<span class="sc">==</span><span class="st">&quot;credit&quot;</span> <span class="sc">|</span> Payment_Type <span class="sc">==</span> <span class="st">&quot;cash&quot;</span>)</span>
+<span id="cb372-4"><a href="descriptive-statistics-and-aggregation.html#cb372-4" aria-hidden="true" tabindex="-1"></a>taxi_sub<span class="sc">$</span>Payment_Type <span class="ot">&lt;-</span> <span class="fu">ff</span>(taxi_sub<span class="sc">$</span>Payment_Type,</span>
+<span id="cb372-5"><a href="descriptive-statistics-and-aggregation.html#cb372-5" aria-hidden="true" tabindex="-1"></a>                        <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;credit&quot;</span>, <span class="st">&quot;cash&quot;</span>),</span>
+<span id="cb372-6"><a href="descriptive-statistics-and-aggregation.html#cb372-6" aria-hidden="true" tabindex="-1"></a>                        <span class="at">ramclass =</span> <span class="st">&quot;factor&quot;</span>)</span>
+<span id="cb372-7"><a href="descriptive-statistics-and-aggregation.html#cb372-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb372-8"><a href="descriptive-statistics-and-aggregation.html#cb372-8" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the cross tabulation</span></span>
+<span id="cb372-9"><a href="descriptive-statistics-and-aggregation.html#cb372-9" aria-hidden="true" tabindex="-1"></a>crosstab <span class="ot">&lt;-</span> <span class="fu">table.ff</span>(taxi_sub<span class="sc">$</span>Passenger_Count,</span>
+<span id="cb372-10"><a href="descriptive-statistics-and-aggregation.html#cb372-10" aria-hidden="true" tabindex="-1"></a>                     taxi_sub<span class="sc">$</span>Payment_Type</span>
+<span id="cb372-11"><a href="descriptive-statistics-and-aggregation.html#cb372-11" aria-hidden="true" tabindex="-1"></a>                     )</span>
+<span id="cb372-12"><a href="descriptive-statistics-and-aggregation.html#cb372-12" aria-hidden="true" tabindex="-1"></a><span class="co"># add names to the margins</span></span>
+<span id="cb372-13"><a href="descriptive-statistics-and-aggregation.html#cb372-13" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(<span class="fu">dimnames</span>(crosstab)) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Passenger count&quot;</span>, <span class="st">&quot;Payment type&quot;</span>)</span>
+<span id="cb372-14"><a href="descriptive-statistics-and-aggregation.html#cb372-14" aria-hidden="true" tabindex="-1"></a><span class="co"># show result</span></span>
+<span id="cb372-15"><a href="descriptive-statistics-and-aggregation.html#cb372-15" aria-hidden="true" tabindex="-1"></a>crosstab</span></code></pre></div>
+<pre><code>##                Payment type
+## Passenger count credit   cash
+##               0      2     44
+##               1 149990 516828
+##               2  32891 133468
+##               3   7847  36439
+##               4   2909  17901
+##               5  20688  73027
+##               6   1097   3588</code></pre>
+<p>From the raw numbers it is hard to see whether there are significant differences between the categories cash and credit. We therefore use a visualization technique called a ‘mosaic plot’ (provided in the <code>vcd</code> package; see <span class="citation">Meyer, Zeileis, and Hornik (<a href="#ref-vcd" role="doc-biblioref">2023</a>)</span>, <span class="citation">Meyer, Zeileis, and Hornik (<a href="#ref-strucplot" role="doc-biblioref">2006</a>)</span>, and <span class="citation">Zeileis, Meyer, and Hornik (<a href="#ref-shading" role="doc-biblioref">2007</a>)</span>) to visualize the cross-tabulation.</p>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="descriptive-statistics-and-aggregation.html#cb374-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(vcd)</span></span>
+<span id="cb374-2"><a href="descriptive-statistics-and-aggregation.html#cb374-2" aria-hidden="true" tabindex="-1"></a><span class="co"># load package for mosaic plot</span></span>
+<span id="cb374-3"><a href="descriptive-statistics-and-aggregation.html#cb374-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vcd)</span>
+<span id="cb374-4"><a href="descriptive-statistics-and-aggregation.html#cb374-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb374-5"><a href="descriptive-statistics-and-aggregation.html#cb374-5" aria-hidden="true" tabindex="-1"></a><span class="co"># generate a mosaic plot</span></span>
+<span id="cb374-6"><a href="descriptive-statistics-and-aggregation.html#cb374-6" aria-hidden="true" tabindex="-1"></a><span class="fu">mosaic</span>(crosstab, <span class="at">shade =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="bigdata_files/figure-html/unnamed-chunk-178-1.png" width="75%" style="display: block; margin: auto;" /></p>
+<p>The plot suggests that trips involving more than one passenger tend to be paid by cash rather than by credit card.</p>
+</div>
+<div id="high-speed-in-memory-data-aggregation-with-arrow" class="section level2 hasAnchor" number="10.3">
+<h2><span class="header-section-number">10.3</span> High-speed in-memory data aggregation with <code>arrow</code><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-arrow" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p></p>
+<p>For large datasets that (at least in part) fit into RAM, the <code>arrow</code> package again provides an attractive alternative to <code>ff</code>.</p>
+<p><strong>Data import</strong></p>
+<p>We use the already familiar <code>read_csv_arrow()</code> to import the same first million observations from the taxi trips records.</p>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="descriptive-statistics-and-aggregation.html#cb375-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb375-2"><a href="descriptive-statistics-and-aggregation.html#cb375-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(arrow)</span>
+<span id="cb375-3"><a href="descriptive-statistics-and-aggregation.html#cb375-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb375-4"><a href="descriptive-statistics-and-aggregation.html#cb375-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb375-5"><a href="descriptive-statistics-and-aggregation.html#cb375-5" aria-hidden="true" tabindex="-1"></a><span class="co"># read the CSV file </span></span>
+<span id="cb375-6"><a href="descriptive-statistics-and-aggregation.html#cb375-6" aria-hidden="true" tabindex="-1"></a>taxi <span class="ot">&lt;-</span> <span class="fu">read_csv_arrow</span>(<span class="st">&quot;data/tlc_trips.csv&quot;</span>, </span>
+<span id="cb375-7"><a href="descriptive-statistics-and-aggregation.html#cb375-7" aria-hidden="true" tabindex="-1"></a>                       <span class="at">as_data_frame =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><strong>Data preparation and ‘split-apply-combine’</strong></p>
+<p>We prepare/clean the data as in the <code>ff</code>-approach above.</p>
+<p>As <code>arrow</code> builds on a <code>dplyr</code> back-end, basic computations can be easily done through the common <code>dplyr</code> syntax. Note, however, that not all of the <code>dplyr</code> functions are covered in <code>arrow</code> (as of the writing of this book).<a href="#fn59" class="footnote-ref" id="fnref59"><sup>59</sup></a></p>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="descriptive-statistics-and-aggregation.html#cb376-1" aria-hidden="true" tabindex="-1"></a><span class="co"># clean the categorical variable; aggregate by group</span></span>
+<span id="cb376-2"><a href="descriptive-statistics-and-aggregation.html#cb376-2" aria-hidden="true" tabindex="-1"></a>taxi <span class="ot">&lt;-</span> </span>
+<span id="cb376-3"><a href="descriptive-statistics-and-aggregation.html#cb376-3" aria-hidden="true" tabindex="-1"></a>   taxi <span class="sc">%&gt;%</span> </span>
+<span id="cb376-4"><a href="descriptive-statistics-and-aggregation.html#cb376-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">Payment_Type =</span> <span class="fu">tolower</span>(Payment_Type))</span></code></pre></div>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="descriptive-statistics-and-aggregation.html#cb377-1" aria-hidden="true" tabindex="-1"></a>taxi_summary <span class="ot">&lt;-</span> </span>
+<span id="cb377-2"><a href="descriptive-statistics-and-aggregation.html#cb377-2" aria-hidden="true" tabindex="-1"></a>   taxi <span class="sc">%&gt;%</span></span>
+<span id="cb377-3"><a href="descriptive-statistics-and-aggregation.html#cb377-3" aria-hidden="true" tabindex="-1"></a>   <span class="fu">mutate</span>(<span class="at">percent_tip =</span> (Tip_Amt<span class="sc">/</span>Total_Amt)<span class="sc">*</span><span class="dv">100</span> ) <span class="sc">%&gt;%</span> </span>
+<span id="cb377-4"><a href="descriptive-statistics-and-aggregation.html#cb377-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">group_by</span>(Payment_Type) <span class="sc">%&gt;%</span> </span>
+<span id="cb377-5"><a href="descriptive-statistics-and-aggregation.html#cb377-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">summarize</span>(<span class="at">avg_percent_tip =</span> <span class="fu">mean</span>(percent_tip)) <span class="sc">%&gt;%</span> </span>
+<span id="cb377-6"><a href="descriptive-statistics-and-aggregation.html#cb377-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">collect</span>() </span></code></pre></div>
+<p>Similarly, we can use <code>data.table</code>’s <code>dcast()</code> for cross-tabulation-like operations.</p>
+<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="descriptive-statistics-and-aggregation.html#cb378-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyr)</span>
+<span id="cb378-2"><a href="descriptive-statistics-and-aggregation.html#cb378-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb378-3"><a href="descriptive-statistics-and-aggregation.html#cb378-3" aria-hidden="true" tabindex="-1"></a><span class="co"># compute the frequencies; pull result into R</span></span>
+<span id="cb378-4"><a href="descriptive-statistics-and-aggregation.html#cb378-4" aria-hidden="true" tabindex="-1"></a>ct <span class="ot">&lt;-</span> taxi <span class="sc">%&gt;%</span></span>
+<span id="cb378-5"><a href="descriptive-statistics-and-aggregation.html#cb378-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">filter</span>(Payment_Type <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;credit&quot;</span>, <span class="st">&quot;cash&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb378-6"><a href="descriptive-statistics-and-aggregation.html#cb378-6" aria-hidden="true" tabindex="-1"></a>   <span class="fu">group_by</span>(Passenger_Count, Payment_Type) <span class="sc">%&gt;%</span></span>
+<span id="cb378-7"><a href="descriptive-statistics-and-aggregation.html#cb378-7" aria-hidden="true" tabindex="-1"></a>   <span class="fu">summarize</span>(<span class="at">n=</span><span class="fu">n</span>())<span class="sc">%&gt;%</span></span>
+<span id="cb378-8"><a href="descriptive-statistics-and-aggregation.html#cb378-8" aria-hidden="true" tabindex="-1"></a>     <span class="fu">collect</span>()</span>
+<span id="cb378-9"><a href="descriptive-statistics-and-aggregation.html#cb378-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb378-10"><a href="descriptive-statistics-and-aggregation.html#cb378-10" aria-hidden="true" tabindex="-1"></a><span class="co"># present as cross-tabulation</span></span>
+<span id="cb378-11"><a href="descriptive-statistics-and-aggregation.html#cb378-11" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_wider</span>(<span class="at">data=</span>ct, </span>
+<span id="cb378-12"><a href="descriptive-statistics-and-aggregation.html#cb378-12" aria-hidden="true" tabindex="-1"></a>            <span class="at">names_from=</span><span class="st">&quot;Passenger_Count&quot;</span>,</span>
+<span id="cb378-13"><a href="descriptive-statistics-and-aggregation.html#cb378-13" aria-hidden="true" tabindex="-1"></a>            <span class="at">values_from =</span> <span class="st">&quot;n&quot;</span>)</span></code></pre></div>
+<pre><code>## # A tibble: 2 × 11
+##   Payment_Type    `1`    `3`    `5`    `2`    `4`   `6`
+##   &lt;chr&gt;         &lt;int&gt;  &lt;int&gt;  &lt;int&gt;  &lt;int&gt;  &lt;int&gt; &lt;int&gt;
+## 1 cash         1.42e7 972341 1.89e6 3.57e6 473783 96920
+## 2 credit       4.34e6 221648 5.63e5 9.23e5  82800 28853
+## # ℹ 4 more variables: `0` &lt;int&gt;, `208` &lt;int&gt;,
+## #   `129` &lt;int&gt;, `113` &lt;int&gt;</code></pre>
+</div>
+<div id="high-speed-in-memory-data-aggregation-with-data.table" class="section level2 hasAnchor" number="10.4">
+<h2><span class="header-section-number">10.4</span> High-speed in-memory data aggregation with <code>data.table</code><a href="descriptive-statistics-and-aggregation.html#high-speed-in-memory-data-aggregation-with-data.table" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p></p>
+<p>For large datasets that still fit into RAM, the <code>data.table</code> package <span class="citation">(<a href="#ref-data.table" role="doc-biblioref">Dowle and Srinivasan 2022</a>)</span> provides very fast and elegant functions to compute aggregate statistics.</p>
+<p><strong>Data import</strong></p>
+<p>We use the already familiar <code>fread()</code> to import the same first million observations from the taxi trip records.</p>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="descriptive-statistics-and-aggregation.html#cb380-1" aria-hidden="true" tabindex="-1"></a><span class="co"># load packages</span></span>
+<span id="cb380-2"><a href="descriptive-statistics-and-aggregation.html#cb380-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(data.table)</span>
+<span id="cb380-3"><a href="descriptive-statistics-and-aggregation.html#cb380-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb380-4"><a href="descriptive-statistics-and-aggregation.html#cb380-4" aria-hidden="true" tabindex="-1"></a><span class="co"># import data into RAM (needs around 200MB)</span></span>
+<span id="cb380-5"><a href="descriptive-statistics-and-aggregation.html#cb380-5" aria-hidden="true" tabindex="-1"></a>taxi <span class="ot">&lt;-</span> <span class="fu">fread</span>(<span class="st">&quot;data/tlc_trips.csv&quot;</span>,</span>
+<span id="cb380-6"><a href="descriptive-statistics-and-aggregation.html#cb380-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">nrows =</span> <span class="dv">1000000</span>)</span></code></pre></div>
+<p><strong>Data preparation and <code>data.table</code> syntax for ‘split-apply-combine’</strong></p>
+<p>We prepare/clean the data as in the <code>ff</code> approach above.</p>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="descriptive-statistics-and-aggregation.html#cb381-1" aria-hidden="true" tabindex="-1"></a><span class="co"># clean the factor levels</span></span>
+<span id="cb381-2"><a href="descriptive-statistics-and-aggregation.html#cb381-2" aria-hidden="true" tabindex="-1"></a>taxi<span class="sc">$</span>Payment_Type <span class="ot">&lt;-</span> <span class="fu">tolower</span>(taxi<span class="sc">$</span>Payment_Type)</span>
+<span id="cb381-3"><a href="descriptive-statistics-and-aggregation.html#cb381-3" aria-hidden="true" tabindex="-1"></a>taxi<span class="sc">$</span>Payment_Type <span class="ot">&lt;-</span> <span class="fu">factor</span>(taxi<span class="sc">$</span>Payment_Type,</span>
+<span id="cb381-4"><a href="descriptive-statistics-and-aggregation.html#cb381-4" aria-hidden="true" tabindex="-1"></a>                            <span class="at">levels =</span> <span class="fu">unique</span>(taxi<span class="sc">$</span>Payment_Type))     </span></code></pre></div>
+<p>Note the simpler syntax of essentially doing the same thing, but all in-memory.</p>
+<p><strong><code>data.table</code>-syntax for ‘split-apply-combine’ operations</strong></p>
+<p>With the <code>[]</code>-syntax we index/subset the usual <code>data.frame</code> objects in R. When working with <code>data.table</code>s, much more can be done in the step of ‘sub-setting’ the frame.<a href="#fn60" class="footnote-ref" id="fnref60"><sup>60</sup></a></p>
+<p>For example, we can directly compute on columns.</p>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="descriptive-statistics-and-aggregation.html#cb382-1" aria-hidden="true" tabindex="-1"></a>taxi[, <span class="fu">mean</span>(Tip_Amt<span class="sc">/</span>Total_Amt)]</span></code></pre></div>
+<pre><code>## [1] 0.03452</code></pre>
+<p>Moreover, in the same step, we can ‘split’ the rows <em>by</em> specific groups and apply the function to each subset.</p>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="descriptive-statistics-and-aggregation.html#cb384-1" aria-hidden="true" tabindex="-1"></a>taxi[, .(<span class="at">percent_tip =</span> <span class="fu">mean</span>((Tip_Amt<span class="sc">/</span>Total_Amt)<span class="sc">*</span><span class="dv">100</span>)), by <span class="ot">=</span> Payment_Type]</span></code></pre></div>
+<pre><code>##    Payment_Type percent_tip
+## 1:         cash    0.005978
+## 2:       credit   16.004173
+## 3:    no charge    0.040433
+## 4:      dispute    0.045660</code></pre>
+<p>Similarly, we can use <code>data.table</code>’s <code>dcast()</code> for cross-tabulation-like operations.</p>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="descriptive-statistics-and-aggregation.html#cb386-1" aria-hidden="true" tabindex="-1"></a><span class="fu">dcast</span>(taxi[Payment_Type <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;credit&quot;</span>, <span class="st">&quot;cash&quot;</span>)],</span>
+<span id="cb386-2"><a href="descriptive-statistics-and-aggregation.html#cb386-2" aria-hidden="true" tabindex="-1"></a>      Passenger_Count<span class="sc">~</span>Payment_Type, </span>
+<span id="cb386-3"><a href="descriptive-statistics-and-aggregation.html#cb386-3" aria-hidden="true" tabindex="-1"></a>      <span class="at">fun.aggregate =</span> length,</span>
+<span id="cb386-4"><a href="descriptive-statistics-and-aggregation.html#cb386-4" aria-hidden="true" tabindex="-1"></a>      <span class="at">value.var =</span> <span class="st">&quot;vendor_name&quot;</span>)</span></code></pre></div>
+<pre><code>##    Passenger_Count   cash credit
+## 1:               0     44      2
+## 2:               1 516828 149990
+## 3:               2 133468  32891
+## 4:               3  36439   7847
+## 5:               4  17901   2909
+## 6:               5  73027  20688
+## 7:               6   3588   1097</code></pre>
+</div>
+<div id="wrapping-up-6" class="section level2 hasAnchor" number="10.5">
+<h2><span class="header-section-number">10.5</span> Wrapping up<a href="descriptive-statistics-and-aggregation.html#wrapping-up-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ul>
+<li>Similar to the MapReduce idea in the context of distributed systems, the <em>split-apply-combine</em> approach is key in many Big Data aggregation procedures on normal machines (laptop/desktop computers). The idea is to split the overall data into subsets based on a categorical variable, apply a function (e.g., mean) on each subset, and then combine the results into one object. Thus, the approach allows for parallelization and working on separate data chunks.</li>
+<li>As computing descriptive statistics on various subsets of a large dataset can be very memory-intensive, it is recommended to use out-of-memory strategies, lazy evaluation, or a classical SQL-database approach for this.</li>
+<li>There are several options available such as <code>ffdply</code>, running on chunked datasets; and <code>arrow</code> with <code>group_by()</code>.</li>
+</ul>
+
+</div>
+</div>
+<h3>References<a href="references.html#references" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="refs" class="references csl-bib-body hanging-indent">
+<div id="ref-data.table" class="csl-entry">
+Dowle, Matt, and Arun Srinivasan. 2022. <em>Data.table: Extension of ‘Data.frame‘</em>. <a href="https://CRAN.R-project.org/package=data.table">https://CRAN.R-project.org/package=data.table</a>.
+</div>
+<div id="ref-doBy" class="csl-entry">
+Højsgaard, Søren, and Ulrich Halekoh. 2023. <em>doBy: Groupwise Statistics, LSmeans, Linear Estimates, Utilities</em>. <a href="https://CRAN.R-project.org/package=doBy">https://CRAN.R-project.org/package=doBy</a>.
+</div>
+<div id="ref-strucplot" class="csl-entry">
+Meyer, David, Achim Zeileis, and Kurt Hornik. 2006. <span>“The Strucplot Framework: Visualizing Multi-Way Contingency Tables with Vcd.”</span> <em>Journal of Statistical Software</em> 17 (3): 1–48. <a href="https://doi.org/10.18637/jss.v017.i03">https://doi.org/10.18637/jss.v017.i03</a>.
+</div>
+<div id="ref-vcd" class="csl-entry">
+———. 2023. <em>Vcd: Visualizing Categorical Data</em>. <a href="https://CRAN.R-project.org/package=vcd">https://CRAN.R-project.org/package=vcd</a>.
+</div>
+<div id="ref-wickham_2011" class="csl-entry">
+Wickham, Hadley. 2011. <span>“The Split-Apply-Combine Strategy for Data Analysis.”</span> <em>Journal of Statistical Software</em> 40.
+</div>
+<div id="ref-shading" class="csl-entry">
+Zeileis, Achim, David Meyer, and Kurt Hornik. 2007. <span>“Residual-Based Shadings for Visualizing (Conditional) Independence.”</span> <em>Journal of Computational and Graphical Statistics</em> 16 (3): 507–25. <a href="https://doi.org/10.1198/106186007X237856">https://doi.org/10.1198/106186007X237856</a>.
+</div>
+</div>
+<div class="footnotes">
+<hr />
+<ol start="57">
+<li id="fn57"><p>Moreover, ‘split-apply-combine’ is closely related to a core strategy of Big Data Analytics with distributed systems (MapReduce).<a href="descriptive-statistics-and-aggregation.html#fnref57" class="footnote-back">↩︎</a></p></li>
+<li id="fn58"><p>Note that the code examples below could also be run based on the entire TLC database (provided that there is enough hard-disk space available). But, creating the <code>ff</code> chunked file structure for a 200GB CSV would take hours or even days.<a href="descriptive-statistics-and-aggregation.html#fnref58" class="footnote-back">↩︎</a></p></li>
+<li id="fn59"><p>If a <code>dplyr</code>-like function is not implemented in <code>arrow</code>, the <code>arrow</code> data object is automatically pulled into R (meaning fully into RAM) and then processed there directly via native <code>dplyr</code>. Such a situation might crash your R session due to a lack of RAM.<a href="descriptive-statistics-and-aggregation.html#fnref59" class="footnote-back">↩︎</a></p></li>
+<li id="fn60"><p>See <a href="https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html" class="uri">https://cran.r-project.org/web/packages/data.table/vignettes/datatable-intro.html</a> for a detailed introduction to the syntax.<a href="descriptive-statistics-and-aggregation.html#fnref60" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="big-data-cleaning-and-transformation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="big-data-visualization.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook/js/app.min.js"></script>
+<script src="libs/gitbook/js/clipboard.min.js"></script>
+<script src="libs/gitbook/js/plugin-search.js"></script>
+<script src="libs/gitbook/js/plugin-sharing.js"></script>
+<script src="libs/gitbook/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook/js/jquery.highlight.js"></script>
+<script src="libs/gitbook/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": true,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 1
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": {},
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
