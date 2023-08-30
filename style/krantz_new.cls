@@ -573,6 +573,11 @@
 \renewcommand\theparagraph    {\thesubsubsection.\@arabic\c@paragraph}
 \renewcommand\thesubparagraph {\theparagraph.\@arabic\c@subparagraph}
 \newcommand\@chapapp{\chaptername}
+\newcommand\partmatter{%
+    \cleardoublepage
+  \@mainmatterfalse
+%  \pagenumbering{arabic}
+  }
 \newcommand\frontmatter{%
     \cleardoublepage
   \@mainmatterfalse
@@ -581,6 +586,11 @@
     \cleardoublepage
   \@mainmattertrue
   \pagenumbering{arabic}}
+\newcommand\mainmattercontinue{%
+    \cleardoublepage
+  \@mainmattertrue
+%  \pagenumbering{arabic}
+  }
 \newcommand\backmatter{%
   \if@openright
     \cleardoublepage
@@ -588,7 +598,7 @@
     \clearpage
   \fi
   \@mainmatterfalse}
-\newcommand\part{\make@cornermarks%
+\newcommand\part{\make@cornermarks%\partmatter%
   \if@openright
     \cleardoublepage
   \else
