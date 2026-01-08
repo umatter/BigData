@@ -13,35 +13,7 @@ The [R_code_examples](/R_code_examples) folder contains R-scripts with all code 
 
 The corresponding sections in the book contain typically contain detailed instructions of where and how the datasets used in the code examples can be downloaded from the original sources.
 
-To ensure data availability for the code examples and tutorials in the long run, you find (smaller scale) versions for all key datasets discussed in the book in this S3-bucket: 
-
-https://bda-examples.s3.eu-central-1.amazonaws.com/air_final.sqlite
-
-https://bda-examples.s3.eu-central-1.amazonaws.com/airline_id.csv
-
-https://bda-examples.s3.eu-central-1.amazonaws.com/airports.csv
-
-https://bda-examples.s3.eu-central-1.amazonaws.com/carriers.csv
-
-https://bda-examples.s3.eu-central-1.amazonaws.com/data_for_tables.dta
-
-https://bda-examples.s3.eu-central-1.amazonaws.com/economics.csv
-
-https://bda-examples.s3.eu-central-1.amazonaws.com/flights_sep_oct15.txt
-
-https://bda-examples.s3.eu-central-1.amazonaws.com/flights.csv
-
-https://bda-examples.s3.eu-central-1.amazonaws.com/ga.csv
-
-https://bda-examples.s3.eu-central-1.amazonaws.com/inflation.csv
-
-https://bda-examples.s3.eu-central-1.amazonaws.com/marketing_data.csv
-
-https://bda-examples.s3.eu-central-1.amazonaws.com/mydb.sqlite
-
-https://bda-examples.s3.eu-central-1.amazonaws.com/tlc_trips.csv
-
-Note that the AWS bucket is configured such that the [requester pays](https://docs.aws.amazon.com/AmazonS3/latest/userguide/RequesterPaysBuckets.html?icmpid=docs_amazons3_console) for requests and transfer costs.
+To ensure data availability for the code examples and tutorials in the long run, you find (smaller scale) versions for all key datasets discussed in the book here: [bda-examples](https://www.dropbox.com/scl/fo/jadkdmdt8nghiws0bs4j4/ANqPEXbvQ-5KEdRw9GrsEHE?rlkey=ko9l1isgy4etskn2rdfzirzz6&st=ivu2wjau&dl=0)
 
 
 ### Installation of dependencies and packages
